@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, type ReactNode } from 'react';
-import type { TranscriptPanelProps } from './transcript-panel';
 
 /**
  * HeadCoachChatPane - Black Box Chat Interface

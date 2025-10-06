@@ -111,6 +111,57 @@ function buildProviderSettings(
   return Object.keys(payload).length ? payload : undefined;
 }
 
+/**
+ * Detects if a message is requesting a coach switch.
+ * Returns the persona key if detected, null otherwise.
+ */
+function detectCoachSwitch(message: string): string | null {
+  const normalized = message.toLowerCase().trim();
+
+  // Photo Coach patterns
+  if (
+    normalized.match(/\b(speak|talk|switch|chat|go)\s+(to|with)\s+(the\s+)?photo\s+coach\b/) ||
+    normalized.match(/\bi('d|'ll| would)\s+like\s+(to\s+)?(speak|talk|chat|switch)\s+(to|with)\s+(the\s+)?photo\s+coach\b/) ||
+    normalized.match(/\bshow\s+me\s+(the\s+)?photo\s+coach\b/) ||
+    normalized.match(/\bconnect\s+me\s+(to|with)\s+(the\s+)?photo\s+coach\b/)
+  ) {
+    return 'photo';
+  }
+
+  // Relationship Coach patterns
+  if (
+    normalized.match(/\b(speak|talk|switch|chat|go)\s+(to|with)\s+(the\s+)?(relationship|rc)\s+coach\b/) ||
+    normalized.match(/\bi('d|'ll| would)\s+like\s+(to\s+)?(speak|talk|chat|switch)\s+(to|with)\s+(the\s+)?(relationship|rc)\s+coach\b/) ||
+    normalized.match(/\bshow\s+me\s+(the\s+)?(relationship|rc)\s+coach\b/) ||
+    normalized.match(/\bconnect\s+me\s+(to|with)\s+(the\s+)?(relationship|rc)\s+coach\b/)
+  ) {
+    return 'relationship_coach';
+  }
+
+  // PaDNA Coach patterns (also check for "rendering" as that's the normalized key)
+  if (
+    normalized.match(/\b(speak|talk|switch|chat|go)\s+(to|with)\s+(the\s+)?(padna|rendering)\s+coach\b/) ||
+    normalized.match(/\bi('d|'ll| would)\s+like\s+(to\s+)?(speak|talk|chat|switch)\s+(to|with)\s+(the\s+)?(padna|rendering)\s+coach\b/) ||
+    normalized.match(/\bshow\s+me\s+(the\s+)?(padna|rendering)\s+coach\b/) ||
+    normalized.match(/\bconnect\s+me\s+(to|with)\s+(the\s+)?(padna|rendering)\s+coach\b/)
+  ) {
+    return 'padna';
+  }
+
+  // Head Coach patterns (back to default)
+  if (
+    normalized.match(/\b(speak|talk|switch|chat|go)\s+(to|with)\s+(the\s+)?head\s+coach\b/) ||
+    normalized.match(/\bi('d|'ll| would)\s+like\s+(to\s+)?(speak|talk|chat|switch)\s+(to|with)\s+(the\s+)?head\s+coach\b/) ||
+    normalized.match(/\bshow\s+me\s+(the\s+)?head\s+coach\b/) ||
+    normalized.match(/\bconnect\s+me\s+(to|with)\s+(the\s+)?head\s+coach\b/) ||
+    normalized.match(/\bgo\s+back\s+(to\s+)?(head\s+coach|main|home)\b/)
+  ) {
+    return 'head_coach';
+  }
+
+  return null;
+}
+
 export interface ChatComposerHandle {
   getText: () => string;
   setText: (text: string) => void;
@@ -125,6 +176,7 @@ export interface ChatComposerProps {
   activeUserId: string;
   disabled?: boolean;
   onProviderConfigError?: (message: string) => void;
+  onPersonaChange?: (personaKey: string) => void;
   streamingPreference?: boolean;
   enterToSendPreference?: boolean;
   providerModel?: string | null;
@@ -141,6 +193,7 @@ export const ChatComposer = forwardRef<ChatComposerHandle, ChatComposerProps>(fu
   activeUserId,
   disabled: disabledProp,
   onProviderConfigError,
+  onPersonaChange,
   streamingPreference,
   enterToSendPreference,
   providerModel,
@@ -488,6 +541,23 @@ export const ChatComposer = forwardRef<ChatComposerHandle, ChatComposerProps>(fu
         return;
       }
 
+      // Check for coach switching commands
+      const switchToPersona = detectCoachSwitch(trimmed);
+      if (switchToPersona && onPersonaChange) {
+        onPersonaChange(switchToPersona);
+        setMessage('');
+        const personaNames: Record<string, string> = {
+          photo: 'Photo Coach',
+          relationship_coach: 'Relationship Coach',
+          padna: 'PaDNA Coach',
+          head_coach: 'Head Coach'
+        };
+        const targetName = personaNames[switchToPersona] || 'coach';
+        setStatusMessage(`Switching to ${targetName}...`);
+        setLiveAnnouncement(`Switched to ${targetName}`);
+        return;
+      }
+
       const targetUser = activeUserId.trim();
       if (!targetUser) {
         const notice = 'Pick a user before chatting.';
@@ -540,6 +610,7 @@ export const ChatComposer = forwardRef<ChatComposerHandle, ChatComposerProps>(fu
       attemptSend,
       dispatchLocalMessage,
       message,
+      onPersonaChange,
       personaLabel,
       personaSendKey,
       providerLockActive,

@@ -280,6 +280,25 @@ export function SettingsModal({
               </fieldset>
 
               <fieldset className="space-y-2">
+                <legend className="text-xs uppercase tracking-wide text-slate-500">Analysis & Review</legend>
+                <label className="flex items-start justify-between gap-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+                  <div className="flex-1">
+                    <span className="font-semibold text-slate-100">Holistic Review</span>
+                    <p className="mt-1 text-xs text-slate-400">
+                      Enable joint Core + UCN/RR analysis for comprehensive profile review. When enabled, the system will analyze traits using both traditional core analysis and UCN/RR refinement metrics.
+                    </p>
+                  </div>
+                  <input
+                    type="checkbox"
+                    className="h-5 w-5"
+                    checked={preferences.holisticReview}
+                    onChange={(event) => onUpdate({ holisticReview: event.target.checked })}
+                    disabled={disabled}
+                  />
+                </label>
+              </fieldset>
+
+              <fieldset className="space-y-2">
                 <legend className="text-xs uppercase tracking-wide text-slate-500">{t('settings.section.layout')}</legend>
                 <label className="flex items-start justify-between gap-4 rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
                   <div className="flex-1">

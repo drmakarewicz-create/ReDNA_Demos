@@ -18,6 +18,7 @@ export interface UserPreferences {
   providerModel: string;
   providerTemperature: number | null;
   providerMaxTokens: number | null;
+  holisticReview: boolean;
 }
 
 const DEFAULT_PREFERENCES: UserPreferences = {
@@ -30,7 +31,8 @@ const DEFAULT_PREFERENCES: UserPreferences = {
   locale: 'en',
   providerModel: '',
   providerTemperature: null,
-  providerMaxTokens: null
+  providerMaxTokens: null,
+  holisticReview: false
 };
 
 function readPreferences(): UserPreferences {

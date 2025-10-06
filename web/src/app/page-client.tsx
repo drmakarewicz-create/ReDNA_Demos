@@ -12,6 +12,7 @@ import { UploadDrawerProvider } from '../components/upload-drawer';
 import { CoachAsksPanel } from '../components/coach-asks-panel';
 import { ObservationSummary } from '../components/observation-summary';
 import { UnabridgedPanel } from '../components/unabridged-panel';
+import { RRDnaPanel } from '../components/rr-dna-panel';
 import { PanelError } from '../components/panel-error';
 import { NudgeInboxPanel } from '../components/nudge-inbox-panel';
 import { TimelineDrawer } from '../components/timeline-drawer';
@@ -1995,6 +1996,7 @@ export default function HeadCoachPage() {
                 />
               </ClientOnly>
               <div className="flex flex-wrap items-center gap-2">
+                {/* REMOVED: Import User and Bulk Import buttons per user request
                 <input
                   ref={singleImportInputRef}
                   type="file"
@@ -2029,6 +2031,7 @@ export default function HeadCoachPage() {
                 >
                   {bulkImportPending ? 'Importing zip…' : 'Import bulk…'}
                 </button>
+                */}
                 <button
                   type="button"
                   onClick={() => setSettingsOpen(true)}
@@ -2121,6 +2124,14 @@ export default function HeadCoachPage() {
         onPersonaChange={setActivePersona}
       />
       <PanelBoundary resetKeys={[activeUser]} onRetry={retryUnabridged}>
+        <RRDnaPanel
+          snapshot={unabridged}
+          loading={unabridgedLoading}
+          error={unabridgedError}
+          onRetry={retryUnabridged}
+        />
+      </PanelBoundary>
+      <PanelBoundary resetKeys={[activeUser]} onRetry={retryUnabridged}>
         <UnabridgedPanel
           snapshot={unabridged}
           loading={unabridgedLoading}
@@ -2168,6 +2179,7 @@ export default function HeadCoachPage() {
           activeUserId={activeUser}
           disabled={!activeUser.trim()}
           onProviderConfigError={handleProviderConfigError}
+          onPersonaChange={setActivePersona}
           streamingPreference={preferences.streaming}
           enterToSendPreference={preferences.enterToSend}
           providerModel={preferences.providerModel}
