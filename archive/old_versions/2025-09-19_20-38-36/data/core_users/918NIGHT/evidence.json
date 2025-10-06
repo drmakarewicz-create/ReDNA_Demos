@@ -1,0 +1,84 @@
+[
+  {
+    "ts": "20250918_214949",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor"
+    ]
+  },
+  {
+    "ts": "20250918_214951",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor"
+    ]
+  },
+  {
+    "ts": "20250918_215051",
+    "from": "ucnrr",
+    "keys": [
+      "LifeDNA.Relationship.MaritalStatus",
+      "LifeDNA.Relationship.Partner.Name",
+      "LifeDNA.Relationship.Partner.Gender",
+      "BioDNA.Sex"
+    ]
+  },
+  {
+    "ts": "20250918_215053",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "LifeDNA.Relationship.MaritalStatus",
+      "LifeDNA.Relationship.Partner.Name",
+      "LifeDNA.Relationship.Partner.Gender",
+      "BioDNA.Sex"
+    ]
+  },
+  {
+    "ts": "20250919_082038",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "LifeDNA.Relationship.MaritalStatus",
+      "LifeDNA.Relationship.Partner.Name",
+      "LifeDNA.Relationship.Partner.Gender",
+      "BioDNA.Sex"
+    ]
+  },
+  {
+    "ts": "20250919_082044",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.HairDNA.Color",
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250919_083716",
+    "from": "ucnrr",
+    "keys": [
+      "BioDNA.Height"
+    ]
+  },
+  {
+    "ts": "20250919_085155",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.Lash.Length"
+    ]
+  },
+  {
+    "ts": "20250919_134851",
+    "from": "ucnrr",
+    "keys": [
+      "BioDNA.Physical.Weight"
+    ]
+  },
+  {
+    "ts": "20250919_135206",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.SkinDNA.FrecklePattern"
+    ]
+  }
+]

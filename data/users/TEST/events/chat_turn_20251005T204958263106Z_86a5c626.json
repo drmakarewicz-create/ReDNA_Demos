@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "t",
+  "assistant_text": "Let's try this again! You mentioned connectivity issues earlier, but I want to make sure we're having fun chatting about Archie and George. How's their energy level been lately?",
+  "client_message_id": "cddd6536-70d6-41db-83b3-b497edb8dad9",
+  "assistant_message_id": "chat-60b59276f6734bebaf089452a664a10b",
+  "server_ts": "2025-10-05T20:49:58.263+00:00",
+  "server_ts_ms": 1759697398263,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

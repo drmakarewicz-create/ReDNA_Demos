@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test2",
+  "assistant_text": "It sounds like we're back online! Since we didn't get to catch up on the week yet, let's start there. What's been the highlight of your week so far?",
+  "client_message_id": "7d0b9e66-f4f4-4715-8464-44727d089a5f",
+  "assistant_message_id": "chat-3b58f455aaeb43e3b623ddde7eae8783",
+  "server_ts": "2025-10-05T20:44:44.548+00:00",
+  "server_ts_ms": 1759697084548,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

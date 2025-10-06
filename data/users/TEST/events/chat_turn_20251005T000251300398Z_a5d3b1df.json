@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Are you being combative with me?",
+  "assistant_text": "You feel like I'm pushing something on you that you're not interested in, and for that, I apologize. My goal is to support you, not pressure you. Can you tell me what it would take for you to feel like we're having a conversation, rather than feeling pushed or sold something?",
+  "client_message_id": "d68e51e5-46c5-46e1-938f-85b45df4475a",
+  "assistant_message_id": "chat-9cb3b5b17caa48438b9485d8ee56a0c9",
+  "server_ts": "2025-10-05T00:02:51.300+00:00",
+  "server_ts_ms": 1759622571300,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

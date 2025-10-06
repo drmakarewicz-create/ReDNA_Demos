@@ -1,0 +1,280 @@
+{
+  "user_id": "BSTest",
+  "version": "v2.1-test",
+  "description": "Test rendering for v2.1 prompt enhancements: freckles, iris detail, skin texture, makeup, accessories",
+  "PaDNA": {
+    "EyeDNA": {
+      "Iris": {
+        "BaseColor": {
+          "resolved_value": "light-green",
+          "ucn": 930,
+          "evidence_count": 15,
+          "curiosity": 0.2
+        },
+        "Flecks": {
+          "resolved_value": "hazel",
+          "ucn": 910,
+          "evidence_count": 12,
+          "curiosity": 0.3
+        },
+        "FleckPattern": {
+          "resolved_value": "scattered",
+          "ucn": 900,
+          "evidence_count": 10,
+          "curiosity": 0.4
+        },
+        "LimbalRing": {
+          "resolved_value": "moderate",
+          "ucn": 890,
+          "evidence_count": 11,
+          "curiosity": 0.3
+        }
+      },
+      "Shape": {
+        "resolved_value": "almond",
+        "ucn": 880,
+        "evidence_count": 14
+      },
+      "Spacing": {
+        "resolved_value": "average",
+        "ucn": 860,
+        "evidence_count": 8
+      }
+    },
+    "SkinDNA": {
+      "Tone": {
+        "resolved_value": "fair",
+        "ucn": 920,
+        "evidence_count": 18
+      },
+      "Texture": {
+        "resolved_value": "natural-with-visible-pores",
+        "ucn": 900,
+        "evidence_count": 10,
+        "curiosity": 0.5
+      },
+      "Freckles": {
+        "Density": {
+          "resolved_value": "medium-heavy",
+          "ucn": 920,
+          "evidence_count": 16,
+          "curiosity": 0.2
+        },
+        "Coverage": {
+          "resolved_value": "full-face",
+          "ucn": 910,
+          "evidence_count": 14,
+          "curiosity": 0.3
+        },
+        "Contrast": {
+          "resolved_value": "prominent",
+          "ucn": 900,
+          "evidence_count": 13,
+          "curiosity": 0.4
+        }
+      },
+      "Undertone": {
+        "Type": {
+          "resolved_value": "warm",
+          "ucn": 870,
+          "evidence_count": 9
+        }
+      }
+    },
+    "HairDNA": {
+      "Color": {
+        "Base": {
+          "resolved_value": "blonde",
+          "ucn": 910,
+          "evidence_count": 20
+        },
+        "Highlights": {
+          "resolved_value": "golden",
+          "ucn": 890,
+          "evidence_count": 12
+        },
+        "Dimension": {
+          "resolved_value": "moderate-dimension",
+          "ucn": 870,
+          "evidence_count": 8
+        }
+      },
+      "Length": {
+        "resolved_value": "long",
+        "ucn": 900,
+        "evidence_count": 18
+      },
+      "CurlPattern": {
+        "resolved_value": "wavy-2B",
+        "ucn": 880,
+        "evidence_count": 14
+      },
+      "WaveDefinition": {
+        "resolved_value": "defined",
+        "ucn": 870,
+        "evidence_count": 12
+      },
+      "Accessories": {
+        "Headpiece": {
+          "resolved_value": "tiara",
+          "ucn": 860,
+          "evidence_count": 1,
+          "curiosity": 0.8,
+          "note": "Pageant/glamour context"
+        }
+      }
+    },
+    "BrowDNA": {
+      "Shape": {
+        "resolved_value": "soft-arch",
+        "ucn": 880,
+        "evidence_count": 11
+      },
+      "Thickness": {
+        "resolved_value": "medium",
+        "ucn": 870,
+        "evidence_count": 10
+      },
+      "Color": {
+        "resolved_value": "light-brown",
+        "ucn": 860,
+        "evidence_count": 12
+      }
+    },
+    "FaceDNA": {
+      "Cheekbones": {
+        "resolved_value": "moderate",
+        "ucn": 870,
+        "evidence_count": 9
+      },
+      "EyeSpacing": {
+        "resolved_value": "average",
+        "ucn": 860,
+        "evidence_count": 8
+      }
+    },
+    "SmileDNA": {
+      "LipFullness": {
+        "resolved_value": "medium-full",
+        "ucn": 880,
+        "evidence_count": 12
+      },
+      "CupidsBow": {
+        "resolved_value": "defined",
+        "ucn": 870,
+        "evidence_count": 10
+      },
+      "SmileShape": {
+        "resolved_value": "broad smile",
+        "ucn": 890,
+        "evidence_count": 14
+      },
+      "Teeth": {
+        "resolved_value": "straight, white",
+        "ucn": 880,
+        "evidence_count": 11
+      }
+    },
+    "BodyDNA": {
+      "Build": {
+        "resolved_value": "slim/athletic",
+        "ucn": 870,
+        "evidence_count": 10
+      }
+    },
+    "ApparelDNA": {
+      "Themes": {
+        "resolved_value": ["pageant", "glamour"],
+        "ucn": 860,
+        "evidence_count": 2,
+        "curiosity": 0.7
+      }
+    }
+  },
+  "MakeupDNA": {
+    "Eyes": {
+      "Style": {
+        "resolved_value": "heavy-smoky-eye-with-black-liner",
+        "ucn": 920,
+        "evidence_count": 8,
+        "curiosity": 0.3
+      },
+      "Underliner": {
+        "resolved_value": "present",
+        "ucn": 900,
+        "evidence_count": 7
+      }
+    },
+    "Lashes": {
+      "resolved_value": "long-volumized-mascara-false",
+      "ucn": 910,
+      "evidence_count": 9
+    },
+    "Lips": {
+      "Color": {
+        "resolved_value": "nude-to-pink",
+        "ucn": 880,
+        "evidence_count": 10
+      },
+      "Finish": {
+        "resolved_value": "gloss",
+        "ucn": 880,
+        "evidence_count": 9,
+        "curiosity": 0.5,
+        "note": "v2.1 new container"
+      }
+    },
+    "Skin": {
+      "Finish": {
+        "resolved_value": "dewy",
+        "ucn": 870,
+        "evidence_count": 8
+      }
+    },
+    "Blush": {
+      "Tone": {
+        "resolved_value": "soft-pink",
+        "ucn": 860,
+        "evidence_count": 7
+      }
+    }
+  },
+  "ExpressionDNA": {
+    "TypicalExpression": {
+      "resolved_value": "smiling warmly",
+      "ucn": 890,
+      "evidence_count": 15
+    },
+    "EyeContact": {
+      "resolved_value": "direct and engaging",
+      "ucn": 870,
+      "evidence_count": 12
+    }
+  },
+  "test_expectations": {
+    "critical_validations": [
+      "Freckles clearly visible with medium-heavy density across full face",
+      "Iris shows light green base + hazel flecks + scattered pattern + moderate limbal ring",
+      "Skin has natural texture with visible pores (NOT airbrushed)",
+      "Heavy dramatic smoky eye with thick black eyeliner",
+      "Nude-pink glossy lips with shiny finish",
+      "Tiara present on head",
+      "Overall pageant/glamour photography style"
+    ],
+    "prompt_should_include": [
+      "striking light green eyes with hazel flecks scattered throughout the iris, moderate limbal ring adding depth",
+      "prominent medium density freckles covering the face",
+      "natural skin texture, visible pores, realistic skin detail",
+      "heavy dramatic smoky eye with thick black eyeliner, intense eye makeup",
+      "nude pink lips",
+      "glossy lips, shiny finish",
+      "wearing elegant tiara",
+      "pageant photography style"
+    ],
+    "negative_prompt_should_include": [
+      "NOT airbrushed",
+      "NOT overly smooth skin",
+      "NOT plastic-looking"
+    ]
+  }
+}

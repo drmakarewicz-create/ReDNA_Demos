@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Hey Again",
+  "assistant_text": "What's been the highlight of your week, something that made you laugh or smile recently? If you want, I can connect you with our Relationship Coach if you'd like some advice on building stronger connections with friends.",
+  "client_message_id": "d453f938-9d89-432d-be20-b4cb284c3040",
+  "assistant_message_id": "chat-3cfa9aab00c4466f863b3e6d8b56f67a",
+  "server_ts": "2025-10-05T13:24:50.811+00:00",
+  "server_ts_ms": 1759670690811,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

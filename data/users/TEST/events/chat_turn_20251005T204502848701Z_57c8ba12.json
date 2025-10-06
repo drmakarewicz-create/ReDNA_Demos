@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test3",
+  "assistant_text": "Let's try this again. No worries about the technical issues! I'm here and ready to chat with you about Archie and George - what's new with them? Have they gotten into any mischief recently?",
+  "client_message_id": "dfa5f799-469c-4041-921e-69e941b0779a",
+  "assistant_message_id": "chat-ec8d0796e81047c486f7a34863109244",
+  "server_ts": "2025-10-05T20:45:02.848+00:00",
+  "server_ts_ms": 1759697102848,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

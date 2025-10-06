@@ -1,0 +1,46 @@
+{
+  "rows": [
+    {
+      "trait_key": "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "value": "Blue",
+      "ucn": 90,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "PaDNA.LooksDNA.HairDNA.Color",
+      "value": "red",
+      "ucn": 70,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "PaDNA.LooksDNA.HairDNA.Bald",
+      "value": true,
+      "ucn": 120,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "BioDNA.Height",
+      "value": "6 feet",
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "SocDNA.Relationship.Status",
+      "value": "Married",
+      "ucn": 95,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "SocDNA.Relationship.MarriageYear",
+      "value": 1998,
+      "ucn": 90,
+      "notes": null,
+      "status": "resolved"
+    }
+  ]
+}

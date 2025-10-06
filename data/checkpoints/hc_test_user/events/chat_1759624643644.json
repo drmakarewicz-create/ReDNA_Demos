@@ -1,0 +1,46 @@
+{
+  "type": "chat_turn",
+  "ts": 1759624643644,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "How about sports?",
+    "ts": 1759624643641
+  },
+  "assistant": {
+    "text": "Sports can be a great way to unwind! Are you watching any interesting games or following a particular team right now?",
+    "ts": 1759624643644,
+    "message_id": "chat-c9e25aa2a7d74f939c063d050457c3b1"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 5358,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 3,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.54,
+    "assertiveness_score": 0.0,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 15348.42,
+    "rolling_latency_median_ms": 6479.0,
+    "latency_histogram": {
+      "fast": 2,
+      "steady": 46,
+      "slow": 2
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "question": 26,
+      "answer": 22,
+      "ack": 2
+    },
+    "priority": 0.8
+  }
+}

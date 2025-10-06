@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625162258,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I'm feeling lonely and want to find a partner",
+    "ts": 1759625162257
+  },
+  "assistant": {
+    "text": "You mentioned being lonely and wanting to find a partner. That can be tough. Would you be open to talking about how sports or hobbies could help you meet new people?",
+    "ts": 1759625162258,
+    "message_id": "chat-b2abcf7683ba4374bce85e65fb0c74ec"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 24452,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 9,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.4955555555555556,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 21414.1,
+    "rolling_latency_median_ms": 6261.5,
+    "latency_histogram": {
+      "steady": 47,
+      "slow": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 25,
+      "question": 22,
+      "ack": 3
+    },
+    "priority": 0.8
+  }
+}

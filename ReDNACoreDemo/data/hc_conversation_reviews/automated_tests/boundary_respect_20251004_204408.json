@@ -1,0 +1,38 @@
+[
+  {
+    "ts": 1759625022985,
+    "role": "member",
+    "persona": null,
+    "text": "I'm feeling lonely and want to find a partner"
+  },
+  {
+    "ts": 1759625022986,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "I hear you're feeling lonely and want to meet someone special. That can be tough. Our Relationship Coach has helped many people build confidence in relationships - if you'd like, I can connect you with them."
+  },
+  {
+    "ts": 1759625036711,
+    "role": "member",
+    "persona": null,
+    "text": "I'd be interested in the Relationship Coach but not right now. Can you recommend a good pizza place?"
+  },
+  {
+    "ts": 1759625036716,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "I've got just the spot for you! There's a great pizzeria downtown that's gotten rave reviews. Have you tried it out?"
+  },
+  {
+    "ts": 1759625042733,
+    "role": "member",
+    "persona": null,
+    "text": "Any other restaurant suggestions?"
+  },
+  {
+    "ts": 1759625042736,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "I'm glad you're looking for more recommendations! What type of cuisine are you in the mood for tonight?"
+  }
+]

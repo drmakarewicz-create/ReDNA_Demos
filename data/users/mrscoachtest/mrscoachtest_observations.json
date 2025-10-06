@@ -1,0 +1,420 @@
+{
+  "user_id": "mrscoachtest",
+  "default_provenance": {
+    "source": "reference_photo_analysis",
+    "timestamp": "2025-10-04",
+    "photo_count": 10,
+    "analyst": "manual_observation",
+    "photos": "CB1-CB10"
+  },
+  "observations": [
+    {
+      "path": "PaDNA.HairDNA.Color",
+      "value": "Blonde",
+      "confidence": 0.90,
+      "notes": "Strawberry blonde to golden blonde, varies with lighting from darker blonde (CB1, CB5, CB7) to lighter golden blonde (CB2, CB3, CB4, CB6, CB8, CB9, CB10)"
+    },
+    {
+      "path": "PaDNA.HairDNA.Tone",
+      "value": "Golden",
+      "confidence": 0.88,
+      "notes": "Golden to strawberry blonde tones, warm undertones throughout"
+    },
+    {
+      "path": "PaDNA.HairDNA.Highlights",
+      "value": "Natural",
+      "confidence": 0.80,
+      "notes": "Natural variation in tone, lighter ends visible in several photos"
+    },
+    {
+      "path": "PaDNA.HairDNA.Length",
+      "value": "Long",
+      "confidence": 0.95,
+      "notes": "Consistently long, past shoulders to mid-back across all photos"
+    },
+    {
+      "path": "PaDNA.HairDNA.Texture",
+      "value": "Wavy",
+      "confidence": 0.92,
+      "notes": "Natural wave pattern, ranges from loose waves to more defined curls"
+    },
+    {
+      "path": "PaDNA.HairDNA.Volume",
+      "value": "High",
+      "confidence": 0.90,
+      "notes": "Full, voluminous hair with good body"
+    },
+    {
+      "path": "PaDNA.HairDNA.Style",
+      "value": "Loose",
+      "confidence": 0.88,
+      "notes": "Mostly worn down and loose with natural waves, side-swept in some photos (CB1, CB2, CB3)"
+    },
+    {
+      "path": "PaDNA.EyeDNA.IrisColor",
+      "value": "Blue",
+      "confidence": 0.92,
+      "notes": "Blue to blue-green eyes, consistent across photos"
+    },
+    {
+      "path": "PaDNA.EyeDNA.ColorIntensity",
+      "value": "Moderate",
+      "confidence": 0.85,
+      "notes": "Moderate intensity, visible but not strikingly vivid"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Shape",
+      "value": "Almond",
+      "confidence": 0.88,
+      "notes": "Almond to slightly round eye shape"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Size",
+      "value": "Medium",
+      "confidence": 0.85,
+      "notes": "Medium to large eyes, well-proportioned"
+    },
+    {
+      "path": "PaDNA.EyeDNA.EyeSpacing",
+      "value": "Average",
+      "confidence": 0.85,
+      "notes": "Well-proportioned spacing"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Tone",
+      "value": "Light",
+      "confidence": 0.92,
+      "notes": "Fair to light skin tone, some variation with sun exposure"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Undertone",
+      "value": "Warm",
+      "confidence": 0.90,
+      "notes": "Warm undertone, golden/peachy cast visible"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Freckles",
+      "value": "Scattered",
+      "confidence": 0.88,
+      "notes": "Visible freckles across face, shoulders, and chest - more prominent in some photos (CB3, CB4, CB5, CB7, CB8)"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Texture",
+      "value": "Smooth",
+      "confidence": 0.85,
+      "notes": "Generally smooth texture"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FaceShape",
+      "value": "Square",
+      "confidence": 0.90,
+      "notes": "Square to rectangular face shape with strong jawline and balanced width"
+    },
+    {
+      "path": "PaDNA.FacialDNA.ForeheadWidth",
+      "value": "Medium",
+      "confidence": 0.85,
+      "notes": "Medium to wide forehead, proportionate to face"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Cheeks",
+      "value": "Full",
+      "confidence": 0.85,
+      "notes": "Full cheeks, healthy appearance"
+    },
+    {
+      "path": "PaDNA.FacialDNA.CheekboneProminence",
+      "value": "Moderate",
+      "confidence": 0.82,
+      "notes": "Moderate cheekbone prominence, not extremely high or sculpted"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Jawline",
+      "value": "Defined",
+      "confidence": 0.92,
+      "notes": "Strong, well-defined jawline - key facial characteristic"
+    },
+    {
+      "path": "PaDNA.FacialDNA.JawlineWidth",
+      "value": "Wide",
+      "confidence": 0.90,
+      "notes": "Broader jawline characteristic of square face shape"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Chin",
+      "value": "Square",
+      "confidence": 0.88,
+      "notes": "Square chin shape, balanced width"
+    },
+    {
+      "path": "PaDNA.FacialDNA.ChinWidth",
+      "value": "Medium",
+      "confidence": 0.85,
+      "notes": "Medium to wide chin width"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FeatureRefinement",
+      "value": "Standard",
+      "confidence": 0.85,
+      "notes": "Standard feature refinement, strong and balanced rather than delicate"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FacialSymmetry",
+      "value": "High",
+      "confidence": 0.90,
+      "notes": "Strong facial symmetry, balanced features"
+    },
+    {
+      "path": "PaDNA.FacialDNA.NoseShape",
+      "value": "Straight",
+      "confidence": 0.90,
+      "notes": "Straight, well-proportioned nose"
+    },
+    {
+      "path": "PaDNA.FacialDNA.NoseBridge",
+      "value": "Medium",
+      "confidence": 0.85,
+      "notes": "Medium bridge width"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Lips",
+      "value": "Medium",
+      "confidence": 0.88,
+      "notes": "Medium fullness, well-defined"
+    },
+    {
+      "path": "PaDNA.FacialDNA.SmileStyle",
+      "value": "Toothy",
+      "confidence": 0.92,
+      "notes": "Bright, toothy smile visible in most photos"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Build",
+      "value": "Curvy",
+      "confidence": 0.95,
+      "notes": "Curvy, athletic build visible across all photos"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Frame",
+      "value": "Average",
+      "confidence": 0.88,
+      "notes": "Average to medium frame"
+    },
+    {
+      "path": "PaDNA.BodyDNA.ShoulderShape",
+      "value": "Broad",
+      "confidence": 0.90,
+      "notes": "Broader shoulders, athletic build visible in multiple photos"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Proportions",
+      "value": "Balanced",
+      "confidence": 0.88,
+      "notes": "Well-proportioned, balanced physique"
+    },
+    {
+      "path": "PaDNA.ApparelDNA.Style",
+      "value": "Fashion_forward",
+      "confidence": 0.90,
+      "notes": "Fashion-forward style choices, elegant and form-fitting"
+    },
+    {
+      "path": "PaDNA.ApparelDNA.FitPreference",
+      "value": "Fitted",
+      "confidence": 0.92,
+      "notes": "Strong preference for fitted, form-fitting styles across all photos"
+    },
+    {
+      "path": "PaDNA.ApparelDNA.PalettePreference",
+      "value": "Bright",
+      "confidence": 0.90,
+      "notes": "Prefers bold, bright colors: red (CB1, CB4), purple (CB3, CB6, CB10), green (CB2), neutrals (CB7, CB8, CB9)"
+    },
+    {
+      "path": "PaDNA.StyleDNA.ColorPreference",
+      "value": "Bold and Warm",
+      "confidence": 0.92,
+      "notes": "Strong preference for bold warm colors, especially reds and purples"
+    },
+    {
+      "path": "PaDNA.StyleDNA.NecklinePreference",
+      "value": "V-neck and Plunging",
+      "confidence": 0.95,
+      "notes": "Consistent preference for V-necks and plunging necklines across nearly all photos"
+    },
+    {
+      "path": "PaDNA.MakeupDNA.EyeMakeup",
+      "value": "Defined",
+      "confidence": 0.88,
+      "notes": "Defined eye makeup with liner and shadow"
+    },
+    {
+      "path": "PaDNA.MakeupDNA.LipColor",
+      "value": "Pink to Nude",
+      "confidence": 0.85,
+      "notes": "Prefers pink, nude, and natural lip tones"
+    },
+    {
+      "path": "PaDNA.MakeupDNA.MakeupStyle",
+      "value": "Polished",
+      "confidence": 0.88,
+      "notes": "Polished, well-applied makeup across photos"
+    },
+    {
+      "path": "PaDNA.AccessoryDNA.Earrings",
+      "value": "Statement Pieces",
+      "confidence": 0.90,
+      "notes": "Large statement earrings frequently worn (CB2, CB4, CB5, CB7)"
+    },
+    {
+      "path": "PaDNA.AccessoryDNA.Necklaces",
+      "value": "Pendant",
+      "confidence": 0.85,
+      "notes": "Pendant necklaces visible in several photos (CB3, CB5, CB8)"
+    },
+    {
+      "path": "PaDNA.FacialDNA.CrowsFeet",
+      "value": "Moderate",
+      "confidence": 0.88,
+      "notes": "Visible crow's feet/eye wrinkles when smiling and at rest (CB2, CB4, CB5, CB7)"
+    },
+    {
+      "path": "PaDNA.FacialDNA.SmileLines",
+      "value": "Moderate",
+      "confidence": 0.90,
+      "notes": "Smile lines/laugh lines visible, especially when smiling (CB1, CB3, CB4, CB6, CB7)"
+    },
+    {
+      "path": "PaDNA.FacialDNA.NasolabialFolds",
+      "value": "Moderate",
+      "confidence": 0.88,
+      "notes": "Nasolabial folds visible from nose to mouth corners (CB1, CB3, CB4, CB5, CB7)"
+    },
+    {
+      "path": "PaDNA.FacialDNA.ForeheadLines",
+      "value": "Subtle",
+      "confidence": 0.75,
+      "notes": "Subtle forehead lines visible in some photos (CB4, CB7)"
+    },
+    {
+      "path": "PaDNA.FacialDNA.EyeAreaAging",
+      "value": "Slight_softening",
+      "confidence": 0.85,
+      "notes": "Slight softening of eye area, subtle hooding beginning (CB2, CB5, CB7)"
+    },
+    {
+      "path": "PaDNA.FacialDNA.NeckAging",
+      "value": "Moderate_lines",
+      "confidence": 0.88,
+      "notes": "Visible neck lines and texture showing age (CB1, CB4, CB7, CB8) - distinct from youthful smooth neck"
+    },
+    {
+      "path": "PaDNA.FacialDNA.SkinMaturity",
+      "value": "Forties",
+      "confidence": 0.90,
+      "notes": "Overall skin appearance suggests 40s age range - mature but well-maintained"
+    },
+    {
+      "path": "PaDNA.SkinDNA.AgeSpotsPresence",
+      "value": "Few",
+      "confidence": 0.80,
+      "notes": "Some age spots/sun damage visible on chest and shoulders (CB4, CB7, CB8)"
+    },
+    {
+      "path": "PaDNA.SkinDNA.SkinElasticityAppearance",
+      "value": "Slightly_soft",
+      "confidence": 0.82,
+      "notes": "Skin appears slightly less taut than youthful skin, age-appropriate elasticity"
+    },
+    {
+      "path": "PaDNA.FacialDNA.LipCupidsBow",
+      "value": "Defined",
+      "confidence": 0.88,
+      "notes": "Well-defined cupid's bow visible on upper lip"
+    },
+    {
+      "path": "PaDNA.FacialDNA.LipProportions",
+      "value": "Equal",
+      "confidence": 0.85,
+      "notes": "Upper and lower lips appear roughly equal in fullness"
+    },
+    {
+      "path": "PaDNA.FacialDNA.SmileGumShow",
+      "value": "Minimal",
+      "confidence": 0.85,
+      "notes": "Minimal gum show when smiling, not a gummy smile"
+    },
+    {
+      "path": "PaDNA.FacialDNA.SmileAsymmetry",
+      "value": "Symmetric",
+      "confidence": 0.88,
+      "notes": "Smile appears balanced and symmetric"
+    },
+    {
+      "path": "PaDNA.FacialDNA.NoseTipShape",
+      "value": "Rounded",
+      "confidence": 0.85,
+      "notes": "Rounded nose tip, not pointed or bulbous"
+    },
+    {
+      "path": "PaDNA.FacialDNA.NostrilShape",
+      "value": "Oval",
+      "confidence": 0.80,
+      "notes": "Oval-shaped nostrils, not particularly flared"
+    },
+    {
+      "path": "PaDNA.FacialDNA.PhiltrumDepth",
+      "value": "Moderate",
+      "confidence": 0.80,
+      "notes": "Moderate philtrum depth (groove between nose and upper lip)"
+    },
+    {
+      "path": "PaDNA.FacialDNA.PhiltrumLength",
+      "value": "Medium",
+      "confidence": 0.82,
+      "notes": "Medium length philtrum, proportionate"
+    },
+    {
+      "path": "PaDNA.HairDNA.HairDensity",
+      "value": "Thick",
+      "confidence": 0.92,
+      "notes": "Very full, thick hair with high density visible across all photos"
+    },
+    {
+      "path": "PaDNA.HairDNA.HairlineShape",
+      "value": "Rounded",
+      "confidence": 0.85,
+      "notes": "Rounded, feminine hairline shape"
+    },
+    {
+      "path": "PaDNA.SkinDNA.SkinPoreVisibility",
+      "value": "Slight",
+      "confidence": 0.75,
+      "notes": "Minimal pore visibility in most photos, well-maintained skin"
+    },
+    {
+      "path": "PaDNA.FacialDNA.BrowArchApex",
+      "value": "Outer_third",
+      "confidence": 0.85,
+      "notes": "Brow arch peaks in outer third, creating lifted appearance"
+    },
+    {
+      "path": "PaDNA.FacialDNA.BrowThicknessVariation",
+      "value": "Tapers",
+      "confidence": 0.88,
+      "notes": "Brows taper from thicker at inner edge to thinner at tail"
+    },
+    {
+      "path": "PaDNA.FacialDNA.BrowEyeDistance",
+      "value": "Average",
+      "confidence": 0.82,
+      "notes": "Average distance between brows and eyes"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FacialProportions",
+      "value": "Balanced facial thirds - forehead, midface (eyes to nose base), and lower face (nose to chin) are roughly equal proportions. Square face shape with balanced width throughout.",
+      "confidence": 0.85,
+      "notes": "Overall proportions are harmonious and balanced"
+    }
+  ]
+}

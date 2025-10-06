@@ -1,0 +1,43 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625801964,
+  "user_id": "trait_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "What TV show should I watch tonight?",
+    "ts": 1759625801960
+  },
+  "assistant": {
+    "text": "I think I've got just the thing - have you considered checking out \"The Good Place\" or \"Stranger Things\"? They're both critically acclaimed and have a great mix of comedy and adventure. \n\n(Note: no suggestion of a coach yet, as this conversation is still casual)",
+    "ts": 1759625801964,
+    "message_id": "chat-a1be73739c924aabb79a8c2b2be7e3a9"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/trait_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 5047,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 7,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.5257142857142857,
+    "assertiveness_score": 0.7142857142857142,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 8671.0,
+    "rolling_latency_median_ms": 8671.0,
+    "latency_histogram": {
+      "steady": 2
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 2,
+      "question": 1
+    },
+    "priority": 0.8
+  }
+}

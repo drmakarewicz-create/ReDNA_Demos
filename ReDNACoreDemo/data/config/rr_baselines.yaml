@@ -1,0 +1,10 @@
+defaults:
+  mean: 700
+  std: 150
+traits:
+  PaDNA.EyeDNA.IrisColor:
+    mean: 800
+    std: 120
+  PaDNA.HairDNA.Color:
+    mean: 760
+    std: 140

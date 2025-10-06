@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625074957,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Do you have any book recommendations?",
+    "ts": 1759625074955
+  },
+  "assistant": {
+    "text": "Just saw that a new thriller novel came out last month - \"The Last House Guest\" by Megan Miranda has been getting great reviews. Would you be interested in trying it out?",
+    "ts": 1759625074957,
+    "message_id": "chat-6401c42668434f7f92535b8adad520a2"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 6279,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 6,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.49,
+    "assertiveness_score": 0.8333333333333333,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 22294.36,
+    "rolling_latency_median_ms": 6872.5,
+    "latency_histogram": {
+      "steady": 47,
+      "slow": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 21,
+      "question": 27,
+      "ack": 2
+    },
+    "priority": 0.8
+  }
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "ts": 1759619842108,
+    "role": "assistant",
+    "persona": "Head Coach (Orchestrator)",
+    "text": "Welcome back! Ready to keep momentum going today?"
+  },
+  {
+    "ts": 1759619860771,
+    "role": "member",
+    "persona": null,
+    "text": "What do you know about me?"
+  },
+  {
+    "ts": 1759619860776,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "I don't actually \"know\" much about you yet! But from our conversation so far, I've got a sense that you're someone who likes to acknowledge and build on the progress we make together. What's something specific that you think has been going well for you lately?"
+  },
+  {
+    "ts": 1759619945435,
+    "role": "member",
+    "persona": null,
+    "text": "Lots of things. I have great friends. My family is awesome"
+  },
+  {
+    "ts": 1759619945440,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "It sounds like you've got a strong support system in place, which can definitely help with momentum and motivation. What do you think about sharing more about what specifically you're trying to keep momentum going on? Is it related to something work-related or personal?"
+  },
+  {
+    "ts": 1759620028131,
+    "role": "member",
+    "persona": null,
+    "text": "Work is great. I just wish I could find the right guy"
+  },
+  {
+    "ts": 1759620028135,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "So finding the right person at work is a goal for you, and having your support system in place makes me think that maybe we can brainstorm some strategies together on how to meet someone new who shares similar interests or values. What do you think about exploring ways to connect with colleagues outside of your usual meetings?"
+  },
+  {
+    "ts": 1759620074247,
+    "role": "member",
+    "persona": null,
+    "text": "I mean that I want to find a guy to have a relationship with. I don't actually want to date anyone at work"
+  },
+  {
+    "ts": 1759620074250,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "It sounds like we're talking about a personal goal, rather than just finding someone at work. That's totally understandable! Can you tell me more about what you're looking for in a partner or relationship? For example, is there something specific that's been missing from your current life that you hope to find with someone new?"
+  },
+  {
+    "ts": 1759620114303,
+    "role": "member",
+    "persona": null,
+    "text": "What do you mean? Nothing is missing. Everybody wants to find a life partner"
+  },
+  {
+    "ts": 1759620114306,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "You're right, lots of people are looking for a meaningful connection. But what does it look like for you specifically? Is there something about the idea of being in a committed relationship that excites or draws you in, versus just going through the motions of dating? Let's explore what you'd like to feel or experience with someone special. Next step: can we brainstorm some qualities or characteristics that would make you feel connected and happy in a relationship?"
+  },
+  {
+    "ts": 1759620152387,
+    "role": "member",
+    "persona": null,
+    "text": "I don't know"
+  },
+  {
+    "ts": 1759620152390,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "Let's take a closer look at what you're saying about wanting to find a life partner, but feeling like nothing is missing from your current life. That's a pretty common feeling when we're not actively seeking something new out. Can you tell me more about what it would mean for you to be in a committed relationship - is there something specific that would make you feel more connected or fulfilled? Next step: let's imagine what a \"perfect\" day with someone special might look like for you, and see if we can uncover any clues about what's driving your desire for a meaningful connection."
+  }
+]

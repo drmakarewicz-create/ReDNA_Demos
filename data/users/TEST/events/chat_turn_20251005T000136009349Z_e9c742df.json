@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I am a Knicks fan",
+  "assistant_text": "That's cool, being a Knicks fan can be tough! Let me ask this: What do you think it is about being in a committed relationship that would make you feel more connected or fulfilled? If you want, our PaDNA Coach could help with building confidence and self-expression - just something to consider for the future.",
+  "client_message_id": "be9c6594-30d9-46d1-9d29-0eb815052974",
+  "assistant_message_id": "chat-e152fc6830fd45a4a6f14d505f028883",
+  "server_ts": "2025-10-05T00:01:36.009+00:00",
+  "server_ts_ms": 1759622496009,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

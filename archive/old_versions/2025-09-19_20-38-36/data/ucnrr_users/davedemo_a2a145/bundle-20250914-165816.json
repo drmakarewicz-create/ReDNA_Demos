@@ -1,0 +1,141 @@
+{
+  "schema_version": "redna.bundle/3.0",
+  "meta": {
+    "user_id": "demo_light_001",
+    "created_at": "2025-09-14T15:59:16Z",
+    "session_id": "sess-light-001"
+  },
+  "Prefs": {
+    "traits": {
+      "age_range": "25\u201334",
+      "gender": "male",
+      "orientation": "straight",
+      "relationship_status": "single",
+      "eye_color": "gray",
+      "hair_color": "red",
+      "height": "5'11",
+      "love_language_pref": "quality_time",
+      "wyr_log": [
+        {
+          "session_id": "sess-light-001",
+          "id": "love_language",
+          "prompt": "Pick the love language that resonates most with you:",
+          "choice_code": "C",
+          "choice_text": "Quality time",
+          "trait_path": "Prefs.love_language_pref",
+          "value": "quality_time",
+          "dimension": "love_language",
+          "rr_delta": 2.0,
+          "at": 1757865376,
+          "source": "deterministic"
+        }
+      ],
+      "skin_tone": "pale"
+    },
+    "love_language_pref": "quality_time"
+  },
+  "PaDNA": {
+    "EyeDNA": {
+      "Color": "green"
+    },
+    "HairDNA": {
+      "Color": "brown"
+    },
+    "SkinDNA": {
+      "Tone": "light"
+    }
+  },
+  "scores": {
+    "rr_overall": 50.0,
+    "ucn_overall": null
+  },
+  "snapshots": {
+    "rr": [
+      {
+        "at": "2025-09-14T15:59:16Z",
+        "overall": 36.0,
+        "source": "local-coverage"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.age_range",
+      "value": "25\u201334",
+      "source": "onboarding"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.gender",
+      "value": "female",
+      "source": "onboarding"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.orientation",
+      "value": "straight",
+      "source": "onboarding"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.relationship_status",
+      "value": "single",
+      "source": "onboarding"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.eye_color",
+      "value": "green",
+      "source": "self-report"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.hair_color",
+      "value": "brown",
+      "source": "self-report"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.height",
+      "value": "5'6",
+      "source": "self-report"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.love_language_pref",
+      "value": "quality_time",
+      "source": "wyr"
+    },
+    {
+      "at": "2025-09-14T16:57:55Z",
+      "path": "Prefs.traits.* (multiple)",
+      "value": {
+        "Prefs.traits.eye_color": "gray",
+        "Prefs.traits.hair_color": "red",
+        "Prefs.traits.skin_tone": "pale",
+        "Prefs.traits.height": "5'11",
+        "Prefs.traits.gender": "male",
+        "Prefs.traits.orientation": "straight",
+        "Prefs.traits.relationship_status": "single",
+        "Prefs.love_language_pref": "quality_time"
+      },
+      "source": "core-operator-ui"
+    },
+    {
+      "at": "2025-09-14T16:58:16Z",
+      "path": "Prefs.traits.* (multiple)",
+      "value": {
+        "Prefs.traits.eye_color": "gray",
+        "Prefs.traits.hair_color": "red",
+        "Prefs.traits.skin_tone": "pale",
+        "Prefs.traits.height": "5'11",
+        "Prefs.traits.gender": "male",
+        "Prefs.traits.orientation": "straight",
+        "Prefs.traits.relationship_status": "single",
+        "Prefs.love_language_pref": "quality_time"
+      },
+      "source": "core-operator-ui"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I just wanted to chat",
+  "assistant_text": "I'm glad we can have a casual conversation! It sounds like we got sidetracked from where we started. Let's get back on track - what was it that you were hoping to discuss when you said \"I just wanted to chat\"?",
+  "client_message_id": "89332538-f9bf-4368-a4b7-19a34eb10f99",
+  "assistant_message_id": "chat-ce4bd115766d457fb1c5519371e6567b",
+  "server_ts": "2025-10-05T00:03:19.674+00:00",
+  "server_ts_ms": 1759622599674,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

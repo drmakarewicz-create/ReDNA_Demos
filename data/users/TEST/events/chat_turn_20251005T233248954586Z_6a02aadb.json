@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "My dogs get along well",
+  "assistant_text": "That's awesome to hear that they get along well! You must feel so grateful to have them as companions. Want me to share some fun ideas for their next playdate?",
+  "client_message_id": "52b24ece-5793-45ee-b953-1e9789cd740a",
+  "assistant_message_id": "chat-26027cf071544bf3ba8c28442bd57b14",
+  "server_ts": "2025-10-05T23:32:48.954+00:00",
+  "server_ts_ms": 1759707168954,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

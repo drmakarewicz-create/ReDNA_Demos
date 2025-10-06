@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What do you know about me?",
+  "assistant_text": "I'm glad we're catching up! Based on our conversation, I think it's clear that you enjoy light-hearted discussions and humor. You mentioned South Park, which gave me a hint about your sense of humor.\n\nWhat do you think makes a TV show like South Park so funny? Is it the satire, the characters, or something else entirely?",
+  "client_message_id": "6ae55c3a-cf8c-42b8-9715-d2b2773e5b3a",
+  "assistant_message_id": "chat-8ba48b99d3284f379c66946967ba819c",
+  "server_ts": "2025-10-05T14:36:34.204+00:00",
+  "server_ts_ms": 1759674994204,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

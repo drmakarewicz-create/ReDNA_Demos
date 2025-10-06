@@ -1,0 +1,2 @@
+{"user_id": "test_analytics_user", "coach_id": "relationship_coach", "session_start": "2025-10-05T12:12:02.813945+00:00", "session_end": "2025-10-05T12:12:02.814119+00:00", "message_count": 5, "duration_seconds": 120.5, "engagement_score": 0.75}
+{"user_id": "test_analytics_user", "coach_id": "relationship_coach", "session_start": "2025-10-05T12:12:20.577443+00:00", "session_end": "2025-10-05T12:12:20.577628+00:00", "message_count": 5, "duration_seconds": 120.5, "engagement_score": 0.75}

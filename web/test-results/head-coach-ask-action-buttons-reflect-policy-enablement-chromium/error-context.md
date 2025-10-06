@@ -1,0 +1,97 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]: Head Coach
+        - navigation [ref=e6]:
+          - link "HC Home" [ref=e7] [cursor=pointer]:
+            - /url: /
+          - button "Unabridged" [ref=e8] [cursor=pointer]
+          - link "Draft Chat" [ref=e9] [cursor=pointer]:
+            - /url: "#"
+          - link "Snapshots" [ref=e10] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e11]:
+          - generic [ref=e12]: Active user
+          - textbox "Active user" [ref=e13]: TEST
+          - button "Snapshot & Export" [ref=e14] [cursor=pointer]
+    - main [ref=e15]:
+      - generic [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e19]:
+            - generic [ref=e22]:
+              - heading "Transcript" [level=2] [ref=e23]
+              - paragraph [ref=e24]: Composer stays visible; transcript scrolls independently.
+            - article [ref=e26]:
+              - paragraph [ref=e27]: Head Coach (Orchestrator)
+              - paragraph [ref=e28]: Welcome back! Ready to keep momentum going today?
+          - generic [ref=e29]:
+            - heading "Conversation Metrics" [level=2] [ref=e31]
+            - generic [ref=e33]:
+              - generic [ref=e34]: Failed to fetch
+              - button "Retry" [ref=e35] [cursor=pointer]
+            - generic [ref=e36]: Metrics unavailable for this user. Start a session to collect conversation telemetry.
+          - generic [ref=e37]:
+            - heading "Coach Asks" [level=2] [ref=e39]
+            - generic [ref=e40]:
+              - generic [ref=e41]:
+                - generic [ref=e42]: Failed to fetch
+                - button "Retry" [ref=e43] [cursor=pointer]
+              - paragraph [ref=e44]: No planner asks queued for this user.
+          - generic [ref=e45]:
+            - heading "Nudge Inbox" [level=2] [ref=e47]
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - generic [ref=e50]: Failed to fetch
+                - button "Retry" [ref=e51] [cursor=pointer]
+              - paragraph [ref=e52]: No nudges queued for this user.
+        - complementary [ref=e53]:
+          - generic [ref=e54]:
+            - generic [ref=e55]:
+              - heading "Personas" [level=2] [ref=e56]
+              - paragraph [ref=e57]: Always visible per P0 contract.
+            - list "Persona roster" [ref=e58]:
+              - button "Head Coach (Orchestrator)" [pressed] [ref=e59] [cursor=pointer]:
+                - generic [ref=e60] [cursor=pointer]: 🧭
+                - generic [ref=e61] [cursor=pointer]: Head Coach (Orchestrator)
+              - button "Relationship Coach" [ref=e62] [cursor=pointer]:
+                - generic [ref=e63] [cursor=pointer]: 💞
+                - generic [ref=e64] [cursor=pointer]: Relationship Coach
+              - button "PaDNA Coach" [ref=e65] [cursor=pointer]:
+                - generic [ref=e66] [cursor=pointer]: 🧬
+                - generic [ref=e67] [cursor=pointer]: PaDNA Coach
+              - button "Photo Coach" [ref=e68] [cursor=pointer]:
+                - generic [ref=e69] [cursor=pointer]: 📸
+                - generic [ref=e70] [cursor=pointer]: Photo Coach
+            - generic [ref=e71]:
+              - paragraph [ref=e72]: Active persona bubble
+              - paragraph [ref=e73]: 🧭 Head Coach (Orchestrator)
+          - region "Unabridged traits" [ref=e74]:
+            - heading "Unabridged" [level=2] [ref=e76]
+            - generic [ref=e77]:
+              - generic [ref=e78]:
+                - generic [ref=e79]: Failed to fetch
+                - button "Retry" [ref=e80] [cursor=pointer]
+              - generic [ref=e81]:
+                - generic [ref=e82]:
+                  - text: Search
+                  - searchbox "Search" [ref=e83]
+                - generic [ref=e84]:
+                  - text: Container
+                  - combobox "Container" [ref=e85]:
+                    - option "All containers" [selected]
+              - generic [ref=e87]: No traits match the current filters.
+    - generic [ref=e89]:
+      - generic [ref=e90]:
+        - generic [ref=e91]: 🧭 Head Coach (Orchestrator)
+        - generic [ref=e92]: Composer stays pinned for reliable demos.
+      - textbox "Compose message for Head Coach" [ref=e93]
+      - generic [ref=e94]:
+        - button "Upload" [ref=e96] [cursor=pointer]
+        - button "Send message" [ref=e97] [cursor=pointer]: Send
+      - generic [ref=e98]: Composer dock ready.
+  - alert [ref=e99]
+```

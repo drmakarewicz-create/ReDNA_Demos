@@ -1,0 +1,2 @@
+{"operation_type": "holistic_pass", "scheduled_time": "2025-10-05T08:12:02.814547", "actual_time": "2025-10-05T08:12:02.814552", "status": "completed", "duration_seconds": 1.5, "user_id": "test_analytics_user"}
+{"operation_type": "holistic_pass", "scheduled_time": "2025-10-05T08:12:20.577884", "actual_time": "2025-10-05T08:12:20.577888", "status": "completed", "duration_seconds": 1.5, "user_id": "test_analytics_user"}

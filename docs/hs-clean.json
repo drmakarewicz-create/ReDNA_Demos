@@ -1,0 +1,50 @@
+{
+  "user_id": "hs-demo-01",
+  "default_provenance": {
+    "source": "photo-import",
+    "step": "manual-curation",
+    "adapter": "json",
+    "license": "developer-provided test set"
+  },
+  "observations": [
+    {"path": "PaDNA.FacialDNA.FaceShape", "value": "Oval", "confidence": 0.92},
+
+    {"path": "PaDNA.EyeDNA.Shape", "value": "Almond", "confidence": 0.9},
+    {"path": "PaDNA.EyeDNA.IrisColor", "value": "Hazel", "confidence": 0.82},
+    {"path": "PaDNA.EyeDNA.EyelidCrease", "value": "Present", "confidence": 0.95},
+    {"path": "PaDNA.EyeDNA.Brows", "value": "Full, soft arch", "confidence": 0.92},
+    {"path": "PaDNA.EyeDNA.Eyelashes", "value": "Long (often enhanced)", "confidence": 0.78},
+
+    {"path": "PaDNA.FacialDNA.Lips", "value": "Lower fuller than upper (overall full)", "confidence": 0.88},
+    {"path": "PaDNA.FacialDNA.NoseBridge", "value": "Straight", "confidence": 0.85},
+    {"path": "PaDNA.FacialDNA.NoseTip", "value": "Refined", "confidence": 0.83},
+
+    {"path": "PaDNA.SkinDNA.Tone", "value": "Light to light-medium", "confidence": 0.86},
+    {"path": "PaDNA.SkinDNA.Undertone", "value": "Neutral-warm", "confidence": 0.84},
+    {"path": "PaDNA.SkinDNA.DistinctiveMarks", "value": "Small facial moles near nose/cheek", "confidence": 0.9},
+
+    {"path": "PaDNA.HairDNA.Color", "value": "Dark brown", "confidence": 0.93},
+    {"path": "PaDNA.HairDNA.Length", "value": "Long", "confidence": 0.95},
+    {"path": "PaDNA.HairDNA.Texture", "value": "Loose waves", "confidence": 0.9},
+    {"path": "PaDNA.HairDNA.Part", "value": "Center", "confidence": 0.9},
+    {"path": "PaDNA.HairDNA.Shine", "value": "High", "confidence": 0.8},
+
+    {"path": "PaDNA.BodyDNA.Build", "value": "Slender/toned", "confidence": 0.86},
+    {"path": "PaDNA.BodyDNA.HeightCM", "value": 170, "confidence": 0.65},
+    {"path": "PaDNA.BodyDNA.WeightKG", "value": 54, "confidence": 0.6},
+
+    {"path": "PaDNA.ApparelDNA.Accessories", "value": ["Eyeglasses"], "confidence": 0.9},
+    {"path": "PaDNA.ApparelDNA.Style", "value": ["Bold red dresses", "Sheer/mesh details", "Denim casual"], "confidence": 0.78},
+    {"path": "PaDNA.ApparelDNA.PalettePreference", "value": ["Red", "Neutrals", "Black"], "confidence": 0.75},
+    {"path": "PaDNA.ApparelDNA.FitPreference", "value": "Fitted", "confidence": 0.82},
+
+    {"path": "PaDNA.MovementDNA.Posture", "value": "Upright, confident", "confidence": 0.7},
+    {"path": "PaDNA.MovementDNA.Tempo", "value": "Measured", "confidence": 0.6},
+
+    {"path": "PaDNA.PhotoDNA.MakeupPattern", "value": "Frequent bold red lip; defined lashes/liner", "confidence": 0.82},
+    {"path": "PaDNA.PhotoDNA.RecurringProps", "value": ["Eyeglasses"], "confidence": 0.85},
+
+    {"path": "PaDNA.MetaDNA.EstimatedAgeRange", "value": "20s", "confidence": 0.6},
+    {"path": "PaDNA.MetaDNA.RecognitionNotes", "value": "High recognition via hair/eyes/glasses combo", "confidence": 0.7}
+  ]
+}

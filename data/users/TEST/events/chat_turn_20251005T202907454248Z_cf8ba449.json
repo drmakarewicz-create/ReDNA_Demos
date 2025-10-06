@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "My other dog is named George",
+  "assistant_text": "It sounds like Archie has a partner in crime with George! What's their dynamic like - do they get along swimmingly or have any funny quirks?",
+  "client_message_id": "626474a7-aed3-4c31-8706-a33ad63bcc68",
+  "assistant_message_id": "chat-36788633916d43b2a22aa6f32c3dd0a0",
+  "server_ts": "2025-10-05T20:29:07.454+00:00",
+  "server_ts_ms": 1759696147454,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

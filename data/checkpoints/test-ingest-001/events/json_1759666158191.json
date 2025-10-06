@@ -1,0 +1,19 @@
+{
+  "event_id": "json_1759666158191",
+  "ts": "2025-10-05T12:09:18+00:00",
+  "type": "json_ingest",
+  "user_id": "test-ingest-001",
+  "traits": [
+    {
+      "id": "PaDNA.EyeDNA.IrisColor",
+      "value": "Blue",
+      "rr": 850.0
+    }
+  ],
+  "source": "explorer",
+  "status": "failed",
+  "ucnrr_result": {
+    "ok": false,
+    "error": "HTTP 500"
+  }
+}

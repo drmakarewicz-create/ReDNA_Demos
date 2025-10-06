@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I mean that I want to find a guy to have a relationship with. I don't actually want to date anyone at work",
+  "assistant_text": "It sounds like we're talking about a personal goal, rather than just finding someone at work. That's totally understandable! Can you tell me more about what you're looking for in a partner or relationship? For example, is there something specific that's been missing from your current life that you hope to find with someone new?",
+  "client_message_id": "d4b9e428-0cdd-442b-89bf-af82effd7536",
+  "assistant_message_id": "chat-d6228c7f1dd6485889df6415ec75ec6c",
+  "server_ts": "2025-10-04T23:21:20.902+00:00",
+  "server_ts_ms": 1759620080902,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

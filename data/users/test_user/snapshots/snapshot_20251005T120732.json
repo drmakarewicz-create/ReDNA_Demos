@@ -1,0 +1,34 @@
+{
+  "snapshot_id": "snapshot_20251005T120732",
+  "user_id": "test_user",
+  "created_at": "2025-10-05T12:07:32.081441+00:00",
+  "version": "1.0.0",
+  "scope": "partial",
+  "families": [
+    "LooksDNA",
+    "StyleDNA"
+  ],
+  "metadata": {
+    "trait_count": 0,
+    "family_count": 0,
+    "size_bytes": 284,
+    "export_method": "api",
+    "label": "Fashion app export"
+  },
+  "data": {
+    "observations": {},
+    "resolved": {},
+    "evidence": {},
+    "ucn_rr_summary": {
+      "avg_ucn": 0.0,
+      "avg_rr": 0.0,
+      "curiosity_score": 0.0,
+      "total_traits": 0
+    },
+    "provenance": {
+      "export_source": "snapshot_exporter",
+      "export_timestamp": "2025-10-05T12:07:32.081433+00:00",
+      "write_protect_mode": true
+    }
+  }
+}

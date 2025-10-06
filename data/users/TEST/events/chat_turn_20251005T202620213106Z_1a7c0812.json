@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "One of my dogs is named Archie",
+  "assistant_text": "That's a great name for a pup! I'm sure Archie keeps you on your toes. What's his personality like - energetic or more laid-back?",
+  "client_message_id": "6c1d55da-0fb8-4715-8c81-8a6c0d1d72f4",
+  "assistant_message_id": "chat-e05dbb948e6f417ca6e0ae9cc7e40460",
+  "server_ts": "2025-10-05T20:26:20.213+00:00",
+  "server_ts_ms": 1759695980213,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

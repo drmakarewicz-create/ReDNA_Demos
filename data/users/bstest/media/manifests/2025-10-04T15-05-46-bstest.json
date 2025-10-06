@@ -1,0 +1,74 @@
+{
+  "user_id": "bstest",
+  "batch_id": "2025-10-04T15-05-46-bstest",
+  "created_at": "2025-10-04T15:05:46.318711+00:00",
+  "count": 6,
+  "images": [
+    {
+      "filename": "bs5.jpg",
+      "path": "media/images/2025-10-04T15-05-46-bstest/bs5.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-05-46-bstest/bs5.jpg",
+      "hash_sha256": "208aba74a74f00d50ca059f6070111175140f7788a552d22b4d2994ef03ea3af",
+      "width": 1404,
+      "height": 1756,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "bs6.jpeg",
+      "path": "media/images/2025-10-04T15-05-46-bstest/bs6.jpeg",
+      "thumb": "media/thumbs/2025-10-04T15-05-46-bstest/bs6.jpg",
+      "hash_sha256": "b1672215bab6d539d1bdc96d799ba9d6bbf900def7ba195969d64e0aa8f3a6fd",
+      "width": 356,
+      "height": 591,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "bs7.jpeg",
+      "path": "media/images/2025-10-04T15-05-46-bstest/bs7.jpeg",
+      "thumb": "media/thumbs/2025-10-04T15-05-46-bstest/bs7.jpg",
+      "hash_sha256": "9191e612c98c0627ef7aa063593e1f4b20e52e6086d9753063f893aa1ffa7ee7",
+      "width": 648,
+      "height": 1047,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "bs8.jpeg",
+      "path": "media/images/2025-10-04T15-05-46-bstest/bs8.jpeg",
+      "thumb": "media/thumbs/2025-10-04T15-05-46-bstest/bs8.jpg",
+      "hash_sha256": "e641c80a0785d6fd0a013138b77463594e6976588e375259f3de1dd9c692d17d",
+      "width": 571,
+      "height": 875,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "bs9.jpg",
+      "path": "media/images/2025-10-04T15-05-46-bstest/bs9.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-05-46-bstest/bs9.jpg",
+      "hash_sha256": "200102f3130437a90544641ee8c73ad8a80c7cfdbe3c3b7615eb6a23c93813a9",
+      "width": 640,
+      "height": 1271,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "bs10.jpg",
+      "path": "media/images/2025-10-04T15-05-46-bstest/bs10.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-05-46-bstest/bs10.jpg",
+      "hash_sha256": "1fca628616661ece6c293df6398849a3cfaa3064bdebaa55f4a2b6b8dc72aa59",
+      "width": 720,
+      "height": 1280,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    }
+  ]
+}

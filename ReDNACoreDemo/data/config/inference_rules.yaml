@@ -1,0 +1,467 @@
+rules:
+  - name: hair_skin_to_brow
+    conditions:
+      - path: PaDNA.HairDNA.Color
+        equals: Blonde
+      - path: PaDNA.SkinDNA.Undertone
+        in:
+          - Warm
+          - Warm peach-golden
+          - Golden
+    suggest:
+      path: PaDNA.EyeDNA.Brows
+      value: "Light brown"
+      ucn: 320
+      reason: "hair_skin_to_brow"
+  - name: eye_shape_to_crease
+    conditions:
+      - path: PaDNA.EyeDNA.Shape
+        equals: Almond
+    suggest:
+      path: PaDNA.EyeDNA.EyelidCrease
+      value: Present
+      ucn: 280
+      reason: "eye_shape_to_crease"
+
+# --- BEGIN: extra holistic inference rules (add below your existing `rules:` list) ---
+  - name: hair_blonde_warm_to_brows
+    conditions:
+      - path: PaDNA.HairDNA.Color
+        equals: Blonde
+      - path: PaDNA.SkinDNA.Undertone
+        in: [Warm, Warm peach-golden, Golden]
+    suggest:
+      path: PaDNA.EyeDNA.Brows
+      value: Light brown
+      ucn: 320
+      reason: hair_blonde_warm_to_brows
+
+  - name: hair_blonde_cool_to_brows
+    conditions:
+      - path: PaDNA.HairDNA.Color
+        equals: Blonde
+      - path: PaDNA.SkinDNA.Undertone
+        in: [Cool, Cool pink, Neutral-cool]
+    suggest:
+      path: PaDNA.EyeDNA.Brows
+      value: Ash blonde
+      ucn: 300
+      reason: hair_blonde_cool_to_brows
+
+  - name: hair_dark_cool_to_brows
+    conditions:
+      - path: PaDNA.HairDNA.Color
+        in: [Dark brown, Black]
+      - path: PaDNA.SkinDNA.Undertone
+        in: [Cool, Neutral-cool]
+    suggest:
+      path: PaDNA.EyeDNA.Brows
+      value: Dark brown
+      ucn: 340
+      reason: hair_dark_cool_to_brows
+
+  - name: hair_red_to_freckles
+    conditions:
+      - path: PaDNA.HairDNA.Color
+        in: [Red, Auburn, Strawberry blonde]
+    suggest:
+      path: PaDNA.SkinDNA.Freckles
+      value: Present
+      ucn: 240
+      reason: hair_red_to_freckles
+
+  - name: redhair_fair_skin_to_burns
+    conditions:
+      - path: PaDNA.HairDNA.Color
+        in: [Red, Auburn, Strawberry blonde]
+      - path: PaDNA.SkinDNA.Tone
+        in: [Very fair, Fair, Light]
+    suggest:
+      path: PaDNA.SkinDNA.SunBehavior
+      value: Burns easily
+      ucn: 260
+      reason: redhair_fair_skin_to_burns
+
+  - name: eye_almond_to_crease_present
+    conditions:
+      - path: PaDNA.EyeDNA.Shape
+        equals: Almond
+    suggest:
+      path: PaDNA.EyeDNA.EyelidCrease
+      value: Present
+      ucn: 280
+      reason: eye_almond_to_crease_present
+
+  - name: eye_hooded_to_crease_partial
+    conditions:
+      - path: PaDNA.EyeDNA.Shape
+        equals: Hooded
+    suggest:
+      path: PaDNA.EyeDNA.EyelidCrease
+      value: Partial/hidden
+      ucn: 260
+      reason: eye_hooded_to_crease_partial
+
+  - name: eye_monolid_to_crease_absent
+    conditions:
+      - path: PaDNA.EyeDNA.Shape
+        equals: Monolid
+    suggest:
+      path: PaDNA.EyeDNA.EyelidCrease
+      value: Absent
+      ucn: 320
+      reason: eye_monolid_to_crease_absent
+
+  - name: faceshape_round_to_jawline_soft
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Round
+    suggest:
+      path: PaDNA.FacialDNA.Jawline
+      value: Soft
+      ucn: 280
+      reason: faceshape_round_to_jawline_soft
+
+  - name: faceshape_square_to_jawline_angular
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Square
+    suggest:
+      path: PaDNA.FacialDNA.Jawline
+      value: Angular
+      ucn: 300
+      reason: faceshape_square_to_jawline_angular
+
+  - name: faceshape_heart_to_chin_pointed
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Heart
+    suggest:
+      path: PaDNA.FacialDNA.Chin
+      value: Pointed
+      ucn: 300
+      reason: faceshape_heart_to_chin_pointed
+
+  - name: faceshape_heart_to_jawline_narrow
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Heart
+    suggest:
+      path: PaDNA.FacialDNA.JawlineWidth
+      value: Narrow
+      ucn: 300
+      reason: faceshape_heart_to_jawline_narrow
+
+  - name: faceshape_heart_to_cheekbones_prominent
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Heart
+    suggest:
+      path: PaDNA.FacialDNA.CheekboneProminence
+      value: Very high
+      ucn: 280
+      reason: faceshape_heart_to_cheekbones_prominent
+
+  - name: faceshape_heart_to_chin_narrow
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Heart
+    suggest:
+      path: PaDNA.FacialDNA.ChinWidth
+      value: Narrow
+      ucn: 280
+      reason: faceshape_heart_to_chin_narrow
+
+  - name: faceshape_square_to_jawline_wide
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Square
+    suggest:
+      path: PaDNA.FacialDNA.JawlineWidth
+      value: Wide
+      ucn: 300
+      reason: faceshape_square_to_jawline_wide
+
+  - name: faceshape_square_to_chin_wide
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Square
+    suggest:
+      path: PaDNA.FacialDNA.ChinWidth
+      value: Wide
+      ucn: 280
+      reason: faceshape_square_to_chin_wide
+
+  - name: eye_large_vivid_to_striking
+    conditions:
+      - path: PaDNA.EyeDNA.Size
+        equals: Large
+      - path: PaDNA.EyeDNA.ColorIntensity
+        in: [Vivid, Striking]
+    suggest:
+      path: PaDNA.EyeDNA.ColorIntensity
+      value: Striking
+      ucn: 300
+      reason: eye_large_vivid_to_striking
+
+  - name: faceshape_heart_to_forehead_wide
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Heart
+    suggest:
+      path: PaDNA.FacialDNA.ForeheadWidth
+      value: Wide
+      ucn: 300
+      reason: faceshape_heart_to_forehead_wide
+
+  - name: delicate_bone_narrow_jaw_to_refinement
+    conditions:
+      - path: PaDNA.BodyDNA.BoneStructure
+        in: [Delicate, Fine]
+      - path: PaDNA.FacialDNA.JawlineWidth
+        in: [Very narrow, Narrow]
+    suggest:
+      path: PaDNA.FacialDNA.FeatureRefinement
+      value: Very delicate
+      ucn: 280
+      reason: delicate_bone_narrow_jaw_to_refinement
+
+  - name: slender_petite_to_refinement
+    conditions:
+      - path: PaDNA.BodyDNA.Build
+        in: [Slender, Petite]
+      - path: PaDNA.BodyDNA.Frame
+        in: [Petite, Small, Petite to Average]
+    suggest:
+      path: PaDNA.FacialDNA.FeatureRefinement
+      value: Delicate
+      ucn: 260
+      reason: slender_petite_to_refinement
+
+  - name: heart_face_very_high_cheeks_to_extremely_prominent
+    conditions:
+      - path: PaDNA.FacialDNA.FaceShape
+        equals: Heart
+      - path: PaDNA.FacialDNA.CheekboneProminence
+        in: [Very high, Very_high]
+    suggest:
+      path: PaDNA.FacialDNA.CheekboneProminence
+      value: Extremely prominent
+      ucn: 300
+      reason: heart_face_very_high_cheeks_to_extremely_prominent
+
+  - name: narrow_jaw_pointed_chin_to_refinement
+    conditions:
+      - path: PaDNA.FacialDNA.JawlineWidth
+        in: [Very narrow, Narrow]
+      - path: PaDNA.FacialDNA.Chin
+        equals: Pointed
+    suggest:
+      path: PaDNA.FacialDNA.FeatureRefinement
+      value: Refined
+      ucn: 270
+      reason: narrow_jaw_pointed_chin_to_refinement
+
+  - name: fair_cool_to_burns
+    conditions:
+      - path: PaDNA.SkinDNA.Tone
+        in: [Very fair, Fair, Light]
+      - path: PaDNA.SkinDNA.Undertone
+        in: [Cool, Cool pink, Neutral-cool]
+    suggest:
+      path: PaDNA.SkinDNA.SunBehavior
+      value: Burns easily
+      ucn: 260
+      reason: fair_cool_to_burns
+
+  - name: deep_warm_to_tans
+    conditions:
+      - path: PaDNA.SkinDNA.Tone
+        in: [Tan, Medium-deep, Deep, Very deep]
+      - path: PaDNA.SkinDNA.Undertone
+        in: [Warm, Golden, Olive]
+    suggest:
+      path: PaDNA.SkinDNA.SunBehavior
+      value: Tans easily
+      ucn: 260
+      reason: deep_warm_to_tans
+
+  - name: long_wavy_to_style_wavy
+    conditions:
+      - path: PaDNA.HairDNA.Length
+        in: [Long, Very long]
+      - path: PaDNA.HairDNA.Texture
+        in: [Wavy, Loose waves]
+    suggest:
+      path: PaDNA.HairDNA.Style
+      value: Natural waves
+      ucn: 220
+      reason: long_wavy_to_style_wavy
+
+  - name: blonde_vs_darkbrow_to_dyed
+    conditions:
+      - path: PaDNA.HairDNA.Color
+        equals: Blonde
+      - path: PaDNA.EyeDNA.Brows
+        in: [Dark brown, Black]
+    suggest:
+      path: PaDNA.HairDNA.DyedColor
+      value: Present
+      ucn: 230
+      reason: blonde_vs_darkbrow_to_dyed
+
+# --- AGE-RELATED INFERENCE RULES ---
+  - name: skin_maturity_forties_to_moderate_lines
+    conditions:
+      - path: PaDNA.FacialDNA.SkinMaturity
+        in: [Forties, Fifties_plus]
+    suggest:
+      path: PaDNA.FacialDNA.CrowsFeet
+      value: Moderate
+      ucn: 260
+      reason: skin_maturity_forties_to_moderate_lines
+
+  - name: skin_maturity_forties_to_smile_lines
+    conditions:
+      - path: PaDNA.FacialDNA.SkinMaturity
+        in: [Forties, Fifties_plus]
+    suggest:
+      path: PaDNA.FacialDNA.SmileLines
+      value: Moderate
+      ucn: 260
+      reason: skin_maturity_forties_to_smile_lines
+
+  - name: skin_maturity_forties_to_nasolabial_folds
+    conditions:
+      - path: PaDNA.FacialDNA.SkinMaturity
+        in: [Forties, Fifties_plus]
+    suggest:
+      path: PaDNA.FacialDNA.NasolabialFolds
+      value: Moderate
+      ucn: 260
+      reason: skin_maturity_forties_to_nasolabial_folds
+
+  - name: skin_maturity_thirties_to_subtle_lines
+    conditions:
+      - path: PaDNA.FacialDNA.SkinMaturity
+        equals: Thirties
+    suggest:
+      path: PaDNA.FacialDNA.CrowsFeet
+      value: Subtle
+      ucn: 240
+      reason: skin_maturity_thirties_to_subtle_lines
+
+  - name: moderate_crowsfeet_to_eye_aging
+    conditions:
+      - path: PaDNA.FacialDNA.CrowsFeet
+        in: [Moderate, Prominent, Deep]
+    suggest:
+      path: PaDNA.FacialDNA.EyeAreaAging
+      value: Slight_softening
+      ucn: 250
+      reason: moderate_crowsfeet_to_eye_aging
+
+  - name: freckles_to_sun_behavior
+    conditions:
+      - path: PaDNA.SkinDNA.Freckles
+        in: [Scattered, Cluster, Dense]
+    suggest:
+      path: PaDNA.SkinDNA.SunBehavior
+      value: Burns easily
+      ucn: 240
+      reason: freckles_to_sun_behavior
+
+  - name: skin_maturity_fifties_to_elasticity
+    conditions:
+      - path: PaDNA.FacialDNA.SkinMaturity
+        equals: Fifties_plus
+    suggest:
+      path: PaDNA.SkinDNA.SkinElasticityAppearance
+      value: Moderate_soft
+      ucn: 250
+      reason: skin_maturity_fifties_to_elasticity
+
+# --- ANATOMICAL DETAIL INFERENCE RULES ---
+  - name: arched_brows_to_apex_outer
+    conditions:
+      - path: PaDNA.EyeDNA.Brows
+        in: [Arched]
+    suggest:
+      path: PaDNA.FacialDNA.BrowArchApex
+      value: Outer_third
+      ucn: 240
+      reason: arched_brows_to_apex_outer
+
+  - name: groomed_brows_to_tapers
+    conditions:
+      - path: PaDNA.EyeDNA.Brows
+        in: [Groomed, Arched]
+    suggest:
+      path: PaDNA.FacialDNA.BrowThicknessVariation
+      value: Tapers
+      ucn: 230
+      reason: groomed_brows_to_tapers
+
+  - name: full_lips_to_defined_cupidsbow
+    conditions:
+      - path: PaDNA.FacialDNA.Lips
+        in: [Full, Medium, Cupid_bow]
+    suggest:
+      path: PaDNA.FacialDNA.LipCupidsBow
+      value: Defined
+      ucn: 250
+      reason: full_lips_to_defined_cupidsbow
+
+  - name: small_nose_to_rounded_tip
+    conditions:
+      - path: PaDNA.FacialDNA.NoseShape
+        in: [Straight, Button]
+      - path: PaDNA.FacialDNA.Nose.Size
+        equals: Small
+    suggest:
+      path: PaDNA.FacialDNA.NoseTipShape
+      value: Rounded
+      ucn: 240
+      reason: small_nose_to_rounded_tip
+
+  - name: narrow_nose_bridge_to_narrow_nostrils
+    conditions:
+      - path: PaDNA.FacialDNA.NoseBridge
+        in: [Narrow, Very narrow]
+    suggest:
+      path: PaDNA.FacialDNA.NostrilShape
+      value: Narrow
+      ucn: 240
+      reason: narrow_nose_bridge_to_narrow_nostrils
+
+  - name: toothy_smile_to_minimal_gum
+    conditions:
+      - path: PaDNA.FacialDNA.SmileStyle
+        equals: Toothy
+    suggest:
+      path: PaDNA.FacialDNA.SmileGumShow
+      value: Minimal
+      ucn: 230
+      reason: toothy_smile_to_minimal_gum
+
+  - name: gummy_smile_to_moderate_gum_show
+    conditions:
+      - path: PaDNA.FacialDNA.SmileStyle
+        equals: Gummy
+    suggest:
+      path: PaDNA.FacialDNA.SmileGumShow
+      value: Gummy
+      ucn: 280
+      reason: gummy_smile_to_moderate_gum_show
+
+  - name: high_volume_hair_to_thick_density
+    conditions:
+      - path: PaDNA.HairDNA.Volume
+        in: [High, Very_dense]
+    suggest:
+      path: PaDNA.HairDNA.HairDensity
+      value: Thick
+      ucn: 250
+      reason: high_volume_hair_to_thick_density
+
+# --- END: extra holistic inference rules ---

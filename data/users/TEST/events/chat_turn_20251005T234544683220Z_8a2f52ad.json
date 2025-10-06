@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "George is naughtier than Archie",
+  "assistant_text": "It sounds like George is keeping things interesting! What makes him seem so mischievous, do you think it's because he's still a puppy or something else? If you'd like, I can share some tips from our Play Coach on how to channel his energy positively.",
+  "client_message_id": "8383e68c-7332-4534-ac2b-248ac3519979",
+  "assistant_message_id": "chat-49457b589ddf4b89a721576bfaaa4608",
+  "server_ts": "2025-10-05T23:45:44.683+00:00",
+  "server_ts_ms": 1759707944683,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

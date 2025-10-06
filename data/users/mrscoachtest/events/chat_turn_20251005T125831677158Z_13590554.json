@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I was born in Boston and was lucky enough to get in to Dartmouth",
+  "assistant_text": "Boston pride probably played a big role. Did you have any favorite professors or classes while you were there?",
+  "client_message_id": "c26f1052-be4b-46a1-988e-1129e1b18dd4",
+  "assistant_message_id": "chat-c501906fea3d40518509b502302739be",
+  "server_ts": "2025-10-05T12:58:31.677+00:00",
+  "server_ts_ms": 1759669111677,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

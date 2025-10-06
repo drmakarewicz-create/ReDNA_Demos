@@ -1,0 +1,22 @@
+{
+  "user_id": "demo_user_1",
+  "schema_version": 4,
+  "resolved": {
+    "EyeDNA.IrisColor": {
+      "value": "Blue",
+      "value_type": "string",
+      "confidence": 0.8,
+      "provenance": {
+        "source": "ucnrr"
+      }
+    },
+    "HairDNA.Color": {
+      "value": "Red",
+      "value_type": "string",
+      "confidence": 0.8,
+      "provenance": {
+        "source": "ucnrr"
+      }
+    }
+  }
+}

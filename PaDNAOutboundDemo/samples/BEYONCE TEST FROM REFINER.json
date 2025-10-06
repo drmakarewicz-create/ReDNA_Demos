@@ -1,0 +1,332 @@
+{
+  "schema_version": "explorer.bundle/1.0",
+  "source": {
+    "core_schema": "core/3.1",
+    "ucnrr_schema": "ucnrr.demo/1.5"
+  },
+  "identity": {
+    "user_id": "user-demo",
+    "snapshot_id": "snap-1"
+  },
+  "paths_present": [
+    [
+      "PaDNA",
+      "ApparelDNA",
+      "Fit"
+    ],
+    [
+      "PaDNA",
+      "ApparelDNA",
+      "Palette"
+    ],
+    [
+      "PaDNA",
+      "ApparelDNA",
+      "Style"
+    ],
+    [
+      "PaDNA",
+      "Debug",
+      "ModelFallback"
+    ],
+    [
+      "PaDNA",
+      "DistinguishingMarksDNA",
+      "Piercings"
+    ],
+    [
+      "PaDNA",
+      "DistinguishingMarksDNA",
+      "Tattoos"
+    ],
+    [
+      "PaDNA",
+      "EyeDNA",
+      "Color"
+    ],
+    [
+      "PaDNA",
+      "EyeDNA",
+      "Shape"
+    ],
+    [
+      "PaDNA",
+      "GlassesDNA"
+    ],
+    [
+      "PaDNA",
+      "HairDNA",
+      "Color"
+    ],
+    [
+      "PaDNA",
+      "HairDNA",
+      "Length"
+    ],
+    [
+      "PaDNA",
+      "HairDNA",
+      "Style"
+    ],
+    [
+      "PaDNA",
+      "HairDNA",
+      "Texture"
+    ],
+    [
+      "PaDNA",
+      "PostureDNA"
+    ],
+    [
+      "PaDNA",
+      "SkinDNA",
+      "Tone"
+    ],
+    [
+      "PaDNA",
+      "SkinDNA",
+      "Undertone"
+    ]
+  ],
+  "results": {
+    "schema_version": "ucnrr.demo/1.5",
+    "ucn": {
+      "per_dna": {
+        "PaDNA.Debug.ModelFallback": 740.3087173633694,
+        "PaDNA.HairDNA.Color": 541.5771524598671,
+        "PaDNA.HairDNA.Length": 541.5771524598671,
+        "PaDNA.HairDNA.Texture": 541.5771524598671,
+        "PaDNA.HairDNA.Style": 541.5771524598671,
+        "PaDNA.EyeDNA.Color": 541.5771524598671,
+        "PaDNA.EyeDNA.Shape": 541.5771524598671,
+        "PaDNA.SkinDNA.Tone": 541.5771524598671,
+        "PaDNA.SkinDNA.Undertone": 541.5771524598671,
+        "PaDNA.GlassesDNA": 541.5771524598671,
+        "PaDNA.DistinguishingMarksDNA.Tattoos": 541.5771524598671,
+        "PaDNA.DistinguishingMarksDNA.Piercings": 541.5771524598671,
+        "PaDNA.PostureDNA": 541.5771524598671,
+        "PaDNA.ApparelDNA.Style": 541.5771524598671,
+        "PaDNA.ApparelDNA.Fit": 541.5771524598671,
+        "PaDNA.ApparelDNA.Palette": 541.5771524598671
+      },
+      "top_level": {
+        "PaDNA": 553.997875266336
+      },
+      "overall": 553.997875266336
+    },
+    "descriptors": {
+      "PaDNA.Debug.ModelFallback": {
+        "value": "fallback: ValueError",
+        "ucn": 740.3087173633694,
+        "details": {}
+      },
+      "PaDNA.HairDNA.Color": {
+        "value": "blonde",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.HairDNA.Length": {
+        "value": "long",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.HairDNA.Texture": {
+        "value": "wavy",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.HairDNA.Style": {
+        "value": "loose",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.EyeDNA.Color": {
+        "value": "blue",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.EyeDNA.Shape": {
+        "value": "almond",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.SkinDNA.Tone": {
+        "value": "medium",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.SkinDNA.Undertone": {
+        "value": "neutral",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.GlassesDNA": {
+        "value": "none",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.DistinguishingMarksDNA.Tattoos": {
+        "value": "none",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.DistinguishingMarksDNA.Piercings": {
+        "value": "none",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.PostureDNA": {
+        "value": "upright",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.ApparelDNA.Style": {
+        "value": "glam",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.ApparelDNA.Fit": {
+        "value": "fitted",
+        "ucn": 541.5771524598671,
+        "details": {}
+      },
+      "PaDNA.ApparelDNA.Palette": {
+        "value": "warm",
+        "ucn": 541.5771524598671,
+        "details": {}
+      }
+    },
+    "curiosity": {
+      "overall": 446.002124733664
+    },
+    "rr": {
+      "overall": 65.0
+    },
+    "gaps": {
+      "top_weighted": [
+        {
+          "dna_path": "PaDNA.HairDNA.Color",
+          "weighted_score": 320.89599327809304,
+          "curiosity": 458.4228475401329,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty; add diverse photos"
+        },
+        {
+          "dna_path": "PaDNA.HairDNA.Length",
+          "weighted_score": 320.89599327809304,
+          "curiosity": 458.4228475401329,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty; add diverse photos"
+        },
+        {
+          "dna_path": "PaDNA.HairDNA.Texture",
+          "weighted_score": 320.89599327809304,
+          "curiosity": 458.4228475401329,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty; add diverse photos"
+        },
+        {
+          "dna_path": "PaDNA.HairDNA.Style",
+          "weighted_score": 320.89599327809304,
+          "curiosity": 458.4228475401329,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty; add diverse photos"
+        },
+        {
+          "dna_path": "PaDNA.EyeDNA.Color",
+          "weighted_score": 320.89599327809304,
+          "curiosity": 458.4228475401329,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty; add diverse photos"
+        }
+      ],
+      "raw_curiosity": [
+        [
+          "PaDNA.Debug.ModelFallback",
+          259.6912826366306
+        ],
+        [
+          "PaDNA.HairDNA.Color",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.HairDNA.Length",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.HairDNA.Texture",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.HairDNA.Style",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.EyeDNA.Color",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.EyeDNA.Shape",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.SkinDNA.Tone",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.SkinDNA.Undertone",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.GlassesDNA",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.DistinguishingMarksDNA.Tattoos",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.DistinguishingMarksDNA.Piercings",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.PostureDNA",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.ApparelDNA.Style",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.ApparelDNA.Fit",
+          458.4228475401329
+        ],
+        [
+          "PaDNA.ApparelDNA.Palette",
+          458.4228475401329
+        ]
+      ],
+      "agenda_items": [
+        "Use different lighting/angles; include RECENT photos for top gaps."
+      ]
+    },
+    "contradictions": [],
+    "evidence_meta": {
+      "provenance": {
+        "source": "vision-coach",
+        "model": "llama3-vision",
+        "version": "ollama-0.3",
+        "method": "visual"
+      }
+    },
+    "meta": {
+      "difficulty": "Normal"
+    }
+  },
+  "notes": "Generated by PhotoRefinementCoach (Option B.2) \u2014 descriptor-enabled outbound bundle."
+}

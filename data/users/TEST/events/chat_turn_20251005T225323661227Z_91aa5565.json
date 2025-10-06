@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test",
+  "assistant_text": "Let's try again! You mentioned reconnecting and having fun chatting about Archie and George. What's been the most entertaining thing they've done together recently? And if you want, I can share a simple trick for keeping their collars clean during all that playful energy.",
+  "client_message_id": "9d2edcd6-5c8b-47d3-815b-05d3d12c97e6",
+  "assistant_message_id": "chat-48db8e4d362e412aae61aa303c967674",
+  "server_ts": "2025-10-05T22:53:23.661+00:00",
+  "server_ts_ms": 1759704803661,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

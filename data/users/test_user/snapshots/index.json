@@ -1,0 +1,41 @@
+[
+  {
+    "id": "snapshot_20251005T120732",
+    "user_id": "test_user",
+    "created_at": "2025-10-05T12:07:32.081441+00:00",
+    "scope": "partial",
+    "families": [
+      "LooksDNA",
+      "StyleDNA"
+    ],
+    "size_bytes": 284,
+    "trait_count": 0,
+    "label": "Fashion app export"
+  },
+  {
+    "id": "snapshot_20251005T120623",
+    "user_id": "test_user",
+    "created_at": "2025-10-05T12:06:23.481024+00:00",
+    "scope": "partial",
+    "families": [
+      "LooksDNA",
+      "StyleDNA"
+    ],
+    "size_bytes": 284,
+    "trait_count": 0,
+    "label": "Fashion app export"
+  },
+  {
+    "id": "snapshot_20251005T120537",
+    "user_id": "test_user",
+    "created_at": "2025-10-05T12:05:37.695609+00:00",
+    "scope": "partial",
+    "families": [
+      "LooksDNA",
+      "StyleDNA"
+    ],
+    "size_bytes": 284,
+    "trait_count": 0,
+    "label": "Fashion app export"
+  }
+]

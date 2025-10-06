@@ -1,0 +1,12 @@
+{
+  "schema_version": "redna.bundle/3.0",
+  "Prefs": {
+    "traits": {
+      "wyr_log": [],
+      "eye_color": "blue",
+      "hair_color": "red"
+    }
+  },
+  "PaDNA": {},
+  "provenance": []
+}

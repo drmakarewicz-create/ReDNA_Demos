@@ -1,0 +1,22 @@
+{
+  "intake": {
+    "better_week": "Alex should stop fighting with me all the time",
+    "small_change": "Alex should help out around the house more",
+    "boundaries": "Stop constantly whining about how you wish we slept together more",
+    "style": "direct",
+    "rating": "5"
+  },
+  "followups": {},
+  "partner_digest": "\nPartner digest (generalized; no private quotes):\n- facts: Prefers direct style; current rating 2/10\n- goals: Increase everyday affection; feel attractive\n- risks: Boundaries: Not ignoring me for long periods when we're together",
+  "hints": [
+    {
+      "to": "Coach2",
+      "from": "Coach1",
+      "topic": "affection_frequency",
+      "suggested_action": "Encourage a brief daily hug and an every-other-day kiss as a general bonding routine.",
+      "intensity": "light",
+      "privacy_frame": "general_practice"
+    }
+  ],
+  "plan": "Here's your personalized 72-hour plan:\n\nDay 1:\nTask 1 (5 minutes): Write down three specific things you appreciate about Alex when they do help out around the house. Be concrete and detailed.\nTask 2 (5 minutes): Set a reminder on your phone to give Alex a brief, genuine compliment today. It can be something as simple as \"I love how you always make me laugh.\"\nTask 3 (5 minutes): Take 5 minutes to reflect: What's one small way you've been neglecting yourself lately? Make a mental note to prioritize self-care.\n\nOptional Self-Reflection Question: What are three things you're proud of accomplishing recently?\n\nDay 2:\nTask 1 (5 minutes): Write down the top three reasons why you feel like Alex is not helping out enough. Be specific and avoid blaming language.\nTask 2 (5 minutes): Schedule a shared activity with Alex for today, even if it's just 10-15 minutes of playing a game or watching a funny video together.\nTask 3 (5 minutes): Take 5 minutes to reflect: What's one thing you can do today that shows you value your relationship?\n\nOptional Self-Reflection Question: What's one thing you've been putting off doing, and how can you tackle it with Alex's help?\n\nDay 3:\nTask 1 (5 minutes): Write down three specific ways you'd like to see Alex show affection in the coming week. Be concrete and detailed."
+}

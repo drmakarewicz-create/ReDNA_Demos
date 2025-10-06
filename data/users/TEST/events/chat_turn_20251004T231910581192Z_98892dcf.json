@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Lots of things. I have great friends. My family is awesome",
+  "assistant_text": "It sounds like you've got a strong support system in place, which can definitely help with momentum and motivation. What do you think about sharing more about what specifically you're trying to keep momentum going on? Is it related to something work-related or personal?",
+  "client_message_id": "e5963ad6-b3b5-4c31-9a88-a218dc96b2ba",
+  "assistant_message_id": "chat-81e5fa2876014077aa5c4f8f5ac20d9a",
+  "server_ts": "2025-10-04T23:19:10.581+00:00",
+  "server_ts_ms": 1759619950581,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

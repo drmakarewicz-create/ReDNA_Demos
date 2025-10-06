@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "hi",
+  "assistant_text": "It sounds like you're back for more conversation! How's your day going so far? Anything new or exciting happen recently in the world of South Park fandom?",
+  "client_message_id": "75571618-e85e-49fd-98fd-e7029e8b2df9",
+  "assistant_message_id": "chat-433570d59f75438dbcb02dc514ecd35d",
+  "server_ts": "2025-10-05T13:23:37.269+00:00",
+  "server_ts_ms": 1759670617269,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

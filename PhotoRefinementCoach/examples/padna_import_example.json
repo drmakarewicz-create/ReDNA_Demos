@@ -1,0 +1,32 @@
+{
+  "user_id": "photo_import_user",
+  "provenance": {
+    "source": "photo-coach",
+    "mode": "manual-import",
+    "images": ["LLTEST2.jpg", "LLTEST3.jpg"]
+  },
+  "images": [
+    {"id": "img2", "filename": "LLTEST2.jpg"},
+    {"id": "img3", "filename": "LLTEST3.jpg"}
+  ],
+  "observations": {
+    "PaDNA.HairDNA.Color": {
+      "resolved_value": "Auburn / Red-Brown",
+      "ucn": 920.5,
+      "reasons": ["dominant warm red-brown hue"],
+      "notes": {"evidence": ["LLTEST2.jpg"]}
+    },
+    "PaDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Light (blue/green)",
+      "ucn": 780.6,
+      "reasons": ["hazel iris with blue ring"]
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "resolved_value": "Fair",
+      "ucn": 900.8,
+      "rr": 62.0,
+      "curiosity": 24.0,
+      "notes": {"evidence": ["LLTEST3.jpg"]}
+    }
+  }
+}

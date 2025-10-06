@@ -1,0 +1,472 @@
+{
+  "PaDNA.HairDNA.Color": {
+    "resolved_value": "Auburn-Brown With Golden Highlights",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Length": {
+    "resolved_value": "Long",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Texture": {
+    "resolved_value": "Wavy",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Parting": {
+    "resolved_value": "Side Part, Often Left",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Volume": {
+    "resolved_value": "Thick",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Color": {
+    "resolved_value": "Light Green With Hazel Flecks",
+    "ucn": 940.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Shape": {
+    "resolved_value": "Almond",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Lashes": {
+    "resolved_value": "Medium Length, Full",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.Tone": {
+    "resolved_value": "Fair With Warm Undertones",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "resolved_value": "Present, Across Face/Shoulders",
+    "ucn": 970.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.SunSensitivity": {
+    "resolved_value": "High",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.HeightEstimateCM": {
+    "resolved_value": 165,
+    "ucn": 750.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Build": {
+    "resolved_value": "Slim/Athletic",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.WaistHipRatio": {
+    "resolved_value": "Moderate Hourglass",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Bust": {
+    "resolved_value": "Full",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Shoulders": {
+    "resolved_value": "Moderately Broad",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Arms": {
+    "resolved_value": "Slim",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Legs": {
+    "resolved_value": "Long, Toned",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Navel": {
+    "resolved_value": "Pierced",
+    "ucn": 990.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.Teeth": {
+    "resolved_value": "Straight, White",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.SmileShape": {
+    "resolved_value": "Broad Smile",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.Dimples": {
+    "resolved_value": "Absent",
+    "ucn": 700.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.FrequentTops": {
+    "resolved_value": [
+      "Tank tops",
+      "Bikinis",
+      "Casual fitted T-shirts",
+      "Crop tops",
+      "Mini dresses"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.StyleThemes": {
+    "resolved_value": [
+      "Casual sexy",
+      "Playful",
+      "Colorful prints",
+      "Beachwear"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Necklace": {
+    "resolved_value": "Often Layered Pendants",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Earrings": {
+    "resolved_value": "Studs Or Small Hoops",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Piercings": {
+    "resolved_value": [
+      "Navel piercing"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.TypicalExpression": {
+    "resolved_value": "Smiling Warmly Or Playful Smirk",
+    "ucn": 910.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.MoodVariance": {
+    "resolved_value": [
+      "Confident",
+      "Relaxed",
+      "Playful"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.EyeContact": {
+    "resolved_value": "Direct And Engaging",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FitnessDNA.Indicators": {
+    "resolved_value": [
+      "Flat abdomen",
+      "Defined waist",
+      "Toned legs",
+      "Visible muscle tone"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FitnessDNA.LifestyleInference": {
+    "resolved_value": "Active/Fitness-Conscious",
+    "ucn": 770.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.FaceShape": {
+    "resolved_value": "Heart-Shaped To Oval",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.Cheekbones": {
+    "resolved_value": "Prominent, High",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.Jawline": {
+    "resolved_value": "Soft, Rounded",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.Chin": {
+    "resolved_value": "Slightly Pointed",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.FaceWidth": {
+    "resolved_value": "Medium-Narrow",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyebrowDNA.Shape": {
+    "resolved_value": "Arched With Soft Angle",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyebrowDNA.Thickness": {
+    "resolved_value": "Medium-Thin To Medium",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyebrowDNA.Color": {
+    "resolved_value": "Light To Medium Brown",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NoseDNA.Size": {
+    "resolved_value": "Small To Medium",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NoseDNA.Bridge": {
+    "resolved_value": "Straight, Refined",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NoseDNA.Tip": {
+    "resolved_value": "Slightly Rounded",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NoseDNA.Nostrils": {
+    "resolved_value": "Petite",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.LipDNA.Fullness": {
+    "resolved_value": "Medium-Full, Balanced Proportions",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.LipDNA.Shape": {
+    "resolved_value": "Defined Cupid's Bow",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.LipDNA.Color": {
+    "resolved_value": "Natural Pink",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NeckDNA.Length": {
+    "resolved_value": "Medium-Long",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NeckDNA.Width": {
+    "resolved_value": "Slender",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.LowerFaceShape": {
+    "resolved_value": "Gently Tapered",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ForeheadDNA.Height": {
+    "resolved_value": "Medium",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ForeheadDNA.Shape": {
+    "resolved_value": "Gently Rounded",
+    "ucn": 830.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Size": {
+    "resolved_value": "Medium-Large",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Spacing": {
+    "resolved_value": "Medium-Wide Set",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.CurlPattern": {
+    "resolved_value": "Wavy-2b",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.WaveDefinition": {
+    "resolved_value": "Defined",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyebrowDNA.ArchPosition": {
+    "resolved_value": "2/3 Outward From Inner Corner",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NoseDNA.BridgeWidth": {
+    "resolved_value": "Narrow To Medium",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.LipDNA.Texture": {
+    "resolved_value": "Smooth With Natural Gloss",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.Texture": {
+    "resolved_value": "Natural, Visible Pores",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.FrecklesDensity": {
+    "resolved_value": "Medium-Heavy",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.FrecklesCoverage": {
+    "resolved_value": "Cheeks-Nose",
+    "ucn": 940.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.FrecklesContrast": {
+    "resolved_value": "Prominent",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.MouthWidth": {
+    "resolved_value": "Medium-Wide Relative To Face",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "type": "chat_turn",
+  "ts": 1759627534488,
+  "user_id": "container_discovery_test",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I love sci-fi movies and mystery novels",
+    "ts": 1759627534488
+  },
+  "assistant": {
+    "text": "Sci-fi is awesome! I'm more of a fantasy fan myself, but I've heard great things about the new Star Wars movie. What's your favorite sci-fi film of all time? \n\n(Note: Suggested a coach not mentioned in this conversation yet) If you want to discuss character development in those novels, our PaDNA Coach could be a great resource \u2013 no pressure!",
+    "ts": 1759627534488,
+    "message_id": "chat-2434e8b1639241788dcdf7f9f872b833"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/container_discovery_test/observations.json",
+  "metrics": {
+    "response_latency_ms": null,
+    "response_latency_bucket": null,
+    "turn_length_words": 8,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 1.0,
+    "formality_score": 0.5525,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "dialog_act_counts": {
+      "answer": 1
+    },
+    "priority": 0.8
+  }
+}

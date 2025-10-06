@@ -1,0 +1,52 @@
+schemaVersion: 1
+coaches:
+  rc_coach:
+    label: "Relationship Coach"
+    description: "Guides members through relationship-focused refinements."
+    containers:
+      - id: "relationship"
+        label: "Relationship Signals"
+        traits:
+          - id: "listening.skill"
+            label: "Listening Skill"
+            core_trait: "Communication.ActiveListening"
+            weight: 0.7
+            curiosity:
+              default: 0.85
+              decay_days: 30
+            templates:
+              neutral: "Reaffirm how carefully they have been listening and reflecting."
+              gentle: "Highlight their progress in listening with warmth and encouragement."
+              blunt: "Call out that focused listening is still the fastest path to clarity."
+            provenance: []
+          - id: "validation.pacing"
+            label: "Validation Pacing"
+            weight: 0.5
+            curiosity:
+              default: 0.6
+              decay_days: 21
+            templates:
+              neutral: "Point to how their pacing keeps the conversation collaborative."
+              gentle: "Appreciate how they validate before offering guidance."
+              blunt: "Remind them to validate before pivoting into fixes."
+            provenance: []
+          - id: "boundaries.respect"
+            label: "Boundary Respect"
+            core_trait: "Relationships.BoundariesRespect"
+            weight: 0.8
+            curiosity:
+              default: 0.75
+              decay_days: 45
+            templates:
+              neutral: "Acknowledge how they are respecting boundaries in high-signal moments."
+              gentle: "Celebrate the way they honor boundaries while staying responsive."
+              blunt: "Make clear that ignoring boundaries derails trust quickly."
+            provenance: []
+    links:
+      implies:
+        - from: "relationship.listening.skill"
+          to: "relationship.validation.pacing"
+          weight: 0.3
+      depends_on:
+        - from: "relationship.boundaries.respect"
+          on: "relationship.listening.skill"

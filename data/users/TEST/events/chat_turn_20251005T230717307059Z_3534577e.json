@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "hi",
+  "assistant_text": "I'm glad we're chatting again! It sounds like Archie and George are still bringing lots of joy into your life. What's been the best part about having them as companions? Also, if you want, I can share some fun ideas for their next playdate.",
+  "client_message_id": "b2c08471-fb19-48ca-98ff-0d4fb00c1a25",
+  "assistant_message_id": "chat-36c53daa6f044591a78db15003f60b8a",
+  "server_ts": "2025-10-05T23:07:17.307+00:00",
+  "server_ts_ms": 1759705637307,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

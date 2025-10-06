@@ -1,0 +1,2723 @@
+{
+  "user_id": "bs1009-ext",
+  "rows": [
+    {
+      "path": "SocDNA.Relationship.Status",
+      "value": "Complicated",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-24T14:10:09Z",
+        "original_path": "SocDNA.Relationship.Status",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Relationship.Status=Complicated",
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Relationship.Status",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Prefs.LanguagePrimary",
+      "value": "English",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-24T14:10:09Z",
+        "original_path": "SocDNA.Prefs.LanguagePrimary",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Prefs.LanguagePrimary=English",
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Prefs.LanguagePrimary",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Identity.Orientation",
+      "value": "Questioning",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-24T14:10:09Z",
+        "original_path": "SocDNA.Identity.Orientation",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Orientation=Questioning",
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Identity.Orientation",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Identity.Gender",
+      "value": "Female",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-24T14:10:09Z",
+        "original_path": "SocDNA.Identity.Gender",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Gender=Female",
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Identity.Gender",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Demographics.AgeRange",
+      "value": "35-44",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-24T14:10:09Z",
+        "original_path": "SocDNA.Demographics.AgeRange",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Demographics.AgeRange=35-44",
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Demographics.AgeRange",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "PrefDNA.Bonding.Style",
+      "value": "A",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-24T14:10:09Z",
+        "original_path": "PrefDNA.Bonding.Style",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: PrefDNA.Bonding.Style=A",
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "PrefDNA.Bonding.Style",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "Personality.Traits.Introversion",
+      "value": "likely introverted",
+      "value_type": "string",
+      "confidence": 0.12,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 120.0,
+      "reasons": [
+        "Based on available data and observations"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 8.9587715,
+      "curiosity": 91.0412285,
+      "notes": {
+        "summary": "Low comparative confidence (6.14035 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "Personality.Traits.Openness",
+      "value": "moderately open-minded",
+      "value_type": "string",
+      "confidence": 0.13,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 130.0,
+      "reasons": [
+        "Strong correlation with creative pursuits and willingness to learn new things"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 10.3840918,
+      "curiosity": 89.6159082,
+      "notes": {
+        "summary": "Low comparative confidence (8.18182 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "PaDNA.BodyDNA.BodyType",
+      "value": "Ectomorph",
+      "value_type": "string",
+      "confidence": 0.74,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.BodyDNA.BodyType",
+        "canonical_path": "PaDNA.BodyDNA.BodyType",
+        "value_alias": {
+          "alias": "Ectomesomorph",
+          "canonical": "Ectomorph"
+        },
+        "path_alias": "PaDNA.BodyDNA.BodyType",
+        "step": "core-holistic"
+      },
+      "ucn": 740.0,
+      "reasons": [
+        "overall leanness with visible tone; narrow waist; balanced shoulders/hips"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 60.498113299999986,
+      "curiosity": 39.501886700000014,
+      "notes": {
+        "summary": "Moderate confidence (57.54717 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.BodyDNA.BodyType",
+      "canonical_value": "Ectomorph",
+      "original_path": "PaDNA.BodyDNA.BodyType",
+      "value_alias": {
+        "alias": "Ectomesomorph",
+        "canonical": "Ectomorph"
+      },
+      "path_alias": "PaDNA.BodyDNA.BodyType"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Distinctive",
+      "value": [
+        "Navel piercing",
+        "Bilateral small hip/pelvic tattoos"
+      ],
+      "value_type": "string",
+      "confidence": 0.98,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.BodyDNA.Distinctive",
+        "canonical_path": "PaDNA.BodyDNA.Distinctive",
+        "path_alias": "PaDNA.BodyDNA.Distinctive",
+        "step": "core-holistic"
+      },
+      "ucn": 980.0,
+      "reasons": [
+        "clearly visible across multiple photos"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 89.18867979999999,
+      "curiosity": 10.811320200000011,
+      "notes": {
+        "summary": "High confidence (95.28302 RR) for PaDNA.BodyDNA.Distinctive.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.BodyDNA.Distinctive",
+      "canonical_value": [
+        "Navel piercing",
+        "Bilateral small hip/pelvic tattoos"
+      ],
+      "original_path": "PaDNA.BodyDNA.Distinctive",
+      "value_alias": null,
+      "path_alias": "PaDNA.BodyDNA.Distinctive"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Flexibility",
+      "value": "Average",
+      "value_type": "string",
+      "confidence": 0.52,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.BodyDNA.Flexibility",
+        "canonical_path": "PaDNA.BodyDNA.Flexibility",
+        "value_alias": {
+          "alias": "Average",
+          "canonical": "Average"
+        },
+        "path_alias": "PaDNA.BodyDNA.Flexibility",
+        "step": "core-holistic"
+      },
+      "ucn": 520.0,
+      "reasons": [
+        "poses show standard range; no extreme flexibility demonstrated"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 28.034906399999997,
+      "curiosity": 71.9650936,
+      "notes": {
+        "summary": "Low comparative confidence (10.37736 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.BodyDNA.Flexibility",
+      "canonical_value": "Average",
+      "original_path": "PaDNA.BodyDNA.Flexibility",
+      "value_alias": {
+        "alias": "Average",
+        "canonical": "Average"
+      },
+      "path_alias": "PaDNA.BodyDNA.Flexibility"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Gait",
+      "value": "Confident, moderate stride",
+      "value_type": "string",
+      "confidence": 0.48,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.BodyDNA.Gait",
+        "canonical_path": "PaDNA.BodyDNA.Gait",
+        "path_alias": "PaDNA.BodyDNA.Gait",
+        "step": "core-holistic"
+      },
+      "ucn": 480.0,
+      "reasons": [
+        "stance and step in beach/indoor clips"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 25.410379300000002,
+      "curiosity": 74.5896207,
+      "notes": {
+        "summary": "Low comparative confidence (8.49057 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.BodyDNA.Gait",
+      "canonical_value": "Confident, moderate stride",
+      "original_path": "PaDNA.BodyDNA.Gait",
+      "value_alias": null,
+      "path_alias": "PaDNA.BodyDNA.Gait"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Height",
+      "value": 165,
+      "value_type": "number",
+      "confidence": 0.43,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.BodyDNA.Height",
+        "canonical_path": "PaDNA.BodyDNA.Height",
+        "path_alias": "PaDNA.BodyDNA.Height",
+        "step": "core-holistic"
+      },
+      "ucn": 430.0,
+      "reasons": [
+        "inferred 5'5\" \u00b12cm from proportions/fixtures (approx)"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 23.2853793,
+      "curiosity": 76.7146207,
+      "notes": {
+        "summary": "Low comparative confidence (8.49057 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.BodyDNA.Height",
+      "canonical_value": 165,
+      "original_path": "PaDNA.BodyDNA.Height",
+      "value_alias": null,
+      "path_alias": "PaDNA.BodyDNA.Height"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Posture",
+      "value": "Upright",
+      "value_type": "string",
+      "confidence": 0.61,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.BodyDNA.Posture",
+        "canonical_path": "PaDNA.BodyDNA.Posture",
+        "value_alias": {
+          "alias": "Upright with slight anterior pelvic tilt",
+          "canonical": "Upright"
+        },
+        "path_alias": "PaDNA.BodyDNA.Posture",
+        "step": "core-holistic"
+      },
+      "ucn": 610.0,
+      "reasons": [
+        "standing poses across indoor/shore shots"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 45.72783249999999,
+      "curiosity": 54.27216750000001,
+      "notes": {
+        "summary": "Low comparative confidence (38.67925 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.BodyDNA.Posture",
+      "canonical_value": "Upright",
+      "original_path": "PaDNA.BodyDNA.Posture",
+      "value_alias": {
+        "alias": "Upright with slight anterior pelvic tilt",
+        "canonical": "Upright"
+      },
+      "path_alias": "PaDNA.BodyDNA.Posture"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Ratios",
+      "value": {
+        "ShoulderToWaist": 1.25,
+        "TorsoToLegs": "longer torso"
+      },
+      "value_type": "string",
+      "confidence": 0.56,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.BodyDNA.Ratios",
+        "canonical_path": "PaDNA.BodyDNA.Ratios",
+        "path_alias": "PaDNA.BodyDNA.Ratios",
+        "step": "core-holistic"
+      },
+      "ucn": 560.0,
+      "reasons": [
+        "visual proportion estimates"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 33.4330197,
+      "curiosity": 66.5669803,
+      "notes": {
+        "summary": "Low comparative confidence (17.92453 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.BodyDNA.Ratios",
+      "canonical_value": {
+        "ShoulderToWaist": 1.25,
+        "TorsoToLegs": "longer torso"
+      },
+      "original_path": "PaDNA.BodyDNA.Ratios",
+      "value_alias": null,
+      "path_alias": "PaDNA.BodyDNA.Ratios"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Weight",
+      "value": 54,
+      "value_type": "number",
+      "confidence": 0.38,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.BodyDNA.Weight",
+        "canonical_path": "PaDNA.BodyDNA.Weight",
+        "path_alias": "PaDNA.BodyDNA.Weight",
+        "step": "core-holistic"
+      },
+      "ucn": 380.0,
+      "reasons": [
+        "visual estimate; varies by date/scene"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 21.1603793,
+      "curiosity": 78.8396207,
+      "notes": {
+        "summary": "Low comparative confidence (8.49057 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.BodyDNA.Weight",
+      "canonical_value": 54,
+      "original_path": "PaDNA.BodyDNA.Weight",
+      "value_alias": null,
+      "path_alias": "PaDNA.BodyDNA.Weight"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Brows",
+      "value": "Medium density, arched, light brown/blonde",
+      "value_type": "string",
+      "confidence": 0.72,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.EyeDNA.Brows",
+        "canonical_path": "PaDNA.EyeDNA.Brows",
+        "path_alias": "PaDNA.EyeDNA.Brows",
+        "step": "core-holistic"
+      },
+      "ucn": 720.0,
+      "reasons": [
+        "consistent across close-ups"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 51.327359599999994,
+      "curiosity": 48.672640400000006,
+      "notes": {
+        "summary": "Moderate confidence (40.56604 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.EyeDNA.Brows",
+      "canonical_value": "Medium density, arched, light brown/blonde",
+      "original_path": "PaDNA.EyeDNA.Brows",
+      "value_alias": null,
+      "path_alias": "PaDNA.EyeDNA.Brows"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Heterochromia",
+      "value": false,
+      "value_type": "boolean",
+      "confidence": 0.93,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.EyeDNA.Heterochromia",
+        "canonical_path": "PaDNA.EyeDNA.Heterochromia",
+        "path_alias": "PaDNA.EyeDNA.Heterochromia",
+        "step": "core-holistic"
+      },
+      "ucn": 930.0,
+      "reasons": [
+        "no mismatched iris coloration observed"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 85.21462069999998,
+      "curiosity": 14.785379300000017,
+      "notes": {
+        "summary": "High confidence (91.50943 RR) for PaDNA.EyeDNA.Heterochromia.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.EyeDNA.Heterochromia",
+      "canonical_value": false,
+      "original_path": "PaDNA.EyeDNA.Heterochromia",
+      "value_alias": null,
+      "path_alias": "PaDNA.EyeDNA.Heterochromia"
+    },
+    {
+      "path": "PaDNA.EyeDNA.IrisColor",
+      "value": "Hazel",
+      "value_type": "string",
+      "confidence": 0.68,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.EyeDNA.IrisColor",
+        "canonical_path": "PaDNA.EyeDNA.IrisColor",
+        "value_alias": {
+          "alias": "Hazel-light brown (green shift in bright light)",
+          "canonical": "Hazel"
+        },
+        "path_alias": "PaDNA.EyeDNA.IrisColor",
+        "step": "core-holistic"
+      },
+      "ucn": 680.0,
+      "reasons": [
+        "color shifts with lighting; hazel range most likely"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 33.54943349999999,
+      "curiosity": 66.45056650000001,
+      "notes": {
+        "summary": "Low comparative confidence (12.26415 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.EyeDNA.IrisColor",
+      "canonical_value": "Hazel",
+      "original_path": "PaDNA.EyeDNA.IrisColor",
+      "value_alias": {
+        "alias": "Hazel-light brown (green shift in bright light)",
+        "canonical": "Hazel"
+      },
+      "path_alias": "PaDNA.EyeDNA.IrisColor"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Lashes",
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": 0.64,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.EyeDNA.Lashes",
+        "canonical_path": "PaDNA.EyeDNA.Lashes",
+        "value_alias": {
+          "alias": "Medium length/thickness",
+          "canonical": "Medium"
+        },
+        "path_alias": "PaDNA.EyeDNA.Lashes",
+        "step": "core-holistic"
+      },
+      "ucn": 640.0,
+      "reasons": [
+        "visible without extensions"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 47.0028325,
+      "curiosity": 52.9971675,
+      "notes": {
+        "summary": "Low comparative confidence (38.67925 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.EyeDNA.Lashes",
+      "canonical_value": "Medium",
+      "original_path": "PaDNA.EyeDNA.Lashes",
+      "value_alias": {
+        "alias": "Medium length/thickness",
+        "canonical": "Medium"
+      },
+      "path_alias": "PaDNA.EyeDNA.Lashes"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Shape",
+      "value": "Almond",
+      "value_type": "string",
+      "confidence": 0.77,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.EyeDNA.Shape",
+        "canonical_path": "PaDNA.EyeDNA.Shape",
+        "value_alias": {
+          "alias": "Almond, mild hooding",
+          "canonical": "Almond"
+        },
+        "path_alias": "PaDNA.EyeDNA.Shape",
+        "step": "core-holistic"
+      },
+      "ucn": 770.0,
+      "reasons": [
+        "upper lid fullness"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 69.16933989999998,
+      "curiosity": 30.830660100000017,
+      "notes": {
+        "summary": "Moderate confidence (72.64151 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.EyeDNA.Shape",
+      "canonical_value": "Almond",
+      "original_path": "PaDNA.EyeDNA.Shape",
+      "value_alias": {
+        "alias": "Almond, mild hooding",
+        "canonical": "Almond"
+      },
+      "path_alias": "PaDNA.EyeDNA.Shape"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Size",
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": 0.7,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.EyeDNA.Size",
+        "canonical_path": "PaDNA.EyeDNA.Size",
+        "value_alias": {
+          "alias": "Medium",
+          "canonical": "Medium"
+        },
+        "path_alias": "PaDNA.EyeDNA.Size",
+        "step": "core-holistic"
+      },
+      "ucn": 700.0,
+      "reasons": [
+        "iris/sclera ratio in close-ups"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 47.70377339999999,
+      "curiosity": 52.29622660000001,
+      "notes": {
+        "summary": "Low comparative confidence (34.90566 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.EyeDNA.Size",
+      "canonical_value": "Medium",
+      "original_path": "PaDNA.EyeDNA.Size",
+      "value_alias": {
+        "alias": "Medium",
+        "canonical": "Medium"
+      },
+      "path_alias": "PaDNA.EyeDNA.Size"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Cheeks",
+      "value": "Prominent cheekbones, malar fullness",
+      "value_type": "string",
+      "confidence": 0.8,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Cheeks",
+        "canonical_path": "PaDNA.FacialDNA.Cheeks",
+        "path_alias": "PaDNA.FacialDNA.Cheeks",
+        "step": "core-holistic"
+      },
+      "ucn": 800.0,
+      "reasons": [
+        "consistent contouring in multiple angles"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 72.29339409999999,
+      "curiosity": 27.706605900000014,
+      "notes": {
+        "summary": "Moderate confidence (76.41509 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Cheeks",
+      "canonical_value": "Prominent cheekbones, malar fullness",
+      "original_path": "PaDNA.FacialDNA.Cheeks",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.Cheeks"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Chin",
+      "value": "Small, slightly pointed",
+      "value_type": "string",
+      "confidence": 0.76,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Chin",
+        "canonical_path": "PaDNA.FacialDNA.Chin",
+        "path_alias": "PaDNA.FacialDNA.Chin",
+        "step": "core-holistic"
+      },
+      "ucn": 760.0,
+      "reasons": [
+        "frontal and 3/4 angles"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 63.19716749999999,
+      "curiosity": 36.80283250000001,
+      "notes": {
+        "summary": "Moderate confidence (61.32075 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Chin",
+      "canonical_value": "Small, slightly pointed",
+      "original_path": "PaDNA.FacialDNA.Chin",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.Chin"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Ears",
+      "value": "Average size, close-set",
+      "value_type": "string",
+      "confidence": 0.62,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Ears",
+        "canonical_path": "PaDNA.FacialDNA.Ears",
+        "path_alias": "PaDNA.FacialDNA.Ears",
+        "step": "core-holistic"
+      },
+      "ucn": 620.0,
+      "reasons": [
+        "visible in updos"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 41.53018719999999,
+      "curiosity": 58.46981280000001,
+      "notes": {
+        "summary": "Low comparative confidence (29.24528 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Ears",
+      "canonical_value": "Average size, close-set",
+      "original_path": "PaDNA.FacialDNA.Ears",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.Ears"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FaceShape",
+      "value": "Oval \u2192 Heart",
+      "value_type": "string",
+      "confidence": 0.71,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.FaceShape",
+        "canonical_path": "PaDNA.FacialDNA.FaceShape",
+        "path_alias": "PaDNA.FacialDNA.FaceShape",
+        "step": "core-holistic"
+      },
+      "ucn": 710.0,
+      "reasons": [
+        "broad forehead, tapered jaw"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 57.37405419999999,
+      "curiosity": 42.62594580000001,
+      "notes": {
+        "summary": "Moderate confidence (53.77358 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.FaceShape",
+      "canonical_value": "Oval \u2192 Heart",
+      "original_path": "PaDNA.FacialDNA.FaceShape",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.FaceShape"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FacialHair",
+      "value": "None",
+      "value_type": "string",
+      "confidence": 0.98,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.FacialHair",
+        "canonical_path": "PaDNA.FacialDNA.FacialHair",
+        "value_alias": {
+          "alias": "None",
+          "canonical": "None"
+        },
+        "path_alias": "PaDNA.FacialDNA.FacialHair",
+        "step": "core-holistic"
+      },
+      "ucn": 980.0,
+      "reasons": [
+        "no visible vellus beyond normal"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 86.4150936,
+      "curiosity": 13.584906399999994,
+      "notes": {
+        "summary": "High confidence (89.62264 RR) for PaDNA.FacialDNA.FacialHair.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.FacialHair",
+      "canonical_value": "None",
+      "original_path": "PaDNA.FacialDNA.FacialHair",
+      "value_alias": {
+        "alias": "None",
+        "canonical": "None"
+      },
+      "path_alias": "PaDNA.FacialDNA.FacialHair"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Forehead",
+      "value": "Medium height, broad",
+      "value_type": "string",
+      "confidence": 0.69,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Forehead",
+        "canonical_path": "PaDNA.FacialDNA.Forehead",
+        "path_alias": "PaDNA.FacialDNA.Forehead",
+        "step": "core-holistic"
+      },
+      "ucn": 690.0,
+      "reasons": [
+        "hairline-to-brow distance"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 57.448586199999994,
+      "curiosity": 42.551413800000006,
+      "notes": {
+        "summary": "Moderate confidence (55.66038 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Forehead",
+      "canonical_value": "Medium height, broad",
+      "original_path": "PaDNA.FacialDNA.Forehead",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.Forehead"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Jawline",
+      "value": "Tapered, moderate definition",
+      "value_type": "string",
+      "confidence": 0.72,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Jawline",
+        "canonical_path": "PaDNA.FacialDNA.Jawline",
+        "path_alias": "PaDNA.FacialDNA.Jawline",
+        "step": "core-holistic"
+      },
+      "ucn": 720.0,
+      "reasons": [
+        "lateral lighting indoors"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 58.7235862,
+      "curiosity": 41.2764138,
+      "notes": {
+        "summary": "Moderate confidence (55.66038 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Jawline",
+      "canonical_value": "Tapered, moderate definition",
+      "original_path": "PaDNA.FacialDNA.Jawline",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.Jawline"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Lips",
+      "value": "Full upper and lower",
+      "value_type": "string",
+      "confidence": 0.84,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Lips",
+        "canonical_path": "PaDNA.FacialDNA.Lips",
+        "path_alias": "PaDNA.FacialDNA.Lips",
+        "step": "core-holistic"
+      },
+      "ucn": 840.0,
+      "reasons": [
+        "close-up shots"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 79.54056649999998,
+      "curiosity": 20.459433500000017,
+      "notes": {
+        "summary": "High confidence (87.73585 RR) for PaDNA.FacialDNA.Lips.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Lips",
+      "canonical_value": "Full upper and lower",
+      "original_path": "PaDNA.FacialDNA.Lips",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.Lips"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Nose",
+      "value": "Straight bridge, slightly narrow tip",
+      "value_type": "string",
+      "confidence": 0.7,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Nose",
+        "canonical_path": "PaDNA.FacialDNA.Nose",
+        "path_alias": "PaDNA.FacialDNA.Nose",
+        "step": "core-holistic"
+      },
+      "ucn": 700.0,
+      "reasons": [
+        "frontal/profile cues"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 56.02452709999999,
+      "curiosity": 43.97547290000001,
+      "notes": {
+        "summary": "Moderate confidence (51.88679 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Nose",
+      "canonical_value": "Straight bridge, slightly narrow tip",
+      "original_path": "PaDNA.FacialDNA.Nose",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.Nose"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Symmetry",
+      "value": "High",
+      "value_type": "string",
+      "confidence": 0.65,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Symmetry",
+        "canonical_path": "PaDNA.FacialDNA.Symmetry",
+        "value_alias": {
+          "alias": "Above-average",
+          "canonical": "High"
+        },
+        "path_alias": "PaDNA.FacialDNA.Symmetry",
+        "step": "core-holistic"
+      },
+      "ucn": 650.0,
+      "reasons": [
+        "left/right landmark comparison"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 44.6542463,
+      "curiosity": 55.3457537,
+      "notes": {
+        "summary": "Low comparative confidence (33.01887 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Symmetry",
+      "canonical_value": "High",
+      "original_path": "PaDNA.FacialDNA.Symmetry",
+      "value_alias": {
+        "alias": "Above-average",
+        "canonical": "High"
+      },
+      "path_alias": "PaDNA.FacialDNA.Symmetry"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Teeth",
+      "value": "Straight, white, even spacing",
+      "value_type": "string",
+      "confidence": 0.78,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.FacialDNA.Teeth",
+        "canonical_path": "PaDNA.FacialDNA.Teeth",
+        "path_alias": "PaDNA.FacialDNA.Teeth",
+        "step": "core-holistic"
+      },
+      "ucn": 780.0,
+      "reasons": [
+        "smiling photos"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 64.9716995,
+      "curiosity": 35.0283005,
+      "notes": {
+        "summary": "Moderate confidence (63.20755 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.FacialDNA.Teeth",
+      "canonical_value": "Straight, white, even spacing",
+      "original_path": "PaDNA.FacialDNA.Teeth",
+      "value_alias": null,
+      "path_alias": "PaDNA.FacialDNA.Teeth"
+    },
+    {
+      "path": "PaDNA.HairDNA.Bald",
+      "value": "Absent",
+      "value_type": "string",
+      "confidence": 0.98,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Bald",
+        "canonical_path": "PaDNA.HairDNA.Bald",
+        "path_alias": "PaDNA.HairDNA.Bald",
+        "step": "core-holistic"
+      },
+      "ucn": 980.0,
+      "reasons": [
+        "full coverage at scalp"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 89.18867979999999,
+      "curiosity": 10.811320200000011,
+      "notes": {
+        "summary": "High confidence (95.28302 RR) for PaDNA.HairDNA.Bald.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Bald",
+      "canonical_value": "Absent",
+      "original_path": "PaDNA.HairDNA.Bald",
+      "value_alias": null,
+      "path_alias": "PaDNA.HairDNA.Bald"
+    },
+    {
+      "path": "PaDNA.HairDNA.Color",
+      "value": "Blonde",
+      "value_type": "string",
+      "confidence": 0.72,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Color",
+        "canonical_path": "PaDNA.HairDNA.Color",
+        "value_alias": {
+          "alias": "Blonde (natural medium\u2192dyed lighter)",
+          "canonical": "Blonde"
+        },
+        "path_alias": "PaDNA.HairDNA.Color",
+        "step": "core-holistic"
+      },
+      "ucn": 720.0,
+      "reasons": [
+        "root vs. length contrast"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 46.56067487142856,
+      "curiosity": 53.43932512857144,
+      "notes": {
+        "summary": "Low comparative confidence (33.01887 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Color",
+      "canonical_value": "Blonde",
+      "original_path": "PaDNA.HairDNA.Color",
+      "value_alias": {
+        "alias": "Blonde (natural medium\u2192dyed lighter)",
+        "canonical": "Blonde"
+      },
+      "path_alias": "PaDNA.HairDNA.Color"
+    },
+    {
+      "path": "PaDNA.HairDNA.Condition",
+      "value": "Dry",
+      "value_type": "string",
+      "confidence": 0.56,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Condition",
+        "canonical_path": "PaDNA.HairDNA.Condition",
+        "value_alias": {
+          "alias": "Variable; sometimes processed/dry",
+          "canonical": "Dry"
+        },
+        "path_alias": "PaDNA.HairDNA.Condition",
+        "step": "core-holistic"
+      },
+      "ucn": 560.0,
+      "reasons": [
+        "texture, frizz in bright light"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 32.5084926,
+      "curiosity": 67.4915074,
+      "notes": {
+        "summary": "Low comparative confidence (16.03774 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Condition",
+      "canonical_value": "Dry",
+      "original_path": "PaDNA.HairDNA.Condition",
+      "value_alias": {
+        "alias": "Variable; sometimes processed/dry",
+        "canonical": "Dry"
+      },
+      "path_alias": "PaDNA.HairDNA.Condition"
+    },
+    {
+      "path": "PaDNA.HairDNA.Density",
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": 0.65,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Density",
+        "canonical_path": "PaDNA.HairDNA.Density",
+        "value_alias": {
+          "alias": "Medium",
+          "canonical": "Medium"
+        },
+        "path_alias": "PaDNA.HairDNA.Density",
+        "step": "core-holistic"
+      },
+      "ucn": 650.0,
+      "reasons": [
+        "part width and volume"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 43.72971919999999,
+      "curiosity": 56.27028080000001,
+      "notes": {
+        "summary": "Low comparative confidence (31.13208 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Density",
+      "canonical_value": "Medium",
+      "original_path": "PaDNA.HairDNA.Density",
+      "value_alias": {
+        "alias": "Medium",
+        "canonical": "Medium"
+      },
+      "path_alias": "PaDNA.HairDNA.Density"
+    },
+    {
+      "path": "PaDNA.HairDNA.Distinctive",
+      "value": [
+        "Frequent dye/lightening",
+        "Visible regrowth roots"
+      ],
+      "value_type": "string",
+      "confidence": 0.82,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Distinctive",
+        "canonical_path": "PaDNA.HairDNA.Distinctive",
+        "path_alias": "PaDNA.HairDNA.Distinctive",
+        "step": "core-holistic"
+      },
+      "ucn": 820.0,
+      "reasons": [
+        "repeat appearance"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 75.91698029999999,
+      "curiosity": 24.08301970000001,
+      "notes": {
+        "summary": "High confidence (82.07547 RR) for PaDNA.HairDNA.Distinctive.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Distinctive",
+      "canonical_value": [
+        "Frequent dye/lightening",
+        "Visible regrowth roots"
+      ],
+      "original_path": "PaDNA.HairDNA.Distinctive",
+      "value_alias": null,
+      "path_alias": "PaDNA.HairDNA.Distinctive"
+    },
+    {
+      "path": "PaDNA.HairDNA.DyedColor",
+      "value": [
+        "Platinum",
+        "Golden"
+      ],
+      "value_type": "string",
+      "confidence": 0.86,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.DyedColor",
+        "canonical_path": "PaDNA.HairDNA.DyedColor",
+        "value_alias": {
+          "aliases": [
+            "Platinum blonde",
+            "Golden blonde"
+          ],
+          "canonical": [
+            "Platinum",
+            "Golden"
+          ]
+        },
+        "path_alias": "PaDNA.HairDNA.DyedColor",
+        "step": "core-holistic"
+      },
+      "ucn": 860.0,
+      "reasons": [
+        "clear tone shifts across dates"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 80.39056649999999,
+      "curiosity": 19.60943350000001,
+      "notes": {
+        "summary": "High confidence (87.73585 RR) for PaDNA.HairDNA.DyedColor.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.DyedColor",
+      "canonical_value": [
+        "Platinum",
+        "Golden"
+      ],
+      "original_path": "PaDNA.HairDNA.DyedColor",
+      "value_alias": {
+        "aliases": [
+          "Platinum blonde",
+          "Golden blonde"
+        ],
+        "canonical": [
+          "Platinum",
+          "Golden"
+        ]
+      },
+      "path_alias": "PaDNA.HairDNA.DyedColor"
+    },
+    {
+      "path": "PaDNA.HairDNA.Hairline",
+      "value": "Even, no recession",
+      "value_type": "string",
+      "confidence": 0.81,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Hairline",
+        "canonical_path": "PaDNA.HairDNA.Hairline",
+        "path_alias": "PaDNA.HairDNA.Hairline",
+        "step": "core-holistic"
+      },
+      "ucn": 810.0,
+      "reasons": [
+        "updo shots"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 69.0202808,
+      "curiosity": 30.979719200000005,
+      "notes": {
+        "summary": "Moderate confidence (68.86792 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Hairline",
+      "canonical_value": "Even, no recession",
+      "original_path": "PaDNA.HairDNA.Hairline",
+      "value_alias": null,
+      "path_alias": "PaDNA.HairDNA.Hairline"
+    },
+    {
+      "path": "PaDNA.HairDNA.Length",
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": 0.9,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Length",
+        "canonical_path": "PaDNA.HairDNA.Length",
+        "value_alias": {
+          "alias": "Long (shoulder to mid-back)",
+          "canonical": "Medium"
+        },
+        "path_alias": "PaDNA.HairDNA.Length",
+        "step": "core-holistic"
+      },
+      "ucn": 900.0,
+      "reasons": [
+        "all photos"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 79.31698029999998,
+      "curiosity": 20.683019700000017,
+      "notes": {
+        "summary": "High confidence (82.07547 RR) for PaDNA.HairDNA.Length.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Length",
+      "canonical_value": "Medium",
+      "original_path": "PaDNA.HairDNA.Length",
+      "value_alias": {
+        "alias": "Long (shoulder to mid-back)",
+        "canonical": "Medium"
+      },
+      "path_alias": "PaDNA.HairDNA.Length"
+    },
+    {
+      "path": "PaDNA.HairDNA.Part",
+      "value": [
+        "Center",
+        "Side"
+      ],
+      "value_type": "string",
+      "confidence": 0.88,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Part",
+        "canonical_path": "PaDNA.HairDNA.Part",
+        "value_alias": {
+          "alias": "Varies; center or side",
+          "canonical": [
+            "Center",
+            "Side"
+          ]
+        },
+        "path_alias": "PaDNA.HairDNA.Part",
+        "step": "core-holistic"
+      },
+      "ucn": 880.0,
+      "reasons": [
+        "styling variation"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 78.46698029999999,
+      "curiosity": 21.53301970000001,
+      "notes": {
+        "summary": "High confidence (82.07547 RR) for PaDNA.HairDNA.Part.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Part",
+      "canonical_value": [
+        "Center",
+        "Side"
+      ],
+      "original_path": "PaDNA.HairDNA.Part",
+      "value_alias": {
+        "alias": "Varies; center or side",
+        "canonical": [
+          "Center",
+          "Side"
+        ]
+      },
+      "path_alias": "PaDNA.HairDNA.Part"
+    },
+    {
+      "path": "PaDNA.HairDNA.PatternChange",
+      "value": "Straight",
+      "value_type": "string",
+      "confidence": 0.82,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.PatternChange",
+        "canonical_path": "PaDNA.HairDNA.PatternChange",
+        "value_alias": {
+          "alias": "Straight \u2194 loose waves",
+          "canonical": "Straight"
+        },
+        "path_alias": "PaDNA.HairDNA.PatternChange",
+        "step": "core-holistic"
+      },
+      "ucn": 820.0,
+      "reasons": [
+        "heat styling vs. natural wave"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 74.0679261,
+      "curiosity": 25.932073900000006,
+      "notes": {
+        "summary": "Moderate confidence (78.30189 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.PatternChange",
+      "canonical_value": "Straight",
+      "original_path": "PaDNA.HairDNA.PatternChange",
+      "value_alias": {
+        "alias": "Straight \u2194 loose waves",
+        "canonical": "Straight"
+      },
+      "path_alias": "PaDNA.HairDNA.PatternChange"
+    },
+    {
+      "path": "PaDNA.HairDNA.Style",
+      "value": [
+        "Loose",
+        "Updo"
+      ],
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Style",
+        "canonical_path": "PaDNA.HairDNA.Style",
+        "value_alias": {
+          "aliases": [
+            "Loose/tousled",
+            "Updo bun/teased volume"
+          ],
+          "canonical": [
+            "Loose",
+            "Updo"
+          ]
+        },
+        "path_alias": "PaDNA.HairDNA.Style",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "indoor shots and beach clip"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 72.643867,
+      "curiosity": 27.356133,
+      "notes": {
+        "summary": "Moderate confidence (74.5283 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Style",
+      "canonical_value": [
+        "Loose",
+        "Updo"
+      ],
+      "original_path": "PaDNA.HairDNA.Style",
+      "value_alias": {
+        "aliases": [
+          "Loose/tousled",
+          "Updo bun/teased volume"
+        ],
+        "canonical": [
+          "Loose",
+          "Updo"
+        ]
+      },
+      "path_alias": "PaDNA.HairDNA.Style"
+    },
+    {
+      "path": "PaDNA.HairDNA.Texture",
+      "value": "Wavy",
+      "value_type": "string",
+      "confidence": 0.74,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.HairDNA.Texture",
+        "canonical_path": "PaDNA.HairDNA.Texture",
+        "value_alias": {
+          "alias": "Fine\u2192medium, slightly wavy",
+          "canonical": "Wavy"
+        },
+        "path_alias": "PaDNA.HairDNA.Texture",
+        "step": "core-holistic"
+      },
+      "ucn": 740.0,
+      "reasons": [
+        "strand behavior in wind/bright light"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 54.026413799999986,
+      "curiosity": 45.973586200000014,
+      "notes": {
+        "summary": "Moderate confidence (44.33962 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.HairDNA.Texture",
+      "canonical_value": "Wavy",
+      "original_path": "PaDNA.HairDNA.Texture",
+      "value_alias": {
+        "alias": "Fine\u2192medium, slightly wavy",
+        "canonical": "Wavy"
+      },
+      "path_alias": "PaDNA.HairDNA.Texture"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Birthmarks",
+      "value": "None clearly visible",
+      "value_type": "string",
+      "confidence": 0.6,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.SkinDNA.Birthmarks",
+        "canonical_path": "PaDNA.SkinDNA.Birthmarks",
+        "path_alias": "PaDNA.SkinDNA.Birthmarks",
+        "step": "core-holistic"
+      },
+      "ucn": 600.0,
+      "reasons": [
+        "full-torso visibility in bikinis"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 36.982073899999996,
+      "curiosity": 63.017926100000004,
+      "notes": {
+        "summary": "Low comparative confidence (21.69811 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.SkinDNA.Birthmarks",
+      "canonical_value": "None clearly visible",
+      "original_path": "PaDNA.SkinDNA.Birthmarks",
+      "value_alias": null,
+      "path_alias": "PaDNA.SkinDNA.Birthmarks"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Conditions",
+      "value": [
+        "Hyperpigmentation"
+      ],
+      "value_type": "string",
+      "confidence": 0.62,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.SkinDNA.Conditions",
+        "canonical_path": "PaDNA.SkinDNA.Conditions",
+        "value_alias": {
+          "aliases": [
+            "Under-eye darkness/erythema (mild)"
+          ],
+          "canonical": [
+            "Hyperpigmentation"
+          ]
+        },
+        "path_alias": "PaDNA.SkinDNA.Conditions",
+        "step": "core-holistic"
+      },
+      "ucn": 620.0,
+      "reasons": [
+        "consistent under indoor lighting"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 43.3792463,
+      "curiosity": 56.6207537,
+      "notes": {
+        "summary": "Low comparative confidence (33.01887 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.SkinDNA.Conditions",
+      "canonical_value": [
+        "Hyperpigmentation"
+      ],
+      "original_path": "PaDNA.SkinDNA.Conditions",
+      "value_alias": {
+        "aliases": [
+          "Under-eye darkness/erythema (mild)"
+        ],
+        "canonical": [
+          "Hyperpigmentation"
+        ]
+      },
+      "path_alias": "PaDNA.SkinDNA.Conditions"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Freckles",
+      "value": "Light",
+      "value_type": "string",
+      "confidence": 0.7,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.SkinDNA.Freckles",
+        "canonical_path": "PaDNA.SkinDNA.Freckles",
+        "value_alias": {
+          "alias": "Light freckles (nose/upper chest)",
+          "canonical": "Light"
+        },
+        "path_alias": "PaDNA.SkinDNA.Freckles",
+        "step": "core-holistic"
+      },
+      "ucn": 700.0,
+      "reasons": [
+        "close-ups outdoors/indoors"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 63.42075369999999,
+      "curiosity": 36.57924630000001,
+      "notes": {
+        "summary": "Moderate confidence (66.98113 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.SkinDNA.Freckles",
+      "canonical_value": "Light",
+      "original_path": "PaDNA.SkinDNA.Freckles",
+      "value_alias": {
+        "alias": "Light freckles (nose/upper chest)",
+        "canonical": "Light"
+      },
+      "path_alias": "PaDNA.SkinDNA.Freckles"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Moles",
+      "value": "Few, small",
+      "value_type": "string",
+      "confidence": 0.62,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.SkinDNA.Moles",
+        "canonical_path": "PaDNA.SkinDNA.Moles",
+        "path_alias": "PaDNA.SkinDNA.Moles",
+        "step": "core-holistic"
+      },
+      "ucn": 620.0,
+      "reasons": [
+        "torso close-ups"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 45.228300499999996,
+      "curiosity": 54.771699500000004,
+      "notes": {
+        "summary": "Low comparative confidence (36.79245 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.SkinDNA.Moles",
+      "canonical_value": "Few, small",
+      "original_path": "PaDNA.SkinDNA.Moles",
+      "value_alias": null,
+      "path_alias": "PaDNA.SkinDNA.Moles"
+    },
+    {
+      "path": "PaDNA.SkinDNA.SunBehavior",
+      "value": "TansEasy",
+      "value_type": "string",
+      "confidence": 0.68,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.SkinDNA.SunBehavior",
+        "canonical_path": "PaDNA.SkinDNA.SunBehavior",
+        "value_alias": {
+          "alias": "Tans but prone to redness",
+          "canonical": "TansEasy"
+        },
+        "path_alias": "PaDNA.SkinDNA.SunBehavior",
+        "step": "core-holistic"
+      },
+      "ucn": 680.0,
+      "reasons": [
+        "beach clip coloration"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 54.25,
+      "curiosity": 45.75,
+      "notes": {
+        "summary": "Moderate confidence (50.0 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.SkinDNA.SunBehavior",
+      "canonical_value": "TansEasy",
+      "original_path": "PaDNA.SkinDNA.SunBehavior",
+      "value_alias": {
+        "alias": "Tans but prone to redness",
+        "canonical": "TansEasy"
+      },
+      "path_alias": "PaDNA.SkinDNA.SunBehavior"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Texture",
+      "value": "Smooth",
+      "value_type": "string",
+      "confidence": 0.65,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.SkinDNA.Texture",
+        "canonical_path": "PaDNA.SkinDNA.Texture",
+        "value_alias": {
+          "alias": "Generally smooth; fine lines present",
+          "canonical": "Smooth"
+        },
+        "path_alias": "PaDNA.SkinDNA.Texture",
+        "step": "core-holistic"
+      },
+      "ucn": 650.0,
+      "reasons": [
+        "high-res indoor lighting"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 50.20141379999998,
+      "curiosity": 49.79858620000002,
+      "notes": {
+        "summary": "Moderate confidence (44.33962 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.SkinDNA.Texture",
+      "canonical_value": "Smooth",
+      "original_path": "PaDNA.SkinDNA.Texture",
+      "value_alias": {
+        "alias": "Generally smooth; fine lines present",
+        "canonical": "Smooth"
+      },
+      "path_alias": "PaDNA.SkinDNA.Texture"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Tone",
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": 0.86,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.SkinDNA.Tone",
+        "canonical_path": "PaDNA.SkinDNA.Tone",
+        "value_alias": {
+          "alias": "Light-to-medium",
+          "canonical": "Medium"
+        },
+        "path_alias": "PaDNA.SkinDNA.Tone",
+        "step": "core-holistic"
+      },
+      "ucn": 860.0,
+      "reasons": [
+        "all scenes"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 75.76792609999998,
+      "curiosity": 24.232073900000017,
+      "notes": {
+        "summary": "Moderate confidence (78.30189 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.SkinDNA.Tone",
+      "canonical_value": "Medium",
+      "original_path": "PaDNA.SkinDNA.Tone",
+      "value_alias": {
+        "alias": "Light-to-medium",
+        "canonical": "Medium"
+      },
+      "path_alias": "PaDNA.SkinDNA.Tone"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Undertone",
+      "value": "Warm",
+      "value_type": "string",
+      "confidence": 0.7,
+      "provenance": {
+        "actor": "photo_coach",
+        "source": "manual-json",
+        "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+        "ts": "2025-09-24T14:12:02.135900+00:00",
+        "via": "json",
+        "mode": "photo-import",
+        "original_path": "PaDNA.SkinDNA.Undertone",
+        "canonical_path": "PaDNA.SkinDNA.Undertone",
+        "value_alias": {
+          "alias": "Warm neutral (yellow-peach)",
+          "canonical": "Warm"
+        },
+        "path_alias": "PaDNA.SkinDNA.Undertone",
+        "step": "core-holistic"
+      },
+      "ucn": 700.0,
+      "reasons": [
+        "color stability across lighting"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 57.8735862,
+      "curiosity": 42.1264138,
+      "notes": {
+        "summary": "Moderate confidence (55.66038 RR) \u2014 consider light confirmation.",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": "PaDNA.SkinDNA.Undertone",
+      "canonical_value": "Warm",
+      "original_path": "PaDNA.SkinDNA.Undertone",
+      "value_alias": {
+        "alias": "Warm neutral (yellow-peach)",
+        "canonical": "Warm"
+      },
+      "path_alias": "PaDNA.SkinDNA.Undertone"
+    },
+    {
+      "path": "Personality.Traits.Extraversion",
+      "value": "likely introverted",
+      "value_type": "string",
+      "confidence": 0.12,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 120.0,
+      "reasons": [
+        "Based on available data and observations"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 7.0,
+      "curiosity": 93.0,
+      "notes": {
+        "summary": "Low comparative confidence (0.90909 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "Personality.Traits.Conscientiousness",
+      "value": "moderately organized",
+      "value_type": "string",
+      "confidence": 0.11,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 110.0,
+      "reasons": [
+        "Strong correlation with age range and ability to prioritize tasks"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 6.75,
+      "curiosity": 93.25,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T12:54:06.722078+00:00.",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "PaDNA.EyeDNA.EyelidCrease",
+      "value": "Present",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "source": "core",
+        "step": "core-holistic",
+        "reason": "eye_shape_to_crease"
+      },
+      "ucn": 280.0,
+      "reasons": [
+        "Implied by rule: eye_shape_to_crease"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 25.0,
+      "curiosity": 75.0,
+      "notes": {
+        "summary": "Implied by holistic inference",
+        "evidence": [
+          "Rule eye_shape_to_crease applied",
+          "Holistic review normalization applied on 2025-09-25T22:36:49.180651+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T22:36:49.180651+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    }
+  ],
+  "updated_ts": "2025-09-25T22:36:49.180651+00:00"
+}

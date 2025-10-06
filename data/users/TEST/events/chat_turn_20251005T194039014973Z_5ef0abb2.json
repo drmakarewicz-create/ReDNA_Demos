@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I watch a lot of movies",
+  "assistant_text": "Sounds like you're a fan of the big screen! What type of movies do you usually find yourself watching? Are you more into action, comedy, or something else?\n\n(By the way, if you want, I can send you some recommendations for your next movie night.)",
+  "client_message_id": "42e84265-518a-4d4c-8a6d-06ea0a5f100c",
+  "assistant_message_id": "chat-3e53775b8cfa40b29f9d1e23ec946918",
+  "server_ts": "2025-10-05T19:40:39.014+00:00",
+  "server_ts_ms": 1759693239014,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

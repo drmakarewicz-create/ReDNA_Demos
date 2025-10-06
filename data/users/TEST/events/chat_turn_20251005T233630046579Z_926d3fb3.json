@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "They play fight sometimes",
+  "assistant_text": "It sounds like they have a playful bond! I'm glad to see they're getting along well. What's the most entertaining part of watching them play-fight? (Also, if you want, I can share some fun ideas for their next playdate.)",
+  "client_message_id": "8263e935-768a-4f96-9782-f5e90fcb35cb",
+  "assistant_message_id": "chat-f35a85288f2f485ca860ed5ee16576d3",
+  "server_ts": "2025-10-05T23:36:30.046+00:00",
+  "server_ts_ms": 1759707390046,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

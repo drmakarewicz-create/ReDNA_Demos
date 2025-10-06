@@ -1,0 +1,37 @@
+{
+  "user_id": "demo_user",
+  "ran_at": "2025-09-28T01:19:51.150459+00:00",
+  "async": false,
+  "counts": {
+    "ucn_rr_updates": 0,
+    "implied_additions": 0,
+    "contradictions": 0,
+    "llm_considered": 0,
+    "llm_updates": 0,
+    "llm_skipped": 0
+  },
+  "paths": {
+    "all": [],
+    "ucn_rr_updates": [],
+    "implied": [],
+    "contradictions": []
+  },
+  "implied_reasons": {},
+  "report": {
+    "ok": true,
+    "user_id": "demo_user",
+    "time_ms": 0.229,
+    "async_": false,
+    "ucn_rr_updates": [],
+    "implied_additions": [],
+    "contradictions": [],
+    "warnings": [],
+    "llm_considered": [],
+    "llm_updates": [],
+    "llm_skipped": [],
+    "llm_warnings": [
+      "Holistic LLM enabled but no qualifying traits were found."
+    ],
+    "llm_time_ms": 0.0
+  }
+}

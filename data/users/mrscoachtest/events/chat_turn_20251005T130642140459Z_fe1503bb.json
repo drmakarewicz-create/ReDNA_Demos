@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Is that something you can help me with?",
+  "assistant_text": "I'd be happy to help you set up a routine to remind you to put on your glasses every morning! How about we start small and explore simple habits, like keeping your glasses next to your alarm clock or setting a daily reminder on your phone?",
+  "client_message_id": "73b28720-20b6-48f5-9d26-74abc2d2a4a7",
+  "assistant_message_id": "chat-712ac41fb0cf4183b64125ec468cdaaa",
+  "server_ts": "2025-10-05T13:06:42.140+00:00",
+  "server_ts_ms": 1759669602140,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

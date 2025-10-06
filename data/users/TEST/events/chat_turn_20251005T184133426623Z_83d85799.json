@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What is up?",
+  "assistant_text": "It sounds like you'd rather not talk right now. No worries at all, I'm here when you're ready to catch up. \n\n(I'll keep the conversation light and friendly from here)",
+  "client_message_id": "74ec49c7-a8f5-4198-9bba-33c6df0b12dc",
+  "assistant_message_id": "chat-15c03bb888e440f7b03c87d0e6e67f26",
+  "server_ts": "2025-10-05T18:41:33.426+00:00",
+  "server_ts_ms": 1759689693426,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

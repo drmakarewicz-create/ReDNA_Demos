@@ -1,0 +1,8 @@
+.venv/
+PhotoRefinementCoach/.venv/
+__pycache__/
+*.pyc
+.DS_Store
+*.tar.gz
+snapshots/full_backup_*
+control_panel_logs/*

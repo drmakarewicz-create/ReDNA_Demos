@@ -1,0 +1,63 @@
+# ---- PaDNA (Physical Appearance) ----
+PaDNA:
+  HairDNA:
+    Color: {type: categorical, choices: [black, brown, blonde, red, auburn, gray, white, mixed, other]}
+    DyedColor: {type: text}
+    PatternChange: {type: text}         # lifetime color shift / graying
+    Length: {type: categorical, choices: [buzzed, short, medium, long, extra_long]}
+    Style: {type: categorical_multi, choices: [straight, wavy, curly, coiled, kinky, braided, locs, other]}
+    Texture: {type: categorical, choices: [fine, medium, thick, coarse, wiry, silky]}
+    Density: {type: categorical, choices: [sparse, normal, full, very_dense]}
+    Hairline: {type: categorical, choices: [straight, receding, widows_peak, irregular]}
+    Part: {type: categorical, choices: [center, side, zigzag, none]}
+    Condition: {type: categorical_multi, choices: [dry, oily, frizzy, smooth]}
+    Distinctive: {type: text}            # bald spot, streaks, albinism, etc.
+    Bald: {type: boolean}
+  EyeDNA:
+    IrisColor: {type: categorical, choices: [brown, blue, green, hazel, gray, amber, mixed]}
+    Heterochromia: {type: categorical, choices: [none, complete, sectoral]}
+    Shape: {type: categorical, choices: [almond, round, monolid, hooded, deep_set, protruding]}
+    Size: {type: categorical, choices: [small, average, large]}
+    Brows: {type: text}                   # shape/density notes
+    Lashes: {type: text}                  # length/thickness/curl
+  SkinDNA:
+    Tone: {type: categorical, choices: [I, II, III, IV, V, VI]}
+    Undertone: {type: categorical, choices: [cool, warm, neutral, olive, reddish, golden]}
+    Freckles: {type: categorical, choices: [none, light, moderate, heavy]}
+    Birthmarks: {type: text}
+    Moles: {type: text}
+    Texture: {type: categorical_multi, choices: [smooth, rough, porous, scarred]}
+    Conditions: {type: categorical_multi, choices: [acne, rosacea, eczema, vitiligo, psoriasis, other]}
+    SunBehavior: {type: categorical, choices: [burns_easily, tans_moderately, tans_deeply, resistant]}
+  FacialDNA:
+    FaceShape: {type: categorical, choices: [round, oval, square, heart, diamond, oblong, triangular]}
+    Forehead: {type: text}
+    Nose: {type: text}
+    Lips: {type: text}
+    Teeth: {type: text}
+    Cheeks: {type: text}
+    Jawline: {type: text}
+    Chin: {type: text}
+    Ears: {type: text}
+    Symmetry: {type: text}
+    FacialHair: {type: text}
+  BodyDNA:
+    Height: {type: number, units: cm}
+    Weight: {type: number, units: kg}
+    BodyType: {type: categorical, choices: [ectomorph, mesomorph, endomorph]}
+    Ratios: {type: text}                  # torso/leg, shoulder/hip
+    Posture: {type: categorical, choices: [upright, slouched, swayback, kyphotic, lordotic]}
+    Gait: {type: text}
+    Distinctive: {type: text}             # tattoos, scars, surgeries
+    Flexibility: {type: categorical, choices: [low, moderate, high]}
+
+# (Stubs for other umbrellas so nothing breaks; we can flesh these next)
+PsyDNA: {}
+EmDNA: {}
+CogDNA: {}
+SocDNA: {}
+BehDNA: {}
+HistDNA: {}
+PrefDNA: {}
+SkillDNA: {}
+MetaDNA: {}

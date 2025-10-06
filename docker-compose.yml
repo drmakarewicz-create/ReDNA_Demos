@@ -1,0 +1,63 @@
+version: "3.9"
+
+services:
+  core:
+    image: python:3.11-slim
+    container_name: redna-core
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: >
+      bash -lc "\
+        pip install --no-cache-dir -r requirements.txt && \
+        pip install --no-cache-dir -e ReDNACoreDemo && \
+        uvicorn ReDNACoreDemo.core.api:build_app --factory --host 0.0.0.0 --port 8015\
+      "
+    environment:
+      PYTHONUNBUFFERED: "1"
+      WORKSPACE_ROOT: /app
+    ports:
+      - "8015:8015"
+
+  cpplusplus:
+    image: python:3.11-slim
+    container_name: redna-cpplusplus
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: >
+      bash -lc "\
+        pip install --no-cache-dir -r requirements.txt && \
+        pip install --no-cache-dir streamlit && \
+        streamlit run control_panel_plus_plus.py --server.port 8501 --server.address 0.0.0.0\
+      "
+    environment:
+      PYTHONUNBUFFERED: "1"
+      WORKSPACE_ROOT: /app
+      CORE_API_BASE: http://core:8015
+      STREAMLIT_BROWSER_GATHER_USAGE_STATS: "false"
+    depends_on:
+      - core
+    ports:
+      - "8501:8501"
+
+  react:
+    image: node:18-bullseye
+    container_name: redna-react
+    working_dir: /app/web
+    volumes:
+      - ./web:/app/web
+      - web_node_modules:/app/web/node_modules
+    command: >
+      bash -lc "npm install && npm run dev -- --hostname 0.0.0.0 --port 3000"
+    environment:
+      NEXT_PUBLIC_CORE_API_BASE: http://core:8015
+      NEXT_PUBLIC_CP_PROFILES_URL: http://localhost:8501?tab=profiles
+      NEXT_PUBLIC_WORKSPACE_LABEL: Docker Workspace
+    depends_on:
+      - core
+    ports:
+      - "3000:3000"
+
+volumes:
+  web_node_modules:

@@ -1,0 +1,44 @@
+{
+  "type": "chat_turn",
+  "ts": 1759623876035,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Any other restaurant suggestions?",
+    "ts": 1759623876031
+  },
+  "assistant": {
+    "text": "How about \"The Cozy Cup\"? It's a cute spot with a relaxed atmosphere and delicious sandwiches. If you want to try something new, I'd be happy to check out more recommendations for you!",
+    "ts": 1759623876035,
+    "message_id": "chat-1d6fa5acc5514f40b7a9e1e7034559f9"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 3360,
+    "response_latency_bucket": "fast",
+    "turn_length_words": 4,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.59,
+    "assertiveness_score": 0.0,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 6976.0,
+    "rolling_latency_median_ms": 6976.0,
+    "latency_histogram": {
+      "steady": 1,
+      "fast": 1
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 1,
+      "question": 2
+    },
+    "priority": 0.8
+  }
+}

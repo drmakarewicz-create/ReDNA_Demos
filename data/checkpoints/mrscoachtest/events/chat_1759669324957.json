@@ -1,0 +1,42 @@
+{
+  "type": "chat_turn",
+  "ts": 1759669324957,
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I wear glasses now",
+    "ts": 1759669324953
+  },
+  "assistant": {
+    "text": "So you've started to notice some changes with your eyesight! What's been the biggest adjustment for you since getting glasses?",
+    "ts": 1759669324957,
+    "message_id": "chat-6826d4a94b344f54aaa4ab032b7c8bc8"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/mrscoachtest/observations.json",
+  "metrics": {
+    "response_latency_ms": 53319,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 4,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.515,
+    "assertiveness_score": 1.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 87609.75,
+    "rolling_latency_median_ms": 87469.5,
+    "latency_histogram": {
+      "slow": 4
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "answer": 5
+    },
+    "priority": 0.8
+  }
+}

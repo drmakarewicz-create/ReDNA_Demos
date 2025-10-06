@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Do you know anything about me?",
+  "assistant_text": "I'm happy to catch up with you and get a better sense of what's been on your mind lately. To start fresh, I want to say that it's great to see you're still enjoying TV shows like Rick and Morty - can you tell me more about what you love about the characters in this show?",
+  "client_message_id": "a9464244-148b-4891-a15d-4495d75a8bf6",
+  "assistant_message_id": "chat-27163f17d92b49e69ae78295b77f3375",
+  "server_ts": "2025-10-05T18:15:39.788+00:00",
+  "server_ts_ms": 1759688139788,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

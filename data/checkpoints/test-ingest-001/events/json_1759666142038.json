@@ -1,0 +1,26 @@
+{
+  "event_id": "json_1759666142038",
+  "ts": "2025-10-05T12:09:02+00:00",
+  "type": "json_ingest",
+  "user_id": "test-ingest-001",
+  "traits": [
+    {
+      "id": "PaDNA.EyeDNA.IrisColor",
+      "value": "Blue",
+      "rr": 850.0
+    }
+  ],
+  "source": "test",
+  "status": "accepted",
+  "ucnrr_result": {
+    "ok": true,
+    "user_id": "test-ingest-001",
+    "rr_by_trait": {
+      "PaDNA.EyeDNA.IrisColor": 900.0
+    },
+    "curiosity_by_trait": {
+      "PaDNA.EyeDNA.IrisColor": 0.1
+    },
+    "global_curiosity": 0.1
+  }
+}

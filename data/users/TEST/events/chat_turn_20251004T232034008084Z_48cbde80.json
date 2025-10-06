@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Work is great. I just wish I could find the right guy",
+  "assistant_text": "So finding the right person at work is a goal for you, and having your support system in place makes me think that maybe we can brainstorm some strategies together on how to meet someone new who shares similar interests or values. What do you think about exploring ways to connect with colleagues outside of your usual meetings?",
+  "client_message_id": "520b9df8-063c-42c6-9571-85bbb3f2ee3c",
+  "assistant_message_id": "chat-3b1395d9506f45959d1567cc91b1cbee",
+  "server_ts": "2025-10-04T23:20:34.008+00:00",
+  "server_ts_ms": 1759620034008,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

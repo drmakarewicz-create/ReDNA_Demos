@@ -1,0 +1,118 @@
+{
+  "user_id": "abtest",
+  "batch_id": "2025-10-04T15-53-24-abtest",
+  "created_at": "2025-10-04T15:53:24.374513+00:00",
+  "count": 10,
+  "images": [
+    {
+      "filename": "AB1.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB1.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB1.jpg",
+      "hash_sha256": "ed7d45b3fc33138d6f88a1429cd043a642653ded6526e7c8871b660a7c4a5c49",
+      "width": 1204,
+      "height": 1500,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB2.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB2.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB2.jpg",
+      "hash_sha256": "02dd019ac126dd16a7b15d661c1bc12a3e02106867a3220350ec648ee43d06e3",
+      "width": 640,
+      "height": 994,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB3.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB3.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB3.jpg",
+      "hash_sha256": "3732197ab4861448164118aad6514527752d33c1976256f7d90423a462ef797d",
+      "width": 640,
+      "height": 828,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB4.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB4.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB4.jpg",
+      "hash_sha256": "2adc20754157a218f24b799629da01f48ac2f4281f93b66f8b43ef67be0e36d5",
+      "width": 480,
+      "height": 654,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB5.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB5.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB5.jpg",
+      "hash_sha256": "7b55ad63e538a614deb3013d2713d0edacf3a253f59ad490a4709d1d33572eb1",
+      "width": 1001,
+      "height": 1500,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB6.jpeg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB6.jpeg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB6.jpg",
+      "hash_sha256": "7510a8650965d220852afed26fc11cc22417c94f07a77e3703cf81846dfcd3ca",
+      "width": 741,
+      "height": 1319,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB7.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB7.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB7.jpg",
+      "hash_sha256": "d86c1fc5f063b8b78aaa4b784a8b294e87924e675d42fde44ac3d3bb0d0bdc03",
+      "width": 640,
+      "height": 895,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB8.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB8.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB8.jpg",
+      "hash_sha256": "6eadc4c18315698bb998e05d30601010101e1e56a399b08adf4f5f46d128e9c7",
+      "width": 640,
+      "height": 776,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB9.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB9.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB9.jpg",
+      "hash_sha256": "14a54a18407f0832523c53d45e9571abb9cb1665077b072afc307aee1dd9f2b8",
+      "width": 664,
+      "height": 818,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "AB10.jpg",
+      "path": "media/images/2025-10-04T15-53-24-abtest/AB10.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-53-24-abtest/AB10.jpg",
+      "hash_sha256": "7ee28b1e0d4659bc9130a6f02b413abb201a2cd6a0e099c58a0fc848de297ebe",
+      "width": 480,
+      "height": 600,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    }
+  ]
+}

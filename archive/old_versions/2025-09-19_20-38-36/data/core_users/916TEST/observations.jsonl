@@ -1,0 +1,3 @@
+{"trait_id": "PaDNA.LooksDNA.EyeDNA.IrisColor", "value": "Blue", "source": "self_report", "confidence_weight": 0.65, "schema_version": 4, "timestamp": 1758027545.002452, "provenance": {"from": "ExplorerFinal/bulk_editor"}}
+{"trait_id": "PaDNA.LooksDNA.HairDNA.NaturalColor", "value": "Red", "source": "self_report", "confidence_weight": 0.65, "schema_version": 4, "timestamp": 1758027545.002501, "provenance": {"from": "ExplorerFinal/bulk_editor"}}
+{"trait_id": "PaDNA.LooksDNA.SkinDNA.Freckles", "value": "Heavy", "source": "self_report", "confidence_weight": 0.65, "schema_version": 4, "timestamp": 1758027545.002505, "provenance": {"from": "ExplorerFinal/bulk_editor"}}

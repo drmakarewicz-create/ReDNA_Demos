@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I like Rick and Morty",
+  "assistant_text": "That's awesome! I'm glad you enjoy Rick and Morty. It's a show that can be both hilarious and thought-provoking at the same time.\n\nSince we're on the topic of TV shows, what do you think is one thing that sets Rick and Morty apart from other animated series?",
+  "client_message_id": "303635e9-cb63-4c7d-83de-f6ab4f9e7fe3",
+  "assistant_message_id": "chat-d94918fc08b24c4d9d8a6dc568cd2ddb",
+  "server_ts": "2025-10-05T16:46:37.520+00:00",
+  "server_ts_ms": 1759682797520,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

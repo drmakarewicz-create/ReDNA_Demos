@@ -1,0 +1,192 @@
+{
+  "job_id": "avatar_1759509910712",
+  "user_id": "lilo-extended",
+  "created_at": "2025-10-03T16:45:10.714722+00:00",
+  "state": "done",
+  "rendering_traits": {
+    "PaDNA.HairDNA.Color": {
+      "value": "Red-Auburn",
+      "ucn": 920.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Length": {
+      "value": "Long",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Texture": {
+      "value": "Wavy",
+      "ucn": 870.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Parting": {
+      "value": "Side Part, Often Left",
+      "ucn": 810.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Volume": {
+      "value": "Thick",
+      "ucn": 890.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.Color": {
+      "value": "Light Green With Hazel Flecks",
+      "ucn": 940.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.Shape": {
+      "value": "Almond",
+      "ucn": 880.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.Lashes": {
+      "value": "Medium Length, Full",
+      "ucn": 820.0,
+      "rr": 0
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "value": "Fair With Warm Undertones",
+      "ucn": 930.0,
+      "rr": 0
+    },
+    "PaDNA.SkinDNA.Freckles": {
+      "value": "Present, Across Face/Shoulders",
+      "ucn": 970.0,
+      "rr": 0
+    },
+    "PaDNA.SkinDNA.SunSensitivity": {
+      "value": "High",
+      "ucn": 870.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.HeightEstimateCM": {
+      "value": 165,
+      "ucn": 750.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Build": {
+      "value": "Slim/Athletic",
+      "ucn": 880.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.WaistHipRatio": {
+      "value": "Moderate Hourglass",
+      "ucn": 840.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Bust": {
+      "value": "Full",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Shoulders": {
+      "value": "Moderately Broad",
+      "ucn": 810.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Arms": {
+      "value": "Slim",
+      "ucn": 860.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Legs": {
+      "value": "Long, Toned",
+      "ucn": 890.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Navel": {
+      "value": "Pierced",
+      "ucn": 990.0,
+      "rr": 0
+    },
+    "PaDNA.SmileDNA.Teeth": {
+      "value": "Straight, White",
+      "ucn": 920.0,
+      "rr": 0
+    },
+    "PaDNA.SmileDNA.SmileShape": {
+      "value": "Broad Smile",
+      "ucn": 930.0,
+      "rr": 0
+    },
+    "PaDNA.SmileDNA.Dimples": {
+      "value": "Absent",
+      "ucn": 700.0,
+      "rr": 0
+    },
+    "PaDNA.ApparelDNA.FrequentTops": {
+      "value": [
+        "Tank tops",
+        "Bikinis",
+        "Casual fitted T-shirts",
+        "Crop tops",
+        "Mini dresses"
+      ],
+      "ucn": 80.0,
+      "rr": 0
+    },
+    "PaDNA.ApparelDNA.StyleThemes": {
+      "value": [
+        "Casual sexy",
+        "Playful",
+        "Colorful prints",
+        "Beachwear"
+      ],
+      "ucn": 80.0,
+      "rr": 0
+    },
+    "PaDNA.ApparelDNA.Jewelry.Necklace": {
+      "value": "Often Layered Pendants",
+      "ucn": 820.0,
+      "rr": 0
+    },
+    "PaDNA.ApparelDNA.Jewelry.Earrings": {
+      "value": "Studs Or Small Hoops",
+      "ucn": 810.0,
+      "rr": 0
+    },
+    "PaDNA.ApparelDNA.Jewelry.Piercings": {
+      "value": [
+        "Navel piercing"
+      ],
+      "ucn": 80.0,
+      "rr": 0
+    },
+    "PaDNA.ExpressionDNA.TypicalExpression": {
+      "value": "Smiling Warmly Or Playful Smirk",
+      "ucn": 910.0,
+      "rr": 0
+    },
+    "PaDNA.ExpressionDNA.MoodVariance": {
+      "value": [
+        "Confident",
+        "Relaxed",
+        "Playful"
+      ],
+      "ucn": 80.0,
+      "rr": 0
+    },
+    "PaDNA.ExpressionDNA.EyeContact": {
+      "value": "Direct And Engaging",
+      "ucn": 920.0,
+      "rr": 0
+    },
+    "PaDNA.FitnessDNA.Indicators": {
+      "value": [
+        "Flat abdomen",
+        "Defined waist",
+        "Toned legs",
+        "Visible muscle tone"
+      ],
+      "ucn": 80.0,
+      "rr": 0
+    },
+    "PaDNA.FitnessDNA.LifestyleInference": {
+      "value": "Active/Fitness-Conscious",
+      "ucn": 770.0,
+      "rr": 0
+    }
+  },
+  "result_path": "renders/avatar_1759509910712/result.png",
+  "download_url": "/ui/render/download/lilo-extended/avatar_1759509910712/result.png"
+}

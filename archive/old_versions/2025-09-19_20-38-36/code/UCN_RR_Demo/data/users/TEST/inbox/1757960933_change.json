@@ -1,0 +1,17 @@
+{
+  "user": "TEST",
+  "change_event": {
+    "path": "PaDNA.LooksDNA.HairDNA.Color",
+    "old_value": "brown",
+    "new_value": "red",
+    "ts": 1757960933,
+    "provenance": "explorer-final::TEST::auth"
+  },
+  "ucnrr_result": {
+    "ucn": 420.0,
+    "rr": 0.48,
+    "curiosity": 580.0,
+    "why": "baseline"
+  },
+  "written_at": 1757960933
+}

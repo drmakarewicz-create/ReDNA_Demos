@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I like watching football",
+  "assistant_text": "It sounds like we've shifted gears from TV shows to sports now! Football can be a thrilling sport, especially during the season. Who's your favorite team this year?",
+  "client_message_id": "9fcf09d3-1403-492d-a5d1-537bee9413f4",
+  "assistant_message_id": "chat-d3945c672d804866b1d8f6612b7e5d23",
+  "server_ts": "2025-10-05T17:49:11.185+00:00",
+  "server_ts_ms": 1759686551185,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,3 @@
+# Keep the directory in source control while ignoring generated drafts.
+*
+!.gitignore

@@ -1,0 +1,36 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625784608,
+  "user_id": "trait_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I love comedies and sci-fi shows, but I really hate horror films",
+    "ts": 1759625784608
+  },
+  "assistant": {
+    "text": "I'm glad you shared that - it sounds like you have a pretty clear idea of what you enjoy watching. What's been your favorite comedy or sci-fi show lately? If you're open to suggestions, I can share some new ones that might interest you!",
+    "ts": 1759625784608,
+    "message_id": "chat-f4affc2aec904ce6bc69c426d77a4ada"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/trait_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": null,
+    "response_latency_bucket": null,
+    "turn_length_words": 13,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.5092307692307693,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "dialog_act_counts": {
+      "answer": 1
+    },
+    "priority": 0.8
+  }
+}

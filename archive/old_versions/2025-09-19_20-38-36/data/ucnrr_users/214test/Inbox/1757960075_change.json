@@ -1,0 +1,17 @@
+{
+  "user": "214test",
+  "change_event": {
+    "path": "PaDNA.LooksDNA.EyeDNA.Color",
+    "old_value": "brown",
+    "new_value": "amber",
+    "ts": 1757960075,
+    "provenance": "explorer-final::214test::auth"
+  },
+  "ucnrr_result": {
+    "ucn": 420.0,
+    "rr": 0.48,
+    "curiosity": 580.0,
+    "why": "baseline"
+  },
+  "written_at": 1757960075
+}

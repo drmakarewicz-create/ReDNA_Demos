@@ -1,0 +1,4 @@
+{
+  "text": "TRAIT: EyeDNA.IrisColor=Blue; CONFIDENCE=0.7",
+  "raw": "Here is the output in STRICT JSON format:\n\n{\n  \"resolved\": [\n    {\n      \"path\": \"EyeDNA.IrisColor\",\n      \"simple_key\": \"eye_color\",\n      \"value\": \"Blue\",\n      \"value_type\": \"categorical\",\n      \"confidence\": 0.7,\n      \"provenance\": {\n        \"source\": \"self_report|trait_input\",\n        \"span_or_note\": \"TRAIT: EyeDNA.IrisColor=Blue; CONFIDENCE=0.7\",\n        \"observed_at\": \"<ISO8601>\",\n        \"derivation_engine_version\": \"ucnrr_v3.1\"\n      },\n      \"rationale\": \"direct self-report\",\n      \"contradictions_hit\": [],\n      \"refresh_priority\": 0\n    }\n  ],\n  \"observations\": []\n}"
+}

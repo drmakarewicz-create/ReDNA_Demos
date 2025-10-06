@@ -1,0 +1,176 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-10-05T01:26:57.892641+00:00",
+  "containers": {
+    "padna.facial": {
+      "category": "PaDNA",
+      "subcategory": "Facial Features",
+      "description": "Facial landmarks and characteristics",
+      "sensitive": true,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956160+00:00",
+      "observation_count": 0
+    },
+    "padna.hair": {
+      "category": "PaDNA",
+      "subcategory": "Hair",
+      "description": "Hair color, texture, style",
+      "sensitive": false,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956209+00:00",
+      "observation_count": 0
+    },
+    "padna.skin": {
+      "category": "PaDNA",
+      "subcategory": "Skin",
+      "description": "Skin tone, undertone, features",
+      "sensitive": true,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956217+00:00",
+      "observation_count": 0
+    },
+    "padna.voice": {
+      "category": "PaDNA",
+      "subcategory": "Voice",
+      "description": "Voice characteristics",
+      "sensitive": true,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956220+00:00",
+      "observation_count": 0
+    },
+    "conversation.dynamics": {
+      "category": "Conversational",
+      "subcategory": "Dynamics",
+      "description": "Response patterns and cadence",
+      "sensitive": false,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956223+00:00",
+      "observation_count": 0
+    },
+    "conversation.tone": {
+      "category": "Conversational",
+      "subcategory": "Tone & Affect",
+      "description": "Communication style and sentiment",
+      "sensitive": false,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956239+00:00",
+      "observation_count": 0
+    },
+    "preferences.entertainment": {
+      "category": "Preferences",
+      "subcategory": "Entertainment",
+      "description": "TV, movies, books, music preferences",
+      "sensitive": false,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956242+00:00",
+      "observation_count": 2,
+      "example_traits": [
+        "preferences.entertainment.movie_genres.sci-fi_movies",
+        "preferences.entertainment.books.mystery_novels"
+      ]
+    },
+    "preferences.food": {
+      "category": "Preferences",
+      "subcategory": "Food & Dining",
+      "description": "Food, cuisine, dining preferences",
+      "sensitive": false,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956245+00:00",
+      "observation_count": 2,
+      "example_traits": [
+        "preferences.food.italian_cuisine",
+        "preferences.food.spicy_food"
+      ]
+    },
+    "preferences.lifestyle": {
+      "category": "Preferences",
+      "subcategory": "Lifestyle",
+      "description": "Daily habits, routines, choices",
+      "sensitive": false,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956247+00:00",
+      "observation_count": 1,
+      "example_traits": [
+        "preferences.lifestyle.morning_person"
+      ]
+    },
+    "personality.traits": {
+      "category": "Personality",
+      "subcategory": "Core Traits",
+      "description": "Big 5, MBTI-like traits",
+      "sensitive": false,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956249+00:00",
+      "observation_count": 0
+    },
+    "social.relationships": {
+      "category": "Social",
+      "subcategory": "Relationships",
+      "description": "Relationship patterns and preferences",
+      "sensitive": false,
+      "source": "static_schema",
+      "first_observed": "2025-10-05T01:25:43.956253+00:00",
+      "observation_count": 0
+    },
+    "preferences.entertainment.movie_genres": {
+      "category": "Preferences",
+      "subcategory": "Entertainment Movie Genres",
+      "description": "Entertainment.Movie Genres preferences",
+      "sensitive": false,
+      "source": "discovered_from_conversation",
+      "first_observed": "2025-10-05T01:25:43.957047+00:00",
+      "observation_count": 1,
+      "example_traits": [
+        "preferences.entertainment.movie_genres.sci-fi_movies"
+      ]
+    },
+    "preferences.entertainment.books": {
+      "category": "Preferences",
+      "subcategory": "Entertainment Books",
+      "description": "Entertainment.Books preferences",
+      "sensitive": false,
+      "source": "discovered_from_conversation",
+      "first_observed": "2025-10-05T01:25:43.957449+00:00",
+      "observation_count": 1,
+      "example_traits": [
+        "preferences.entertainment.books.mystery_novels"
+      ]
+    },
+    "preferences.physical_attributes": {
+      "category": "Preferences",
+      "subcategory": "Physical Attributes",
+      "description": "Physical Attributes preferences",
+      "sensitive": false,
+      "source": "discovered_from_conversation",
+      "first_observed": "2025-10-05T01:26:24.379910+00:00",
+      "observation_count": 1,
+      "example_traits": [
+        "preferences.physical_attributes.exercises_daily"
+      ]
+    },
+    "preferences.music": {
+      "category": "Preferences",
+      "subcategory": "Music",
+      "description": "Music preferences",
+      "sensitive": false,
+      "source": "discovered_from_conversation",
+      "first_observed": "2025-10-05T01:26:40.574601+00:00",
+      "observation_count": 1,
+      "example_traits": [
+        "preferences.music.jazz_and_classical_music"
+      ]
+    },
+    "attributes.physical": {
+      "category": "Physical Attributes",
+      "subcategory": "Physical",
+      "description": "Physical.Eye Color attributes",
+      "sensitive": true,
+      "source": "discovered_from_conversation",
+      "first_observed": "2025-10-05T01:26:57.892615+00:00",
+      "observation_count": 1,
+      "example_traits": [
+        "attributes.physical.eye_color"
+      ]
+    }
+  }
+}

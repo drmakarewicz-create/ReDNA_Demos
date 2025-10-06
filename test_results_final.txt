@@ -1,0 +1,87 @@
+
+######################################################################
+# HEAD COACH v2 SPRINT 1b ACCEPTANCE TESTS
+######################################################################
+
+======================================================================
+TEST 1: Conversation Memory (/hc/say)
+======================================================================
+✓ User message logged: 2025-10-04T11:52:33.998880+00:00
+✓ Assistant message logged
+✓ Retrieved 2 messages from history
+
+✅ Conversation Memory test passed
+
+
+======================================================================
+TEST 2: Playbook Runner
+======================================================================
+✓ Found 4 playbooks:
+  - photo_refine: Photo Refinement Flow
+  - on_new_user: New User Onboarding
+  - curiosity_campaign: Curiosity Campaign
+  - explain_change: Explain Sudden Change
+✓ Created test user state with high-curiosity trait
+✓ Playbook executed, enqueued 1 task(s)
+✓ Found 1 task(s) in queue
+  - Task: Reduce uncertainty for BaseColor
+
+✅ Playbook Runner test passed
+
+
+======================================================================
+TEST 3: Real Task Execution
+======================================================================
+✓ Task enqueued: f8aa00ba-831d-4dc8-92cf-13357150d8fc
+✓ Task executed
+✓ Conversation entry created: "I need your help with BaseColor. Current value: Gr..."
+
+✅ Real Task Execution test passed
+
+
+======================================================================
+TEST 4: Morning Snapshot Task
+======================================================================
+✓ Morning snapshot task enqueued: 51069f26-1164-4a82-9cc0-504a05367d9f
+✓ Morning snapshot task executed
+✓ Morning snapshot generated
+  Preview: "Good morning! Here's your trait snapshot:
+
+• BaseColor: curi..."
+
+✅ Morning Snapshot test passed
+
+
+======================================================================
+TEST 5: End-to-End Integration
+======================================================================
+✓ Initial state retrieved
+  - Flags present: True
+  - Tasks present: True
+  - Reminders present: True
+✓ HC State v2 fields present
+  - Initial queued tasks: 0
+✓ Playbook executed and state updated
+  - Final queued tasks: 1
+
+✅ End-to-End Integration test passed
+
+
+======================================================================
+ALL TESTS PASSED ✅
+======================================================================
+
+HC v2 Sprint 1b features are working:
+  ✓ Conversation memory (/hc/say)
+  ✓ Playbook runner (curiosity_campaign)
+  ✓ Real task execution (add_evidence, morning_snapshot)
+  ✓ End-to-end integration
+
+Next steps:
+  - Add UI components to React app
+  - Test manual playbook triggers from UI
+  - Expand playbook library
+
+
+======================================================================
+✓ Cleaned up test user: hc_v2_1b_demo

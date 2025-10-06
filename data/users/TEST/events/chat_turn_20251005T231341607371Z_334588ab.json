@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What were we talking about?",
+  "assistant_text": "We were chatting about Archie and George, your energetic fur babies! I'm glad you brought them up again. You mentioned earlier that they're still bringing joy into your life - what's the most heartwarming thing they've done together recently?",
+  "client_message_id": "65bfef88-8808-4dc1-86c9-5958d9c1ccf1",
+  "assistant_message_id": "chat-213085bd000148899aa3edee95c09972",
+  "server_ts": "2025-10-05T23:13:41.607+00:00",
+  "server_ts_ms": 1759706021607,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

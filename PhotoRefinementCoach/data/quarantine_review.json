@@ -1,0 +1,90 @@
+{
+  "generated_at": "2025-10-03T12:26:37.709164",
+  "category_filter": null,
+  "total_pending_paths": 5,
+  "instructions": [
+    "Review each path below and decide:",
+    "1. PROMOTE: Create a new PaDNA container for this trait",
+    "2. MAP: Create an alias to an existing PaDNA path",
+    "3. REJECT: Ignore this path (not relevant)",
+    "",
+    "For each decision, fill in the 'status', 'suggested_mapping', and 'notes' fields."
+  ],
+  "paths": [
+    {
+      "path": "BehavioralDNA.Posture",
+      "category": "Behavioral",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": \"Confident, often leaning slightly forward or hands on hips\", \"ucn\": 870}"
+      ],
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T12:26:13.825985",
+      "decision": {
+        "status": "pending",
+        "suggested_mapping": null,
+        "notes": ""
+      }
+    },
+    {
+      "path": "BehavioralDNA.SocialProjection",
+      "category": "Behavioral",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": \"Outgoing, flirty, approachable\", \"ucn\": 880}"
+      ],
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T12:26:13.825985",
+      "decision": {
+        "status": "pending",
+        "suggested_mapping": null,
+        "notes": ""
+      }
+    },
+    {
+      "path": "StyleContext.SettingsObserved",
+      "category": "Style",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"Beach\", \"Kitchen\", \"Bedroom, casual\", \"Studio backdrop\"]}"
+      ],
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T12:26:13.825985",
+      "decision": {
+        "status": "pending",
+        "suggested_mapping": null,
+        "notes": ""
+      }
+    },
+    {
+      "path": "StyleContext.FashionMarkers",
+      "category": "Style",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"Low-rise shorts\", \"Bikinis\", \"Playful prints\", \"Heeled shoes\", \"Boots\"]}"
+      ],
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T12:26:13.825985",
+      "decision": {
+        "status": "pending",
+        "suggested_mapping": null,
+        "notes": ""
+      }
+    },
+    {
+      "path": "StyleContext.EraInference",
+      "category": "Style",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": \"Early-mid 2000s fashion\", \"ucn\": 950}"
+      ],
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T12:26:13.825985",
+      "decision": {
+        "status": "pending",
+        "suggested_mapping": null,
+        "notes": ""
+      }
+    }
+  ]
+}

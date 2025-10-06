@@ -1,0 +1,44 @@
+{
+  "type": "chat_turn",
+  "ts": 1759622591458,
+  "user_id": "TEST",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I just wanted to chat",
+    "ts": 1759622591453
+  },
+  "assistant": {
+    "text": "I'm glad we can have a casual conversation! It sounds like we got sidetracked from where we started. Let's get back on track - what was it that you were hoping to discuss when you said \"I just wanted to chat\"?",
+    "ts": 1759622591458,
+    "message_id": "chat-ce4bd115766d457fb1c5519371e6567b"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/TEST/observations.json",
+  "metrics": {
+    "response_latency_ms": 29509,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 5,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.5,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 19348739.695652176,
+    "rolling_latency_median_ms": 84659.0,
+    "latency_histogram": {
+      "slow": 23
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "answer": 14,
+      "question": 9,
+      "repair": 1
+    },
+    "priority": 0.8
+  }
+}

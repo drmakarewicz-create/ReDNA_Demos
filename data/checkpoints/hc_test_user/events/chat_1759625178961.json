@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625178961,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "What's a good TV show to watch?",
+    "ts": 1759625178958
+  },
+  "assistant": {
+    "text": "Reflecting back, it sounds like you're open to some entertainment suggestions. I've heard great things about \"Stranger Things\" - what type of shows are you usually in the mood for?",
+    "ts": 1759625178961,
+    "message_id": "chat-901d42cf61754368b7a42d2c0cd034bf"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 5952,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 7,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 1.0,
+    "formality_score": 0.4257142857142857,
+    "assertiveness_score": 0.0,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 21305.12,
+    "rolling_latency_median_ms": 6135.5,
+    "latency_histogram": {
+      "steady": 47,
+      "slow": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "question": 25,
+      "answer": 22,
+      "ack": 3
+    },
+    "priority": 0.8
+  }
+}

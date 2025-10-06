@@ -1,0 +1,31 @@
+schema_version: 4
+
+PaDNA:
+  LooksDNA:
+    EyeDNA:
+      IrisColor:
+        type: enum
+        enum: [Blue, Green, Hazel, Brown, Gray, Amber, Heterochromia]
+    HairDNA:
+      NaturalColor:
+        type: enum
+        enum: [Black, Brown, Blonde, Red, Gray, White, Mixed]
+    SkinDNA:
+      Freckles:
+        type: enum
+        enum: [None, Light, Moderate, Heavy]
+
+PsyDNA:
+  PersonalityDNA:
+    BigFive:
+      OpennessNotes:
+        type: text
+      ConscientiousnessNotes:
+        type: text
+
+EmDNA:
+  AttachmentDNA:
+    Style:
+      AttachmentStyle:
+        type: enum
+        enum: [Secure, Anxious, Avoidant, Disorganized]

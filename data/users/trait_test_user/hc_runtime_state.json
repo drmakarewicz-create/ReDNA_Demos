@@ -1,0 +1,33 @@
+{
+  "last_user_ts": "2025-10-05T01:12:57.628000+00:00",
+  "last_user_text": "Any movie recommendations?",
+  "turns_observed": 12,
+  "dialog_history": [
+    "answer",
+    "answer",
+    "question",
+    "question",
+    "answer",
+    "answer",
+    "question",
+    "question",
+    "answer",
+    "answer",
+    "question",
+    "question"
+  ],
+  "last_assistant_ts": "2025-10-05T01:12:57.631445+00:00",
+  "latency_history_ms": [
+    12295,
+    5047,
+    6495,
+    288268,
+    11867,
+    7558,
+    5981,
+    584211,
+    27149,
+    25784,
+    18318
+  ]
+}

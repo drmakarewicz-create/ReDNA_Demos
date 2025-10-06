@@ -1,0 +1,61 @@
+{
+  "user_id": "demo_cb_001",
+  "default_provenance": {
+    "collector": "Explorer/RC Dev",
+    "source": "user_uploaded_photoset",
+    "method": "visual_estimate_from_images",
+    "license": "user_provided",
+    "notes": "Observations derived from uploaded photo set; non-biometric biometric-identifying detail avoided; values are approximate."
+  },
+  "observations": [
+    { "path": "PaDNA.hair.color.base", "value": "warm_auburn", "confidence": 0.92 },
+    { "path": "PaDNA.hair.color.highlights", "value": "golden_copper", "confidence": 0.85 },
+    { "path": "PaDNA.hair.length.category", "value": "long", "confidence": 0.98 },
+    { "path": "PaDNA.hair.texture", "value": "smooth_wavy", "confidence": 0.9 },
+    { "path": "PaDNA.hair.volume", "value": "high", "confidence": 0.9 },
+    { "path": "PaDNA.hair.parting", "value": "side", "confidence": 0.95 },
+    { "path": "PaDNA.hair.hairline_shape", "value": "soft_curved", "confidence": 0.8 },
+
+    { "path": "PaDNA.skin.complexion", "value": "fair_light", "confidence": 0.95 },
+    { "path": "PaDNA.skin.undertone", "value": "warm", "confidence": 0.9 },
+    { "path": "PaDNA.skin.freckles", "value": "light_scatter", "confidence": 0.8 },
+    { "path": "PaDNA.skin.sun_response", "value": "tans_then_freckles", "confidence": 0.7 },
+    { "path": "PaDNA.skin.texture_face", "value": "smooth_with_fine_lines", "confidence": 0.75 },
+
+    { "path": "PaDNA.eyes.iris_color.primary", "value": "blue_green", "confidence": 0.9 },
+    { "path": "PaDNA.eyes.iris_pattern.limbal_ring", "value": "soft_present", "confidence": 0.8 },
+    { "path": "PaDNA.eyes.iris_pattern.flecks", "value": "golden_flecks", "confidence": 0.65 },
+    { "path": "PaDNA.eyes.shape", "value": "almond_slight_upturn", "confidence": 0.85 },
+    { "path": "PaDNA.eyes.sclera_brightness", "value": "bright", "confidence": 0.8 },
+    { "path": "PaDNA.eyes.brow_distance", "value": "average", "confidence": 0.7 },
+
+    { "path": "PaDNA.facial.jawline_definition", "value": "soft_moderate", "confidence": 0.85 },
+    { "path": "PaDNA.facial.cheekbone_prominence", "value": "moderate", "confidence": 0.85 },
+    { "path": "PaDNA.facial.nose.bridge", "value": "straight_narrow", "confidence": 0.8 },
+    { "path": "PaDNA.facial.lip_fullness", "value": "moderate", "confidence": 0.8 },
+    { "path": "PaDNA.facial.smile_lines", "value": "subtle", "confidence": 0.7 },
+
+    { "path": "PaDNA.posture.standing_alignment", "value": "upright_shoulders_back", "confidence": 0.9 },
+    { "path": "PaDNA.posture.weight_distribution", "value": "contrapposto_weight_on_one_leg", "confidence": 0.85 },
+    { "path": "PaDNA.movement.gesture_style", "value": "relaxed_confident", "confidence": 0.85 },
+
+    { "path": "PaDNA.apparel.fit_preference", "value": "tailored_form_fitting", "confidence": 0.95 },
+    { "path": "PaDNA.apparel.neckline_preference", "value": "plunge_or_keyhole", "confidence": 0.95 },
+    { "path": "PaDNA.apparel.fabric_preference", "value": "silk_satin_knit", "confidence": 0.8 },
+    { "path": "PaDNA.apparel.palette", "value": "jewel_tones_and_warm_neutrals", "confidence": 0.9 },
+    { "path": "PaDNA.accessories.earrings.style", "value": "statement_dangles_or_hoops", "confidence": 0.85 },
+    { "path": "PaDNA.accessories.necklace.presence", "value": "occasional_statement", "confidence": 0.75 },
+
+    { "path": "PaDNA.body.shoulder_slope", "value": "slight", "confidence": 0.75 },
+    { "path": "PaDNA.body.proportions.torso_leg_balance", "value": "balanced", "confidence": 0.7 },
+    { "path": "PaDNA.body.hand_observation", "value": "manicured_natural", "confidence": 0.6 },
+
+    { "path": "PaDNA.makeup.style_baseline", "value": "natural_polished", "confidence": 0.8 },
+    { "path": "PaDNA.makeup.emphasis", "value": "eyes_liner_mascara", "confidence": 0.8 },
+
+    { "path": "PaDNA.hair.styling.patterns", "value": "loose_waves_blowout", "confidence": 0.9 },
+    { "path": "PaDNA.hair.updo_frequency", "value": "occasional", "confidence": 0.65 },
+
+    { "path": "PaDNA.presentation.photo_context", "value": "event_red_carpet_and_interviews", "confidence": 0.95 }
+  ]
+}

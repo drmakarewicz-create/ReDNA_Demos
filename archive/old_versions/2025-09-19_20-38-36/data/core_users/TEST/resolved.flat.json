@@ -1,0 +1,39 @@
+{
+  "rows": [
+    {
+      "trait_key": "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "value": "Blue",
+      "ucn": 132,
+      "notes": "translated",
+      "status": "resolved"
+    },
+    {
+      "trait_key": "BioDNA.Race",
+      "value": "Black",
+      "ucn": 120,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "PaDNA.LooksDNA.HairDNA.Color",
+      "value": "brown",
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "PaDNA.LooksDNA.FaceDNA.FacialHair",
+      "value": true,
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "BioDNA.Height.Years",
+      "value": 72,
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    }
+  ]
+}

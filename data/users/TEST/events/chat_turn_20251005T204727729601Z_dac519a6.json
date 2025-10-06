@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test7",
+  "assistant_text": "It looks like our conversation got cut off again! Let's try to stay on track this time. What do you think about the dog park in your neighborhood? Do you and Archie and George enjoy going there?",
+  "client_message_id": "960dd8cb-cf9c-4f85-a545-16cc9588ee35",
+  "assistant_message_id": "chat-61200d7f9b9a4507b7a719b2109cb367",
+  "server_ts": "2025-10-05T20:47:27.729+00:00",
+  "server_ts_ms": 1759697247729,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

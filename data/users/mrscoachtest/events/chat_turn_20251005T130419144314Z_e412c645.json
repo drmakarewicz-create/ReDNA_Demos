@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I just need to remember to put them on in the morning. Sometimes I forget",
+  "assistant_text": "You're adapting well to wearing glasses, but it can be easy to forget to wear them first thing in the morning. Have you thought about setting a reminder or routine to help you remember?",
+  "client_message_id": "7315d4b5-18fe-4a48-82bc-deb0ada091cc",
+  "assistant_message_id": "chat-052826295bb3479c821f4be6ff5e646e",
+  "server_ts": "2025-10-05T13:04:19.144+00:00",
+  "server_ts_ms": 1759669459144,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

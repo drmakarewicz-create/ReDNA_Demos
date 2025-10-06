@@ -1,0 +1,44 @@
+{
+  "id": "e7cf25e8e36f",
+  "user_id": "integration_test_user",
+  "created_at": "2025-10-05T12:10:23.923246+00:00",
+  "focus_area": "PaDNA.EmDNA.Empathy",
+  "curiosity_score": 0.75,
+  "goal": "Reduce uncertainty around Empathy",
+  "steps": [
+    {
+      "number": 1,
+      "action": "Ask Head Coach to pose 2-3 direct questions about Empathy",
+      "rationale": "Gather immediate signals through targeted questions",
+      "effort": "low",
+      "impact": "medium",
+      "estimated_minutes": 3,
+      "coach_delegation": "Head Coach",
+      "status": "completed"
+    },
+    {
+      "number": 2,
+      "action": "Journal about recent experiences with Empathy (10 min)",
+      "rationale": "Self-reflection uncovers nuanced signals and patterns",
+      "effort": "medium",
+      "impact": "high",
+      "estimated_minutes": 12,
+      "coach_delegation": "Head Coach",
+      "status": "pending"
+    },
+    {
+      "number": 3,
+      "action": "Note one instance where Empathy showed up today",
+      "rationale": "Active noticing builds trait awareness over time",
+      "effort": "low",
+      "impact": "low",
+      "estimated_minutes": 5,
+      "coach_delegation": "Head Coach",
+      "status": "pending"
+    }
+  ],
+  "status": "completed",
+  "metadata": {
+    "generation_method": "rule_based"
+  }
+}

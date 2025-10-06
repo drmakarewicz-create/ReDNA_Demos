@@ -1,0 +1,28 @@
+{
+  "script_path": "smart_defaults",
+  "quick_facts": {
+    "eye_color": {
+      "value": "brown",
+      "label": "Brown"
+    },
+    "hair_color": {
+      "value": "brown",
+      "label": "Brown"
+    },
+    "handedness": {
+      "value": "right",
+      "label": "Right-handed"
+    }
+  },
+  "interests": {
+    "selected": [
+      "fitness",
+      "style"
+    ],
+    "custom": [
+      "Baseball"
+    ]
+  },
+  "seed_used": false,
+  "initialized_at": "2025-10-02T21:07:37.622783+00:00"
+}

@@ -1,0 +1,119 @@
+{
+  "user_id": "demo_user_001",
+  "timestamp": "2025-09-23T14:15:00Z",
+  "provenance": {
+    "source": "photo-coach-manual-json",
+    "images": [
+      "LLTEST1.jpeg",
+      "LLTEST2.jpg",
+      "LLTEST3.jpg"
+    ]
+  },
+  "traits": [
+    {
+      "path": "Hair.Color",
+      "value": "Red",
+      "ucn": 875.0,
+      "rr": 82.5,
+      "curiosity": 17.5,
+      "provenance": {"from": "photo-analysis"},
+      "notes": {
+        "summary": "Hair clearly appears naturally red.",
+        "evidence": ["All three photos show reddish tones in scalp/remaining hair."],
+        "coach_instructions": ["Validate natural vs dyed hair.", "Ask for historical consistency."]
+      }
+    },
+    {
+      "path": "Hair.Style",
+      "value": "Wavy",
+      "ucn": 720.3,
+      "rr": 68.2,
+      "curiosity": 31.8,
+      "notes": {
+        "summary": "Loose waves visible in longer sections.",
+        "evidence": ["LLTEST1 and LLTEST2 show wave pattern."],
+        "coach_instructions": ["Confirm usual styling habits."]
+      }
+    },
+    {
+      "path": "Hair.Length",
+      "value": "Shoulder-Length",
+      "ucn": 810.7,
+      "rr": 74.9,
+      "curiosity": 25.1,
+      "notes": {"summary": "Length around shoulders in LLTEST2 and LLTEST3."}
+    },
+    {
+      "path": "Skin.Tone",
+      "value": "Fair",
+      "ucn": 860.2,
+      "rr": 77.0,
+      "curiosity": 23.0,
+      "notes": {
+        "summary": "Skin appears light/fair in all lighting conditions.",
+        "coach_instructions": ["Validate against user statement."]
+      }
+    },
+    {
+      "path": "Eyes.Color",
+      "value": "Blue-Green (hazel shift)",
+      "ucn": 690.4,
+      "rr": 55.2,
+      "curiosity": 44.8,
+      "notes": {
+        "summary": "Photos show blue with hints of green in iris.",
+        "data_gaps": ["Need closer portrait to confirm shade."]
+      }
+    },
+    {
+      "path": "Face.Shape",
+      "value": "Oval",
+      "ucn": 715.5,
+      "rr": 60.3,
+      "curiosity": 39.7
+    },
+    {
+      "path": "Nose.Shape",
+      "value": "Straight, medium-length",
+      "ucn": 645.2,
+      "rr": 50.0,
+      "curiosity": 50.0
+    },
+    {
+      "path": "Mouth.Lips",
+      "value": "Full upper, slightly thinner lower",
+      "ucn": 612.7,
+      "rr": 45.0,
+      "curiosity": 55.0
+    },
+    {
+      "path": "Clothing.Top.Color",
+      "value": "Pink",
+      "ucn": 920.0,
+      "rr": 95.0,
+      "curiosity": 5.0,
+      "notes": {
+        "summary": "LLTEST1 clearly shows pink shirt.",
+        "evidence": ["LLTEST1: long wavy red hair, pink shirt."]
+      }
+    },
+    {
+      "path": "Accessories.Visible",
+      "value": ["Earrings (studs)", "Necklace (small chain)"],
+      "ucn": 540.0,
+      "rr": 38.0,
+      "curiosity": 62.0
+    },
+    {
+      "path": "Age.Approximation",
+      "value": "Mid-to-late 30s",
+      "ucn": 300.0,
+      "rr": 20.0,
+      "curiosity": 80.0,
+      "notes": {
+        "summary": "AI estimate from facial features; wide error margin.",
+        "coach_instructions": ["Ask user to confirm age bracket."]
+      }
+    }
+  ]
+}

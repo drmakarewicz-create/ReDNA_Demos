@@ -1,0 +1,970 @@
+{
+  "user_id": "mrscoach-full",
+  "ran_at": "2025-09-25T23:23:58.463620+00:00",
+  "async": true,
+  "counts": {
+    "ucn_rr_updates": 55,
+    "implied_additions": 1,
+    "contradictions": 0,
+    "llm_considered": 20,
+    "llm_updates": 0,
+    "llm_skipped": 20
+  },
+  "paths": {
+    "all": [
+      "PaDNA.AgeRange",
+      "PaDNA.EyeDNA.EyelidCrease",
+      "PaDNA.EyeDNA.Shape",
+      "PaDNA.Gender",
+      "PaDNA.HairDNA.Texture",
+      "PaDNA.Language",
+      "PaDNA.Orientation",
+      "PaDNA.RelationshipStatus",
+      "PaDNA.SkinDNA.Undertone",
+      "PaDNA.accessories.earrings.style",
+      "PaDNA.accessories.necklace.presence",
+      "PaDNA.apparel.fabric_preference",
+      "PaDNA.apparel.fit_preference",
+      "PaDNA.apparel.neckline_preference",
+      "PaDNA.apparel.palette",
+      "PaDNA.body.hand_observation",
+      "PaDNA.body.proportions.torso_leg_balance",
+      "PaDNA.body.shoulder_slope",
+      "PaDNA.eyes.brow_distance",
+      "PaDNA.eyes.iris_color.primary",
+      "PaDNA.eyes.iris_pattern.flecks",
+      "PaDNA.eyes.iris_pattern.limbal_ring",
+      "PaDNA.eyes.sclera_brightness",
+      "PaDNA.facial.cheekbone_prominence",
+      "PaDNA.facial.jawline_definition",
+      "PaDNA.facial.lip_fullness",
+      "PaDNA.facial.nose.bridge",
+      "PaDNA.facial.smile_lines",
+      "PaDNA.hair.color.base",
+      "PaDNA.hair.color.highlights",
+      "PaDNA.hair.hairline_shape",
+      "PaDNA.hair.length.category",
+      "PaDNA.hair.parting",
+      "PaDNA.hair.styling.patterns",
+      "PaDNA.hair.updo_frequency",
+      "PaDNA.hair.volume",
+      "PaDNA.makeup.emphasis",
+      "PaDNA.makeup.style_baseline",
+      "PaDNA.movement.gesture_style",
+      "PaDNA.posture.standing_alignment",
+      "PaDNA.posture.weight_distribution",
+      "PaDNA.presentation.photo_context",
+      "PaDNA.skin.complexion",
+      "PaDNA.skin.freckles",
+      "PaDNA.skin.sun_response",
+      "PaDNA.skin.texture_face",
+      "Personality.Emotional Stability",
+      "Personality.Impulsivity",
+      "Personality.Introversion/Extroversion",
+      "Personality.OpennessToExperience",
+      "PrefDNA.Bonding.Style",
+      "SocDNA.Demographics.AgeRange",
+      "SocDNA.Identity.Gender",
+      "SocDNA.Identity.Orientation",
+      "SocDNA.Prefs.LanguagePrimary",
+      "SocDNA.Relationship.Status"
+    ],
+    "ucn_rr_updates": [
+      "SocDNA.Relationship.Status",
+      "SocDNA.Prefs.LanguagePrimary",
+      "SocDNA.Identity.Orientation",
+      "SocDNA.Identity.Gender",
+      "SocDNA.Demographics.AgeRange",
+      "PrefDNA.Bonding.Style",
+      "Personality.Emotional Stability",
+      "Personality.Introversion/Extroversion",
+      "PaDNA.hair.color.base",
+      "PaDNA.hair.color.highlights",
+      "PaDNA.hair.length.category",
+      "PaDNA.HairDNA.Texture",
+      "PaDNA.hair.volume",
+      "PaDNA.hair.parting",
+      "PaDNA.hair.hairline_shape",
+      "PaDNA.skin.complexion",
+      "PaDNA.SkinDNA.Undertone",
+      "PaDNA.skin.freckles",
+      "PaDNA.skin.sun_response",
+      "PaDNA.skin.texture_face",
+      "PaDNA.eyes.iris_color.primary",
+      "PaDNA.eyes.iris_pattern.limbal_ring",
+      "PaDNA.eyes.iris_pattern.flecks",
+      "PaDNA.EyeDNA.Shape",
+      "PaDNA.eyes.sclera_brightness",
+      "PaDNA.eyes.brow_distance",
+      "PaDNA.facial.jawline_definition",
+      "PaDNA.facial.cheekbone_prominence",
+      "PaDNA.facial.nose.bridge",
+      "PaDNA.facial.lip_fullness",
+      "PaDNA.facial.smile_lines",
+      "PaDNA.posture.standing_alignment",
+      "PaDNA.posture.weight_distribution",
+      "PaDNA.movement.gesture_style",
+      "PaDNA.apparel.fit_preference",
+      "PaDNA.apparel.neckline_preference",
+      "PaDNA.apparel.fabric_preference",
+      "PaDNA.apparel.palette",
+      "PaDNA.accessories.earrings.style",
+      "PaDNA.accessories.necklace.presence",
+      "PaDNA.body.shoulder_slope",
+      "PaDNA.body.proportions.torso_leg_balance",
+      "PaDNA.body.hand_observation",
+      "PaDNA.makeup.style_baseline",
+      "PaDNA.makeup.emphasis",
+      "PaDNA.hair.styling.patterns",
+      "PaDNA.hair.updo_frequency",
+      "PaDNA.presentation.photo_context",
+      "Personality.Impulsivity",
+      "Personality.OpennessToExperience",
+      "PaDNA.Gender",
+      "PaDNA.Orientation",
+      "PaDNA.AgeRange",
+      "PaDNA.Language",
+      "PaDNA.RelationshipStatus"
+    ],
+    "implied": [
+      "PaDNA.EyeDNA.EyelidCrease"
+    ],
+    "contradictions": []
+  },
+  "implied_reasons": {
+    "PaDNA.EyeDNA.EyelidCrease": "eye_shape_to_crease"
+  },
+  "report": {
+    "ok": true,
+    "user_id": "mrscoach-full",
+    "time_ms": 15008.081,
+    "async_": true,
+    "ucn_rr_updates": [
+      {
+        "path": "SocDNA.Relationship.Status",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "SocDNA.Prefs.LanguagePrimary",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "SocDNA.Identity.Orientation",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "SocDNA.Identity.Gender",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "SocDNA.Demographics.AgeRange",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "PrefDNA.Bonding.Style",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "Personality.Emotional Stability",
+        "old": {
+          "ucn": 120,
+          "rr": 0.98039,
+          "curiosity": 99.01961
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      },
+      {
+        "path": "Personality.Introversion/Extroversion",
+        "old": {
+          "ucn": 130,
+          "rr": 0.0,
+          "curiosity": 100.0
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      },
+      {
+        "path": "PaDNA.hair.color.base",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.hair.color.highlights",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.hair.length.category",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Texture",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.hair.volume",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.hair.parting",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.hair.hairline_shape",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.skin.complexion",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.Undertone",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.skin.freckles",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.skin.sun_response",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.skin.texture_face",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.eyes.iris_color.primary",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.eyes.iris_pattern.limbal_ring",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.eyes.iris_pattern.flecks",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.EyeDNA.Shape",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.eyes.sclera_brightness",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.eyes.brow_distance",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.facial.jawline_definition",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.facial.cheekbone_prominence",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.facial.nose.bridge",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.facial.lip_fullness",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.facial.smile_lines",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.posture.standing_alignment",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.posture.weight_distribution",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.movement.gesture_style",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.apparel.fit_preference",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.apparel.neckline_preference",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.apparel.fabric_preference",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.apparel.palette",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.accessories.earrings.style",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.accessories.necklace.presence",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.body.shoulder_slope",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.body.proportions.torso_leg_balance",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.body.hand_observation",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.makeup.style_baseline",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.makeup.emphasis",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.hair.styling.patterns",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.hair.updo_frequency",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "PaDNA.presentation.photo_context",
+        "old": {
+          "ucn": null,
+          "rr": null,
+          "curiosity": null
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 51.66666666666667,
+          "curiosity": 48.33333333333333
+        }
+      },
+      {
+        "path": "Personality.Impulsivity",
+        "old": {
+          "ucn": 110,
+          "rr": 0.0,
+          "curiosity": 100.0
+        },
+        "new": {
+          "ucn": 110.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      },
+      {
+        "path": "Personality.OpennessToExperience",
+        "old": {
+          "ucn": 100,
+          "rr": 0.0,
+          "curiosity": 100.0
+        },
+        "new": {
+          "ucn": 100.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      },
+      {
+        "path": "PaDNA.Gender",
+        "old": {
+          "ucn": 830.0,
+          "rr": 76.31579,
+          "curiosity": 23.684209999999993
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 74.671053,
+          "curiosity": 25.328947
+        }
+      },
+      {
+        "path": "PaDNA.Orientation",
+        "old": {
+          "ucn": 830.0,
+          "rr": 76.31579,
+          "curiosity": 23.684209999999993
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 74.671053,
+          "curiosity": 25.328947
+        }
+      },
+      {
+        "path": "PaDNA.AgeRange",
+        "old": {
+          "ucn": 830.0,
+          "rr": 81.57895,
+          "curiosity": 18.421049999999994
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 78.355265,
+          "curiosity": 21.644734999999997
+        }
+      },
+      {
+        "path": "PaDNA.Language",
+        "old": {
+          "ucn": 830.0,
+          "rr": 75.0,
+          "curiosity": 25.0
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 73.75,
+          "curiosity": 26.25
+        }
+      },
+      {
+        "path": "PaDNA.RelationshipStatus",
+        "old": {
+          "ucn": 830.0,
+          "rr": 75.4386,
+          "curiosity": 24.561400000000006
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 74.05702,
+          "curiosity": 25.942980000000006
+        }
+      }
+    ],
+    "implied_additions": [
+      {
+        "path": "PaDNA.EyeDNA.EyelidCrease",
+        "value": "Present",
+        "ucn": 280.0,
+        "reason": "eye_shape_to_crease"
+      }
+    ],
+    "contradictions": [],
+    "warnings": [],
+    "llm_considered": [
+      "PaDNA.EyeDNA.Shape",
+      "PaDNA.HairDNA.Texture",
+      "PaDNA.SkinDNA.Undertone",
+      "PaDNA.eyes.brow_distance",
+      "PaDNA.eyes.iris_color.primary",
+      "PaDNA.eyes.iris_pattern.flecks",
+      "PaDNA.eyes.iris_pattern.limbal_ring",
+      "PaDNA.eyes.sclera_brightness",
+      "PaDNA.hair.color.base",
+      "PaDNA.hair.color.highlights",
+      "PaDNA.hair.hairline_shape",
+      "PaDNA.hair.length.category",
+      "PaDNA.hair.parting",
+      "PaDNA.hair.volume",
+      "PaDNA.skin.complexion",
+      "PaDNA.skin.freckles",
+      "PaDNA.skin.sun_response",
+      "PaDNA.skin.texture_face",
+      "Personality.Emotional Stability",
+      "Personality.Introversion/Extroversion"
+    ],
+    "llm_updates": [],
+    "llm_skipped": [
+      "PaDNA.EyeDNA.Shape",
+      "PaDNA.HairDNA.Texture",
+      "PaDNA.SkinDNA.Undertone",
+      "PaDNA.eyes.brow_distance",
+      "PaDNA.eyes.iris_color.primary",
+      "PaDNA.eyes.iris_pattern.flecks",
+      "PaDNA.eyes.iris_pattern.limbal_ring",
+      "PaDNA.eyes.sclera_brightness",
+      "PaDNA.hair.color.base",
+      "PaDNA.hair.color.highlights",
+      "PaDNA.hair.hairline_shape",
+      "PaDNA.hair.length.category",
+      "PaDNA.hair.parting",
+      "PaDNA.hair.volume",
+      "PaDNA.skin.complexion",
+      "PaDNA.skin.freckles",
+      "PaDNA.skin.sun_response",
+      "PaDNA.skin.texture_face",
+      "Personality.Emotional Stability",
+      "Personality.Introversion/Extroversion"
+    ],
+    "llm_warnings": [
+      "Holistic LLM exceeded budget (15006 ms > 15000 ms)"
+    ],
+    "llm_time_ms": 15005.554
+  },
+  "llm": {
+    "considered": [
+      "PaDNA.EyeDNA.Shape",
+      "PaDNA.HairDNA.Texture",
+      "PaDNA.SkinDNA.Undertone",
+      "PaDNA.eyes.brow_distance",
+      "PaDNA.eyes.iris_color.primary",
+      "PaDNA.eyes.iris_pattern.flecks",
+      "PaDNA.eyes.iris_pattern.limbal_ring",
+      "PaDNA.eyes.sclera_brightness",
+      "PaDNA.hair.color.base",
+      "PaDNA.hair.color.highlights",
+      "PaDNA.hair.hairline_shape",
+      "PaDNA.hair.length.category",
+      "PaDNA.hair.parting",
+      "PaDNA.hair.volume",
+      "PaDNA.skin.complexion",
+      "PaDNA.skin.freckles",
+      "PaDNA.skin.sun_response",
+      "PaDNA.skin.texture_face",
+      "Personality.Emotional Stability",
+      "Personality.Introversion/Extroversion"
+    ],
+    "updates": [],
+    "skipped": [
+      "PaDNA.EyeDNA.Shape",
+      "PaDNA.HairDNA.Texture",
+      "PaDNA.SkinDNA.Undertone",
+      "PaDNA.eyes.brow_distance",
+      "PaDNA.eyes.iris_color.primary",
+      "PaDNA.eyes.iris_pattern.flecks",
+      "PaDNA.eyes.iris_pattern.limbal_ring",
+      "PaDNA.eyes.sclera_brightness",
+      "PaDNA.hair.color.base",
+      "PaDNA.hair.color.highlights",
+      "PaDNA.hair.hairline_shape",
+      "PaDNA.hair.length.category",
+      "PaDNA.hair.parting",
+      "PaDNA.hair.volume",
+      "PaDNA.skin.complexion",
+      "PaDNA.skin.freckles",
+      "PaDNA.skin.sun_response",
+      "PaDNA.skin.texture_face",
+      "Personality.Emotional Stability",
+      "Personality.Introversion/Extroversion"
+    ],
+    "warnings": [
+      "Holistic LLM exceeded budget (15006 ms > 15000 ms)"
+    ],
+    "time_ms": 15005.554
+  }
+}

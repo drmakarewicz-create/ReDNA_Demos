@@ -1,0 +1,44 @@
+{
+  "type": "chat_turn",
+  "ts": 1759626116170,
+  "user_id": "trait_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "What TV show should I watch tonight?",
+    "ts": 1759626116168
+  },
+  "assistant": {
+    "text": "What's been missing from your TV watching experience lately that made you ask for a new recommendation?",
+    "ts": 1759626116170,
+    "message_id": "chat-d226fb42f727405ea7a4fc5705d3eafe"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/trait_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 7558,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 7,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.5257142857142857,
+    "assertiveness_score": 0.7142857142857142,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 55255.0,
+    "rolling_latency_median_ms": 9712.5,
+    "latency_histogram": {
+      "steady": 5,
+      "slow": 1
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 4,
+      "question": 3
+    },
+    "priority": 0.8
+  }
+}

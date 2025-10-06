@@ -1,0 +1,214 @@
+{
+  "user_id": "BSTest",
+  "observation_type": "reference_photos",
+  "photo_count": 10,
+  "creation_date": "2025-10-04",
+  "observations": {
+    "hair_dna": {
+      "color": {
+        "primary": "blonde",
+        "tone": "golden blonde to platinum blonde",
+        "highlights": "natural variation with lighter ends",
+        "consistency": "appears consistent across all photos",
+        "confidence": 0.95
+      },
+      "texture": {
+        "type": "straight to wavy",
+        "volume": "medium to high volume",
+        "quality": "appears healthy and well-maintained",
+        "confidence": 0.90
+      },
+      "length": {
+        "measurement": "long, past shoulders to mid-back",
+        "consistency": "consistent across photos",
+        "confidence": 0.95
+      },
+      "styling": {
+        "variations": [
+          "loose and down (bs2, bs3, bs5, bs7, bs10)",
+          "updo/bun styles (bs1, bs4, bs9)",
+          "half-up with accessories (bs5 with flower crown)",
+          "styled with volume and movement (bs8)"
+        ],
+        "versatility": "high - multiple styling approaches observed"
+      }
+    },
+    "eye_dna": {
+      "color": {
+        "base": "appears light colored, likely blue or green",
+        "note": "difficult to determine exact color due to photo quality and sunglasses in some images",
+        "confidence": 0.70
+      },
+      "shape": {
+        "description": "almond-shaped, proportionate to face",
+        "size": "medium to large",
+        "confidence": 0.85
+      },
+      "makeup_patterns": {
+        "observed": [
+          "smokey eye makeup (bs8 with purple/blue tones)",
+          "natural daytime looks (bs1, bs2, bs3, bs5, bs7)",
+          "defined eye makeup with liner (bs4, bs6, bs9, bs10)"
+        ],
+        "preference": "varies from natural to dramatic"
+      }
+    },
+    "skin_dna": {
+      "tone": {
+        "base": "light to light-medium",
+        "undertone": "appears neutral to warm",
+        "confidence": 0.90
+      },
+      "texture": {
+        "quality": "smooth, clear complexion",
+        "confidence": 0.85
+      },
+      "sun_exposure": {
+        "observed": "tanned/bronzed in outdoor beach photos (bs7)",
+        "variation": "ranges from fair indoor lighting to sun-kissed outdoor"
+      }
+    },
+    "facial_dna": {
+      "face_shape": {
+        "type": "oval to heart-shaped",
+        "jawline": "defined, slightly rounded",
+        "cheekbones": "prominent, high cheekbones",
+        "confidence": 0.90
+      },
+      "nose": {
+        "shape": "straight, proportionate",
+        "size": "small to medium",
+        "confidence": 0.85
+      },
+      "lips": {
+        "shape": "full lips, defined cupid's bow",
+        "size": "medium to full",
+        "confidence": 0.90
+      },
+      "smile": {
+        "characteristics": "bright, wide smile with visible teeth",
+        "frequency": "smiling in majority of photos",
+        "teeth": "straight, white",
+        "confidence": 0.95
+      },
+      "facial_features": {
+        "symmetry": "high facial symmetry",
+        "proportions": "balanced features",
+        "distinctive_elements": [
+          "high cheekbones",
+          "defined jawline",
+          "bright smile"
+        ]
+      }
+    },
+    "body_dna": {
+      "build": {
+        "type": "athletic, slender",
+        "frame": "small to medium frame",
+        "confidence": 0.90
+      },
+      "proportions": {
+        "description": "balanced proportions, toned physique",
+        "observation": "visible muscle tone, particularly in core and arms",
+        "confidence": 0.85
+      },
+      "height_indicators": {
+        "note": "appears average to above-average height based on proportions",
+        "confidence": 0.60
+      },
+      "fitness_level": {
+        "observation": "appears physically fit and toned",
+        "visible_definition": "abdominal definition visible in multiple photos",
+        "confidence": 0.90
+      }
+    },
+    "style_preferences": {
+      "clothing": {
+        "colors_observed": [
+          "pink/hot pink (frequent)",
+          "red",
+          "neon green",
+          "white",
+          "leopard print",
+          "purple/magenta"
+        ],
+        "patterns": [
+          "animal prints (leopard)",
+          "floral prints",
+          "heart prints",
+          "sequins/shimmer"
+        ],
+        "styles": [
+          "bikinis and swimwear (bs1, bs6, bs7, bs10)",
+          "off-shoulder tops (bs4, bs5)",
+          "form-fitting dresses (bs2)",
+          "casual fitted tops and skirts (bs3)",
+          "performance/stage wear (bs8 with crop top and low-rise pants)"
+        ],
+        "color_preference": "strong preference for bright, bold colors especially pinks and reds"
+      },
+      "accessories": {
+        "observed": [
+          "necklaces/pendants (bs6, bs7, bs9, bs10)",
+          "earrings (pearl/stud styles in bs1, bs4)",
+          "sunglasses (bs7)",
+          "hair accessories (flower crown in bs5)",
+          "bracelets/bangles"
+        ]
+      }
+    },
+    "environmental_context": {
+      "settings_observed": [
+        "indoor residential (bs1, bs2, bs3, bs4, bs6, bs9, bs10)",
+        "outdoor natural/garden (bs5)",
+        "beach/tropical location (bs7)",
+        "studio/performance setting (bs8)"
+      ],
+      "lighting_conditions": [
+        "natural indoor lighting",
+        "warm artificial lighting",
+        "bright outdoor natural light",
+        "professional stage lighting"
+      ]
+    },
+    "posing_patterns": {
+      "common_poses": [
+        "facing camera directly with smile",
+        "hand on hip or near face",
+        "relaxed standing poses",
+        "confident posture"
+      ],
+      "expression_range": [
+        "bright smiles (most common)",
+        "sultry/serious expression (bs8)",
+        "natural, candid expressions"
+      ],
+      "body_language": "confident, comfortable in front of camera"
+    }
+  },
+  "metadata": {
+    "analysis_source": "10 uploaded reference photos (bs1-bs10)",
+    "batch_ids": [
+      "2025-10-04T15-05-09-bstest",
+      "2025-10-04T15-05-46-bstest"
+    ],
+    "photo_files": [
+      "bs1.jpeg",
+      "bs2.jpg",
+      "bs3.jpg",
+      "bs4.jpg",
+      "bs5.jpg",
+      "bs6.jpeg",
+      "bs7.jpeg",
+      "bs8.jpeg",
+      "bs9.jpg",
+      "bs10.jpg"
+    ],
+    "notes": [
+      "Observations based solely on uploaded reference photos",
+      "Not based on any rendered portraits",
+      "Confidence scores reflect certainty of observation from photos",
+      "Some details limited by photo quality, lighting, and angles"
+    ]
+  }
+}

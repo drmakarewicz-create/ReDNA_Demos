@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I am an actress",
+  "assistant_text": "You're an actress now - that's so cool! What kind of roles have you been doing lately? \n\n(By the way, if you want some tips on self-care for performers, our Photo Coach could be really helpful with advice on camera-ready looks and poses.)",
+  "client_message_id": "274c950d-d09d-4b3f-b328-dafe24c1c42d",
+  "assistant_message_id": "chat-1afa2d78df0940b982f4b41fd271b518",
+  "server_ts": "2025-10-05T15:03:09.664+00:00",
+  "server_ts_ms": 1759676589664,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

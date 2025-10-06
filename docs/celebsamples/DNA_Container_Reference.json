@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "description": "Comprehensive DNA container reference based on LLTEST iterative refinements",
+    "version": "1.0",
+    "created": "2025-10-03",
+    "purpose": "Template for creating detailed physical appearance profiles"
+  },
+  "container_catalog": {
+    "PaDNA": {
+      "HairDNA": {
+        "Color": {"type": "string", "example": "Auburn-brown with golden highlights"},
+        "Length": {"type": "string", "example": "Long"},
+        "Texture": {"type": "string", "example": "Wavy"},
+        "CurlPattern": {"type": "string", "example": "Wavy-2B", "note": "Helps define wave specificity"},
+        "WaveDefinition": {"type": "string", "example": "Defined", "note": "Controls how pronounced waves appear"},
+        "Parting": {"type": "string", "example": "Side part, often left"},
+        "Volume": {"type": "string", "example": "Thick"}
+      },
+      "FaceDNA": {
+        "FaceShape": {"type": "string", "example": "Heart-shaped to oval"},
+        "Cheekbones": {"type": "string", "example": "Prominent, high"},
+        "Jawline": {"type": "string", "example": "Soft, rounded"},
+        "LowerFaceShape": {"type": "string", "example": "Gently tapered", "note": "Reduces angular appearance"},
+        "Chin": {"type": "string", "example": "Slightly pointed"},
+        "FaceWidth": {"type": "string", "example": "Medium-narrow"}
+      },
+      "ForeheadDNA": {
+        "Height": {"type": "string", "example": "Medium"},
+        "Shape": {"type": "string", "example": "Gently rounded", "note": "Balances facial proportions"}
+      },
+      "EyebrowDNA": {
+        "Shape": {"type": "string", "example": "Arched with soft angle"},
+        "ArchPosition": {"type": "string", "example": "2/3 outward from inner corner", "note": "Precise arch placement"},
+        "Thickness": {"type": "string", "example": "Medium-thin to medium"},
+        "Color": {"type": "string", "example": "Light to medium brown"}
+      },
+      "NoseDNA": {
+        "Size": {"type": "string", "example": "Small to medium"},
+        "Bridge": {"type": "string", "example": "Straight, refined"},
+        "BridgeWidth": {"type": "string", "example": "Narrow to medium"},
+        "Tip": {"type": "string", "example": "Slightly rounded"},
+        "Nostrils": {"type": "string", "example": "Petite"}
+      },
+      "LipDNA": {
+        "Fullness": {"type": "string", "example": "Medium-full, balanced proportions"},
+        "Shape": {"type": "string", "example": "Defined cupid's bow"},
+        "Color": {"type": "string", "example": "Natural pink"},
+        "Texture": {"type": "string", "example": "Smooth with natural gloss", "note": "Adds realistic finish"}
+      },
+      "EyeDNA": {
+        "Color": {"type": "string", "example": "Light Green with hazel flecks"},
+        "Shape": {"type": "string", "example": "Almond"},
+        "Size": {"type": "string", "example": "Medium-large"},
+        "Spacing": {"type": "string", "example": "Medium-wide set", "note": "Critical for facial harmony"},
+        "Lashes": {"type": "string", "example": "Medium length, full"}
+      },
+      "SkinDNA": {
+        "Tone": {"type": "string", "example": "Fair with warm undertones"},
+        "Texture": {"type": "string", "example": "Natural, visible pores", "note": "Prevents overly smooth/polished look"},
+        "Freckles": {"type": "string", "example": "Present, across face/shoulders"},
+        "FrecklesDensity": {"type": "string", "example": "Medium-heavy", "note": "Controls concentration"},
+        "FrecklesCoverage": {"type": "string", "example": "Cheeks-nose", "note": "Specifies location"},
+        "FrecklesContrast": {"type": "string", "example": "Prominent", "note": "Controls visibility"},
+        "SunSensitivity": {"type": "string", "example": "High"}
+      },
+      "NeckDNA": {
+        "Length": {"type": "string", "example": "Medium-long"},
+        "Width": {"type": "string", "example": "Slender"}
+      },
+      "BodyDNA": {
+        "HeightEstimateCM": {"type": "number", "example": 165},
+        "Build": {"type": "string", "example": "Slim/Athletic"},
+        "WaistHipRatio": {"type": "string", "example": "Moderate hourglass"},
+        "Bust": {"type": "string", "example": "Full"},
+        "Shoulders": {"type": "string", "example": "Moderately broad"},
+        "Arms": {"type": "string", "example": "Slim"},
+        "Legs": {"type": "string", "example": "Long, toned"},
+        "Navel": {"type": "string", "example": "Pierced"}
+      },
+      "SmileDNA": {
+        "Teeth": {"type": "string", "example": "Straight, white"},
+        "SmileShape": {"type": "string", "example": "Broad smile"},
+        "MouthWidth": {"type": "string", "example": "Medium-wide relative to face", "note": "Proportional accuracy"},
+        "Dimples": {"type": "string", "example": "Absent"}
+      },
+      "ApparelDNA": {
+        "FrequentTops": {"type": "array", "example": ["Tank tops", "Bikinis", "Casual fitted T-shirts"]},
+        "StyleThemes": {"type": "array", "example": ["Casual sexy", "Playful", "Colorful prints"]},
+        "Jewelry": {
+          "Necklace": {"type": "string", "example": "Often layered pendants"},
+          "Earrings": {"type": "string", "example": "Studs or small hoops"},
+          "Piercings": {"type": "array", "example": ["Navel piercing"]}
+        }
+      },
+      "ExpressionDNA": {
+        "TypicalExpression": {"type": "string", "example": "Smiling warmly or playful smirk"},
+        "MoodVariance": {"type": "array", "example": ["Confident", "Relaxed", "Playful"]},
+        "EyeContact": {"type": "string", "example": "Direct and engaging"}
+      },
+      "FitnessDNA": {
+        "Indicators": {"type": "array", "example": ["Flat abdomen", "Defined waist", "Toned legs"]},
+        "LifestyleInference": {"type": "string", "example": "Active/fitness-conscious"}
+      }
+    },
+    "BehavioralDNA": {
+      "Posture": {"type": "string", "example": "Confident, often leaning slightly forward or hands on hips"},
+      "SocialProjection": {"type": "string", "example": "Outgoing, flirty, approachable"}
+    },
+    "StyleContext": {
+      "SettingsObserved": {"type": "array", "example": ["Beach", "Kitchen", "Bedroom, casual"]},
+      "FashionMarkers": {"type": "array", "example": ["Low-rise shorts", "Bikinis", "Playful prints"]},
+      "EraInference": {"type": "string", "example": "Early-mid 2000s fashion"}
+    }
+  },
+  "key_learnings": {
+    "high_impact_containers": [
+      "FaceDNA (especially Jawline, LowerFaceShape)",
+      "EyebrowDNA (Thickness, Color, ArchPosition)",
+      "EyeDNA (Size, Spacing)",
+      "SkinDNA (FrecklesDensity, FrecklesCoverage, FrecklesContrast, Texture)",
+      "HairDNA (CurlPattern, WaveDefinition)",
+      "ForeheadDNA",
+      "NoseDNA (BridgeWidth)",
+      "LipDNA (Texture)",
+      "SmileDNA (MouthWidth)"
+    ],
+    "iteration_insights": [
+      "Hair color needs nuance (auburn-brown vs red-auburn made significant difference)",
+      "Freckle containers need density/coverage/contrast for prominence",
+      "Eye spacing critical for facial harmony",
+      "Skin texture prevents overly polished/AI look",
+      "Lower face shape reduces unwanted angularity",
+      "Wave definition critical for realistic hair texture"
+    ]
+  }
+}

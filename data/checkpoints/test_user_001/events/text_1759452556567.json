@@ -1,0 +1,20 @@
+{
+  "event_id": "text_1759452556567",
+  "ts": "2025-10-03T00:49:16+00:00",
+  "type": "text_ingest",
+  "user_id": "test_user_001",
+  "text": "PaDNA.EyeDNA.IrisColor=Blue",
+  "source": "explorer",
+  "status": "accepted",
+  "ucnrr_result": {
+    "ok": true,
+    "user_id": "test_user",
+    "rr_by_trait": {
+      "PaDNA.EyeDNA.IrisColor": 850.0
+    },
+    "curiosity_by_trait": {
+      "PaDNA.EyeDNA.IrisColor": 0.15
+    },
+    "global_curiosity": 0.15
+  }
+}

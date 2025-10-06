@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Maybe later",
+  "assistant_text": "It sounds like we're done discussing the pups for now. No worries, let's catch up another time and I'll be here when you need me. Take care!",
+  "client_message_id": "6fc3ae9c-a39c-451f-a91f-b9ba5037d2c9",
+  "assistant_message_id": "chat-f2961a3ffd1946d29d16d0d57d639ac1",
+  "server_ts": "2025-10-05T23:46:41.453+00:00",
+  "server_ts_ms": 1759708001453,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

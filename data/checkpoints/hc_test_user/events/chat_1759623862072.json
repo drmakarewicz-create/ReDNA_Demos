@@ -1,0 +1,36 @@
+{
+  "type": "chat_turn",
+  "ts": 1759623862072,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I'm feeling lonely and want to find a partner",
+    "ts": 1759623862071
+  },
+  "assistant": {
+    "text": "I'm here for you, and I want to support you in building meaningful connections. Can you tell me what's been going on lately that's made you feel like you're missing out on relationships?",
+    "ts": 1759623862072,
+    "message_id": "chat-9eca9efa7292400d901bb7b7f92e4db2"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": null,
+    "response_latency_bucket": null,
+    "turn_length_words": 9,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.4955555555555556,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "dialog_act_counts": {
+      "answer": 1
+    },
+    "priority": 0.8
+  }
+}

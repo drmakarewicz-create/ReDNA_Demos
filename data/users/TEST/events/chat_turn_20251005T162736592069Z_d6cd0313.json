@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I did watch a few new south parks",
+  "assistant_text": "You're back to talking about South Park. That's awesome! Now that you've watched some new episodes, what do you think of the latest season so far?",
+  "client_message_id": "6119a714-675c-4bab-944c-5810dea82b6c",
+  "assistant_message_id": "chat-cff34c170da44ee98a86235c93122a97",
+  "server_ts": "2025-10-05T16:27:36.592+00:00",
+  "server_ts_ms": 1759681656592,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

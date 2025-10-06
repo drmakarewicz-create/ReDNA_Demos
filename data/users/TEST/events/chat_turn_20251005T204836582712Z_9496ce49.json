@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test9",
+  "assistant_text": "It sounds like we're finally having a smooth conversation! I'm glad to hear that. What do you think about dog parks in general - have you and Archie had any fun experiences at them?",
+  "client_message_id": "c9829ca1-37a6-4af3-b615-9a3d1241254b",
+  "assistant_message_id": "chat-9fe568be805e4be881598309262af286",
+  "server_ts": "2025-10-05T20:48:36.582+00:00",
+  "server_ts_ms": 1759697316582,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

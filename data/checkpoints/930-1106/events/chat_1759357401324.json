@@ -1,0 +1,36 @@
+{
+  "type": "chat_turn",
+  "ts": 1759357401324,
+  "user_id": "930-1106",
+  "persona": "head coach",
+  "provider": "stub",
+  "user": {
+    "text": "hi",
+    "ts": 1759357401311
+  },
+  "assistant": {
+    "text": "I logged that for the Head Coach board. You mentioned 'hi'. Let's turn it into one concrete action to keep momentum going.",
+    "ts": 1759357401324,
+    "message_id": "chat-721f4f86033e45adb26b03589b998368"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/930-1106/observations.json",
+  "metrics": {
+    "response_latency_ms": null,
+    "response_latency_bucket": null,
+    "turn_length_words": 1,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.44,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "dialog_act_counts": {
+      "answer": 1
+    },
+    "priority": 0.8
+  }
+}

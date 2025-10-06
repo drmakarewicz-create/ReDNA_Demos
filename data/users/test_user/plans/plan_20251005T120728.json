@@ -1,0 +1,44 @@
+{
+  "id": "b766f339cb37",
+  "user_id": "test_user",
+  "created_at": "2025-10-05T12:07:28.921873+00:00",
+  "focus_area": "PaDNA.RelationshipDNA.Communication",
+  "curiosity_score": 0.75,
+  "goal": "Reduce uncertainty around Communication",
+  "steps": [
+    {
+      "number": 1,
+      "action": "Ask Relationship Coach to pose 2-3 direct questions about Communication",
+      "rationale": "Gather immediate signals through targeted questions",
+      "effort": "low",
+      "impact": "medium",
+      "estimated_minutes": 3,
+      "coach_delegation": "Relationship Coach",
+      "status": "pending"
+    },
+    {
+      "number": 2,
+      "action": "Reflect on recent interactions, identify Communication moments",
+      "rationale": "Relationship patterns surface in reflection on real interactions",
+      "effort": "medium",
+      "impact": "high",
+      "estimated_minutes": 12,
+      "coach_delegation": "Relationship Coach",
+      "status": "pending"
+    },
+    {
+      "number": 3,
+      "action": "Try one small action that exercises your Communication today",
+      "rationale": "Micro-action surfaces trait in real behavior",
+      "effort": "low",
+      "impact": "low",
+      "estimated_minutes": 5,
+      "coach_delegation": "Relationship Coach",
+      "status": "pending"
+    }
+  ],
+  "status": "active",
+  "metadata": {
+    "generation_method": "rule_based"
+  }
+}

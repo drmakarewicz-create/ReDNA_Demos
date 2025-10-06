@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What is your name?",
+  "assistant_text": "My name's Coach Alex. Nice to finally share it with you! \n\n(Reflecting what I heard) You wanted to know more about me.\n(Asking one question) How do you think our conversations could help each other out?",
+  "client_message_id": "f8c76804-5357-4fc9-a99d-a04d7a729d68",
+  "assistant_message_id": "chat-ada9ad9143ee469da2c7363107a2550a",
+  "server_ts": "2025-10-05T19:52:17.128+00:00",
+  "server_ts_ms": 1759693937128,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

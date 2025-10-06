@@ -1,0 +1,33 @@
+age_ranges:
+  - "18-24"
+  - "25-34"
+  - "35-44"
+  - "45-54"
+  - "55+"
+  - "Other"
+genders:
+  - "Female"
+  - "Male"
+  - "Non-Binary"
+  - "Other"
+orientations:
+  - "Heterosexual"
+  - "Bisexual"
+  - "Gay/Lesbian"
+  - "Queer/Pansexual"
+  - "Questioning"
+  - "Other"
+languages:
+  - "English"
+  - "Spanish"
+  - "French"
+  - "German"
+  - "Mandarin"
+  - "Other"
+relationship_statuses:
+  - "Single"
+  - "In Relationship"
+  - "Married"
+  - "Engaged"
+  - "Complicated"
+  - "Other"

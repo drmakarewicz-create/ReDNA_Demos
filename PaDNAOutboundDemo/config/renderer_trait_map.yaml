@@ -1,0 +1,42 @@
+# Trait to renderer feature mapping.
+version: 1
+defaults:
+  source: "core_resolved_flat"
+traits:
+  PaDNA.HairDNA.Color: {feature: "hair.color"}
+  PaDNA.HairDNA.Length: {feature: "hair.length"}
+  PaDNA.HairDNA.Texture: {feature: "hair.texture"}
+  PaDNA.HairDNA.Style: {feature: "hair.style"}
+  PaDNA.HairDNA.Density: {feature: "hair.density"}
+  PaDNA.HairDNA.DyedColor: {feature: "hair.dyed_color"}
+  PaDNA.HairDNA.Part: {feature: "hair.part"}
+  PaDNA.HairDNA.Hairline: {feature: "hair.hairline"}
+  PaDNA.EyeDNA.IrisColor: {feature: "eyes.iris_color"}
+  PaDNA.EyeDNA.Shape: {feature: "eyes.shape"}
+  PaDNA.EyeDNA.Size: {feature: "eyes.size"}
+  PaDNA.EyeDNA.Brows: {feature: "brows.shape"}
+  PaDNA.EyeDNA.Lashes: {feature: "lashes.density"}
+  PaDNA.FacialDNA.FaceShape: {feature: "face.shape"}
+  PaDNA.FacialDNA.Forehead: {feature: "face.forehead"}
+  PaDNA.FacialDNA.Cheeks: {feature: "face.cheeks"}
+  PaDNA.FacialDNA.Jawline: {feature: "face.jawline"}
+  PaDNA.FacialDNA.Chin: {feature: "face.chin"}
+  PaDNA.FacialDNA.Nose: {feature: "face.nose"}
+  PaDNA.FacialDNA.Lips: {feature: "face.lips"}
+  PaDNA.FacialDNA.Symmetry: {feature: "face.symmetry"}
+  PaDNA.SkinDNA.Tone: {feature: "skin.tone"}
+  PaDNA.SkinDNA.Undertone: {feature: "skin.undertone"}
+  PaDNA.SkinDNA.Texture: {feature: "skin.texture"}
+  PaDNA.SkinDNA.Freckles: {feature: "skin.freckles"}
+  PaDNA.SkinDNA.Moles: {feature: "skin.moles"}
+  PaDNA.SkinDNA.Birthmarks: {feature: "skin.birthmarks"}
+  PaDNA.SkinDNA.Conditions: {feature: "skin.conditions"}
+  PaDNA.SkinDNA.SunBehavior: {feature: "skin.sun_behavior"}
+  PaDNA.BodyDNA.Height: {feature: "body.height", unit: "cm"}
+  PaDNA.BodyDNA.Weight: {feature: "body.weight", unit: "kg"}
+  PaDNA.BodyDNA.BodyType: {feature: "body.type"}
+  PaDNA.BodyDNA.Ratios: {feature: "body.ratios"}
+  PaDNA.BodyDNA.Posture: {feature: "body.posture"}
+  PaDNA.BodyDNA.Gait: {feature: "body.gait"}
+  PaDNA.BodyDNA.Flexibility: {feature: "body.flexibility"}
+  PaDNA.BodyDNA.Distinctive: {feature: "body.distinctive"}

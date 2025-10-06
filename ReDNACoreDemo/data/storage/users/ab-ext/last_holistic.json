@@ -1,0 +1,210 @@
+{
+  "user_id": "ab-ext",
+  "ran_at": "2025-09-25T19:24:04.363055+00:00",
+  "async": false,
+  "counts": {
+    "ucn_rr_updates": 12,
+    "implied_additions": 0,
+    "contradictions": 0
+  },
+  "paths": {
+    "all": [
+      "Personality.Emotional Stability",
+      "Personality.Introversion/Extroversion",
+      "Personality.Values.Fairness",
+      "Personality.Values.Honesty",
+      "PrefDNA.Bonding.Style",
+      "SocDNA.Demographics.AgeRange",
+      "SocDNA.Demographics.Country",
+      "SocDNA.Demographics.Region",
+      "SocDNA.Identity.Gender",
+      "SocDNA.Identity.Orientation",
+      "SocDNA.Prefs.LanguagePrimary",
+      "SocDNA.Relationship.Status"
+    ],
+    "ucn_rr_updates": [
+      "SocDNA.Relationship.Status",
+      "SocDNA.Prefs.LanguagePrimary",
+      "SocDNA.Identity.Orientation",
+      "SocDNA.Identity.Gender",
+      "SocDNA.Demographics.AgeRange",
+      "PrefDNA.Bonding.Style",
+      "Personality.Emotional Stability",
+      "Personality.Introversion/Extroversion",
+      "SocDNA.Demographics.Country",
+      "Personality.Values.Honesty",
+      "Personality.Values.Fairness",
+      "SocDNA.Demographics.Region"
+    ],
+    "implied": [],
+    "contradictions": []
+  },
+  "implied_reasons": {},
+  "report": {
+    "ok": true,
+    "user_id": "ab-ext",
+    "time_ms": 3.171,
+    "async_": false,
+    "ucn_rr_updates": [
+      {
+        "path": "SocDNA.Relationship.Status",
+        "old": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 65.3,
+          "curiosity": 34.7
+        }
+      },
+      {
+        "path": "SocDNA.Prefs.LanguagePrimary",
+        "old": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 65.3,
+          "curiosity": 34.7
+        }
+      },
+      {
+        "path": "SocDNA.Identity.Orientation",
+        "old": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 65.3,
+          "curiosity": 34.7
+        }
+      },
+      {
+        "path": "SocDNA.Identity.Gender",
+        "old": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 65.3,
+          "curiosity": 34.7
+        }
+      },
+      {
+        "path": "SocDNA.Demographics.AgeRange",
+        "old": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 65.3,
+          "curiosity": 34.7
+        }
+      },
+      {
+        "path": "PrefDNA.Bonding.Style",
+        "old": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 65.3,
+          "curiosity": 34.7
+        }
+      },
+      {
+        "path": "Personality.Emotional Stability",
+        "old": {
+          "ucn": 120.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 7.0,
+          "curiosity": 93.0
+        }
+      },
+      {
+        "path": "Personality.Introversion/Extroversion",
+        "old": {
+          "ucn": 130.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 7.25,
+          "curiosity": 92.75
+        }
+      },
+      {
+        "path": "SocDNA.Demographics.Country",
+        "old": {
+          "ucn": 110.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        },
+        "new": {
+          "ucn": 110.0,
+          "rr": 6.75,
+          "curiosity": 93.25
+        }
+      },
+      {
+        "path": "Personality.Values.Honesty",
+        "old": {
+          "ucn": 100.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        },
+        "new": {
+          "ucn": 100.0,
+          "rr": 6.5,
+          "curiosity": 93.5
+        }
+      },
+      {
+        "path": "Personality.Values.Fairness",
+        "old": {
+          "ucn": 110.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        },
+        "new": {
+          "ucn": 110.0,
+          "rr": 6.75,
+          "curiosity": 93.25
+        }
+      },
+      {
+        "path": "SocDNA.Demographics.Region",
+        "old": {
+          "ucn": 120.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 7.0,
+          "curiosity": 93.0
+        }
+      }
+    ],
+    "implied_additions": [],
+    "contradictions": [],
+    "warnings": []
+  }
+}

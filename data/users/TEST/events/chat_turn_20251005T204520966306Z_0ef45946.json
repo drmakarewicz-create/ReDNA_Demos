@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test4",
+  "assistant_text": "Let's start fresh! I'd love to hear more about your week with Archie and George. What's the most exciting thing that's happened since we last caught up?",
+  "client_message_id": "94cef124-a135-4563-8d2b-3a4b28567996",
+  "assistant_message_id": "chat-391cb368e2b4462b9204070c98d27fa6",
+  "server_ts": "2025-10-05T20:45:20.966+00:00",
+  "server_ts_ms": 1759697120966,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

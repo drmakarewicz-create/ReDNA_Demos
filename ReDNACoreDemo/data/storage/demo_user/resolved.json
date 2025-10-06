@@ -1,0 +1,14 @@
+{
+  "user_id": "demo_user",
+  "schema_version": 4,
+  "resolved": {
+    "EyeDNA.IrisColor": {
+      "value": "Blue",
+      "value_type": "string",
+      "confidence": 0.8,
+      "provenance": {
+        "source": "ucnrr"
+      }
+    }
+  }
+}

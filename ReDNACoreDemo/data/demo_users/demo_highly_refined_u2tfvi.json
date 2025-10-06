@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "version": "2.0.0",
+    "schema": "redna.bundle/2.0",
+    "generated_at": "2025-09-29T12:09:21.853343+00:00",
+    "user_id": "demo_highly_refined_u2tfvi",
+    "profile": "highly_refined"
+  },
+  "resolved": {
+    "PaDNA.HairDNA.Style": {
+      "resolved_value": "Locs",
+      "ucn": 92,
+      "reasons": [
+        "expert_review@92"
+      ]
+    },
+    "PaDNA.HairDNA.Length": {
+      "resolved_value": "Long",
+      "ucn": 90,
+      "reasons": [
+        "photo_ai@90"
+      ]
+    },
+    "PaDNA.BodyDNA.Height": {
+      "resolved_value": "5'9\"",
+      "ucn": 88,
+      "reasons": [
+        "self_report@88"
+      ]
+    },
+    "PsyDNA.PersonalityDNA.Big5.Conscientiousness": {
+      "resolved_value": "very_high",
+      "ucn": 70,
+      "reasons": [
+        "coach_inference@70"
+      ]
+    },
+    "BehDNA.Rituals.Morning": {
+      "resolved_value": "mindfulness_walk",
+      "ucn": 63,
+      "reasons": [
+        "coach_inference@63"
+      ]
+    }
+  },
+  "evidence": {
+    "items": [
+      {
+        "trait": "PaDNA.HairDNA.Style",
+        "value": "Locs",
+        "ucn": 92,
+        "source": "expert_review"
+      },
+      {
+        "trait": "PaDNA.HairDNA.Length",
+        "value": "Long",
+        "ucn": 90,
+        "source": "photo_ai"
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Height",
+        "value": "5'9\"",
+        "ucn": 88,
+        "source": "self_report"
+      },
+      {
+        "trait": "PsyDNA.PersonalityDNA.Big5.Conscientiousness",
+        "value": "very_high",
+        "ucn": 70,
+        "source": "coach_inference"
+      },
+      {
+        "trait": "BehDNA.Rituals.Morning",
+        "value": "mindfulness_walk",
+        "ucn": 63,
+        "source": "coach_inference"
+      }
+    ]
+  },
+  "observations": {
+    "items": [
+      {
+        "container": "conversational_dynamics",
+        "trait": "conversation.cadence",
+        "value": "steady",
+        "ucn": 35
+      }
+    ],
+    "by_trait": {}
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "user_id": "hs-messy-demo",
+  "default_provenance": {
+    "source": "photo-import",
+    "step": "soft-import",
+    "adapter": "json",
+    "notes": "intentionally messy payload to test aliasing, unit parsing, and quarantine"
+  },
+
+  "PaDNA": {
+    "face": {
+      "shape": "Oval-ish",
+      "brows": { "thickness": "thick", "shape": "soft-arched" },
+      "eyes": { "shape": "almond ", "iris_color": "hazel-brown?", "eyelid_crease": "present" },
+      "nose": { "bridge": "straight", "tip": "refined" },
+      "mouth": { "upper_lip": "medium", "lower_lip": "full" },
+      "skin": { "tone": "light to light-med", "undertone": "neutral-warm" },
+      "distinctive": ["two small facial moles near nose/cheek"]
+    },
+    "hair": {
+      "colour": "deep brown",
+      "length": "long",
+      "texture": "wavy (loose)",
+      "parting": "center",
+      "shine": "high"
+    },
+    "body": { "HEIGHT?": "5’7”", "weight": "54kg", "build": "slender/toned" },
+    "apparel": { "style": ["red dresses","sheer/mesh","denim jacket"], "accessories": ["glasses"] }
+  },
+
+  "Eye.color": "Hazel",
+  "FacialDNA.FaceShape": "oval",
+  "hair_colour": "dark brunette",
+  "HairDNA.Part": "Centre",
+  "PaDNA.HairDNA.Texture": "Loose waves",
+  "PaDNA.EyeDNA.Brows": "Full, softly arched",
+  "PaDNA.SkinDNA.Undertone": "Neutral-warm",
+  "height_cm": "170 cm approx",
+  "weight_kg": "119 lb",
+
+  "observations": [
+    {"path": "PaDNA.HairDNA.Color", "value": "brown - very dark", "confidence": "0.9 (~90%)"},
+    {"path": "PaDNA.ApparelDNA.Accessories", "value": ["eyeglasses"], "confidence": "80 percent"},
+    {"path": "PaDNA.FacialDNA.Lips", "value": "lower>upper (balanced-full)", "confidence": 0.75},
+    {"path": "PaDNA.EyeDNA.Eyelashes", "value": "long & defined (makeup)", "confidence": "0.7"}
+  ]
+}

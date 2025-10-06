@@ -1,0 +1,1075 @@
+{
+  "schema_version": "1.0",
+  "description": "Registry of quarantined trait paths that were rejected during import due to unmapped paths. These are candidates for promotion to official PaDNA containers or for creating path aliases.",
+  "last_updated": "2025-10-04T11:27:32.281985",
+  "statistics": {
+    "total_unique_paths": 49,
+    "total_occurrences": 76,
+    "paths_by_category": {
+      "Behavioral": 4,
+      "Style": 12,
+      "Other": 31,
+      "Context": 2
+    },
+    "paths_by_status": {
+      "pending": 49
+    },
+    "most_frequent": [
+      {
+        "path": "BehavioralDNA.Posture",
+        "count": 6,
+        "category": "Behavioral"
+      },
+      {
+        "path": "BehavioralDNA.SocialProjection",
+        "count": 6,
+        "category": "Behavioral"
+      },
+      {
+        "path": "StyleContext.SettingsObserved",
+        "count": 6,
+        "category": "Style"
+      },
+      {
+        "path": "StyleContext.FashionMarkers",
+        "count": 6,
+        "category": "Style"
+      },
+      {
+        "path": "StyleContext.EraInference",
+        "count": 6,
+        "category": "Style"
+      },
+      {
+        "path": "StyleContext.PhotoContext",
+        "count": 2,
+        "category": "Style"
+      },
+      {
+        "path": "StyleContext.TimeOfDay",
+        "count": 2,
+        "category": "Style"
+      },
+      {
+        "path": "BehavioralDNA.Stance",
+        "count": 1,
+        "category": "Behavioral"
+      },
+      {
+        "path": "BehavioralDNA.Gestures",
+        "count": 1,
+        "category": "Behavioral"
+      },
+      {
+        "path": "StyleContext.Environment",
+        "count": 1,
+        "category": "Style"
+      },
+      {
+        "path": "StyleContext.BeachShots",
+        "count": 1,
+        "category": "Style"
+      },
+      {
+        "path": "hair_dna.color",
+        "count": 1,
+        "category": "Other"
+      },
+      {
+        "path": "hair_dna.texture",
+        "count": 1,
+        "category": "Other"
+      },
+      {
+        "path": "hair_dna.length",
+        "count": 1,
+        "category": "Other"
+      },
+      {
+        "path": "hair_dna.styling.variations",
+        "count": 1,
+        "category": "Other"
+      },
+      {
+        "path": "hair_dna.styling.versatility",
+        "count": 1,
+        "category": "Other"
+      },
+      {
+        "path": "eye_dna.color",
+        "count": 1,
+        "category": "Other"
+      },
+      {
+        "path": "eye_dna.shape",
+        "count": 1,
+        "category": "Other"
+      },
+      {
+        "path": "eye_dna.makeup_patterns.observed",
+        "count": 1,
+        "category": "Other"
+      },
+      {
+        "path": "eye_dna.makeup_patterns.preference",
+        "count": 1,
+        "category": "Other"
+      }
+    ]
+  },
+  "quarantined_paths": {
+    "BehavioralDNA.Posture": {
+      "path": "BehavioralDNA.Posture",
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 6,
+      "example_values": [
+        "{\"resolved_value\": \"Confident, often leaning slightly forward or hands on hips\", \"ucn\": 870}",
+        "{\"resolved_value\": \"Confident; squared shoulders; slight forward lean common\", \"ucn\": 870}"
+      ],
+      "sources": [
+        "photo-import",
+        "photo-import-ui"
+      ],
+      "users": [
+        "LLTEST",
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Behavioral"
+    },
+    "BehavioralDNA.SocialProjection": {
+      "path": "BehavioralDNA.SocialProjection",
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 6,
+      "example_values": [
+        "{\"resolved_value\": \"Outgoing, flirty, approachable\", \"ucn\": 880}",
+        "{\"resolved_value\": \"Flirty, provocative, attention-seeking\", \"ucn\": 880}"
+      ],
+      "sources": [
+        "photo-import",
+        "photo-import-ui"
+      ],
+      "users": [
+        "LLTEST",
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Behavioral"
+    },
+    "StyleContext.SettingsObserved": {
+      "path": "StyleContext.SettingsObserved",
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 6,
+      "example_values": [
+        "{\"resolved_value\": [\"Beach\", \"Kitchen\", \"Bedroom, casual\", \"Studio backdrop\"]}",
+        "{\"resolved_value\": [\"Indoor home space with large windows\", \"Garden/outdoor\", \"Beach/waterfront\", \"S"
+      ],
+      "sources": [
+        "photo-import",
+        "photo-import-ui"
+      ],
+      "users": [
+        "LLTEST",
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "StyleContext.FashionMarkers": {
+      "path": "StyleContext.FashionMarkers",
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 6,
+      "example_values": [
+        "{\"resolved_value\": [\"Low-rise shorts\", \"Bikinis\", \"Playful prints\", \"Heeled shoes\", \"Boots\"]}",
+        "{\"resolved_value\": [\"Animal prints\", \"Neon colors\", \"Low-rise shorts\", \"Bikinis\", \"Crop tops\"]}"
+      ],
+      "sources": [
+        "photo-import",
+        "photo-import-ui"
+      ],
+      "users": [
+        "LLTEST",
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "StyleContext.EraInference": {
+      "path": "StyleContext.EraInference",
+      "first_seen": "2025-10-03T12:26:13.825985",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 6,
+      "example_values": [
+        "{\"resolved_value\": \"Early-mid 2000s fashion\", \"ucn\": 950}",
+        "{\"resolved_value\": \"2000s–present pop fashion\", \"ucn\": 950}"
+      ],
+      "sources": [
+        "photo-import",
+        "photo-import-ui"
+      ],
+      "users": [
+        "LLTEST",
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "StyleContext.PhotoContext": {
+      "path": "StyleContext.PhotoContext",
+      "first_seen": "2025-10-03T18:44:09.454482",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 2,
+      "example_values": [
+        "{\"resolved_value\": \"Predominantly self-shot/social media style videos & stills\", \"ucn\": 900}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "StyleContext.TimeOfDay": {
+      "path": "StyleContext.TimeOfDay",
+      "first_seen": "2025-10-03T18:44:09.454482",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 2,
+      "example_values": [
+        "{\"resolved_value\": \"Daylight (mid-day) dominant\", \"ucn\": 820}",
+        "{\"resolved_value\": \"daylight (mid-day dominant)\", \"ucn\": 820}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "BehavioralDNA.Stance": {
+      "path": "BehavioralDNA.Stance",
+      "first_seen": "2025-10-03T18:59:18.090953",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": \"hands on hips / hip pop toward camera\", \"ucn\": 900}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Behavioral"
+    },
+    "BehavioralDNA.Gestures": {
+      "path": "BehavioralDNA.Gestures",
+      "first_seen": "2025-10-03T18:59:18.090953",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"hair flip\", \"torso sway\"], \"ucn\": 820}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Behavioral"
+    },
+    "StyleContext.Environment": {
+      "path": "StyleContext.Environment",
+      "first_seen": "2025-10-03T18:59:18.090953",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": \"indoor home setting with large windows; social-media self-shot framing\", \"ucn\": "
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "StyleContext.BeachShots": {
+      "path": "StyleContext.BeachShots",
+      "first_seen": "2025-10-03T18:59:18.090953",
+      "last_seen": "2025-10-03T18:59:18.090953",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": \"occasional outdoor beach scenes\", \"ucn\": 780}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "hair_dna.color": {
+      "path": "hair_dna.color",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"primary\": \"blonde\", \"tone\": \"golden blonde to platinum blonde\", \"highlights\": \"natural variation w"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "hair_dna.texture": {
+      "path": "hair_dna.texture",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"type\": \"straight to wavy\", \"volume\": \"medium to high volume\", \"quality\": \"appears healthy and well"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "hair_dna.length": {
+      "path": "hair_dna.length",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"measurement\": \"long, past shoulders to mid-back\", \"consistency\": \"consistent across photos\", \"conf"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "hair_dna.styling.variations": {
+      "path": "hair_dna.styling.variations",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"loose and down (bs2, bs3, bs5, bs7, bs10)\", \"updo/bun styles (bs1, bs4, bs9)\", "
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "hair_dna.styling.versatility": {
+      "path": "hair_dna.styling.versatility",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "high - multiple styling approaches observed"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "eye_dna.color": {
+      "path": "eye_dna.color",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"base\": \"appears light colored, likely blue or green\", \"note\": \"difficult to determine exact color "
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "eye_dna.shape": {
+      "path": "eye_dna.shape",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"description\": \"almond-shaped, proportionate to face\", \"size\": \"medium to large\", \"confidence\": 0.8"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "eye_dna.makeup_patterns.observed": {
+      "path": "eye_dna.makeup_patterns.observed",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"smokey eye makeup (bs8 with purple/blue tones)\", \"natural daytime looks (bs1, b"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "eye_dna.makeup_patterns.preference": {
+      "path": "eye_dna.makeup_patterns.preference",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "varies from natural to dramatic"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "skin_dna.tone": {
+      "path": "skin_dna.tone",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"base\": \"light to light-medium\", \"undertone\": \"appears neutral to warm\", \"confidence\": 0.9}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "skin_dna.texture": {
+      "path": "skin_dna.texture",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"quality\": \"smooth, clear complexion\", \"confidence\": 0.85}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "skin_dna.sun_exposure.observed": {
+      "path": "skin_dna.sun_exposure.observed",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "tanned/bronzed in outdoor beach photos (bs7)"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "skin_dna.sun_exposure.variation": {
+      "path": "skin_dna.sun_exposure.variation",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "ranges from fair indoor lighting to sun-kissed outdoor"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "facial_dna.face_shape": {
+      "path": "facial_dna.face_shape",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"type\": \"oval to heart-shaped\", \"jawline\": \"defined, slightly rounded\", \"cheekbones\": \"prominent, h"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "facial_dna.nose": {
+      "path": "facial_dna.nose",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"shape\": \"straight, proportionate\", \"size\": \"small to medium\", \"confidence\": 0.85}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "facial_dna.lips": {
+      "path": "facial_dna.lips",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"shape\": \"full lips, defined cupid's bow\", \"size\": \"medium to full\", \"confidence\": 0.9}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "facial_dna.smile": {
+      "path": "facial_dna.smile",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"characteristics\": \"bright, wide smile with visible teeth\", \"frequency\": \"smiling in majority of ph"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "facial_dna.facial_features.symmetry": {
+      "path": "facial_dna.facial_features.symmetry",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "high facial symmetry"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "facial_dna.facial_features.proportions": {
+      "path": "facial_dna.facial_features.proportions",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "balanced features"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "facial_dna.facial_features.distinctive_elements": {
+      "path": "facial_dna.facial_features.distinctive_elements",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"high cheekbones\", \"defined jawline\", \"bright smile\"]}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "body_dna.build": {
+      "path": "body_dna.build",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"type\": \"athletic, slender\", \"frame\": \"small to medium frame\", \"confidence\": 0.9}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "body_dna.proportions": {
+      "path": "body_dna.proportions",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"description\": \"balanced proportions, toned physique\", \"observation\": \"visible muscle tone, particu"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "body_dna.height_indicators": {
+      "path": "body_dna.height_indicators",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"note\": \"appears average to above-average height based on proportions\", \"confidence\": 0.6}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "body_dna.fitness_level": {
+      "path": "body_dna.fitness_level",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"observation\": \"appears physically fit and toned\", \"visible_definition\": \"abdominal definition visi"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "style_preferences.clothing.colors_observed": {
+      "path": "style_preferences.clothing.colors_observed",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"pink/hot pink (frequent)\", \"red\", \"neon green\", \"white\", \"leopard print\", \"purp"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "style_preferences.clothing.patterns": {
+      "path": "style_preferences.clothing.patterns",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"animal prints (leopard)\", \"floral prints\", \"heart prints\", \"sequins/shimmer\"]}"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "style_preferences.clothing.styles": {
+      "path": "style_preferences.clothing.styles",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"bikinis and swimwear (bs1, bs6, bs7, bs10)\", \"off-shoulder tops (bs4, bs5)\", \"f"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "style_preferences.clothing.color_preference": {
+      "path": "style_preferences.clothing.color_preference",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "strong preference for bright, bold colors especially pinks and reds"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "style_preferences.accessories.observed": {
+      "path": "style_preferences.accessories.observed",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"necklaces/pendants (bs6, bs7, bs9, bs10)\", \"earrings (pearl/stud styles in bs1,"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Style"
+    },
+    "environmental_context.settings_observed": {
+      "path": "environmental_context.settings_observed",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"indoor residential (bs1, bs2, bs3, bs4, bs6, bs9, bs10)\", \"outdoor natural/gard"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Context"
+    },
+    "environmental_context.lighting_conditions": {
+      "path": "environmental_context.lighting_conditions",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"natural indoor lighting\", \"warm artificial lighting\", \"bright outdoor natural l"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Context"
+    },
+    "posing_patterns.common_poses": {
+      "path": "posing_patterns.common_poses",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"facing camera directly with smile\", \"hand on hip or near face\", \"relaxed standi"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "posing_patterns.expression_range": {
+      "path": "posing_patterns.expression_range",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"resolved_value\": [\"bright smiles (most common)\", \"sultry/serious expression (bs8)\", \"natural, cand"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "posing_patterns.body_language": {
+      "path": "posing_patterns.body_language",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "confident, comfortable in front of camera"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "observation_type": {
+      "path": "observation_type",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "reference_photos"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "photo_count": {
+      "path": "photo_count",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "10"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "creation_date": {
+      "path": "creation_date",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "2025-10-04"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    },
+    "metadata": {
+      "path": "metadata",
+      "first_seen": "2025-10-04T11:27:32.281620",
+      "last_seen": "2025-10-04T11:27:32.281620",
+      "occurrence_count": 1,
+      "example_values": [
+        "{\"analysis_source\": \"10 uploaded reference photos (bs1-bs10)\", \"batch_ids\": [\"2025-10-04T15-05-09-bs"
+      ],
+      "sources": [
+        "photo-import-ui"
+      ],
+      "users": [
+        "BSTest"
+      ],
+      "status": "pending",
+      "notes": "",
+      "suggested_mapping": null,
+      "category": "Other"
+    }
+  },
+  "notes": [
+    "This file automatically accumulates quarantined trait paths from imports.",
+    "Paths marked with 'promoted': true have been added to the official schema.",
+    "Paths marked with 'mapped': true have been given aliases to existing PaDNA paths.",
+    "Use the review tool to process and categorize these paths."
+  ]
+}

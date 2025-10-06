@@ -1,0 +1,13 @@
+{
+  "ts": "20250925_163142",
+  "text": "hi",
+  "provenance": {
+    "actor": "user",
+    "source": "rc_chat",
+    "persona_id": "relationship_coach",
+    "ui": "explorer_final",
+    "ts": "2025-09-25T20:31:35.909173+00:00",
+    "mode": "background_capture",
+    "assistant_summary": "Hello! I'm your Relationship Coach. It's great to connect with you. What brings you here today?"
+  }
+}

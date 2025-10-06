@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625101541,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Let's talk about something else",
+    "ts": 1759625101538
+  },
+  "assistant": {
+    "text": "I'm glad we're moving on from work stress! So, how was your weekend? Did anything fun happen or are you looking forward to a relaxing day ahead? \n\n(Note: I'll suggest the Photo Coach if they start talking about appearance or visuals, but for now, let's keep it light)",
+    "ts": 1759625101541,
+    "message_id": "chat-d6e3595fef1749a6858127247c7d6fc1"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 6179,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 5,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.42,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 21232.94,
+    "rolling_latency_median_ms": 6602.5,
+    "latency_histogram": {
+      "steady": 48,
+      "slow": 2
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "question": 26,
+      "answer": 22,
+      "ack": 2
+    },
+    "priority": 0.8
+  }
+}

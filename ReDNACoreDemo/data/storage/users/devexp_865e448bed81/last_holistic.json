@@ -1,0 +1,132 @@
+{
+  "user_id": "devexp_865e448bed81",
+  "ran_at": "2025-09-27T02:24:12.358037+00:00",
+  "async": true,
+  "counts": {
+    "ucn_rr_updates": 5,
+    "implied_additions": 0,
+    "contradictions": 0,
+    "llm_considered": 2,
+    "llm_updates": 0,
+    "llm_skipped": 2
+  },
+  "paths": {
+    "all": [
+      "PaDNA.Action",
+      "PaDNA.Application",
+      "PaDNA.TestType",
+      "Personality.Emotional Stability",
+      "Personality.Social Skills"
+    ],
+    "ucn_rr_updates": [
+      "PaDNA.Application",
+      "PaDNA.TestType",
+      "PaDNA.Action",
+      "Personality.Emotional Stability",
+      "Personality.Social Skills"
+    ],
+    "implied": [],
+    "contradictions": []
+  },
+  "implied_reasons": {},
+  "report": {
+    "ok": true,
+    "user_id": "devexp_865e448bed81",
+    "time_ms": 3548.308,
+    "async_": true,
+    "ucn_rr_updates": [
+      {
+        "path": "PaDNA.Application",
+        "old": {
+          "ucn": 830.0,
+          "rr": 90.0,
+          "curiosity": 10.0
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 84.25,
+          "curiosity": 15.75
+        }
+      },
+      {
+        "path": "PaDNA.TestType",
+        "old": {
+          "ucn": 830.0,
+          "rr": 86.0,
+          "curiosity": 14.0
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 81.45,
+          "curiosity": 18.549999999999997
+        }
+      },
+      {
+        "path": "PaDNA.Action",
+        "old": {
+          "ucn": 830.0,
+          "rr": 76.0,
+          "curiosity": 24.0
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 74.45,
+          "curiosity": 25.549999999999997
+        }
+      },
+      {
+        "path": "Personality.Emotional Stability",
+        "old": {
+          "ucn": 120,
+          "rr": 3.7037,
+          "curiosity": 96.2963
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 6.09259,
+          "curiosity": 93.90741
+        }
+      },
+      {
+        "path": "Personality.Social Skills",
+        "old": {
+          "ucn": 130,
+          "rr": 0.98039,
+          "curiosity": 99.01961
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      }
+    ],
+    "implied_additions": [],
+    "contradictions": [],
+    "warnings": [],
+    "llm_considered": [
+      "Personality.Emotional Stability",
+      "Personality.Social Skills"
+    ],
+    "llm_updates": [],
+    "llm_skipped": [
+      "Personality.Emotional Stability",
+      "Personality.Social Skills"
+    ],
+    "llm_warnings": [],
+    "llm_time_ms": 3547.964
+  },
+  "llm": {
+    "considered": [
+      "Personality.Emotional Stability",
+      "Personality.Social Skills"
+    ],
+    "updates": [],
+    "skipped": [
+      "Personality.Emotional Stability",
+      "Personality.Social Skills"
+    ],
+    "warnings": [],
+    "time_ms": 3547.964
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "snapshot_id": "snapshot_20251005T121043",
+  "user_id": "930-1106",
+  "created_at": "2025-10-05T12:10:43.791245+00:00",
+  "version": "1.0.0",
+  "scope": "full",
+  "families": [],
+  "metadata": {
+    "trait_count": 2,
+    "family_count": 0,
+    "size_bytes": 2923,
+    "export_method": "api",
+    "label": null
+  },
+  "data": {
+    "observations": {
+      "items": [
+        {
+          "user_id": "930-1106",
+          "ts": "2025-10-01T22:23:21.311000+00:00",
+          "source": "ui_chat_turn",
+          "ucn": 20.0,
+          "confidence": "low",
+          "provenance": "observed_chat_turn",
+          "decay": true,
+          "container": "conversational_dynamics",
+          "trait_id": "conversation.turn_length",
+          "trait": "conversation.turn_length",
+          "value": 1,
+          "persona": "head coach"
+        },
+        {
+          "user_id": "930-1106",
+          "ts": "2025-10-01T22:23:21.311000+00:00",
+          "source": "ui_chat_turn",
+          "ucn": 20.0,
+          "confidence": "low",
+          "provenance": "observed_chat_turn",
+          "decay": true,
+          "container": "conversational_dynamics",
+          "trait_id": "conversation.dialog_act",
+          "trait": "conversation.dialog_act",
+          "value": "answer",
+          "persona": "head coach"
+        },
+        {
+          "user_id": "930-1106",
+          "ts": "2025-10-01T22:23:21.311000+00:00",
+          "source": "ui_chat_turn",
+          "ucn": 20.0,
+          "confidence": "low",
+          "provenance": "observed_chat_turn",
+          "decay": true,
+          "container": "conversational_dynamics",
+          "trait_id": "conversation.dialog_distribution",
+          "trait": "conversation.dialog_distribution",
+          "value": "answer:1",
+          "persona": "head coach"
+        },
+        {
+          "user_id": "930-1106",
+          "ts": "2025-10-01T22:23:21.311000+00:00",
+          "source": "ui_chat_turn",
+          "ucn": 20.0,
+          "confidence": "low",
+          "provenance": "observed_chat_turn",
+          "decay": true,
+          "container": "communication_tone",
+          "trait_id": "tone.sentiment_polarity",
+          "trait": "tone.sentiment_polarity",
+          "value": 0.5,
+          "persona": "head coach"
+        },
+        {
+          "user_id": "930-1106",
+          "ts": "2025-10-01T22:23:21.311000+00:00",
+          "source": "ui_chat_turn",
+          "ucn": 20.0,
+          "confidence": "low",
+          "provenance": "observed_chat_turn",
+          "decay": true,
+          "container": "communication_tone",
+          "trait_id": "tone.formality_gradient",
+          "trait": "tone.formality_gradient",
+          "value": 0.44,
+          "persona": "head coach"
+        }
+      ],
+      "by_trait": {
+        "conversation.turn_length": [
+          {
+            "value": 1,
+            "ucn": 20.0,
+            "ts": "2025-10-01T22:23:21.311000+00:00",
+            "source": "ui_chat_turn",
+            "persona": "head coach"
+          }
+        ],
+        "conversation.dialog_act": [
+          {
+            "value": "answer",
+            "ucn": 20.0,
+            "ts": "2025-10-01T22:23:21.311000+00:00",
+            "source": "ui_chat_turn",
+            "persona": "head coach"
+          }
+        ],
+        "conversation.dialog_distribution": [
+          {
+            "value": "answer:1",
+            "ucn": 20.0,
+            "ts": "2025-10-01T22:23:21.311000+00:00",
+            "source": "ui_chat_turn",
+            "persona": "head coach"
+          }
+        ],
+        "tone.sentiment_polarity": [
+          {
+            "value": 0.5,
+            "ucn": 20.0,
+            "ts": "2025-10-01T22:23:21.311000+00:00",
+            "source": "ui_chat_turn",
+            "persona": "head coach"
+          }
+        ],
+        "tone.formality_gradient": [
+          {
+            "value": 0.44,
+            "ucn": 20.0,
+            "ts": "2025-10-01T22:23:21.311000+00:00",
+            "source": "ui_chat_turn",
+            "persona": "head coach"
+          }
+        ]
+      }
+    },
+    "resolved": {
+      "profile": {
+        "label": "930 1106",
+        "created_ts": "2025-10-01T03:07:04.643215+00:00"
+      },
+      "traits": {
+        "big5": {
+          "O": 0.68,
+          "C": 0.65,
+          "E": 0.21,
+          "A": 0.38,
+          "N": 0.62
+        }
+      }
+    },
+    "evidence": {},
+    "ucn_rr_summary": {
+      "avg_ucn": 0.0,
+      "avg_rr": 0.0,
+      "curiosity_score": 0.0,
+      "total_traits": 2
+    },
+    "provenance": {
+      "export_source": "snapshot_exporter",
+      "export_timestamp": "2025-10-05T12:10:43.790845+00:00",
+      "write_protect_mode": true
+    }
+  }
+}

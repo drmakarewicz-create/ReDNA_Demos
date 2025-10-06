@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Hi",
+  "assistant_text": "Hey, great to catch up again! I've got a question for you - what's been the highlight of your week so far? And if you're ever looking for some fun dog-friendly activities in your area, our team has a list of recommendations.",
+  "client_message_id": "db5ffef2-019a-43d0-97e8-ff1423b9594e",
+  "assistant_message_id": "chat-3ef191ea1697417b9dc000cf392ec452",
+  "server_ts": "2025-10-05T20:41:53.687+00:00",
+  "server_ts_ms": 1759696913687,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

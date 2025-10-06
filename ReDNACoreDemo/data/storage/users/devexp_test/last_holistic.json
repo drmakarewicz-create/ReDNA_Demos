@@ -1,0 +1,373 @@
+{
+  "user_id": "devexp_test",
+  "ran_at": "2025-09-28T20:49:38.924402+00:00",
+  "async": true,
+  "counts": {
+    "ucn_rr_updates": 16,
+    "implied_additions": 0,
+    "contradictions": 0,
+    "llm_considered": 20,
+    "llm_updates": 0,
+    "llm_skipped": 20
+  },
+  "paths": {
+    "all": [
+      "Personality.AvoidsEyeContact",
+      "Personality.AvoidsSmallTalk",
+      "Personality.PrefersDeepConversations",
+      "Personality.PrefersOneOnOne",
+      "Personality.Quiet",
+      "Personality.Social",
+      "Personality.ValuesAuthenticity",
+      "Personality.ValuesAuthenticityInInteractions",
+      "Personality.ValuesEmotionalMaturity",
+      "Personality.ValuesInnerWorld",
+      "Personality.ValuesMindfulness",
+      "Personality.ValuesPersonalSpace",
+      "Personality.ValuesSelfAwareness",
+      "Personality.ValuesSelfDiscovery",
+      "Personality.ValuesSelfImprovement",
+      "devexp_ping"
+    ],
+    "ucn_rr_updates": [
+      "devexp_ping",
+      "Personality.Quiet",
+      "Personality.Social",
+      "Personality.AvoidsEyeContact",
+      "Personality.AvoidsSmallTalk",
+      "Personality.PrefersOneOnOne",
+      "Personality.PrefersDeepConversations",
+      "Personality.ValuesAuthenticity",
+      "Personality.ValuesSelfAwareness",
+      "Personality.ValuesPersonalSpace",
+      "Personality.ValuesEmotionalMaturity",
+      "Personality.ValuesMindfulness",
+      "Personality.ValuesSelfDiscovery",
+      "Personality.ValuesInnerWorld",
+      "Personality.ValuesSelfImprovement",
+      "Personality.ValuesAuthenticityInInteractions"
+    ],
+    "implied": [],
+    "contradictions": []
+  },
+  "implied_reasons": {},
+  "report": {
+    "ok": true,
+    "user_id": "devexp_test",
+    "time_ms": 15008.184,
+    "async_": true,
+    "ucn_rr_updates": [
+      {
+        "path": "devexp_ping",
+        "old": {
+          "ucn": 940.0,
+          "rr": 92.0,
+          "curiosity": 8.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 88.39999999999999,
+          "curiosity": 11.600000000000009
+        }
+      },
+      {
+        "path": "Personality.Quiet",
+        "old": {
+          "ucn": 120.0,
+          "rr": 11.612659989450059,
+          "curiosity": 88.38734001054993
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 11.628861992615041,
+          "curiosity": 88.37113800738496
+        }
+      },
+      {
+        "path": "Personality.Social",
+        "old": {
+          "ucn": 130.0,
+          "rr": 12.427333242194749,
+          "curiosity": 87.57266675780525
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 12.449133269536324,
+          "curiosity": 87.55086673046368
+        }
+      },
+      {
+        "path": "Personality.AvoidsEyeContact",
+        "old": {
+          "ucn": 130.0,
+          "rr": 12.3961903459925,
+          "curiosity": 87.6038096540075
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 12.427333242194749,
+          "curiosity": 87.57266675780525
+        }
+      },
+      {
+        "path": "Personality.AvoidsSmallTalk",
+        "old": {
+          "ucn": 120.0,
+          "rr": 11.5348448838,
+          "curiosity": 88.4651551162
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 11.57439141866,
+          "curiosity": 88.42560858134
+        }
+      },
+      {
+        "path": "Personality.PrefersOneOnOne",
+        "old": {
+          "ucn": 130.0,
+          "rr": 12.351700494274999,
+          "curiosity": 87.648299505725
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 12.3961903459925,
+          "curiosity": 87.6038096540075
+        }
+      },
+      {
+        "path": "Personality.PrefersDeepConversations",
+        "old": {
+          "ucn": 120.0,
+          "rr": 11.478349834000001,
+          "curiosity": 88.521650166
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 11.5348448838,
+          "curiosity": 88.4651551162
+        }
+      },
+      {
+        "path": "Personality.ValuesAuthenticity",
+        "old": {
+          "ucn": 130.0,
+          "rr": 12.28814356325,
+          "curiosity": 87.71185643675
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 12.351700494274999,
+          "curiosity": 87.648299505725
+        }
+      },
+      {
+        "path": "Personality.ValuesSelfAwareness",
+        "old": {
+          "ucn": 130.0,
+          "rr": 12.067639925,
+          "curiosity": 87.932360075
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 12.197347947499999,
+          "curiosity": 87.80265205250001
+        }
+      },
+      {
+        "path": "Personality.ValuesPersonalSpace",
+        "old": {
+          "ucn": 120.0,
+          "rr": 11.2823466,
+          "curiosity": 88.7176534
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 11.397642620000001,
+          "curiosity": 88.60235738
+        }
+      },
+      {
+        "path": "Personality.ValuesEmotionalMaturity",
+        "old": {
+          "ucn": 120.0,
+          "rr": 11.117638000000001,
+          "curiosity": 88.882362
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 11.2823466,
+          "curiosity": 88.7176534
+        }
+      },
+      {
+        "path": "Personality.ValuesMindfulness",
+        "old": {
+          "ucn": 130.0,
+          "rr": 11.88234275,
+          "curiosity": 88.11765725000001
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 12.067639925,
+          "curiosity": 87.932360075
+        }
+      },
+      {
+        "path": "Personality.ValuesSelfDiscovery",
+        "old": {
+          "ucn": 130.0,
+          "rr": 11.239474999999999,
+          "curiosity": 88.760525
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 11.6176325,
+          "curiosity": 88.3823675
+        }
+      },
+      {
+        "path": "Personality.ValuesInnerWorld",
+        "old": {
+          "ucn": 120.0,
+          "rr": 10.5462,
+          "curiosity": 89.4538
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 10.882340000000001,
+          "curiosity": 89.11766
+        }
+      },
+      {
+        "path": "Personality.ValuesSelfImprovement",
+        "old": {
+          "ucn": 130.0,
+          "rr": 7.25,
+          "curiosity": 92.75
+        },
+        "new": {
+          "ucn": 130.0,
+          "rr": 8.825,
+          "curiosity": 91.175
+        }
+      },
+      {
+        "path": "Personality.ValuesAuthenticityInInteractions",
+        "old": {
+          "ucn": 120.0,
+          "rr": 7.0,
+          "curiosity": 93.0
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 8.4,
+          "curiosity": 91.6
+        }
+      }
+    ],
+    "implied_additions": [],
+    "contradictions": [],
+    "warnings": [],
+    "llm_considered": [
+      "Personality.AvoidsEyeContact",
+      "Personality.AvoidsSmallTalk",
+      "Personality.Introverted",
+      "Personality.PrefersDeepConversations",
+      "Personality.PrefersOneOnOne",
+      "Personality.Quiet",
+      "Personality.Social",
+      "Personality.ValuesAuthenticity",
+      "Personality.ValuesEmotionalIntelligence",
+      "Personality.ValuesEmotionalMaturity",
+      "Personality.ValuesEmotionalRegulation",
+      "Personality.ValuesIndependence",
+      "Personality.ValuesInnerWorld",
+      "Personality.ValuesIntrospection",
+      "Personality.ValuesMindfulness",
+      "Personality.ValuesPersonalSpace",
+      "Personality.ValuesReflection",
+      "Personality.ValuesSelfAwareness",
+      "Personality.ValuesSelfDiscovery",
+      "Personality.ValuesSelfImprovement"
+    ],
+    "llm_updates": [],
+    "llm_skipped": [
+      "Personality.AvoidsEyeContact",
+      "Personality.AvoidsSmallTalk",
+      "Personality.Introverted",
+      "Personality.PrefersDeepConversations",
+      "Personality.PrefersOneOnOne",
+      "Personality.Quiet",
+      "Personality.Social",
+      "Personality.ValuesAuthenticity",
+      "Personality.ValuesEmotionalIntelligence",
+      "Personality.ValuesEmotionalMaturity",
+      "Personality.ValuesEmotionalRegulation",
+      "Personality.ValuesIndependence",
+      "Personality.ValuesInnerWorld",
+      "Personality.ValuesIntrospection",
+      "Personality.ValuesMindfulness",
+      "Personality.ValuesPersonalSpace",
+      "Personality.ValuesReflection",
+      "Personality.ValuesSelfAwareness",
+      "Personality.ValuesSelfDiscovery",
+      "Personality.ValuesSelfImprovement"
+    ],
+    "llm_warnings": [
+      "Holistic LLM exceeded budget (15007 ms > 15000 ms)"
+    ],
+    "llm_time_ms": 15006.577
+  },
+  "llm": {
+    "considered": [
+      "Personality.AvoidsEyeContact",
+      "Personality.AvoidsSmallTalk",
+      "Personality.Introverted",
+      "Personality.PrefersDeepConversations",
+      "Personality.PrefersOneOnOne",
+      "Personality.Quiet",
+      "Personality.Social",
+      "Personality.ValuesAuthenticity",
+      "Personality.ValuesEmotionalIntelligence",
+      "Personality.ValuesEmotionalMaturity",
+      "Personality.ValuesEmotionalRegulation",
+      "Personality.ValuesIndependence",
+      "Personality.ValuesInnerWorld",
+      "Personality.ValuesIntrospection",
+      "Personality.ValuesMindfulness",
+      "Personality.ValuesPersonalSpace",
+      "Personality.ValuesReflection",
+      "Personality.ValuesSelfAwareness",
+      "Personality.ValuesSelfDiscovery",
+      "Personality.ValuesSelfImprovement"
+    ],
+    "updates": [],
+    "skipped": [
+      "Personality.AvoidsEyeContact",
+      "Personality.AvoidsSmallTalk",
+      "Personality.Introverted",
+      "Personality.PrefersDeepConversations",
+      "Personality.PrefersOneOnOne",
+      "Personality.Quiet",
+      "Personality.Social",
+      "Personality.ValuesAuthenticity",
+      "Personality.ValuesEmotionalIntelligence",
+      "Personality.ValuesEmotionalMaturity",
+      "Personality.ValuesEmotionalRegulation",
+      "Personality.ValuesIndependence",
+      "Personality.ValuesInnerWorld",
+      "Personality.ValuesIntrospection",
+      "Personality.ValuesMindfulness",
+      "Personality.ValuesPersonalSpace",
+      "Personality.ValuesReflection",
+      "Personality.ValuesSelfAwareness",
+      "Personality.ValuesSelfDiscovery",
+      "Personality.ValuesSelfImprovement"
+    ],
+    "warnings": [
+      "Holistic LLM exceeded budget (15007 ms > 15000 ms)"
+    ],
+    "time_ms": 15006.577
+  }
+}

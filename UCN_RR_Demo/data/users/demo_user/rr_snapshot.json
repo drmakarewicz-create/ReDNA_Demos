@@ -1,0 +1,13 @@
+{
+  "ts": "20250920_131808",
+  "resolved": {
+    "EyeDNA.IrisColor": {
+      "resolved_value": "Blue",
+      "ucn": 80,
+      "reasons": [
+        "canonical"
+      ]
+    }
+  },
+  "observations": {}
+}

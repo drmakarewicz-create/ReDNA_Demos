@@ -1,0 +1,44 @@
+{
+  "type": "chat_turn",
+  "ts": 1759622076705,
+  "user_id": "TEST",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Why can't I find the right guy?",
+    "ts": 1759622076699
+  },
+  "assistant": {
+    "text": "You're feeling frustrated that you haven't found the right person yet. Can you tell me more about what specifically is holding you back from meeting someone special? If you want, our Relationship Coach could offer some guidance on navigating dating and relationships - no pressure!",
+    "ts": 1759622076705,
+    "message_id": "chat-10f9cfea7dd8440f8cc39c04d8833389"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/TEST/observations.json",
+  "metrics": {
+    "response_latency_ms": 1924308,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 7,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.38285714285714284,
+    "assertiveness_score": 0.0,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 29633753.266666666,
+    "rolling_latency_median_ms": 1617707.0,
+    "latency_histogram": {
+      "slow": 15
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "answer": 10,
+      "question": 5,
+      "repair": 1
+    },
+    "priority": 0.8
+  }
+}

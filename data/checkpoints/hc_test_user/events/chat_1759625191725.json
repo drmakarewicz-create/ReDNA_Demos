@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625191725,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "What else is good on that streaming service?",
+    "ts": 1759625191723
+  },
+  "assistant": {
+    "text": "You're looking for more recommendations! I've heard great things about \"The Crown\" - it's a historical drama with fantastic production quality and engaging storylines. Have you watched any British period dramas before?",
+    "ts": 1759625191725,
+    "message_id": "chat-5cedd954ef0942c981c2729e273d187a"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 6479,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 8,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 1.0,
+    "formality_score": 0.515,
+    "assertiveness_score": 0.0,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 21296.96,
+    "rolling_latency_median_ms": 6211.5,
+    "latency_histogram": {
+      "steady": 47,
+      "slow": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 22,
+      "question": 25,
+      "ack": 3
+    },
+    "priority": 0.8
+  }
+}

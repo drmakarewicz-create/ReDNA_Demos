@@ -1,0 +1,24 @@
+{
+  "type": "onboarding_profile",
+  "ts": 1759503360280,
+  "captured_at": "2025-10-03T14:56:00.280+00:00",
+  "profile": {
+    "version": 2,
+    "captured_at": "2025-10-03T14:56:00.280+00:00",
+    "user_id": "ll1055",
+    "display_name": "LiLo",
+    "quick_facts": {},
+    "interests": {
+      "selected": [],
+      "custom": []
+    },
+    "source": "ui_onboarding_modal"
+  },
+  "ucnrr": {
+    "ok": false,
+    "status": 404,
+    "detail": {
+      "detail": "Not Found"
+    }
+  }
+}

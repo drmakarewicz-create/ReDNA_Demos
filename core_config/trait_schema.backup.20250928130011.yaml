@@ -1,0 +1,1769 @@
+{
+  "version": 2,
+  "generated_at": "2025-09-28T15:57:45Z",
+  "curiosity_weights": {
+    "identity": 1.0,
+    "padna_physical": 1.0,
+    "writing_communication": 1.0,
+    "personality": 1.0,
+    "emotion_affect": 1.0,
+    "social": 1.0,
+    "family_relationships": 1.0,
+    "cognitive_style": 1.0,
+    "work_professional": 1.0,
+    "taste_entertainment": 1.0,
+    "gaming": 1.0,
+    "health": 1.0,
+    "finance": 1.0,
+    "routine_lifestyle": 1.0,
+    "learning": 1.0,
+    "behavior": 1.0,
+    "values_beliefs": 1.0,
+    "digital_technology": 1.0,
+    "cultural_civic": 1.0,
+    "environmental_orientation": 1.0,
+    "motivations_goals": 1.0,
+    "safety_risk": 1.0,
+    "padna_advanced": 1.0,
+    "conversational_dynamics": 1.0,
+    "communication_tone": 1.0,
+    "interaction_preferences": 1.0,
+    "cognitive_signatures": 1.0,
+    "rapport_markers": 1.0,
+    "meta_interaction_habits": 1.0
+  },
+  "containers": [
+    {
+      "id": "identity",
+      "label": "Identity",
+      "status": "active",
+      "description": "Core identifying attributes.",
+      "traits": [
+        {
+          "id": "identity.full_name",
+          "label": "Full Name",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "identity.pronouns",
+          "label": "Pronouns",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "identity.date_of_birth",
+          "label": "Date of Birth",
+          "type": "date",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "identity.location",
+          "label": "Location",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "identity.nationality",
+          "label": "Nationality",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "identity.languages",
+          "label": "Preferred Languages",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "padna_physical",
+      "label": "PaDNA \u2013 Physical Appearance (granular)",
+      "status": "active",
+      "description": "Detailed capture of physical appearance and self-presentation.",
+      "traits": [
+        {
+          "id": "padna.eye_color",
+          "label": "Eye Color",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.hair_color",
+          "label": "Hair Color",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.facial_hair",
+          "label": "Facial Hair",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.facial_shape",
+          "label": "Facial Shape",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.height",
+          "label": "Height",
+          "type": "number",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.weight_range",
+          "label": "Weight Range",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.body_type",
+          "label": "Body Type",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.posture",
+          "label": "Posture",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.skin_tone",
+          "label": "Skin Tone",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.skin_undertone",
+          "label": "Skin Undertone",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.freckles",
+          "label": "Freckling",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.complexion_sensitivity",
+          "label": "Complexion Sensitivity",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.hair_texture",
+          "label": "Hair Texture",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.hair_style",
+          "label": "Hair Style Preference",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.hair_length",
+          "label": "Hair Length",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.hair_coloring",
+          "label": "Natural vs Dyed",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.voice_pitch",
+          "label": "Voice Pitch",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.voice_tone",
+          "label": "Voice Tone",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.voice_accent",
+          "label": "Accent",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.speech_rate",
+          "label": "Speech Rate",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.style_category",
+          "label": "Style Archetype",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.color_preferences",
+          "label": "Color Preferences",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.accessories",
+          "label": "Accessories",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna.distinguishing_features",
+          "label": "Distinguishing Features",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "writing_communication",
+      "label": "Writing / Communication Style",
+      "status": "active",
+      "description": "Textual and verbal communication patterns.",
+      "traits": [
+        {
+          "id": "writing.formality_index",
+          "label": "Formality Index",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "writing.emoji_frequency",
+          "label": "Emoji Frequency",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "writing.humor_style",
+          "label": "Humor Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "writing.punctuation_habits",
+          "label": "Punctuation Habits",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "writing.verbosity",
+          "label": "Verbosity",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "writing.directness",
+          "label": "Directness vs Indirectness",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "personality",
+      "label": "Personality",
+      "status": "active",
+      "description": "Core personality dimensions.",
+      "traits": [
+        {
+          "id": "personality.ocean_openness",
+          "label": "OCEAN Openness",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "personality.ocean_conscientiousness",
+          "label": "OCEAN Conscientiousness",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "personality.ocean_extraversion",
+          "label": "OCEAN Extraversion",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "personality.ocean_agreeableness",
+          "label": "OCEAN Agreeableness",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "personality.ocean_neuroticism",
+          "label": "OCEAN Neuroticism",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "personality.trust",
+          "label": "Trust",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "personality.warmth",
+          "label": "Warmth",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "personality.assertiveness",
+          "label": "Assertiveness",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "emotion_affect",
+      "label": "Emotion / Affect",
+      "status": "active",
+      "description": "Emotional reactivity and expression.",
+      "traits": [
+        {
+          "id": "emotion.baseline_mood",
+          "label": "Baseline Mood",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "emotion.regulation",
+          "label": "Emotion Regulation",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "emotion.empathy",
+          "label": "Empathy",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "emotion.optimism_pessimism",
+          "label": "Optimism vs Pessimism",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "social",
+      "label": "Social",
+      "status": "active",
+      "description": "Social interaction preferences.",
+      "traits": [
+        {
+          "id": "social.group_preference",
+          "label": "Group vs One-on-One",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "social.recharge_style",
+          "label": "Recharge Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "social.community_involvement",
+          "label": "Community Involvement",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "family_relationships",
+      "label": "Family & Relationships",
+      "status": "active",
+      "sensitive": true,
+      "description": "Family role and relationship patterns.",
+      "traits": [
+        {
+          "id": "relationships.marital_status",
+          "label": "Marital Status",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "relationships.parenting_style",
+          "label": "Parenting Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "relationships.family_closeness",
+          "label": "Closeness to Family",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "relationships.sibling_relationships",
+          "label": "Sibling Relationships",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "cognitive_style",
+      "label": "Cognitive Style",
+      "status": "active",
+      "description": "Thinking/processing preferences.",
+      "traits": [
+        {
+          "id": "cognitive.analytical_holistic",
+          "label": "Analytical vs Holistic",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "cognitive.visual_verbal",
+          "label": "Visual vs Verbal",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "cognitive.detail_big_picture",
+          "label": "Detail vs Big Picture",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "cognitive.decision_speed",
+          "label": "Decision Speed",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "cognitive.ambiguity_tolerance",
+          "label": "Ambiguity Tolerance",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "work_professional",
+      "label": "Work / Professional",
+      "status": "active",
+      "description": "Occupational orientation.",
+      "traits": [
+        {
+          "id": "work.industry",
+          "label": "Industry",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "work.role",
+          "label": "Role",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "work.leadership_style",
+          "label": "Leadership Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "work.team_orientation",
+          "label": "Teamwork Orientation",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "work.remote_on_site",
+          "label": "Remote vs On-site",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "work.career_stage",
+          "label": "Career Stage",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "taste_entertainment",
+      "label": "Taste / Entertainment",
+      "status": "active",
+      "description": "Cultural and leisure preferences.",
+      "traits": [
+        {
+          "id": "taste.music_genres",
+          "label": "Music Genres",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "taste.film_tv",
+          "label": "Film & TV",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "taste.book_types",
+          "label": "Book Types",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "taste.gaming_genres",
+          "label": "Gaming Genres",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "taste.food_drink",
+          "label": "Food & Drink",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "taste.subculture_fandoms",
+          "label": "Subculture Fandoms",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "gaming",
+      "label": "Gaming",
+      "status": "active",
+      "description": "Play styles and affinities.",
+      "traits": [
+        {
+          "id": "gaming.play_style",
+          "label": "Play Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "gaming.platform",
+          "label": "Platform",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "gaming.favorite_genres",
+          "label": "Favorite Genres",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "gaming.play_frequency",
+          "label": "Play Frequency",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "health",
+      "label": "Health",
+      "status": "active",
+      "sensitive": true,
+      "description": "Physical and mental health indicators.",
+      "traits": [
+        {
+          "id": "health.exercise_frequency",
+          "label": "Exercise Frequency",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "health.sleep_quality",
+          "label": "Sleep Quality",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "health.dietary_habits",
+          "label": "Dietary Habits",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "health.stress_management",
+          "label": "Stress Management",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "health.chronic_conditions",
+          "label": "Chronic Conditions",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "label": "Finance",
+      "status": "active",
+      "sensitive": true,
+      "description": "Financial orientation and literacy.",
+      "traits": [
+        {
+          "id": "finance.budgeting_style",
+          "label": "Budgeting Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "finance.investing_risk_tolerance",
+          "label": "Investing Risk Tolerance",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "finance.debt_orientation",
+          "label": "Debt Orientation",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "finance.insurance_awareness",
+          "label": "Insurance Awareness",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "routine_lifestyle",
+      "label": "Routine / Lifestyle",
+      "status": "active",
+      "description": "Daily patterns.",
+      "traits": [
+        {
+          "id": "lifestyle.wake_schedule",
+          "label": "Wake Schedule",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "lifestyle.sleep_schedule",
+          "label": "Sleep Schedule",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "lifestyle.commuting_style",
+          "label": "Commuting Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "lifestyle.household_composition",
+          "label": "Household Composition",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "lifestyle.leisure_allocation",
+          "label": "Leisure Allocation",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "label": "Learning",
+      "status": "active",
+      "description": "Learning preferences.",
+      "traits": [
+        {
+          "id": "learning.self_paced_structured",
+          "label": "Self-paced vs Structured",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "learning.mentor_peer",
+          "label": "Mentor vs Peer",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "learning.lifelong_openness",
+          "label": "Lifelong Learning Openness",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "learning.subject_interests",
+          "label": "Subject Interests",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "behavior",
+      "label": "Behavior",
+      "status": "active",
+      "description": "Observable actions.",
+      "traits": [
+        {
+          "id": "behavior.punctuality",
+          "label": "Punctuality",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "behavior.follow_through",
+          "label": "Follow-through",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "behavior.adaptability",
+          "label": "Adaptability",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "behavior.conflict_style",
+          "label": "Conflict Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "values_beliefs",
+      "label": "Values / Beliefs",
+      "status": "active",
+      "sensitive": true,
+      "description": "Core guiding values.",
+      "traits": [
+        {
+          "id": "values.honesty",
+          "label": "Honesty",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "values.independence",
+          "label": "Independence",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "values.altruism",
+          "label": "Altruism",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "values.equality",
+          "label": "Equality",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "values.loyalty",
+          "label": "Loyalty",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "digital_technology",
+      "label": "Digital / Technology",
+      "status": "active",
+      "description": "Digital literacy and orientation.",
+      "traits": [
+        {
+          "id": "digital.adoption_style",
+          "label": "Adoption Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "digital.device_ecosystem",
+          "label": "Device Ecosystem",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "digital.cyber_hygiene",
+          "label": "Cybersecurity Hygiene",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "digital.privacy_sensitivity",
+          "label": "Privacy Sensitivity",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "cultural_civic",
+      "label": "Cultural / Civic Engagement",
+      "status": "active",
+      "sensitive": true,
+      "description": "Broader cultural and societal identity.",
+      "traits": [
+        {
+          "id": "cultural.heritage",
+          "label": "Heritage",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "cultural.traditions",
+          "label": "Traditions",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "cultural.spiritual_practice",
+          "label": "Religious / Spiritual Practice",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "cultural.political_orientation",
+          "label": "Political Orientation",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "cultural.civic_engagement",
+          "label": "Civic Engagement",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "environmental_orientation",
+      "label": "Environmental Orientation",
+      "status": "active",
+      "description": "Attitudes toward sustainability/environment.",
+      "traits": [
+        {
+          "id": "environmental.eco_habits",
+          "label": "Eco Habits",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "environmental.recycling",
+          "label": "Recycling Practices",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "environmental.carbon_awareness",
+          "label": "Carbon Awareness",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "environmental.climate_concern",
+          "label": "Climate Concern",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "motivations_goals",
+      "label": "Motivations / Goals",
+      "status": "active",
+      "description": "Life goals and motivational drivers.",
+      "traits": [
+        {
+          "id": "motivation.intrinsic_extrinsic",
+          "label": "Intrinsic vs Extrinsic",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "motivation.novelty_seeking",
+          "label": "Novelty Seeking",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "motivation.mastery",
+          "label": "Mastery Orientation",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "motivation.time_horizon",
+          "label": "Long vs Short-term Focus",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "safety_risk",
+      "label": "Safety / Risk",
+      "status": "active",
+      "description": "Safety, risk, and resilience.",
+      "traits": [
+        {
+          "id": "safety.physical_risk_taking",
+          "label": "Physical Risk-taking",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "safety.resilience_grit",
+          "label": "Resilience / Grit",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "safety.change_orientation",
+          "label": "Change Orientation",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "safety.security_focus",
+          "label": "Security Focus",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "padna_advanced",
+      "label": "PaDNA \u2013 Advanced (granular)",
+      "status": "active",
+      "description": "Biometric-adjacent appearance signals captured across contexts.",
+      "sensitive": true,
+      "adaptive_weight": true,
+      "traits": [
+        {
+          "id": "padna_advanced.facial_landmarks",
+          "label": "Facial Landmarks",
+          "type": "profile",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna_advanced.eye_metrics",
+          "label": "Eye Metrics",
+          "type": "profile",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna_advanced.hair_micro_traits",
+          "label": "Hair Micro-Traits",
+          "type": "profile",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna_advanced.skin_micro_traits",
+          "label": "Skin Micro-Traits",
+          "type": "profile",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna_advanced.gait_posture",
+          "label": "Gait & Posture",
+          "type": "profile",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna_advanced.voice_fine_grain",
+          "label": "Voice Fine-Grain",
+          "type": "profile",
+          "default_curiosity": 1.0,
+          "default_decay": "slow",
+          "sensitivity_flag": true,
+          "sensitivity": "high",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna_advanced.cosmetics_presentation",
+          "label": "Cosmetics & Self-Presentation",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna_advanced.accessories_signals",
+          "label": "Accessories & Signals",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "padna_advanced.contextual_profiles",
+          "label": "Contextual Appearance Profiles",
+          "type": "profile",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "conversational_dynamics",
+      "label": "Conversational Dynamics",
+      "status": "active",
+      "description": "Observed timing and flow traits from guided conversations.",
+      "adaptive_weight": true,
+      "traits": [
+        {
+          "id": "conversation.response_latency",
+          "label": "Response Latency",
+          "type": "enum",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "conversation.turn_length",
+          "label": "Turn Length",
+          "type": "number",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "conversation.clarification_need",
+          "label": "Clarification Need",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "conversation.topic_stickiness",
+          "label": "Topic Stickiness",
+          "type": "enum",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "conversation.repair_patterns",
+          "label": "Repair Patterns",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "communication_tone",
+      "label": "Tone & Affect in Communication",
+      "status": "active",
+      "description": "Stylistic cues for tone, humor, and politeness during exchanges.",
+      "adaptive_weight": true,
+      "traits": [
+        {
+          "id": "tone.formality_gradient",
+          "label": "Formality Gradient",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "tone.sentiment_polarity",
+          "label": "Sentiment Polarity",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "tone.humor_style",
+          "label": "Humor Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "tone.aggression_assertiveness",
+          "label": "Aggression / Assertiveness",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "tone.politeness_strategies",
+          "label": "Politeness Strategies",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "interaction_preferences",
+      "label": "Interaction Preferences",
+      "status": "active",
+      "description": "Preferred cadence, framing, and avoidance cues during dialogue.",
+      "adaptive_weight": true,
+      "traits": [
+        {
+          "id": "interaction.cadence_preference",
+          "label": "Cadence Preference",
+          "type": "enum",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "interaction.aversive_triggers",
+          "label": "Aversive Triggers",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "interaction.preferred_framing",
+          "label": "Preferred Framing",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "interaction.closure_preference",
+          "label": "Closure Preference",
+          "type": "enum",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "cognitive_signatures",
+      "label": "Cognitive & Pragmatic Signatures",
+      "status": "active",
+      "description": "Interaction-derived markers of reasoning and answer handling.",
+      "adaptive_weight": true,
+      "traits": [
+        {
+          "id": "interaction.exploration_depth",
+          "label": "Exploration Depth",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "interaction.satisficing_vs_optimizing",
+          "label": "Satisficing vs Optimizing",
+          "type": "enum",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "interaction.tolerance_repetition",
+          "label": "Tolerance for Repetition",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "interaction.contradiction_handling",
+          "label": "Contradiction Handling Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "interaction.answer_consistency",
+          "label": "Consistency of Answers",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "rapport_markers",
+      "label": "Relational / Rapport Markers",
+      "status": "active",
+      "description": "Signals describing boundaries, empathy, and reciprocity with the coach.",
+      "adaptive_weight": true,
+      "traits": [
+        {
+          "id": "rapport.self_disclosure",
+          "label": "Self-Disclosure Tendency",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "rapport.boundary_signaling",
+          "label": "Boundary Signaling",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "rapport.reciprocity_patterns",
+          "label": "Reciprocity Patterns",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "rapport.empathy_signals",
+          "label": "Empathy Signals",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "rapport.attachment_signals",
+          "label": "Attachment Signals",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    },
+    {
+      "id": "meta_interaction_habits",
+      "label": "Meta-Interaction Habits",
+      "status": "active",
+      "description": "Higher-order patterns about how the user manages the interaction itself.",
+      "adaptive_weight": true,
+      "traits": [
+        {
+          "id": "meta.correction_behavior",
+          "label": "Correction Behavior",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "meta.patience_window",
+          "label": "Patience Window",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "meta.instruction_style",
+          "label": "Instruction Style",
+          "type": "text",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "meta.control_orientation",
+          "label": "Control Orientation",
+          "type": "enum",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        },
+        {
+          "id": "meta.trust_calibration",
+          "label": "Trust Calibration",
+          "type": "score",
+          "default_curiosity": 1.0,
+          "default_decay": "medium",
+          "sensitivity": "medium",
+          "default_ucn": 0.0
+        }
+      ]
+    }
+  ]
+}

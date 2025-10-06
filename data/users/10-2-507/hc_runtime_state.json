@@ -1,0 +1,13 @@
+{
+  "user_id": "10-2-507",
+  "last_member_ts": null,
+  "last_assistant_ts": "2025-10-02T21:49:48.711904+00:00",
+  "initialized_at": "2025-10-02T21:07:37.622783+00:00",
+  "last_init_ts": "2025-10-02T21:07:37.622783+00:00",
+  "last_user_ts": "2025-10-02T21:49:48.706000+00:00",
+  "last_user_text": "Hi",
+  "turns_observed": 1,
+  "dialog_history": [
+    "answer"
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Persona Contract Registry",
+  "type": "object",
+  "required": ["personas"],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "personas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "label", "role", "prompt_assets"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9_-]+$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "prompt_assets": {
+            "type": "object",
+            "required": ["system"],
+            "properties": {
+              "system": {
+                "type": ["string", "null"],
+                "minLength": 0
+              },
+              "opening": {
+                "type": ["string", "null"],
+                "minLength": 0
+              },
+              "source": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": true
+          },
+          "style_defaults": {
+            "type": "object",
+            "properties": {
+              "tone": {
+                "type": "string"
+              },
+              "formality": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "warmth": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "directness": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "micro_actions": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "additionalProperties": true
+          },
+          "style_presets": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            },
+            "default": []
+          },
+          "tone_presets": {
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "additionalProperties": true
+                },
+                {
+                  "type": "string",
+                  "minLength": 1
+                }
+              ]
+            },
+            "default": []
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "status": {
+            "type": "string"
+          },
+          "updated_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+          "provenance": {
+            "type": "object",
+            "default": {}
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

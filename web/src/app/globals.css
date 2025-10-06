@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  @apply antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background-color: theme('colors.hc.background');
+  color: theme('colors.slate.100');
+}
+
+body[data-hc-theme='dark'] {
+  @apply bg-hc-background text-slate-100;
+  color-scheme: dark;
+}
+
+body[data-hc-theme='light'] {
+  @apply bg-slate-100 text-slate-900;
+  color-scheme: light;
+}
+
+body[data-hc-theme='light'] .bg-hc-background {
+  background-color: theme('colors.slate.100');
+}
+
+body[data-hc-density='compact'] {
+  font-size: 14px;
+}
+
+body[data-hc-density='comfortable'] {
+  font-size: 16px;
+}
+
+main {
+  min-height: 100vh;
+}

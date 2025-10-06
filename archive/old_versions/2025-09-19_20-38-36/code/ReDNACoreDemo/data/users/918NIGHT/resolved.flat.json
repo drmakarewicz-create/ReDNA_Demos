@@ -1,0 +1,81 @@
+{
+  "rows": [
+    {
+      "trait_key": "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "value": "Blue",
+      "ucn": 120,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "LifeDNA.Relationship.MaritalStatus",
+      "value": "Married",
+      "ucn": 110,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "LifeDNA.Relationship.Partner.Name",
+      "value": "wife",
+      "ucn": 120,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "LifeDNA.Relationship.Partner.Gender",
+      "value": "Female",
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "BioDNA.Sex",
+      "value": "Male",
+      "ucn": 70,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "PaDNA.LooksDNA.HairDNA.Color",
+      "value": "Red",
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "PaDNA.LooksDNA.HairDNA.Bald",
+      "value": true,
+      "ucn": 85,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "BioDNA.Height",
+      "value": "6 feet",
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "PaDNA.LooksDNA.EyeDNA.Lash.Length",
+      "value": "long",
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "BioDNA.Physical.Weight",
+      "value": "200",
+      "ucn": 120,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "PaDNA.LooksDNA.SkinDNA.FrecklePattern",
+      "value": true,
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"ok":true,"service":"ucnrr","data_dir":"/Users/davidmakarewicz/Documents/ReDNA_Demos/UCN_RR_Demo/data","core_base":"http://127.0.0.1:8015","provider":"llama","model":"llama3","prompt_main":"/Users/davidmakarewicz/Documents/ReDNA_Demos/prompts/ucn_rr_ai.md","prompt_conf":"/Users/davidmakarewicz/Documents/ReDNA_Demos/prompts/ucn_rr_confidence.md","use_min_heuristics":false}

@@ -1,0 +1,296 @@
+{
+  "user_id": "ab-sep26",
+  "rows": [
+    {
+      "path": "SocDNA.Relationship.Status",
+      "value": "Married",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T19:59:58Z",
+        "original_path": "SocDNA.Relationship.Status",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 59.0,
+      "curiosity": 41.0,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Relationship.Status=Married",
+          "Holistic review normalization applied on 2025-09-26T20:01:39.688017+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-26T20:01:39.688017+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Relationship.Status",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Prefs.LanguagePrimary",
+      "value": "English",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T19:59:58Z",
+        "original_path": "SocDNA.Prefs.LanguagePrimary",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 59.0,
+      "curiosity": 41.0,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Prefs.LanguagePrimary=English",
+          "Holistic review normalization applied on 2025-09-26T20:01:39.688017+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-26T20:01:39.688017+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Prefs.LanguagePrimary",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Identity.Orientation",
+      "value": "Heterosexual",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T19:59:58Z",
+        "original_path": "SocDNA.Identity.Orientation",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 59.0,
+      "curiosity": 41.0,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Orientation=Heterosexual",
+          "Holistic review normalization applied on 2025-09-26T20:01:39.688017+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-26T20:01:39.688017+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Identity.Orientation",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Demographics.AgeRange",
+      "value": "25-34",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T19:59:58Z",
+        "original_path": "SocDNA.Demographics.AgeRange",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 59.0,
+      "curiosity": 41.0,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Demographics.AgeRange=25-34",
+          "Holistic review normalization applied on 2025-09-26T20:01:39.688017+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-26T20:01:39.688017+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Demographics.AgeRange",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Identity.Gender",
+      "value": "Female",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T19:59:58Z",
+        "original_path": "SocDNA.Identity.Gender",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 59.0,
+      "curiosity": 41.0,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Gender=Female",
+          "Holistic review normalization applied on 2025-09-26T20:01:39.688017+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-26T20:01:39.688017+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "SocDNA.Identity.Gender",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "PrefDNA.Bonding.Style",
+      "value": "A",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T19:59:58Z",
+        "original_path": "PrefDNA.Bonding.Style",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 59.0,
+      "curiosity": 41.0,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: PrefDNA.Bonding.Style=A",
+          "Holistic review normalization applied on 2025-09-26T20:01:39.688017+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-26T20:01:39.688017+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": "PrefDNA.Bonding.Style",
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "Personality.Traits.Introversion",
+      "value": "Introverted",
+      "value_type": "string",
+      "confidence": 0.12,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 120.0,
+      "reasons": [
+        "Strong evidence from new observations"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 8.327585000000001,
+      "curiosity": 91.672415,
+      "notes": {
+        "summary": "Low comparative confidence (6.89655 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-26T20:01:39.688017+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-26T20:01:39.688017+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    }
+  ],
+  "updated_ts": "2025-09-26T20:01:39.688017+00:00"
+}

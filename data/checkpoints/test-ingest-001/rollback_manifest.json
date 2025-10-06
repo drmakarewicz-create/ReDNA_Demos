@@ -1,0 +1,17 @@
+{
+  "captured_at": "2025-10-05T12:09:18.170848+00:00",
+  "resolved": {
+    "PaDNA.EyeDNA.IrisColor": {
+      "resolved_value": null,
+      "rr": 850.0,
+      "curiosity": 0.15
+    }
+  },
+  "evidence": {
+    "items": []
+  },
+  "observations": {
+    "items": [],
+    "by_trait": {}
+  }
+}

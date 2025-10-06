@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "bstest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Hi",
+  "assistant_text": "I logged that for the Head Coach board. You mentioned 'Hi'. Let's turn it into one concrete action to keep momentum going.",
+  "client_message_id": "e7a39d90-7c2c-4b2d-a8de-7651151c76f6",
+  "assistant_message_id": "chat-6dd6951ae0e64ecb8507b720b676e469",
+  "server_ts": "2025-10-04T12:45:15.401+00:00",
+  "server_ts_ms": 1759581915401,
+  "provider": "stub",
+  "source": "ui_chat_turn"
+}

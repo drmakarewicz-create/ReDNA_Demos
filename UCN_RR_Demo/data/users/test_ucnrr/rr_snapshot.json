@@ -1,0 +1,26 @@
+{
+  "ts": "20251005_082800",
+  "resolved": {
+    "PaDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Blue",
+      "ucn": 760.0,
+      "reasons": [
+        "heuristic"
+      ],
+      "notes": {
+        "summary": "Applied heuristic inference from user text.",
+        "evidence": [
+          "Canonical line: PaDNA.EyeDNA.IrisColor=Blue",
+          "Keyword match: blue + eye"
+        ],
+        "coach_instructions": [
+          "Ask the user to clarify this trait to replace heuristic inference."
+        ],
+        "data_gaps": [
+          "Obtain explicit statement or photo to replace heuristic inference."
+        ]
+      }
+    }
+  },
+  "observations": {}
+}

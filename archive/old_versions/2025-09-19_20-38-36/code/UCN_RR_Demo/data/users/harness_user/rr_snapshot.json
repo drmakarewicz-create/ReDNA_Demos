@@ -1,0 +1,62 @@
+{
+  "ts": "20250918_214340",
+  "resolved": {
+    "PaDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Dark Brown",
+      "ucn": 80,
+      "reasons": [
+        "explicit_color"
+      ]
+    },
+    "PaDNA.BodyDNA.Height.Centimeters": {
+      "resolved_value": 183,
+      "ucn": 60,
+      "reasons": [
+        "height_phrase"
+      ]
+    },
+    "SocDNA.Relationship.Status": {
+      "resolved_value": "Married",
+      "ucn": 80,
+      "reasons": [
+        "tenure_phrase"
+      ]
+    },
+    "SocDNA.Relationship.YearsMarried": {
+      "resolved_value": 25,
+      "ucn": 70,
+      "reasons": [
+        "tenure_phrase"
+      ]
+    },
+    "SocDNA.Relationship.MarriageYear": {
+      "resolved_value": 2000,
+      "ucn": 60,
+      "reasons": [
+        "derived_from_tenure"
+      ]
+    },
+    "PaDNA.HairDNA.Color": {
+      "resolved_value": "Red",
+      "ucn": 80,
+      "reasons": [
+        "explicit_color"
+      ]
+    },
+    "PaDNA.HairDNA.Bald": {
+      "resolved_value": true,
+      "ucn": 75,
+      "reasons": [
+        "balding_cue"
+      ]
+    },
+    "PaDNA.LooksDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Dark Brown",
+      "ucn": 120,
+      "reasons": [
+        "explicit eye color"
+      ]
+    }
+  },
+  "observations": {}
+}

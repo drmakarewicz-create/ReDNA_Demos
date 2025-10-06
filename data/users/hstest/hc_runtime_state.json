@@ -1,0 +1,19 @@
+{
+  "last_user_ts": "2025-10-04T23:06:34.821000+00:00",
+  "last_user_text": "I have two dogs",
+  "turns_observed": 5,
+  "dialog_history": [
+    "answer",
+    "answer",
+    "answer",
+    "answer",
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-04T23:06:34.825377+00:00",
+  "latency_history_ms": [
+    3833158,
+    416206,
+    171126,
+    64208
+  ]
+}

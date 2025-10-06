@@ -1,0 +1,25 @@
+{
+  "ts": "20250928_164853",
+  "resolved": {
+    "devexp_ping": {
+      "resolved_value": "294d100a-9162-46fa-8f7a-f412d0a9537c",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: devexp_ping=294d100a-9162-46fa-8f7a-f412d0a9537c"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    }
+  },
+  "observations": {}
+}

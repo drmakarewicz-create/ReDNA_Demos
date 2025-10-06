@@ -1,0 +1,10 @@
+{
+  "core_users_list": null,
+  "core_users_create": null,
+  "core_resolved": "/resolved/{uid}",
+  "core_flush": "/ingest_from_ucnrr",
+  "ucnrr_infer": "/ingest_text",
+  "ucnrr_users_create": null,
+  "core_health": "/health",
+  "ucnrr_health": "/health"
+}

@@ -1,0 +1,43 @@
+{
+  "type": "chat_turn",
+  "ts": 1759703196190,
+  "user_id": "TEST",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "testtest3",
+    "ts": 1759703196186
+  },
+  "assistant": {
+    "text": "I'm glad we were able to reconnect! It sounds like Archie and George are quite the dynamic duo. I'm curious - what's been the most entertaining mischief they've gotten into lately? Also, since you said no to connecting with our PaDNA Coach, let's focus on just enjoying this conversation!",
+    "ts": 1759703196190,
+    "message_id": "chat-9d6cfd088b6441a3b5a8f70f57a12295"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/TEST/observations.json",
+  "metrics": {
+    "response_latency_ms": 34777,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 1,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.74,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 1661632.3,
+    "rolling_latency_median_ms": 112040.0,
+    "latency_histogram": {
+      "slow": 50
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "answer": 37,
+      "question": 13
+    },
+    "priority": 0.8
+  }
+}

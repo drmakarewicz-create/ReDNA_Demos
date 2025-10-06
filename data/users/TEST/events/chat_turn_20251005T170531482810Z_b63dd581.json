@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What were we talking about last time?",
+  "assistant_text": "Sounds like you're trying to recall our previous conversation! Don't worry if it's fuzzy - I'm here to catch up with you now. It seems like TV shows are still on your mind, so what do you think of the latest season of American Horror Story?",
+  "client_message_id": "6d52eeaa-bf4b-424e-95a8-d615f1d3c63a",
+  "assistant_message_id": "chat-20d76bbc7ef04915ad9b57ad5713b072",
+  "server_ts": "2025-10-05T17:05:31.482+00:00",
+  "server_ts_ms": 1759683931482,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

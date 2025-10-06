@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I like south park",
+  "assistant_text": "Ahah, South Park is hilarious! What's your favorite episode or character in the show? \n\n(And if you want, we can even discuss a fun way to create a South Park-style comic strip of yourself - our Photo Coach has some great ideas on that!)",
+  "client_message_id": "19f3d495-601c-48b6-bc16-ed2dbd4764ad",
+  "assistant_message_id": "chat-2bfa12d62d4d45909c94d625bf3f9a4b",
+  "server_ts": "2025-10-05T13:21:37.328+00:00",
+  "server_ts_ms": 1759670497328,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

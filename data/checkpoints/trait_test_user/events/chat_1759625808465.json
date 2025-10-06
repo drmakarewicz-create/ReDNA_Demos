@@ -1,0 +1,43 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625808465,
+  "user_id": "trait_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Any movie recommendations?",
+    "ts": 1759625808460
+  },
+  "assistant": {
+    "text": "I'd be happy to suggest some movies! Since you mentioned you love comedies and sci-fi shows, I think you might enjoy \"Guardians of the Galaxy\" or \"The Hitchhiker's Guide to the Galaxy\". If you're in the mood for something a bit more recent, I've heard great things about \"Everything Everywhere All at Once\".\n\n(Note: keeping the conversation light and focused on their interests)",
+    "ts": 1759625808465,
+    "message_id": "chat-86028a203eaa47eea8ec53046e8e55e1"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/trait_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 6495,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 3,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.54,
+    "assertiveness_score": 0.0,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 7945.666666666667,
+    "rolling_latency_median_ms": 6495.0,
+    "latency_histogram": {
+      "steady": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 2,
+      "question": 2
+    },
+    "priority": 0.8
+  }
+}

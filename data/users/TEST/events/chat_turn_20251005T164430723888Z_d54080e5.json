@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What should we do?",
+  "assistant_text": "It sounds like you're curious about our conversation! I'm here for whatever you'd like to discuss. Want to keep talking about South Park or something else entirely? If you want, we could explore some new TV shows that might interest you \u2013 I've heard great things about Rick and Morty lately.",
+  "client_message_id": "5e8d1490-cb01-4be8-b677-26bfda0cc140",
+  "assistant_message_id": "chat-b3cdc4d032f54827a9703ac516e0dfc5",
+  "server_ts": "2025-10-05T16:44:30.723+00:00",
+  "server_ts_ms": 1759682670723,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

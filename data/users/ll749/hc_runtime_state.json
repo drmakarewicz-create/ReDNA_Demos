@@ -1,0 +1,9 @@
+{
+  "last_user_ts": "2025-10-03T12:16:22.227000+00:00",
+  "last_user_text": "Hi",
+  "turns_observed": 1,
+  "dialog_history": [
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-03T12:16:22.233088+00:00"
+}

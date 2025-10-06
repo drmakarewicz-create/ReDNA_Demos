@@ -1,0 +1,912 @@
+{
+  "user_id": "MRSCOACH-EXP",
+  "ran_at": "2025-09-25T12:15:20.836291+00:00",
+  "async": false,
+  "counts": {
+    "ucn_rr_updates": 58,
+    "implied_additions": 1,
+    "contradictions": 0
+  },
+  "paths": {
+    "all": [
+      "PaDNA.AgeRange",
+      "PaDNA.BodyDNA.BodyType",
+      "PaDNA.BodyDNA.Distinctive",
+      "PaDNA.BodyDNA.Flexibility",
+      "PaDNA.BodyDNA.Gait",
+      "PaDNA.BodyDNA.Height",
+      "PaDNA.BodyDNA.Posture",
+      "PaDNA.BodyDNA.Ratios",
+      "PaDNA.BodyDNA.Weight",
+      "PaDNA.Emotion.Type",
+      "PaDNA.EyeDNA.Brows",
+      "PaDNA.EyeDNA.Distinctive",
+      "PaDNA.EyeDNA.EyelidCrease",
+      "PaDNA.EyeDNA.Heterochromia",
+      "PaDNA.EyeDNA.IrisColor",
+      "PaDNA.EyeDNA.Lashes",
+      "PaDNA.EyeDNA.Shape",
+      "PaDNA.EyeDNA.Size",
+      "PaDNA.FacialDNA.Cheeks",
+      "PaDNA.FacialDNA.Chin",
+      "PaDNA.FacialDNA.Distinctive",
+      "PaDNA.FacialDNA.Ears",
+      "PaDNA.FacialDNA.FaceShape",
+      "PaDNA.FacialDNA.FacialHair",
+      "PaDNA.FacialDNA.Forehead",
+      "PaDNA.FacialDNA.Jawline",
+      "PaDNA.FacialDNA.Lips",
+      "PaDNA.FacialDNA.Nose",
+      "PaDNA.FacialDNA.Symmetry",
+      "PaDNA.FacialDNA.Teeth",
+      "PaDNA.Gender",
+      "PaDNA.HairDNA.Bald",
+      "PaDNA.HairDNA.Color",
+      "PaDNA.HairDNA.Condition",
+      "PaDNA.HairDNA.Density",
+      "PaDNA.HairDNA.Distinctive",
+      "PaDNA.HairDNA.DyedColor",
+      "PaDNA.HairDNA.Hairline",
+      "PaDNA.HairDNA.Length",
+      "PaDNA.HairDNA.Part",
+      "PaDNA.HairDNA.PatternChange",
+      "PaDNA.HairDNA.Style",
+      "PaDNA.HairDNA.Texture",
+      "PaDNA.Inferred.ApparentAgeBand",
+      "PaDNA.Inferred.StyleProfile",
+      "PaDNA.Interests",
+      "PaDNA.Language",
+      "PaDNA.Orientation",
+      "PaDNA.Person.Gender",
+      "PaDNA.Relationship.Status",
+      "PaDNA.RelationshipStatus",
+      "PaDNA.SkinDNA.Birthmarks",
+      "PaDNA.SkinDNA.Conditions",
+      "PaDNA.SkinDNA.Freckles",
+      "PaDNA.SkinDNA.Moles",
+      "PaDNA.SkinDNA.SunBehavior",
+      "PaDNA.SkinDNA.Texture",
+      "PaDNA.SkinDNA.Tone",
+      "PaDNA.SkinDNA.Undertone"
+    ],
+    "ucn_rr_updates": [
+      "PaDNA.Gender",
+      "PaDNA.Orientation",
+      "PaDNA.AgeRange",
+      "PaDNA.Language",
+      "PaDNA.RelationshipStatus",
+      "PaDNA.BodyDNA.BodyType",
+      "PaDNA.BodyDNA.Distinctive",
+      "PaDNA.BodyDNA.Flexibility",
+      "PaDNA.BodyDNA.Gait",
+      "PaDNA.BodyDNA.Height",
+      "PaDNA.BodyDNA.Posture",
+      "PaDNA.BodyDNA.Ratios",
+      "PaDNA.BodyDNA.Weight",
+      "PaDNA.EyeDNA.Brows",
+      "PaDNA.EyeDNA.Heterochromia",
+      "PaDNA.EyeDNA.IrisColor",
+      "PaDNA.EyeDNA.Lashes",
+      "PaDNA.EyeDNA.Shape",
+      "PaDNA.EyeDNA.Size",
+      "PaDNA.EyeDNA.Distinctive",
+      "PaDNA.FacialDNA.Cheeks",
+      "PaDNA.FacialDNA.Chin",
+      "PaDNA.FacialDNA.Ears",
+      "PaDNA.FacialDNA.FaceShape",
+      "PaDNA.FacialDNA.FacialHair",
+      "PaDNA.FacialDNA.Forehead",
+      "PaDNA.FacialDNA.Jawline",
+      "PaDNA.FacialDNA.Lips",
+      "PaDNA.FacialDNA.Nose",
+      "PaDNA.FacialDNA.Symmetry",
+      "PaDNA.FacialDNA.Teeth",
+      "PaDNA.FacialDNA.Distinctive",
+      "PaDNA.HairDNA.Bald",
+      "PaDNA.HairDNA.Color",
+      "PaDNA.HairDNA.Condition",
+      "PaDNA.HairDNA.Density",
+      "PaDNA.HairDNA.Distinctive",
+      "PaDNA.HairDNA.DyedColor",
+      "PaDNA.HairDNA.Hairline",
+      "PaDNA.HairDNA.Length",
+      "PaDNA.HairDNA.Part",
+      "PaDNA.HairDNA.PatternChange",
+      "PaDNA.HairDNA.Style",
+      "PaDNA.HairDNA.Texture",
+      "PaDNA.SkinDNA.Birthmarks",
+      "PaDNA.SkinDNA.Conditions",
+      "PaDNA.SkinDNA.Freckles",
+      "PaDNA.SkinDNA.Moles",
+      "PaDNA.SkinDNA.SunBehavior",
+      "PaDNA.SkinDNA.Texture",
+      "PaDNA.SkinDNA.Tone",
+      "PaDNA.SkinDNA.Undertone",
+      "PaDNA.Inferred.ApparentAgeBand",
+      "PaDNA.Inferred.StyleProfile",
+      "PaDNA.Interests",
+      "PaDNA.Relationship.Status",
+      "PaDNA.Person.Gender",
+      "PaDNA.Emotion.Type"
+    ],
+    "implied": [
+      "PaDNA.EyeDNA.EyelidCrease"
+    ],
+    "contradictions": []
+  },
+  "implied_reasons": {
+    "PaDNA.EyeDNA.EyelidCrease": "eye_shape_to_crease"
+  },
+  "report": {
+    "ok": true,
+    "user_id": "MRSCOACH-EXP",
+    "time_ms": 2.005,
+    "async_": false,
+    "ucn_rr_updates": [
+      {
+        "path": "PaDNA.Gender",
+        "old": {
+          "ucn": 830.0,
+          "rr": 77.27273,
+          "curiosity": 22.727270000000004
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 75.34091099999999,
+          "curiosity": 24.65908900000001
+        }
+      },
+      {
+        "path": "PaDNA.Orientation",
+        "old": {
+          "ucn": 830.0,
+          "rr": 82.72727,
+          "curiosity": 17.272729999999996
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 79.15908900000001,
+          "curiosity": 20.84091099999999
+        }
+      },
+      {
+        "path": "PaDNA.AgeRange",
+        "old": {
+          "ucn": 830.0,
+          "rr": 70.0,
+          "curiosity": 30.0
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 70.25,
+          "curiosity": 29.75
+        }
+      },
+      {
+        "path": "PaDNA.Language",
+        "old": {
+          "ucn": 830.0,
+          "rr": 81.48148,
+          "curiosity": 18.518519999999995
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 78.287036,
+          "curiosity": 21.712964
+        }
+      },
+      {
+        "path": "PaDNA.RelationshipStatus",
+        "old": {
+          "ucn": 830.0,
+          "rr": 69.09091,
+          "curiosity": 30.909090000000006
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 69.613637,
+          "curiosity": 30.386363000000003
+        }
+      },
+      {
+        "path": "PaDNA.BodyDNA.BodyType",
+        "old": {
+          "ucn": 820.0,
+          "rr": 79.62963,
+          "curiosity": 20.370369999999994
+        },
+        "new": {
+          "ucn": 820.0,
+          "rr": 76.740741,
+          "curiosity": 23.259259
+        }
+      },
+      {
+        "path": "PaDNA.BodyDNA.Distinctive",
+        "old": {
+          "ucn": 760.0,
+          "rr": 55.55556,
+          "curiosity": 44.44444
+        },
+        "new": {
+          "ucn": 760.0,
+          "rr": 58.388892,
+          "curiosity": 41.611108
+        }
+      },
+      {
+        "path": "PaDNA.BodyDNA.Flexibility",
+        "old": {
+          "ucn": 120.0,
+          "rr": 0.0,
+          "curiosity": 100.0
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      },
+      {
+        "path": "PaDNA.BodyDNA.Gait",
+        "old": {
+          "ucn": 120.0,
+          "rr": 0.0,
+          "curiosity": 100.0
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      },
+      {
+        "path": "PaDNA.BodyDNA.Height",
+        "old": {
+          "ucn": 450.0,
+          "rr": 14.81481,
+          "curiosity": 85.18519
+        },
+        "new": {
+          "ucn": 450.0,
+          "rr": 22.120366999999998,
+          "curiosity": 77.879633
+        }
+      },
+      {
+        "path": "PaDNA.BodyDNA.Posture",
+        "old": {
+          "ucn": 690.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 690.0,
+          "rr": 52.75,
+          "curiosity": 47.25
+        }
+      },
+      {
+        "path": "PaDNA.BodyDNA.Ratios",
+        "old": {
+          "ucn": 640.0,
+          "rr": 37.03704,
+          "curiosity": 62.96296
+        },
+        "new": {
+          "ucn": 640.0,
+          "rr": 42.425928,
+          "curiosity": 57.574072
+        }
+      },
+      {
+        "path": "PaDNA.BodyDNA.Weight",
+        "old": {
+          "ucn": 180.0,
+          "rr": 0.0,
+          "curiosity": 100.0
+        },
+        "new": {
+          "ucn": 180.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      },
+      {
+        "path": "PaDNA.EyeDNA.Brows",
+        "old": {
+          "ucn": 720.0,
+          "rr": 61.11111,
+          "curiosity": 38.88889
+        },
+        "new": {
+          "ucn": 720.0,
+          "rr": 61.27777699999999,
+          "curiosity": 38.72222300000001
+        }
+      },
+      {
+        "path": "PaDNA.EyeDNA.Heterochromia",
+        "old": {
+          "ucn": 900.0,
+          "rr": 88.88889,
+          "curiosity": 11.111109999999996
+        },
+        "new": {
+          "ucn": 900.0,
+          "rr": 85.222223,
+          "curiosity": 14.777777
+        }
+      },
+      {
+        "path": "PaDNA.EyeDNA.IrisColor",
+        "old": {
+          "ucn": 700.0,
+          "rr": 25.92593,
+          "curiosity": 74.07407
+        },
+        "new": {
+          "ucn": 700.0,
+          "rr": 34.898151,
+          "curiosity": 65.101849
+        }
+      },
+      {
+        "path": "PaDNA.EyeDNA.Lashes",
+        "old": {
+          "ucn": 640.0,
+          "rr": 27.77778,
+          "curiosity": 72.22222
+        },
+        "new": {
+          "ucn": 640.0,
+          "rr": 35.944446,
+          "curiosity": 64.055554
+        }
+      },
+      {
+        "path": "PaDNA.EyeDNA.Shape",
+        "old": {
+          "ucn": 710.0,
+          "rr": 51.85185,
+          "curiosity": 48.14815
+        },
+        "new": {
+          "ucn": 710.0,
+          "rr": 54.546294999999986,
+          "curiosity": 45.453705000000014
+        }
+      },
+      {
+        "path": "PaDNA.EyeDNA.Size",
+        "old": {
+          "ucn": 720.0,
+          "rr": 61.11111,
+          "curiosity": 38.88889
+        },
+        "new": {
+          "ucn": 720.0,
+          "rr": 61.27777699999999,
+          "curiosity": 38.72222300000001
+        }
+      },
+      {
+        "path": "PaDNA.EyeDNA.Distinctive",
+        "old": {
+          "ucn": 650.0,
+          "rr": 48.0,
+          "curiosity": 52.0
+        },
+        "new": {
+          "ucn": 650.0,
+          "rr": 50.349999999999994,
+          "curiosity": 49.650000000000006
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Cheeks",
+        "old": {
+          "ucn": 780.0,
+          "rr": 77.77778,
+          "curiosity": 22.222219999999993
+        },
+        "new": {
+          "ucn": 780.0,
+          "rr": 74.444446,
+          "curiosity": 25.555554
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Chin",
+        "old": {
+          "ucn": 650.0,
+          "rr": 33.33333,
+          "curiosity": 66.66667000000001
+        },
+        "new": {
+          "ucn": 650.0,
+          "rr": 40.083330999999994,
+          "curiosity": 59.916669000000006
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Ears",
+        "old": {
+          "ucn": 610.0,
+          "rr": 25.92593,
+          "curiosity": 74.07407
+        },
+        "new": {
+          "ucn": 610.0,
+          "rr": 33.898151,
+          "curiosity": 66.101849
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.FaceShape",
+        "old": {
+          "ucn": 650.0,
+          "rr": 25.92593,
+          "curiosity": 74.07407
+        },
+        "new": {
+          "ucn": 650.0,
+          "rr": 34.898151,
+          "curiosity": 65.101849
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.FacialHair",
+        "old": {
+          "ucn": 940.0,
+          "rr": 88.88889,
+          "curiosity": 11.111109999999996
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 86.222223,
+          "curiosity": 13.777777
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Forehead",
+        "old": {
+          "ucn": 620.0,
+          "rr": 25.92593,
+          "curiosity": 74.07407
+        },
+        "new": {
+          "ucn": 620.0,
+          "rr": 34.148151,
+          "curiosity": 65.851849
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Jawline",
+        "old": {
+          "ucn": 640.0,
+          "rr": 31.48148,
+          "curiosity": 68.51852
+        },
+        "new": {
+          "ucn": 640.0,
+          "rr": 38.537036,
+          "curiosity": 61.462964
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Lips",
+        "old": {
+          "ucn": 700.0,
+          "rr": 31.48148,
+          "curiosity": 68.51852
+        },
+        "new": {
+          "ucn": 700.0,
+          "rr": 40.037036,
+          "curiosity": 59.962964
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Nose",
+        "old": {
+          "ucn": 670.0,
+          "rr": 31.48148,
+          "curiosity": 68.51852
+        },
+        "new": {
+          "ucn": 670.0,
+          "rr": 39.287036,
+          "curiosity": 60.712964
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Symmetry",
+        "old": {
+          "ucn": 600.0,
+          "rr": 25.92593,
+          "curiosity": 74.07407
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 33.648151,
+          "curiosity": 66.351849
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Teeth",
+        "old": {
+          "ucn": 720.0,
+          "rr": 57.40741,
+          "curiosity": 42.59259
+        },
+        "new": {
+          "ucn": 720.0,
+          "rr": 58.685187,
+          "curiosity": 41.314813
+        }
+      },
+      {
+        "path": "PaDNA.FacialDNA.Distinctive",
+        "old": {
+          "ucn": 680.0,
+          "rr": 46.0,
+          "curiosity": 54.0
+        },
+        "new": {
+          "ucn": 680.0,
+          "rr": 49.69999999999999,
+          "curiosity": 50.30000000000001
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Bald",
+        "old": {
+          "ucn": 980.0,
+          "rr": 92.59259,
+          "curiosity": 7.407409999999999
+        },
+        "new": {
+          "ucn": 980.0,
+          "rr": 89.814813,
+          "curiosity": 10.185186999999999
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Color",
+        "old": {
+          "ucn": 850.0,
+          "rr": 70.37037,
+          "curiosity": 29.629630000000006
+        },
+        "new": {
+          "ucn": 850.0,
+          "rr": 70.47354471428571,
+          "curiosity": 29.52645528571429
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Condition",
+        "old": {
+          "ucn": 680.0,
+          "rr": 59.25926,
+          "curiosity": 40.74074
+        },
+        "new": {
+          "ucn": 680.0,
+          "rr": 58.981481999999986,
+          "curiosity": 41.018518000000014
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Density",
+        "old": {
+          "ucn": 700.0,
+          "rr": 51.85185,
+          "curiosity": 48.14815
+        },
+        "new": {
+          "ucn": 700.0,
+          "rr": 54.29629499999999,
+          "curiosity": 45.70370500000001
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Distinctive",
+        "old": {
+          "ucn": 760.0,
+          "rr": 55.55556,
+          "curiosity": 44.44444
+        },
+        "new": {
+          "ucn": 760.0,
+          "rr": 58.388892,
+          "curiosity": 41.611108
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.DyedColor",
+        "old": {
+          "ucn": 720.0,
+          "rr": 53.7037,
+          "curiosity": 46.2963
+        },
+        "new": {
+          "ucn": 720.0,
+          "rr": 56.092589999999994,
+          "curiosity": 43.907410000000006
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Hairline",
+        "old": {
+          "ucn": 690.0,
+          "rr": 44.44444,
+          "curiosity": 55.55556
+        },
+        "new": {
+          "ucn": 690.0,
+          "rr": 48.861108,
+          "curiosity": 51.138892
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Length",
+        "old": {
+          "ucn": 830.0,
+          "rr": 68.51852,
+          "curiosity": 31.481480000000005
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 69.212964,
+          "curiosity": 30.787036
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Part",
+        "old": {
+          "ucn": 680.0,
+          "rr": 42.59259,
+          "curiosity": 57.40741
+        },
+        "new": {
+          "ucn": 680.0,
+          "rr": 47.314812999999994,
+          "curiosity": 52.685187000000006
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.PatternChange",
+        "old": {
+          "ucn": 650.0,
+          "rr": 33.33333,
+          "curiosity": 66.66667000000001
+        },
+        "new": {
+          "ucn": 650.0,
+          "rr": 40.083330999999994,
+          "curiosity": 59.916669000000006
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Style",
+        "old": {
+          "ucn": 700.0,
+          "rr": 48.14815,
+          "curiosity": 51.85185
+        },
+        "new": {
+          "ucn": 700.0,
+          "rr": 51.703705,
+          "curiosity": 48.296295
+        }
+      },
+      {
+        "path": "PaDNA.HairDNA.Texture",
+        "old": {
+          "ucn": 720.0,
+          "rr": 40.74074,
+          "curiosity": 59.25926
+        },
+        "new": {
+          "ucn": 720.0,
+          "rr": 47.018518,
+          "curiosity": 52.981482
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.Birthmarks",
+        "old": {
+          "ucn": 520.0,
+          "rr": 3.7037,
+          "curiosity": 96.2963
+        },
+        "new": {
+          "ucn": 520.0,
+          "rr": 16.09259,
+          "curiosity": 83.90741
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.Conditions",
+        "old": {
+          "ucn": 600.0,
+          "rr": 11.11111,
+          "curiosity": 88.88889
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 23.277777,
+          "curiosity": 76.722223
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.Freckles",
+        "old": {
+          "ucn": 680.0,
+          "rr": 35.18519,
+          "curiosity": 64.81481
+        },
+        "new": {
+          "ucn": 680.0,
+          "rr": 42.129633,
+          "curiosity": 57.870367
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.Moles",
+        "old": {
+          "ucn": 540.0,
+          "rr": 14.81481,
+          "curiosity": 85.18519
+        },
+        "new": {
+          "ucn": 540.0,
+          "rr": 24.370367,
+          "curiosity": 75.629633
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.SunBehavior",
+        "old": {
+          "ucn": 650.0,
+          "rr": 35.18519,
+          "curiosity": 64.81481
+        },
+        "new": {
+          "ucn": 650.0,
+          "rr": 41.379633,
+          "curiosity": 58.620367
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.Texture",
+        "old": {
+          "ucn": 640.0,
+          "rr": 31.48148,
+          "curiosity": 68.51852
+        },
+        "new": {
+          "ucn": 640.0,
+          "rr": 38.537036,
+          "curiosity": 61.462964
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.Tone",
+        "old": {
+          "ucn": 700.0,
+          "rr": 46.2963,
+          "curiosity": 53.7037
+        },
+        "new": {
+          "ucn": 700.0,
+          "rr": 50.40741,
+          "curiosity": 49.59259
+        }
+      },
+      {
+        "path": "PaDNA.SkinDNA.Undertone",
+        "old": {
+          "ucn": 750.0,
+          "rr": 61.11111,
+          "curiosity": 38.88889
+        },
+        "new": {
+          "ucn": 750.0,
+          "rr": 62.02777699999999,
+          "curiosity": 37.97222300000001
+        }
+      },
+      {
+        "path": "PaDNA.Inferred.ApparentAgeBand",
+        "old": {
+          "ucn": 520.0,
+          "rr": 10.0,
+          "curiosity": 90.0
+        },
+        "new": {
+          "ucn": 520.0,
+          "rr": 20.5,
+          "curiosity": 79.5
+        }
+      },
+      {
+        "path": "PaDNA.Inferred.StyleProfile",
+        "old": {
+          "ucn": 600.0,
+          "rr": 30.0,
+          "curiosity": 70.0
+        },
+        "new": {
+          "ucn": 600.0,
+          "rr": 36.5,
+          "curiosity": 63.5
+        }
+      },
+      {
+        "path": "PaDNA.Interests",
+        "old": {
+          "ucn": 120.0,
+          "rr": 0.0,
+          "curiosity": 100.0
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 5.0,
+          "curiosity": 95.0
+        }
+      },
+      {
+        "path": "PaDNA.Relationship.Status",
+        "old": {
+          "ucn": 830.0,
+          "rr": 82.0,
+          "curiosity": 18.0
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 78.65,
+          "curiosity": 21.349999999999994
+        }
+      },
+      {
+        "path": "PaDNA.Person.Gender",
+        "old": {
+          "ucn": 830.0,
+          "rr": 78.0,
+          "curiosity": 22.0
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 75.85,
+          "curiosity": 24.150000000000006
+        }
+      },
+      {
+        "path": "PaDNA.Emotion.Type",
+        "old": {
+          "ucn": 830.0,
+          "rr": 76.0,
+          "curiosity": 24.0
+        },
+        "new": {
+          "ucn": 830.0,
+          "rr": 74.45,
+          "curiosity": 25.549999999999997
+        }
+      }
+    ],
+    "implied_additions": [
+      {
+        "path": "PaDNA.EyeDNA.EyelidCrease",
+        "value": "Present",
+        "ucn": 280.0,
+        "reason": "eye_shape_to_crease"
+      }
+    ],
+    "contradictions": [],
+    "warnings": []
+  }
+}

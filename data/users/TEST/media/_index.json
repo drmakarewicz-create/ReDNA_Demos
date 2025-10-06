@@ -1,0 +1,20 @@
+{
+  "items": [
+    {
+      "id": "ed93baf2e1684fb09295056352abd5d1",
+      "filename": "ed93baf2e1684fb09295056352abd5d1_jennifera-glasses.jpg",
+      "original_name": "jennifera-glasses.jpg",
+      "content_type": "image/jpeg",
+      "size": 97446,
+      "uploaded_ts": "2025-10-03T07:55:09.559344+00:00"
+    },
+    {
+      "id": "4532b1350f874c4aac6e87b2f762a873",
+      "filename": "4532b1350f874c4aac6e87b2f762a873_mrscoac-superexp2.json",
+      "original_name": "mrscoac-superexp2.json",
+      "content_type": "application/json",
+      "size": 4102,
+      "uploaded_ts": "2025-10-01T02:58:18.109249+00:00"
+    }
+  ]
+}

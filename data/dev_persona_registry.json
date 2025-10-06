@@ -1,0 +1,114 @@
+[
+  {
+    "summary": {
+      "id": "padna_coach",
+      "name": "PaDNA Outbound Coach",
+      "role": "Packages confirmed PaDNA descriptors into outbound-ready avatars.",
+      "version": "0.2.0",
+      "accent_color": "#7C3AED"
+    },
+    "registration": {
+      "id": "padna_coach",
+      "version": "1.0.0",
+      "display_name": "PaDNA Outbound Coach",
+      "greeting_template": "Let\u2019s turn confirmed traits into an outbound-ready avatar.",
+      "handoff_intents": [
+        {
+          "phrase": "padna coach",
+          "match_type": "contains",
+          "reason": "explicit_call"
+        },
+        {
+          "phrase": "outbound coach",
+          "match_type": "contains",
+          "reason": "keyword"
+        },
+        {
+          "phrase": "avatar coach",
+          "match_type": "contains",
+          "reason": "keyword"
+        }
+      ],
+      "style_presets": [
+        {
+          "id": "storyteller",
+          "label": "Storyteller",
+          "description": "Rich narrative copy with light sensory details for outbound decks.",
+          "prompt_overrides": {}
+        },
+        {
+          "id": "brand_safe",
+          "label": "Brand-safe",
+          "description": "Polished tone with explicit consent reminders and caveats.",
+          "prompt_overrides": {}
+        },
+        {
+          "id": "high_energy",
+          "label": "High Energy",
+          "description": "Upbeat, launch-ready flavour for social or campaign teasers.",
+          "prompt_overrides": {}
+        }
+      ],
+      "metrics_keys": [
+        "outbound_variations",
+        "export_requests"
+      ]
+    }
+  },
+  {
+    "summary": {
+      "id": "photo_coach",
+      "name": "Photo Coach",
+      "role": "Analyzes uploaded photos and drafts PaDNA descriptors for review.",
+      "version": "0.2.0",
+      "accent_color": "#0F766E"
+    },
+    "registration": {
+      "id": "photo_coach",
+      "version": "1.0.0",
+      "display_name": "Photo Coach",
+      "greeting_template": "I\u2019ll review the photos and call out descriptors worth checking.",
+      "handoff_intents": [
+        {
+          "phrase": "photo coach",
+          "match_type": "contains",
+          "reason": "explicit_call"
+        },
+        {
+          "phrase": "photo",
+          "match_type": "contains",
+          "reason": "keyword"
+        },
+        {
+          "phrase": "image",
+          "match_type": "contains",
+          "reason": "keyword"
+        }
+      ],
+      "style_presets": [
+        {
+          "id": "evidence_first",
+          "label": "Evidence-first",
+          "description": "Lead with what the photo clearly shows before speculating.",
+          "prompt_overrides": {}
+        },
+        {
+          "id": "supportive",
+          "label": "Supportive",
+          "description": "Blend observations with gentle encouragement and next-step tips.",
+          "prompt_overrides": {}
+        },
+        {
+          "id": "minimal",
+          "label": "Minimal",
+          "description": "Only the essentials \u2014 rapid triage for analyst review.",
+          "prompt_overrides": {}
+        }
+      ],
+      "metrics_keys": [
+        "photo_descriptors",
+        "raw_candidates"
+      ]
+    }
+  }
+]

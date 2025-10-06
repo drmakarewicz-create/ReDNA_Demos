@@ -1,0 +1,19 @@
+questions:
+  - title: "Weekend adventure"
+    options:
+      A: "Spontaneous road trip with no set plans"
+      B: "Curated local food crawl with friends"
+      C: "Quiet cabin getaway for deep conversations"
+      D: "Volunteering together for a community cause"
+  - title: "Evening unwind"
+    options:
+      A: "Trying a new recipe together"
+      B: "Dance class or live music night"
+      C: "Cozy movie marathon"
+      D: "Brainstorming a shared bucket list"
+  - title: "Personal growth"
+    options:
+      A: "Fitness challenge partner-up"
+      B: "Book club for two"
+      C: "Mindfulness retreat"
+      D: "Building something creative"

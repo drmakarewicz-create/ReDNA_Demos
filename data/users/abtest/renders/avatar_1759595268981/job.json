@@ -1,0 +1,265 @@
+{
+  "job_id": "avatar_1759595268981",
+  "user_id": "abtest",
+  "created_at": "2025-10-04T16:27:48.984261+00:00",
+  "state": "done",
+  "rendering_traits": {
+    "PaDNA.HairDNA.Color": {
+      "value": "Dark Brown",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Highlights": {
+      "value": "Subtle Natural",
+      "ucn": 750.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Length": {
+      "value": "Medium To Long",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Texture": {
+      "value": "Wavy",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Volume": {
+      "value": "Medium To High",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.HairDNA.Style": {
+      "value": "Versatile",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.Color": {
+      "value": "Blue-Green",
+      "ucn": 980.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.Intensity": {
+      "value": "Vivid",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.Shape": {
+      "value": "Almond",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.Size": {
+      "value": "Large",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.EyeSpacing": {
+      "value": "Average",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.EyebrowDNA.Color": {
+      "value": "Dark Brown",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.EyebrowDNA.Shape": {
+      "value": "Arched",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.EyebrowDNA.Thickness": {
+      "value": "Medium",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "value": "Fair",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.SkinDNA.Undertone": {
+      "value": "Cool To Neutral",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.SkinDNA.Texture": {
+      "value": "Smooth",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.SkinDNA.Clarity": {
+      "value": "Clear",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.FaceShape": {
+      "value": "Heart",
+      "ucn": 920.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.Cheekbones": {
+      "value": "High And Defined",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.Jawline": {
+      "value": "Refined And Narrow",
+      "ucn": 920.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.ChinShape": {
+      "value": "Pointed",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.ForeheadWidth": {
+      "value": "Wide",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.FacialSymmetry": {
+      "value": "High",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.Nose.Shape": {
+      "value": "Straight And Refined",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.Nose.Size": {
+      "value": "Small",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.Nose.BridgeWidth": {
+      "value": "Narrow",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.Lips.Fullness": {
+      "value": "Medium",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.Lips.Shape": {
+      "value": "Well-Defined",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.Lips.NaturalColor": {
+      "value": "Pink",
+      "ucn": 800.0,
+      "rr": 0
+    },
+    "PaDNA.NeckDNA.Length": {
+      "value": "Medium To Long",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.NeckDNA.Width": {
+      "value": "Slender",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Build": {
+      "value": "Slender",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Frame": {
+      "value": "Petite To Average",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.BoneStructure": {
+      "value": "Delicate",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Shoulders": {
+      "value": "Narrow",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.BodyDNA.Proportions": {
+      "value": "Balanced",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.StyleDNA.ColorPreference": {
+      "value": "Bold And Bright",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.StyleDNA.RedPreference": {
+      "value": "High",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.StyleDNA.StyleRange": {
+      "value": "Versatile",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.StyleDNA.NecklinePreference": {
+      "value": "V-Neck And Plunging",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.MakeupDNA.EyeMakeup": {
+      "value": "Defined",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.MakeupDNA.LipColor": {
+      "value": "Pink To Rose",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.MakeupDNA.MakeupStyle": {
+      "value": "Polished And Defined",
+      "ucn": 900.0,
+      "rr": 0
+    },
+    "PaDNA.AccessoryDNA.Earrings": {
+      "value": "Statement Pieces",
+      "ucn": 850.0,
+      "rr": 0
+    },
+    "PaDNA.AccessoryDNA.Necklaces": {
+      "value": "Delicate",
+      "ucn": 750.0,
+      "rr": 0
+    },
+    "PaDNA.EyeDNA.ColorIntensity": {
+      "value": "Striking",
+      "ucn": 980.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.CheekboneProminence": {
+      "value": "Extremely Prominent",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.JawlineWidth": {
+      "value": "Narrow",
+      "ucn": 950.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.ChinWidth": {
+      "value": "Narrow",
+      "ucn": 920.0,
+      "rr": 0
+    },
+    "PaDNA.FacialDNA.FeatureRefinement": {
+      "value": "Very Delicate",
+      "ucn": 950.0,
+      "rr": 0
+    }
+  },
+  "result_path": "renders/avatar_1759595268981/result.png",
+  "download_url": "/ui/render/download/abtest/avatar_1759595268981/result.png"
+}

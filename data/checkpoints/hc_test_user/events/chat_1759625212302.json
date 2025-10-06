@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625212302,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "What's your favorite color?",
+    "ts": 1759625212299
+  },
+  "assistant": {
+    "text": "Reflecting back, it sounds like you're interested in colors! I'm more of a neutral fan myself, but I've always been fascinated by the psychology behind different colors - do you think certain colors can evoke emotions or moods?",
+    "ts": 1759625212302,
+    "message_id": "chat-5384f1568ca04d1e970eae736a4e7fd1"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 7292,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 4,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.49,
+    "assertiveness_score": 0.0,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 21281.36,
+    "rolling_latency_median_ms": 6211.5,
+    "latency_histogram": {
+      "steady": 47,
+      "slow": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "ack": 3,
+      "answer": 20,
+      "question": 27
+    },
+    "priority": 0.8
+  }
+}

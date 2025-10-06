@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "George always bites Archie's leg",
+  "assistant_text": "It sounds like George likes to assert his dominance! Does Archie seem to enjoy the roughhousing or is he more gentle about it? By the way, if you'd like some tips on how to encourage positive play between them, I can share some ideas from our Play Coach.",
+  "client_message_id": "a49c861b-39df-4786-a75e-5b45d67d15d6",
+  "assistant_message_id": "chat-69acd58c82ed4eef97db3f4d49b2dc13",
+  "server_ts": "2025-10-05T23:39:32.029+00:00",
+  "server_ts_ms": 1759707572029,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

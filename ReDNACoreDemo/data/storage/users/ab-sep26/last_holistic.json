@@ -1,0 +1,162 @@
+{
+  "user_id": "ab-sep26",
+  "ran_at": "2025-09-26T20:01:54.694233+00:00",
+  "async": true,
+  "counts": {
+    "ucn_rr_updates": 7,
+    "implied_additions": 0,
+    "contradictions": 0,
+    "llm_considered": 1,
+    "llm_updates": 0,
+    "llm_skipped": 1
+  },
+  "paths": {
+    "all": [
+      "Personality.Traits.Introversion",
+      "PrefDNA.Bonding.Style",
+      "SocDNA.Demographics.AgeRange",
+      "SocDNA.Identity.Gender",
+      "SocDNA.Identity.Orientation",
+      "SocDNA.Prefs.LanguagePrimary",
+      "SocDNA.Relationship.Status"
+    ],
+    "ucn_rr_updates": [
+      "SocDNA.Relationship.Status",
+      "SocDNA.Prefs.LanguagePrimary",
+      "SocDNA.Identity.Orientation",
+      "SocDNA.Demographics.AgeRange",
+      "SocDNA.Identity.Gender",
+      "PrefDNA.Bonding.Style",
+      "Personality.Traits.Introversion"
+    ],
+    "implied": [],
+    "contradictions": []
+  },
+  "implied_reasons": {},
+  "report": {
+    "ok": true,
+    "user_id": "ab-sep26",
+    "time_ms": 15004.831,
+    "async_": true,
+    "ucn_rr_updates": [
+      {
+        "path": "SocDNA.Relationship.Status",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "SocDNA.Prefs.LanguagePrimary",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "SocDNA.Identity.Orientation",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "SocDNA.Demographics.AgeRange",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "SocDNA.Identity.Gender",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "PrefDNA.Bonding.Style",
+        "old": {
+          "ucn": 940.0,
+          "rr": 50.0,
+          "curiosity": 50.0
+        },
+        "new": {
+          "ucn": 940.0,
+          "rr": 59.0,
+          "curiosity": 41.0
+        }
+      },
+      {
+        "path": "Personality.Traits.Introversion",
+        "old": {
+          "ucn": 120,
+          "rr": 6.89655,
+          "curiosity": 93.10345
+        },
+        "new": {
+          "ucn": 120.0,
+          "rr": 8.327585000000001,
+          "curiosity": 91.672415
+        }
+      }
+    ],
+    "implied_additions": [],
+    "contradictions": [],
+    "warnings": [],
+    "llm_considered": [
+      "Personality.Traits.Introversion"
+    ],
+    "llm_updates": [],
+    "llm_skipped": [
+      "Personality.Traits.Introversion"
+    ],
+    "llm_warnings": [
+      "Holistic LLM exceeded budget (15004 ms > 15000 ms)"
+    ],
+    "llm_time_ms": 15004.109
+  },
+  "llm": {
+    "considered": [
+      "Personality.Traits.Introversion"
+    ],
+    "updates": [],
+    "skipped": [
+      "Personality.Traits.Introversion"
+    ],
+    "warnings": [
+      "Holistic LLM exceeded budget (15004 ms > 15000 ms)"
+    ],
+    "time_ms": 15004.109
+  }
+}

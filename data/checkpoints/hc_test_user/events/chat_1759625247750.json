@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625247750,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Not interested in coaches right now",
+    "ts": 1759625247746
+  },
+  "assistant": {
+    "text": "Let's drop the coach conversation. What's been your favorite part of watching sports lately, or is there a specific team you're rooting for?",
+    "ts": 1759625247750,
+    "message_id": "chat-4170a55fb9e44b41ba57d4f1d71534ff"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 5496,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 6,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.54,
+    "assertiveness_score": 0.8333333333333333,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 13333.62,
+    "rolling_latency_median_ms": 6211.5,
+    "latency_histogram": {
+      "steady": 48,
+      "slow": 2
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "question": 25,
+      "answer": 23,
+      "ack": 2
+    },
+    "priority": 0.8
+  }
+}

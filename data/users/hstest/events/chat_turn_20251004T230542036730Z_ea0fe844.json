@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "hstest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "hi",
+  "assistant_text": "Let's continue our conversation with a fresh start. I've taken note of your consistent greeting. To maintain momentum, let's identify a specific topic or goal you'd like to focus on today. What aspect would you like to tackle first?",
+  "client_message_id": "fe66a41f-6413-4a43-8789-1186bd10690a",
+  "assistant_message_id": "chat-66bc727f688948f091f4fbe02442a1e6",
+  "server_ts": "2025-10-04T23:05:42.036+00:00",
+  "server_ts_ms": 1759619142036,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

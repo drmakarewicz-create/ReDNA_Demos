@@ -1,0 +1,12 @@
+{
+  "provider": "ollama",
+  "model": "llama3:latest",
+  "base_url": "http://127.0.0.1:11434",
+  "api_key": "dummy",
+  "prompts_dir": "/Users/davidmakarewicz/Documents/ReDNA_Demos/prompts",
+  "ucn_prompt_main": "/Users/davidmakarewicz/Documents/ReDNA_Demos/prompts/ucn_rr_ai.md",
+  "ucn_prompt_conf": "/Users/davidmakarewicz/Documents/ReDNA_Demos/prompts/ucn_rr_confidence.md",
+  "core_prompt_main": "/Users/davidmakarewicz/Documents/ReDNA_Demos/prompts/core_ai.md",
+  "core_prompt_prop": "/Users/davidmakarewicz/Documents/ReDNA_Demos/prompts/core_ai_propagation.md",
+  "use_min_heuristics": false
+}

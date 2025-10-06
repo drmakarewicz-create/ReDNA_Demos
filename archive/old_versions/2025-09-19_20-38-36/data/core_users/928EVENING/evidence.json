@@ -1,0 +1,108 @@
+[
+  {
+    "ts": "20250918_155425",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor"
+    ]
+  },
+  {
+    "ts": "20250918_155735",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor"
+    ]
+  },
+  {
+    "ts": "20250918_155955",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.HairDNA.Color"
+    ]
+  },
+  {
+    "ts": "20250918_160604",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250918_163341",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "PaDNA.LooksDNA.HairDNA.Color",
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250918_163416",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "PaDNA.LooksDNA.HairDNA.Color",
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250918_173720",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "PaDNA.LooksDNA.HairDNA.Color",
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250918_173758",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "PaDNA.LooksDNA.HairDNA.Color",
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250918_173834",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "PaDNA.LooksDNA.HairDNA.Color",
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250918_174308",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "PaDNA.LooksDNA.HairDNA.Color",
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250918_174754",
+    "from": "ucnrr",
+    "keys": [
+      "PaDNA.LooksDNA.EyeDNA.IrisColor",
+      "PaDNA.LooksDNA.HairDNA.Color",
+      "PaDNA.LooksDNA.HairDNA.Bald"
+    ]
+  },
+  {
+    "ts": "20250919_181222",
+    "from": "ucnrr",
+    "keys": [
+      "BioDNA.Height"
+    ]
+  },
+  {
+    "ts": "20250919_202149",
+    "from": "ucnrr",
+    "keys": [
+      "SocDNA.Relationship.Status",
+      "SocDNA.Relationship.MarriageYear"
+    ]
+  }
+]

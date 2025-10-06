@@ -1,0 +1,40 @@
+# Head Coach v2 Feature Flags
+# Controls which HC v2 features are enabled
+
+# Task Runner - Autonomous task queue and execution
+enable_task_runner: true
+
+# Reminders - Schedule micro-rituals and nudges
+enable_reminders: true
+
+# UCNRR Integration - Auto-rescoring on observation ingestion
+enable_ucnrr: false  # Set to true when UCNRR service is available
+
+# UCNRR Real Mode - Use real UCNRR service instead of mock (Sprint 1c)
+enable_ucnrr_real: false  # Set to true to call actual UCNRR service
+
+# Conversation Memory - Multi-turn dialogue context
+enable_conversation_memory: true
+
+# LLM Replies - Generate AI assistant replies in conversation (Sprint 1c)
+enable_llm_replies: true  # Set to false to disable auto-replies
+
+# LLM Configuration (Sprint 2a)
+llm_provider: "openai"  # Options: "openai", "anthropic", "mock"
+llm_model: "gpt-4o-mini"  # Default model for the provider
+llm_max_tokens: 300  # Max tokens for reply generation
+llm_temperature: 0.7  # Temperature for sampling (0.0-1.0)
+llm_timeout_sec: 10  # Timeout for LLM API calls
+
+# Playbook Runner - Execute playbook workflows
+enable_playbook_runner: true
+
+# Photo Coach - Image ingestion and analysis
+enable_photo_coach: true
+
+# Photo Vision Stub - Mock vision labeling (until vision LLM integrated)
+enable_photo_vision_stub: true
+
+# Feature flag metadata
+version: "2.0.0"
+last_updated: "2025-10-04T13:00:00Z"

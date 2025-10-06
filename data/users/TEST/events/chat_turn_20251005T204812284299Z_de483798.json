@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test8",
+  "assistant_text": "Let's start fresh again! I'm here for a fun chat about you and Archie and George - what's been the most fun part of their week so far?\n\nAlso, since you didn't mention it earlier, are they still enjoying their morning walks?",
+  "client_message_id": "16bc9833-ff5f-44d5-b216-f57c2fd6dfb6",
+  "assistant_message_id": "chat-3eace6e0dd62499e89debeb7ebc9a85e",
+  "server_ts": "2025-10-05T20:48:12.284+00:00",
+  "server_ts_ms": 1759697292284,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

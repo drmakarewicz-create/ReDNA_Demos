@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/photo_manifest.json",
+  "title": "Photo Batch Manifest",
+  "description": "Schema for photo batch manifests in Photo Coach",
+  "type": "object",
+  "required": ["user_id", "batch_id", "created_at", "count", "images"],
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID this batch belongs to"
+    },
+    "batch_id": {
+      "type": "string",
+      "description": "Unique batch identifier (typically timestamp-based)"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when batch was created"
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of images in this batch"
+    },
+    "images": {
+      "type": "array",
+      "description": "Array of image metadata",
+      "items": {
+        "type": "object",
+        "required": ["filename", "path", "thumb", "hash_sha256"],
+        "properties": {
+          "filename": {
+            "type": "string",
+            "description": "Original filename"
+          },
+          "path": {
+            "type": "string",
+            "description": "Relative path to original image"
+          },
+          "thumb": {
+            "type": "string",
+            "description": "Relative path to thumbnail"
+          },
+          "hash_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "description": "SHA-256 hash of the image file"
+          },
+          "width": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Image width in pixels"
+          },
+          "height": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Image height in pixels"
+          },
+          "exif": {
+            "type": "object",
+            "description": "EXIF metadata extracted from image",
+            "properties": {
+              "datetime": {
+                "type": "string",
+                "description": "Original capture datetime from EXIF"
+              },
+              "focal_length": {
+                "type": "number",
+                "description": "Focal length in mm"
+              },
+              "iso": {
+                "type": "integer",
+                "description": "ISO sensitivity"
+              },
+              "camera_make": {
+                "type": "string",
+                "description": "Camera manufacturer"
+              },
+              "camera_model": {
+                "type": "string",
+                "description": "Camera model"
+              }
+            }
+          },
+          "labels": {
+            "type": "array",
+            "description": "Vision-detected labels (populated by vision endpoint)",
+            "items": {
+              "type": "string"
+            },
+            "default": []
+          },
+          "notes": {
+            "type": "string",
+            "description": "User or system notes about this image",
+            "default": ""
+          }
+        }
+      }
+    }
+  }
+}

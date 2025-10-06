@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I went to Dartmouth University",
+  "assistant_text": "That's awesome! What made you choose Dartmouth?",
+  "client_message_id": "9a2798eb-9e6a-4934-8511-37f59028ca43",
+  "assistant_message_id": "chat-dc771679956e4207b5f8f9691a7d39b6",
+  "server_ts": "2025-10-05T12:56:33.141+00:00",
+  "server_ts_ms": 1759668993141,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

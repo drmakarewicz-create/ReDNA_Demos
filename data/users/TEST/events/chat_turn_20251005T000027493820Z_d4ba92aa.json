@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have brown hair and I'm pretty tall",
+  "assistant_text": "You've got some great physical characteristics going for you! Have you thought about how to showcase those features in a way that makes you feel confident and put-together? If you want, our PaDNA Coach could help with personal style and fashion advice. \n\nLet's take it back to what we were discussing - what would change for you if you were in a committed relationship, and how would that impact your life overall?",
+  "client_message_id": "c07af0a4-03f9-414b-9a9a-aab8d5ef80cb",
+  "assistant_message_id": "chat-73d90fbc9d274074a833b322854307fe",
+  "server_ts": "2025-10-05T00:00:27.493+00:00",
+  "server_ts_ms": 1759622427493,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,5 @@
+Before doing anything:
+1) Read docs/AGENT_PROTOCOL.md and acknowledge in your first reply:
+   "ACK: following docs/AGENT_PROTOCOL.md @ <UTC timestamp>"
+2) After completing changes, append one JSON line to docs/automation_log/changes.jsonl per the schema.
+3) Include a “Change Summary” block in your reply (title/agent/time/files/diff highlights/manual steps/acceptance checks/rollback + pasted JSON).

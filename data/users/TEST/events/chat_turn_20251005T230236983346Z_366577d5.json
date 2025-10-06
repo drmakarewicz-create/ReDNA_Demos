@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test",
+  "assistant_text": "Let's start fresh again! Since we were talking about Archie and George, I'm curious - what do you think is the most entertaining thing about having two energetic fur babies together? Would it be helpful to get some personalized advice from our PaDNA Coach on how to style their matching collars?",
+  "client_message_id": "946a826a-0d20-4210-9788-a13004c15616",
+  "assistant_message_id": "chat-ec1085b114104e78b5457b9de9bdef88",
+  "server_ts": "2025-10-05T23:02:36.983+00:00",
+  "server_ts_ms": 1759705356983,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

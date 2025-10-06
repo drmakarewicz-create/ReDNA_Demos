@@ -1,0 +1,52 @@
+{
+  "user_id": "bstest",
+  "batch_id": "2025-10-04T15-05-09-bstest",
+  "created_at": "2025-10-04T15:05:09.753915+00:00",
+  "count": 4,
+  "images": [
+    {
+      "filename": "bs1.jpeg",
+      "path": "media/images/2025-10-04T15-05-09-bstest/bs1.jpeg",
+      "thumb": "media/thumbs/2025-10-04T15-05-09-bstest/bs1.jpg",
+      "hash_sha256": "af2cc7f133b20ed7a5f7c0fe32e07e1ec2ef3864a0e0805726c56a05e4df377c",
+      "width": 500,
+      "height": 625,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "bs2.jpg",
+      "path": "media/images/2025-10-04T15-05-09-bstest/bs2.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-05-09-bstest/bs2.jpg",
+      "hash_sha256": "77f030e925d1120f3ffdc0185b31d0be008eed6d861acb0e7b26b8abede7d4c7",
+      "width": 1080,
+      "height": 1349,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "bs3.jpg",
+      "path": "media/images/2025-10-04T15-05-09-bstest/bs3.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-05-09-bstest/bs3.jpg",
+      "hash_sha256": "b4489ba7b88b8cc38927d4d0804bf825c1e8a4637d9789d94e9f120f69cc75b4",
+      "width": 1001,
+      "height": 1251,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "bs4.jpg",
+      "path": "media/images/2025-10-04T15-05-09-bstest/bs4.jpg",
+      "thumb": "media/thumbs/2025-10-04T15-05-09-bstest/bs4.jpg",
+      "hash_sha256": "d07a6fae246f9d97d05a25b4581e94d8fa59ff55836102110d302c868300f31d",
+      "width": 718,
+      "height": 900,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    }
+  ]
+}

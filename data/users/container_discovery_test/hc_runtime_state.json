@@ -1,0 +1,19 @@
+{
+  "last_user_ts": "2025-10-05T01:26:52.517000+00:00",
+  "last_user_text": "I have green eyes and curly hair",
+  "turns_observed": 5,
+  "dialog_history": [
+    "answer",
+    "answer",
+    "answer",
+    "answer",
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-05T01:26:52.519292+00:00",
+  "latency_history_ms": [
+    21949,
+    18020,
+    21381,
+    16666
+  ]
+}

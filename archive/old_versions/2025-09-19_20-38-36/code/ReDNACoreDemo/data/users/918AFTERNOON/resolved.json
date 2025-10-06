@@ -1,0 +1,20 @@
+{
+  "user_id": "918AFTERNOON",
+  "schema_version": 4,
+  "resolved": {
+    "LifeDNA.Relationship.MaritalStatus": {
+      "resolved_value": "Married",
+      "ucn": 110,
+      "reasons": [
+        "explicit marital status"
+      ]
+    },
+    "BioDNA.Age.Years": {
+      "resolved_value": 25,
+      "ucn": 100,
+      "reasons": [
+        "explicit age statement"
+      ]
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "items": [
+    {
+      "trait_id": "social.relationship_status",
+      "value": 70,
+      "confidence": 70,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "keyword_extraction",
+        "timestamp": "2025-10-05T01:25:34.488000+00:00",
+        "raw_input": "I love sci-fi movies and mystery novels",
+        "signal": "mentioned romantic relationships",
+        "keywords_matched": [
+          "love"
+        ]
+      },
+      "timestamp": "2025-10-05T01:25:34.488000+00:00"
+    },
+    {
+      "trait_id": "personality.emotional_expression",
+      "value": 60,
+      "confidence": 70,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "keyword_extraction",
+        "timestamp": "2025-10-05T01:25:34.488000+00:00",
+        "raw_input": "I love sci-fi movies and mystery novels",
+        "signal": "positive emotional expression",
+        "keywords_matched": [
+          "love"
+        ]
+      },
+      "timestamp": "2025-10-05T01:25:34.488000+00:00"
+    },
+    {
+      "trait_id": "preferences.entertainment.movie_genres.sci-fi_movies",
+      "value": 100,
+      "confidence": 90,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:25:34.488000+00:00",
+        "raw_input": "I love sci-fi movies and mystery novels",
+        "signal": "loves sci-fi movies"
+      },
+      "timestamp": "2025-10-05T01:25:34.488000+00:00"
+    },
+    {
+      "trait_id": "preferences.entertainment.books.mystery_novels",
+      "value": 100,
+      "confidence": 90,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:25:34.488000+00:00",
+        "raw_input": "I love sci-fi movies and mystery novels",
+        "signal": "loves mystery novels"
+      },
+      "timestamp": "2025-10-05T01:25:34.488000+00:00"
+    },
+    {
+      "trait_id": "preferences.food.italian_cuisine",
+      "value": 100,
+      "confidence": 80,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:25:56.438000+00:00",
+        "raw_input": "I prefer Italian cuisine and spicy food",
+        "signal": "loves Italian cuisine"
+      },
+      "timestamp": "2025-10-05T01:25:56.438000+00:00"
+    },
+    {
+      "trait_id": "preferences.food.spicy_food",
+      "value": 75,
+      "confidence": 70,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:25:56.438000+00:00",
+        "raw_input": "I prefer Italian cuisine and spicy food",
+        "signal": "likes spicy food"
+      },
+      "timestamp": "2025-10-05T01:25:56.438000+00:00"
+    },
+    {
+      "trait_id": "preferences.lifestyle.morning_person",
+      "value": 75,
+      "confidence": 80,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:26:14.461000+00:00",
+        "raw_input": "I'm a morning person who exercises daily",
+        "signal": "likes morning person"
+      },
+      "timestamp": "2025-10-05T01:26:14.461000+00:00"
+    },
+    {
+      "trait_id": "preferences.physical_attributes.exercises_daily",
+      "value": 100,
+      "confidence": 90,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:26:14.461000+00:00",
+        "raw_input": "I'm a morning person who exercises daily",
+        "signal": "loves exercises daily"
+      },
+      "timestamp": "2025-10-05T01:26:14.461000+00:00"
+    },
+    {
+      "trait_id": "attributes.lifestyle",
+      "value": 90,
+      "confidence": 90,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:26:14.461000+00:00",
+        "raw_input": "I'm a morning person who exercises daily",
+        "signal": "lifestyle: exercises daily",
+        "fact_value": "exercises daily"
+      },
+      "timestamp": "2025-10-05T01:26:14.461000+00:00"
+    },
+    {
+      "trait_id": "attributes.personality",
+      "value": 90,
+      "confidence": 80,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:26:14.461000+00:00",
+        "raw_input": "I'm a morning person who exercises daily",
+        "signal": "personality: morning person",
+        "fact_value": "morning person"
+      },
+      "timestamp": "2025-10-05T01:26:14.461000+00:00"
+    },
+    {
+      "trait_id": "preferences.music.jazz_and_classical_music",
+      "value": 75,
+      "confidence": 80,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:26:35.845000+00:00",
+        "raw_input": "I listen to jazz and classical music",
+        "signal": "likes jazz and classical music"
+      },
+      "timestamp": "2025-10-05T01:26:35.845000+00:00"
+    },
+    {
+      "trait_id": "attributes.physical.eye_color",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:26:52.517000+00:00",
+        "raw_input": "I have green eyes and curly hair",
+        "signal": "physical.eye_color: green",
+        "fact_value": "green"
+      },
+      "timestamp": "2025-10-05T01:26:52.517000+00:00"
+    },
+    {
+      "trait_id": "attributes.physical.hair_type",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T01:26:52.517000+00:00",
+        "raw_input": "I have green eyes and curly hair",
+        "signal": "physical.hair_type: curly",
+        "fact_value": "curly"
+      },
+      "timestamp": "2025-10-05T01:26:52.517000+00:00"
+    }
+  ]
+}

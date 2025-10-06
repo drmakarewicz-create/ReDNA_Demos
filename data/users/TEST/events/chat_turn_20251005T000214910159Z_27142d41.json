@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What does the PaDNA coach have to do with anything? Isn't that just something that renders images of me?",
+  "assistant_text": "You think I mentioned the PaDNA Coach out of left field, but my intention was to help you build confidence and self-expression - which can definitely impact your dating life.",
+  "client_message_id": "bf9baea9-9c2d-4770-83c2-a461f342f784",
+  "assistant_message_id": "chat-5de433e5576f403980e0122b2070d58e",
+  "server_ts": "2025-10-05T00:02:14.910+00:00",
+  "server_ts_ms": 1759622534910,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

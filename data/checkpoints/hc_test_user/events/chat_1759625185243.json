@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625185243,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Tell me more about that show",
+    "ts": 1759625185240
+  },
+  "assistant": {
+    "text": "I'm glad you liked the recommendation! \"Stranger Things\" has a mix of sci-fi, mystery, and coming-of-age themes that might keep you hooked. What drew you to this type of genre?",
+    "ts": 1759625185243,
+    "message_id": "chat-a62034be3656448b9d8da26fc61a1221"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 6278,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 6,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.44,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 21308.84,
+    "rolling_latency_median_ms": 6211.5,
+    "latency_histogram": {
+      "steady": 47,
+      "slow": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 23,
+      "question": 24,
+      "ack": 3
+    },
+    "priority": 0.8
+  }
+}

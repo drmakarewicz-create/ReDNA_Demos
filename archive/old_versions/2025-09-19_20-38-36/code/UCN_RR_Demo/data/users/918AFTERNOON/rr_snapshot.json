@@ -1,0 +1,20 @@
+{
+  "ts": "20250919_183349",
+  "resolved": {
+    "LifeDNA.Relationship.MaritalStatus": {
+      "resolved_value": "Married",
+      "ucn": 110,
+      "reasons": [
+        "explicit marital status"
+      ]
+    },
+    "BioDNA.Age.Years": {
+      "resolved_value": 25,
+      "ucn": 100,
+      "reasons": [
+        "explicit age statement"
+      ]
+    }
+  },
+  "observations": {}
+}

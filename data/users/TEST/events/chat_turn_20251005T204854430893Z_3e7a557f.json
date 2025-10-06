@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "t",
+  "assistant_text": "It seems like the conversation got cut off again, but don't worry, let's start fresh! Since you mentioned dog parks, I'm curious - what makes a good dog park to you?",
+  "client_message_id": "1ddcfd5c-986f-4e94-bef9-85337f4a1301",
+  "assistant_message_id": "chat-ce620f33b4694af7b11a7098b143334e",
+  "server_ts": "2025-10-05T20:48:54.430+00:00",
+  "server_ts_ms": 1759697334430,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

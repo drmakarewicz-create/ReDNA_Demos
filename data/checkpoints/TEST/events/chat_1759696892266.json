@@ -1,0 +1,44 @@
+{
+  "type": "chat_turn",
+  "ts": 1759696892266,
+  "user_id": "TEST",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Hi",
+    "ts": 1759696892260
+  },
+  "assistant": {
+    "text": "Hey, great to catch up again! I've got a question for you - what's been the highlight of your week so far? And if you're ever looking for some fun dog-friendly activities in your area, our team has a list of recommendations.",
+    "ts": 1759696892266,
+    "message_id": "chat-3ef191ea1697417b9dc000cf392ec452"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/TEST/observations.json",
+  "metrics": {
+    "response_latency_ms": 760874,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 1,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.44,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 10819201.708333334,
+    "rolling_latency_median_ms": 343691.5,
+    "latency_histogram": {
+      "slow": 48
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "answer": 31,
+      "question": 17,
+      "repair": 1
+    },
+    "priority": 0.8
+  }
+}

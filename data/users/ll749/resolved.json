@@ -1,0 +1,132 @@
+{
+  "profile": {
+    "label": "Lohan",
+    "created_ts": "2025-10-03T11:50:05.417006+00:00"
+  },
+  "PaDNA.HairDNA.Color": {
+    "resolved_value": "Red",
+    "ucn": 875.0,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ],
+    "notes": {
+      "summary": "Hair clearly appears naturally red.",
+      "evidence": [
+        "All three photos show reddish tones in scalp/remaining hair."
+      ],
+      "coach_instructions": [
+        "Validate natural vs dyed hair.",
+        "Ask for historical consistency."
+      ]
+    }
+  },
+  "PaDNA.HairDNA.Style": {
+    "resolved_value": "Wavy",
+    "ucn": 720.3,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ],
+    "notes": {
+      "summary": "Loose waves visible in longer sections.",
+      "evidence": [
+        "LLTEST1 and LLTEST2 show wave pattern."
+      ],
+      "coach_instructions": [
+        "Confirm usual styling habits."
+      ]
+    }
+  },
+  "PaDNA.HairDNA.Length": {
+    "resolved_value": "Shoulder-Length",
+    "ucn": 810.7,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ],
+    "notes": {
+      "summary": "Length around shoulders in LLTEST2 and LLTEST3."
+    }
+  },
+  "PaDNA.SkinDNA.Tone": {
+    "resolved_value": "Fair",
+    "ucn": 860.2,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ],
+    "notes": {
+      "summary": "Skin appears light/fair in all lighting conditions.",
+      "coach_instructions": [
+        "Validate against user statement."
+      ]
+    }
+  },
+  "PaDNA.EyeDNA.Color": {
+    "resolved_value": "Blue-Green (hazel Shift)",
+    "ucn": 690.4,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ],
+    "notes": {
+      "summary": "Photos show blue with hints of green in iris.",
+      "data_gaps": [
+        "Need closer portrait to confirm shade."
+      ]
+    }
+  },
+  "PaDNA.FacialDNA.FaceShape": {
+    "resolved_value": "Oval",
+    "ucn": 715.5,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ]
+  },
+  "PaDNA.FacialDNA.Nose.Shape": {
+    "resolved_value": "Straight, Medium-Length",
+    "ucn": 645.2,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ]
+  },
+  "PaDNA.FacialDNA.Lips.Shape": {
+    "resolved_value": "Full Upper, Slightly Thinner Lower",
+    "ucn": 612.7,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ]
+  },
+  "PaDNA.ApparelDNA.Top.Color": {
+    "resolved_value": "Pink",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ],
+    "notes": {
+      "summary": "LLTEST1 clearly shows pink shirt.",
+      "evidence": [
+        "LLTEST1: long wavy red hair, pink shirt."
+      ]
+    }
+  },
+  "PaDNA.Accessories.Visible": {
+    "resolved_value": [
+      "Earrings (studs)",
+      "Necklace (small chain)"
+    ],
+    "ucn": 540.0,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ]
+  },
+  "PaDNA.AgeDNA.Approximation": {
+    "resolved_value": "Mid-To-Late 30s",
+    "ucn": 300.0,
+    "reasons": [
+      "photo_import:photo-coach-manual-json"
+    ],
+    "notes": {
+      "summary": "AI estimate from facial features; wide error margin.",
+      "coach_instructions": [
+        "Ask user to confirm age bracket."
+      ]
+    }
+  }
+}

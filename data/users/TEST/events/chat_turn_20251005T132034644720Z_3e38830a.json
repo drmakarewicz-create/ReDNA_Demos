@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I am bored",
+  "assistant_text": "It sounds like you're looking for something to liven up your day. Do you have a favorite hobby or TV show that you always come back to when you're feeling bored? If you want, our Photo Coach could also help you find some new ways to capture and share your experiences.",
+  "client_message_id": "59af0715-ee7e-42e5-a4ed-1061518af211",
+  "assistant_message_id": "chat-d4864292a87e420785ffa402d4065fe6",
+  "server_ts": "2025-10-05T13:20:34.644+00:00",
+  "server_ts_ms": 1759670434644,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

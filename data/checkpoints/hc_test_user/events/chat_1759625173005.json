@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625173005,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Any other restaurant suggestions?",
+    "ts": 1759625172999
+  },
+  "assistant": {
+    "text": "Reflecting back, it sounds like you're looking for some food recommendations! If you want, I can connect you with a local favorite - have you tried that new Italian place downtown?",
+    "ts": 1759625173005,
+    "message_id": "chat-c943842d1cde4d5bad69ff42a21d062f"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 4994,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 4,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.59,
+    "assertiveness_score": 0.0,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 21307.82,
+    "rolling_latency_median_ms": 6135.5,
+    "latency_histogram": {
+      "steady": 47,
+      "slow": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 23,
+      "question": 24,
+      "ack": 3
+    },
+    "priority": 0.8
+  }
+}

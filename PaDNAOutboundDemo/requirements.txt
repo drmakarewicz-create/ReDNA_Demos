@@ -1,0 +1,4 @@
+streamlit>=1.36
+pydantic>=2.8
+fastapi>=0.111
+uvicorn>=0.30

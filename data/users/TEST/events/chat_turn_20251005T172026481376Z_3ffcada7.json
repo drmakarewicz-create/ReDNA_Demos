@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "The first season of AHS is called Murder House",
+  "assistant_text": "You're bringing us back to American Horror Story! Murder House is indeed one of the most iconic seasons. What was it about that particular storyline that stuck with you?",
+  "client_message_id": "6efe90aa-935f-43c0-a63b-6ece199af217",
+  "assistant_message_id": "chat-017d39fd111c4021a0b2f618fbcea068",
+  "server_ts": "2025-10-05T17:20:26.481+00:00",
+  "server_ts_ms": 1759684826481,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

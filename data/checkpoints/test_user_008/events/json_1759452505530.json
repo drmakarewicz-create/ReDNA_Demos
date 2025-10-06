@@ -1,0 +1,18 @@
+{
+  "event_id": "json_1759452505530",
+  "ts": "2025-10-03T00:48:25+00:00",
+  "type": "json_ingest",
+  "user_id": "test_user_008",
+  "traits": [
+    {
+      "id": "PaDNA.EyeDNA.IrisColor",
+      "value": "Blue"
+    }
+  ],
+  "source": "explorer",
+  "status": "failed",
+  "ucnrr_result": {
+    "ok": false,
+    "error": "Unexpected error: UCNRR unreachable"
+  }
+}

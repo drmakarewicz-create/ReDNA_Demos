@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "George is awake now",
+  "assistant_text": "It looks like Archie is still sleeping! What's George up to now? Is he looking for a playmate or is he being more chill today?",
+  "client_message_id": "ea001c36-3688-429a-b4a5-b83cf622d981",
+  "assistant_message_id": "chat-507b7501cfce45cabaf3c96a202bcbdd",
+  "server_ts": "2025-10-05T23:22:46.396+00:00",
+  "server_ts_ms": 1759706566396,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

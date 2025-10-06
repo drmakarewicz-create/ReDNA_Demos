@@ -1,0 +1,24 @@
+{
+  "type": "onboarding_profile",
+  "ts": 1759593165221,
+  "captured_at": "2025-10-04T15:52:45.221+00:00",
+  "profile": {
+    "version": 2,
+    "captured_at": "2025-10-04T15:52:45.221+00:00",
+    "user_id": "abtest",
+    "display_name": "AB Test",
+    "quick_facts": {},
+    "interests": {
+      "selected": [],
+      "custom": []
+    },
+    "source": "ui_onboarding_modal"
+  },
+  "ucnrr": {
+    "ok": false,
+    "status": 404,
+    "detail": {
+      "detail": "Not Found"
+    }
+  }
+}

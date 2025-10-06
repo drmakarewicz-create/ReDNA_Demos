@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have two dogs",
+  "assistant_text": "Two adorable furry friends! What's their favorite activity or toy? \n\n(Suggesting a coach if relevant, but keeping the conversation light and friendly)\n\n(No coach mentioned yet)\n\n(Staying action-oriented)",
+  "client_message_id": "e6fe12a5-ef06-43a4-ae59-ea5ec3c63495",
+  "assistant_message_id": "chat-04d4e12134384039b6507bc9cbcc7929",
+  "server_ts": "2025-10-05T20:17:06.763+00:00",
+  "server_ts_ms": 1759695426763,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

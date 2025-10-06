@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What do you know about me?",
+  "assistant_text": "I don't actually \"know\" much about you yet! But from our conversation so far, I've got a sense that you're someone who likes to acknowledge and build on the progress we make together. What's something specific that you think has been going well for you lately?",
+  "client_message_id": "ebdf7f95-ec7b-44d1-afbf-362dee33ee46",
+  "assistant_message_id": "chat-2a3da335b7d349a49da0935102730345",
+  "server_ts": "2025-10-04T23:17:51.987+00:00",
+  "server_ts_ms": 1759619871987,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,275 @@
+{
+  "id": "TEST",
+  "meta": {
+    "schema_version": "redna_bundle_v1.1",
+    "generated_at": 1736454000,
+    "source": "TestSeed",
+    "seeded_at": "2025-09-27T01:58:11.542764+00:00"
+  },
+  "scores": {
+    "rr_per_path": {
+      "PaDNA.HairDNA.Color": 72.0,
+      "PaDNA.HairDNA.Style": 58.0,
+      "PaDNA.EyeDNA.Color": 91.0,
+      "PaDNA.EyeDNA.Brows.Shape": 62.0,
+      "PaDNA.SkinDNA.Tone": 66.0,
+      "PaDNA.LipDNA.Fullness": 55.0,
+      "PaDNA.NoseDNA.Width": 48.0,
+      "PaDNA.FaceDNA.Jaw.Width": 52.0,
+      "PaDNA.FaceDNA.Cheekbones": 60.0,
+      "PaDNA.FaceDNA.Chin.Shape": 50.0
+    },
+    "ucn_per_path": {
+      "PaDNA.HairDNA.Color": 730.0,
+      "PaDNA.HairDNA.Style": 610.0,
+      "PaDNA.EyeDNA.Color": 920.0,
+      "PaDNA.EyeDNA.Brows.Shape": 640.0,
+      "PaDNA.SkinDNA.Tone": 680.0,
+      "PaDNA.LipDNA.Fullness": 590.0,
+      "PaDNA.NoseDNA.Width": 520.0,
+      "PaDNA.FaceDNA.Jaw.Width": 550.0,
+      "PaDNA.FaceDNA.Cheekbones": 630.0,
+      "PaDNA.FaceDNA.Chin.Shape": 540.0
+    }
+  },
+  "gaps": {
+    "top_weighted": [
+      {
+        "dna_path": "PaDNA.NoseDNA.Width",
+        "curiosity": 52.0,
+        "reason": "inverse_rr",
+        "staleness": "moderate",
+        "importance": "high"
+      },
+      {
+        "dna_path": "PaDNA.LipDNA.Fullness",
+        "curiosity": 45.0,
+        "reason": "inverse_rr",
+        "staleness": "low",
+        "importance": "medium"
+      },
+      {
+        "dna_path": "PaDNA.FaceDNA.Chin.Shape",
+        "curiosity": 50.0,
+        "reason": "inverse_rr",
+        "staleness": "high",
+        "importance": "medium"
+      },
+      {
+        "dna_path": "PaDNA.HairDNA.Style",
+        "curiosity": 42.0,
+        "reason": "inverse_rr",
+        "staleness": "high",
+        "importance": "low"
+      },
+      {
+        "dna_path": "PaDNA.FaceDNA.Jaw.Width",
+        "curiosity": 48.0,
+        "reason": "inverse_rr",
+        "staleness": "low",
+        "importance": "medium"
+      }
+    ]
+  },
+  "contradictions": {
+    "flags": [
+      "PaDNA.HairDNA.Style: {\"evidence_a\":\"loose waves\",\"evidence_b\":\"tight curls\",\"age\":\"RECENT vs OLD\"}",
+      "PaDNA.SkinDNA.Tone: {\"evidence_a\":\"warm medium\",\"evidence_b\":\"neutral light (studio lighting suspected)\"}"
+    ]
+  },
+  "padna": {
+    "PaDNA.HairDNA.Color": {
+      "value": "dark brown",
+      "ucn": 730,
+      "rr": 72.0,
+      "curiosity": 270
+    },
+    "PaDNA.HairDNA.Style": {
+      "value": "wavy, shoulder-length",
+      "ucn": 610,
+      "rr": 58.0,
+      "curiosity": 390
+    },
+    "PaDNA.HairDNA.Length": {
+      "value": "shoulder",
+      "ucn": 640,
+      "rr": 63.0,
+      "curiosity": 360
+    },
+    "PaDNA.HairDNA.Texture": {
+      "value": "wavy-2B",
+      "ucn": 620,
+      "rr": 60.0,
+      "curiosity": 380
+    },
+    "PaDNA.EyeDNA.Color": {
+      "value": "hazel-green",
+      "ucn": 920,
+      "rr": 91.0,
+      "curiosity": 80
+    },
+    "PaDNA.EyeDNA.Shape": {
+      "value": "almond",
+      "ucn": 820,
+      "rr": 84.0,
+      "curiosity": 180
+    },
+    "PaDNA.EyeDNA.Brows.Shape": {
+      "value": "soft-arch",
+      "ucn": 640,
+      "rr": 62.0,
+      "curiosity": 360
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "value": "warm medium (olive undertone)",
+      "ucn": 680,
+      "rr": 66.0,
+      "curiosity": 320
+    },
+    "PaDNA.LipDNA.Fullness": {
+      "value": "medium-full, defined Cupid's bow",
+      "ucn": 590,
+      "rr": 55.0,
+      "curiosity": 410
+    },
+    "PaDNA.NoseDNA.Width": {
+      "value": "moderate-wide with soft bridge",
+      "ucn": 520,
+      "rr": 48.0,
+      "curiosity": 480
+    },
+    "PaDNA.FaceDNA.Jaw.Width": {
+      "value": "medium",
+      "ucn": 550,
+      "rr": 52.0,
+      "curiosity": 450
+    },
+    "PaDNA.FaceDNA.Cheekbones": {
+      "value": "pronounced, high",
+      "ucn": 630,
+      "rr": 60.0,
+      "curiosity": 370
+    },
+    "PaDNA.FaceDNA.Chin.Shape": {
+      "value": "rounded-point",
+      "ucn": 540,
+      "rr": 50.0,
+      "curiosity": 460
+    },
+    "PaDNA.GlassesDNA": {
+      "value": "none (occasional sunglasses)",
+      "ucn": 770,
+      "rr": 75.0,
+      "curiosity": 230
+    },
+    "PaDNA.MakeupDNA.Liner": {
+      "value": "soft wing, brown-black",
+      "ucn": 650,
+      "rr": 62.0,
+      "curiosity": 350
+    },
+    "PaDNA.MakeupDNA.Shadow": {
+      "value": "warm neutrals",
+      "ucn": 670,
+      "rr": 65.0,
+      "curiosity": 330
+    },
+    "PaDNA.MakeupDNA.Blush": {
+      "value": "peach tone",
+      "ucn": 660,
+      "rr": 64.0,
+      "curiosity": 340
+    },
+    "PaDNA.MakeupDNA.LipColor": {
+      "value": "rose-mauve",
+      "ucn": 640,
+      "rr": 63.0,
+      "curiosity": 360
+    }
+  },
+  "coaches": {
+    "roster": [
+      {
+        "name": "PhotoRefinementCoach",
+        "kind": "Refinement",
+        "status": "available",
+        "success_rate": 0.74
+      },
+      {
+        "name": "OutboundAvatar",
+        "kind": "Outbound",
+        "status": "available",
+        "success_rate": 0.68
+      },
+      {
+        "name": "DirectAsk",
+        "kind": "Refinement",
+        "status": "available",
+        "success_rate": 0.63
+      }
+    ],
+    "unlocks": {
+      "HeadCoach": true,
+      "RefinementCoaches": [
+        "PhotoRefinementCoach",
+        "DirectAsk"
+      ],
+      "OutboundCoaches": [
+        "OutboundAvatar"
+      ]
+    }
+  },
+  "user_prefs": {
+    "nudge_tolerance": "medium",
+    "explanation_preference": "brief",
+    "privacy_sensitivity": "medium",
+    "preferred_tone": "supportive",
+    "channels": [
+      "in-app",
+      "email"
+    ],
+    "quiet_hours": [
+      "21:00-07:00"
+    ]
+  },
+  "provenance": {
+    "attempts": [
+      {
+        "ts": 1736449000,
+        "event": "photo_upload",
+        "payload": {
+          "recency": "RECENT",
+          "quality": "good",
+          "coach": "PhotoRefinementCoach"
+        }
+      },
+      {
+        "ts": 1736449200,
+        "event": "photo_upload_failed",
+        "payload": {
+          "recency": "RECENT",
+          "quality": "blurry",
+          "coach": "PhotoRefinementCoach"
+        }
+      },
+      {
+        "ts": 1736449500,
+        "event": "outbound_avatar_render",
+        "payload": {
+          "confidence_hint": "medium-low",
+          "notes": "jaw width uncertain, chin ambiguous"
+        }
+      },
+      {
+        "ts": 1736452000,
+        "event": "user_pushback",
+        "payload": {
+          "paths": [
+            "PaDNA.MakeupDNA.Liner"
+          ]
+        }
+      }
+    ],
+    "notes": "Includes both successful and failed attempts so Head Coach can adapt (e.g., give better photo guidance)."
+  }
+}

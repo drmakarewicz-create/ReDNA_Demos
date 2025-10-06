@@ -1,0 +1,129 @@
+{
+  "schema_version": "explorer.bundle/1.0",
+  "source": { "core_schema": "core/3.1", "ucnrr_schema": "ucnrr.demo/1.4" },
+  "identity": { "user_id": "user-artist-B", "snapshot_id": "sample-B-001" },
+  "paths_present": [
+    ["PaDNA","LooksDNA"],
+    ["PaDNA","AgeDNA"],
+    ["PaDNA","HeightDNA"],
+    ["PaDNA","BuildDNA"],
+    ["PaDNA","HairDNA","Color"],
+    ["PaDNA","HairDNA","Length"],
+    ["PaDNA","HairDNA","Texture"],
+    ["PaDNA","EyeDNA","Color"],
+    ["PaDNA","SkinDNA","Tone"],
+    ["PaDNA","FacialHairDNA"],
+    ["PaDNA","GlassesDNA"],
+    ["PaDNA","DistinguishingMarksDNA","Tattoos"],
+    ["PaDNA","DistinguishingMarksDNA","Piercings"],
+    ["PaDNA","PostureDNA"],
+    ["PaDNA","GaitDNA"],
+    ["PaDNA","ApparelDNA","Fit"],
+    ["PaDNA","ApparelDNA","Style"]
+  ],
+  "results": {
+    "schema_version": "ucnrr.demo/1.4",
+    "ucn": {
+      "per_dna": {
+        "PaDNA.LooksDNA": 740,
+        "PaDNA.AgeDNA": 690,
+        "PaDNA.HeightDNA": 610,
+        "PaDNA.BuildDNA": 560,
+        "PaDNA.HairDNA.Color": 900,
+        "PaDNA.HairDNA.Length": 860,
+        "PaDNA.HairDNA.Texture": 820,
+        "PaDNA.EyeDNA.Color": 880,
+        "PaDNA.SkinDNA.Tone": 700,
+        "PaDNA.FacialHairDNA": 480,
+        "PaDNA.GlassesDNA": 830,
+        "PaDNA.DistinguishingMarksDNA.Tattoos": 790,
+        "PaDNA.DistinguishingMarksDNA.Piercings": 760,
+        "PaDNA.PostureDNA": 640,
+        "PaDNA.GaitDNA": 600,
+        "PaDNA.ApparelDNA.Fit": 720,
+        "PaDNA.ApparelDNA.Style": 910
+      },
+      "top_level": { "PaDNA": 720.0 },
+      "overall": 720.0
+    },
+    "curiosity": { "overall": 280.0 },
+    "rr": { "overall": 65.0 },
+    "gaps": {
+      "raw_curiosity": [
+        ["PaDNA.BuildDNA", 440.0],
+        ["PaDNA.FacialHairDNA", 520.0],
+        ["PaDNA.HeightDNA", 390.0],
+        ["PaDNA.GaitDNA", 400.0],
+        ["PaDNA.PostureDNA", 360.0],
+        ["PaDNA.SkinDNA.Tone", 300.0]
+      ],
+      "top_weighted": [
+        {
+          "dna_path": "PaDNA.FacialHairDNA",
+          "weighted_score": 364.0,
+          "curiosity": 520.0,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty"
+        },
+        {
+          "dna_path": "PaDNA.BuildDNA",
+          "weighted_score": 308.0,
+          "curiosity": 440.0,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty"
+        },
+        {
+          "dna_path": "PaDNA.GaitDNA",
+          "weighted_score": 280.0,
+          "curiosity": 400.0,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty"
+        },
+        {
+          "dna_path": "PaDNA.HeightDNA",
+          "weighted_score": 273.0,
+          "curiosity": 390.0,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty"
+        },
+        {
+          "dna_path": "PaDNA.PostureDNA",
+          "weighted_score": 252.0,
+          "curiosity": 360.0,
+          "importance": 0.7,
+          "staleness": 1.0,
+          "reason": "low certainty"
+        }
+      ],
+      "agenda_items": ["Confirm low-confidence traits; maintain strong hair/eyes/style signals."]
+    },
+    "contradictions": [],
+    "evidence_meta": {
+      "PaDNA.HairDNA.Color": [
+        { "observed_at": "2025-09-08T00:00:00Z", "provenance": { "credibility_tier": "document", "source": "Photo", "method": "upload" } },
+        { "observed_at": "2025-09-07T00:00:00Z", "provenance": { "credibility_tier": "self-report", "source": "Interview", "method": "form" } }
+      ],
+      "PaDNA.GlassesDNA": [
+        { "observed_at": "2025-09-06T00:00:00Z", "provenance": { "credibility_tier": "third-party", "source": "Coach", "method": "observation" } }
+      ],
+      "PaDNA.DistinguishingMarksDNA.Tattoos": [
+        { "observed_at": "2025-09-05T00:00:00Z", "provenance": { "credibility_tier": "document", "source": "Intake form", "method": "upload" } }
+      ],
+      "PaDNA.DistinguishingMarksDNA.Piercings": [
+        { "observed_at": "2025-09-05T00:00:00Z", "provenance": { "credibility_tier": "document", "source": "Intake form", "method": "upload" } }
+      ],
+      "PaDNA.ApparelDNA.Style": [
+        { "observed_at": "2025-09-04T00:00:00Z", "provenance": { "credibility_tier": "third-party", "source": "Coach", "method": "observation" } }
+      ],
+      "PaDNA.EyeDNA.Color": [
+        { "observed_at": "2025-09-04T00:00:00Z", "provenance": { "credibility_tier": "document", "source": "Photo", "method": "upload" } }
+      ]
+    },
+    "meta": { "difficulty": "Normal", "calculated_at": "2025-09-08T00:00:00Z" }
+  },
+  "notes": "Synthetic sample for PaDNA outbound demo — 'studio creative' tilt"
+}

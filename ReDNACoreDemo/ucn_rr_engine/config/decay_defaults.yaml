@@ -1,0 +1,300 @@
+# Default Decay Half-Lives by DNA Type
+#
+# Principle: "Confidence decays, not the trait itself"
+#
+# These are STARTING POINTS. The DecayEngine learns optimal decay rates per trait
+# based on observed volatility, stability patterns, and metadata.
+#
+# Half-life: Time it takes for confidence to decay to 50% of original value
+# Special value "permanent" means confidence never decays
+
+PaDNA:
+  HairDNA:
+    Color: 365              # Natural hair color changes slowly (1 year)
+    ColorDyed: 45           # Dyed color changes frequently (1.5 months)
+    Highlights: 60          # Highlights fade/grow out (2 months)
+    Length: 90              # Hair length changes moderately (3 months)
+    Texture: 1825           # Texture rarely changes (5 years)
+    Volume: 180             # Volume moderately stable (6 months)
+    Style: 30               # Styling changes frequently (1 month)
+    HairDensity: 730        # Density very stable (2 years)
+    HairlineShape: permanent # Hairline shape doesn't change (without medical intervention)
+
+  EyeDNA:
+    Color: permanent        # Eye color doesn't change
+    ColorIntensity: 1825    # Perceived intensity very stable (5 years)
+    Shape: permanent        # Eye shape doesn't change
+    Size: permanent         # Eye size doesn't change
+    EyeSpacing: permanent   # Eye spacing doesn't change
+    EyelidCrease: permanent # Eyelid structure doesn't change
+    Brows: 90               # Brow color can be dyed/shaped (3 months)
+
+  EyebrowDNA:
+    Color: 90               # Can be dyed/changed (3 months)
+    Shape: 60               # Can be shaped/groomed (2 months)
+    Thickness: 90           # Can be shaped/regrown (3 months)
+
+  SkinDNA:
+    Tone: 730               # Skin tone relatively stable (2 years)
+    Undertone: permanent    # Undertone doesn't change
+    Texture: 365            # Texture changes with age/care (1 year)
+    Clarity: 180            # Clarity changes with skincare (6 months)
+    Freckles: 365           # Freckles change with sun exposure (1 year)
+    SunBehavior: permanent  # Genetic sun sensitivity doesn't change
+    SkinElasticityAppearance: 365  # Aging changes gradually (1 year)
+    SkinPoreVisibility: 365 # Changes with age/care (1 year)
+    AgeSpotsPresence: 365   # Age spots develop slowly (1 year)
+
+  FacialDNA:
+    FaceShape: permanent    # Bone structure doesn't change
+    Cheekbones: permanent   # Bone structure doesn't change
+    CheekboneProminence: permanent
+    Jawline: permanent
+    JawlineWidth: permanent
+    ChinShape: permanent
+    ChinWidth: permanent
+    ForeheadWidth: permanent
+    FeatureRefinement: permanent
+    FacialSymmetry: permanent
+    NoseShape: permanent
+    NoseSize: permanent
+    NoseBridge: permanent
+    NoseBridgeWidth: permanent
+    NoseTipShape: permanent
+    NostrilShape: permanent
+    LipsFullness: 730       # Can change with age/procedures (2 years)
+    LipsShape: permanent
+    LipsNaturalColor: 365   # Natural color relatively stable (1 year)
+    LipCupidsBow: permanent
+    LipProportions: permanent
+    PhiltrumDepth: permanent
+    PhiltrumLength: permanent
+
+    # Age-related features (change over time)
+    CrowsFeet: 180          # Aging indicators change gradually (6 months)
+    SmileLines: 180
+    ForeheadLines: 180
+    NasolabialFolds: 180
+    EyeAreaAging: 365       # Slower aging progression (1 year)
+    NeckAging: 365
+    SkinMaturity: 365       # Age-related appearance (1 year)
+
+    # Expression/behavior features
+    SmileStyle: 730         # Smile patterns very stable (2 years)
+    SmileGumShow: permanent
+    SmileAsymmetry: permanent
+    BrowArchApex: permanent
+    BrowThicknessVariation: 90  # Can change with grooming (3 months)
+    BrowEyeDistance: permanent
+    FacialProportions: permanent
+
+  NeckDNA:
+    Length: permanent
+    Width: permanent
+
+  BodyDNA:
+    Build: 365              # Build can change with fitness (1 year)
+    Frame: permanent        # Bone structure doesn't change
+    BoneStructure: permanent
+    Shoulders: permanent
+    Proportions: permanent
+    Height: permanent       # After adulthood
+
+  StyleDNA:
+    ColorPreference: 180    # Color preferences moderately stable (6 months)
+    RedPreference: 180
+    StyleRange: 365         # Style versatility stable (1 year)
+    NecklinePreference: 180 # Fashion preferences (6 months)
+    ClothingStyle: 90       # Clothing style changes seasonally (3 months)
+    AccessoryPreference: 60 # Accessories change frequently (2 months)
+
+  MakeupDNA:
+    EyeMakeup: 90           # Makeup style moderately stable (3 months)
+    LipColor: 60            # Lip color preferences change (2 months)
+    MakeupStyle: 90         # Overall style moderately stable (3 months)
+
+  AccessoryDNA:
+    Earrings: 60            # Accessory preferences change (2 months)
+    Necklaces: 60
+    Bracelets: 60
+    Rings: 180              # Rings more stable (wedding bands, etc.) (6 months)
+
+PsyDNA:
+  Opinions:
+    PoliticalViews: 365     # Can change but generally stable (1 year)
+    MusicPreference: 180    # More fluid (6 months)
+    FoodPreference: 90      # Changes frequently (3 months)
+    MoviePreference: 180    # Moderately stable (6 months)
+    BookPreference: 180     # Moderately stable (6 months)
+    TravelPreference: 365   # Relatively stable (1 year)
+
+  Personality:
+    BigFive: 1825           # Personality traits very stable (5 years)
+    Values: 730             # Core values moderately stable (2 years)
+    Temperament: 1825       # Temperament very stable (5 years)
+
+  MentalState:
+    Mood: 7                 # Mood highly volatile (1 week)
+    Stress: 30              # Stress moderately volatile (1 month)
+    Anxiety: 60             # Anxiety states (2 months)
+    Depression: 90          # Depression states (3 months)
+
+  Beliefs:
+    Religious: 730          # Religious beliefs moderately stable (2 years)
+    Spiritual: 365          # Spiritual beliefs (1 year)
+    Philosophical: 730      # Philosophical views (2 years)
+
+SoDNA:
+  Relationships:
+    MaritalStatus: 730      # Relationships relatively stable (2 years)
+    PartnerTraits: 365      # Partner preferences (1 year)
+    FamilyDynamics: 365     # Family dynamics (1 year)
+
+  SocialCircle:
+    FriendCount: 90         # Social circles evolve regularly (3 months)
+    SocialStyle: 730        # Social style stable (2 years)
+    NetworkSize: 180        # Network changes (6 months)
+
+  Communication:
+    CommunicationStyle: 730 # Communication patterns stable (2 years)
+    PreferredChannels: 180  # Channel preferences (6 months)
+
+HealthDNA:
+  Physical:
+    Weight: 30              # Weight can fluctuate (1 month)
+    Fitness: 60             # Fitness changes gradually (2 months)
+    BMI: 60                 # BMI moderately volatile (2 months)
+    BloodPressure: 90       # BP moderately stable (3 months)
+
+  Medical:
+    Allergies: permanent    # Allergies rarely resolve
+    ChronicConditions: 730  # Chronic conditions stable (2 years)
+    Medications: 90         # Medications can change (3 months)
+    Surgeries: permanent    # Surgical history immutable
+
+  Genetic:
+    GeneticMarkers: permanent  # Genetics don't change
+    FamilyHistory: permanent   # Family history immutable
+
+SkillsDNA:
+  Technical:
+    ProgrammingLanguages: 365    # Skills degrade without practice (1 year)
+    SoftwareTools: 180           # Tool knowledge (6 months)
+    TechnicalSkills: 365         # General technical skills (1 year)
+
+  Languages:
+    NativeLanguage: permanent    # Native language immutable
+    SecondLanguage: 730          # Language proficiency stable with use (2 years)
+    LanguageFluency: 365         # Fluency degrades without practice (1 year)
+
+  Hobbies:
+    ActiveHobbies: 180           # Active hobbies change (6 months)
+    PastHobbies: permanent       # Past hobbies are historical fact
+    HobbySkillLevel: 365         # Skill level changes (1 year)
+
+  Creative:
+    ArtisticSkills: 365          # Artistic skills (1 year)
+    MusicalSkills: 365           # Musical skills (1 year)
+    WritingSkills: 365           # Writing skills (1 year)
+
+HistoryDNA:
+  Personal:
+    Birthplace: permanent        # Historical facts don't change
+    BirthDate: permanent
+    Birthname: permanent
+
+  Education:
+    Schools: permanent           # Completed education immutable
+    Degrees: permanent
+    Certifications: permanent    # Unless they expire
+    GPA: permanent
+
+  Career:
+    JobHistory: permanent        # Past jobs don't change
+    CurrentJob: 180              # Current job can change (6 months)
+    CareerGoals: 365             # Career aspirations (1 year)
+    Skills: 365                  # Current skill inventory (1 year)
+
+  Life:
+    Milestones: permanent        # Life milestones immutable
+    Achievements: permanent
+    Traumas: permanent
+
+FinanceDNA:
+  Current:
+    Income: 90                   # Income can change (3 months)
+    NetWorth: 180                # Net worth moderately stable (6 months)
+    Debt: 90                     # Debt can change (3 months)
+    CreditScore: 180             # Credit score changes (6 months)
+
+  Habits:
+    SpendingPatterns: 180        # Spending patterns (6 months)
+    SavingsRate: 180             # Savings habits (6 months)
+    InvestmentStyle: 365         # Investment approach (1 year)
+
+  Goals:
+    FinancialGoals: 365          # Financial goals (1 year)
+    RetirementPlan: 730          # Retirement planning (2 years)
+
+SexDNA:
+  Orientation:
+    SexualOrientation: 1825      # Very stable (5 years)
+    GenderIdentity: 1825         # Very stable (5 years)
+    RomanticOrientation: 1825    # Very stable (5 years)
+
+  Preferences:
+    PartnerPreferences: 730      # Moderately stable (2 years)
+    IntimacyPreferences: 365     # Can evolve (1 year)
+    RelationshipStyle: 730       # Relationship style stable (2 years)
+
+  Activity:
+    LibidoLevel: 90              # Can fluctuate (3 months)
+    ActivityFrequency: 60        # Activity patterns (2 months)
+
+# Metadata-based decay modifiers
+# These adjust decay rates based on user metadata
+metadata_modifiers:
+  age_over_60:
+    # Aging accelerates for older adults
+    "PaDNA.FacialDNA.CrowsFeet": 0.5      # 2x faster decay (half the half-life)
+    "PaDNA.FacialDNA.SmileLines": 0.5
+    "PaDNA.FacialDNA.SkinMaturity": 0.5
+    "PaDNA.SkinDNA.SkinElasticityAppearance": 0.5
+
+  age_18_25:
+    # Formative period - opinions change faster
+    "PsyDNA.Opinions.*": 0.5
+    "PsyDNA.Beliefs.*": 0.7
+
+  marital_status_married:
+    # Increased stability in relationships
+    "SoDNA.Relationships.*": 2.0          # 2x slower decay (double the half-life)
+    "PsyDNA.MentalState.Stress": 1.5
+
+  chronic_condition:
+    # Health volatility increases
+    "HealthDNA.Physical.*": 0.7
+    "PsyDNA.MentalState.*": 0.8
+
+  college_student:
+    # Learning period - skills/hobbies change faster
+    "SkillsDNA.*": 0.8
+    "PsyDNA.Opinions.*": 0.6
+
+# Adaptive learning parameters
+adaptive_learning:
+  enabled: true
+  min_observations: 5              # Need 5+ observations before adjusting decay rates
+  observation_window: 730          # Look at last 2 years of data
+  adjustment_range: [0.25, 4.0]    # Can adjust decay rate by 4x slower to 4x faster
+  learning_rate: 0.1               # How aggressively to adjust (0.0-1.0)
+
+  # If trait has 5+ observations over 2+ years with no changes:
+  stable_trait_multiplier: 2.0     # 2x slower decay
+
+  # If trait changes 3+ times in 6 months:
+  volatile_trait_multiplier: 0.5   # 2x faster decay
+
+  # Exception pattern: trait that usually changes but has been stable
+  exception_monitoring_period: 90  # Monitor for 90 days after last change
+  exception_multiplier: 1.5        # Slow decay if still stable

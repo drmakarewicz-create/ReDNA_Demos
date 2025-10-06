@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "t",
+  "assistant_text": "It sounds like we're having some connectivity issues again! Let's try this: What do you think about the new dog park that just opened near your neighborhood? Have you and Archie had a chance to check it out yet?",
+  "client_message_id": "bb700696-acdf-4810-a5e6-13129193688a",
+  "assistant_message_id": "chat-291fb9a665e84dcb9cc5475d0c65f5e2",
+  "server_ts": "2025-10-05T20:49:13.346+00:00",
+  "server_ts_ms": 1759697353346,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

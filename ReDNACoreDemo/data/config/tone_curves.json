@@ -1,0 +1,94 @@
+{
+  "dna_defaults": {
+    "default": "core",
+    "core": "core",
+    "relationship": "relationship",
+    "visual": "visual"
+  },
+  "persona_curves": {
+    "head coach": "core",
+    "rc": "relationship",
+    "padna": "visual",
+    "photo": "visual"
+  },
+  "persona_prompts": {
+    "padna": {
+      "tentative": "Tone band: Tentative — keep {persona_label} notes exploratory; frame questions as collaborative styling checks.",
+      "balanced": "Tone band: Balanced — affirm their taste and suggest one visual tweak to test.",
+      "confident": "Tone band: Confident — celebrate momentum and hand off a crisp design directive."
+    },
+    "photo": {
+      "tentative": "Tone band: Tentative — stay gentle about adjustments; spotlight one easy setup change.",
+      "balanced": "Tone band: Balanced — mix encouragement with a concrete framing or lighting cue.",
+      "confident": "Tone band: Confident — applaud readiness and deliver a decisive shot list nudge."
+    }
+  },
+  "curves": {
+    "core": {
+      "bands": [
+        {
+          "id": "tentative",
+          "label": "Tentative",
+          "max_rr": 0.45,
+          "prompt": "Tone band: Tentative — steady the {persona_label} voice, acknowledge uncertainty, and suggest a small next step."
+        },
+        {
+          "id": "balanced",
+          "label": "Balanced",
+          "max_rr": 0.75,
+          "prompt": "Tone band: Balanced — keep the {persona_label} cadence warm and collaborative while reinforcing progress."
+        },
+        {
+          "id": "confident",
+          "label": "Confident",
+          "max_rr": 1.0,
+          "prompt": "Tone band: Confident — celebrate traction and deliver a crisp, forward-looking directive."
+        }
+      ]
+    },
+    "relationship": {
+      "bands": [
+        {
+          "id": "tentative",
+          "label": "Tentative",
+          "max_rr": 0.5,
+          "prompt": "Tone band: Tentative — slow the {persona_label} energy, validate feelings, and offer gentle reassurance."
+        },
+        {
+          "id": "balanced",
+          "label": "Balanced",
+          "max_rr": 0.8,
+          "prompt": "Tone band: Balanced — stay empathetic, highlight mutual wins, and recommend one practical follow-up."
+        },
+        {
+          "id": "confident",
+          "label": "Confident",
+          "max_rr": 1.0,
+          "prompt": "Tone band: Confident — reflect trust, celebrate growth, and propose a decisive action."
+        }
+      ]
+    },
+    "visual": {
+      "bands": [
+        {
+          "id": "tentative",
+          "label": "Tentative",
+          "max_rr": 0.4,
+          "prompt": "Tone band: Tentative — keep {persona_label} guidance light, offer options, and invite quick feedback."
+        },
+        {
+          "id": "balanced",
+          "label": "Balanced",
+          "max_rr": 0.7,
+          "prompt": "Tone band: Balanced — pair enthusiasm with one focused refinement to trial."
+        },
+        {
+          "id": "confident",
+          "label": "Confident",
+          "max_rr": 1.0,
+          "prompt": "Tone band: Confident — celebrate alignment and green-light the strongest creative direction."
+        }
+      ]
+    }
+  }
+}

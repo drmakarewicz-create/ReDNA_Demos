@@ -1,0 +1,25 @@
+{
+  "job_id": "avatar_1759478037595",
+  "user_id": "TEST",
+  "created_at": "2025-10-03T07:53:57.598510+00:00",
+  "state": "done",
+  "rendering_traits": {
+    "PaDNA.LooksDNA.EyeDNA.IrisColor": {
+      "value": "Blue",
+      "ucn": 132,
+      "rr": 0
+    },
+    "PaDNA.LooksDNA.HairDNA.Color": {
+      "value": "brown",
+      "ucn": 100,
+      "rr": 0
+    },
+    "PaDNA.LooksDNA.FaceDNA.FacialHair": {
+      "value": true,
+      "ucn": 100,
+      "rr": 0
+    }
+  },
+  "result_path": "renders/avatar_1759478037595/result.png",
+  "download_url": "/ui/render/download/TEST/avatar_1759478037595/result.png"
+}

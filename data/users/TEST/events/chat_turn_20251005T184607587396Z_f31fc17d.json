@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "You seem nice",
+  "assistant_text": "Thanks for the kind words! I'm glad we could have a casual chat. It's been great catching up with you about TV shows and football - if you want, I can send you some recs on new shows to watch this season. How's your week going so far?",
+  "client_message_id": "6a7dc0b7-f0a3-4454-b6dc-f01aa8e34338",
+  "assistant_message_id": "chat-75108e6b08d5461189a7058b4c78c3f5",
+  "server_ts": "2025-10-05T18:46:07.587+00:00",
+  "server_ts_ms": 1759689967587,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

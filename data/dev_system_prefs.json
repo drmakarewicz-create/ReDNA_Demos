@@ -1,0 +1,15 @@
+{
+  "env_flags": {
+    "AUDIT_VIEWER_ENABLED": true,
+    "DEMO_BASELINES_ENABLED": false,
+    "CORE_CURIOSITY_ENABLED": true,
+    "WRITE_PROTECT": false,
+    "DEV_EXPLORER_ENABLED": true,
+    "HC_OPS_ENABLED": false,
+    "NUDGE_INBOX_ENABLED": false,
+    "FEEDBACK_ENABLED": false,
+    "HC_SEND_ENABLED": false,
+    "DEV_LOOPTEST_USER_ID": "devexp_test",
+    "DEV_HTTP_TIMEOUT_SECONDS": 36.0
+  }
+}

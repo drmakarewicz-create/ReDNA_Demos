@@ -1,0 +1,866 @@
+{
+  "profile": {
+    "label": "BSTest",
+    "created_ts": "2025-10-03T22:37:44.559419+00:00"
+  },
+  "PaDNA.HairDNA.Color": {
+    "resolved_value": "Blonde",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Golden blonde to platinum blonde, consistent across all 10 photos"
+    }
+  },
+  "PaDNA.HairDNA.Length": {
+    "resolved_value": "Long",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Past shoulders to mid-back length"
+    }
+  },
+  "PaDNA.HairDNA.Texture": {
+    "resolved_value": "Wavy",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Straight to wavy with medium to high volume"
+    }
+  },
+  "PaDNA.HairDNA.Volume": {
+    "resolved_value": "High",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ]
+  },
+  "PaDNA.HairDNA.Parting": {
+    "resolved_value": "Center Or Slight Off-Center (variable)",
+    "ucn": 800.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Styling": {
+    "resolved_value": [
+      "Updos",
+      "Loose waves",
+      "Straightened"
+    ],
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Highlights": {
+    "resolved_value": "Visible Darker Roots With Platinum/Golden Ends",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Accessories": {
+    "resolved_value": [
+      "flower-crowns",
+      "ribbons"
+    ],
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.FaceShape": {
+    "resolved_value": "Oval Trending Heart-Shaped",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.Cheekbones": {
+    "resolved_value": "Moderately Prominent",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.Jawline": {
+    "resolved_value": "Soft, Slightly Rounded",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.Chin": {
+    "resolved_value": "Rounded With Slight Point",
+    "ucn": 830.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FaceDNA.Forehead": {
+    "resolved_value": "Medium Height, Gently Rounded",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyebrowDNA.Shape": {
+    "resolved_value": "Arched Soft-Angle",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyebrowDNA.Thickness": {
+    "resolved_value": "Medium",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyebrowDNA.Color": {
+    "resolved_value": "Medium-Brown (darker Than Roots)",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Color": {
+    "resolved_value": "Blue",
+    "ucn": 700.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Light colored, appears blue or possibly green, some photos have sunglasses"
+    }
+  },
+  "PaDNA.EyeDNA.Shape": {
+    "resolved_value": "Almond",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ]
+  },
+  "PaDNA.EyeDNA.Size": {
+    "resolved_value": "Medium",
+    "ucn": 800.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ]
+  },
+  "PaDNA.EyeDNA.Spacing": {
+    "resolved_value": "Average",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Lashes": {
+    "resolved_value": "Medium Length; Visibly Darkened With Mascara",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NoseDNA.Size": {
+    "resolved_value": "Small To Medium",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NoseDNA.Bridge": {
+    "resolved_value": "Straight, Narrow",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NoseDNA.Tip": {
+    "resolved_value": "Rounded",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.LipDNA.Fullness": {
+    "resolved_value": "Medium-Full Upper, Full Lower",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.LipDNA.Shape": {
+    "resolved_value": "Defined Cupid's Bow",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.LipDNA.Color": {
+    "resolved_value": "Natural Pink (often Nude/Pink Lipstick)",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.Tone": {
+    "resolved_value": "Light",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Light to light-medium, varies with sun exposure"
+    }
+  },
+  "PaDNA.SkinDNA.Undertone": {
+    "resolved_value": "Warm",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Neutral to warm undertone"
+    }
+  },
+  "PaDNA.SkinDNA.Texture": {
+    "resolved_value": "Smooth",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Clear complexion, smooth texture"
+    }
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "resolved_value": "Sparse To None Visible",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.SunSensitivity": {
+    "resolved_value": "High",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NeckDNA.Length": {
+    "resolved_value": "Medium",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.NeckDNA.Width": {
+    "resolved_value": "Slender",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.HeightEstimateCM": {
+    "resolved_value": 163,
+    "ucn": 780.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Build": {
+    "resolved_value": "Athletic",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Athletic, slender build with visible muscle tone"
+    }
+  },
+  "PaDNA.BodyDNA.WaistHipRatio": {
+    "resolved_value": "Moderate-Hourglass",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Bust": {
+    "resolved_value": "Full",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Shoulders": {
+    "resolved_value": "Medium Width; Proportionate",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Arms": {
+    "resolved_value": "Slim",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Legs": {
+    "resolved_value": "Medium-Long, Toned",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.AbsDefinition": {
+    "resolved_value": "Defined-Visible",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Navel": {
+    "resolved_value": "Pierced",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Tattoos": {
+    "resolved_value": [
+      "Small tattoo(s) low pelvis/hip line (bilateral)"
+    ],
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HandsDNA.Nails": {
+    "resolved_value": "Medium Length; Often Manicured With Color Polish",
+    "ucn": 830.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HandsDNA.Rings": {
+    "resolved_value": "Multiple Rings Worn Intermittently",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HandsDNA.Bracelets": {
+    "resolved_value": "Thin Bangles / Charm Bracelets (occasional)",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.Teeth": {
+    "resolved_value": "Straight, White",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.SmileShape": {
+    "resolved_value": "Broad Smile",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.Dimples": {
+    "resolved_value": "Absent",
+    "ucn": 700.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.MouthWidth": {
+    "resolved_value": "Medium-Wide",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.EyeMakeup": {
+    "resolved_value": "Smoky Dark Eyeshadow; Heavy Eyeliner; Mascara Emphasis",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.LipColor": {
+    "resolved_value": "Nude\u2013pink Range",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.Foundation": {
+    "resolved_value": "Medium Coverage; Matte To Soft-Matte Finish",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.Blush": {
+    "resolved_value": "Natural Pink Tones",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.FrequentTops": {
+    "resolved_value": [
+      "triangle bikinis",
+      "off-shoulder crop tops",
+      "mini dresses"
+    ],
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.FrequentBottoms": {
+    "resolved_value": [
+      "denim shorts",
+      "mini skirts",
+      "low-rise pants"
+    ],
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Footwear": {
+    "resolved_value": "Not Visible/Indeterminate In Most Images",
+    "ucn": 600.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Gloves": {
+    "resolved_value": "Fingerless Black (occasional)",
+    "ucn": 750.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.StyleThemes": {
+    "resolved_value": [
+      "Playful",
+      "Sexy casual",
+      "Animal prints",
+      "Neon/bright colors"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Necklace": {
+    "resolved_value": "Gemstone Pendants (frequent)",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Earrings": {
+    "resolved_value": "Small Studs Or Hoops",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.TypicalExpression": {
+    "resolved_value": "Direct Gaze, Slight Smirk/Smile",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.MoodVariance": {
+    "resolved_value": [
+      "Confident",
+      "Flirty",
+      "Casual"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.EyeContact": {
+    "resolved_value": "Strong, Direct",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FitnessDNA.Indicators": {
+    "resolved_value": [
+      "Flat abdomen",
+      "Defined waist",
+      "Slim legs",
+      "Toned core"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FitnessDNA.LifestyleInference": {
+    "resolved_value": "Fitness-Conscious, Active",
+    "ucn": 800.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Color.Base": {
+    "resolved_value": "Light-Blonde",
+    "ucn": 940.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Color.Highlights": {
+    "resolved_value": "Platinum-Blonde",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Color.Tone": {
+    "resolved_value": "Warm-Golden",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.RootContrast": {
+    "resolved_value": "Visible Darker Roots",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.UpdoStyle": {
+    "resolved_value": "Messy-High-Bun With Crown Volume",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Parting.Side": {
+    "resolved_value": "Left",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Iris.BaseColor": {
+    "resolved_value": "Hazel-Light-Brown",
+    "ucn": 910.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Iris.LimbalRing": {
+    "resolved_value": "Faint",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.SizeRelative": {
+    "resolved_value": "Medium",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.TanLevel": {
+    "resolved_value": "Sun-Kissed",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Tattoos.PelvisRight": {
+    "resolved_value": "Small Symbol/Text (hip Crease)",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Tattoos.PelvisLeft": {
+    "resolved_value": "Small Symbol/Text (hip Crease)",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HandsDNA.Nails.Length": {
+    "resolved_value": "Medium",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HandsDNA.Nails.Style": {
+    "resolved_value": "Polished (color Varies)",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HandsDNA.Rings.Count": {
+    "resolved_value": "Multiple Rings (varies)",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HandsDNA.Bracelets.Style": {
+    "resolved_value": "Thin Bangles / Charm",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.Eyes.Style": {
+    "resolved_value": "Heavy Smoky-Eye With Black Liner",
+    "ucn": 940.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.Eyes.Underliner": {
+    "resolved_value": "Present",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.Lashes": {
+    "resolved_value": "Long And Volumized (mascara/False)",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.Lips.Color": {
+    "resolved_value": "Nude-To-Pink",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.Skin.Finish": {
+    "resolved_value": "Medium-Coverage Matte",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.MakeupDNA.Blush.Tone": {
+    "resolved_value": "Soft Pink",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Patterns": {
+    "resolved_value": [
+      "leopard print"
+    ],
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Colors": {
+    "resolved_value": [
+      "neon pink",
+      "neon green",
+      "bright red"
+    ],
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Necklaces.Style": {
+    "resolved_value": "Pendant/Choker Statement",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FootwearDNA.Visibility": {
+    "resolved_value": "Often Out-Of-Frame",
+    "ucn": 600.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Tone": {
+    "resolved_value": "Golden Blonde",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ]
+  },
+  "PaDNA.FacialDNA.FaceShape": {
+    "resolved_value": "Oval",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Oval to heart-shaped face"
+    }
+  },
+  "PaDNA.FacialDNA.Cheekbones": {
+    "resolved_value": "High",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Prominent, high cheekbones"
+    }
+  },
+  "PaDNA.FacialDNA.Jawline": {
+    "resolved_value": "Defined",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Defined, slightly rounded jawline"
+    }
+  },
+  "PaDNA.FacialDNA.Nose.Shape": {
+    "resolved_value": "Straight",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Straight, proportionate nose"
+    }
+  },
+  "PaDNA.FacialDNA.Nose.Size": {
+    "resolved_value": "Small",
+    "ucn": 800.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ]
+  },
+  "PaDNA.FacialDNA.Lips.Fullness": {
+    "resolved_value": "Full",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Medium to full lips with defined cupid's bow"
+    }
+  },
+  "PaDNA.FacialDNA.Lips.Shape": {
+    "resolved_value": "Defined",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Well-defined with visible cupid's bow"
+    }
+  },
+  "PaDNA.FacialDNA.Smile": {
+    "resolved_value": "Wide",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Bright, wide smile with straight white teeth, smiling in majority of photos"
+    }
+  },
+  "PaDNA.FacialDNA.FacialSymmetry": {
+    "resolved_value": "High",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ]
+  },
+  "PaDNA.BodyDNA.Frame": {
+    "resolved_value": "Small",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Small to medium frame"
+    }
+  },
+  "PaDNA.BodyDNA.FitnessLevel": {
+    "resolved_value": "High",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Appears physically fit and toned, visible abdominal definition"
+    }
+  },
+  "PaDNA.BodyDNA.Proportions": {
+    "resolved_value": "Balanced",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ]
+  },
+  "PaDNA.StyleDNA.ColorPreference": {
+    "resolved_value": "Bright Colors",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Strong preference for bright, bold colors especially pinks, reds, and neon shades"
+    }
+  },
+  "PaDNA.StyleDNA.PatternPreference": {
+    "resolved_value": "Animal Prints",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Frequently wears leopard print and other bold patterns"
+    }
+  },
+  "PaDNA.StyleDNA.SilhouettePreference": {
+    "resolved_value": "Form-Fitting",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Prefers fitted styles including bikinis, off-shoulder tops, and form-fitting dresses"
+    }
+  }
+}

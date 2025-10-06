@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "t",
+  "assistant_text": "Sorry again for the connection issues! It seems like we were in the middle of talking about dog parks. Since you asked what makes a good dog park, I'm curious - how important is it to you that they have separate areas for large and small dogs?",
+  "client_message_id": "7432145c-637f-4299-bb67-2cc3df5fec02",
+  "assistant_message_id": "chat-243a1db0ebcf4e0eb22611f93fe33779",
+  "server_ts": "2025-10-05T20:49:32.831+00:00",
+  "server_ts_ms": 1759697372831,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

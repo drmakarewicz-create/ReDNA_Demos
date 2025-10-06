@@ -1,0 +1,42 @@
+{
+  "type": "onboarding_profile",
+  "ts": 1759439257608,
+  "captured_at": "2025-10-02T21:07:37.608+00:00",
+  "profile": {
+    "version": 1,
+    "captured_at": "2025-10-02T21:07:37.608+00:00",
+    "user_id": "10-2-507",
+    "display_name": "10-2-507",
+    "quick_facts": {
+      "eye_color": {
+        "value": "brown",
+        "label": "Brown"
+      },
+      "hair_color": {
+        "value": "brown",
+        "label": "Brown"
+      },
+      "handedness": {
+        "value": "right",
+        "label": "Right-handed"
+      }
+    },
+    "interests": {
+      "selected": [
+        "fitness",
+        "style"
+      ],
+      "custom": [
+        "Baseball"
+      ]
+    },
+    "source": "ui_onboarding_modal"
+  },
+  "ucnrr": {
+    "ok": false,
+    "status": 404,
+    "detail": {
+      "detail": "Not Found"
+    }
+  }
+}

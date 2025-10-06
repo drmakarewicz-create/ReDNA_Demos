@@ -1,0 +1,46 @@
+{
+  "type": "chat_turn",
+  "ts": 1759624099632,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I'm stressed about work",
+    "ts": 1759624099630
+  },
+  "assistant": {
+    "text": "I can sense the stress! Let me get this straight - is there something specific at work causing you distress or would you like to talk more about it? If you feel comfortable sharing, we could also explore ways to manage stress together. \n\n(No coach suggested yet)",
+    "ts": 1759624099632,
+    "message_id": "chat-51b4c1bd8c864abf958f8bdde843efb2"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 8263,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 4,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.41500000000000004,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 8187.793103448276,
+    "rolling_latency_median_ms": 6513.0,
+    "latency_histogram": {
+      "steady": 25,
+      "fast": 3,
+      "slow": 1
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 12,
+      "question": 17,
+      "ack": 1
+    },
+    "priority": 0.8
+  }
+}

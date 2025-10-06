@@ -1,0 +1,110 @@
+{
+  "user_id": "LLTEST",
+  "observations": {
+    "PaDNA": {
+      "HairDNA": {
+        "Color": {"resolved_value": "Auburn-brown with golden highlights", "ucn": 920},
+        "Length": {"resolved_value": "Long", "ucn": 950},
+        "Texture": {"resolved_value": "Wavy", "ucn": 870},
+        "CurlPattern": {"resolved_value": "Wavy-2B", "ucn": 890},
+        "WaveDefinition": {"resolved_value": "Defined", "ucn": 870},
+        "Parting": {"resolved_value": "Side part, often left", "ucn": 810},
+        "Volume": {"resolved_value": "Thick", "ucn": 890}
+      },
+      "FaceDNA": {
+        "FaceShape": {"resolved_value": "Heart-shaped to oval", "ucn": 880},
+        "Cheekbones": {"resolved_value": "Prominent, high", "ucn": 890},
+        "Jawline": {"resolved_value": "Soft, rounded", "ucn": 860},
+        "LowerFaceShape": {"resolved_value": "Gently tapered", "ucn": 850},
+        "Chin": {"resolved_value": "Slightly pointed", "ucn": 850},
+        "FaceWidth": {"resolved_value": "Medium-narrow", "ucn": 820}
+      },
+      "ForeheadDNA": {
+        "Height": {"resolved_value": "Medium", "ucn": 840},
+        "Shape": {"resolved_value": "Gently rounded", "ucn": 830}
+      },
+      "EyebrowDNA": {
+        "Shape": {"resolved_value": "Arched with soft angle", "ucn": 900},
+        "ArchPosition": {"resolved_value": "2/3 outward from inner corner", "ucn": 850},
+        "Thickness": {"resolved_value": "Medium-thin to medium", "ucn": 870},
+        "Color": {"resolved_value": "Light to medium brown", "ucn": 880}
+      },
+      "NoseDNA": {
+        "Size": {"resolved_value": "Small to medium", "ucn": 860},
+        "Bridge": {"resolved_value": "Straight, refined", "ucn": 850},
+        "BridgeWidth": {"resolved_value": "Narrow to medium", "ucn": 840},
+        "Tip": {"resolved_value": "Slightly rounded", "ucn": 840},
+        "Nostrils": {"resolved_value": "Petite", "ucn": 820}
+      },
+      "LipDNA": {
+        "Fullness": {"resolved_value": "Medium-full, balanced proportions", "ucn": 880},
+        "Shape": {"resolved_value": "Defined cupid's bow", "ucn": 870},
+        "Color": {"resolved_value": "Natural pink", "ucn": 850},
+        "Texture": {"resolved_value": "Smooth with natural gloss", "ucn": 850}
+      },
+      "EyeDNA": {
+        "Color": {"resolved_value": "Light Green with hazel flecks", "ucn": 940},
+        "Shape": {"resolved_value": "Almond", "ucn": 880},
+        "Size": {"resolved_value": "Medium-large", "ucn": 870},
+        "Spacing": {"resolved_value": "Medium-wide set", "ucn": 860},
+        "Lashes": {"resolved_value": "Medium length, full", "ucn": 820}
+      },
+      "SkinDNA": {
+        "Tone": {"resolved_value": "Fair with warm undertones", "ucn": 930},
+        "Texture": {"resolved_value": "Natural, visible pores", "ucn": 840},
+        "Freckles": {"resolved_value": "Present, across face/shoulders", "ucn": 970},
+        "FrecklesDensity": {"resolved_value": "Medium-heavy", "ucn": 950},
+        "FrecklesCoverage": {"resolved_value": "Cheeks-nose", "ucn": 940},
+        "FrecklesContrast": {"resolved_value": "Prominent", "ucn": 930},
+        "SunSensitivity": {"resolved_value": "High", "ucn": 870}
+      },
+      "NeckDNA": {
+        "Length": {"resolved_value": "Medium-long", "ucn": 840},
+        "Width": {"resolved_value": "Slender", "ucn": 850}
+      },
+      "BodyDNA": {
+        "HeightEstimateCM": {"resolved_value": 165, "ucn": 750},
+        "Build": {"resolved_value": "Slim/Athletic", "ucn": 880},
+        "WaistHipRatio": {"resolved_value": "Moderate hourglass", "ucn": 840},
+        "Bust": {"resolved_value": "Full", "ucn": 850},
+        "Shoulders": {"resolved_value": "Moderately broad", "ucn": 810},
+        "Arms": {"resolved_value": "Slim", "ucn": 860},
+        "Legs": {"resolved_value": "Long, toned", "ucn": 890},
+        "Navel": {"resolved_value": "Pierced", "ucn": 990}
+      },
+      "SmileDNA": {
+        "Teeth": {"resolved_value": "Straight, white", "ucn": 920},
+        "SmileShape": {"resolved_value": "Broad smile", "ucn": 930},
+        "MouthWidth": {"resolved_value": "Medium-wide relative to face", "ucn": 860},
+        "Dimples": {"resolved_value": "Absent", "ucn": 700}
+      },
+      "ApparelDNA": {
+        "FrequentTops": ["Tank tops", "Bikinis", "Casual fitted T-shirts", "Crop tops", "Mini dresses"],
+        "StyleThemes": ["Casual sexy", "Playful", "Colorful prints", "Beachwear"],
+        "Jewelry": {
+          "Necklace": {"resolved_value": "Often layered pendants", "ucn": 820},
+          "Earrings": {"resolved_value": "Studs or small hoops", "ucn": 810},
+          "Piercings": ["Navel piercing"]
+        }
+      },
+      "ExpressionDNA": {
+        "TypicalExpression": {"resolved_value": "Smiling warmly or playful smirk", "ucn": 910},
+        "MoodVariance": ["Confident", "Relaxed", "Playful"],
+        "EyeContact": {"resolved_value": "Direct and engaging", "ucn": 920}
+      },
+      "FitnessDNA": {
+        "Indicators": ["Flat abdomen", "Defined waist", "Toned legs", "Visible muscle tone"],
+        "LifestyleInference": {"resolved_value": "Active/fitness-conscious", "ucn": 770}
+      }
+    },
+    "BehavioralDNA": {
+      "Posture": {"resolved_value": "Confident, often leaning slightly forward or hands on hips", "ucn": 870},
+      "SocialProjection": {"resolved_value": "Outgoing, flirty, approachable", "ucn": 880}
+    },
+    "StyleContext": {
+      "SettingsObserved": ["Beach", "Kitchen", "Bedroom, casual", "Studio backdrop"],
+      "FashionMarkers": ["Low-rise shorts", "Bikinis", "Playful prints", "Heeled shoes", "Boots"],
+      "EraInference": {"resolved_value": "Early-mid 2000s fashion", "ucn": 950}
+    }
+  }
+}

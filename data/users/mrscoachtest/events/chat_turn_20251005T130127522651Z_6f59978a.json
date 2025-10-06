@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I'm not asian. I'm Irish, German and English",
+  "assistant_text": "That clears up everything! You had a strong academic focus in Asian studies, but it sounds like your personal background is more rooted in European cultures. Are you still interested in exploring the cultural traditions of Asia through other means?",
+  "client_message_id": "ed76db9d-a194-4e2a-8a85-bad46a46b1a6",
+  "assistant_message_id": "chat-abef687714b240b782863d1fb74c88e4",
+  "server_ts": "2025-10-05T13:01:27.522+00:00",
+  "server_ts_ms": 1759669287522,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

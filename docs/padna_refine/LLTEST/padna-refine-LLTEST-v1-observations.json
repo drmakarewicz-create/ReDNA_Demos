@@ -1,0 +1,132 @@
+{
+  "batch_id": "padna-refine-LLTEST-v1",
+  "user_id": "LLTEST",
+  "timestamp": "2025-10-03T20:30:00Z",
+  "source": "visual_analysis_portrait_refinement",
+  "observations": {
+    "PaDNA.EyeDNA.Iris.BaseColor": {
+      "resolved_value": "light-green",
+      "ucn": 940
+    },
+    "PaDNA.EyeDNA.Iris.Flecks": {
+      "resolved_value": "hazel",
+      "ucn": 920
+    },
+    "PaDNA.EyeDNA.Iris.FleckPattern": {
+      "resolved_value": "scattered",
+      "ucn": 880
+    },
+    "PaDNA.EyeDNA.Iris.LimbalRing": {
+      "resolved_value": "faint",
+      "ucn": 850
+    },
+    "PaDNA.EyeDNA.Iris.Saturation": {
+      "resolved_value": 65,
+      "ucn": 870
+    },
+    "PaDNA.EyeDNA.Spacing": {
+      "resolved_value": "average",
+      "ucn": 880
+    },
+    "PaDNA.EyeDNA.EyeSize": {
+      "resolved_value": "medium",
+      "ucn": 860
+    },
+    "PaDNA.SkinDNA.Freckles.Density": {
+      "resolved_value": "medium",
+      "ucn": 960
+    },
+    "PaDNA.SkinDNA.Freckles.Coverage": {
+      "resolved_value": "face-shoulders",
+      "ucn": 950
+    },
+    "PaDNA.SkinDNA.Freckles.Contrast": {
+      "resolved_value": "visible",
+      "ucn": 920
+    },
+    "PaDNA.SkinDNA.Undertone.Type": {
+      "resolved_value": "peachy-warm",
+      "ucn": 930
+    },
+    "PaDNA.SkinDNA.Undertone.Intensity": {
+      "resolved_value": "moderate",
+      "ucn": 900
+    },
+    "PaDNA.HairDNA.Color.Base": {
+      "resolved_value": "red-auburn",
+      "ucn": 940
+    },
+    "PaDNA.HairDNA.Color.Highlights": {
+      "resolved_value": "copper",
+      "ucn": 880
+    },
+    "PaDNA.HairDNA.Color.Dimension": {
+      "resolved_value": "moderate-dimension",
+      "ucn": 870
+    },
+    "PaDNA.HairDNA.CurlPattern": {
+      "resolved_value": "wavy-2B",
+      "ucn": 890
+    },
+    "PaDNA.HairDNA.WaveDefinition": {
+      "resolved_value": "medium",
+      "ucn": 860
+    },
+    "PaDNA.HairDNA.Parting.Side": {
+      "resolved_value": "left",
+      "ucn": 910
+    },
+    "PaDNA.HairDNA.Parting.Consistency": {
+      "resolved_value": "high",
+      "ucn": 880
+    },
+    "PaDNA.HairDNA.Volume": {
+      "resolved_value": "high",
+      "ucn": 900
+    },
+    "PaDNA.FaceDNA.EyeSpacing": {
+      "resolved_value": "average",
+      "ucn": 870
+    },
+    "PaDNA.FaceDNA.EyeSizeRelative": {
+      "resolved_value": "medium",
+      "ucn": 850
+    },
+    "PaDNA.FaceDNA.Cheekbones": {
+      "resolved_value": "moderate",
+      "ucn": 840
+    },
+    "PaDNA.FaceDNA.CheekboneHeight": {
+      "resolved_value": "mid",
+      "ucn": 820
+    },
+    "PaDNA.SmileDNA.LipFullness": {
+      "resolved_value": "medium-full",
+      "ucn": 890
+    },
+    "PaDNA.SmileDNA.CupidsBow": {
+      "resolved_value": "defined",
+      "ucn": 870
+    },
+    "PaDNA.SmileDNA.LipSymmetry": {
+      "resolved_value": "symmetric",
+      "ucn": 850
+    },
+    "PaDNA.SmileDNA.UpperLipFullness": {
+      "resolved_value": "medium",
+      "ucn": 860
+    },
+    "PaDNA.SmileDNA.LowerLipFullness": {
+      "resolved_value": "full",
+      "ucn": 880
+    }
+  },
+  "notes": [
+    "All UCN values set 850+ to ensure high confidence in new containers",
+    "Values derived from visual analysis of current portrait and existing trait descriptions",
+    "These observations should be merged with existing LLTEST resolved.json during re-ingestion",
+    "Base color, density, and pattern values align with original text descriptions but now atomic",
+    "Hair curl pattern 'wavy-2B' represents medium S-wave pattern (matches original 'Wavy' texture)",
+    "Freckle coverage 'face-shoulders' matches original 'Present, Across Face/Shoulders' but now quantified"
+  ]
+}

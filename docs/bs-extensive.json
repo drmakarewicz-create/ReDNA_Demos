@@ -1,0 +1,580 @@
+{
+  "user_id": "bs_demo_001",
+  "provenance": {
+    "actor": "photo_coach",
+    "source": "manual-json",
+    "note": "Merged visual inferences from 8 photos (bs1\u2013bs8)",
+    "ts": "2025-09-23T00:00:00Z"
+  },
+  "observations": {
+    "PaDNA.BodyDNA.BodyType": {
+      "resolved_value": "Ectomesomorph",
+      "ucn": 740,
+      "reasons": [
+        "overall leanness with visible tone; narrow waist; balanced shoulders/hips"
+      ]
+    },
+    "PaDNA.BodyDNA.Distinctive": {
+      "resolved_value": [
+        "Navel piercing",
+        "Bilateral small hip/pelvic tattoos"
+      ],
+      "ucn": 980,
+      "reasons": [
+        "clearly visible across multiple photos"
+      ]
+    },
+    "PaDNA.BodyDNA.Flexibility": {
+      "resolved_value": "Average",
+      "ucn": 520,
+      "reasons": [
+        "poses show standard range; no extreme flexibility demonstrated"
+      ]
+    },
+    "PaDNA.BodyDNA.Gait": {
+      "resolved_value": "Confident, moderate stride",
+      "ucn": 480,
+      "reasons": [
+        "stance and step in beach/indoor clips"
+      ]
+    },
+    "PaDNA.BodyDNA.Height": {
+      "resolved_value": 165,
+      "ucn": 430,
+      "reasons": [
+        "inferred 5'5\" \u00b12cm from proportions/fixtures (approx)"
+      ],
+      "units": "cm"
+    },
+    "PaDNA.BodyDNA.Posture": {
+      "resolved_value": "Upright with slight anterior pelvic tilt",
+      "ucn": 610,
+      "reasons": [
+        "standing poses across indoor/shore shots"
+      ]
+    },
+    "PaDNA.BodyDNA.Ratios": {
+      "resolved_value": {
+        "ShoulderToWaist": 1.25,
+        "TorsoToLegs": "longer torso"
+      },
+      "ucn": 560,
+      "reasons": [
+        "visual proportion estimates"
+      ]
+    },
+    "PaDNA.BodyDNA.Weight": {
+      "resolved_value": 54,
+      "ucn": 380,
+      "reasons": [
+        "visual estimate; varies by date/scene"
+      ],
+      "units": "kg"
+    },
+    "PaDNA.EyeDNA.Brows": {
+      "resolved_value": "Medium density, arched, light brown/blonde",
+      "ucn": 720,
+      "reasons": [
+        "consistent across close-ups"
+      ]
+    },
+    "PaDNA.EyeDNA.Heterochromia": {
+      "resolved_value": false,
+      "ucn": 930,
+      "reasons": [
+        "no mismatched iris coloration observed"
+      ]
+    },
+    "PaDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Hazel-light brown (green shift in bright light)",
+      "ucn": 680,
+      "reasons": [
+        "color shifts with lighting; hazel range most likely"
+      ]
+    },
+    "PaDNA.EyeDNA.Lashes": {
+      "resolved_value": "Medium length/thickness",
+      "ucn": 640,
+      "reasons": [
+        "visible without extensions"
+      ]
+    },
+    "PaDNA.EyeDNA.Shape": {
+      "resolved_value": "Almond, mild hooding",
+      "ucn": 770,
+      "reasons": [
+        "upper lid fullness"
+      ]
+    },
+    "PaDNA.EyeDNA.Size": {
+      "resolved_value": "Medium",
+      "ucn": 700,
+      "reasons": [
+        "iris/sclera ratio in close-ups"
+      ]
+    },
+    "PaDNA.FacialDNA.Cheeks": {
+      "resolved_value": "Prominent cheekbones, malar fullness",
+      "ucn": 800,
+      "reasons": [
+        "consistent contouring in multiple angles"
+      ]
+    },
+    "PaDNA.FacialDNA.Chin": {
+      "resolved_value": "Small, slightly pointed",
+      "ucn": 760,
+      "reasons": [
+        "frontal and 3/4 angles"
+      ]
+    },
+    "PaDNA.FacialDNA.Ears": {
+      "resolved_value": "Average size, close-set",
+      "ucn": 620,
+      "reasons": [
+        "visible in updos"
+      ]
+    },
+    "PaDNA.FacialDNA.FaceShape": {
+      "resolved_value": "Oval \u2192 Heart",
+      "ucn": 710,
+      "reasons": [
+        "broad forehead, tapered jaw"
+      ]
+    },
+    "PaDNA.FacialDNA.FacialHair": {
+      "resolved_value": "None",
+      "ucn": 980,
+      "reasons": [
+        "no visible vellus beyond normal"
+      ]
+    },
+    "PaDNA.FacialDNA.Forehead": {
+      "resolved_value": "Medium height, broad",
+      "ucn": 690,
+      "reasons": [
+        "hairline-to-brow distance"
+      ]
+    },
+    "PaDNA.FacialDNA.Jawline": {
+      "resolved_value": "Tapered, moderate definition",
+      "ucn": 720,
+      "reasons": [
+        "lateral lighting indoors"
+      ]
+    },
+    "PaDNA.FacialDNA.Lips": {
+      "resolved_value": "Full upper and lower",
+      "ucn": 840,
+      "reasons": [
+        "close-up shots"
+      ]
+    },
+    "PaDNA.FacialDNA.Nose": {
+      "resolved_value": "Straight bridge, slightly narrow tip",
+      "ucn": 700,
+      "reasons": [
+        "frontal/profile cues"
+      ]
+    },
+    "PaDNA.FacialDNA.Symmetry": {
+      "resolved_value": "Above-average",
+      "ucn": 650,
+      "reasons": [
+        "left/right landmark comparison"
+      ]
+    },
+    "PaDNA.FacialDNA.Teeth": {
+      "resolved_value": "Straight, white, even spacing",
+      "ucn": 780,
+      "reasons": [
+        "smiling photos"
+      ]
+    },
+    "PaDNA.HairDNA.Bald": {
+      "resolved_value": "Absent",
+      "ucn": 980,
+      "reasons": [
+        "full coverage at scalp"
+      ]
+    },
+    "PaDNA.HairDNA.Color": {
+      "resolved_value": "Blonde (natural medium\u2192dyed lighter)",
+      "ucn": 720,
+      "reasons": [
+        "root vs. length contrast"
+      ]
+    },
+    "PaDNA.HairDNA.Condition": {
+      "resolved_value": "Variable; sometimes processed/dry",
+      "ucn": 560,
+      "reasons": [
+        "texture, frizz in bright light"
+      ]
+    },
+    "PaDNA.HairDNA.Density": {
+      "resolved_value": "Medium",
+      "ucn": 650,
+      "reasons": [
+        "part width and volume"
+      ]
+    },
+    "PaDNA.HairDNA.Distinctive": {
+      "resolved_value": [
+        "Frequent dye/lightening",
+        "Visible regrowth roots"
+      ],
+      "ucn": 820,
+      "reasons": [
+        "repeat appearance"
+      ]
+    },
+    "PaDNA.HairDNA.DyedColor": {
+      "resolved_value": [
+        "Platinum blonde",
+        "Golden blonde"
+      ],
+      "ucn": 860,
+      "reasons": [
+        "clear tone shifts across dates"
+      ]
+    },
+    "PaDNA.HairDNA.Hairline": {
+      "resolved_value": "Even, no recession",
+      "ucn": 810,
+      "reasons": [
+        "updo shots"
+      ]
+    },
+    "PaDNA.HairDNA.Length": {
+      "resolved_value": "Long (shoulder to mid-back)",
+      "ucn": 900,
+      "reasons": [
+        "all photos"
+      ]
+    },
+    "PaDNA.HairDNA.Part": {
+      "resolved_value": "Varies; center or side",
+      "ucn": 880,
+      "reasons": [
+        "styling variation"
+      ]
+    },
+    "PaDNA.HairDNA.PatternChange": {
+      "resolved_value": "Straight \u2194 loose waves",
+      "ucn": 820,
+      "reasons": [
+        "heat styling vs. natural wave"
+      ]
+    },
+    "PaDNA.HairDNA.Style": {
+      "resolved_value": [
+        "Loose/tousled",
+        "Updo bun/teased volume"
+      ],
+      "ucn": 830,
+      "reasons": [
+        "indoor shots and beach clip"
+      ]
+    },
+    "PaDNA.HairDNA.Texture": {
+      "resolved_value": "Fine\u2192medium, slightly wavy",
+      "ucn": 740,
+      "reasons": [
+        "strand behavior in wind/bright light"
+      ]
+    },
+    "PaDNA.SkinDNA.Birthmarks": {
+      "resolved_value": "None clearly visible",
+      "ucn": 600,
+      "reasons": [
+        "full-torso visibility in bikinis"
+      ]
+    },
+    "PaDNA.SkinDNA.Conditions": {
+      "resolved_value": [
+        "Under-eye darkness/erythema (mild)"
+      ],
+      "ucn": 620,
+      "reasons": [
+        "consistent under indoor lighting"
+      ]
+    },
+    "PaDNA.SkinDNA.Freckles": {
+      "resolved_value": "Light freckles (nose/upper chest)",
+      "ucn": 700,
+      "reasons": [
+        "close-ups outdoors/indoors"
+      ]
+    },
+    "PaDNA.SkinDNA.Moles": {
+      "resolved_value": "Few, small",
+      "ucn": 620,
+      "reasons": [
+        "torso close-ups"
+      ]
+    },
+    "PaDNA.SkinDNA.SunBehavior": {
+      "resolved_value": "Tans but prone to redness",
+      "ucn": 680,
+      "reasons": [
+        "beach clip coloration"
+      ]
+    },
+    "PaDNA.SkinDNA.Texture": {
+      "resolved_value": "Generally smooth; fine lines present",
+      "ucn": 650,
+      "reasons": [
+        "high-res indoor lighting"
+      ]
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "resolved_value": "Light-to-medium",
+      "ucn": 860,
+      "reasons": [
+        "all scenes"
+      ]
+    },
+    "PaDNA.SkinDNA.Undertone": {
+      "resolved_value": "Warm neutral (yellow-peach)",
+      "ucn": 700,
+      "reasons": [
+        "color stability across lighting"
+      ]
+    },
+    "PaDNA.BodyDNA.HeightCM": {
+      "resolved_value": null,
+      "ucn": 150,
+      "reasons": [
+        "Placeholder \u2013 measurement not captured."
+      ],
+      "units": "cm"
+    },
+    "PaDNA.BodyDNA.WeightKG": {
+      "resolved_value": null,
+      "ucn": 150,
+      "reasons": [
+        "Placeholder \u2013 measurement not captured."
+      ],
+      "units": "kg"
+    },
+    "PaDNA.BodyDNA.Build": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Not inferred; maintain placeholder."
+      ]
+    },
+    "PaDNA.BodyDNA.Handedness": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "No dominant-hand data in source set."
+      ]
+    },
+    "PaDNA.BodyDNA.HandSize": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Hand scale not established."
+      ]
+    },
+    "PaDNA.BodyDNA.FootSize": {
+      "resolved_value": null,
+      "ucn": 100,
+      "reasons": [
+        "No shoe reference available."
+      ],
+      "units": "shoe"
+    },
+    "PaDNA.BodyDNA.ShoulderShape": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Not labelled in original bundle."
+      ]
+    },
+    "PaDNA.BodyDNA.NeckLength": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Not labelled in original bundle."
+      ]
+    },
+    "PaDNA.BodyDNA.HandStructure": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Awaiting capture from dedicated imagery."
+      ]
+    },
+    "PaDNA.EyeDNA.IrisPattern": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "No pattern detail captured."
+      ]
+    },
+    "PaDNA.EyeDNA.EyelidCrease": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Not coded."
+      ]
+    },
+    "PaDNA.EyeDNA.ScleraTint": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Lighting prevents confident call."
+      ]
+    },
+    "PaDNA.EyeDNA.EyeSpacing": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Spacing classification not yet set."
+      ]
+    },
+    "PaDNA.FacialDNA.ForeheadHeight": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Not previously annotated."
+      ]
+    },
+    "PaDNA.FacialDNA.ForeheadShape": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Not previously annotated."
+      ]
+    },
+    "PaDNA.FacialDNA.SymmetryScore": {
+      "resolved_value": null,
+      "ucn": 120,
+      "reasons": [
+        "Symmetry score pending."
+      ],
+      "units": "ratio"
+    },
+    "PaDNA.FacialDNA.SmileStyle": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Not captured."
+      ]
+    },
+    "PaDNA.FacialDNA.AgingFeatures": {
+      "resolved_value": [],
+      "ucn": 120,
+      "reasons": [
+        "No aging notes captured."
+      ]
+    },
+    "PaDNA.FacialDNA.DistinctiveMarks": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Placeholder for scars, piercings, etc."
+      ]
+    },
+    "PaDNA.HairDNA.BaldPattern": {
+      "resolved_value": "none",
+      "ucn": 900,
+      "reasons": [
+        "Original set notes full coverage."
+      ]
+    },
+    "PaDNA.SkinDNA.ComplexionConsistency": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Uniformity not assessed."
+      ]
+    },
+    "PaDNA.ApparelDNA.Style": {
+      "resolved_value": [],
+      "ucn": 100,
+      "reasons": [
+        "Apparel cues not captured in source set."
+      ]
+    },
+    "PaDNA.ApparelDNA.FitPreference": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Fit preference unspecified."
+      ]
+    },
+    "PaDNA.ApparelDNA.Accessories": {
+      "resolved_value": [],
+      "ucn": 100,
+      "reasons": [
+        "Accessory use not recorded."
+      ]
+    },
+    "PaDNA.ApparelDNA.PalettePreference": {
+      "resolved_value": [],
+      "ucn": 100,
+      "reasons": [
+        "Palette preference unspecified."
+      ]
+    },
+    "PaDNA.ApparelDNA.FootwearStyle": {
+      "resolved_value": [],
+      "ucn": 100,
+      "reasons": [
+        "Footwear style unspecified."
+      ]
+    },
+    "PaDNA.MovementDNA.Gestures": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Movement traits unavailable in still images."
+      ]
+    },
+    "PaDNA.MovementDNA.HeadMovement": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Movement traits unavailable in still images."
+      ]
+    },
+    "PaDNA.MovementDNA.HandUsage": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Movement traits unavailable in still images."
+      ]
+    },
+    "PaDNA.MovementDNA.Tempo": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Movement traits unavailable in still images."
+      ]
+    },
+    "PaDNA.MovementDNA.SignatureMotion": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Movement traits unavailable in still images."
+      ]
+    },
+    "PaDNA.ApparelDNA.Fit": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Legacy fit placeholder to satisfy downstream renderers."
+      ]
+    },
+    "PaDNA.ApparelDNA.Palette": {
+      "resolved_value": [],
+      "ucn": 100,
+      "reasons": [
+        "Legacy palette placeholder to satisfy downstream renderers."
+      ]
+    }
+  }
+}

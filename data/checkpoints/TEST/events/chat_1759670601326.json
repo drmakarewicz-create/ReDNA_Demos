@@ -1,0 +1,44 @@
+{
+  "type": "chat_turn",
+  "ts": 1759670601326,
+  "user_id": "TEST",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "hi",
+    "ts": 1759670601321
+  },
+  "assistant": {
+    "text": "It sounds like you're back for more conversation! How's your day going so far? Anything new or exciting happen recently in the world of South Park fandom?",
+    "ts": 1759670601326,
+    "message_id": "chat-433570d59f75438dbcb02dc514ecd35d"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/TEST/observations.json",
+  "metrics": {
+    "response_latency_ms": 123287,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 1,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.44,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 18260402.185185187,
+    "rolling_latency_median_ms": 84659.0,
+    "latency_histogram": {
+      "slow": 27
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "answer": 18,
+      "question": 9,
+      "repair": 1
+    },
+    "priority": 0.8
+  }
+}

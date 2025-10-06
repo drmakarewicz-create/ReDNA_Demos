@@ -1,0 +1,12 @@
+{
+  "user_id": "918AMTEST",
+  "schema_version": 4,
+  "resolved": {
+    "freeform.note": {
+      "resolved_value": null,
+      "ucn": 0,
+      "notes": "inbox",
+      "status": "observed"
+    }
+  }
+}

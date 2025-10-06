@@ -1,0 +1,118 @@
+{
+  "user_id": "mrscoachtest",
+  "batch_id": "2025-10-04T16-44-54-mrscoachtest",
+  "created_at": "2025-10-04T16:44:54.504295+00:00",
+  "count": 10,
+  "images": [
+    {
+      "filename": "CB1.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB1.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB1.jpg",
+      "hash_sha256": "5f57144a69bb40c339914226c4f46b1209d2a8130ff7739f1f775bb9454989c0",
+      "width": 627,
+      "height": 1035,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB2.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB2.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB2.jpg",
+      "hash_sha256": "5eab0a19820aa7ae216e4a569995fc4260c692fc38dffd4c0627416818677b8d",
+      "width": 922,
+      "height": 1381,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB3.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB3.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB3.jpg",
+      "hash_sha256": "a67db38d9ffdb9fad4d3bde2ddec83d19473cf21267b5a84c13a7819a5c3d459",
+      "width": 1060,
+      "height": 1252,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB4.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB4.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB4.jpg",
+      "hash_sha256": "256eb7b88895a5be15ed8035f53060d6c649bce6fa0d175be0e08d702317b7b4",
+      "width": 719,
+      "height": 1046,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB5.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB5.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB5.jpg",
+      "hash_sha256": "d05c2c750dd99bdc88f88b89b8bcdd1bb595118890899d107dc26f718f5ee1c0",
+      "width": 705,
+      "height": 1039,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB6.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB6.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB6.jpg",
+      "hash_sha256": "b4309811cfe332b70fd045e0b71666e23f120a796c34ef8cb5f7608dde58ff63",
+      "width": 467,
+      "height": 654,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB7.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB7.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB7.jpg",
+      "hash_sha256": "b17adf1fbae21c8edba6bb93d3cf1065f4d84cb2caab3d4a3e5be5d125ae79b1",
+      "width": 1087,
+      "height": 1500,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB8.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB8.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB8.jpg",
+      "hash_sha256": "78936c0efbc50722c50f2d8a432461e56a4d0ae721df9ae979d5cef753c29b87",
+      "width": 437,
+      "height": 550,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB9.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB9.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB9.jpg",
+      "hash_sha256": "c7d59c379e931c64ba630521e13dc0b0a50ffe85b424bad5a8f2d96d08a609c2",
+      "width": 610,
+      "height": 1121,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    },
+    {
+      "filename": "CB10.jpg",
+      "path": "media/images/2025-10-04T16-44-54-mrscoachtest/CB10.jpg",
+      "thumb": "media/thumbs/2025-10-04T16-44-54-mrscoachtest/CB10.jpg",
+      "hash_sha256": "b6ec5cc489f05ce4da66e36f8d3278b5ada2a7e4c5602435b5f4e027cd78a0a8",
+      "width": 600,
+      "height": 884,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    }
+  ]
+}

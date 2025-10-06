@@ -1,0 +1,52 @@
+
+######################################################################
+# HEAD COACH v2 SPRINT 1b ACCEPTANCE TESTS
+######################################################################
+
+======================================================================
+TEST 1: Conversation Memory (/hc/say)
+======================================================================
+✓ User message logged: 2025-10-04T01:49:00.399038+00:00
+✓ Assistant message logged
+✓ Retrieved 2 messages from history
+
+✅ Conversation Memory test passed
+
+
+======================================================================
+TEST 2: Playbook Runner
+======================================================================
+✓ Found 4 playbooks:
+  - photo_refine: Photo Refinement Flow
+  - on_new_user: New User Onboarding
+  - curiosity_campaign: Curiosity Campaign
+  - explain_change: Explain Sudden Change
+✓ Created test user state with high-curiosity trait
+✓ Playbook executed, enqueued 1 task(s)
+✓ Found 1 task(s) in queue
+  - Task: Reduce uncertainty for BaseColor
+
+✅ Playbook Runner test passed
+
+
+======================================================================
+TEST 3: Real Task Execution
+======================================================================
+✓ Task enqueued: 16e863d1-3a29-4f11-bc72-65b74c718c93
+✓ Task executed
+
+❌ TEST FAILED: Evidence request not found in conversation
+
+======================================================================
+✓ Cleaned up test user: hc_v2_1b_demo
+Traceback (most recent call last):
+  File "/Users/davidmakarewicz/Documents/ReDNA_Demos/test_hc_v2_sprint1b_acceptance.py", line 340, in <module>
+    run_all_tests()
+    ~~~~~~~~~~~~~^^
+  File "/Users/davidmakarewicz/Documents/ReDNA_Demos/test_hc_v2_sprint1b_acceptance.py", line 310, in run_all_tests
+    test_3_real_task_execution()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/davidmakarewicz/Documents/ReDNA_Demos/test_hc_v2_sprint1b_acceptance.py", line 193, in test_3_real_task_execution
+    assert evidence_entry is not None, "Evidence request not found in conversation"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Evidence request not found in conversation

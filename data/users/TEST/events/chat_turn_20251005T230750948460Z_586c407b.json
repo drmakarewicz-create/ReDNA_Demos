@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "they are great",
+  "assistant_text": "It's great to hear that! They sound like quite the dynamic duo. What's the most heartwarming thing they've done together recently?\n\n(No mention of PaDNA Coach again)",
+  "client_message_id": "e3d5588e-60ed-49aa-b259-0a345a428b58",
+  "assistant_message_id": "chat-beb3a959b36b491296e8c9a8d207e020",
+  "server_ts": "2025-10-05T23:07:50.948+00:00",
+  "server_ts_ms": 1759705670948,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

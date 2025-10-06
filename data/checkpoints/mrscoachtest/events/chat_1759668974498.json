@@ -1,0 +1,36 @@
+{
+  "type": "chat_turn",
+  "ts": 1759668974498,
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I went to Dartmouth University",
+    "ts": 1759668974493
+  },
+  "assistant": {
+    "text": "That's awesome! What made you choose Dartmouth?",
+    "ts": 1759668974498,
+    "message_id": "chat-dc771679956e4207b5f8f9691a7d39b6"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/mrscoachtest/observations.json",
+  "metrics": {
+    "response_latency_ms": null,
+    "response_latency_bucket": null,
+    "turn_length_words": 5,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.56,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "dialog_act_counts": {
+      "answer": 1
+    },
+    "priority": 0.8
+  }
+}

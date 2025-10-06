@@ -1,0 +1,18 @@
+{
+  "rows": [
+    {
+      "trait_key": "LifeDNA.Relationship.MaritalStatus",
+      "value": "Married",
+      "ucn": 110,
+      "notes": null,
+      "status": "resolved"
+    },
+    {
+      "trait_key": "BioDNA.Age.Years",
+      "value": 25,
+      "ucn": 100,
+      "notes": null,
+      "status": "resolved"
+    }
+  ]
+}

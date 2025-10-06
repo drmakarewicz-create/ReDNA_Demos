@@ -1,0 +1,35 @@
+{
+  "name": "simple_single",
+  "description": "Single high-confidence observation carries through with low curiosity priority.",
+  "inputs": {
+    "prior_resolved": {},
+    "prior_evidence": {"items": []},
+    "prior_observations": {"items": [], "by_trait": {}},
+    "new_observations": [
+      {
+        "trait": "PaDNA.HairDNA.Length",
+        "value": "Long",
+        "ucn": 88,
+        "provenance": {
+          "source": "photo_inference",
+          "value": "Long",
+          "ucn": 88,
+          "when": "2025-01-02T00:00:00Z"
+        }
+      }
+    ]
+  },
+  "expected": {
+    "resolved": {
+      "PaDNA.HairDNA.Length": {
+        "resolved_value": "Long",
+        "ucn": 88.0,
+        "reasons": ["photo_inference@88"],
+        "last_observed": "2025-01-02T00:00:00Z"
+      }
+    },
+    "priorities": {
+      "PaDNA.HairDNA.Length": 0.12
+    }
+  }
+}

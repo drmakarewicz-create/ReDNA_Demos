@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "hello",
+  "assistant_text": "It sounds like we're catching up again! What's new with you today? Anything exciting happen since we last talked about South Park?",
+  "client_message_id": "f3186769-078d-4436-a166-ca8049e9fcfd",
+  "assistant_message_id": "chat-bb7df25343da4a518535b99b4e5b0fa3",
+  "server_ts": "2025-10-05T16:26:45.877+00:00",
+  "server_ts_ms": 1759681605877,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,224 @@
+{
+  "analysis_id": "padna-refine-v2.1",
+  "timestamp": "2025-10-03T21:00:00Z",
+  "source_rendering": "Latest portrait with crown/tiara",
+  "comparison_basis": "BSTest source photos + v2 container expectations",
+
+  "improvements_observed": [
+    {
+      "area": "Hair",
+      "detail": "Blonde tone with softer root contrast; curls/waves more defined",
+      "containers_working": [
+        "PaDNA.HairDNA.Color.Base",
+        "PaDNA.HairDNA.Color.Dimension",
+        "PaDNA.HairDNA.CurlPattern",
+        "PaDNA.HairDNA.WaveDefinition"
+      ]
+    },
+    {
+      "area": "Facial Proportions",
+      "detail": "Face shape oval/heart-balanced, softened lower face",
+      "containers_working": [
+        "PaDNA.FaceDNA.Cheekbones",
+        "PaDNA.FaceDNA.EyeSpacing"
+      ]
+    },
+    {
+      "area": "Eyebrows",
+      "detail": "Softer arched soft-angle shape",
+      "containers_working": [
+        "PaDNA.BrowDNA.Shape",
+        "PaDNA.BrowDNA.Thickness"
+      ]
+    },
+    {
+      "area": "Lips",
+      "detail": "Fuller with visible Cupid's bow definition",
+      "containers_working": [
+        "PaDNA.SmileDNA.LipFullness",
+        "PaDNA.SmileDNA.CupidsBow"
+      ]
+    }
+  ],
+
+  "gaps_identified": [
+    {
+      "area": "Skin Texture & Freckles",
+      "observed": "Overly airbrushed, freckles absent",
+      "target": "Natural texture with visible pores, medium-heavy freckle density across face",
+      "severity": "high",
+      "confidence": 0.95,
+      "root_cause": "Containers exist but may lack prompt mapping emphasis",
+      "containers_affected": [
+        "PaDNA.SkinDNA.Texture",
+        "PaDNA.SkinDNA.Freckles.Density",
+        "PaDNA.SkinDNA.Freckles.Coverage",
+        "PaDNA.SkinDNA.Freckles.Contrast"
+      ],
+      "action": "Re-emphasize in trait-to-prompt mapping with higher weight"
+    },
+    {
+      "area": "Eye/Iris Detail",
+      "observed": "Iris monotone brown-hazel, lacks flecks, pattern, limbal ring",
+      "target": "Light green/hazel base with visible flecks, scattered pattern, moderate limbal ring",
+      "severity": "high",
+      "confidence": 0.92,
+      "root_cause": "Iris sub-containers may not be prioritized in prompt generation",
+      "containers_affected": [
+        "PaDNA.EyeDNA.Iris.BaseColor",
+        "PaDNA.EyeDNA.Iris.Flecks",
+        "PaDNA.EyeDNA.Iris.FleckPattern",
+        "PaDNA.EyeDNA.Iris.LimbalRing"
+      ],
+      "action": "Add as high-priority visual tokens in prompt output"
+    },
+    {
+      "area": "Makeup Detail",
+      "observed": "Natural/subtle makeup; missing smoky-eye, nude-pink gloss finish",
+      "target": "Smoky/winged eye style per BSTest, nude-pink gloss lips",
+      "severity": "medium",
+      "confidence": 0.88,
+      "root_cause": "Missing lip finish container, makeup style needs stronger prompt cues",
+      "containers_affected": [
+        "MakeupDNA.Eyes.Style",
+        "MakeupDNA.Lips.Color"
+      ],
+      "proposed_new_containers": [
+        "MakeupDNA.Lips.Finish"
+      ],
+      "action": "Add Lips.Finish container, strengthen Eyes.Style prompt mapping"
+    },
+    {
+      "area": "Body Definition",
+      "observed": "Slim/athletic build present but abs/shoulder/bust not differentiated",
+      "target": "Visible abs definition, differentiated shoulder width",
+      "severity": "low",
+      "confidence": 0.75,
+      "root_cause": "Portrait framing may not show full body; containers exist but need visibility flag",
+      "containers_affected": [
+        "PaDNA.BodyDNA.AbsDefinition"
+      ],
+      "action": "Optional: add visibility toggle for portrait-level renders"
+    },
+    {
+      "area": "Tattoos",
+      "observed": "Tattoos absent (if intended to show)",
+      "target": "Pelvis tattoos visible when framing permits",
+      "severity": "low",
+      "confidence": 0.70,
+      "root_cause": "Portrait framing doesn't show pelvis area; containers exist",
+      "containers_affected": [
+        "PaDNA.BodyDNA.Tattoo.PelvisRight",
+        "PaDNA.BodyDNA.Tattoo.PelvisLeft"
+      ],
+      "action": "No container change needed; depends on render framing"
+    },
+    {
+      "area": "Hair Accessories - Headpiece",
+      "observed": "Crown rendered well but not in current container schema",
+      "target": "Formalize headpiece/crown/tiara accessories",
+      "severity": "low",
+      "confidence": 0.80,
+      "root_cause": "Crown likely artifact from prompt noise; should be formalized",
+      "proposed_new_containers": [
+        "PaDNA.HairDNA.Accessories.Headpiece"
+      ],
+      "action": "Add headpiece container to formalize pageant/glamour accessories"
+    },
+    {
+      "area": "Apparel Themes",
+      "observed": "No thematic context captured (pageant, glamour, casual, etc.)",
+      "target": "Capture style context themes for coherent rendering",
+      "severity": "low",
+      "confidence": 0.75,
+      "proposed_new_containers": [
+        "PaDNA.ApparelDNA.Themes"
+      ],
+      "action": "Add thematic categorization for style coherence"
+    }
+  ],
+
+  "proposed_v2.1_additions": {
+    "new_containers": [
+      {
+        "path": "MakeupDNA.Lips.Finish",
+        "type": "categorical",
+        "choices": ["matte", "natural", "gloss", "shimmer", "metallic"],
+        "rationale": "Lip texture/finish distinct from color; critical for realism"
+      },
+      {
+        "path": "PaDNA.HairDNA.Accessories.Headpiece",
+        "type": "categorical",
+        "choices": ["none", "crown", "tiara", "flower-crown", "headband", "veil", "other"],
+        "rationale": "Formalize headpiece accessories seen in pageant/glamour contexts"
+      },
+      {
+        "path": "PaDNA.ApparelDNA.Themes",
+        "type": "array",
+        "examples": ["pageant", "glamour", "beachwear", "casual", "athletic", "evening-wear", "performance"],
+        "rationale": "Thematic context for coherent styling"
+      }
+    ],
+
+    "prompt_mapping_enhancements": [
+      {
+        "container_group": "PaDNA.SkinDNA.Freckles.*",
+        "current_weight": "standard",
+        "proposed_weight": "high-priority",
+        "prompt_strategy": "Emphasize 'natural freckles', 'visible freckles', add density/coverage/contrast as explicit modifiers"
+      },
+      {
+        "container_group": "PaDNA.EyeDNA.Iris.*",
+        "current_weight": "standard",
+        "proposed_weight": "high-priority",
+        "prompt_strategy": "Break iris into atomic tokens: 'light green iris', 'hazel flecks scattered pattern', 'moderate limbal ring'"
+      },
+      {
+        "container_group": "PaDNA.SkinDNA.Texture",
+        "current_weight": "standard",
+        "proposed_weight": "high-priority",
+        "prompt_strategy": "Add 'natural skin texture', 'visible pores', 'not airbrushed' as negative prompts against over-smoothing"
+      },
+      {
+        "container_group": "MakeupDNA.Eyes.Style",
+        "current_weight": "standard",
+        "proposed_weight": "medium-high",
+        "prompt_strategy": "For 'smoky-eye'/'heavy-smoky-eye-with-black-liner', use stronger descriptors: 'dramatic smoky eye', 'thick black eyeliner'"
+      },
+      {
+        "container_group": "MakeupDNA.Lips.Finish",
+        "current_weight": "n/a",
+        "proposed_weight": "medium",
+        "prompt_strategy": "Combine with Lips.Color: 'nude-pink glossy lips', 'matte red lips', etc."
+      }
+    ]
+  },
+
+  "summary": {
+    "total_gaps": 7,
+    "high_severity": 2,
+    "medium_severity": 1,
+    "low_severity": 4,
+    "new_containers_proposed": 3,
+    "prompt_remapping_needed": 5,
+    "priority_actions": [
+      "Re-weight freckle containers in trait-to-prompt (highest impact)",
+      "Re-weight iris detail containers in trait-to-prompt (highest impact)",
+      "Add MakeupDNA.Lips.Finish container",
+      "Strengthen smoky-eye style prompt descriptors",
+      "Add HairDNA.Accessories.Headpiece + ApparelDNA.Themes for formal contexts"
+    ]
+  },
+
+  "next_test_validation": {
+    "target_rendering": "BSTest-enhanced-v2 with v2.1 additions",
+    "success_criteria": [
+      "Freckles visible with medium-heavy density across face",
+      "Iris shows distinct color, flecks, pattern, limbal ring",
+      "Skin texture natural with visible pores (not airbrushed)",
+      "Smoky eye makeup renders with dramatic black liner",
+      "Lip finish matches specified gloss/matte",
+      "Headpiece accessories render correctly when specified"
+    ]
+  }
+}

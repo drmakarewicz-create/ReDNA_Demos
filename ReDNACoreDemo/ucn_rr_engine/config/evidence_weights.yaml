@@ -1,0 +1,120 @@
+# Evidence Source Base Weights
+#
+# These weights represent the base credibility of each evidence source type.
+# Actual UCN calculation includes recency, corroboration, and quality multipliers.
+
+evidence_sources:
+  self_report_text:
+    base_weight: 0.3
+    volatility: high
+    corroboration_boost: 0.2  # Boost per corroborating source
+    description: "Free-text self-reported data (chat, forms, etc.)"
+
+  self_report_structured:
+    base_weight: 0.4
+    volatility: high
+    corroboration_boost: 0.2
+    description: "Structured form data (dropdowns, checkboxes, etc.)"
+
+  photo_single:
+    base_weight: 0.5
+    volatility:
+      PaDNA: low
+      StyleDNA: high
+      default: medium
+    corroboration_boost: 0.15
+    description: "Single uploaded photo"
+
+  photo_series:
+    base_weight: 0.7
+    volatility:
+      PaDNA: low
+      StyleDNA: medium
+      default: medium
+    corroboration_boost: 0.1  # Boost per additional photo beyond 3
+    description: "Series of 3+ uploaded photos"
+
+  third_party_attestation:
+    base_weight: 0.6
+    volatility: medium
+    corroboration_boost: 0.2
+    description: "Third-party confirmation (friend, family, etc.)"
+
+  webcam_video:
+    base_weight: 0.8
+    volatility:
+      PaDNA: very_low
+      default: low
+    corroboration_boost: 0.15
+    description: "Live webcam video capture"
+
+  behavioral_observation:
+    base_weight: 0.5
+    volatility: medium
+    corroboration_boost: 0.2
+    description: "Observed behavior patterns (app usage, interactions, etc.)"
+
+  device_sensor:
+    base_weight: 0.7
+    volatility: low
+    corroboration_boost: 0.15
+    description: "Passive device sensor data (camera, microphone, etc.)"
+
+  inference_single:
+    base_weight: 0.3
+    volatility: null  # Inherits from source
+    corroboration_boost: 0.1
+    description: "Inference from single rule"
+
+  inference_multiple:
+    base_weight: 0.5
+    volatility: null
+    corroboration_boost: 0.15
+    description: "Inference from multiple corroborating rules"
+
+  ai_analysis:
+    base_weight: 0.6
+    volatility: null
+    corroboration_boost: 0.2
+    description: "AI/LLM analysis of evidence"
+
+  failed_attempt:
+    base_weight: -0.1
+    volatility: null
+    corroboration_boost: 0.0
+    description: "Failed evidence attempt (reveals user behavior)"
+
+# Quality multipliers based on evidence characteristics
+quality_multipliers:
+  photo_resolution:
+    low: 0.7      # < 480p
+    medium: 1.0   # 480p-1080p
+    high: 1.3     # > 1080p
+
+  photo_lighting:
+    poor: 0.8
+    fair: 1.0
+    good: 1.2
+
+  photo_angle:
+    partial: 0.9
+    frontal: 1.0
+    multiple: 1.2
+
+  form_completeness:
+    partial: 0.8
+    complete: 1.0
+    comprehensive: 1.2
+
+  third_party_relationship:
+    acquaintance: 0.8
+    friend: 1.0
+    family: 1.2
+    professional: 1.3
+
+# Source credibility learning
+# These values are adjusted over time based on source accuracy history
+source_credibility:
+  default: 1.0
+  range: [0.0, 1.5]
+  learning_rate: 0.1  # How quickly credibility adjusts based on new evidence

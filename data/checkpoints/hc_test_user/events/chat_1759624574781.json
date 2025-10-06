@@ -1,0 +1,46 @@
+{
+  "type": "chat_turn",
+  "ts": 1759624574781,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I'd be interested in the Relationship Coach but not right now. Can you recommend a good pizza place?",
+    "ts": 1759624574776
+  },
+  "assistant": {
+    "text": "Sorry about pushing career stuff earlier! Okay, let's focus on something fun - so you're looking for a good pizza place? How about that new spot downtown, have you tried it yet?",
+    "ts": 1759624574781,
+    "message_id": "chat-f1618286914945b48ed83e4f12d5c4fa"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 13607,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 18,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 1.0,
+    "formality_score": 0.4677777777777778,
+    "assertiveness_score": 0.2777777777777778,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 17379.29268292683,
+    "rolling_latency_median_ms": 6513.0,
+    "latency_histogram": {
+      "steady": 36,
+      "fast": 3,
+      "slow": 2
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 19,
+      "question": 21,
+      "ack": 2
+    },
+    "priority": 0.8
+  }
+}

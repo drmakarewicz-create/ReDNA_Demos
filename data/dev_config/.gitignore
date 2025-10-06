@@ -1,0 +1,3 @@
+# Keep demo configuration directory tracked without committing generated files.
+*
+!.gitignore

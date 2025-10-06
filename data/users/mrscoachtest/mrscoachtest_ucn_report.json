@@ -1,0 +1,635 @@
+{
+  "user_id": "mrscoachtest",
+  "timestamp": "2025-10-04T14:18:24.222337",
+  "rr": 60.89,
+  "average_ucn": 541.76,
+  "trait_count": 68,
+  "gates_passed": [
+    "basic_features"
+  ],
+  "milestones_achieved": [
+    "milestone_50"
+  ],
+  "overall_curiosity": 39.11,
+  "curiosity_level": "high",
+  "traits": {
+    "PaDNA.HairDNA.Color": {
+      "value": "Blonde",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.HairDNA.Tone": {
+      "value": "Golden",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.HairDNA.Highlights": {
+      "value": "Natural",
+      "ucn": 416,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 60.0,
+      "contradictions": []
+    },
+    "PaDNA.HairDNA.Length": {
+      "value": "Long",
+      "ucn": 646,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 90.0,
+      "contradictions": []
+    },
+    "PaDNA.HairDNA.Texture": {
+      "value": "Wavy",
+      "ucn": 650,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 1825.0,
+      "contradictions": []
+    },
+    "PaDNA.HairDNA.Volume": {
+      "value": "High",
+      "ucn": 648,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 180.0,
+      "contradictions": []
+    },
+    "PaDNA.HairDNA.Style": {
+      "value": "Loose",
+      "ucn": 494,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 30.0,
+      "contradictions": []
+    },
+    "PaDNA.EyeDNA.IrisColor": {
+      "value": "Blue",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.EyeDNA.ColorIntensity": {
+      "value": "Moderate",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 1825.0,
+      "contradictions": []
+    },
+    "PaDNA.EyeDNA.Shape": {
+      "value": "Almond",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.EyeDNA.Size": {
+      "value": "Medium",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.EyeDNA.EyeSpacing": {
+      "value": "Average",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "value": "Light",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 730.0,
+      "contradictions": []
+    },
+    "PaDNA.SkinDNA.Undertone": {
+      "value": "Warm",
+      "ucn": 650,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.SkinDNA.Freckles": {
+      "value": "Scattered",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.SkinDNA.Texture": {
+      "value": "Smooth",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.FaceShape": {
+      "value": "Square",
+      "ucn": 650,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.ForeheadWidth": {
+      "value": "Medium",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.Cheeks": {
+      "value": "Full",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.CheekboneProminence": {
+      "value": "Moderate",
+      "ucn": 420,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.Jawline": {
+      "value": "Defined",
+      "ucn": 650,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.JawlineWidth": {
+      "value": "Wide",
+      "ucn": 650,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.Chin": {
+      "value": "Square",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.ChinWidth": {
+      "value": "Medium",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.FeatureRefinement": {
+      "value": "Standard",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.FacialSymmetry": {
+      "value": "High",
+      "ucn": 650,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.NoseShape": {
+      "value": "Straight",
+      "ucn": 650,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.NoseBridge": {
+      "value": "Medium",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.Lips": {
+      "value": "Medium",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.SmileStyle": {
+      "value": "Toothy",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 730.0,
+      "contradictions": []
+    },
+    "PaDNA.BodyDNA.Build": {
+      "value": "Curvy",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.BodyDNA.Frame": {
+      "value": "Average",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.BodyDNA.ShoulderShape": {
+      "value": "Broad",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.BodyDNA.Proportions": {
+      "value": "Balanced",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.ApparelDNA.Style": {
+      "value": "Fashion_forward",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.ApparelDNA.FitPreference": {
+      "value": "Fitted",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.ApparelDNA.PalettePreference": {
+      "value": "Bright",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.StyleDNA.ColorPreference": {
+      "value": "Bold and Warm",
+      "ucn": 648,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 180.0,
+      "contradictions": []
+    },
+    "PaDNA.StyleDNA.NecklinePreference": {
+      "value": "V-neck and Plunging",
+      "ucn": 648,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 180.0,
+      "contradictions": []
+    },
+    "PaDNA.MakeupDNA.EyeMakeup": {
+      "value": "Defined",
+      "ucn": 500,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 90.0,
+      "contradictions": []
+    },
+    "PaDNA.MakeupDNA.LipColor": {
+      "value": "Pink to Nude",
+      "ucn": 499,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 60.0,
+      "contradictions": []
+    },
+    "PaDNA.MakeupDNA.MakeupStyle": {
+      "value": "Polished",
+      "ucn": 500,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 90.0,
+      "contradictions": []
+    },
+    "PaDNA.AccessoryDNA.Earrings": {
+      "value": "Statement Pieces",
+      "ucn": 644,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 60.0,
+      "contradictions": []
+    },
+    "PaDNA.AccessoryDNA.Necklaces": {
+      "value": "Pendant",
+      "ucn": 499,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 60.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.CrowsFeet": {
+      "value": "Moderate",
+      "ucn": 502,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 180.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.SmileLines": {
+      "value": "Moderate",
+      "ucn": 648,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 180.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.NasolabialFolds": {
+      "value": "Moderate",
+      "ucn": 502,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 180.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.ForeheadLines": {
+      "value": "Subtle",
+      "ucn": 419,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 180.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.EyeAreaAging": {
+      "value": "Slight_softening",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.NeckAging": {
+      "value": "Moderate_lines",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.SkinMaturity": {
+      "value": "Forties",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.SkinDNA.AgeSpotsPresence": {
+      "value": "Few",
+      "ucn": 420,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.SkinDNA.SkinElasticityAppearance": {
+      "value": "Slightly_soft",
+      "ucn": 420,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.LipCupidsBow": {
+      "value": "Defined",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.LipProportions": {
+      "value": "Equal",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.SmileGumShow": {
+      "value": "Minimal",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.SmileAsymmetry": {
+      "value": "Symmetric",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.NoseTipShape": {
+      "value": "Rounded",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.NostrilShape": {
+      "value": "Oval",
+      "ucn": 420,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.PhiltrumDepth": {
+      "value": "Moderate",
+      "ucn": 420,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.PhiltrumLength": {
+      "value": "Medium",
+      "ucn": 420,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.HairDNA.HairDensity": {
+      "value": "Thick",
+      "ucn": 649,
+      "confidence_level": "high",
+      "evidence_count": 1,
+      "decay_half_life_days": 730.0,
+      "contradictions": []
+    },
+    "PaDNA.HairDNA.HairlineShape": {
+      "value": "Rounded",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.SkinDNA.SkinPoreVisibility": {
+      "value": "Slight",
+      "ucn": 420,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 365.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.BrowArchApex": {
+      "value": "Outer_third",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.BrowThicknessVariation": {
+      "value": "Tapers",
+      "ucn": 500,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": 90.0,
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.BrowEyeDistance": {
+      "value": "Average",
+      "ucn": 420,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    },
+    "PaDNA.FacialDNA.FacialProportions": {
+      "value": "Balanced facial thirds - forehead, midface (eyes to nose base), and lower face (nose to chin) are roughly equal proportions. Square face shape with balanced width throughout.",
+      "ucn": 503,
+      "confidence_level": "moderate",
+      "evidence_count": 1,
+      "decay_half_life_days": "permanent",
+      "contradictions": []
+    }
+  },
+  "top_refinement_priorities": [
+    {
+      "trait_path": "PaDNA.HairDNA.Highlights",
+      "ucn": 416,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.FacialDNA.ForeheadLines",
+      "ucn": 419,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.FacialDNA.CheekboneProminence",
+      "ucn": 420,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.SkinDNA.AgeSpotsPresence",
+      "ucn": 420,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.SkinDNA.SkinElasticityAppearance",
+      "ucn": 420,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.FacialDNA.NostrilShape",
+      "ucn": 420,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.FacialDNA.PhiltrumDepth",
+      "ucn": 420,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.FacialDNA.PhiltrumLength",
+      "ucn": 420,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.SkinDNA.SkinPoreVisibility",
+      "ucn": 420,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    },
+    {
+      "trait_path": "PaDNA.FacialDNA.BrowEyeDistance",
+      "ucn": 420,
+      "priority": "medium",
+      "suggested_action": "Opportunistically gather supporting evidence"
+    }
+  ],
+  "user_behavior": {
+    "total_attempts": 68,
+    "successes": 68,
+    "failures": 0,
+    "success_rate": 1.0,
+    "photo_upload_success_rate": 1.0,
+    "technical_ability": "high",
+    "engagement": "very_high",
+    "attempts_per_day": 68.0,
+    "avg_evidence_quality": 0.872,
+    "lookback_days": 90
+  }
+}

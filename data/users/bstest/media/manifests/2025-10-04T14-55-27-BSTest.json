@@ -1,0 +1,19 @@
+{
+  "user_id": "BSTest",
+  "batch_id": "2025-10-04T14-55-27-BSTest",
+  "created_at": "2025-10-04T14:55:27.142622+00:00",
+  "count": 1,
+  "images": [
+    {
+      "filename": "test.png",
+      "path": "media/images/2025-10-04T14-55-27-BSTest/test.png",
+      "thumb": "media/thumbs/2025-10-04T14-55-27-BSTest/test.jpg",
+      "hash_sha256": "6b7fa434f92a8b80aab02d9bf1a12e49ffcae424e4013a1c4f68b67e3d2bbcd0",
+      "width": 1,
+      "height": 1,
+      "exif": {},
+      "labels": [],
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Did you ever hear of American Horror Story?",
+  "assistant_text": "I'm glad you brought up American Horror Story! It's a great show for those who enjoy a darker, more suspenseful vibe. What draws you to the horror genre in TV shows?",
+  "client_message_id": "1421b0a1-1828-4458-9c1c-e924a0422356",
+  "assistant_message_id": "chat-95abf512419d40d9bdb171eef5073e9a",
+  "server_ts": "2025-10-05T16:59:03.456+00:00",
+  "server_ts_ms": 1759683543456,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

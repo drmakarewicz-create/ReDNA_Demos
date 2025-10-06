@@ -1,0 +1,220 @@
+{
+  "ts": "20250928_172506",
+  "resolved": {
+    "SocDNA.Identity.Gender": {
+      "resolved_value": "Female",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Gender=Female"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "SocDNA.Demographics.AgeRange": {
+      "resolved_value": "18-24",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Demographics.AgeRange=18-24"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "SocDNA.Identity.Orientation": {
+      "resolved_value": "Bisexual",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Orientation=Bisexual"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "SocDNA.Prefs.LanguagePrimary": {
+      "resolved_value": "English",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Prefs.LanguagePrimary=English"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "SocDNA.Relationship.Status": {
+      "resolved_value": "Single",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Relationship.Status=Single"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "PrefDNA.Bonding.Style": {
+      "resolved_value": "C",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: PrefDNA.Bonding.Style=C"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "PaDNA.Gender": {
+      "resolved_value": "Female",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Gender=Female",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.AgeRange": {
+      "resolved_value": "18-24",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.AgeRange=18-24",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.Orientation": {
+      "resolved_value": "Bisexual",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Orientation=Bisexual",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.Language": {
+      "resolved_value": "English",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Language=English",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.RelationshipStatus": {
+      "resolved_value": "Single",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.RelationshipStatus=Single",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    }
+  },
+  "observations": {}
+}

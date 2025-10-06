@@ -1,0 +1,317 @@
+# UCN/RR Thresholds and Gates
+#
+# Defines thresholds for feature unlocks, celebrations, and system behavior
+
+# Refinement Rank (RR) gates
+# RR is a percentile rank (0-100) showing user's profile refinement vs all users
+gates:
+  sensitive_dna_unlock:
+    rr_threshold: 98
+    description: "Unlock highly sensitive DNAs (SexDNA, FinanceDNA genetic markers, etc.)"
+    user_message: "Your profile is exceptionally refined! You've unlocked access to sensitive personal DNAs."
+
+  advanced_personalization:
+    rr_threshold: 85
+    description: "Enable advanced personalization features and recommendations"
+    user_message: "Your detailed profile enables advanced personalization!"
+
+  reliable_coaching:
+    rr_threshold: 70
+    description: "Profile is refined enough for reliable coaching and recommendations"
+    user_message: "Your profile is well-refined. Coaches can now provide reliable guidance!"
+
+  basic_features:
+    rr_threshold: 50
+    description: "Basic features available (default threshold)"
+    user_message: "You're halfway there! Keep refining your profile for better experiences."
+
+  minimal_profile:
+    rr_threshold: 25
+    description: "Minimal profile completeness"
+    user_message: "Your profile is just getting started. Let's build it out!"
+
+# Milestone celebrations
+# Show tasteful celebrations when users hit RR milestones
+celebrations:
+  milestone_98:
+    rr_threshold: 98
+    title: "Elite Refinement Achieved!"
+    message: "You're in the top 2% of all users. Your profile is exceptionally refined!"
+    icon: "trophy"
+    rewards:
+      - "Sensitive DNAs unlocked (SexDNA, FinanceDNA, etc.)"
+      - "Exclusive insights and analytics"
+      - "Priority coach recommendations"
+
+  milestone_90:
+    rr_threshold: 90
+    title: "Exceptional Refinement!"
+    message: "You're in the top 10% of all users. Your profile is highly refined!"
+    icon: "star"
+    rewards:
+      - "Advanced personalization features"
+      - "Enhanced coach recommendations"
+
+  milestone_75:
+    rr_threshold: 75
+    title: "Well-Refined Profile!"
+    message: "Your profile is well-refined. Great work!"
+    icon: "check_circle"
+    rewards:
+      - "Reliable coaching enabled"
+      - "Personalized insights"
+
+  milestone_50:
+    rr_threshold: 50
+    title: "Halfway There!"
+    message: "You're halfway to a fully refined profile. Keep going!"
+    icon: "trending_up"
+    rewards:
+      - "Basic features unlocked"
+
+  milestone_25:
+    rr_threshold: 25
+    title: "Great Start!"
+    message: "Your profile is taking shape. Keep adding details!"
+    icon: "rocket"
+    rewards:
+      - "Initial personalization enabled"
+
+# UCN thresholds for system behavior
+# UCN is 0-1000 per trait (system-facing only)
+ucn_thresholds:
+  very_high:
+    min: 800
+    max: 1000
+    description: "Extremely high confidence - multiple corroborating high-quality sources"
+    system_behavior:
+      - "Display trait to user with high confidence"
+      - "Use trait for critical decisions"
+      - "Low curiosity priority"
+
+  high:
+    min: 600
+    max: 799
+    description: "High confidence - good quality evidence with corroboration"
+    system_behavior:
+      - "Display trait to user"
+      - "Use trait for most decisions"
+      - "Medium curiosity priority"
+
+  moderate:
+    min: 400
+    max: 599
+    description: "Moderate confidence - decent evidence but could be stronger"
+    system_behavior:
+      - "Display trait with caveat"
+      - "Use trait cautiously"
+      - "High curiosity priority"
+
+  low:
+    min: 200
+    max: 399
+    description: "Low confidence - weak evidence or aged evidence"
+    system_behavior:
+      - "Display trait as 'uncertain'"
+      - "Avoid using for important decisions"
+      - "Very high curiosity priority"
+
+  very_low:
+    min: 0
+    max: 199
+    description: "Very low confidence - speculation or very aged evidence"
+    system_behavior:
+      - "Hide trait or mark as 'unconfirmed'"
+      - "Do not use for decisions"
+      - "Highest curiosity priority"
+
+# Curiosity thresholds
+# Curiosity = 100 - RR (larger number = more motivation to refine)
+curiosity_thresholds:
+  urgent:
+    min: 50
+    max: 100
+    description: "Urgent refinement needed - profile significantly incomplete"
+    system_behavior:
+      - "Head Coach aggressively suggests refinement actions"
+      - "Frequent prompts to add evidence"
+      - "Prioritize high-impact traits"
+
+  high:
+    min: 30
+    max: 49
+    description: "High curiosity - many opportunities for refinement"
+    system_behavior:
+      - "Head Coach regularly suggests refinement actions"
+      - "Periodic prompts for evidence"
+      - "Balance high-impact and easy wins"
+
+  moderate:
+    min: 15
+    max: 29
+    description: "Moderate curiosity - some refinement opportunities"
+    system_behavior:
+      - "Head Coach occasionally suggests refinement"
+      - "Subtle prompts for evidence"
+      - "Focus on contradictions and stale traits"
+
+  low:
+    min: 2
+    max: 14
+    description: "Low curiosity - profile well-refined, minor gaps"
+    system_behavior:
+      - "Head Coach rarely suggests refinement"
+      - "Focus on maintenance and updates"
+      - "Celebrate user's refined profile"
+
+  minimal:
+    min: 0
+    max: 1
+    description: "Minimal curiosity - profile exceptionally refined"
+    system_behavior:
+      - "Head Coach focuses on maintenance only"
+      - "Periodically refresh stale traits"
+      - "Celebrate elite status"
+
+# Contradiction severity thresholds
+contradiction_severity:
+  trivial:
+    description: "One source weight < 0.3"
+    ucn_penalty: 0.0
+    system_action: "Ignore weaker source"
+
+  minor:
+    description: "Sources differ slightly, both < 0.5 weight"
+    ucn_penalty: 0.1
+    system_action: "Lower UCN slightly, monitor"
+
+  moderate:
+    description: "Sources differ clearly, one > 0.5 weight"
+    ucn_penalty: 0.25
+    system_action: "Lower UCN, flag for Head Coach"
+
+  severe:
+    description: "Sources strongly contradict, both > 0.5 weight"
+    ucn_penalty: 0.5
+    system_action: "Significantly lower UCN, priority flag for Head Coach"
+
+# Decay-related thresholds
+decay:
+  stale_trait_warning:
+    days: 180
+    description: "Trait data is 180+ days old - consider refreshing"
+    system_action: "Flag for Head Coach refresh suggestion"
+
+  very_stale_trait:
+    days: 365
+    description: "Trait data is 1+ years old - confidence significantly decayed"
+    system_action: "Elevate curiosity, prioritize refresh"
+
+  ancient_trait:
+    days: 730
+    description: "Trait data is 2+ years old - confidence severely decayed"
+    system_action: "Highest curiosity priority, urgent refresh"
+
+# Population distribution parameters
+population:
+  min_traits_for_rr:
+    value: 10
+    description: "Users must have at least 10 traits to calculate RR"
+
+  refresh_interval:
+    value: 86400  # 24 hours (in seconds)
+    description: "Recalculate population distribution daily at 3 AM UTC"
+
+  cache_ttl:
+    value: 3600  # 1 hour (in seconds)
+    description: "Cache individual RR calculations for 1 hour"
+
+  exclude_dormant_days:
+    value: 90
+    description: "Exclude users who haven't been active in 90+ days from population"
+
+  exclude_deceased:
+    value: true
+    description: "Exclude deceased users from population distribution"
+
+# Provenance storage tiers
+provenance:
+  hot_tier:
+    days: 90
+    storage: "full_raw"
+    description: "Last 90 days - full raw evidence stored"
+
+  warm_tier:
+    days: 730  # 2 years
+    storage: "aggregated_summaries"
+    description: "90 days - 2 years - aggregated summaries with key metadata"
+
+  cold_tier:
+    days: null  # Forever
+    storage: "high_level_summaries"
+    description: "2+ years - high-level summaries, critical events only"
+
+  max_storage_per_user_mb:
+    value: 10
+    description: "Target max storage per user (MB) - tiering helps stay under this"
+
+# External app feedback thresholds
+external_feedback:
+  confidence_boost_threshold:
+    value: 0.6
+    description: "External app confidence must be > 0.6 to boost UCN"
+
+  max_boost_per_source:
+    value: 0.2
+    description: "External sources can boost UCN by max 0.2 (200 points)"
+
+  subordinate_to_user_benefit:
+    value: true
+    description: "External feedback subordinate to user well-being"
+
+# Head Coach planning parameters
+head_coach:
+  max_concurrent_actions:
+    value: 5
+    description: "Head Coach can pursue up to 5 concurrent refinement actions"
+
+  replan_interval_days:
+    value: 7
+    description: "Head Coach replans curiosity strategy every 7 days"
+
+  dynamic_budget:
+    value: true
+    description: "No fixed curiosity budget - Head Coach balances dynamically"
+
+  prioritization_factors:
+    - "Impact on RR (high-impact traits favored)"
+    - "Ease of resolution (quick wins for momentum)"
+    - "Contradiction severity (resolve severe contradictions first)"
+    - "Staleness (refresh very old data)"
+    - "User engagement (consider user's current focus)"
+
+  user_well_being_first:
+    value: true
+    description: "Head Coach prioritizes user well-being over system improvement"
+
+# Sensitive DNA specific thresholds
+sensitive_dna_gates:
+  SexDNA:
+    rr_threshold: 98
+    ucn_threshold: 800
+    description: "Requires RR >= 98 AND SexDNA traits UCN >= 800"
+
+  FinanceDNA:
+    rr_threshold: 95
+    ucn_threshold: 700
+    description: "Requires RR >= 95 AND FinanceDNA traits UCN >= 700"
+
+  HealthDNA_genetic:
+    rr_threshold: 97
+    ucn_threshold: 850
+    description: "Genetic health markers require RR >= 97 AND UCN >= 850"
+
+  HistoryDNA_trauma:
+    rr_threshold: 90
+    ucn_threshold: 750
+    description: "Trauma-related history requires RR >= 90 AND UCN >= 750"

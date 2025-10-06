@@ -1,0 +1,38 @@
+<!-- ExplorerFinal/ui/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ReDNA Explorer (Dev Tabs)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <strong>ReDNA Explorer</strong>
+      <span class="muted">dev tabs</span>
+    </div>
+    <div class="controls">
+      <div id="rrBadge" class="badge">RR: --%</div>
+      <label class="switch">
+        <input id="devToggle" type="checkbox" />
+        <span class="slider"></span>
+      </label>
+      <span class="muted small">Developer Mode</span>
+    </div>
+  </header>
+
+  <nav class="tabs" id="tabs"></nav>
+
+  <main class="content">
+    <div id="tabContent" class="panel"></div>
+  </main>
+
+  <footer class="footer">
+    <span class="muted small">Safe build: read-only, dev-gated tabs. Endpoints optional.</span>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

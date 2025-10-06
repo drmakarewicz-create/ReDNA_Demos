@@ -1,0 +1,31 @@
+{
+  "event_id": "json_1759453551241",
+  "ts": "2025-10-03T01:05:51+00:00",
+  "type": "json_ingest",
+  "user_id": "test_user_005",
+  "traits": [
+    {
+      "id": "PaDNA.EyeDNA.IrisColor",
+      "value": "Blue",
+      "rr": 850.0
+    },
+    {
+      "id": "PaDNA.HairDNA.Color",
+      "value": "Brown",
+      "rr": 700.0
+    }
+  ],
+  "source": "explorer",
+  "status": "accepted",
+  "ucnrr_result": {
+    "ok": true,
+    "user_id": "test_user",
+    "rr_by_trait": {
+      "PaDNA.EyeDNA.IrisColor": 850.0
+    },
+    "curiosity_by_trait": {
+      "PaDNA.EyeDNA.IrisColor": 0.15
+    },
+    "global_curiosity": 0.15
+  }
+}

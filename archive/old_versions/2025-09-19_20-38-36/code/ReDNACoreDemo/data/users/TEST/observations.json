@@ -1,0 +1,38 @@
+{
+  "20250918_231928": {
+    "BioDNA.Race": {
+      "resolved_value": "Black",
+      "ucn": 120,
+      "reasons": [
+        "explicit statement"
+      ]
+    }
+  },
+  "20250918_232042": {
+    "PaDNA.LooksDNA.HairDNA.Color": {
+      "resolved_value": "brown",
+      "ucn": 100,
+      "reasons": [
+        "explicit color statement"
+      ]
+    }
+  },
+  "20250918_232130": {
+    "PaDNA.LooksDNA.FaceDNA.FacialHair": {
+      "resolved_value": true,
+      "ucn": 100,
+      "reasons": [
+        "explicit statement"
+      ]
+    }
+  },
+  "20250919_170922": {
+    "BioDNA.Height.Years": {
+      "resolved_value": 72,
+      "ucn": 100,
+      "reasons": [
+        "explicit height statement"
+      ]
+    }
+  }
+}

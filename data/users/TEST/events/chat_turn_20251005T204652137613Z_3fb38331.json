@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test6",
+  "assistant_text": "Let's start from scratch again. It looks like our conversation got cut off a few times, but I'm glad we're back online now. To get us started, what's been the highlight of your week so far? \n\nAlso, if you ever need help with dog-friendly activities or want some recommendations for your area, just let me know!",
+  "client_message_id": "33d8157f-b827-4628-9236-519b07212348",
+  "assistant_message_id": "chat-5912bb52f2d24e1aa039a1bb29a254b2",
+  "server_ts": "2025-10-05T20:46:52.137+00:00",
+  "server_ts_ms": 1759697212137,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

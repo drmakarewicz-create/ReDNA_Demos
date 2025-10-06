@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Hello",
+  "assistant_text": "What can I help with today?",
+  "client_message_id": "f67f009e-8e48-4c75-b33a-0fbb61aa14a8",
+  "assistant_message_id": "chat-7239512874784305a88a3f3b594b22e0",
+  "server_ts": "2025-10-05T13:20:02.616+00:00",
+  "server_ts_ms": 1759670402616,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

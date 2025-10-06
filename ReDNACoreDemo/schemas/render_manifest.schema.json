@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/render_manifest.json",
+  "title": "Render Batch Manifest",
+  "description": "Schema for PaDNA render batch manifests",
+  "type": "object",
+  "required": ["user_id", "render_batch_id", "created_at", "inputs", "outputs"],
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "User ID this render belongs to"
+    },
+    "render_batch_id": {
+      "type": "string",
+      "description": "Unique render batch identifier"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when render was created"
+    },
+    "inputs": {
+      "type": "object",
+      "description": "Input parameters for this render",
+      "properties": {
+        "traits_resolved_path": {
+          "type": "string",
+          "description": "Path to resolved state JSON used as input"
+        },
+        "images_batch_id": {
+          "type": "string",
+          "description": "Photo batch ID used as reference"
+        },
+        "workflow": {
+          "type": "string",
+          "description": "ComfyUI workflow path or identifier"
+        },
+        "seed": {
+          "type": "integer",
+          "description": "Random seed for reproducibility"
+        },
+        "prompt": {
+          "type": "string",
+          "description": "Generated or manual prompt"
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "description": "Output files from this render",
+      "properties": {
+        "render": {
+          "type": "string",
+          "description": "Path to primary render output"
+        },
+        "side_by_side": {
+          "type": "string",
+          "description": "Path to comparison side-by-side image"
+        }
+      }
+    }
+  }
+}

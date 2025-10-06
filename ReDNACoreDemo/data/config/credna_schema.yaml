@@ -1,0 +1,10 @@
+# Coach ReDNA (CReDNA) schema placeholder
+#
+# Sections to be defined when CReDNA implementation begins:
+# - tone: metadata describing coach voice, emotional weight, escalation bands.
+# - playbooks: structured guidance scripts or sequences tailored per user.
+# - heuristics: decision rules, thresholds, and prioritisation knobs.
+# - knowledge_shards: supplemental data fragments captured from uploads/feedback.
+# - safety_contract: guardrails, override policies, and provenance for changes.
+#
+# No schema fields are defined yet; this file reserves the namespace for future work.

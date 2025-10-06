@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "hstest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have two dogs",
+  "assistant_text": "Let's orchestrate this new direction by acknowledging the introduction of personal aspects. This shift adds context and allows us to tailor our conversation accordingly. Next, let's clarify how your work or goals relate to having two dogs. What specific challenges or opportunities do you associate with being a pet owner?",
+  "client_message_id": "7c643d5c-34fb-4006-a2d6-d67ae8c7cfa2",
+  "assistant_message_id": "chat-5721e30091a34efea22e34bd00708cdb",
+  "server_ts": "2025-10-04T23:06:40.201+00:00",
+  "server_ts_ms": 1759619200201,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "testtest3",
+  "assistant_text": "I'm glad we were able to reconnect! It sounds like Archie and George are quite the dynamic duo. I'm curious - what's been the most entertaining mischief they've gotten into lately? Also, since you said no to connecting with our PaDNA Coach, let's focus on just enjoying this conversation!",
+  "client_message_id": "f7845148-e2d8-4eaf-b7c8-45f8a2f921f7",
+  "assistant_message_id": "chat-9d6cfd088b6441a3b5a8f70f57a12295",
+  "server_ts": "2025-10-05T22:26:52.931+00:00",
+  "server_ts_ms": 1759703212931,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

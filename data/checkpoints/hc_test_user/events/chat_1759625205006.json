@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759625205006,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Do you have any book recommendations?",
+    "ts": 1759625205002
+  },
+  "assistant": {
+    "text": "You're looking for some new reads? I've heard great things about \"The Seven Husbands of Evelyn Hugo\" - it's a contemporary novel with a mix of romance, drama, and self-discovery. Have you read anything by Taylor Jenkins Reid before?",
+    "ts": 1759625205006,
+    "message_id": "chat-5ac7517084fe4779933b46b6d4ba2ad3"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 6701,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 6,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.49,
+    "assertiveness_score": 0.8333333333333333,
+    "dialog_act": "question",
+    "rolling_latency_avg_ms": 21294.9,
+    "rolling_latency_median_ms": 6211.5,
+    "latency_histogram": {
+      "steady": 47,
+      "slow": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "question": 27,
+      "ack": 3,
+      "answer": 20
+    },
+    "priority": 0.8
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "ts": "20250919_135206",
+  "resolved": {
+    "PaDNA.LooksDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Blue",
+      "ucn": 120,
+      "reasons": [
+        "explicit statement"
+      ]
+    },
+    "LifeDNA.Relationship.MaritalStatus": {
+      "resolved_value": "Married",
+      "ucn": 110,
+      "reasons": [
+        "explicit marital status"
+      ]
+    },
+    "LifeDNA.Relationship.Partner.Name": {
+      "resolved_value": "wife",
+      "ucn": 120,
+      "reasons": [
+        "explicit partner name"
+      ]
+    },
+    "LifeDNA.Relationship.Partner.Gender": {
+      "resolved_value": "Female",
+      "ucn": 100,
+      "reasons": [
+        "'wife' implies female partner"
+      ]
+    },
+    "BioDNA.Sex": {
+      "resolved_value": "Male",
+      "ucn": 70,
+      "reasons": [
+        "'was married to my wife' implies male subject (probable)"
+      ]
+    },
+    "PaDNA.LooksDNA.HairDNA.Color": {
+      "resolved_value": "Red",
+      "ucn": 100,
+      "reasons": [
+        "explicit color statement"
+      ]
+    },
+    "PaDNA.LooksDNA.HairDNA.Bald": {
+      "resolved_value": true,
+      "ucn": 85,
+      "reasons": [
+        "'lost most of my hair years ago' implies balding"
+      ]
+    },
+    "BioDNA.Height": {
+      "resolved_value": "6 feet",
+      "ucn": 100,
+      "reasons": [
+        "explicit height statement"
+      ]
+    },
+    "PaDNA.LooksDNA.EyeDNA.Lash.Length": {
+      "resolved_value": "long",
+      "ucn": 100,
+      "reasons": [
+        "explicit statement"
+      ]
+    },
+    "BioDNA.Physical.Weight": {
+      "resolved_value": "200",
+      "ucn": 120,
+      "reasons": [
+        "explicit weight statement"
+      ]
+    },
+    "PaDNA.LooksDNA.SkinDNA.FrecklePattern": {
+      "resolved_value": true,
+      "ucn": 100,
+      "reasons": [
+        "explicit statement"
+      ]
+    }
+  },
+  "observations": {}
+}

@@ -1,0 +1,11 @@
+{
+  "user_id": "918AMTEST",
+  "updates": [
+    {
+      "trait_key": "freeform.note",
+      "value": "I have red hair",
+      "source": "freeform",
+      "confidence": 0.65
+    }
+  ]
+}

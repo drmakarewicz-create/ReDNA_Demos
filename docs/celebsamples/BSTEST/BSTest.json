@@ -1,0 +1,98 @@
+{
+  "user_id": "BSTest",
+  "observations": {
+    "PaDNA": {
+      "HairDNA": {
+        "Color": {"resolved_value": "Light blonde (platinum to golden tones)", "ucn": 920},
+        "Length": {"resolved_value": "Long", "ucn": 940},
+        "Texture": {"resolved_value": "Straight with slight wave when styled", "ucn": 880},
+        "Volume": {"resolved_value": "Medium to high", "ucn": 870},
+        "Parting": {"resolved_value": "Center or slight off-center, variable", "ucn": 800},
+        "Styling": {"resolved_value": ["Updos", "Loose waves", "Straightened"], "ucn": 860}
+      },
+      "FaceDNA": {
+        "FaceShape": {"resolved_value": "Oval tending toward heart-shaped", "ucn": 880},
+        "Cheekbones": {"resolved_value": "Moderately prominent", "ucn": 870},
+        "Jawline": {"resolved_value": "Soft, slightly rounded", "ucn": 850},
+        "Chin": {"resolved_value": "Rounded with slight point", "ucn": 830},
+        "Forehead": {"resolved_value": "Medium height, gently rounded", "ucn": 840}
+      },
+      "EyebrowDNA": {
+        "Shape": {"resolved_value": "Arched, softly angled", "ucn": 890},
+        "Thickness": {"resolved_value": "Medium", "ucn": 870},
+        "Color": {"resolved_value": "Light brown to dark blonde", "ucn": 880}
+      },
+      "EyeDNA": {
+        "Color": {"resolved_value": "Light brown-hazel", "ucn": 900},
+        "Shape": {"resolved_value": "Round to almond", "ucn": 870},
+        "Size": {"resolved_value": "Medium", "ucn": 860},
+        "Spacing": {"resolved_value": "Average", "ucn": 850},
+        "Lashes": {"resolved_value": "Medium length, darkened with mascara", "ucn": 820}
+      },
+      "NoseDNA": {
+        "Size": {"resolved_value": "Small to medium", "ucn": 860},
+        "Bridge": {"resolved_value": "Straight, narrow", "ucn": 850},
+        "Tip": {"resolved_value": "Rounded", "ucn": 840}
+      },
+      "LipDNA": {
+        "Fullness": {"resolved_value": "Medium-full upper, full lower", "ucn": 870},
+        "Shape": {"resolved_value": "Defined cupid’s bow", "ucn": 880},
+        "Color": {"resolved_value": "Natural pink", "ucn": 850}
+      },
+      "SkinDNA": {
+        "Tone": {"resolved_value": "Fair-light", "ucn": 930},
+        "Undertone": {"resolved_value": "Cool-neutral", "ucn": 880},
+        "Texture": {"resolved_value": "Smooth, occasional visible pores", "ucn": 850},
+        "Freckles": {"resolved_value": "Sparse to none visible", "ucn": 820},
+        "SunSensitivity": {"resolved_value": "High", "ucn": 870}
+      },
+      "NeckDNA": {
+        "Length": {"resolved_value": "Medium", "ucn": 850},
+        "Width": {"resolved_value": "Slender", "ucn": 860}
+      },
+      "BodyDNA": {
+        "HeightEstimateCM": {"resolved_value": 163, "ucn": 740},
+        "Build": {"resolved_value": "Slim/Athletic", "ucn": 880},
+        "WaistHipRatio": {"resolved_value": "Moderate hourglass", "ucn": 870},
+        "Bust": {"resolved_value": "Full", "ucn": 860},
+        "Shoulders": {"resolved_value": "Medium width, proportionate", "ucn": 850},
+        "Arms": {"resolved_value": "Slim", "ucn": 860},
+        "Legs": {"resolved_value": "Medium-long, toned", "ucn": 870},
+        "Navel": {"resolved_value": "Pierced", "ucn": 950},
+        "Tattoos": {"resolved_value": ["Lower abdomen near pelvis"], "ucn": 900}
+      },
+      "SmileDNA": {
+        "Teeth": {"resolved_value": "Straight, white", "ucn": 930},
+        "SmileShape": {"resolved_value": "Broad smile", "ucn": 920},
+        "Dimples": {"resolved_value": "Absent", "ucn": 700},
+        "MouthWidth": {"resolved_value": "Medium-wide", "ucn": 860}
+      },
+      "ApparelDNA": {
+        "FrequentTops": ["Crop tops", "Bikinis", "Mini dresses", "Off-shoulder tops"],
+        "StyleThemes": ["Playful", "Sexy casual", "Bright/neon colors", "Animal prints"],
+        "Jewelry": {
+          "Necklace": {"resolved_value": "Often gemstone pendants", "ucn": 820},
+          "Earrings": {"resolved_value": "Small studs or hoops", "ucn": 810}
+        }
+      },
+      "ExpressionDNA": {
+        "TypicalExpression": {"resolved_value": "Direct gaze, playful or sultry smile", "ucn": 900},
+        "MoodVariance": ["Confident", "Flirty", "Casual"],
+        "EyeContact": {"resolved_value": "Strong, direct", "ucn": 890}
+      },
+      "FitnessDNA": {
+        "Indicators": ["Flat abdomen", "Defined waist", "Slim legs", "Toned core"],
+        "LifestyleInference": {"resolved_value": "Fitness-conscious, active", "ucn": 800}
+      }
+    },
+    "BehavioralDNA": {
+      "Posture": {"resolved_value": "Confident, often squared shoulders with forward lean", "ucn": 870},
+      "SocialProjection": {"resolved_value": "Flirty, provocative, attention-seeking", "ucn": 880}
+    },
+    "StyleContext": {
+      "SettingsObserved": ["Indoor home settings", "Outdoors (garden, beach)", "Performance/stage"],
+      "FashionMarkers": ["Animal prints", "Neon colors", "Low-rise shorts", "Crop tops", "Bikinis"],
+      "EraInference": {"resolved_value": "2000s-present pop fashion", "ucn": 950}
+    }
+  }
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "b766f339cb37",
+    "created_at": "2025-10-05T12:07:28.921873+00:00",
+    "focus_area": "PaDNA.RelationshipDNA.Communication",
+    "curiosity_score": 0.75,
+    "goal": "Reduce uncertainty around Communication",
+    "status": "active",
+    "step_count": 3
+  },
+  {
+    "id": "fadc1efef99a",
+    "created_at": "2025-10-05T12:07:28.920345+00:00",
+    "focus_area": "PaDNA.General.Preferences",
+    "curiosity_score": 0.5,
+    "goal": "Reduce uncertainty around Preferences",
+    "status": "active",
+    "step_count": 3
+  },
+  {
+    "id": "d7de27ef3ffc",
+    "created_at": "2025-10-05T12:03:29.157261+00:00",
+    "focus_area": "PaDNA.RelationshipDNA.Communication",
+    "curiosity_score": 0.75,
+    "goal": "Reduce uncertainty around Communication",
+    "status": "active",
+    "step_count": 3
+  },
+  {
+    "id": "e7a3f0d6cd8f",
+    "created_at": "2025-10-05T12:03:29.156042+00:00",
+    "focus_area": "PaDNA.General.Preferences",
+    "curiosity_score": 0.5,
+    "goal": "Reduce uncertainty around Preferences",
+    "status": "active",
+    "step_count": 3
+  },
+  {
+    "id": "3806da1c199f",
+    "created_at": "2025-10-05T12:02:32.671048+00:00",
+    "focus_area": "PaDNA.General.Preferences",
+    "curiosity_score": 0.5,
+    "goal": "Reduce uncertainty around Preferences",
+    "status": "active",
+    "step_count": 3
+  },
+  {
+    "id": "8aa61db4266b",
+    "created_at": "2025-10-05T12:01:21.638991+00:00",
+    "focus_area": "PaDNA.General.Preferences",
+    "curiosity_score": 0.5,
+    "goal": "Reduce uncertainty around Preferences",
+    "status": "active",
+    "step_count": 3
+  }
+]

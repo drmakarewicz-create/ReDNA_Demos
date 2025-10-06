@@ -1,0 +1,312 @@
+{
+  "user_id": "abtest",
+  "default_provenance": {
+    "source": "reference_photo_analysis",
+    "timestamp": "2025-10-04",
+    "photo_count": 10,
+    "analyst": "manual_observation",
+    "photos": "AB1-AB10"
+  },
+  "observations": [
+    {
+      "path": "PaDNA.HairDNA.Color",
+      "value": "Dark Brown",
+      "confidence": 0.95,
+      "notes": "Consistent dark brown across all photos, ranges from deeper brown to lighter brown with subtle variation"
+    },
+    {
+      "path": "PaDNA.HairDNA.Highlights",
+      "value": "Subtle Natural",
+      "confidence": 0.75,
+      "notes": "Some photos show lighter brown highlights, appears natural (AB4, AB5, AB7, AB10)"
+    },
+    {
+      "path": "PaDNA.HairDNA.Length",
+      "value": "Medium to Long",
+      "confidence": 0.90,
+      "notes": "Ranges from shoulder-length to past shoulders, varies with styling"
+    },
+    {
+      "path": "PaDNA.HairDNA.Texture",
+      "value": "Wavy",
+      "confidence": 0.85,
+      "notes": "Natural wave pattern visible, can be styled straight or with more curl"
+    },
+    {
+      "path": "PaDNA.HairDNA.Volume",
+      "value": "Medium to High",
+      "confidence": 0.85,
+      "notes": "Good natural volume, appears fuller in some styled photos"
+    },
+    {
+      "path": "PaDNA.HairDNA.Style",
+      "value": "Versatile",
+      "confidence": 0.90,
+      "notes": "Multiple styles: sleek updo (AB1), down and wavy (AB2, AB3, AB6), center part (AB7, AB10), side swept (AB5)"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Color",
+      "value": "Blue-Green",
+      "confidence": 0.98,
+      "notes": "Very distinctive vivid blue-green eyes, striking feature across all photos"
+    },
+    {
+      "path": "PaDNA.EyeDNA.ColorIntensity",
+      "value": "Striking",
+      "confidence": 0.98,
+      "notes": "Eyes are notably vivid and striking, high color saturation - most distinctive facial feature"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Shape",
+      "value": "Almond",
+      "confidence": 0.90,
+      "notes": "Classic almond eye shape, well-proportioned"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Size",
+      "value": "Large",
+      "confidence": 0.90,
+      "notes": "Notably large, expressive eyes, prominent facial feature"
+    },
+    {
+      "path": "PaDNA.EyeDNA.EyeSpacing",
+      "value": "Average",
+      "confidence": 0.85,
+      "notes": "Well-proportioned spacing relative to face width"
+    },
+    {
+      "path": "PaDNA.EyebrowDNA.Color",
+      "value": "Dark Brown",
+      "confidence": 0.95,
+      "notes": "Matches hair color, slightly darker than lighter hair tones"
+    },
+    {
+      "path": "PaDNA.EyebrowDNA.Shape",
+      "value": "Arched",
+      "confidence": 0.90,
+      "notes": "Well-defined arch, elegant shape"
+    },
+    {
+      "path": "PaDNA.EyebrowDNA.Thickness",
+      "value": "Medium",
+      "confidence": 0.85,
+      "notes": "Well-groomed, medium thickness, not thin or very thick"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Tone",
+      "value": "Fair",
+      "confidence": 0.95,
+      "notes": "Fair to light skin tone, very consistent across photos"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Undertone",
+      "value": "Cool to Neutral",
+      "confidence": 0.85,
+      "notes": "Cool undertone visible, possibly neutral in some lighting"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Texture",
+      "value": "Smooth",
+      "confidence": 0.90,
+      "notes": "Very clear, smooth complexion visible in close-up photos"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Clarity",
+      "value": "Clear",
+      "confidence": 0.95,
+      "notes": "Exceptionally clear skin, no visible blemishes or texture issues"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FaceShape",
+      "value": "Heart",
+      "confidence": 0.92,
+      "notes": "Classic heart-shaped face with wider forehead, high cheekbones, tapering to narrow chin"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Cheekbones",
+      "value": "High and Defined",
+      "confidence": 0.95,
+      "notes": "Very prominent, high cheekbones, key facial feature"
+    },
+    {
+      "path": "PaDNA.FacialDNA.CheekboneProminence",
+      "value": "Extremely prominent",
+      "confidence": 0.95,
+      "notes": "Extremely prominent cheekbones - most defining facial characteristic, very high and sculpted"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Jawline",
+      "value": "Refined and Narrow",
+      "confidence": 0.92,
+      "notes": "Delicate, narrow jawline tapering to pointed chin"
+    },
+    {
+      "path": "PaDNA.FacialDNA.JawlineWidth",
+      "value": "Narrow",
+      "confidence": 0.95,
+      "notes": "Very narrow, refined jawline width - characteristic of heart-shaped face"
+    },
+    {
+      "path": "PaDNA.FacialDNA.ChinShape",
+      "value": "Pointed",
+      "confidence": 0.90,
+      "notes": "Narrow, pointed chin characteristic of heart-shaped face"
+    },
+    {
+      "path": "PaDNA.FacialDNA.ChinWidth",
+      "value": "Narrow",
+      "confidence": 0.92,
+      "notes": "Narrow chin width, tapers to point"
+    },
+    {
+      "path": "PaDNA.FacialDNA.ForeheadWidth",
+      "value": "Wide",
+      "confidence": 0.90,
+      "notes": "Wide forehead characteristic of heart-shaped face, wider than jaw - key to face shape"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FeatureRefinement",
+      "value": "Very delicate",
+      "confidence": 0.95,
+      "notes": "Overall very delicate, refined facial features - small nose, narrow jaw, pointed chin, delicate bone structure"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FacialSymmetry",
+      "value": "High",
+      "confidence": 0.95,
+      "notes": "Strong facial symmetry, balanced features"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Nose.Shape",
+      "value": "Straight and Refined",
+      "confidence": 0.90,
+      "notes": "Small, straight nose with refined bridge"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Nose.Size",
+      "value": "Small",
+      "confidence": 0.90,
+      "notes": "Petite, well-proportioned to delicate facial features"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Nose.BridgeWidth",
+      "value": "Narrow",
+      "confidence": 0.85,
+      "notes": "Narrow, refined nasal bridge"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Lips.Fullness",
+      "value": "Medium",
+      "confidence": 0.85,
+      "notes": "Medium fullness, well-proportioned to face"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Lips.Shape",
+      "value": "Well-Defined",
+      "confidence": 0.85,
+      "notes": "Clear lip definition, balanced upper and lower lips"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Lips.NaturalColor",
+      "value": "Pink",
+      "confidence": 0.80,
+      "notes": "Natural pink tone visible in several photos"
+    },
+    {
+      "path": "PaDNA.NeckDNA.Length",
+      "value": "Medium to Long",
+      "confidence": 0.85,
+      "notes": "Graceful neck length, visible in several photos (AB1, AB2, AB5, AB6)"
+    },
+    {
+      "path": "PaDNA.NeckDNA.Width",
+      "value": "Slender",
+      "confidence": 0.85,
+      "notes": "Slender, elegant neck proportions"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Build",
+      "value": "Slender",
+      "confidence": 0.95,
+      "notes": "Consistently slender build visible across all photos"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Frame",
+      "value": "Petite to Average",
+      "confidence": 0.90,
+      "notes": "Delicate bone structure, small to medium frame"
+    },
+    {
+      "path": "PaDNA.BodyDNA.BoneStructure",
+      "value": "Delicate",
+      "confidence": 0.90,
+      "notes": "Fine, delicate bone structure visible in shoulders, collarbone, arms"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Shoulders",
+      "value": "Narrow",
+      "confidence": 0.85,
+      "notes": "Narrow, delicate shoulder width"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Proportions",
+      "value": "Balanced",
+      "confidence": 0.85,
+      "notes": "Well-proportioned physique"
+    },
+    {
+      "path": "PaDNA.StyleDNA.ColorPreference",
+      "value": "Bold and Bright",
+      "confidence": 0.95,
+      "notes": "Strong preference for vivid colors: red (AB1, AB3, AB7, AB9), blue (AB2), pink (AB4), coral/pink tones"
+    },
+    {
+      "path": "PaDNA.StyleDNA.RedPreference",
+      "value": "High",
+      "confidence": 0.95,
+      "notes": "Red appears in 4 of 10 photos, clearly a favored color"
+    },
+    {
+      "path": "PaDNA.StyleDNA.StyleRange",
+      "value": "Versatile",
+      "confidence": 0.90,
+      "notes": "Ranges from elegant/formal (AB1 off-shoulder gown, AB2 halter) to casual (AB4, AB10 cardigans)"
+    },
+    {
+      "path": "PaDNA.StyleDNA.NecklinePreference",
+      "value": "V-neck and Plunging",
+      "confidence": 0.90,
+      "notes": "Frequent V-necks and plunging necklines (AB2, AB3, AB5, AB6, AB7, AB8)"
+    },
+    {
+      "path": "PaDNA.MakeupDNA.EyeMakeup",
+      "value": "Defined",
+      "confidence": 0.90,
+      "notes": "Consistently defined eye makeup, emphasizes eye color and shape"
+    },
+    {
+      "path": "PaDNA.MakeupDNA.LipColor",
+      "value": "Pink to Rose",
+      "confidence": 0.85,
+      "notes": "Prefers pink, rose, and berry tones for lips across multiple photos"
+    },
+    {
+      "path": "PaDNA.MakeupDNA.MakeupStyle",
+      "value": "Polished and Defined",
+      "confidence": 0.90,
+      "notes": "Well-applied makeup with emphasis on eyes and lips, polished appearance"
+    },
+    {
+      "path": "PaDNA.AccessoryDNA.Earrings",
+      "value": "Statement Pieces",
+      "confidence": 0.85,
+      "notes": "Wears statement earrings in formal photos (AB1 has blue drop earrings)"
+    },
+    {
+      "path": "PaDNA.AccessoryDNA.Necklaces",
+      "value": "Delicate",
+      "confidence": 0.75,
+      "notes": "Delicate necklaces visible in some photos (AB4, AB8)"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "e7cf25e8e36f",
+    "created_at": "2025-10-05T12:10:23.923246+00:00",
+    "focus_area": "PaDNA.EmDNA.Empathy",
+    "curiosity_score": 0.75,
+    "goal": "Reduce uncertainty around Empathy",
+    "status": "active",
+    "step_count": 3
+  },
+  {
+    "id": "b8aa16615a7b",
+    "created_at": "2025-10-05T12:10:23.922676+00:00",
+    "focus_area": "PaDNA.General.Preferences",
+    "curiosity_score": 0.5,
+    "goal": "Reduce uncertainty around Preferences",
+    "status": "completed",
+    "step_count": 3
+  }
+]

@@ -1,0 +1,4 @@
+{
+  "text": "I got married to my wife in 1998",
+  "raw": "{\n  \"resolved\": {\n    \"SocDNA.Relationship.Status\": { \"resolved_value\": \"Married\", \"ucn\": 95, \"reasons\": [\"\\\"got married\\\"\"] },\n    \"SocDNA.Relationship.MarriageYear\": { \"resolved_value\": 1998, \"ucn\": 90, \"reasons\": [\"explicit year\"] }\n  }\n}"
+}

@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I liked the first 3 seasons of AHS but I haven't loved most of the seasons since",
+  "assistant_text": "It sounds like you enjoyed the early seasons of American Horror Story, but haven't been as impressed with the more recent ones. What do you think is missing from the show that made it so compelling in the beginning? \n\n(By the way, I've heard great things about our PaDNA Coach, who could help you find a new style or aesthetic to match your favorite TV shows.)",
+  "client_message_id": "e897bf1f-9898-495a-93ed-15358a4a3047",
+  "assistant_message_id": "chat-6903352a22b440909682ffb7bf39ba8e",
+  "server_ts": "2025-10-05T17:09:59.162+00:00",
+  "server_ts_ms": 1759684199162,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,48 @@
+{
+  "ts": "20250919_202149",
+  "resolved": {
+    "PaDNA.LooksDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Blue",
+      "ucn": 90,
+      "reasons": [
+        "heuristic:fallback"
+      ]
+    },
+    "PaDNA.LooksDNA.HairDNA.Color": {
+      "resolved_value": "red",
+      "ucn": 70,
+      "reasons": [
+        "heuristic:fallback"
+      ]
+    },
+    "PaDNA.LooksDNA.HairDNA.Bald": {
+      "resolved_value": true,
+      "ucn": 120,
+      "reasons": [
+        "heuristic:fallback"
+      ]
+    },
+    "BioDNA.Height": {
+      "resolved_value": "6 feet",
+      "ucn": 100,
+      "reasons": [
+        "explicit height statement"
+      ]
+    },
+    "SocDNA.Relationship.Status": {
+      "resolved_value": "Married",
+      "ucn": 95,
+      "reasons": [
+        "\"got married\""
+      ]
+    },
+    "SocDNA.Relationship.MarriageYear": {
+      "resolved_value": 1998,
+      "ucn": 90,
+      "reasons": [
+        "explicit year"
+      ]
+    }
+  },
+  "observations": {}
+}

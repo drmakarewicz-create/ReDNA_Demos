@@ -1,0 +1,46 @@
+{
+  "name": "basic_conflict",
+  "description": "Curly vs straight hair observation chooses highest UCN and flags conflict.",
+  "inputs": {
+    "prior_resolved": {},
+    "prior_evidence": {"items": []},
+    "prior_observations": {"items": [], "by_trait": {}},
+    "new_observations": [
+      {
+        "trait": "PaDNA.HairDNA.Style",
+        "value": "Curly",
+        "ucn": 72,
+        "provenance": {
+          "source": "photo_inference",
+          "value": "Curly",
+          "ucn": 72,
+          "when": "2025-01-01T00:00:00Z"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Style",
+        "value": "Straight",
+        "ucn": 40,
+        "provenance": {
+          "source": "self_report",
+          "value": "Straight",
+          "ucn": 40,
+          "when": "2024-12-31T23:00:00Z"
+        }
+      }
+    ]
+  },
+  "expected": {
+    "resolved": {
+      "PaDNA.HairDNA.Style": {
+        "resolved_value": "Curly",
+        "ucn": 72.0,
+        "reasons": ["conflict_detected", "photo_inference@72"],
+        "last_observed": "2024-12-31T23:00:00Z"
+      }
+    },
+    "priorities": {
+      "PaDNA.HairDNA.Style": 0.28
+    }
+  }
+}

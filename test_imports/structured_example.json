@@ -1,0 +1,26 @@
+{
+  "observations": {
+    "PaDNA.HairDNA.Color": {
+      "resolved_value": "Auburn / Red-Brown",
+      "ucn": 920.5,
+      "reasons": ["dominant warm red-brown hue"],
+      "notes": {"evidence": ["photo_001.jpg"]}
+    },
+    "PaDNA.EyeDNA.Color": {
+      "resolved_value": "Light Blue",
+      "ucn": 850.3,
+      "reasons": ["bright blue iris visible"]
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "resolved_value": "Fair",
+      "ucn": 900.8,
+      "rr": 62.0,
+      "curiosity": 24.0
+    },
+    "PaDNA.BodyDNA.HeightCM": {
+      "resolved_value": 183,
+      "ucn": 750.0,
+      "reasons": ["estimated from reference photo"]
+    }
+  }
+}

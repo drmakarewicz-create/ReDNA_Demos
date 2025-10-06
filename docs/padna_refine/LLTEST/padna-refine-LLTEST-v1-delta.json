@@ -1,0 +1,140 @@
+{
+  "user_id": "LLTEST",
+  "batch_id": "padna-refine-LLTEST-v1",
+  "timestamp": "2025-10-03T20:30:00Z",
+  "current_portrait": "web/public/portraits/LLTEST.png",
+  "resolved_traits_source": "data/users/LLTEST/resolved.json",
+  "deltas": [
+    {
+      "area": "Eyes/Iris Detail",
+      "observed": "Eyes appear as solid light green color without visible complexity",
+      "target": "Light green iris with distinct hazel flecks, subtle limbal ring for depth",
+      "severity": "high",
+      "confidence": 0.95,
+      "proposed_containers": [
+        "PaDNA.EyeDNA.Iris.BaseColor",
+        "PaDNA.EyeDNA.Iris.Flecks",
+        "PaDNA.EyeDNA.Iris.FleckPattern",
+        "PaDNA.EyeDNA.Iris.LimbalRing"
+      ],
+      "notes": "Current 'Light Green With Hazel Flecks' is text-only. Split into atomic visual properties: base color, fleck presence/pattern, and limbal ring intensity. Renderer needs explicit iris components."
+    },
+    {
+      "area": "Skin/Freckles",
+      "observed": "Freckles appear very faint or nearly absent",
+      "target": "Moderate to heavy freckle density across cheeks, nose bridge, and shoulders",
+      "severity": "high",
+      "confidence": 0.92,
+      "proposed_containers": [
+        "PaDNA.SkinDNA.Freckles.Density",
+        "PaDNA.SkinDNA.Freckles.Coverage",
+        "PaDNA.SkinDNA.Freckles.Contrast"
+      ],
+      "notes": "Current 'Present, Across Face/Shoulders' lacks visual control. Need density (none/light/medium/heavy), coverage region (cheeks/t-zone/full-face/face-shoulders), and contrast (subtle/visible/prominent) for accurate rendering."
+    },
+    {
+      "area": "Skin/Undertone Precision",
+      "observed": "Skin appears fair but undertone warmth is subtle",
+      "target": "Fair skin with distinctly warm/peachy undertones",
+      "severity": "medium",
+      "confidence": 0.88,
+      "proposed_containers": [
+        "PaDNA.SkinDNA.Undertone.Type",
+        "PaDNA.SkinDNA.Undertone.Intensity"
+      ],
+      "notes": "Current 'Fair With Warm Undertones' combines tone and undertone. Split for precise control: Tone (fair/medium/tan/deep) + Undertone.Type (cool/neutral/warm/golden-warm) + Undertone.Intensity (subtle/moderate/strong)."
+    },
+    {
+      "area": "Hair/Color Complexity",
+      "observed": "Hair appears as uniform red-auburn without dimensional variation",
+      "target": "Red-auburn base with copper highlights and natural color variation",
+      "severity": "medium",
+      "confidence": 0.85,
+      "proposed_containers": [
+        "PaDNA.HairDNA.Color.Base",
+        "PaDNA.HairDNA.Color.Highlights",
+        "PaDNA.HairDNA.Color.Dimension"
+      ],
+      "notes": "Current 'Red-Auburn' is monolithic. Hair has base color + highlights/lowlights + dimensional variation. Enable multi-tonal realism."
+    },
+    {
+      "area": "Hair/Curl Pattern Specificity",
+      "observed": "Hair shows waves but pattern type unclear (2A vs 2B vs 2C)",
+      "target": "Defined 2B wave pattern (medium S-waves)",
+      "severity": "medium",
+      "confidence": 0.82,
+      "proposed_containers": [
+        "PaDNA.HairDNA.CurlPattern",
+        "PaDNA.HairDNA.WaveDefinition"
+      ],
+      "notes": "Current 'Wavy' is imprecise. Use curl typing system (1/straight, 2A/2B/2C/wavy, 3A/3B/3C/curly, 4A/4B/4C/coily) + wave definition (loose/medium/defined) for accurate texture."
+    },
+    {
+      "area": "Hair/Part Consistency",
+      "observed": "Side part visible but consistency/frequency unknown",
+      "target": "Highly consistent left side part (appears in 90%+ of images)",
+      "severity": "low",
+      "confidence": 0.78,
+      "proposed_containers": [
+        "PaDNA.HairDNA.Parting.Side",
+        "PaDNA.HairDNA.Parting.Consistency"
+      ],
+      "notes": "Current 'Side Part, Often Left' is vague. Add Parting.Side (left/right/center/none) + Parting.Consistency (low/medium/high) for behavioral accuracy."
+    },
+    {
+      "area": "Face/Eye Spacing & Proportion",
+      "observed": "Eye shape captured but spacing/proportion relative to face missing",
+      "target": "Average eye spacing, proportionate to face width",
+      "severity": "low",
+      "confidence": 0.75,
+      "proposed_containers": [
+        "PaDNA.FaceDNA.EyeSpacing",
+        "PaDNA.FaceDNA.EyeSize"
+      ],
+      "notes": "Shape alone insufficient for facial harmony. Add EyeSpacing (close/average/wide) and EyeSize (small/medium/large) relative to face."
+    },
+    {
+      "area": "Face/Cheekbone Definition",
+      "observed": "Facial structure present but cheekbone prominence not specified",
+      "target": "Moderate cheekbone definition",
+      "severity": "low",
+      "confidence": 0.70,
+      "proposed_containers": [
+        "PaDNA.FaceDNA.Cheekbones"
+      ],
+      "notes": "Add facial structure detail: Cheekbones (subtle/moderate/prominent/high-sharp) for facial dimension."
+    },
+    {
+      "area": "Smile/Lip Detail",
+      "observed": "Smile shape captured but lip fullness/definition missing",
+      "target": "Medium-full lips with defined cupid's bow",
+      "severity": "low",
+      "confidence": 0.72,
+      "proposed_containers": [
+        "PaDNA.SmileDNA.LipFullness",
+        "PaDNA.SmileDNA.CupidsBow"
+      ],
+      "notes": "Current SmileDNA focuses on smile. Add LipFullness (thin/medium/full/very-full) and CupidsBow (subtle/defined/pronounced) for lip realism."
+    }
+  ],
+  "summary": {
+    "total_deltas": 9,
+    "high_severity": 2,
+    "medium_severity": 3,
+    "low_severity": 4,
+    "total_containers_proposed": 24,
+    "priority_areas": [
+      "Eyes/Iris Detail (high confidence, high severity)",
+      "Skin/Freckles (high confidence, high severity)",
+      "Skin/Undertone (medium severity)",
+      "Hair/Color Complexity (medium severity)"
+    ]
+  },
+  "next_steps": [
+    "Apply traits_registry.patch.yaml with 24 new containers",
+    "Create example observations with high UCN values",
+    "Update trait-to-prompt.ts with minimal mappings",
+    "Re-ingest LLTEST data to populate new containers",
+    "Re-render and measure delta reduction"
+  ]
+}

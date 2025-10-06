@@ -1,0 +1,43 @@
+{
+  "type": "chat_turn",
+  "ts": 1759705105348,
+  "user_id": "TEST",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "test",
+    "ts": 1759705105344
+  },
+  "assistant": {
+    "text": "Let's try again! You mentioned reconnecting and having fun chatting about Archie and George. What's been the most entertaining thing they've done together recently? \n\nAlso, since you have two energetic fur babies, our PaDNA Coach could help you create a customized tag with their names and your contact info, making it easier for people to return them if they get lost.",
+    "ts": 1759705105348,
+    "message_id": "chat-2b778ed98edc4b3bbdfac57546f0e0e8"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/TEST/observations.json",
+  "metrics": {
+    "response_latency_ms": 322426,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 1,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.44,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 1660567.46,
+    "rolling_latency_median_ms": 124514.5,
+    "latency_histogram": {
+      "slow": 50
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "question": 12,
+      "answer": 38
+    },
+    "priority": 0.8
+  }
+}

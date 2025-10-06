@@ -1,0 +1,252 @@
+{
+  "profile": {
+    "label": "LiLohan",
+    "created_ts": "2025-10-03T15:42:41.549060+00:00"
+  },
+  "PaDNA.HairDNA.Color": {
+    "resolved_value": "Red-Auburn",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Length": {
+    "resolved_value": "Long",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Texture": {
+    "resolved_value": "Wavy",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Parting": {
+    "resolved_value": "Side Part, Often Left",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.HairDNA.Volume": {
+    "resolved_value": "Thick",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Color": {
+    "resolved_value": "Light Green With Hazel Flecks",
+    "ucn": 940.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Shape": {
+    "resolved_value": "Almond",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.EyeDNA.Lashes": {
+    "resolved_value": "Medium Length, Full",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.Tone": {
+    "resolved_value": "Fair With Warm Undertones",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "resolved_value": "Present, Across Face/Shoulders",
+    "ucn": 970.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SkinDNA.SunSensitivity": {
+    "resolved_value": "High",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.HeightEstimateCM": {
+    "resolved_value": 165,
+    "ucn": 750.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Build": {
+    "resolved_value": "Slim/Athletic",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.WaistHipRatio": {
+    "resolved_value": "Moderate Hourglass",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Bust": {
+    "resolved_value": "Full",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Shoulders": {
+    "resolved_value": "Moderately Broad",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Arms": {
+    "resolved_value": "Slim",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Legs": {
+    "resolved_value": "Long, Toned",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.BodyDNA.Navel": {
+    "resolved_value": "Pierced",
+    "ucn": 990.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.Teeth": {
+    "resolved_value": "Straight, White",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.SmileShape": {
+    "resolved_value": "Broad Smile",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.SmileDNA.Dimples": {
+    "resolved_value": "Absent",
+    "ucn": 700.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.FrequentTops": {
+    "resolved_value": [
+      "Tank tops",
+      "Bikinis",
+      "Casual fitted T-shirts",
+      "Crop tops",
+      "Mini dresses"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.StyleThemes": {
+    "resolved_value": [
+      "Casual sexy",
+      "Playful",
+      "Colorful prints",
+      "Beachwear"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Necklace": {
+    "resolved_value": "Often Layered Pendants",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Earrings": {
+    "resolved_value": "Studs Or Small Hoops",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ApparelDNA.Jewelry.Piercings": {
+    "resolved_value": [
+      "Navel piercing"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.TypicalExpression": {
+    "resolved_value": "Smiling Warmly Or Playful Smirk",
+    "ucn": 910.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.MoodVariance": {
+    "resolved_value": [
+      "Confident",
+      "Relaxed",
+      "Playful"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.ExpressionDNA.EyeContact": {
+    "resolved_value": "Direct And Engaging",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FitnessDNA.Indicators": {
+    "resolved_value": [
+      "Flat abdomen",
+      "Defined waist",
+      "Toned legs",
+      "Visible muscle tone"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  },
+  "PaDNA.FitnessDNA.LifestyleInference": {
+    "resolved_value": "Active/Fitness-Conscious",
+    "ucn": 770.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ]
+  }
+}

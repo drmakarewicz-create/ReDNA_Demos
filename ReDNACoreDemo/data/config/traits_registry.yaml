@@ -1,0 +1,177 @@
+# ---- PaDNA (Physical Appearance) ----
+PaDNA:
+  HairDNA:
+    Color: {type: categorical, choices: [black, brown, blonde, red, auburn, gray, white, mixed, other]}
+    DyedColor: {type: text}
+    Length: {type: categorical, choices: [buzzed, short, medium, long, extra_long]}
+    Texture: {type: categorical, choices: [straight, wavy, curly, coily, kinky, frizzy, fine, medium, thick, coarse, wiry, silky]}
+    Density: {type: categorical, choices: [thin, medium, thick, very_dense, sparse, normal, full]}
+    Condition: {type: categorical_multi, choices: [healthy, dry, oily, damaged, brittle, frizzy, smooth]}
+    Style: {type: categorical_multi, choices: [ponytail, bun, braids, locs, loose, fade, undercut, afro, pixie, mullet, mohawk, slicked_back, twists, cornrows, shaved_sides, straight, wavy, curly, coiled, kinky, other]}
+    Part: {type: categorical, choices: [middle, center, side, zigzag, shaved, none]}
+    Hairline: {type: categorical, choices: [straight, receding, widows_peak, rounded, uneven]}
+    PatternChange: {type: categorical_multi, choices: [balding, graying, thinning, shedding, regrowth]}
+    Bald: {type: boolean}
+    BaldPattern: {type: categorical, choices: [none, partial, shaved, total]}
+    Distinctive: {type: text}            # streaks, albinism, birth patches, etc.
+
+  EyeDNA:
+    IrisColor: {type: categorical, choices: [brown, blue, green, hazel, gray, amber, mixed, other]}
+    ColorIntensity: {type: categorical, choices: [subtle, moderate, bright, vivid, striking]}
+    IrisPattern: {type: categorical, choices: [solid, ringed, speckled, gradient, marbled, other]}
+    Heterochromia: {type: categorical, choices: [none, partial, complete]}
+    Shape: {type: categorical, choices: [almond, round, hooded, monolid, deep_set, wide_set, close_set, protruding]}
+    Size: {type: categorical, choices: [small, medium, large]}
+    Lashes: {type: categorical_multi, choices: [short, medium, long, straight, curled, thick, sparse]}
+    Brows: {type: categorical_multi, choices: [thick, thin, arched, flat, unibrow, bushy, sparse, groomed]}
+    EyelidCrease: {type: categorical, choices: [monolid, double_lid, heavy_crease, hidden]}
+    ScleraTint: {type: categorical, choices: [bright_white, ivory, yellowish, bluish, bloodshot]}
+    EyeSpacing: {type: categorical, choices: [wide_set, close_set, average]}
+
+  SkinDNA:
+    Tone: {type: categorical, choices: [very_light, light, medium_light, medium, medium_deep, deep, very_deep, I, II, III, IV, V, VI]}
+    Undertone: {type: categorical, choices: [cool, warm, neutral, olive, golden, reddish]}
+    Texture: {type: categorical_multi, choices: [smooth, rough, oily, dry, combination, porous, scarred]}
+    SunBehavior: {type: categorical, choices: [burns_easily, tans_easily, tans_moderately, resistant, photosensitive]}
+    Freckles: {type: categorical, choices: [none, scattered, cluster, dense]}
+    Moles: {type: text}
+    Birthmarks: {type: text}
+    Conditions: {type: categorical_multi, choices: [acne, eczema, rosacea, psoriasis, vitiligo, hyperpigmentation, scars, other]}
+    ComplexionConsistency: {type: categorical, choices: [even, slightly_blended, blotchy, patchy]}
+
+  FacialDNA:
+    FaceShape: {type: categorical, choices: [oval, round, square, oblong, heart, diamond, triangle, inverted_triangle]}
+    SymmetryScore: {type: number}
+    ForeheadHeight: {type: categorical, choices: [low, average, high]}
+    ForeheadWidth: {type: categorical, choices: [narrow, medium, wide, very_wide]}
+    ForeheadShape: {type: categorical, choices: [rounded, sloped, broad, narrow]}
+    Cheeks: {type: categorical_multi, choices: [hollow, full, high, flat, defined, soft]}
+    CheekboneProminence: {type: categorical, choices: [subtle, moderate, high, very_high, extremely_prominent]}
+    Jawline: {type: categorical_multi, choices: [defined, square, round, tapered, sharp, soft]}
+    JawlineWidth: {type: categorical, choices: [very_narrow, narrow, medium, wide, very_wide]}
+    Chin: {type: categorical, choices: [pointed, cleft, rounded, recessed, protruding, square]}
+    ChinWidth: {type: categorical, choices: [very_narrow, narrow, medium, wide, very_wide]}
+    FeatureRefinement: {type: categorical, choices: [standard, refined, very_refined, delicate, very_delicate]}
+    NoseShape: {type: categorical, choices: [straight, convex, concave, upturned, hooked, bulbous, button]}
+    NoseBridge: {type: categorical, choices: [high, low, wide, narrow, medium]}
+    Lips: {type: categorical_multi, choices: [thin, medium, full, wide, downturned, upturned, asymmetric, cupid_bow]}
+    Teeth: {type: categorical_multi, choices: [straight, crooked, gapped, prominent_canines, aligned, missing]}
+    SmileStyle: {type: categorical, choices: [toothy, closed_lip, asymmetric, dimpled, gummy, subtle]}
+    Ears: {type: categorical_multi, choices: [small, large, attached_lobes, detached_lobes, protruding, flat, gauged]}
+    FacialHair: {type: categorical_multi, choices: [none, beard, mustache, stubble, goatee, patchy, styled]}
+    DistinctiveMarks: {type: text}        # piercings, scars, dimples, etc.
+    AgingFeatures: {type: categorical_multi, choices: [fine_lines, deep_wrinkles, sagging, firmness, elasticity, sunspots, smooth]}
+    CrowsFeet: {type: categorical, choices: [none, subtle, moderate, prominent, deep]}
+    SmileLines: {type: categorical, choices: [none, subtle, moderate, prominent, deep]}
+    ForeheadLines: {type: categorical, choices: [none, subtle, moderate, prominent, deep]}
+    NasolabialFolds: {type: categorical, choices: [none, subtle, moderate, prominent, deep]}
+    EyeAreaAging: {type: categorical, choices: [youthful, slight_softening, moderate_hooding, significant_hooding]}
+    NeckAging: {type: categorical, choices: [smooth, slight_lines, moderate_lines, prominent_lines, sagging]}
+    SkinMaturity: {type: categorical, choices: [youthful, early_twenties, late_twenties, thirties, forties, fifties_plus]}
+    LipCupidsBow: {type: categorical, choices: [absent, subtle, defined, prominent]}
+    LipProportions: {type: categorical, choices: [equal, upper_fuller, lower_fuller]}
+    SmileGumShow: {type: categorical, choices: [none, minimal, moderate, gummy]}
+    SmileAsymmetry: {type: categorical, choices: [symmetric, slight, moderate, pronounced]}
+    BrowArchApex: {type: categorical, choices: [inner_third, middle, outer_third]}
+    BrowThicknessVariation: {type: categorical, choices: [uniform, tapers, thick_to_thin]}
+    BrowEyeDistance: {type: categorical, choices: [close, average, far]}
+    NoseTipShape: {type: categorical, choices: [pointed, rounded, bulbous, square, upturned, drooping]}
+    NostrilShape: {type: categorical, choices: [narrow, oval, round, flared, wide]}
+    PhiltrumDepth: {type: categorical, choices: [shallow, moderate, deep, very_deep]}
+    PhiltrumLength: {type: categorical, choices: [short, medium, long]}
+    SkinPoreVisibility: {type: categorical, choices: [minimal, slight, moderate, prominent]}
+    SkinElasticityAppearance: {type: categorical, choices: [firm, slightly_soft, moderate_soft, loose]}
+    AgeSpotsPresence: {type: categorical, choices: [none, few, scattered, many]}
+    HairDensity: {type: categorical, choices: [thin, medium, thick, very_dense]}
+    HairlineShape: {type: categorical, choices: [straight, rounded, widows_peak, receding, irregular]}
+    FacialProportions: {type: text}
+
+  BodyDNA:
+    Height: {type: number, units: cm}     # legacy support
+    Weight: {type: number, units: kg}     # legacy support
+    HeightCM: {type: number, units: cm}
+    WeightKG: {type: number, units: kg}
+    BodyType: {type: categorical, choices: [ectomorph, mesomorph, endomorph, mixed]}
+    Build: {type: categorical, choices: [slender, petite, average, athletic, muscular, heavyset, plus, curvy]}
+    Posture: {type: categorical, choices: [upright, slouched, swayback, military, kyphotic, lordotic, stacked]}
+    Flexibility: {type: categorical, choices: [low, medium, high, hypermobile]}
+    Gait: {type: categorical, choices: [confident, hesitant, bouncing, dragging, graceful, limping, grounded, energetic]}
+    Ratios: {type: text}                  # torso/leg, shoulder/hip, waist/hip, limb proportion details
+    Distinctive: {type: text}             # scars, tattoos, prosthetics, birth differences
+    Handedness: {type: categorical, choices: [left, right, ambidextrous, undetermined]}
+    HandSize: {type: categorical, choices: [small, medium, large, very_large]}
+    FootSize: {type: number, units: shoe_size}
+    ShoulderShape: {type: categorical, choices: [broad, narrow, rounded, square, sloped]}
+    NeckLength: {type: categorical, choices: [short, average, long]}
+    HandStructure: {type: text}
+
+  ApparelDNA:
+    Style: {type: categorical_multi, choices: [classic, sporty, formal, casual, eclectic, fashion_forward, streetwear, minimalist, bohemian]}
+    Fit: {type: categorical, choices: [fitted, tailored, loose, oversized, relaxed, regular]}   # legacy field
+    FitPreference: {type: categorical, choices: [fitted, tailored, loose, oversized, relaxed]}
+    Accessories: {type: categorical_multi, choices: [glasses, jewelry, hats, belts, watches, piercings, scarves, bags, tech_wearables]}
+    Palette: {type: categorical_multi, choices: [neutral, warm, cool, bright, monochrome, seasonal, earth_tones, jewel_tones, warm_metallic, cool_metallic]}  # legacy alias
+    PalettePreference: {type: categorical_multi, choices: [neutral, warm, cool, bright, monochrome, seasonal, earth_tones, jewel_tones]}
+    FootwearStyle: {type: categorical_multi, choices: [sneakers, boots, sandals, dress_shoes, heels, flats, loafers, athletic, barefoot]}
+
+  MovementDNA:
+    Gestures: {type: categorical, choices: [expressive, restrained, repetitive, asymmetrical, animated, minimal]}
+    HeadMovement: {type: categorical, choices: [still, nodding, tilting, restless, scanning]}
+    HandUsage: {type: categorical, choices: [talks_with_hands, minimal_hand_movement, precise, fidgeting]}
+    Tempo: {type: categorical, choices: [fast, slow, steady, variable, staccato, flowing]}
+    SignatureMotion: {type: text}
+
+# (Stubs for other umbrellas so nothing breaks; we can flesh these next)
+PsyDNA: {}
+EmDNA: {}
+CogDNA: {}
+BehDNA: {}
+HistDNA: {}
+PrefDNA: {}
+SkillDNA: {}
+MetaDNA: {}
+
+RelDNA:
+  Status: {type: categorical, choices: [single, partnered, married, poly, separated, complicated], rr_default: 0, curiosity_default: 100, coach_instructions: 'Confirm current relationship configuration directly with the user; re-ask when major life events occur.'}
+  Goals:
+    Primary: {type: categorical, choices: [improve_communication, rebuild_trust, strengthen_intimacy, align_values, clarify_boundaries, co_parenting, other], rr_default: 0, curiosity_default: 100, coach_instructions: 'Ask the user to pick or restate their top relationship focus to reduce curiosity.'}
+  Preferences:
+    LoveLanguages: {type: categorical_multi, choices: [words_of_affirmation, quality_time, acts_of_service, physical_touch, gifts, humor, reassurance], rr_default: 0, curiosity_default: 100, coach_instructions: 'Capture preferred ways the user gives/receives care; confirm with recent examples.'}
+    Boundaries: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Record specific boundaries the user wants respected; ask for clarity before logging.'}
+  Conflict:
+    Style: {type: categorical, choices: [avoidant, validator, volatile, hostile, problem_solver, accommodating], rr_default: 0, curiosity_default: 100, coach_instructions: 'Reflect conflict patterns back to the user and ask if it matches their experience before logging.'}
+    RepairStrategies: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Track what repair actions work after conflict so coaches can suggest them later.'}
+  Communication:
+    Style: {type: categorical, choices: [direct, indirect, high_context, low_context, reflective, analytical], rr_default: 0, curiosity_default: 100, coach_instructions: 'Log the user’s baseline communication style based on explicit statements or confirmed examples.'}
+    Cadence: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Capture how often the user prefers check-ins or deeper conversations.'}
+  Attachment:
+    Style: {type: categorical, choices: [secure, anxious, avoidant, fearful, disorganized], rr_default: 0, curiosity_default: 100, coach_instructions: 'Note attachment self-identification; treat as low confidence unless user states it explicitly.'}
+  Triggers: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'List concise triggers that destabilize connection; keep language neutral.'}
+  Values:
+    Shared: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Capture the value statements both partners align on; cite evidence.'}
+    Clashes: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Document value differences that create friction; include nuance if provided.'}
+  Boundaries:
+    AgreesTo: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Record boundaries the user commits to honoring.'}
+    StrugglesWith: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Capture boundary agreements the user finds hard to uphold; revisit periodically.'}
+  Safety:
+    TopicsToAvoid: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Log sensitive subjects to pause until trust improves; keep details concise.'}
+  Context:
+    Family: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Summarize family context that affects the relationship dynamic.'}
+    Friends: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Capture peer dynamics that influence connection quality.'}
+    WorkStress: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Note persistent work stressors impacting the relationship.'}
+  Logistics:
+    TimeZones: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Record time zone info for coordinating sync moments or RSC sessions.'}
+    Schedules: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Log recurring schedule constraints that affect connection time.'}
+  MicroActions:
+    Backlog: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Store JSON list of tiny actions with status/ts; update when actions complete.'}
+
+SocDNA:
+  Conversation:
+    ToneDefault: {type: categorical, choices: [warm, neutral, formal, playful, concise, expansive], rr_default: 0, curiosity_default: 100, coach_instructions: 'Capture the user’s natural tone so personas can mirror appropriately.'}
+    Pacing: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Describe preferred pacing (rapid-fire, reflective pauses, etc.).'}
+    EmojiUsage: {type: categorical, choices: [high, medium, low, none], rr_default: 0, curiosity_default: 100, coach_instructions: 'Track how often the user leans on emoji/emphasis during chats.'}
+    TextLengthPattern: {type: categorical, choices: [short_bursts, medium, long_form, mixed], rr_default: 0, curiosity_default: 100, coach_instructions: 'Log default message length to match cadence.'}
+  Empathy:
+    Signal: {type: categorical, choices: [high, medium, low], rr_default: 0, curiosity_default: 100, coach_instructions: 'Set based on explicit statements or observed behavior; confirm with user when possible.'}
+  Humor:
+    Style: {type: text, rr_default: 0, curiosity_default: 100, coach_instructions: 'Capture how the user expresses humor so personas can respond appropriately.'}

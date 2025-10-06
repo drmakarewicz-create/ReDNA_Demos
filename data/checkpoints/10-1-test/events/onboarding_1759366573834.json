@@ -1,0 +1,45 @@
+{
+  "type": "onboarding_profile",
+  "ts": 1759366573834,
+  "captured_at": "2025-10-02T00:56:13.834+00:00",
+  "profile": {
+    "version": 1,
+    "captured_at": "2025-10-02T00:56:13.834+00:00",
+    "user_id": "10-1-test",
+    "display_name": "10-1-test",
+    "quick_facts": {
+      "eye_color": {
+        "value": "blue",
+        "label": "Blue"
+      },
+      "hair_color": {
+        "value": "red",
+        "label": "Red"
+      },
+      "handedness": {
+        "value": "right",
+        "label": "Right-handed"
+      }
+    },
+    "interests": {
+      "selected": [
+        "wellness"
+      ],
+      "custom": []
+    },
+    "source": "ui_onboarding_modal",
+    "seed": {
+      "Big5": {
+        "O": 0.7,
+        "C": 0.15,
+        "E": 0.27,
+        "A": 0.68,
+        "N": 0.67
+      }
+    }
+  },
+  "ucnrr": {
+    "ok": false,
+    "reason": "UCNRR_BASE_URL not configured"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "1758146770": {
+    "PaDNA.LooksDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Blue",
+      "ucn": 132,
+      "flags": [
+        "translated"
+      ],
+      "reasons": [
+        "imported:Blue@0.60"
+      ]
+    }
+  },
+  "1758146830": {
+    "PaDNA.LooksDNA.HairDNA.Bald": {
+      "resolved_value": true,
+      "ucn": 120,
+      "reasons": [
+        "ingest:explorer_text_local@120"
+      ]
+    },
+    "PaDNA.LooksDNA.HairDNA.Color": {
+      "resolved_value": "red",
+      "ucn": 60,
+      "reasons": [
+        "consistent"
+      ]
+    },
+    "_llm_raw": "Here are the extracted user traits in a JSON format with dot-keys and values:\n\n{\"personality_traits\": {\"honesty\": true}, \"physical_appearance\": {\"baldness\": true, \"hair_color\": \"reddish\"}}"
+  },
+  "1758147033": {
+    "_llm_raw": "Here are the extracted user traits in JSON format with dot-keys:\n\n{\"Personal.Appearance\": \"has freckles\"}"
+  },
+  "1758147144": {
+    "_llm_raw": "Here are the user traits extracted from the text in JSON format with dot-keys and values:\n\n{\n\"Self-deprecating\": \"true\",\n\"Honest\": \"true\",\n\"DescribingPhysicalAppearance\": \"true\"\n}\n\nNote that these traits are inferred based on the language used in the original text, and may not be a definitive or exhaustive list of user traits."
+  },
+  "1758147983": {},
+  "1758148031": {
+    "_llm_raw": "Based on the provided text, I can extract some possible user traits. Here's a JSON object with dot-keys and values:\n\n{\n\"sensitive\": true,\n\"humor\": \"self-deprecating\",\n\"confidence\": 6.5,\n\"authenticity\": 9.0\n}\n\nNote: These traits are inferred based on the text and may not be accurate or comprehensive representations of the user's actual personality or characteristics."
+  },
+  "1758150675": {},
+  "1758153144": {
+    "PaDNA.LooksDNA.HairDNA.Bald": {
+      "resolved_value": true,
+      "ucn": 120,
+      "reasons": [
+        "ingest:explorer_text_local@120"
+      ]
+    }
+  }
+}

@@ -1,0 +1,4893 @@
+{
+  "items": [
+    {
+      "trait": "PaDNA.HairDNA.Color",
+      "trait_id": "PaDNA.HairDNA.Color",
+      "value": "Dark Brown",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Highlights",
+      "trait_id": "PaDNA.HairDNA.Highlights",
+      "value": "Subtle Natural",
+      "ucn": 750.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Length",
+      "trait_id": "PaDNA.HairDNA.Length",
+      "value": "Medium To Long",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Texture",
+      "trait_id": "PaDNA.HairDNA.Texture",
+      "value": "Wavy",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Volume",
+      "trait_id": "PaDNA.HairDNA.Volume",
+      "value": "Medium To High",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Style",
+      "trait_id": "PaDNA.HairDNA.Style",
+      "value": "Versatile",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Color",
+      "trait_id": "PaDNA.EyeDNA.Color",
+      "value": "Blue-Green",
+      "ucn": 980.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Intensity",
+      "trait_id": "PaDNA.EyeDNA.Intensity",
+      "value": "Vivid",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Shape",
+      "trait_id": "PaDNA.EyeDNA.Shape",
+      "value": "Almond",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Size",
+      "trait_id": "PaDNA.EyeDNA.Size",
+      "value": "Large",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.EyeSpacing",
+      "trait_id": "PaDNA.EyeDNA.EyeSpacing",
+      "value": "Average",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Color",
+      "trait_id": "PaDNA.EyebrowDNA.Color",
+      "value": "Dark Brown",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Shape",
+      "trait_id": "PaDNA.EyebrowDNA.Shape",
+      "value": "Arched",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Thickness",
+      "trait_id": "PaDNA.EyebrowDNA.Thickness",
+      "value": "Medium",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Tone",
+      "trait_id": "PaDNA.SkinDNA.Tone",
+      "value": "Fair",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Undertone",
+      "trait_id": "PaDNA.SkinDNA.Undertone",
+      "value": "Cool To Neutral",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Texture",
+      "trait_id": "PaDNA.SkinDNA.Texture",
+      "value": "Smooth",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Clarity",
+      "trait_id": "PaDNA.SkinDNA.Clarity",
+      "value": "Clear",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.FaceShape",
+      "trait_id": "PaDNA.FacialDNA.FaceShape",
+      "value": "Heart",
+      "ucn": 920.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Cheekbones",
+      "trait_id": "PaDNA.FacialDNA.Cheekbones",
+      "value": "High And Defined",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Jawline",
+      "trait_id": "PaDNA.FacialDNA.Jawline",
+      "value": "Refined And Narrow",
+      "ucn": 920.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.ChinShape",
+      "trait_id": "PaDNA.FacialDNA.ChinShape",
+      "value": "Pointed",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.ForeheadWidth",
+      "trait_id": "PaDNA.FacialDNA.ForeheadWidth",
+      "value": "Medium To Wide",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.FacialSymmetry",
+      "trait_id": "PaDNA.FacialDNA.FacialSymmetry",
+      "value": "High",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.Shape",
+      "trait_id": "PaDNA.FacialDNA.Nose.Shape",
+      "value": "Straight And Refined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.Size",
+      "trait_id": "PaDNA.FacialDNA.Nose.Size",
+      "value": "Small",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.BridgeWidth",
+      "trait_id": "PaDNA.FacialDNA.Nose.BridgeWidth",
+      "value": "Narrow",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.Fullness",
+      "trait_id": "PaDNA.FacialDNA.Lips.Fullness",
+      "value": "Medium",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.Shape",
+      "trait_id": "PaDNA.FacialDNA.Lips.Shape",
+      "value": "Well-Defined",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.NaturalColor",
+      "trait_id": "PaDNA.FacialDNA.Lips.NaturalColor",
+      "value": "Pink",
+      "ucn": 800.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.NeckDNA.Length",
+      "trait_id": "PaDNA.NeckDNA.Length",
+      "value": "Medium To Long",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.NeckDNA.Width",
+      "trait_id": "PaDNA.NeckDNA.Width",
+      "value": "Slender",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Build",
+      "trait_id": "PaDNA.BodyDNA.Build",
+      "value": "Slender",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Frame",
+      "trait_id": "PaDNA.BodyDNA.Frame",
+      "value": "Petite To Average",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.BoneStructure",
+      "trait_id": "PaDNA.BodyDNA.BoneStructure",
+      "value": "Delicate",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Shoulders",
+      "trait_id": "PaDNA.BodyDNA.Shoulders",
+      "value": "Narrow",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Proportions",
+      "trait_id": "PaDNA.BodyDNA.Proportions",
+      "value": "Balanced",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.ColorPreference",
+      "trait_id": "PaDNA.StyleDNA.ColorPreference",
+      "value": "Bold And Bright",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.RedPreference",
+      "trait_id": "PaDNA.StyleDNA.RedPreference",
+      "value": "High",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.StyleRange",
+      "trait_id": "PaDNA.StyleDNA.StyleRange",
+      "value": "Versatile",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.NecklinePreference",
+      "trait_id": "PaDNA.StyleDNA.NecklinePreference",
+      "value": "V-Neck And Plunging",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.EyeMakeup",
+      "trait_id": "PaDNA.MakeupDNA.EyeMakeup",
+      "value": "Defined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.LipColor",
+      "trait_id": "PaDNA.MakeupDNA.LipColor",
+      "value": "Pink To Rose",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.MakeupStyle",
+      "trait_id": "PaDNA.MakeupDNA.MakeupStyle",
+      "value": "Polished And Defined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.AccessoryDNA.Earrings",
+      "trait_id": "PaDNA.AccessoryDNA.Earrings",
+      "value": "Statement Pieces",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.AccessoryDNA.Necklaces",
+      "trait_id": "PaDNA.AccessoryDNA.Necklaces",
+      "value": "Delicate",
+      "ucn": 750.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:00:09.366063+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Color",
+      "trait_id": "PaDNA.HairDNA.Color",
+      "value": "Dark Brown",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Highlights",
+      "trait_id": "PaDNA.HairDNA.Highlights",
+      "value": "Subtle Natural",
+      "ucn": 750.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Length",
+      "trait_id": "PaDNA.HairDNA.Length",
+      "value": "Medium To Long",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Texture",
+      "trait_id": "PaDNA.HairDNA.Texture",
+      "value": "Wavy",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Volume",
+      "trait_id": "PaDNA.HairDNA.Volume",
+      "value": "Medium To High",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Style",
+      "trait_id": "PaDNA.HairDNA.Style",
+      "value": "Versatile",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Color",
+      "trait_id": "PaDNA.EyeDNA.Color",
+      "value": "Blue-Green",
+      "ucn": 980.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.ColorIntensity",
+      "trait_id": "PaDNA.EyeDNA.ColorIntensity",
+      "value": "Striking",
+      "ucn": 980.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Shape",
+      "trait_id": "PaDNA.EyeDNA.Shape",
+      "value": "Almond",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Size",
+      "trait_id": "PaDNA.EyeDNA.Size",
+      "value": "Large",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.EyeSpacing",
+      "trait_id": "PaDNA.EyeDNA.EyeSpacing",
+      "value": "Average",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Color",
+      "trait_id": "PaDNA.EyebrowDNA.Color",
+      "value": "Dark Brown",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Shape",
+      "trait_id": "PaDNA.EyebrowDNA.Shape",
+      "value": "Arched",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Thickness",
+      "trait_id": "PaDNA.EyebrowDNA.Thickness",
+      "value": "Medium",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Tone",
+      "trait_id": "PaDNA.SkinDNA.Tone",
+      "value": "Fair",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Undertone",
+      "trait_id": "PaDNA.SkinDNA.Undertone",
+      "value": "Cool To Neutral",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Texture",
+      "trait_id": "PaDNA.SkinDNA.Texture",
+      "value": "Smooth",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Clarity",
+      "trait_id": "PaDNA.SkinDNA.Clarity",
+      "value": "Clear",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.FaceShape",
+      "trait_id": "PaDNA.FacialDNA.FaceShape",
+      "value": "Heart",
+      "ucn": 920.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Cheekbones",
+      "trait_id": "PaDNA.FacialDNA.Cheekbones",
+      "value": "High And Defined",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.CheekboneProminence",
+      "trait_id": "PaDNA.FacialDNA.CheekboneProminence",
+      "value": "Very High",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Jawline",
+      "trait_id": "PaDNA.FacialDNA.Jawline",
+      "value": "Refined And Narrow",
+      "ucn": 920.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.JawlineWidth",
+      "trait_id": "PaDNA.FacialDNA.JawlineWidth",
+      "value": "Narrow",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.ChinShape",
+      "trait_id": "PaDNA.FacialDNA.ChinShape",
+      "value": "Pointed",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.ChinWidth",
+      "trait_id": "PaDNA.FacialDNA.ChinWidth",
+      "value": "Narrow",
+      "ucn": 920.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.ForeheadWidth",
+      "trait_id": "PaDNA.FacialDNA.ForeheadWidth",
+      "value": "Medium To Wide",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.FacialSymmetry",
+      "trait_id": "PaDNA.FacialDNA.FacialSymmetry",
+      "value": "High",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.Shape",
+      "trait_id": "PaDNA.FacialDNA.Nose.Shape",
+      "value": "Straight And Refined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.Size",
+      "trait_id": "PaDNA.FacialDNA.Nose.Size",
+      "value": "Small",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.BridgeWidth",
+      "trait_id": "PaDNA.FacialDNA.Nose.BridgeWidth",
+      "value": "Narrow",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.Fullness",
+      "trait_id": "PaDNA.FacialDNA.Lips.Fullness",
+      "value": "Medium",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.Shape",
+      "trait_id": "PaDNA.FacialDNA.Lips.Shape",
+      "value": "Well-Defined",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.NaturalColor",
+      "trait_id": "PaDNA.FacialDNA.Lips.NaturalColor",
+      "value": "Pink",
+      "ucn": 800.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.NeckDNA.Length",
+      "trait_id": "PaDNA.NeckDNA.Length",
+      "value": "Medium To Long",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.NeckDNA.Width",
+      "trait_id": "PaDNA.NeckDNA.Width",
+      "value": "Slender",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Build",
+      "trait_id": "PaDNA.BodyDNA.Build",
+      "value": "Slender",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Frame",
+      "trait_id": "PaDNA.BodyDNA.Frame",
+      "value": "Petite To Average",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.BoneStructure",
+      "trait_id": "PaDNA.BodyDNA.BoneStructure",
+      "value": "Delicate",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Shoulders",
+      "trait_id": "PaDNA.BodyDNA.Shoulders",
+      "value": "Narrow",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Proportions",
+      "trait_id": "PaDNA.BodyDNA.Proportions",
+      "value": "Balanced",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.ColorPreference",
+      "trait_id": "PaDNA.StyleDNA.ColorPreference",
+      "value": "Bold And Bright",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.RedPreference",
+      "trait_id": "PaDNA.StyleDNA.RedPreference",
+      "value": "High",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.StyleRange",
+      "trait_id": "PaDNA.StyleDNA.StyleRange",
+      "value": "Versatile",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.NecklinePreference",
+      "trait_id": "PaDNA.StyleDNA.NecklinePreference",
+      "value": "V-Neck And Plunging",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.EyeMakeup",
+      "trait_id": "PaDNA.MakeupDNA.EyeMakeup",
+      "value": "Defined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.LipColor",
+      "trait_id": "PaDNA.MakeupDNA.LipColor",
+      "value": "Pink To Rose",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.MakeupStyle",
+      "trait_id": "PaDNA.MakeupDNA.MakeupStyle",
+      "value": "Polished And Defined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.AccessoryDNA.Earrings",
+      "trait_id": "PaDNA.AccessoryDNA.Earrings",
+      "value": "Statement Pieces",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.AccessoryDNA.Necklaces",
+      "trait_id": "PaDNA.AccessoryDNA.Necklaces",
+      "value": "Delicate",
+      "ucn": 750.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:17:04.363939+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Color",
+      "trait_id": "PaDNA.HairDNA.Color",
+      "value": "Dark Brown",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Highlights",
+      "trait_id": "PaDNA.HairDNA.Highlights",
+      "value": "Subtle Natural",
+      "ucn": 750.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Length",
+      "trait_id": "PaDNA.HairDNA.Length",
+      "value": "Medium To Long",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Texture",
+      "trait_id": "PaDNA.HairDNA.Texture",
+      "value": "Wavy",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Volume",
+      "trait_id": "PaDNA.HairDNA.Volume",
+      "value": "Medium To High",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.HairDNA.Style",
+      "trait_id": "PaDNA.HairDNA.Style",
+      "value": "Versatile",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Color",
+      "trait_id": "PaDNA.EyeDNA.Color",
+      "value": "Blue-Green",
+      "ucn": 980.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.ColorIntensity",
+      "trait_id": "PaDNA.EyeDNA.ColorIntensity",
+      "value": "Striking",
+      "ucn": 980.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Shape",
+      "trait_id": "PaDNA.EyeDNA.Shape",
+      "value": "Almond",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Size",
+      "trait_id": "PaDNA.EyeDNA.Size",
+      "value": "Large",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.EyeSpacing",
+      "trait_id": "PaDNA.EyeDNA.EyeSpacing",
+      "value": "Average",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Color",
+      "trait_id": "PaDNA.EyebrowDNA.Color",
+      "value": "Dark Brown",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Shape",
+      "trait_id": "PaDNA.EyebrowDNA.Shape",
+      "value": "Arched",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.EyebrowDNA.Thickness",
+      "trait_id": "PaDNA.EyebrowDNA.Thickness",
+      "value": "Medium",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Tone",
+      "trait_id": "PaDNA.SkinDNA.Tone",
+      "value": "Fair",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Undertone",
+      "trait_id": "PaDNA.SkinDNA.Undertone",
+      "value": "Cool To Neutral",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Texture",
+      "trait_id": "PaDNA.SkinDNA.Texture",
+      "value": "Smooth",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.SkinDNA.Clarity",
+      "trait_id": "PaDNA.SkinDNA.Clarity",
+      "value": "Clear",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.FaceShape",
+      "trait_id": "PaDNA.FacialDNA.FaceShape",
+      "value": "Heart",
+      "ucn": 920.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Cheekbones",
+      "trait_id": "PaDNA.FacialDNA.Cheekbones",
+      "value": "High And Defined",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.CheekboneProminence",
+      "trait_id": "PaDNA.FacialDNA.CheekboneProminence",
+      "value": "Extremely Prominent",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Jawline",
+      "trait_id": "PaDNA.FacialDNA.Jawline",
+      "value": "Refined And Narrow",
+      "ucn": 920.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.JawlineWidth",
+      "trait_id": "PaDNA.FacialDNA.JawlineWidth",
+      "value": "Narrow",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.ChinShape",
+      "trait_id": "PaDNA.FacialDNA.ChinShape",
+      "value": "Pointed",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.ChinWidth",
+      "trait_id": "PaDNA.FacialDNA.ChinWidth",
+      "value": "Narrow",
+      "ucn": 920.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.ForeheadWidth",
+      "trait_id": "PaDNA.FacialDNA.ForeheadWidth",
+      "value": "Wide",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.FeatureRefinement",
+      "trait_id": "PaDNA.FacialDNA.FeatureRefinement",
+      "value": "Very Delicate",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.FacialSymmetry",
+      "trait_id": "PaDNA.FacialDNA.FacialSymmetry",
+      "value": "High",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.Shape",
+      "trait_id": "PaDNA.FacialDNA.Nose.Shape",
+      "value": "Straight And Refined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.Size",
+      "trait_id": "PaDNA.FacialDNA.Nose.Size",
+      "value": "Small",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Nose.BridgeWidth",
+      "trait_id": "PaDNA.FacialDNA.Nose.BridgeWidth",
+      "value": "Narrow",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.Fullness",
+      "trait_id": "PaDNA.FacialDNA.Lips.Fullness",
+      "value": "Medium",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.Shape",
+      "trait_id": "PaDNA.FacialDNA.Lips.Shape",
+      "value": "Well-Defined",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.FacialDNA.Lips.NaturalColor",
+      "trait_id": "PaDNA.FacialDNA.Lips.NaturalColor",
+      "value": "Pink",
+      "ucn": 800.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.NeckDNA.Length",
+      "trait_id": "PaDNA.NeckDNA.Length",
+      "value": "Medium To Long",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.NeckDNA.Width",
+      "trait_id": "PaDNA.NeckDNA.Width",
+      "value": "Slender",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Build",
+      "trait_id": "PaDNA.BodyDNA.Build",
+      "value": "Slender",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Frame",
+      "trait_id": "PaDNA.BodyDNA.Frame",
+      "value": "Petite To Average",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.BoneStructure",
+      "trait_id": "PaDNA.BodyDNA.BoneStructure",
+      "value": "Delicate",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Shoulders",
+      "trait_id": "PaDNA.BodyDNA.Shoulders",
+      "value": "Narrow",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.BodyDNA.Proportions",
+      "trait_id": "PaDNA.BodyDNA.Proportions",
+      "value": "Balanced",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.ColorPreference",
+      "trait_id": "PaDNA.StyleDNA.ColorPreference",
+      "value": "Bold And Bright",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.RedPreference",
+      "trait_id": "PaDNA.StyleDNA.RedPreference",
+      "value": "High",
+      "ucn": 950.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.StyleRange",
+      "trait_id": "PaDNA.StyleDNA.StyleRange",
+      "value": "Versatile",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.StyleDNA.NecklinePreference",
+      "trait_id": "PaDNA.StyleDNA.NecklinePreference",
+      "value": "V-Neck And Plunging",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.EyeMakeup",
+      "trait_id": "PaDNA.MakeupDNA.EyeMakeup",
+      "value": "Defined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.LipColor",
+      "trait_id": "PaDNA.MakeupDNA.LipColor",
+      "value": "Pink To Rose",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.MakeupDNA.MakeupStyle",
+      "trait_id": "PaDNA.MakeupDNA.MakeupStyle",
+      "value": "Polished And Defined",
+      "ucn": 900.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.AccessoryDNA.Earrings",
+      "trait_id": "PaDNA.AccessoryDNA.Earrings",
+      "value": "Statement Pieces",
+      "ucn": 850.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    },
+    {
+      "trait": "PaDNA.AccessoryDNA.Necklaces",
+      "trait_id": "PaDNA.AccessoryDNA.Necklaces",
+      "value": "Delicate",
+      "ucn": 750.0,
+      "source": "reference_photo_analysis",
+      "persona": "photo",
+      "ts": "2025-10-04T16:27:17.954438+00:00",
+      "provenance": {
+        "source": "reference_photo_analysis",
+        "step": "soft-import",
+        "adapter": "json",
+        "timestamp": "2025-10-04",
+        "photo_count": 10,
+        "analyst": "manual_observation",
+        "photos": "AB1-AB10"
+      }
+    }
+  ],
+  "by_trait": {
+    "PaDNA.HairDNA.Color": [
+      {
+        "value": "Dark Brown",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Dark Brown",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Dark Brown",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.HairDNA.Highlights": [
+      {
+        "value": "Subtle Natural",
+        "ucn": 750.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Subtle Natural",
+        "ucn": 750.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Subtle Natural",
+        "ucn": 750.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.HairDNA.Length": [
+      {
+        "value": "Medium To Long",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium To Long",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium To Long",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.HairDNA.Texture": [
+      {
+        "value": "Wavy",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Wavy",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Wavy",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.HairDNA.Volume": [
+      {
+        "value": "Medium To High",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium To High",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium To High",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.HairDNA.Style": [
+      {
+        "value": "Versatile",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Versatile",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Versatile",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyeDNA.Color": [
+      {
+        "value": "Blue-Green",
+        "ucn": 980.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Blue-Green",
+        "ucn": 980.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Blue-Green",
+        "ucn": 980.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyeDNA.Intensity": [
+      {
+        "value": "Vivid",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyeDNA.Shape": [
+      {
+        "value": "Almond",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Almond",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Almond",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyeDNA.Size": [
+      {
+        "value": "Large",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Large",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Large",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyeDNA.EyeSpacing": [
+      {
+        "value": "Average",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Average",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Average",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyebrowDNA.Color": [
+      {
+        "value": "Dark Brown",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Dark Brown",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Dark Brown",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyebrowDNA.Shape": [
+      {
+        "value": "Arched",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Arched",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Arched",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyebrowDNA.Thickness": [
+      {
+        "value": "Medium",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.SkinDNA.Tone": [
+      {
+        "value": "Fair",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Fair",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Fair",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.SkinDNA.Undertone": [
+      {
+        "value": "Cool To Neutral",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Cool To Neutral",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Cool To Neutral",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.SkinDNA.Texture": [
+      {
+        "value": "Smooth",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Smooth",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Smooth",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.SkinDNA.Clarity": [
+      {
+        "value": "Clear",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Clear",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Clear",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.FaceShape": [
+      {
+        "value": "Heart",
+        "ucn": 920.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Heart",
+        "ucn": 920.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Heart",
+        "ucn": 920.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.Cheekbones": [
+      {
+        "value": "High And Defined",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "High And Defined",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "High And Defined",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.Jawline": [
+      {
+        "value": "Refined And Narrow",
+        "ucn": 920.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Refined And Narrow",
+        "ucn": 920.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Refined And Narrow",
+        "ucn": 920.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.ChinShape": [
+      {
+        "value": "Pointed",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Pointed",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Pointed",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.ForeheadWidth": [
+      {
+        "value": "Medium To Wide",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium To Wide",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Wide",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.FacialSymmetry": [
+      {
+        "value": "High",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "High",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "High",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.Nose.Shape": [
+      {
+        "value": "Straight And Refined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Straight And Refined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Straight And Refined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.Nose.Size": [
+      {
+        "value": "Small",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Small",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Small",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.Nose.BridgeWidth": [
+      {
+        "value": "Narrow",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Narrow",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Narrow",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.Lips.Fullness": [
+      {
+        "value": "Medium",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.Lips.Shape": [
+      {
+        "value": "Well-Defined",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Well-Defined",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Well-Defined",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.Lips.NaturalColor": [
+      {
+        "value": "Pink",
+        "ucn": 800.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Pink",
+        "ucn": 800.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Pink",
+        "ucn": 800.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.NeckDNA.Length": [
+      {
+        "value": "Medium To Long",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium To Long",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Medium To Long",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.NeckDNA.Width": [
+      {
+        "value": "Slender",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Slender",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Slender",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.BodyDNA.Build": [
+      {
+        "value": "Slender",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Slender",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Slender",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.BodyDNA.Frame": [
+      {
+        "value": "Petite To Average",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Petite To Average",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Petite To Average",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.BodyDNA.BoneStructure": [
+      {
+        "value": "Delicate",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Delicate",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Delicate",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.BodyDNA.Shoulders": [
+      {
+        "value": "Narrow",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Narrow",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Narrow",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.BodyDNA.Proportions": [
+      {
+        "value": "Balanced",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Balanced",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Balanced",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.StyleDNA.ColorPreference": [
+      {
+        "value": "Bold And Bright",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Bold And Bright",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Bold And Bright",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.StyleDNA.RedPreference": [
+      {
+        "value": "High",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "High",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "High",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.StyleDNA.StyleRange": [
+      {
+        "value": "Versatile",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Versatile",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Versatile",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.StyleDNA.NecklinePreference": [
+      {
+        "value": "V-Neck And Plunging",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "V-Neck And Plunging",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "V-Neck And Plunging",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.MakeupDNA.EyeMakeup": [
+      {
+        "value": "Defined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Defined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Defined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.MakeupDNA.LipColor": [
+      {
+        "value": "Pink To Rose",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Pink To Rose",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Pink To Rose",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.MakeupDNA.MakeupStyle": [
+      {
+        "value": "Polished And Defined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Polished And Defined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Polished And Defined",
+        "ucn": 900.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.AccessoryDNA.Earrings": [
+      {
+        "value": "Statement Pieces",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Statement Pieces",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Statement Pieces",
+        "ucn": 850.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.AccessoryDNA.Necklaces": [
+      {
+        "value": "Delicate",
+        "ucn": 750.0,
+        "ts": "2025-10-04T16:00:09.366063+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Delicate",
+        "ucn": 750.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Delicate",
+        "ucn": 750.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.EyeDNA.ColorIntensity": [
+      {
+        "value": "Striking",
+        "ucn": 980.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Striking",
+        "ucn": 980.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.CheekboneProminence": [
+      {
+        "value": "Very High",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Extremely Prominent",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.JawlineWidth": [
+      {
+        "value": "Narrow",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Narrow",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.ChinWidth": [
+      {
+        "value": "Narrow",
+        "ucn": 920.0,
+        "ts": "2025-10-04T16:17:04.363939+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      },
+      {
+        "value": "Narrow",
+        "ucn": 920.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ],
+    "PaDNA.FacialDNA.FeatureRefinement": [
+      {
+        "value": "Very Delicate",
+        "ucn": 950.0,
+        "ts": "2025-10-04T16:27:17.954438+00:00",
+        "source": "reference_photo_analysis",
+        "provenance": {
+          "source": "reference_photo_analysis",
+          "step": "soft-import",
+          "adapter": "json",
+          "timestamp": "2025-10-04",
+          "photo_count": 10,
+          "analyst": "manual_observation",
+          "photos": "AB1-AB10"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,166 @@
+{
+  "user_id": "BSTest",
+  "default_provenance": {
+    "source": "reference_photo_analysis",
+    "timestamp": "2025-10-04",
+    "photo_count": 10,
+    "analyst": "manual_observation"
+  },
+  "observations": [
+    {
+      "path": "PaDNA.HairDNA.Color",
+      "value": "Blonde",
+      "confidence": 0.95,
+      "notes": "Golden blonde to platinum blonde, consistent across all 10 photos"
+    },
+    {
+      "path": "PaDNA.HairDNA.Tone",
+      "value": "Golden Blonde",
+      "confidence": 0.90
+    },
+    {
+      "path": "PaDNA.HairDNA.Length",
+      "value": "Long",
+      "confidence": 0.95,
+      "notes": "Past shoulders to mid-back length"
+    },
+    {
+      "path": "PaDNA.HairDNA.Texture",
+      "value": "Wavy",
+      "confidence": 0.85,
+      "notes": "Straight to wavy with medium to high volume"
+    },
+    {
+      "path": "PaDNA.HairDNA.Volume",
+      "value": "High",
+      "confidence": 0.85
+    },
+    {
+      "path": "PaDNA.EyeDNA.Color",
+      "value": "Blue",
+      "confidence": 0.70,
+      "notes": "Light colored, appears blue or possibly green, some photos have sunglasses"
+    },
+    {
+      "path": "PaDNA.EyeDNA.Shape",
+      "value": "Almond",
+      "confidence": 0.85
+    },
+    {
+      "path": "PaDNA.EyeDNA.Size",
+      "value": "Medium",
+      "confidence": 0.80
+    },
+    {
+      "path": "PaDNA.SkinDNA.Tone",
+      "value": "Light",
+      "confidence": 0.90,
+      "notes": "Light to light-medium, varies with sun exposure"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Undertone",
+      "value": "Warm",
+      "confidence": 0.85,
+      "notes": "Neutral to warm undertone"
+    },
+    {
+      "path": "PaDNA.SkinDNA.Texture",
+      "value": "Smooth",
+      "confidence": 0.85,
+      "notes": "Clear complexion, smooth texture"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FaceShape",
+      "value": "Oval",
+      "confidence": 0.90,
+      "notes": "Oval to heart-shaped face"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Cheekbones",
+      "value": "High",
+      "confidence": 0.90,
+      "notes": "Prominent, high cheekbones"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Jawline",
+      "value": "Defined",
+      "confidence": 0.85,
+      "notes": "Defined, slightly rounded jawline"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Nose.Shape",
+      "value": "Straight",
+      "confidence": 0.85,
+      "notes": "Straight, proportionate nose"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Nose.Size",
+      "value": "Small",
+      "confidence": 0.80
+    },
+    {
+      "path": "PaDNA.FacialDNA.Lips.Fullness",
+      "value": "Full",
+      "confidence": 0.90,
+      "notes": "Medium to full lips with defined cupid's bow"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Lips.Shape",
+      "value": "Defined",
+      "confidence": 0.85,
+      "notes": "Well-defined with visible cupid's bow"
+    },
+    {
+      "path": "PaDNA.FacialDNA.Smile",
+      "value": "Wide",
+      "confidence": 0.95,
+      "notes": "Bright, wide smile with straight white teeth, smiling in majority of photos"
+    },
+    {
+      "path": "PaDNA.FacialDNA.FacialSymmetry",
+      "value": "High",
+      "confidence": 0.90
+    },
+    {
+      "path": "PaDNA.BodyDNA.Build",
+      "value": "Athletic",
+      "confidence": 0.90,
+      "notes": "Athletic, slender build with visible muscle tone"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Frame",
+      "value": "Small",
+      "confidence": 0.85,
+      "notes": "Small to medium frame"
+    },
+    {
+      "path": "PaDNA.BodyDNA.FitnessLevel",
+      "value": "High",
+      "confidence": 0.90,
+      "notes": "Appears physically fit and toned, visible abdominal definition"
+    },
+    {
+      "path": "PaDNA.BodyDNA.Proportions",
+      "value": "Balanced",
+      "confidence": 0.85
+    },
+    {
+      "path": "PaDNA.StyleDNA.ColorPreference",
+      "value": "Bright Colors",
+      "confidence": 0.95,
+      "notes": "Strong preference for bright, bold colors especially pinks, reds, and neon shades"
+    },
+    {
+      "path": "PaDNA.StyleDNA.PatternPreference",
+      "value": "Animal Prints",
+      "confidence": 0.85,
+      "notes": "Frequently wears leopard print and other bold patterns"
+    },
+    {
+      "path": "PaDNA.StyleDNA.SilhouettePreference",
+      "value": "Form-Fitting",
+      "confidence": 0.90,
+      "notes": "Prefers fitted styles including bikinis, off-shoulder tops, and form-fitting dresses"
+    }
+  ]
+}

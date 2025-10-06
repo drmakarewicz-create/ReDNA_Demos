@@ -1,0 +1,44 @@
+{
+  "type": "chat_turn",
+  "ts": 1759620152390,
+  "user_id": "TEST",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I don't know",
+    "ts": 1759620152387
+  },
+  "assistant": {
+    "text": "Let's take a closer look at what you're saying about wanting to find a life partner, but feeling like nothing is missing from your current life. That's a pretty common feeling when we're not actively seeking something new out. Can you tell me more about what it would mean for you to be in a committed relationship - is there something specific that would make you feel more connected or fulfilled? Next step: let's imagine what a \"perfect\" day with someone special might look like for you, and see if we can uncover any clues about what's driving your desire for a meaningful connection.",
+    "ts": 1759620152390,
+    "message_id": "chat-73f02b26b3a849e69f618a63f4adfa9a"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/TEST/observations.json",
+  "metrics": {
+    "response_latency_ms": 38080,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 3,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.30666666666666664,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 31612999.35714286,
+    "rolling_latency_median_ms": 1146170.0,
+    "latency_histogram": {
+      "slow": 14
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "answer": 10,
+      "question": 4,
+      "repair": 1
+    },
+    "priority": 0.8
+  }
+}

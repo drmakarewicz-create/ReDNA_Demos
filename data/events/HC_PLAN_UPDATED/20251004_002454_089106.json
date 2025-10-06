@@ -1,0 +1,8 @@
+{
+  "event_type": "HC_PLAN_UPDATED",
+  "timestamp": "2025-10-04T00:24:54.089116",
+  "payload": {
+    "user_id": "hc_test_alice",
+    "decision_ts": "2025-10-04T00:24:54.088666"
+  }
+}

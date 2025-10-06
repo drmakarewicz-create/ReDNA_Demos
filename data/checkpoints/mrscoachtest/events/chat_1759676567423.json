@@ -1,0 +1,43 @@
+{
+  "type": "chat_turn",
+  "ts": 1759676567423,
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I am an actress",
+    "ts": 1759676567417
+  },
+  "assistant": {
+    "text": "You're an actress now - that's so cool! What kind of roles have you been doing lately? \n\n(By the way, if you want some tips on self-care for performers, our Photo Coach could be really helpful with advice on camera-ready looks and poses.)",
+    "ts": 1759676567423,
+    "message_id": "chat-1afa2d78df0940b982f4b41fd271b518"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/mrscoachtest/observations.json",
+  "metrics": {
+    "response_latency_ms": 6981989,
+    "response_latency_bucket": "slow",
+    "turn_length_words": 4,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.515,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 1084698.142857143,
+    "rolling_latency_median_ms": 119463.0,
+    "latency_histogram": {
+      "slow": 7
+    },
+    "cadence_bucket": "slow",
+    "dialog_act_counts": {
+      "answer": 7,
+      "question": 1
+    },
+    "priority": 0.8
+  }
+}

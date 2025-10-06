@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "How are you?",
+  "assistant_text": "I'm doing well, thanks for asking! It sounds like we're catching up again. I was thinking about our conversation earlier and I have to ask, what do you think makes a TV show like South Park so funny? Is it the satire, the characters, or something else entirely?\n\n(Note: If they don't answer or change topics, I'll let it go and follow their lead)",
+  "client_message_id": "cd53ee81-aa11-4584-9bd7-ab38c70f1c13",
+  "assistant_message_id": "chat-5402ec77da8e4ea6beaad2a37c43b429",
+  "server_ts": "2025-10-05T14:41:30.320+00:00",
+  "server_ts_ms": 1759675290320,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

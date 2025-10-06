@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "The dogs are sleeping",
+  "assistant_text": "It sounds like they've had a long day and are getting some well-deserved rest! What's your favorite way to relax after a busy day, or is it just enjoying the quiet with Archie and George?",
+  "client_message_id": "018d6b4d-bcbd-4ffd-8523-67fff392dad8",
+  "assistant_message_id": "chat-f27be4142c134b018a7c38fcfadaa505",
+  "server_ts": "2025-10-05T23:17:59.157+00:00",
+  "server_ts_ms": 1759706279157,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,79 @@
+{
+  "user_id": "demo_user",
+  "default_provenance": { "source": "manual-json", "from": "photo-study", "adapter": "human-curated" },
+  "observations": [
+    { "path": "PaDNA.FacialDNA.FaceShape",          "value": "Oval",                     "confidence": 0.85 },
+    { "path": "PaDNA.FacialDNA.Forehead.Height",    "value": "Medium-high",              "confidence": 0.7 },
+    { "path": "PaDNA.FacialDNA.Forehead.Width",     "value": "Average",                  "confidence": 0.7 },
+    { "path": "PaDNA.FacialDNA.Forehead.Slope",     "value": "Slightly receding",        "confidence": 0.6 },
+    { "path": "PaDNA.FacialDNA.Cheeks.Definition",  "value": "Medium",                   "confidence": 0.7 },
+    { "path": "PaDNA.FacialDNA.Cheeks.Fullness",    "value": "Subtle",                   "confidence": 0.7 },
+    { "path": "PaDNA.FacialDNA.Jawline.Angle",      "value": "Soft",                     "confidence": 0.75 },
+    { "path": "PaDNA.FacialDNA.Jawline.Definition", "value": "Refined",                  "confidence": 0.7 },
+    { "path": "PaDNA.FacialDNA.Chin.Shape",         "value": "Narrow-rounded",           "confidence": 0.75 },
+
+    { "path": "PaDNA.FacialDNA.Nose.Bridge",        "value": "Straight",                 "confidence": 0.8 },
+    { "path": "PaDNA.FacialDNA.Nose.Tip",           "value": "Slender",                  "confidence": 0.7 },
+    { "path": "PaDNA.FacialDNA.Nose.Width",         "value": "Narrow-medium",            "confidence": 0.65 },
+    { "path": "PaDNA.FacialDNA.Nose.Length",        "value": "Medium-long",              "confidence": 0.65 },
+
+    { "path": "PaDNA.FacialDNA.Lips.Upper",         "value": "Medium",                   "confidence": 0.75 },
+    { "path": "PaDNA.FacialDNA.Lips.Lower",         "value": "Fuller",                   "confidence": 0.8 },
+    { "path": "PaDNA.FacialDNA.Lips.CupidBow",      "value": "Defined",                  "confidence": 0.8 },
+    { "path": "PaDNA.FacialDNA.Symmetry",           "value": "High",                     "confidence": 0.7 },
+
+    { "path": "PaDNA.EyeDNA.Shape",                 "value": "Almond",                   "confidence": 0.85 },
+    { "path": "PaDNA.EyeDNA.Size",                  "value": "Large",                    "confidence": 0.75 },
+    { "path": "PaDNA.EyeDNA.Spacing",               "value": "Slightly wide",            "confidence": 0.65 },
+    { "path": "PaDNA.EyeDNA.IrisColor",             "value": "Blue",                     "confidence": 0.9 },
+    { "path": "PaDNA.EyeDNA.Brightness",            "value": "Light",                    "confidence": 0.75 },
+    { "path": "PaDNA.EyeDNA.Distinctiveness",       "value": "High",                     "confidence": 0.7 },
+
+    { "path": "PaDNA.EyeDNA.Brows.Shape",           "value": "Arched",                   "confidence": 0.75 },
+    { "path": "PaDNA.EyeDNA.Brows.Thickness",       "value": "Medium",                   "confidence": 0.7 },
+    { "path": "PaDNA.EyeDNA.Brows.Density",         "value": "Moderate",                 "confidence": 0.7 },
+    { "path": "PaDNA.EyeDNA.Brows.Spacing",         "value": "Balanced",                 "confidence": 0.7 },
+
+    { "path": "PaDNA.FacialDNA.Ears.Size",          "value": "Average",                  "confidence": 0.6 },
+    { "path": "PaDNA.FacialDNA.Ears.Visibility",    "value": "Partially covered by hair","confidence": 0.8 },
+
+    { "path": "PaDNA.SkinDNA.Tone",                 "value": "Light",                    "confidence": 0.85 },
+    { "path": "PaDNA.SkinDNA.Undertone",            "value": "Cool-neutral",             "confidence": 0.7 },
+    { "path": "PaDNA.SkinDNA.Texture",              "value": "Smooth",                   "confidence": 0.8 },
+    { "path": "PaDNA.SkinDNA.Complexion",           "value": "Clear",                    "confidence": 0.8 },
+    { "path": "PaDNA.SkinDNA.Freckles",             "value": "None visible",             "confidence": 0.8 },
+
+    { "path": "PaDNA.HairDNA.Color",                "value": "Medium brown",             "confidence": 0.85 },
+    { "path": "PaDNA.HairDNA.Highlight",            "value": "Chestnut",                 "confidence": 0.6, "notes": "Occasional tone" },
+    { "path": "PaDNA.HairDNA.Highlight",            "value": "Dark blonde",              "confidence": 0.5, "notes": "Sporadic highlights" },
+    { "path": "PaDNA.HairDNA.Length",               "value": "Medium to long",           "confidence": 0.85 },
+    { "path": "PaDNA.HairDNA.Texture",              "value": "Straight with slight wave","confidence": 0.8 },
+    { "path": "PaDNA.HairDNA.Part",                 "value": "Varied (center or side)",  "confidence": 0.7 },
+    { "path": "PaDNA.HairDNA.Density",              "value": "Medium-high",              "confidence": 0.7 },
+    { "path": "PaDNA.HairDNA.Shine",                "value": "High",                     "confidence": 0.8 },
+    { "path": "PaDNA.HairDNA.Bald",                 "value": "None",                     "confidence": 0.99 },
+
+    { "path": "PaDNA.BodyDNA.HeightEstimate",       "value": "Average (5'4\"–5'7\")",    "confidence": 0.55 },
+    { "path": "PaDNA.BodyDNA.BodyType",             "value": "Slender",                  "confidence": 0.75 },
+    { "path": "PaDNA.BodyDNA.Shoulders",            "value": "Narrow-average",           "confidence": 0.65 },
+    { "path": "PaDNA.BodyDNA.Waist",                "value": "Narrow",                   "confidence": 0.75 },
+    { "path": "PaDNA.BodyDNA.Hips",                 "value": "Slim-proportioned",        "confidence": 0.7 },
+    { "path": "PaDNA.BodyDNA.TorsoLength",          "value": "Medium",                   "confidence": 0.65 },
+    { "path": "PaDNA.BodyDNA.ArmProportion",        "value": "Slender",                  "confidence": 0.65 },
+    { "path": "PaDNA.BodyDNA.LegProportion",        "value": "Longer relative to torso", "confidence": 0.65 },
+
+    { "path": "PaDNA.PostureDNA.Default",           "value": "Upright",                  "confidence": 0.8 },
+    { "path": "PaDNA.PostureDNA.Carriage",          "value": "Confident",                "confidence": 0.75 },
+    { "path": "PaDNA.PostureDNA.HeadTilt",          "value": "Slight",                   "confidence": 0.6 },
+
+    { "path": "PaDNA.Distinctive.LipBalance",       "value": "Lower lip prominence",     "confidence": 0.8 },
+    { "path": "PaDNA.Distinctive.EyeEmphasis",      "value": "Striking",                 "confidence": 0.8 },
+    { "path": "PaDNA.HairDNA.Hairline",             "value": "Even",                     "confidence": 0.7 },
+    { "path": "PaDNA.FacialDNA.Cheekbones",         "value": "Refined",                  "confidence": 0.7 },
+
+    { "path": "PaDNA.Inferred.ApparentAgeRange",    "value": "Late 20s to late 30s",     "confidence": 0.55 },
+    { "path": "PaDNA.ApparelDNA.Style",             "value": "Elegant",                  "confidence": 0.6 },
+    { "path": "PaDNA.ApparelDNA.FitPreference",     "value": "Fitted",                   "confidence": 0.6 },
+    { "path": "PaDNA.Inferred.Presentation",        "value": "Highly groomed, intentional","confidence": 0.75 }
+  ]
+}

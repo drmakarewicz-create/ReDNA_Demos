@@ -1,0 +1,36 @@
+{
+  "type": "chat_turn",
+  "ts": 1759623999699,
+  "user_id": "test_manual",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "Hello",
+    "ts": 1759623000000
+  },
+  "assistant": {
+    "text": "Hey! It's great to chat with you again. How was your week? Anything exciting happen recently?",
+    "ts": 1759623999699,
+    "message_id": "chat-ae36bb38f78a4e048b7204c584e778fa"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/test_manual/observations.json",
+  "metrics": {
+    "response_latency_ms": null,
+    "response_latency_bucket": null,
+    "turn_length_words": 1,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.44,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "dialog_act_counts": {
+      "answer": 1
+    },
+    "priority": 0.8
+  }
+}

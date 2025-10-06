@@ -1,0 +1,66 @@
+{
+  "ts": "20250926_222359",
+  "resolved": {
+    "PaDNA.Application": {
+      "resolved_value": "Dev Explorer",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Application=Dev Explorer",
+          "Free text snippet: Dev Explorer loop test ping"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.TestType": {
+      "resolved_value": "Loop Test",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.TestType=Loop Test",
+          "Free text snippet: Dev Explorer loop test ping"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.Action": {
+      "resolved_value": "Ping",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Action=Ping",
+          "Free text snippet: Dev Explorer loop test ping"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    }
+  },
+  "observations": {}
+}

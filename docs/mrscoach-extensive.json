@@ -1,0 +1,649 @@
+{
+  "user_id": "cb_demo",
+  "provenance": {
+    "actor": "mrs_coach_manual",
+    "source": "manual-json",
+    "note": "Visual synthesis from curated 8-image photo set (CB1\u2013CB8) for coaching bundle",
+    "ts": "2025-09-24T00:00:00Z",
+    "images": [
+      "CB1.jpg",
+      "CB2.jpg",
+      "CB3.jpg",
+      "CB4.jpg",
+      "CB5.jpg",
+      "CB6.jpg",
+      "CB7.jpg",
+      "CB8.jpg"
+    ]
+  },
+  "observations": {
+    "PaDNA.BodyDNA.BodyType": {
+      "resolved_value": "Curvy hourglass",
+      "ucn": 820,
+      "reasons": [
+        "Defined waist and balanced shoulder-to-hip framing in CB2, CB4, CB7."
+      ]
+    },
+    "PaDNA.BodyDNA.Distinctive": {
+      "resolved_value": [
+        "Full bust proportion",
+        "Gentle shoulder slope",
+        "Defined collarbone when upright"
+      ],
+      "ucn": 760,
+      "reasons": [
+        "Repeating silhouette cues in the three-quarter and profile angles."
+      ]
+    },
+    "PaDNA.BodyDNA.Flexibility": {
+      "resolved_value": "Undetermined",
+      "ucn": 120,
+      "reasons": [
+        "No range-of-motion or stretch cues captured across CB1\u2013CB8."
+      ]
+    },
+    "PaDNA.BodyDNA.Gait": {
+      "resolved_value": "Undetermined",
+      "ucn": 120,
+      "reasons": [
+        "Static posing only; no walking sequences available."
+      ]
+    },
+    "PaDNA.BodyDNA.Height": {
+      "resolved_value": {
+        "label": "Tallish (5'6\"\u20135'10\" window)",
+        "min_cm": 168,
+        "max_cm": 178
+      },
+      "ucn": 450,
+      "reasons": [
+        "Furnishing references (door trim, chair backs) suggest above-average stature."
+      ]
+    },
+    "PaDNA.BodyDNA.Posture": {
+      "resolved_value": "Upright, confident carriage",
+      "ucn": 690,
+      "reasons": [
+        "Neutral spine and open shoulder set in CB1, CB3, CB6."
+      ]
+    },
+    "PaDNA.BodyDNA.Ratios": {
+      "resolved_value": {
+        "ShoulderToHip": "Balanced",
+        "WaistToHip": "Moderate indentation",
+        "TorsoToLeg": "Normal proportion"
+      },
+      "ucn": 640,
+      "reasons": [
+        "Frontal and mirrored shots show even horizontal balance and proportional leg line."
+      ]
+    },
+    "PaDNA.BodyDNA.Weight": {
+      "resolved_value": "Curvy build; precise weight undetermined",
+      "ucn": 180,
+      "reasons": [
+        "Volume evident but without calibrated scale references to cite a number."
+      ]
+    },
+    "PaDNA.EyeDNA.Brows": {
+      "resolved_value": "Medium thickness, soft arch, light brown to warm amber",
+      "ucn": 720,
+      "reasons": [
+        "Close-ups in CB3 and CB5 show consistent brow tone and shape."
+      ]
+    },
+    "PaDNA.EyeDNA.Heterochromia": {
+      "resolved_value": false,
+      "ucn": 900,
+      "reasons": [
+        "No mismatched iris sectors in any lighting scenarios."
+      ]
+    },
+    "PaDNA.EyeDNA.IrisColor": {
+      "resolved_value": "Blue-green hazel mix",
+      "ucn": 700,
+      "reasons": [
+        "Cool daylight (CB2) reveals teal ring; warm interior shots (CB4) retain green-gold shift."
+      ]
+    },
+    "PaDNA.EyeDNA.Lashes": {
+      "resolved_value": "Medium length and density",
+      "ucn": 640,
+      "reasons": [
+        "Upper lashline visibility without extensions in CB3 macro crop."
+      ]
+    },
+    "PaDNA.EyeDNA.Shape": {
+      "resolved_value": "Almond with gentle roundness",
+      "ucn": 710,
+      "reasons": [
+        "Inner-to-outer canthal sweep shows soft tapering rather than sharp lift."
+      ]
+    },
+    "PaDNA.EyeDNA.Size": {
+      "resolved_value": "Large, expressive",
+      "ucn": 720,
+      "reasons": [
+        "High iris-to-sclera ratio noticeable even with makeup in CB1 and CB4."
+      ]
+    },
+    "PaDNA.EyeDNA.Distinctive": {
+      "resolved_value": [
+        "Outer canthal tilt neutral to slight lift",
+        "Visible upper lid platform"
+      ],
+      "ucn": 650,
+      "reasons": [
+        "Side angle (CB6) and three-quarter view (CB7) keep lid space exposed."
+      ]
+    },
+    "PaDNA.FacialDNA.Cheeks": {
+      "resolved_value": "Prominent malar points with mild buccal fullness",
+      "ucn": 780,
+      "reasons": [
+        "Cheek highlight arcs consistent across lighting setups."
+      ]
+    },
+    "PaDNA.FacialDNA.Chin": {
+      "resolved_value": "Rounded, soft",
+      "ucn": 650,
+      "reasons": [
+        "Frontal images show gentle contour without angular point."
+      ]
+    },
+    "PaDNA.FacialDNA.Ears": {
+      "resolved_value": "Average size, free lobes, pierced",
+      "ucn": 610,
+      "reasons": [
+        "Hair tucked behind ear in CB5 exposes lobe structure and stud jewelry."
+      ]
+    },
+    "PaDNA.FacialDNA.FaceShape": {
+      "resolved_value": "Oval leaning heart",
+      "ucn": 650,
+      "reasons": [
+        "Broader forehead diminishing to narrower jaw apparent in CB2 and CB8."
+      ]
+    },
+    "PaDNA.FacialDNA.FacialHair": {
+      "resolved_value": "None visible",
+      "ucn": 940,
+      "reasons": [
+        "High-resolution portraits show only minimal vellus hair expected for lighting angle."
+      ]
+    },
+    "PaDNA.FacialDNA.Forehead": {
+      "resolved_value": "Medium height, smooth, fine expression lines",
+      "ucn": 620,
+      "reasons": [
+        "Overhead lighting in CB4 reveals texture while remaining even."
+      ]
+    },
+    "PaDNA.FacialDNA.Jawline": {
+      "resolved_value": "Soft contour, low angularity",
+      "ucn": 640,
+      "reasons": [
+        "Profile drift in CB6 lacks sharp mandibular break."
+      ]
+    },
+    "PaDNA.FacialDNA.Lips": {
+      "resolved_value": {
+        "Fullness": "Medium-full lower lip greater than upper",
+        "Shape": "Defined cupid's bow",
+        "Asymmetry": "Subtle natural variation"
+      },
+      "ucn": 700,
+      "reasons": [
+        "Smiling and relaxed expressions both show balanced vermilion."
+      ]
+    },
+    "PaDNA.FacialDNA.Nose": {
+      "resolved_value": "Straight dorsum with soft tip and refined alar base",
+      "ucn": 670,
+      "reasons": [
+        "Profile imagery (CB6) confirms smooth bridge without pronounced bump."
+      ]
+    },
+    "PaDNA.FacialDNA.Symmetry": {
+      "resolved_value": "Generally symmetric with minor human variation",
+      "ucn": 600,
+      "reasons": [
+        "Mirrored comparisons show only slight lip corner height difference."
+      ]
+    },
+    "PaDNA.FacialDNA.Teeth": {
+      "resolved_value": "Straight, whitened, even show",
+      "ucn": 720,
+      "reasons": [
+        "Smiling captures expose upper incisors evenly (CB1, CB5)."
+      ]
+    },
+    "PaDNA.FacialDNA.Distinctive": {
+      "resolved_value": [
+        "Mild nasolabial smile lines",
+        "Faint crow's feet at expression"
+      ],
+      "ucn": 680,
+      "reasons": [
+        "Dynamic expressions highlight soft tissue creasing near mouth and eyes."
+      ]
+    },
+    "PaDNA.HairDNA.Bald": {
+      "resolved_value": false,
+      "ucn": 980,
+      "reasons": [
+        "Full scalp coverage even with pulled-back styling (CB5)."
+      ]
+    },
+    "PaDNA.HairDNA.Color": {
+      "resolved_value": "Strawberry blonde to light auburn",
+      "ucn": 850,
+      "reasons": [
+        "Natural root warmth and copper sheen visible in all lighting setups."
+      ]
+    },
+    "PaDNA.HairDNA.Condition": {
+      "resolved_value": "Healthy, shiny",
+      "ucn": 680,
+      "reasons": [
+        "Gloss reflection in CB2 and CB7 indicates well-conditioned strands."
+      ]
+    },
+    "PaDNA.HairDNA.Density": {
+      "resolved_value": "Medium-high volume",
+      "ucn": 700,
+      "reasons": [
+        "Part width remains narrow while lengths maintain fullness."
+      ]
+    },
+    "PaDNA.HairDNA.Distinctive": {
+      "resolved_value": [
+        "Warm, coppery tonality reads natural"
+      ],
+      "ucn": 760,
+      "reasons": [
+        "No banding between root and length despite styled highlights."
+      ]
+    },
+    "PaDNA.HairDNA.DyedColor": {
+      "resolved_value": "Highlighted warm copper and golden variation",
+      "ucn": 720,
+      "reasons": [
+        "Layered dimension visible in CB3 salon lighting."
+      ]
+    },
+    "PaDNA.HairDNA.Hairline": {
+      "resolved_value": "Even with subtle widow's peak",
+      "ucn": 690,
+      "reasons": [
+        "Center part exposures (CB4) reveal slight central point."
+      ]
+    },
+    "PaDNA.HairDNA.Length": {
+      "resolved_value": "Long, past shoulders",
+      "ucn": 830,
+      "reasons": [
+        "Lengths reach mid-back in CB2 and CB7."
+      ]
+    },
+    "PaDNA.HairDNA.Part": {
+      "resolved_value": "Prefers side part with occasional center part",
+      "ucn": 680,
+      "reasons": [
+        "Half the gallery alternates between side sweep and centered styling."
+      ]
+    },
+    "PaDNA.HairDNA.PatternChange": {
+      "resolved_value": "Volume wave styling vs. sleek blowout",
+      "ucn": 650,
+      "reasons": [
+        "Comparing CB1 (loose wave) to CB5 (smooth blowout) shows intentional variation."
+      ]
+    },
+    "PaDNA.HairDNA.Style": {
+      "resolved_value": "Loose layered waves and polished blowout",
+      "ucn": 700,
+      "reasons": [
+        "Consistent styling themes across events and casual looks."
+      ]
+    },
+    "PaDNA.HairDNA.Texture": {
+      "resolved_value": "Wavy (2A\u20132B)",
+      "ucn": 720,
+      "reasons": [
+        "Natural bend visible at root even when brushed smooth."
+      ]
+    },
+    "PaDNA.SkinDNA.Birthmarks": {
+      "resolved_value": "None obvious",
+      "ucn": 520,
+      "reasons": [
+        "Full d\u00e9colletage exposure shows no distinct marks."
+      ]
+    },
+    "PaDNA.SkinDNA.Conditions": {
+      "resolved_value": [
+        "Photo freckles and sun-kissed d\u00e9colletage",
+        "Mild photoaging fine lines"
+      ],
+      "ucn": 600,
+      "reasons": [
+        "Outdoor lighting emphasizes freckling; close-ups reveal soft etching."
+      ]
+    },
+    "PaDNA.SkinDNA.Freckles": {
+      "resolved_value": "Light facial and chest freckling",
+      "ucn": 680,
+      "reasons": [
+        "Bridge of nose and upper chest display consistent speckling."
+      ]
+    },
+    "PaDNA.SkinDNA.Moles": {
+      "resolved_value": "Few small benign-appearing moles",
+      "ucn": 540,
+      "reasons": [
+        "Visible near collarbone in CB6, unchanged across set."
+      ]
+    },
+    "PaDNA.SkinDNA.SunBehavior": {
+      "resolved_value": "Tans and freckles easily with warm glow preference",
+      "ucn": 650,
+      "reasons": [
+        "Tan lines plus freckle clustering suggest sun-responsive skin."
+      ]
+    },
+    "PaDNA.SkinDNA.Texture": {
+      "resolved_value": "Generally smooth with fine lines",
+      "ucn": 640,
+      "reasons": [
+        "Even makeup wear with only minimal texture around eyes."
+      ]
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "resolved_value": "Light to light-medium warm",
+      "ucn": 700,
+      "reasons": [
+        "Balanced tone across interiors and natural light contexts."
+      ]
+    },
+    "PaDNA.SkinDNA.Undertone": {
+      "resolved_value": "Warm peach-golden",
+      "ucn": 750,
+      "reasons": [
+        "Gold jewelry complements complexion; neutral lighting keeps warmth."
+      ]
+    },
+    "PaDNA.Inferred.ApparentAgeBand": {
+      "resolved_value": "Adult 30s\u201350s",
+      "ucn": 520,
+      "reasons": [
+        "Skin texture and expression lines suggest mature adult without advanced aging."
+      ]
+    },
+    "PaDNA.Inferred.StyleProfile": {
+      "resolved_value": [
+        "Elegant",
+        "Feminine",
+        "Red carpet ready",
+        "Warm palette preference"
+      ],
+      "ucn": 600,
+      "reasons": [
+        "Wardrobe and glam cues span cocktail dresses, warm-toned styling, and polished finishes."
+      ]
+    },
+    "PaDNA.BodyDNA.HeightCM": {
+      "resolved_value": null,
+      "ucn": 150,
+      "reasons": [
+        "Numerical measurement not captured in photo set; placeholder retained for ingest consistency."
+      ],
+      "units": "cm"
+    },
+    "PaDNA.BodyDNA.WeightKG": {
+      "resolved_value": null,
+      "ucn": 150,
+      "reasons": [
+        "Weight estimate unavailable; use future measurement when provided."
+      ],
+      "units": "kg"
+    },
+    "PaDNA.BodyDNA.Build": {
+      "resolved_value": "curvy",
+      "ucn": 300,
+      "reasons": [
+        "Overall silhouette shows balanced curves with defined waist."
+      ]
+    },
+    "PaDNA.BodyDNA.Handedness": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "No dominant-hand cues present in still imagery."
+      ]
+    },
+    "PaDNA.BodyDNA.HandSize": {
+      "resolved_value": "unknown",
+      "ucn": 100,
+      "reasons": [
+        "Hands not clearly scaled relative to known objects."
+      ]
+    },
+    "PaDNA.BodyDNA.FootSize": {
+      "resolved_value": null,
+      "ucn": 100,
+      "reasons": [
+        "Footwear obscures precise size; awaiting measurement."
+      ],
+      "units": "shoe"
+    },
+    "PaDNA.BodyDNA.ShoulderShape": {
+      "resolved_value": "rounded",
+      "ucn": 260,
+      "reasons": [
+        "Shoulder slope moderate with softened edges in CB3 and CB6."
+      ]
+    },
+    "PaDNA.BodyDNA.NeckLength": {
+      "resolved_value": "average",
+      "ucn": 320,
+      "reasons": [
+        "Neck proportions align with average collar space when upright."
+      ]
+    },
+    "PaDNA.EyeDNA.IrisPattern": {
+      "resolved_value": "gradient",
+      "ucn": 520,
+      "reasons": [
+        "Close-up reveals lighter limbal ring with warmer core hue."
+      ]
+    },
+    "PaDNA.EyeDNA.EyelidCrease": {
+      "resolved_value": "double_lid",
+      "ucn": 600,
+      "reasons": [
+        "Distinct crease visible across lighting conditions."
+      ]
+    },
+    "PaDNA.EyeDNA.ScleraTint": {
+      "resolved_value": "bright_white",
+      "ucn": 580,
+      "reasons": [
+        "Sclera appears bright without yellowing in neutral light."
+      ]
+    },
+    "PaDNA.EyeDNA.EyeSpacing": {
+      "resolved_value": "average",
+      "ucn": 620,
+      "reasons": [
+        "Inner canthus alignment roughly equals one eye width spacing."
+      ]
+    },
+    "PaDNA.FacialDNA.ForeheadHeight": {
+      "resolved_value": "average",
+      "ucn": 540,
+      "reasons": [
+        "Hairline-to-brow distance aligns with standard proportion."
+      ]
+    },
+    "PaDNA.FacialDNA.ForeheadShape": {
+      "resolved_value": "rounded",
+      "ucn": 520,
+      "reasons": [
+        "Curved hairline and smooth contour without pronounced slope."
+      ]
+    },
+    "PaDNA.FacialDNA.SymmetryScore": {
+      "resolved_value": 0.8,
+      "ucn": 480,
+      "reasons": [
+        "Manual assessment indicates above-average bilateral alignment."
+      ],
+      "units": "ratio"
+    },
+    "PaDNA.FacialDNA.SmileStyle": {
+      "resolved_value": "toothy",
+      "ucn": 640,
+      "reasons": [
+        "Full upper tooth display when smiling in CB1 and CB5."
+      ]
+    },
+    "PaDNA.FacialDNA.AgingFeatures": {
+      "resolved_value": [
+        "fine_lines",
+        "smooth"
+      ],
+      "ucn": 520,
+      "reasons": [
+        "Fine expression lines at outer eyes with otherwise smooth skin texture."
+      ]
+    },
+    "PaDNA.HairDNA.BaldPattern": {
+      "resolved_value": "none",
+      "ucn": 980,
+      "reasons": [
+        "No recession patterns observed across styles."
+      ]
+    },
+    "PaDNA.SkinDNA.ComplexionConsistency": {
+      "resolved_value": "even",
+      "ucn": 650,
+      "reasons": [
+        "No notable blotchiness across multiple lighting scenarios."
+      ]
+    },
+    "PaDNA.ApparelDNA.Style": {
+      "resolved_value": [
+        "elegant",
+        "classic"
+      ],
+      "ucn": 400,
+      "reasons": [
+        "Wardrobe leans on tailored dresses and cohesive styling."
+      ]
+    },
+    "PaDNA.ApparelDNA.FitPreference": {
+      "resolved_value": "tailored",
+      "ucn": 420,
+      "reasons": [
+        "Most outfits hug the waist with structured silhouettes."
+      ]
+    },
+    "PaDNA.ApparelDNA.Accessories": {
+      "resolved_value": [
+        "earrings",
+        "bracelets"
+      ],
+      "ucn": 360,
+      "reasons": [
+        "Visible jewellery choices repeat across the gallery."
+      ]
+    },
+    "PaDNA.ApparelDNA.PalettePreference": {
+      "resolved_value": [
+        "warm",
+        "neutral"
+      ],
+      "ucn": 380,
+      "reasons": [
+        "Color story emphasises warm metallics and soft neutrals."
+      ]
+    },
+    "PaDNA.ApparelDNA.FootwearStyle": {
+      "resolved_value": [
+        "heels",
+        "sandals"
+      ],
+      "ucn": 300,
+      "reasons": [
+        "Evening looks feature heels; casual sets show strappy sandals."
+      ]
+    },
+    "PaDNA.MovementDNA.Gestures": {
+      "resolved_value": "expressive",
+      "ucn": 280,
+      "reasons": [
+        "Hand positions vary with open gestures in multiple shots."
+      ]
+    },
+    "PaDNA.MovementDNA.HeadMovement": {
+      "resolved_value": "tilting",
+      "ucn": 260,
+      "reasons": [
+        "Head tilt used frequently to frame angles."
+      ]
+    },
+    "PaDNA.MovementDNA.HandUsage": {
+      "resolved_value": "talks_with_hands",
+      "ucn": 240,
+      "reasons": [
+        "Gesture implied by varied hand poses, even when static."
+      ]
+    },
+    "PaDNA.MovementDNA.Tempo": {
+      "resolved_value": "steady",
+      "ucn": 220,
+      "reasons": [
+        "Poses show poised transitions without blur."
+      ]
+    },
+    "PaDNA.MovementDNA.SignatureMotion": {
+      "resolved_value": "hair_tuck",
+      "ucn": 200,
+      "reasons": [
+        "Repeated tucked-hair motion implied between shots."
+      ]
+    },
+    "PaDNA.BodyDNA.HandStructure": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Awaiting capture from dedicated imagery."
+      ]
+    },
+    "PaDNA.FacialDNA.DistinctiveMarks": {
+      "resolved_value": "unknown",
+      "ucn": 120,
+      "reasons": [
+        "Placeholder for scars, piercings, etc."
+      ]
+    },
+    "PaDNA.ApparelDNA.Fit": {
+      "resolved_value": "tailored",
+      "ucn": 100,
+      "reasons": [
+        "Legacy fit placeholder to satisfy downstream renderers."
+      ]
+    },
+    "PaDNA.ApparelDNA.Palette": {
+      "resolved_value": [
+        "warm",
+        "neutral"
+      ],
+      "ucn": 100,
+      "reasons": [
+        "Legacy palette placeholder to satisfy downstream renderers."
+      ]
+    }
+  }
+}

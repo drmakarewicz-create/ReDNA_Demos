@@ -1,0 +1,19 @@
+{
+  "user_id": "fixture-user",
+  "provenance": {
+    "source": "test-suite",
+    "images": ["img-1.jpg"]
+  },
+  "observations": {
+    "Hair.Color": {
+      "resolved_value": "Strawberry Blonde",
+      "ucn": 812
+    },
+    "Eyes.Color": {
+      "value": "Hazel"
+    },
+    "Unknown.Key": {
+      "value": "mystery"
+    }
+  }
+}

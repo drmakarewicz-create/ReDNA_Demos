@@ -1,0 +1,261 @@
+{
+  "schema_version": "redna.bundle/3.0",
+  "meta": {
+    "user_id": "demo_extensive_007",
+    "created_at": "2025-09-14T15:59:16Z",
+    "session_id": "sess-ext-007",
+    "notes": "Seeded for end-to-end demo; includes richer DNAs and evidence."
+  },
+  "Prefs": {
+    "traits": {
+      "age_range": "35\u201344",
+      "gender": "male",
+      "orientation": "straight",
+      "relationship_status": "in_a_relationship",
+      "eye_color": "hazel",
+      "hair_color": "dark brown",
+      "skin_tone": "olive",
+      "height": "6'2",
+      "glasses": true,
+      "facial_hair": true,
+      "occupation": "product_manager",
+      "location_city": "Austin",
+      "love_language_pref": "acts_of_service",
+      "date_style": "experience",
+      "music_pref": [
+        "indie",
+        "jazz",
+        "lofi"
+      ],
+      "fitness_level": "active",
+      "cuisine_likes": [
+        "thai",
+        "mexican",
+        "mediterranean"
+      ],
+      "allergies": [
+        "peanuts"
+      ],
+      "wyr_log": [
+        {
+          "session_id": "sess-ext-007",
+          "id": "love_language",
+          "prompt": "Pick the love language that resonates most with you:",
+          "choice_code": "B",
+          "choice_text": "Acts of service",
+          "trait_path": "Prefs.love_language_pref",
+          "value": "acts_of_service",
+          "dimension": "love_language",
+          "rr_delta": 2.0,
+          "at": 1757861956,
+          "source": "deterministic"
+        },
+        {
+          "session_id": "sess-ext-007",
+          "id": "date_style",
+          "prompt": "It\u2019s Friday night\u2014what sounds best?",
+          "choice_code": "C",
+          "choice_text": "Live music or a show",
+          "trait_path": "Prefs.date_style",
+          "value": "experience",
+          "dimension": "date_style",
+          "rr_delta": 0.0,
+          "at": 1757862056,
+          "source": "deterministic"
+        }
+      ]
+    }
+  },
+  "PaDNA": {
+    "EyeDNA": {
+      "Color": "hazel"
+    },
+    "HairDNA": {
+      "Color": "dark brown"
+    },
+    "SkinDNA": {
+      "Tone": "olive"
+    },
+    "BuildDNA": {
+      "Height": "6'2",
+      "BMI_Estimate": 24.1
+    },
+    "StyleDNA": {
+      "Glasses": true,
+      "FacialHair": true
+    }
+  },
+  "PsyDNA": {
+    "Big5": {
+      "openness": 0.71,
+      "conscientiousness": 0.62,
+      "extraversion": 0.48,
+      "agreeableness": 0.64,
+      "neuroticism": 0.33
+    },
+    "Attachment": {
+      "style": "secure",
+      "confidence": 0.62
+    }
+  },
+  "EmDNA": {
+    "Affect": {
+      "valence_bias": "positive",
+      "regulation_style": "reappraisal"
+    },
+    "Triggers": [
+      {
+        "name": "crowded_places",
+        "severity": "low"
+      }
+    ]
+  },
+  "SocDNA": {
+    "Circles": {
+      "close_friends": 4,
+      "family_proximity": "medium"
+    },
+    "Preferences": {
+      "date_style": "experience",
+      "group_size_pref": "small"
+    }
+  },
+  "Evidence": [
+    {
+      "observed_at": "2025-09-14T15:59:16Z",
+      "source": "self-report",
+      "confidence": 0.9,
+      "choice": "text",
+      "value_text": "I'm 6'2 with hazel eyes and dark brown hair."
+    },
+    {
+      "observed_at": "2025-09-14T15:59:16Z",
+      "source": "onboarding",
+      "confidence": 1.0,
+      "choice": "button",
+      "value_text": "Age range set to 35\u201344; gender male; orientation straight."
+    },
+    {
+      "observed_at": "2025-09-14T15:59:16Z",
+      "source": "photo-upload",
+      "confidence": 0.7,
+      "choice": "vision",
+      "value_text": "Glasses detected; facial hair present."
+    },
+    {
+      "observed_at": "2025-09-14T15:59:16Z",
+      "source": "behavioral",
+      "confidence": 0.6,
+      "choice": "spotify",
+      "value_text": "Listens to indie/jazz/lofi."
+    }
+  ],
+  "scores": {
+    "rr_overall": 59.0,
+    "ucn_overall": 0.05,
+    "curiosity_overall": 0.135
+  },
+  "snapshots": {
+    "rr": [
+      {
+        "at": "2025-09-14T15:59:16Z",
+        "overall": 60.0,
+        "source": "local-coverage"
+      },
+      {
+        "at": "2025-09-14T15:59:16Z",
+        "overall": 62.0,
+        "source": "service"
+      },
+      {
+        "at": "2025-09-14T17:48:24Z",
+        "overall": 59.0,
+        "source": "ucnrr-gateway:local-fallback"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.age_range",
+      "value": "35\u201344",
+      "source": "onboarding"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.gender",
+      "value": "male",
+      "source": "onboarding"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.orientation",
+      "value": "straight",
+      "source": "onboarding"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.relationship_status",
+      "value": "in_a_relationship",
+      "source": "onboarding"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.eye_color",
+      "value": "hazel",
+      "source": "self-report"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.hair_color",
+      "value": "dark brown",
+      "source": "self-report"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.height",
+      "value": "6'2",
+      "source": "self-report"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.glasses",
+      "value": true,
+      "source": "photo"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.traits.facial_hair",
+      "value": true,
+      "source": "photo"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.love_language_pref",
+      "value": "acts_of_service",
+      "source": "wyr"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "Prefs.date_style",
+      "value": "experience",
+      "source": "wyr"
+    },
+    {
+      "at": "2025-09-14T15:59:16Z",
+      "path": "scores.rr_overall",
+      "value": 62.0,
+      "source": "service"
+    },
+    {
+      "at": "2025-09-14T17:48:24Z",
+      "path": "scores.*",
+      "value": {
+        "rr": 59.0,
+        "ucn": 0.05,
+        "curiosity": 0.135
+      },
+      "source": "ucnrr-gateway:local-fallback"
+    }
+  ]
+}

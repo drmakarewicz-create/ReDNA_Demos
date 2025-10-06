@@ -1,0 +1,50 @@
+[
+  {
+    "ts": 1759624126677,
+    "role": "member",
+    "persona": null,
+    "text": "I want to improve my dating life"
+  },
+  {
+    "ts": 1759624126679,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "You're looking to boost your dating life? That's something our Relationship Coach could help with - they offer personalized advice and strategies for connecting with others in a meaningful way. Would you be open to chatting with them about it?"
+  },
+  {
+    "ts": 1759624133745,
+    "role": "member",
+    "persona": null,
+    "text": "Not interested in coaches right now"
+  },
+  {
+    "ts": 1759624133748,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "You've made it clear that coaching isn't on your mind at the moment. Let's talk about something else - what do you like to watch when you have some downtime?"
+  },
+  {
+    "ts": 1759624140059,
+    "role": "member",
+    "persona": null,
+    "text": "But tell me more about dating tips"
+  },
+  {
+    "ts": 1759624140063,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "I'm glad we're chatting again! Since you mentioned wanting to improve your dating life, I'd recommend checking out some popular dating blogs or YouTube channels that offer advice and insights. One channel that comes to mind is The School of Life - they have great content on relationships and communication. Would you like me to send you a link?"
+  },
+  {
+    "ts": 1759624148033,
+    "role": "member",
+    "persona": null,
+    "text": "What should I do differently?"
+  },
+  {
+    "ts": 1759624148038,
+    "role": "assistant",
+    "persona": "head coach",
+    "text": "You're looking for actionable tips to improve your dating life. What specifically are you hoping to change or work on in terms of your approach to dating?"
+  }
+]

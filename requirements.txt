@@ -1,0 +1,7 @@
+plotly==5.24.1
+fastapi
+uvicorn
+pydantic
+pyyaml
+requests
+streamlit

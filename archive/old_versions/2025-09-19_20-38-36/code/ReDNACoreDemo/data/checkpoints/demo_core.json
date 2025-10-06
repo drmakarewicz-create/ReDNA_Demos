@@ -1,0 +1,28 @@
+{
+  "AgeDNA": [
+    {
+      "dna": "AgeDNA",
+      "value": 35,
+      "weight": 0.6,
+      "confidence": 0.9,
+      "source": "driver_license",
+      "observed_at": "2025-09-06T20:13:43.844977",
+      "meta": {}
+    }
+  ],
+  "LooksDNA": [
+    {
+      "dna": "LooksDNA",
+      "value": {
+        "White": 0.8,
+        "LightBrown": 0.1,
+        "Other": 0.1
+      },
+      "weight": 0.5,
+      "confidence": 0.8,
+      "source": "passport_photo",
+      "observed_at": "2025-09-06T20:13:43.845288",
+      "meta": {}
+    }
+  ]
+}

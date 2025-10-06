@@ -1,0 +1,2257 @@
+{
+  "user_id": "ab-ext",
+  "resolved": {
+    "SocDNA.Relationship.Status": {
+      "value": "Married",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-25T17:20:17Z",
+        "original_path": "SocDNA.Relationship.Status",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Relationship.Status=Married",
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "SocDNA.Prefs.LanguagePrimary": {
+      "value": "English",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-25T17:20:17Z",
+        "original_path": "SocDNA.Prefs.LanguagePrimary",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Prefs.LanguagePrimary=English",
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "SocDNA.Identity.Orientation": {
+      "value": "Heterosexual",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-25T17:20:17Z",
+        "original_path": "SocDNA.Identity.Orientation",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Orientation=Heterosexual",
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "SocDNA.Identity.Gender": {
+      "value": "Female",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-25T17:20:17Z",
+        "original_path": "SocDNA.Identity.Gender",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Gender=Female",
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "SocDNA.Demographics.AgeRange": {
+      "value": "25-34",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-25T17:20:17Z",
+        "original_path": "SocDNA.Demographics.AgeRange",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Demographics.AgeRange=25-34",
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PrefDNA.Bonding.Style": {
+      "value": "A",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-25T17:20:17Z",
+        "original_path": "PrefDNA.Bonding.Style",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: PrefDNA.Bonding.Style=A",
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "rr": 65.3,
+      "curiosity": 34.7,
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "Personality.Emotional Stability": {
+      "value": "Highly Stable",
+      "value_type": "string",
+      "confidence": 0.12,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 120.0,
+      "reasons": [
+        "Consistent emotional responses",
+        "Ability to manage stress effectively"
+      ],
+      "rr": 7.0,
+      "curiosity": 93.0,
+      "notes": {
+        "summary": "Low comparative confidence (1.92308 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "Personality.Introversion/Extroversion": {
+      "value": "Introverted",
+      "value_type": "string",
+      "confidence": 0.13,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 130.0,
+      "reasons": [
+        "Preference for quiet environments",
+        "Tendency to recharge alone"
+      ],
+      "rr": 7.25,
+      "curiosity": 92.75,
+      "notes": {
+        "summary": "Low comparative confidence (0.98039 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.FaceShape": {
+      "value": "Oval",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.FaceShape",
+        "canonical_path": "PaDNA.FacialDNA.FaceShape",
+        "path_alias": "PaDNA.FacialDNA.FaceShape",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.FaceShape",
+      "canonical_value": "Oval",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Forehead.Height": {
+      "value": "Medium-high",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Forehead.Height",
+        "canonical_path": "PaDNA.FacialDNA.Forehead.Height",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Forehead.Height",
+      "canonical_value": "Medium-high",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Forehead.Width": {
+      "value": "Average",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Forehead.Width",
+        "canonical_path": "PaDNA.FacialDNA.Forehead.Width",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Forehead.Width",
+      "canonical_value": "Average",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Forehead.Slope": {
+      "value": "Slightly receding",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Forehead.Slope",
+        "canonical_path": "PaDNA.FacialDNA.Forehead.Slope",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Forehead.Slope",
+      "canonical_value": "Slightly receding",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Cheeks.Definition": {
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Cheeks.Definition",
+        "canonical_path": "PaDNA.FacialDNA.Cheeks.Definition",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Cheeks.Definition",
+      "canonical_value": "Medium",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Cheeks.Fullness": {
+      "value": "Subtle",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Cheeks.Fullness",
+        "canonical_path": "PaDNA.FacialDNA.Cheeks.Fullness",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Cheeks.Fullness",
+      "canonical_value": "Subtle",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Jawline.Angle": {
+      "value": "Soft",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Jawline.Angle",
+        "canonical_path": "PaDNA.FacialDNA.Jawline.Angle",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Jawline.Angle",
+      "canonical_value": "Soft",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Jawline.Definition": {
+      "value": "Refined",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Jawline.Definition",
+        "canonical_path": "PaDNA.FacialDNA.Jawline.Definition",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Jawline.Definition",
+      "canonical_value": "Refined",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Chin.Shape": {
+      "value": "Narrow-rounded",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Chin.Shape",
+        "canonical_path": "PaDNA.FacialDNA.Chin.Shape",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Chin.Shape",
+      "canonical_value": "Narrow-rounded",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Nose.Bridge": {
+      "value": "Straight",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Nose.Bridge",
+        "canonical_path": "PaDNA.FacialDNA.Nose.Bridge",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Nose.Bridge",
+      "canonical_value": "Straight",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Nose.Tip": {
+      "value": "Slender",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Nose.Tip",
+        "canonical_path": "PaDNA.FacialDNA.Nose.Tip",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Nose.Tip",
+      "canonical_value": "Slender",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Nose.Width": {
+      "value": "Narrow-medium",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Nose.Width",
+        "canonical_path": "PaDNA.FacialDNA.Nose.Width",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Nose.Width",
+      "canonical_value": "Narrow-medium",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Nose.Length": {
+      "value": "Medium-long",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Nose.Length",
+        "canonical_path": "PaDNA.FacialDNA.Nose.Length",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Nose.Length",
+      "canonical_value": "Medium-long",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Lips.Upper": {
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Lips.Upper",
+        "canonical_path": "PaDNA.FacialDNA.Lips.Upper",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Lips.Upper",
+      "canonical_value": "Medium",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Lips.Lower": {
+      "value": "Fuller",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Lips.Lower",
+        "canonical_path": "PaDNA.FacialDNA.Lips.Lower",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Lips.Lower",
+      "canonical_value": "Fuller",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Lips.CupidBow": {
+      "value": "Defined",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Lips.CupidBow",
+        "canonical_path": "PaDNA.FacialDNA.Lips.CupidBow",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Lips.CupidBow",
+      "canonical_value": "Defined",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Symmetry": {
+      "value": "High",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Symmetry",
+        "canonical_path": "PaDNA.FacialDNA.Symmetry",
+        "path_alias": "PaDNA.FacialDNA.Symmetry",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Symmetry",
+      "canonical_value": "High",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Shape": {
+      "value": "Almond",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Shape",
+        "canonical_path": "PaDNA.EyeDNA.Shape",
+        "value_alias": {
+          "alias": "Almond",
+          "canonical": "Almond"
+        },
+        "path_alias": "PaDNA.EyeDNA.Shape",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Shape",
+      "canonical_value": "Almond",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Size": {
+      "value": "Large",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Size",
+        "canonical_path": "PaDNA.EyeDNA.Size",
+        "value_alias": {
+          "alias": "Large",
+          "canonical": "Large"
+        },
+        "path_alias": "PaDNA.EyeDNA.Size",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Size",
+      "canonical_value": "Large",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Spacing": {
+      "value": "Slightly wide",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Spacing",
+        "canonical_path": "PaDNA.EyeDNA.Spacing",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Spacing",
+      "canonical_value": "Slightly wide",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.IrisColor": {
+      "value": "Blue",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.IrisColor",
+        "canonical_path": "PaDNA.EyeDNA.IrisColor",
+        "path_alias": "PaDNA.EyeDNA.IrisColor",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.IrisColor",
+      "canonical_value": "Blue",
+      "ucn": 600.0,
+      "rr": 46.666666666666664,
+      "curiosity": 53.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Brightness": {
+      "value": "Light",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Brightness",
+        "canonical_path": "PaDNA.EyeDNA.Brightness",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Brightness",
+      "canonical_value": "Light",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Distinctiveness": {
+      "value": "High",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Distinctiveness",
+        "canonical_path": "PaDNA.EyeDNA.Distinctiveness",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Distinctiveness",
+      "canonical_value": "High",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Brows.Shape": {
+      "value": "Arched",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Brows.Shape",
+        "canonical_path": "PaDNA.EyeDNA.Brows.Shape",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Brows.Shape",
+      "canonical_value": "Arched",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Brows.Thickness": {
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Brows.Thickness",
+        "canonical_path": "PaDNA.EyeDNA.Brows.Thickness",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Brows.Thickness",
+      "canonical_value": "Medium",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Brows.Density": {
+      "value": "Moderate",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Brows.Density",
+        "canonical_path": "PaDNA.EyeDNA.Brows.Density",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Brows.Density",
+      "canonical_value": "Moderate",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.Brows.Spacing": {
+      "value": "Balanced",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.EyeDNA.Brows.Spacing",
+        "canonical_path": "PaDNA.EyeDNA.Brows.Spacing",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Brows.Spacing",
+      "canonical_value": "Balanced",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Ears.Size": {
+      "value": "Average",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Ears.Size",
+        "canonical_path": "PaDNA.FacialDNA.Ears.Size",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Ears.Size",
+      "canonical_value": "Average",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Ears.Visibility": {
+      "value": "Partially covered by hair",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Ears.Visibility",
+        "canonical_path": "PaDNA.FacialDNA.Ears.Visibility",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Ears.Visibility",
+      "canonical_value": "Partially covered by hair",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "value": "Light",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.SkinDNA.Tone",
+        "canonical_path": "PaDNA.SkinDNA.Tone",
+        "value_alias": {
+          "alias": "Light",
+          "canonical": "Light"
+        },
+        "path_alias": "PaDNA.SkinDNA.Tone",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.SkinDNA.Tone",
+      "canonical_value": "Light",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.SkinDNA.Undertone": {
+      "value": "Neutral",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.SkinDNA.Undertone",
+        "canonical_path": "PaDNA.SkinDNA.Undertone",
+        "value_alias": {
+          "alias": "Cool-neutral",
+          "canonical": "Neutral"
+        },
+        "path_alias": "PaDNA.SkinDNA.Undertone",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.SkinDNA.Undertone",
+      "canonical_value": "Neutral",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.SkinDNA.Texture": {
+      "value": "Smooth",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.SkinDNA.Texture",
+        "canonical_path": "PaDNA.SkinDNA.Texture",
+        "value_alias": {
+          "alias": "Smooth",
+          "canonical": "Smooth"
+        },
+        "path_alias": "PaDNA.SkinDNA.Texture",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.SkinDNA.Texture",
+      "canonical_value": "Smooth",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.SkinDNA.Complexion": {
+      "value": "Clear",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.SkinDNA.Complexion",
+        "canonical_path": "PaDNA.SkinDNA.Complexion",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.SkinDNA.Complexion",
+      "canonical_value": "Clear",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.SkinDNA.Freckles": {
+      "value": "None visible",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.SkinDNA.Freckles",
+        "canonical_path": "PaDNA.SkinDNA.Freckles",
+        "path_alias": "PaDNA.SkinDNA.Freckles",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.SkinDNA.Freckles",
+      "canonical_value": "None visible",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Color": {
+      "value": "Medium brown",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Color",
+        "canonical_path": "PaDNA.HairDNA.Color",
+        "path_alias": "PaDNA.HairDNA.Color",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Color",
+      "canonical_value": "Medium brown",
+      "ucn": 600.0,
+      "rr": 49.285714285714285,
+      "curiosity": 50.714285714285715,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Highlight": {
+      "value": "Dark blonde",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Highlight",
+        "canonical_path": "PaDNA.HairDNA.Highlight",
+        "step": "core-holistic"
+      },
+      "notes": {
+        "text": "Sporadic highlights",
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "canonical_path": "PaDNA.HairDNA.Highlight",
+      "canonical_value": "Dark blonde",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Length": {
+      "value": "Medium to long",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Length",
+        "canonical_path": "PaDNA.HairDNA.Length",
+        "path_alias": "PaDNA.HairDNA.Length",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Length",
+      "canonical_value": "Medium to long",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Texture": {
+      "value": "Straight with slight wave",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Texture",
+        "canonical_path": "PaDNA.HairDNA.Texture",
+        "path_alias": "PaDNA.HairDNA.Texture",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Texture",
+      "canonical_value": "Straight with slight wave",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Part": {
+      "value": [
+        "Center",
+        "Side"
+      ],
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Part",
+        "canonical_path": "PaDNA.HairDNA.Part",
+        "value_alias": {
+          "alias": "Varied (center or side)",
+          "canonical": [
+            "Center",
+            "Side"
+          ]
+        },
+        "path_alias": "PaDNA.HairDNA.Part",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Part",
+      "canonical_value": [
+        "Center",
+        "Side"
+      ],
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Density": {
+      "value": "Medium-high",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Density",
+        "canonical_path": "PaDNA.HairDNA.Density",
+        "path_alias": "PaDNA.HairDNA.Density",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Density",
+      "canonical_value": "Medium-high",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Shine": {
+      "value": "High",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Shine",
+        "canonical_path": "PaDNA.HairDNA.Shine",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Shine",
+      "canonical_value": "High",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Bald": {
+      "value": false,
+      "value_type": "boolean",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Bald",
+        "canonical_path": "PaDNA.HairDNA.Bald",
+        "value_alias": {
+          "alias": "None",
+          "canonical": false
+        },
+        "path_alias": "PaDNA.HairDNA.Bald",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Bald",
+      "canonical_value": false,
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.BodyDNA.HeightEstimate": {
+      "value": "Average (5'4\"\u20135'7\")",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.BodyDNA.HeightEstimate",
+        "canonical_path": "PaDNA.BodyDNA.HeightEstimate",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.BodyDNA.HeightEstimate",
+      "canonical_value": "Average (5'4\"\u20135'7\")",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.BodyDNA.BodyType": {
+      "value": "Slender",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.BodyDNA.BodyType",
+        "canonical_path": "PaDNA.BodyDNA.BodyType",
+        "path_alias": "PaDNA.BodyDNA.BodyType",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.BodyDNA.BodyType",
+      "canonical_value": "Slender",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.BodyDNA.Shoulders": {
+      "value": "Narrow-average",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.BodyDNA.Shoulders",
+        "canonical_path": "PaDNA.BodyDNA.Shoulders",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.BodyDNA.Shoulders",
+      "canonical_value": "Narrow-average",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.BodyDNA.Waist": {
+      "value": "Narrow",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.BodyDNA.Waist",
+        "canonical_path": "PaDNA.BodyDNA.Waist",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.BodyDNA.Waist",
+      "canonical_value": "Narrow",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.BodyDNA.Hips": {
+      "value": "Slim-proportioned",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.BodyDNA.Hips",
+        "canonical_path": "PaDNA.BodyDNA.Hips",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.BodyDNA.Hips",
+      "canonical_value": "Slim-proportioned",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.BodyDNA.TorsoLength": {
+      "value": "Medium",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.BodyDNA.TorsoLength",
+        "canonical_path": "PaDNA.BodyDNA.TorsoLength",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.BodyDNA.TorsoLength",
+      "canonical_value": "Medium",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.BodyDNA.ArmProportion": {
+      "value": "Slender",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.BodyDNA.ArmProportion",
+        "canonical_path": "PaDNA.BodyDNA.ArmProportion",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.BodyDNA.ArmProportion",
+      "canonical_value": "Slender",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.BodyDNA.LegProportion": {
+      "value": "Longer relative to torso",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.BodyDNA.LegProportion",
+        "canonical_path": "PaDNA.BodyDNA.LegProportion",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.BodyDNA.LegProportion",
+      "canonical_value": "Longer relative to torso",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.PostureDNA.Default": {
+      "value": "Upright",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.PostureDNA.Default",
+        "canonical_path": "PaDNA.PostureDNA.Default",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.PostureDNA.Default",
+      "canonical_value": "Upright",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.PostureDNA.Carriage": {
+      "value": "Confident",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.PostureDNA.Carriage",
+        "canonical_path": "PaDNA.PostureDNA.Carriage",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.PostureDNA.Carriage",
+      "canonical_value": "Confident",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.PostureDNA.HeadTilt": {
+      "value": "Slight",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.PostureDNA.HeadTilt",
+        "canonical_path": "PaDNA.PostureDNA.HeadTilt",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.PostureDNA.HeadTilt",
+      "canonical_value": "Slight",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.Distinctive.LipBalance": {
+      "value": "Lower lip prominence",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.Distinctive.LipBalance",
+        "canonical_path": "PaDNA.Distinctive.LipBalance",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.Distinctive.LipBalance",
+      "canonical_value": "Lower lip prominence",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.Distinctive.EyeEmphasis": {
+      "value": "Striking",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.Distinctive.EyeEmphasis",
+        "canonical_path": "PaDNA.Distinctive.EyeEmphasis",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.Distinctive.EyeEmphasis",
+      "canonical_value": "Striking",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.HairDNA.Hairline": {
+      "value": "Even",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.HairDNA.Hairline",
+        "canonical_path": "PaDNA.HairDNA.Hairline",
+        "path_alias": "PaDNA.HairDNA.Hairline",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Hairline",
+      "canonical_value": "Even",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.FacialDNA.Cheekbones": {
+      "value": "Refined",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.FacialDNA.Cheekbones",
+        "canonical_path": "PaDNA.FacialDNA.Cheekbones",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Cheekbones",
+      "canonical_value": "Refined",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.Inferred.ApparentAgeRange": {
+      "value": "Late 20s to late 30s",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.Inferred.ApparentAgeRange",
+        "canonical_path": "PaDNA.Inferred.ApparentAgeRange",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.Inferred.ApparentAgeRange",
+      "canonical_value": "Late 20s to late 30s",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.ApparelDNA.Style": {
+      "value": "Elegant",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.ApparelDNA.Style",
+        "canonical_path": "PaDNA.ApparelDNA.Style",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.ApparelDNA.Style",
+      "canonical_value": "Elegant",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.ApparelDNA.FitPreference": {
+      "value": "Fitted",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.ApparelDNA.FitPreference",
+        "canonical_path": "PaDNA.ApparelDNA.FitPreference",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.ApparelDNA.FitPreference",
+      "canonical_value": "Fitted",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.Inferred.Presentation": {
+      "value": "Highly groomed, intentional",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-25T18:55:45.474435+00:00",
+        "original_path": "PaDNA.Inferred.Presentation",
+        "canonical_path": "PaDNA.Inferred.Presentation",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.Inferred.Presentation",
+      "canonical_value": "Highly groomed, intentional",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "SocDNA.Demographics.Country": {
+      "value": "United States",
+      "value_type": "string",
+      "confidence": 0.11,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 110.0,
+      "reasons": [
+        "Common language spoken (English)",
+        "Age range consistent with US demographics"
+      ],
+      "rr": 6.75,
+      "curiosity": 93.25,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "Personality.Values.Honesty": {
+      "value": "Highly Valued",
+      "value_type": "string",
+      "confidence": 0.1,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 100.0,
+      "reasons": [
+        "Consistent emotional responses indicating integrity",
+        "Ability to manage stress effectively suggesting trustworthiness"
+      ],
+      "rr": 6.5,
+      "curiosity": 93.5,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "Personality.Values.Fairness": {
+      "value": "Highly Valued",
+      "value_type": "string",
+      "confidence": 0.11,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 110.0,
+      "reasons": [
+        "Consistent emotional responses indicating integrity",
+        "Ability to manage stress effectively suggesting trustworthiness"
+      ],
+      "rr": 6.75,
+      "curiosity": 93.25,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "SocDNA.Demographics.Region": {
+      "value": "Northeastern United States",
+      "value_type": "string",
+      "confidence": 0.12,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 120.0,
+      "reasons": [
+        "Age range consistent with US demographics",
+        "Country of residence (United States)"
+      ],
+      "rr": 7.0,
+      "curiosity": 93.0,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T18:55:58.962654+00:00.",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00"
+    },
+    "PaDNA.EyeDNA.EyelidCrease": {
+      "value": "Present",
+      "value_type": "string",
+      "ucn": 280.0,
+      "reasons": [
+        "Implied by rule: eye_shape_to_crease"
+      ],
+      "provenance": {
+        "source": "core",
+        "step": "core-holistic",
+        "reason": "eye_shape_to_crease"
+      },
+      "notes": {
+        "summary": "Implied by holistic inference",
+        "evidence": [
+          "Rule eye_shape_to_crease applied",
+          "Holistic review normalization applied on 2025-09-25T19:24:04.360576+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T19:24:04.360576+00:00",
+      "rr": 25.0,
+      "curiosity": 75.0
+    }
+  },
+  "schema_version": 4,
+  "ts": "20250925_145558",
+  "last_holistic_ts": "2025-09-25T19:24:04.360576+00:00"
+}

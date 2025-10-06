@@ -1,0 +1,283 @@
+version: 1
+generated_at: 2024-09-01T00:00:00Z
+curiosity_weights:
+  core_relationships: 1.0
+  core_growth_signals: 0.95
+  identity_profile: 1.0
+  appearance_profile: 0.9
+  voice_insights: 1.0
+  writing_signals: 1.1
+  personality_core: 1.05
+  taste_signals: 0.95
+containers:
+  - id: core_relationships
+    label: Core Relationships
+    status: active
+    description: Relationship dynamics and anchors used by the Core orchestration layer.
+    traits:
+      - id: relationship.trust_anchor
+        label: Trust Anchor
+        type: score
+        decay: steady
+        sensitivity: medium
+        curiosity: baseline
+        coverage: known
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+  - id: core_growth_signals
+    label: Core Growth Signals
+    status: draft
+    description: Early signal bundle for evaluating retention and curiosity.
+    traits:
+      - id: growth.engagement_trend
+        label: Engagement Trend
+        type: score
+        decay: slow
+        sensitivity: low
+        curiosity: heightened
+        coverage: partial
+        computed: true
+        last_updated: 2024-09-01T00:00:00Z
+        links:
+          - relationship.trust_anchor
+  - id: identity_profile
+    label: Identity Profile
+    status: active
+    description: Baseline identity attributes that influence timing, tone, and localization.
+    traits:
+      - id: identity.location
+        label: Location
+        type: enum
+        decay: slow
+        sensitivity: restricted
+        curiosity: baseline
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Location anchors scheduling, local services, and climate cues so the plan fits real life.
+          gentle: >-
+            If your home base shifted recently, update it so the coach can surface nearby wins without nagging.
+          blunt: >-
+            Out-of-date location means off-target recommendations. Fix it so we stop guessing your city.
+          long: >-
+            Sharing a broad home base (city or timezone) lets the Head Coach balance privacy with relevant suggestions - from time-sensitive nudges to local partner offers.
+  - id: appearance_profile
+    label: Appearance Profile
+    status: active
+    description: Signals that support visual coaching moments and avatar picks.
+    traits:
+      - id: appearance.eye_color
+        label: Eye Color
+        type: enum
+        decay: none
+        sensitivity: low
+        curiosity: low
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Eye color unlocks tailored style references, photo prompts, and avatar lighting tips.
+          gentle: >-
+            Add your eye color so we can suggest palettes that actually flatter you instead of default neutrals.
+          blunt: >-
+            No eye color keeps the coach stuck on generic looks. Give us one word so we can level up.
+          long: >-
+            When photo or style prompts know your eye color they can skip awkward guesses and lean into accents that photograph well, especially for Head Coach previews.
+  - id: voice_insights
+    label: Voice Insights
+    status: active
+    description: Voice and speech traits for narration, dubbing, and tone alignment.
+    traits:
+      - id: voice.accent_profile
+        label: Accent Profile
+        type: enum
+        decay: slow
+        sensitivity: medium
+        curiosity: baseline
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Accent cues help the coach pick transcripts, pronunciations, and voiceover partners that feel natural.
+          gentle: >-
+            Let us know how you sound so practice scripts land in the voice you actually use day to day.
+          blunt: >-
+            Without an accent note we default to generic US voiceovers. That mismatch jars the experience.
+          long: >-
+            Dialing in an accent profile keeps accessibility tools respectful - captions, dubbing, and tone matching all hinge on this single field.
+  - id: writing_signals
+    label: Writing Signals
+    status: active
+    description: Writing traits that tune copy suggestions and review tone.
+    traits:
+      - id: writing.formality_index
+        label: Formality Index
+        type: score
+        decay: steady
+        sensitivity: low
+        curiosity: baseline
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            A formality baseline keeps writing prompts aligned with how polished you like to sound.
+          gentle: >-
+            Tell us if you lean casual or buttoned-up so feedback arrives in your natural register.
+          blunt: >-
+            Leave this blank and every note risks feeling off-brand or robotic.
+          long: >-
+            Setting a formality target lets Explorer auto-switch tone packs - proposal drafts, outreach emails, and diary reflections all benefit from that single slider.
+  - id: personality_core
+    label: Personality Core
+    status: active
+    description: Lightweight OCEAN traits used for motivator tone and curiosity routing.
+    traits:
+      - id: personality.ocean_openness
+        label: OCEAN Openness
+        type: score
+        decay: steady
+        sensitivity: medium
+        curiosity: heightened
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Openness helps the coach decide when to pitch novel ideas versus familiar routines.
+          gentle: >-
+            Flag how adventurous you feel so we can pace experiments without overwhelming you.
+          blunt: >-
+            If we don't know your openness level we either play it too safe or push too hard - both waste time.
+          long: >-
+            Combined with curiosity signals, openness guides everything from workshop prompts to which AI suggestions we surface first.
+  - id: taste_signals
+    label: Taste Signals
+    status: active
+    description: Cultural preferences that power playlist nudges and vibe matching.
+    traits:
+      - id: taste.music_vector
+        label: Music Vector
+        type: profile
+        decay: slow
+        sensitivity: low
+        curiosity: baseline
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Music taste snapshots make vibe checks and playlist nudges feel like you, not an algorithm demo.
+          gentle: >-
+            Drop a quick read on your go-to sounds so celebrations land on beat.
+          blunt: >-
+            No music context forces the coach into elevator playlists - no one wants that.
+          long: >-
+            We never need a full history, just enough to steer events, focus blocks, and celebration ideas toward energizers you actually like.
+  - id: health_rhythms
+    label: Health Rhythms
+    status: active
+    description: Daily health patterns that support rest coaching and recovery nudges.
+    traits:
+      - id: health.sleep_pattern
+        label: Sleep Pattern
+        type: pattern
+        decay: fast
+        sensitivity: medium
+        curiosity: heightened
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Sleep timing and quality unlock smarter rest nudges and recovery planning.
+          gentle: >-
+            Sketch your current sleep pattern so we can spot easy wins before suggesting big shifts.
+          blunt: >-
+            If we guess your sleep rhythm, we either nag at the wrong time or miss real fatigue signals.
+          long: >-
+            Pairing sleep notes with curiosity lets the Head Coach stage interventions gently - night owl routines get different playbooks than early birds.
+  - id: finance_habits
+    label: Finance Habits
+    status: active
+    description: Budget traits that ground financial motivators and guardrails.
+    traits:
+      - id: finance.budget_style
+        label: Budget Style
+        type: enum
+        decay: steady
+        sensitivity: restricted
+        curiosity: heightened
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Budget style guides how we frame savings nudges - strict, flexible, or aspirational.
+          gentle: >-
+            Share the vibe of your budget so money check-ins feel collaborative, not judgmental.
+          blunt: >-
+            Without a baseline we'll either press too hard or let goals slide; both stall progress.
+          long: >-
+            Budget preferences stay private but unlock smarter simulations for RR demos and future Core plans.
+  - id: routine_rhythms
+    label: Routine Rhythms
+    status: active
+    description: Daily anchors that help the coach time nudges and celebrations.
+    traits:
+      - id: routine.wake_time
+        label: Wake Time
+        type: time
+        decay: fast
+        sensitivity: medium
+        curiosity: baseline
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Knowing your usual wake time lets the coach line up nudges when you're actually awake.
+          gentle: >-
+            Jot your current wake window so we can stagger check-ins instead of pinging you while you sleep.
+          blunt: >-
+            No wake time means alerts fire at random. Help us stop the spam.
+          long: >-
+            Wake anchors sync with sleep notes and curiosity to stage morning vs evening workflows without heavy setup.
+  - id: learning_preferences
+    label: Learning Preferences
+    status: active
+    description: Learning styles that power onboarding, workshop prompts, and AI assist tone.
+    traits:
+      - id: learning.modality
+        label: Learning Modality
+        type: enum
+        decay: steady
+        sensitivity: low
+        curiosity: baseline
+        coverage: partial
+        computed: false
+        last_updated: 2024-09-01T00:00:00Z
+        links: []
+        motivators:
+          neutral: >-
+            Modality hints help us package guidance the way you actually absorb it - audio, visual, or hands-on.
+          gentle: >-
+            Let us know how you learn best so workshops feel energizing instead of like homework.
+          blunt: >-
+            No modality info makes every session default to slides. Nobody wants that.
+          long: >-
+            This quick note feeds onboarding, Head Coach scripts, and AI summaries so the tone stays supportive and efficient.

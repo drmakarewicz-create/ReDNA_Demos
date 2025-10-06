@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Why can't I find the right guy?",
+  "assistant_text": "You're feeling frustrated that you haven't found the right person yet. Can you tell me more about what specifically is holding you back from meeting someone special? If you want, our Relationship Coach could offer some guidance on navigating dating and relationships - no pressure!",
+  "client_message_id": "de7fdd8e-86a7-4baa-887a-f81718a08b21",
+  "assistant_message_id": "chat-10f9cfea7dd8440f8cc39c04d8833389",
+  "server_ts": "2025-10-04T23:54:51.485+00:00",
+  "server_ts_ms": 1759622091485,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

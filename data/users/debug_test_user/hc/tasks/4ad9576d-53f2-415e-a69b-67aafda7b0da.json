@@ -1,0 +1,13 @@
+{
+  "id": "4ad9576d-53f2-415e-a69b-67aafda7b0da",
+  "title": "Add evidence for Eye Color",
+  "action": "add_evidence",
+  "args": {
+    "trait": "PaDNA.EyeDNA.Iris.BaseColor"
+  },
+  "state": "done",
+  "created_ts": "2025-10-04T11:50:01.442106+00:00",
+  "updated_ts": "2025-10-04T11:50:01.445837+00:00",
+  "eta_mins": 2,
+  "provenance": {}
+}

@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test1",
+  "assistant_text": "It looks like we lost connection again! \n\nLet's try this again. What's new with you and your furry friends, Archie and George?",
+  "client_message_id": "47656264-e34a-4fd9-96c6-03350235c85e",
+  "assistant_message_id": "chat-06af32fcce7d4f7fbde3a58d179a194f",
+  "server_ts": "2025-10-05T20:44:24.129+00:00",
+  "server_ts_ms": 1759697064129,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

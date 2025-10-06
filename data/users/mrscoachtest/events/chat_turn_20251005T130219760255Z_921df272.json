@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I wear glasses now",
+  "assistant_text": "So you've started to notice some changes with your eyesight! What's been the biggest adjustment for you since getting glasses?",
+  "client_message_id": "dc892978-8156-45db-b8d0-f311fe5b6a78",
+  "assistant_message_id": "chat-6826d4a94b344f54aaa4ab032b7c8bc8",
+  "server_ts": "2025-10-05T13:02:19.760+00:00",
+  "server_ts_ms": 1759669339760,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,42 @@
+{
+  "user": "TEST",
+  "change_event": {
+    "path": "PaDNA.LooksDNA.EyeDNA.Color",
+    "old_value": "brown",
+    "new_value": "blue",
+    "ts": 1757957377,
+    "provenance": "explorer-ai::TEST::noauth",
+    "rescore_label": "prompt-v4.1"
+  },
+  "ucnrr_result": {
+    "ucn": 540.0,
+    "rr": 0.67,
+    "curiosity": 460.0,
+    "why": "Fresh confirmation; minimal recency weight (stale)",
+    "rescore_label": "prompt-v4.1"
+  },
+  "core_plan": {
+    "propagation_plan": [
+      {
+        "path": "PaDNA.LooksDNA.EyeDNA.Shape",
+        "action": "recompute_rollup",
+        "reason": "new color"
+      },
+      {
+        "path": "EmDNA.MoodDNA.Impact",
+        "action": "check",
+        "reason": "color impact on mood"
+      }
+    ],
+    "contradictions": [],
+    "checks": [
+      {
+        "prompt": "Confirm eye shape and contacts lens DNA"
+      },
+      {
+        "prompt": "[meta] rescore: prompt-v4.1"
+      }
+    ]
+  },
+  "written_at": 1757958257
+}

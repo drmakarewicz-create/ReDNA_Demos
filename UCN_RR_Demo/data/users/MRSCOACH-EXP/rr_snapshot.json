@@ -1,0 +1,280 @@
+{
+  "ts": "20250924_203734",
+  "resolved": {
+    "SocDNA.Relationship.Status": {
+      "resolved_value": "Married",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Relationship.Status=Married"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "SocDNA.Prefs.LanguagePrimary": {
+      "resolved_value": "English",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Prefs.LanguagePrimary=English"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "SocDNA.Identity.Orientation": {
+      "resolved_value": "Heterosexual",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Orientation=Heterosexual"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "SocDNA.Identity.Gender": {
+      "resolved_value": "Female",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Gender=Female"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "SocDNA.Demographics.AgeRange": {
+      "resolved_value": "45-54",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Demographics.AgeRange=45-54"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "PrefDNA.Bonding.Style": {
+      "resolved_value": "A",
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: PrefDNA.Bonding.Style=A"
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence."
+        ]
+      }
+    },
+    "PaDNA.Gender": {
+      "resolved_value": "Female",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Gender=Female",
+          "Free text snippet: Onboarding selections: Relationship Status: Married; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 45-54; WYR\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.Orientation": {
+      "resolved_value": "Heterosexual",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Orientation=Heterosexual",
+          "Free text snippet: Onboarding selections: Relationship Status: Married; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 45-54; WYR\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.AgeRange": {
+      "resolved_value": "45-54",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.AgeRange=45-54",
+          "Free text snippet: Onboarding selections: Relationship Status: Married; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 45-54; WYR\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.Language": {
+      "resolved_value": "English",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Language=English",
+          "Free text snippet: Onboarding selections: Relationship Status: Married; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 45-54; WYR\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.RelationshipStatus": {
+      "resolved_value": "Married",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.RelationshipStatus=Married",
+          "Free text snippet: Onboarding selections: Relationship Status: Married; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 45-54; WYR\u2026"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.Relationship.Status": {
+      "resolved_value": "Married",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Relationship.Status=Married",
+          "Free text snippet: My husband and I are having problems"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.Person.Gender": {
+      "resolved_value": "Not Specified",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Person.Gender=Not Specified",
+          "Free text snippet: My husband and I are having problems"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    },
+    "PaDNA.Emotion.Type": {
+      "resolved_value": "Problematic",
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Emotion.Type=Problematic",
+          "Free text snippet: My husband and I are having problems"
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900."
+        ]
+      }
+    }
+  },
+  "observations": {}
+}

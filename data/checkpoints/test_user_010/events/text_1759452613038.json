@@ -1,0 +1,13 @@
+{
+  "event_id": "text_1759452613038",
+  "ts": "2025-10-03T00:50:13+00:00",
+  "type": "text_ingest",
+  "user_id": "test_user_010",
+  "text": "Test text for provenance",
+  "source": "explorer",
+  "status": "failed",
+  "ucnrr_result": {
+    "ok": false,
+    "error": "Unexpected error: Unexpected error"
+  }
+}

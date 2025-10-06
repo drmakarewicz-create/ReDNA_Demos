@@ -1,0 +1,110 @@
+{
+  "schema_version": "explorer.bundle/1.0",
+  "source": { "core_schema": "core/3.1", "ucnrr_schema": "ucnrr.demo/1.5" },
+  "identity": { "user_id": "user-photo-B", "snapshot_id": "photo-B-001" },
+  "paths_present": [
+    ["PaDNA","LooksDNA"],
+    ["PaDNA","AgeDNA"],
+    ["PaDNA","HeightDNA"],
+    ["PaDNA","BuildDNA"],
+    ["PaDNA","HairDNA","Color"],
+    ["PaDNA","HairDNA","Length"],
+    ["PaDNA","HairDNA","Texture"],
+    ["PaDNA","HairDNA","Style"],
+    ["PaDNA","EyeDNA","Color"],
+    ["PaDNA","EyeDNA","Shape"],
+    ["PaDNA","SkinDNA","Tone"],
+    ["PaDNA","GlassesDNA"],
+    ["PaDNA","DistinguishingMarksDNA","Tattoos"],
+    ["PaDNA","DistinguishingMarksDNA","Piercings"],
+    ["PaDNA","ApparelDNA","Fit"],
+    ["PaDNA","ApparelDNA","Style"],
+    ["PaDNA","ApparelDNA","Palette"],
+    ["PaDNA","PostureDNA"],
+    ["PaDNA","GaitDNA"]
+  ],
+  "results": {
+    "schema_version": "ucnrr.demo/1.5",
+    "ucn": {
+      "per_dna": {
+        "PaDNA.LooksDNA": 790,
+        "PaDNA.AgeDNA": 650,
+        "PaDNA.HeightDNA": 600,
+        "PaDNA.BuildDNA": 680,
+        "PaDNA.HairDNA.Color": 880,
+        "PaDNA.HairDNA.Length": 800,
+        "PaDNA.HairDNA.Texture": 720,
+        "PaDNA.HairDNA.Style": 760,
+        "PaDNA.EyeDNA.Color": 740,
+        "PaDNA.EyeDNA.Shape": 760,
+        "PaDNA.SkinDNA.Tone": 710,
+        "PaDNA.GlassesDNA": 140,
+        "PaDNA.DistinguishingMarksDNA.Tattoos": 920,
+        "PaDNA.DistinguishingMarksDNA.Piercings": 760,
+        "PaDNA.ApparelDNA.Fit": 760,
+        "PaDNA.ApparelDNA.Style": 830,
+        "PaDNA.ApparelDNA.Palette": 780,
+        "PaDNA.PostureDNA": 630,
+        "PaDNA.GaitDNA": 520
+      },
+      "top_level": { "PaDNA": 735.0 },
+      "overall": 735.0
+    },
+    "descriptors": {
+      "PaDNA.HairDNA.Color": { "value": "dark-brown", "ucn": 880 },
+      "PaDNA.HairDNA.Length": { "value": "long", "ucn": 800 },
+      "PaDNA.HairDNA.Texture": { "value": "straight", "ucn": 720 },
+      "PaDNA.HairDNA.Style": { "value": "loose", "ucn": 760 },
+
+      "PaDNA.EyeDNA.Color": { "value": "brown", "ucn": 740 },
+      "PaDNA.EyeDNA.Shape": { "value": "round", "ucn": 760 },
+
+      "PaDNA.SkinDNA.Tone": { "value": "light-medium", "ucn": 710, "details": { "undertone": "neutral" } },
+
+      "PaDNA.GlassesDNA": { "value": "none", "ucn": 140 },
+
+      "PaDNA.DistinguishingMarksDNA.Tattoos": {
+        "value": "present",
+        "ucn": 920,
+        "details": { "locations": ["left-forearm","right-upper-arm","left-wrist"] }
+      },
+      "PaDNA.DistinguishingMarksDNA.Piercings": { "value": "earlobes", "ucn": 760 },
+
+      "PaDNA.PostureDNA": { "value": "neutral", "ucn": 630 },
+
+      "PaDNA.ApparelDNA.Style": { "value": "boho", "ucn": 830 },
+      "PaDNA.ApparelDNA.Fit": { "value": "fitted", "ucn": 760 },
+      "PaDNA.ApparelDNA.Palette": { "value": "warm", "ucn": 780 }
+    },
+    "gaps": {
+      "raw_curiosity": [
+        ["PaDNA.GaitDNA", 480.0],
+        ["PaDNA.HeightDNA", 400.0],
+        ["PaDNA.PostureDNA", 370.0]
+      ],
+      "top_weighted": [
+        { "dna_path": "PaDNA.GaitDNA", "weighted_score": 336.0, "curiosity": 480.0, "importance": 0.7, "staleness": 1.0, "reason": "subject seated in frame" },
+        { "dna_path": "PaDNA.HeightDNA", "weighted_score": 280.0, "curiosity": 400.0, "importance": 0.7, "staleness": 1.0, "reason": "camera perspective" },
+        { "dna_path": "PaDNA.PostureDNA", "weighted_score": 259.0, "curiosity": 370.0, "importance": 0.7, "staleness": 0.9, "reason": "seated posture only" }
+      ],
+      "agenda_items": ["Capture standing photos or measurements for height/gait/posture."]
+    },
+    "contradictions": [],
+    "evidence_meta": {
+      "PaDNA.DistinguishingMarksDNA.Tattoos": [
+        { "observed_at": "2025-09-08T00:00:00Z",
+          "provenance": { "credibility_tier": "document", "source": "synthetic-photo-annotation", "method": "visual" } }
+      ],
+      "PaDNA.HairDNA.Color": [
+        { "observed_at": "2025-09-08T00:00:00Z",
+          "provenance": { "credibility_tier": "document", "source": "synthetic-photo-annotation", "method": "visual" } }
+      ],
+      "PaDNA.ApparelDNA.Style": [
+        { "observed_at": "2025-09-08T00:00:00Z",
+          "provenance": { "credibility_tier": "document", "source": "synthetic-photo-annotation", "method": "visual" } }
+      ]
+    },
+    "meta": { "difficulty": "Normal", "calculated_at": "2025-09-08T00:00:00Z" }
+  },
+  "notes": "Descriptor-enabled synthetic record made from a single seated portrait (outbound demo only)."
+}

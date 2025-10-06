@@ -1,0 +1,9 @@
+{
+  "event_type": "OBS_INGESTED",
+  "timestamp": "2025-10-04T00:46:56.507666",
+  "payload": {
+    "user_id": "hc_test_alice",
+    "source_coach": "Photo Coach",
+    "trait_count": 2
+  }
+}

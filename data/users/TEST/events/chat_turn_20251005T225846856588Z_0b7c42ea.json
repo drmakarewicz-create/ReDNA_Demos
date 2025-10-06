@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test",
+  "assistant_text": "Let's try again! You mentioned reconnecting and having fun chatting about Archie and George. What's been the most entertaining thing they've done together recently? \n\nAlso, since you have two energetic fur babies, our PaDNA Coach could help you create a customized tag with their names and your contact info, making it easier for people to return them if they get lost.",
+  "client_message_id": "67bfecb4-802f-4e07-8c1b-3df39345eb00",
+  "assistant_message_id": "chat-2b778ed98edc4b3bbdfac57546f0e0e8",
+  "server_ts": "2025-10-05T22:58:46.856+00:00",
+  "server_ts_ms": 1759705126856,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

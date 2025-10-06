@@ -1,0 +1,615 @@
+{
+  "user_id": "LOHAN1251",
+  "rows": [
+    {
+      "path": "SocDNA.Identity.Gender",
+      "value": "Female",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:32Z",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 79.92686749999999,
+      "curiosity": 20.073132500000014,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Gender=Female",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Demographics.AgeRange",
+      "value": "18-24",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:32Z",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 79.7117624,
+      "curiosity": 20.288237600000002,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Demographics.AgeRange=18-24",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Identity.Orientation",
+      "value": "Bisexual",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:32Z",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 82.85224099999999,
+      "curiosity": 17.147759000000008,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Identity.Orientation=Bisexual",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Prefs.LanguagePrimary",
+      "value": "English",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:32Z",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 82.12089639999999,
+      "curiosity": 17.879103600000008,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Prefs.LanguagePrimary=English",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Relationship.Status",
+      "value": "Single",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:32Z",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 82.85224099999999,
+      "curiosity": 17.147759000000008,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: SocDNA.Relationship.Status=Single",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "PrefDNA.Bonding.Style",
+      "value": "C",
+      "value_type": "string",
+      "confidence": 0.94,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:32Z",
+        "step": "core-holistic"
+      },
+      "ucn": 940.0,
+      "reasons": [
+        "explicit"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 82.12089639999999,
+      "curiosity": 17.879103600000008,
+      "notes": {
+        "summary": "Parsed canonical line supplied by user.",
+        "evidence": [
+          "Canonical line: PrefDNA.Bonding.Style=C",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Confirm the detail remains accurate in follow-up conversation.",
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Capture supporting evidence (photo or document) to reach maximum confidence.",
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "Gender",
+      "value": "Female",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:51Z",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 73.24621420000001,
+      "curiosity": 26.75378579999999,
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Gender=Female",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "AgeRange",
+      "value": "18-24",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:51Z",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 73.24621420000001,
+      "curiosity": 26.75378579999999,
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.AgeRange=18-24",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "Orientation",
+      "value": "Bisexual",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:51Z",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 74.7310612,
+      "curiosity": 25.2689388,
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Orientation=Bisexual",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "Language",
+      "value": "English",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:51Z",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 74.7310612,
+      "curiosity": 25.2689388,
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Language=English",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "RelationshipStatus",
+      "value": "Single",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-23T16:51:51Z",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 72.5037858,
+      "curiosity": 27.496214199999997,
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.RelationshipStatus=Single",
+          "Free text snippet: Onboarding selections: Gender: Female; Age Range: 18-24; Orientation: Bisexual; Language: English; Relationship Status: Single; WYR Evening\u2026",
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "PrefDNA.Interest.Hobbies",
+      "value": "Music",
+      "value_type": "string",
+      "confidence": 0.12,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 120.0,
+      "reasons": [
+        "pattern"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 7.8346135000000015,
+      "curiosity": 92.1653865,
+      "notes": {
+        "summary": "Low comparative confidence (3.84615 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Prefs.Culture",
+      "value": "Western",
+      "value_type": "string",
+      "confidence": 0.13,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 130.0,
+      "reasons": [
+        "contextual"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 7.25,
+      "curiosity": 92.75,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-25T03:08:02.684738+00:00.",
+          "Holistic review normalization applied on 2025-09-25T23:24:04.545096+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Prefs.Interest.MusicGenre",
+      "value": "Pop",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic-llm"
+      },
+      "ucn": 110.0,
+      "reasons": [
+        "pattern"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 10.833333333333336,
+      "curiosity": 89.16666666666666,
+      "notes": {
+        "summary": "Holistic LLM inference",
+        "evidence": [
+          "Holistic LLM inference on 2025-09-25T23:24:04.545096+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    },
+    {
+      "path": "SocDNA.Prefs.Culture.Subculture",
+      "value": "Alternative",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic-llm"
+      },
+      "ucn": 100.0,
+      "reasons": [
+        "contextual"
+      ],
+      "flags": null,
+      "status": null,
+      "rr": 10.0,
+      "curiosity": 90.0,
+      "notes": {
+        "summary": "Holistic LLM inference",
+        "evidence": [
+          "Holistic LLM inference on 2025-09-25T23:24:04.545096+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-25T23:24:04.545096+00:00",
+      "canonical_path": null,
+      "canonical_value": null,
+      "original_path": null,
+      "value_alias": null,
+      "path_alias": null
+    }
+  ],
+  "updated_ts": "2025-09-25T23:24:04.545096+00:00"
+}

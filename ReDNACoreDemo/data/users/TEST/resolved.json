@@ -1,0 +1,40 @@
+{
+  "PaDNA.LooksDNA.EyeDNA.IrisColor": {
+    "resolved_value": "Blue",
+    "ucn": 132,
+    "flags": [
+      "translated"
+    ],
+    "reasons": [
+      "imported:Blue@0.60"
+    ]
+  },
+  "BioDNA.Race": {
+    "resolved_value": "Black",
+    "ucn": 120,
+    "reasons": [
+      "explicit statement"
+    ]
+  },
+  "PaDNA.LooksDNA.HairDNA.Color": {
+    "resolved_value": "brown",
+    "ucn": 100,
+    "reasons": [
+      "explicit color statement"
+    ]
+  },
+  "PaDNA.LooksDNA.FaceDNA.FacialHair": {
+    "resolved_value": true,
+    "ucn": 100,
+    "reasons": [
+      "explicit statement"
+    ]
+  },
+  "BioDNA.Height.Years": {
+    "resolved_value": 72,
+    "ucn": 100,
+    "reasons": [
+      "explicit height statement"
+    ]
+  }
+}

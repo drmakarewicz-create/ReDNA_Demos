@@ -1,0 +1,83 @@
+{
+  "user_id": "user_123",
+  "default_provenance": {
+    "source": "photo_set_manual_read",
+    "confidence": 0.78,
+    "method": "visual_estimate",
+    "notes": "Converted from PaDNA profile to dot-path observations."
+  },
+  "observations": [
+    { "path": "PaDNA.body.height_cm_estimate", "value": 173 },
+    { "path": "PaDNA.body.weight_kg_estimate", "value": 63 },
+    { "path": "PaDNA.body.frame", "value": "mesomorphic_lean" },
+    { "path": "PaDNA.body.shoulder_width", "value": "broad" },
+    { "path": "PaDNA.body.shoulder_slope", "value": "slight" },
+    { "path": "PaDNA.body.posture_default", "value": "upright_open" },
+    { "path": "PaDNA.body.gait", "value": "confident_moderate_stride" },
+    { "path": "PaDNA.body.movement_style", "value": "graceful_controlled" },
+
+    { "path": "PaDNA.face.shape", "value": "oval" },
+    { "path": "PaDNA.face.jawline", "value": "soft_tapered" },
+    { "path": "PaDNA.face.cheekbone_prominence", "value": "high" },
+    { "path": "PaDNA.face.chin_shape", "value": "rounded" },
+    { "path": "PaDNA.face.face_symmetry", "value": "high" },
+
+    { "path": "PaDNA.eyes.color_family", "value": "hazel_green" },
+    { "path": "PaDNA.eyes.pattern", "value": "light_radiant" },
+    { "path": "PaDNA.eyes.ring", "value": "soft_warm" },
+    { "path": "PaDNA.eyes.sclera_brightness", "value": "bright" },
+    { "path": "PaDNA.eyes.eyelid_fold", "value": "double" },
+    { "path": "PaDNA.eyes.eyelash_density", "value": "moderate" },
+
+    { "path": "PaDNA.brows.thickness", "value": "medium" },
+    { "path": "PaDNA.brows.arch_height", "value": "moderate" },
+    { "path": "PaDNA.brows.shape", "value": "soft_angle" },
+    { "path": "PaDNA.brows.brow_color", "value": "warm_medium_copper_brown" },
+
+    { "path": "PaDNA.nose.type", "value": "straight_with_soft_tip" },
+
+    { "path": "PaDNA.lips.top_thickness", "value": "medium" },
+    { "path": "PaDNA.lips.bottom_thickness", "value": "medium_full" },
+    { "path": "PaDNA.lips.cupid_bow", "value": "defined_soft" },
+    { "path": "PaDNA.lips.resting_corner_angle", "value": "neutral_to_upturned" },
+
+    { "path": "PaDNA.hair.natural_color_guess", "value": "warm_light_auburn_copper" },
+    { "path": "PaDNA.hair.current_color_treatment", "value": "copper_blonde_highlights" },
+    { "path": "PaDNA.hair.length", "value": "long" },
+    { "path": "PaDNA.hair.texture_pattern", "value": "2B_wavy" },
+    { "path": "PaDNA.hair.density", "value": "high" },
+    { "path": "PaDNA.hair.part_preference", "value": "side_right" },
+
+    { "path": "PaDNA.skin.undertone", "value": "warm_peach" },
+    { "path": "PaDNA.skin.surface_tone", "value": "light_medium" },
+    { "path": "PaDNA.skin.freckling", "value": "moderate_on_chest_shoulders" },
+    { "path": "PaDNA.skin.sun_reactivity", "value": "tans_easily_burns_moderate" },
+
+    { "path": "PaDNA.micro_features.crowfeet", "value": "light_dynamic" },
+    { "path": "PaDNA.micro_features.glabella_lines", "value": "subtle" },
+    { "path": "PaDNA.micro_features.temporal_fullness", "value": "balanced" },
+
+    { "path": "PaDNA.movement.expressive_axes", "value": ["shoulders", "hands"] },
+    { "path": "PaDNA.movement.head_tilt_baseline", "value": "slight_right" },
+    { "path": "PaDNA.movement.camera_angle_preference", "value": "three_quarter_left" },
+    { "path": "PaDNA.movement.pose_habits", "value": ["hand_on_hip", "one_leg_relaxed"] },
+
+    { "path": "PaDNA.apparel.style_archetype", "value": "classic_feminine_glam" },
+    { "path": "PaDNA.apparel.silhouette_preferences", "value": ["sheath", "bodycon", "empire"] },
+    { "path": "PaDNA.apparel.neckline_preferences", "value": ["deep_v", "keyhole", "sweetheart"] },
+    { "path": "PaDNA.apparel.color_palette_preference", "value": ["emerald_green", "warm_reds", "plum", "ivory"] },
+    { "path": "PaDNA.apparel.jewelry_style", "value": ["statement_earrings", "delicate_pendant"] },
+    { "path": "PaDNA.apparel.footwear.heel_height_preference", "value": "high" },
+
+    { "path": "PaDNA.makeup.foundation_coverage", "value": "light_to_medium" },
+    { "path": "PaDNA.makeup.finish", "value": "natural_radiant" },
+    { "path": "PaDNA.makeup.lip_color_family", "value": ["rosy_pink", "peachy_nude", "warm_red_event"] },
+
+    { "path": "PaDNA.palette.skin.fill", "value": "#E7C0A3" },
+    { "path": "PaDNA.palette.hair.base", "value": "#B5632E" },
+    { "path": "PaDNA.palette.eyes.iris", "value": "#7BA06A" },
+    { "path": "PaDNA.palette.lips.fill", "value": "#C96F6A" },
+
+    { "path": "PaDNA.presentation.vibe", "value": ["polished", "approachable", "confident"] }
+  ]
+}

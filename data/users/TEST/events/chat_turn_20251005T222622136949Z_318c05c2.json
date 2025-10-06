@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "test",
+  "assistant_text": "Let's start fresh again! Since you asked about Archie's energy level, how has it been with George around? Have they been getting into any funny mischief together? \n\nAlso, since we're having a smooth conversation this time, would you like to connect with our PaDNA Coach for some fun style tips to keep up with their energetic adventures?",
+  "client_message_id": "e82883e7-352c-4710-b23b-d71ecfcb84b4",
+  "assistant_message_id": "chat-2f1940de9b7d4d79b585847461d4d084",
+  "server_ts": "2025-10-05T22:26:22.136+00:00",
+  "server_ts_ms": 1759703182136,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

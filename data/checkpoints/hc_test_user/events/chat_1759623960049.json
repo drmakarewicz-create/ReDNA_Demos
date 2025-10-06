@@ -1,0 +1,45 @@
+{
+  "type": "chat_turn",
+  "ts": 1759623960049,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I'm looking for a new job",
+    "ts": 1759623960045
+  },
+  "assistant": {
+    "text": "You're exploring new opportunities. What are the most important factors to you in this next job - work-life balance, career growth, or something else? \n\n(By the way, our Career Coach is here to help with resume building and interview prep if you need it)",
+    "ts": 1759623960049,
+    "message_id": "chat-6fb5a9a090774e419f6297645df78520"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 7094,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 6,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.42333333333333334,
+    "assertiveness_score": 0.0,
+    "dialog_act": "ack",
+    "rolling_latency_avg_ms": 5759.470588235294,
+    "rolling_latency_median_ms": 5399.0,
+    "latency_histogram": {
+      "steady": 14,
+      "fast": 3
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 8,
+      "question": 9,
+      "ack": 1
+    },
+    "priority": 0.8
+  }
+}

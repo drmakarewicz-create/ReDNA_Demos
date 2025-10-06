@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "mrscoachtest",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I studied Asian studies and Chinese. No professors stand out",
+  "assistant_text": "So you focused on the cultural side of things. What's your favorite way to stay connected to your Asian heritage now that you're not in college?",
+  "client_message_id": "b8128174-e7d7-462d-b6d5-dc5e81650fe4",
+  "assistant_message_id": "chat-dc8fc8ef122a4564b74ced94ca9cd165",
+  "server_ts": "2025-10-05T12:59:47.901+00:00",
+  "server_ts_ms": 1759669187901,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

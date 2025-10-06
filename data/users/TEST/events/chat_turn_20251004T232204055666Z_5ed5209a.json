@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What do you mean? Nothing is missing. Everybody wants to find a life partner",
+  "assistant_text": "You're right, lots of people are looking for a meaningful connection. But what does it look like for you specifically? Is there something about the idea of being in a committed relationship that excites or draws you in, versus just going through the motions of dating? Let's explore what you'd like to feel or experience with someone special. Next step: can we brainstorm some qualities or characteristics that would make you feel connected and happy in a relationship?",
+  "client_message_id": "200a2686-1bb5-47c8-ac0a-1204a0534cda",
+  "assistant_message_id": "chat-14a81ecf22ca494e8e314e8b6475994b",
+  "server_ts": "2025-10-04T23:22:04.055+00:00",
+  "server_ts_ms": 1759620124055,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

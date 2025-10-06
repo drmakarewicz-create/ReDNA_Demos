@@ -1,0 +1,46 @@
+{
+  "type": "chat_turn",
+  "ts": 1759624126679,
+  "user_id": "hc_test_user",
+  "persona": "head coach",
+  "provider": "ollama",
+  "user": {
+    "text": "I want to improve my dating life",
+    "ts": 1759624126677
+  },
+  "assistant": {
+    "text": "You're looking to boost your dating life? That's something our Relationship Coach could help with - they offer personalized advice and strategies for connecting with others in a meaningful way. Would you be open to chatting with them about it?",
+    "ts": 1759624126679,
+    "message_id": "chat-dcfe4a1024ad409591ca4985a52211c7"
+  },
+  "provider_settings": {},
+  "observations_ref": "users/hc_test_user/observations.json",
+  "metrics": {
+    "response_latency_ms": 7073,
+    "response_latency_bucket": "steady",
+    "turn_length_words": 7,
+    "clarification_matches": 0,
+    "clarification_score": 0.0,
+    "repair_phrases": [],
+    "humor_markers": [],
+    "politeness_markers": [],
+    "sentiment_score": 0.5,
+    "formality_score": 0.5257142857142857,
+    "assertiveness_score": 0.0,
+    "dialog_act": "answer",
+    "rolling_latency_avg_ms": 8014.606060606061,
+    "rolling_latency_median_ms": 6513.0,
+    "latency_histogram": {
+      "steady": 29,
+      "fast": 3,
+      "slow": 1
+    },
+    "cadence_bucket": "steady",
+    "dialog_act_counts": {
+      "answer": 15,
+      "question": 18,
+      "ack": 1
+    },
+    "priority": 0.8
+  }
+}

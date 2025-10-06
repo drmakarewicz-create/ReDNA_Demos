@@ -1,0 +1,516 @@
+{
+  "profile": {
+    "label": "AB Test",
+    "created_ts": "2025-10-04T15:52:08.653822+00:00"
+  },
+  "PaDNA.HairDNA.Color": {
+    "resolved_value": "Dark Brown",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Consistent dark brown across all photos, ranges from deeper brown to lighter brown with subtle variation"
+    }
+  },
+  "PaDNA.HairDNA.Highlights": {
+    "resolved_value": "Subtle Natural",
+    "ucn": 750.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Some photos show lighter brown highlights, appears natural (AB4, AB5, AB7, AB10)"
+    }
+  },
+  "PaDNA.HairDNA.Length": {
+    "resolved_value": "Medium To Long",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Ranges from shoulder-length to past shoulders, varies with styling"
+    }
+  },
+  "PaDNA.HairDNA.Texture": {
+    "resolved_value": "Wavy",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Natural wave pattern visible, can be styled straight or with more curl"
+    }
+  },
+  "PaDNA.HairDNA.Volume": {
+    "resolved_value": "Medium To High",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Good natural volume, appears fuller in some styled photos"
+    }
+  },
+  "PaDNA.HairDNA.Style": {
+    "resolved_value": "Versatile",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Multiple styles: sleek updo (AB1), down and wavy (AB2, AB3, AB6), center part (AB7, AB10), side swept (AB5)"
+    }
+  },
+  "PaDNA.EyeDNA.Color": {
+    "resolved_value": "Blue-Green",
+    "ucn": 980.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Very distinctive vivid blue-green eyes, striking feature across all photos"
+    }
+  },
+  "PaDNA.EyeDNA.Intensity": {
+    "resolved_value": "Vivid",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Eyes are notably bright and expressive, high color saturation"
+    }
+  },
+  "PaDNA.EyeDNA.Shape": {
+    "resolved_value": "Almond",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Classic almond eye shape, well-proportioned"
+    }
+  },
+  "PaDNA.EyeDNA.Size": {
+    "resolved_value": "Large",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Notably large, expressive eyes, prominent facial feature"
+    }
+  },
+  "PaDNA.EyeDNA.EyeSpacing": {
+    "resolved_value": "Average",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Well-proportioned spacing relative to face width"
+    }
+  },
+  "PaDNA.EyebrowDNA.Color": {
+    "resolved_value": "Dark Brown",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Matches hair color, slightly darker than lighter hair tones"
+    }
+  },
+  "PaDNA.EyebrowDNA.Shape": {
+    "resolved_value": "Arched",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Well-defined arch, elegant shape"
+    }
+  },
+  "PaDNA.EyebrowDNA.Thickness": {
+    "resolved_value": "Medium",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Well-groomed, medium thickness, not thin or very thick"
+    }
+  },
+  "PaDNA.SkinDNA.Tone": {
+    "resolved_value": "Fair",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Fair to light skin tone, very consistent across photos"
+    }
+  },
+  "PaDNA.SkinDNA.Undertone": {
+    "resolved_value": "Cool To Neutral",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Cool undertone visible, possibly neutral in some lighting"
+    }
+  },
+  "PaDNA.SkinDNA.Texture": {
+    "resolved_value": "Smooth",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Very clear, smooth complexion visible in close-up photos"
+    }
+  },
+  "PaDNA.SkinDNA.Clarity": {
+    "resolved_value": "Clear",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Exceptionally clear skin, no visible blemishes or texture issues"
+    }
+  },
+  "PaDNA.FacialDNA.FaceShape": {
+    "resolved_value": "Heart",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Classic heart-shaped face with wider forehead, high cheekbones, tapering to narrow chin"
+    }
+  },
+  "PaDNA.FacialDNA.Cheekbones": {
+    "resolved_value": "High And Defined",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Very prominent, high cheekbones, key facial feature"
+    }
+  },
+  "PaDNA.FacialDNA.Jawline": {
+    "resolved_value": "Refined And Narrow",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Delicate, narrow jawline tapering to pointed chin"
+    }
+  },
+  "PaDNA.FacialDNA.ChinShape": {
+    "resolved_value": "Pointed",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Narrow, pointed chin characteristic of heart-shaped face"
+    }
+  },
+  "PaDNA.FacialDNA.ForeheadWidth": {
+    "resolved_value": "Wide",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Wide forehead characteristic of heart-shaped face, wider than jaw - key to face shape"
+    }
+  },
+  "PaDNA.FacialDNA.FacialSymmetry": {
+    "resolved_value": "High",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Strong facial symmetry, balanced features"
+    }
+  },
+  "PaDNA.FacialDNA.Nose.Shape": {
+    "resolved_value": "Straight And Refined",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Small, straight nose with refined bridge"
+    }
+  },
+  "PaDNA.FacialDNA.Nose.Size": {
+    "resolved_value": "Small",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Petite, well-proportioned to delicate facial features"
+    }
+  },
+  "PaDNA.FacialDNA.Nose.BridgeWidth": {
+    "resolved_value": "Narrow",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Narrow, refined nasal bridge"
+    }
+  },
+  "PaDNA.FacialDNA.Lips.Fullness": {
+    "resolved_value": "Medium",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Medium fullness, well-proportioned to face"
+    }
+  },
+  "PaDNA.FacialDNA.Lips.Shape": {
+    "resolved_value": "Well-Defined",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Clear lip definition, balanced upper and lower lips"
+    }
+  },
+  "PaDNA.FacialDNA.Lips.NaturalColor": {
+    "resolved_value": "Pink",
+    "ucn": 800.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Natural pink tone visible in several photos"
+    }
+  },
+  "PaDNA.NeckDNA.Length": {
+    "resolved_value": "Medium To Long",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Graceful neck length, visible in several photos (AB1, AB2, AB5, AB6)"
+    }
+  },
+  "PaDNA.NeckDNA.Width": {
+    "resolved_value": "Slender",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Slender, elegant neck proportions"
+    }
+  },
+  "PaDNA.BodyDNA.Build": {
+    "resolved_value": "Slender",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Consistently slender build visible across all photos"
+    }
+  },
+  "PaDNA.BodyDNA.Frame": {
+    "resolved_value": "Petite To Average",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Delicate bone structure, small to medium frame"
+    }
+  },
+  "PaDNA.BodyDNA.BoneStructure": {
+    "resolved_value": "Delicate",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Fine, delicate bone structure visible in shoulders, collarbone, arms"
+    }
+  },
+  "PaDNA.BodyDNA.Shoulders": {
+    "resolved_value": "Narrow",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Narrow, delicate shoulder width"
+    }
+  },
+  "PaDNA.BodyDNA.Proportions": {
+    "resolved_value": "Balanced",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Well-proportioned physique"
+    }
+  },
+  "PaDNA.StyleDNA.ColorPreference": {
+    "resolved_value": "Bold And Bright",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Strong preference for vivid colors: red (AB1, AB3, AB7, AB9), blue (AB2), pink (AB4), coral/pink tones"
+    }
+  },
+  "PaDNA.StyleDNA.RedPreference": {
+    "resolved_value": "High",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Red appears in 4 of 10 photos, clearly a favored color"
+    }
+  },
+  "PaDNA.StyleDNA.StyleRange": {
+    "resolved_value": "Versatile",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Ranges from elegant/formal (AB1 off-shoulder gown, AB2 halter) to casual (AB4, AB10 cardigans)"
+    }
+  },
+  "PaDNA.StyleDNA.NecklinePreference": {
+    "resolved_value": "V-Neck And Plunging",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Frequent V-necks and plunging necklines (AB2, AB3, AB5, AB6, AB7, AB8)"
+    }
+  },
+  "PaDNA.MakeupDNA.EyeMakeup": {
+    "resolved_value": "Defined",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Consistently defined eye makeup, emphasizes eye color and shape"
+    }
+  },
+  "PaDNA.MakeupDNA.LipColor": {
+    "resolved_value": "Pink To Rose",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Prefers pink, rose, and berry tones for lips across multiple photos"
+    }
+  },
+  "PaDNA.MakeupDNA.MakeupStyle": {
+    "resolved_value": "Polished And Defined",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Well-applied makeup with emphasis on eyes and lips, polished appearance"
+    }
+  },
+  "PaDNA.AccessoryDNA.Earrings": {
+    "resolved_value": "Statement Pieces",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Wears statement earrings in formal photos (AB1 has blue drop earrings)"
+    }
+  },
+  "PaDNA.AccessoryDNA.Necklaces": {
+    "resolved_value": "Delicate",
+    "ucn": 750.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Delicate necklaces visible in some photos (AB4, AB8)"
+    }
+  },
+  "PaDNA.EyeDNA.ColorIntensity": {
+    "resolved_value": "Striking",
+    "ucn": 980.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Eyes are notably vivid and striking, high color saturation - most distinctive facial feature"
+    }
+  },
+  "PaDNA.FacialDNA.CheekboneProminence": {
+    "resolved_value": "Extremely Prominent",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Extremely prominent cheekbones - most defining facial characteristic, very high and sculpted"
+    }
+  },
+  "PaDNA.FacialDNA.JawlineWidth": {
+    "resolved_value": "Narrow",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Very narrow, refined jawline width - characteristic of heart-shaped face"
+    }
+  },
+  "PaDNA.FacialDNA.ChinWidth": {
+    "resolved_value": "Narrow",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Narrow chin width, tapers to point"
+    }
+  },
+  "PaDNA.FacialDNA.FeatureRefinement": {
+    "resolved_value": "Very Delicate",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:reference_photo_analysis"
+    ],
+    "notes": {
+      "text": "Overall very delicate, refined facial features - small nose, narrow jaw, pointed chin, delicate bone structure"
+    }
+  }
+}

@@ -1,0 +1,754 @@
+{
+  "user_id": "HS-MESSY",
+  "resolved": {
+    "PaDNA.Gender": {
+      "value": "Female",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T11:58:25Z",
+        "original_path": "PaDNA.Gender",
+        "canonical_path": "PaDNA.Gender",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Gender=Female",
+          "Free text snippet: Onboarding selections: Relationship Status: Single; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 18-24; WYR\u2026",
+          "Holistic review normalization applied on 2025-09-26T11:58:40.169372+00:00.",
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "canonical_path": "PaDNA.Gender",
+      "canonical_value": "Female",
+      "rr": 71.50855019971799,
+      "curiosity": 28.491449800282012,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.AgeRange": {
+      "value": "18-24",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T11:58:25Z",
+        "original_path": "PaDNA.AgeRange",
+        "canonical_path": "PaDNA.AgeRange",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.AgeRange=18-24",
+          "Free text snippet: Onboarding selections: Relationship Status: Single; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 18-24; WYR\u2026",
+          "Holistic review normalization applied on 2025-09-26T11:58:40.169372+00:00.",
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "canonical_path": "PaDNA.AgeRange",
+      "canonical_value": "18-24",
+      "rr": 71.37572012570499,
+      "curiosity": 28.624279874295013,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.Language": {
+      "value": "English",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T11:58:25Z",
+        "original_path": "PaDNA.Language",
+        "canonical_path": "PaDNA.Language",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Language=English",
+          "Free text snippet: Onboarding selections: Relationship Status: Single; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 18-24; WYR\u2026",
+          "Holistic review normalization applied on 2025-09-26T11:58:40.169372+00:00.",
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "canonical_path": "PaDNA.Language",
+      "canonical_value": "English",
+      "rr": 71.27773168539301,
+      "curiosity": 28.722268314606993,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.Orientation": {
+      "value": "Heterosexual",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T11:58:25Z",
+        "original_path": "PaDNA.Orientation",
+        "canonical_path": "PaDNA.Orientation",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.Orientation=Heterosexual",
+          "Free text snippet: Onboarding selections: Relationship Status: Single; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 18-24; WYR\u2026",
+          "Holistic review normalization applied on 2025-09-26T11:58:40.169372+00:00.",
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "canonical_path": "PaDNA.Orientation",
+      "canonical_value": "Heterosexual",
+      "rr": 70.844402300282,
+      "curiosity": 29.155597699718,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.RelationshipStatus": {
+      "value": "Single",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "onboarding",
+        "ts": "2025-09-26T11:58:25Z",
+        "original_path": "PaDNA.RelationshipStatus",
+        "canonical_path": "PaDNA.RelationshipStatus",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.RelationshipStatus=Single",
+          "Free text snippet: Onboarding selections: Relationship Status: Single; Language: English; Orientation: Heterosexual; Gender: Female; Age Range: 18-24; WYR\u2026",
+          "Holistic review normalization applied on 2025-09-26T11:58:40.169372+00:00.",
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "canonical_path": "PaDNA.RelationshipStatus",
+      "canonical_value": "Single",
+      "rr": 71.61524925434101,
+      "curiosity": 28.38475074565899,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.HairDNA.Color": {
+      "value": "brown - very dark",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-26T11:59:22.156402+00:00",
+        "original_path": "PaDNA.HairDNA.Color",
+        "canonical_path": "PaDNA.HairDNA.Color",
+        "path_alias": "PaDNA.HairDNA.Color",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.HairDNA.Color",
+      "canonical_value": "brown - very dark",
+      "ucn": 600.0,
+      "rr": 49.285714285714285,
+      "curiosity": 50.714285714285715,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.ApparelDNA.Accessories": {
+      "value": [
+        "eyeglasses"
+      ],
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-26T11:59:22.156402+00:00",
+        "original_path": "PaDNA.ApparelDNA.Accessories",
+        "canonical_path": "PaDNA.ApparelDNA.Accessories",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.ApparelDNA.Accessories",
+      "canonical_value": [
+        "eyeglasses"
+      ],
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.FacialDNA.Lips": {
+      "value": "lower>upper (balanced-full)",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-26T11:59:22.156402+00:00",
+        "original_path": "PaDNA.FacialDNA.Lips",
+        "canonical_path": "PaDNA.FacialDNA.Lips",
+        "path_alias": "PaDNA.FacialDNA.Lips",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.FacialDNA.Lips",
+      "canonical_value": "lower>upper (balanced-full)",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.EyeDNA.Eyelashes": {
+      "value": "long & defined (makeup)",
+      "value_type": "string",
+      "confidence": null,
+      "provenance": {
+        "actor": "photo-import",
+        "source": "explorer",
+        "via": "json",
+        "mode": "photo-import",
+        "ts": "2025-09-26T11:59:22.156402+00:00",
+        "original_path": "PaDNA.EyeDNA.Eyelashes",
+        "canonical_path": "PaDNA.EyeDNA.Eyelashes",
+        "step": "core-holistic"
+      },
+      "canonical_path": "PaDNA.EyeDNA.Eyelashes",
+      "canonical_value": "long & defined (makeup)",
+      "ucn": 600.0,
+      "rr": 51.666666666666664,
+      "curiosity": 48.333333333333336,
+      "reasons": [],
+      "notes": {
+        "summary": "Normalized by holistic review",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-26T11:59:37.186781+00:00.",
+          "Holistic review normalization applied on 2025-09-26T12:01:50.087827+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ]
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.RequestType": {
+      "value": "SwitchToCoach",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "head_coach_chat",
+        "ts": "2025-09-28T19:46:16Z",
+        "original_path": "PaDNA.RequestType",
+        "canonical_path": "PaDNA.RequestType",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.RequestType=SwitchToCoach",
+          "Free text snippet: Can you switch to the Relationship Coach?",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "canonical_path": "PaDNA.RequestType",
+      "canonical_value": "SwitchToCoach",
+      "rr": 74.47485,
+      "curiosity": 25.525149999999996,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.CoachType": {
+      "value": "RelationshipCoach",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "head_coach_chat",
+        "ts": "2025-09-28T19:46:16Z",
+        "original_path": "PaDNA.CoachType",
+        "canonical_path": "PaDNA.CoachType",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.CoachType=RelationshipCoach",
+          "Free text snippet: Can you switch to the Relationship Coach?",
+          "Holistic review normalization applied on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Explore adjacent traits to deepen profile richness."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Capture supporting context if available, but priority is low."
+        ]
+      },
+      "canonical_path": "PaDNA.CoachType",
+      "canonical_value": "RelationshipCoach",
+      "rr": 73.51445,
+      "curiosity": 26.485550000000003,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.HairTexture": {
+      "value": "coarse",
+      "value_type": "string",
+      "ucn": 120.0,
+      "reasons": [
+        "conservative inference based on brown hair color"
+      ],
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00",
+      "rr": 11.666666666666668,
+      "curiosity": 88.33333333333333,
+      "notes": {
+        "summary": "Holistic LLM inference",
+        "evidence": [
+          "Holistic LLM inference on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ]
+      }
+    },
+    "PaDNA.EyeColor": {
+      "value": "brown",
+      "value_type": "string",
+      "ucn": 110.0,
+      "reasons": [
+        "conservative inference based on facial features and eyelashes description"
+      ],
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00",
+      "rr": 10.833333333333336,
+      "curiosity": 89.16666666666666,
+      "notes": {
+        "summary": "Holistic LLM inference",
+        "evidence": [
+          "Holistic LLM inference on 2025-09-28T19:46:31.658924+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ]
+      }
+    },
+    "PaDNA.SkinTone": {
+      "value": "olive",
+      "value_type": "string",
+      "confidence": 0.12,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 120.0,
+      "reasons": [
+        "conservative inference based on facial features and hair color"
+      ],
+      "rr": 8.4,
+      "curiosity": 91.6,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.BodyType": {
+      "value": "hourglass",
+      "value_type": "string",
+      "confidence": 0.11,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 110.0,
+      "reasons": [
+        "conservative inference based on facial features and overall appearance"
+      ],
+      "rr": 7.975,
+      "curiosity": 92.025,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.Height": {
+      "value": "5'6\" - 5'8\"",
+      "value_type": "string",
+      "ucn": 130.0,
+      "reasons": [
+        "conservative inference based on overall appearance and body type"
+      ],
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00",
+      "rr": 12.5,
+      "curiosity": 87.5,
+      "notes": {
+        "summary": "Holistic LLM inference",
+        "evidence": [
+          "Holistic LLM inference on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ]
+      }
+    },
+    "PaDNA.Weight": {
+      "value": "130-140 lbs",
+      "value_type": "string",
+      "ucn": 120.0,
+      "reasons": [
+        "conservative inference based on body type and overall appearance"
+      ],
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00",
+      "rr": 11.666666666666668,
+      "curiosity": 88.33333333333333,
+      "notes": {
+        "summary": "Holistic LLM inference",
+        "evidence": [
+          "Holistic LLM inference on 2025-09-28T19:46:42.297290+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ]
+      }
+    },
+    "PaDNA.PersonalStatus": {
+      "value": "Unhappy",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "head_coach_chat",
+        "ts": "2025-09-28T19:46:50Z",
+        "original_path": "PaDNA.PersonalStatus",
+        "canonical_path": "PaDNA.PersonalStatus",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.PersonalStatus=Unhappy",
+          "Free text snippet: I am having marital problems",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "canonical_path": "PaDNA.PersonalStatus",
+      "canonical_value": "Unhappy",
+      "rr": 73.36500000000001,
+      "curiosity": 26.63499999999999,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.MaritalStatus": {
+      "value": "Problematic",
+      "value_type": "string",
+      "confidence": 0.83,
+      "provenance": {
+        "source": "ucnrr",
+        "from": "head_coach_chat",
+        "ts": "2025-09-28T19:46:50Z",
+        "original_path": "PaDNA.MaritalStatus",
+        "canonical_path": "PaDNA.MaritalStatus",
+        "step": "core-holistic"
+      },
+      "ucn": 830.0,
+      "reasons": [
+        "llm"
+      ],
+      "notes": {
+        "summary": "LLM inference from free text.",
+        "evidence": [
+          "Canonical line: PaDNA.MaritalStatus=Problematic",
+          "Free text snippet: I am having marital problems",
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Validate this trait by asking the user directly for confirmation.",
+          "Ask the user a confirming follow-up or request a quick example."
+        ],
+        "data_gaps": [
+          "Need explicit confirmation to raise confidence above 900.",
+          "Direct confirmation or secondary evidence would reduce curiosity."
+        ]
+      },
+      "canonical_path": "PaDNA.MaritalStatus",
+      "canonical_value": "Problematic",
+      "rr": 73.36500000000001,
+      "curiosity": 26.63499999999999,
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.BodyShape": {
+      "value": "hourglass",
+      "value_type": "string",
+      "confidence": 0.12,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 120.0,
+      "reasons": [
+        "conservative inference based on facial features, body type, and overall appearance"
+      ],
+      "rr": 7.0,
+      "curiosity": 93.0,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    },
+    "PaDNA.FacialStructure": {
+      "value": "oval",
+      "value_type": "string",
+      "confidence": 0.11,
+      "provenance": {
+        "source": "core-ai",
+        "model": "llama3:latest",
+        "provider": "llama",
+        "step": "core-holistic"
+      },
+      "ucn": 110.0,
+      "reasons": [
+        "conservative inference based on facial features and overall appearance"
+      ],
+      "rr": 6.75,
+      "curiosity": 93.25,
+      "notes": {
+        "summary": "Low comparative confidence (0.0 RR).",
+        "evidence": [
+          "Holistic review normalization applied on 2025-09-28T19:47:01.589152+00:00.",
+          "Holistic review normalization applied on 2025-09-28T19:47:27.446935+00:00."
+        ],
+        "coach_instructions": [
+          "Plan focused questions to validate or correct this trait."
+        ],
+        "data_gaps": [
+          "Need explicit statement or artifact to raise confidence."
+        ]
+      },
+      "updated_ts": "2025-09-28T19:47:27.446935+00:00"
+    }
+  },
+  "schema_version": 4,
+  "ts": "20250928_154701",
+  "last_holistic_ts": "2025-09-28T19:47:27.446935+00:00"
+}

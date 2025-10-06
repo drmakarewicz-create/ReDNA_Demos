@@ -1,0 +1,134 @@
+{
+  "items": [
+    {
+      "trait_id": "attributes.education",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T12:56:14.493000+00:00",
+        "raw_input": "I went to Dartmouth University",
+        "signal": "education: Dartmouth University",
+        "fact_value": "Dartmouth University"
+      },
+      "timestamp": "2025-10-05T12:56:14.493000+00:00"
+    },
+    {
+      "trait_id": "personality.emotional_expression",
+      "value": 60,
+      "confidence": 70,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "keyword_extraction",
+        "timestamp": "2025-10-05T12:58:16.680000+00:00",
+        "raw_input": "I was born in Boston and was lucky enough to get in to Dartmouth",
+        "signal": "positive emotional expression",
+        "keywords_matched": [
+          "lucky"
+        ]
+      },
+      "timestamp": "2025-10-05T12:58:16.680000+00:00"
+    },
+    {
+      "trait_id": "attributes.location",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T12:58:16.680000+00:00",
+        "raw_input": "I was born in Boston and was lucky enough to get in to Dartmouth",
+        "signal": "location: Boston",
+        "fact_value": "Boston"
+      },
+      "timestamp": "2025-10-05T12:58:16.680000+00:00"
+    },
+    {
+      "trait_id": "attributes.education",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T12:58:16.680000+00:00",
+        "raw_input": "I was born in Boston and was lucky enough to get in to Dartmouth",
+        "signal": "education: Dartmouth",
+        "fact_value": "Dartmouth"
+      },
+      "timestamp": "2025-10-05T12:58:16.680000+00:00"
+    },
+    {
+      "trait_id": "attributes.education",
+      "value": 90,
+      "confidence": 80,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T12:59:33.367000+00:00",
+        "raw_input": "I studied Asian studies and Chinese. No professors stand out",
+        "signal": "education: studied Asian studies and Chinese",
+        "fact_value": "studied Asian studies and Chinese"
+      },
+      "timestamp": "2025-10-05T12:59:33.367000+00:00"
+    },
+    {
+      "trait_id": "attributes.physical_attributes",
+      "value": 90,
+      "confidence": 80,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T13:01:11.628000+00:00",
+        "raw_input": "I'm not asian. I'm Irish, German and English",
+        "signal": "physical_attributes: Irish, German and English",
+        "fact_value": "Irish, German and English"
+      },
+      "timestamp": "2025-10-05T13:01:11.628000+00:00"
+    },
+    {
+      "trait_id": "attributes.physical_attributes",
+      "value": 90,
+      "confidence": 80,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T13:02:04.953000+00:00",
+        "raw_input": "I wear glasses now",
+        "signal": "physical_attributes: wears glasses",
+        "fact_value": "wears glasses"
+      },
+      "timestamp": "2025-10-05T13:02:04.953000+00:00"
+    },
+    {
+      "trait_id": "motivations.active_goals",
+      "value": 70,
+      "confidence": 70,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "keyword_extraction",
+        "timestamp": "2025-10-05T13:04:04.421000+00:00",
+        "raw_input": "I just need to remember to put them on in the morning. Sometimes I forget",
+        "signal": "expressed desire or goal",
+        "keywords_matched": [
+          "need"
+        ]
+      },
+      "timestamp": "2025-10-05T13:04:04.421000+00:00"
+    },
+    {
+      "trait_id": "attributes.occupation",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-05T15:02:47.417000+00:00",
+        "raw_input": "I am an actress",
+        "signal": "occupation: actress",
+        "fact_value": "actress"
+      },
+      "timestamp": "2025-10-05T15:02:47.417000+00:00"
+    }
+  ]
+}

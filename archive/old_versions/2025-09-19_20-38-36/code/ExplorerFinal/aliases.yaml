@@ -1,0 +1,15 @@
+# ExplorerFinal/aliases.yaml
+# Map canonical (new) paths to any older or alternate paths that may hold data.
+aliases:
+  PaDNA.LooksDNA.EyeDNA.Color:
+    - PaDNA.EyeColor
+    - PaDNA.LooksDNA.EyeColor
+
+  PaDNA.LooksDNA.HairDNA.NaturalColor:
+    - PaDNA.HairColor
+    - PaDNA.LooksDNA.HairColor
+
+  # You can extend as needed:
+  # PaDNA.LooksDNA.SkinDNA.Tone:
+  #   - PaDNA.SkinTone
+  #   - PaDNA.LooksDNA.SkinTone

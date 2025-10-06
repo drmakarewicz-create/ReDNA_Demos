@@ -1,0 +1,6115 @@
+{
+  "captured_at": "2025-10-03T22:21:28.485414+00:00",
+  "resolved": {
+    "PaDNA.HairDNA.Color": {
+      "resolved_value": "Auburn-Brown With Golden Highlights",
+      "ucn": 920.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.HairDNA.Length": {
+      "resolved_value": "Long",
+      "ucn": 950.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.HairDNA.Texture": {
+      "resolved_value": "Wavy",
+      "ucn": 870.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.HairDNA.Parting": {
+      "resolved_value": "Side Part, Often Left",
+      "ucn": 810.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.HairDNA.Volume": {
+      "resolved_value": "Thick",
+      "ucn": 890.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.EyeDNA.Color": {
+      "resolved_value": "Light Green With Hazel Flecks",
+      "ucn": 940.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.EyeDNA.Shape": {
+      "resolved_value": "Almond",
+      "ucn": 880.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.EyeDNA.Lashes": {
+      "resolved_value": "Medium Length, Full",
+      "ucn": 820.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.SkinDNA.Tone": {
+      "resolved_value": "Fair With Warm Undertones",
+      "ucn": 930.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.SkinDNA.Freckles": {
+      "resolved_value": "Present, Across Face/Shoulders",
+      "ucn": 970.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.SkinDNA.SunSensitivity": {
+      "resolved_value": "High",
+      "ucn": 870.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.BodyDNA.HeightEstimateCM": {
+      "resolved_value": 165,
+      "ucn": 750.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.BodyDNA.Build": {
+      "resolved_value": "Slim/Athletic",
+      "ucn": 880.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.BodyDNA.WaistHipRatio": {
+      "resolved_value": "Moderate Hourglass",
+      "ucn": 840.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.BodyDNA.Bust": {
+      "resolved_value": "Full",
+      "ucn": 850.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.BodyDNA.Shoulders": {
+      "resolved_value": "Moderately Broad",
+      "ucn": 810.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.BodyDNA.Arms": {
+      "resolved_value": "Slim",
+      "ucn": 860.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.BodyDNA.Legs": {
+      "resolved_value": "Long, Toned",
+      "ucn": 890.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.BodyDNA.Navel": {
+      "resolved_value": "Pierced",
+      "ucn": 990.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.SmileDNA.Teeth": {
+      "resolved_value": "Straight, White",
+      "ucn": 920.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.SmileDNA.SmileShape": {
+      "resolved_value": "Broad Smile",
+      "ucn": 930.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.SmileDNA.Dimples": {
+      "resolved_value": "Absent",
+      "ucn": 700.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ApparelDNA.FrequentTops": {
+      "resolved_value": [
+        "Tank tops",
+        "Bikinis",
+        "Casual fitted T-shirts",
+        "Crop tops",
+        "Mini dresses"
+      ],
+      "ucn": 80.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ApparelDNA.StyleThemes": {
+      "resolved_value": [
+        "Casual sexy",
+        "Playful",
+        "Colorful prints",
+        "Beachwear"
+      ],
+      "ucn": 80.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ApparelDNA.Jewelry.Necklace": {
+      "resolved_value": "Often Layered Pendants",
+      "ucn": 820.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ApparelDNA.Jewelry.Earrings": {
+      "resolved_value": "Studs Or Small Hoops",
+      "ucn": 810.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ApparelDNA.Jewelry.Piercings": {
+      "resolved_value": [
+        "Navel piercing"
+      ],
+      "ucn": 80.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ExpressionDNA.TypicalExpression": {
+      "resolved_value": "Smiling Warmly Or Playful Smirk",
+      "ucn": 910.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ExpressionDNA.MoodVariance": {
+      "resolved_value": [
+        "Confident",
+        "Relaxed",
+        "Playful"
+      ],
+      "ucn": 80.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ExpressionDNA.EyeContact": {
+      "resolved_value": "Direct And Engaging",
+      "ucn": 920.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.FitnessDNA.Indicators": {
+      "resolved_value": [
+        "Flat abdomen",
+        "Defined waist",
+        "Toned legs",
+        "Visible muscle tone"
+      ],
+      "ucn": 80.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.FitnessDNA.LifestyleInference": {
+      "resolved_value": "Active/Fitness-Conscious",
+      "ucn": 770.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.FaceDNA.FaceShape": {
+      "resolved_value": "Heart-Shaped To Oval",
+      "ucn": 880.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.FaceDNA.Cheekbones": {
+      "resolved_value": "Prominent, High",
+      "ucn": 890.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.FaceDNA.Jawline": {
+      "resolved_value": "Soft, Rounded",
+      "ucn": 860.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.FaceDNA.Chin": {
+      "resolved_value": "Slightly Pointed",
+      "ucn": 850.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.FaceDNA.FaceWidth": {
+      "resolved_value": "Medium-Narrow",
+      "ucn": 820.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.EyebrowDNA.Shape": {
+      "resolved_value": "Arched With Soft Angle",
+      "ucn": 900.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.EyebrowDNA.Thickness": {
+      "resolved_value": "Medium-Thin To Medium",
+      "ucn": 870.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.EyebrowDNA.Color": {
+      "resolved_value": "Light To Medium Brown",
+      "ucn": 880.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.NoseDNA.Size": {
+      "resolved_value": "Small To Medium",
+      "ucn": 860.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.NoseDNA.Bridge": {
+      "resolved_value": "Straight, Refined",
+      "ucn": 850.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.NoseDNA.Tip": {
+      "resolved_value": "Slightly Rounded",
+      "ucn": 840.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.NoseDNA.Nostrils": {
+      "resolved_value": "Petite",
+      "ucn": 820.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.LipDNA.Fullness": {
+      "resolved_value": "Medium-Full, Balanced Proportions",
+      "ucn": 880.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.LipDNA.Shape": {
+      "resolved_value": "Defined Cupid's Bow",
+      "ucn": 870.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.LipDNA.Color": {
+      "resolved_value": "Natural Pink",
+      "ucn": 850.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.NeckDNA.Length": {
+      "resolved_value": "Medium-Long",
+      "ucn": 840.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.NeckDNA.Width": {
+      "resolved_value": "Slender",
+      "ucn": 850.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.FaceDNA.LowerFaceShape": {
+      "resolved_value": "Gently Tapered",
+      "ucn": 850.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ForeheadDNA.Height": {
+      "resolved_value": "Medium",
+      "ucn": 840.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.ForeheadDNA.Shape": {
+      "resolved_value": "Gently Rounded",
+      "ucn": 830.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.EyeDNA.Size": {
+      "resolved_value": "Medium-Large",
+      "ucn": 870.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    },
+    "PaDNA.EyeDNA.Spacing": {
+      "resolved_value": "Medium-Wide Set",
+      "ucn": 860.0,
+      "reasons": [
+        "photo_import:photo-import-ui"
+      ]
+    }
+  },
+  "evidence": {
+    "items": []
+  },
+  "observations": {
+    "items": [
+      {
+        "trait": "PaDNA.HairDNA.Color",
+        "trait_id": "PaDNA.HairDNA.Color",
+        "value": "Red-Auburn",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Length",
+        "trait_id": "PaDNA.HairDNA.Length",
+        "value": "Long",
+        "ucn": 950.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Texture",
+        "trait_id": "PaDNA.HairDNA.Texture",
+        "value": "Wavy",
+        "ucn": 870.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Parting",
+        "trait_id": "PaDNA.HairDNA.Parting",
+        "value": "Side Part, Often Left",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Volume",
+        "trait_id": "PaDNA.HairDNA.Volume",
+        "value": "Thick",
+        "ucn": 890.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Color",
+        "trait_id": "PaDNA.EyeDNA.Color",
+        "value": "Light Green With Hazel Flecks",
+        "ucn": 940.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Shape",
+        "trait_id": "PaDNA.EyeDNA.Shape",
+        "value": "Almond",
+        "ucn": 880.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Lashes",
+        "trait_id": "PaDNA.EyeDNA.Lashes",
+        "value": "Medium Length, Full",
+        "ucn": 820.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Tone",
+        "trait_id": "PaDNA.SkinDNA.Tone",
+        "value": "Fair With Warm Undertones",
+        "ucn": 930.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Freckles",
+        "trait_id": "PaDNA.SkinDNA.Freckles",
+        "value": "Present, Across Face/Shoulders",
+        "ucn": 970.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.SunSensitivity",
+        "trait_id": "PaDNA.SkinDNA.SunSensitivity",
+        "value": "High",
+        "ucn": 870.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.HeightEstimateCM",
+        "trait_id": "PaDNA.BodyDNA.HeightEstimateCM",
+        "value": 165,
+        "ucn": 750.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Build",
+        "trait_id": "PaDNA.BodyDNA.Build",
+        "value": "Slim/Athletic",
+        "ucn": 880.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.WaistHipRatio",
+        "trait_id": "PaDNA.BodyDNA.WaistHipRatio",
+        "value": "Moderate Hourglass",
+        "ucn": 840.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Bust",
+        "trait_id": "PaDNA.BodyDNA.Bust",
+        "value": "Full",
+        "ucn": 850.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Shoulders",
+        "trait_id": "PaDNA.BodyDNA.Shoulders",
+        "value": "Moderately Broad",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Arms",
+        "trait_id": "PaDNA.BodyDNA.Arms",
+        "value": "Slim",
+        "ucn": 860.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Legs",
+        "trait_id": "PaDNA.BodyDNA.Legs",
+        "value": "Long, Toned",
+        "ucn": 890.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Navel",
+        "trait_id": "PaDNA.BodyDNA.Navel",
+        "value": "Pierced",
+        "ucn": 990.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Teeth",
+        "trait_id": "PaDNA.SmileDNA.Teeth",
+        "value": "Straight, White",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.SmileShape",
+        "trait_id": "PaDNA.SmileDNA.SmileShape",
+        "value": "Broad Smile",
+        "ucn": 930.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Dimples",
+        "trait_id": "PaDNA.SmileDNA.Dimples",
+        "value": "Absent",
+        "ucn": 700.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.FrequentTops",
+        "trait_id": "PaDNA.ApparelDNA.FrequentTops",
+        "value": [
+          "Tank tops",
+          "Bikinis",
+          "Casual fitted T-shirts",
+          "Crop tops",
+          "Mini dresses"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.StyleThemes",
+        "trait_id": "PaDNA.ApparelDNA.StyleThemes",
+        "value": [
+          "Casual sexy",
+          "Playful",
+          "Colorful prints",
+          "Beachwear"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "value": "Often Layered Pendants",
+        "ucn": 820.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "value": "Studs Or Small Hoops",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "value": [
+          "Navel piercing"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.TypicalExpression",
+        "trait_id": "PaDNA.ExpressionDNA.TypicalExpression",
+        "value": "Smiling Warmly Or Playful Smirk",
+        "ucn": 910.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.MoodVariance",
+        "trait_id": "PaDNA.ExpressionDNA.MoodVariance",
+        "value": [
+          "Confident",
+          "Relaxed",
+          "Playful"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.EyeContact",
+        "trait_id": "PaDNA.ExpressionDNA.EyeContact",
+        "value": "Direct And Engaging",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.Indicators",
+        "trait_id": "PaDNA.FitnessDNA.Indicators",
+        "value": [
+          "Flat abdomen",
+          "Defined waist",
+          "Toned legs",
+          "Visible muscle tone"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.LifestyleInference",
+        "trait_id": "PaDNA.FitnessDNA.LifestyleInference",
+        "value": "Active/Fitness-Conscious",
+        "ucn": 770.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:11.164849+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Color",
+        "trait_id": "PaDNA.HairDNA.Color",
+        "value": "Red-Auburn",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Length",
+        "trait_id": "PaDNA.HairDNA.Length",
+        "value": "Long",
+        "ucn": 950.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Texture",
+        "trait_id": "PaDNA.HairDNA.Texture",
+        "value": "Wavy",
+        "ucn": 870.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Parting",
+        "trait_id": "PaDNA.HairDNA.Parting",
+        "value": "Side Part, Often Left",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Volume",
+        "trait_id": "PaDNA.HairDNA.Volume",
+        "value": "Thick",
+        "ucn": 890.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Color",
+        "trait_id": "PaDNA.EyeDNA.Color",
+        "value": "Light Green With Hazel Flecks",
+        "ucn": 940.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Shape",
+        "trait_id": "PaDNA.EyeDNA.Shape",
+        "value": "Almond",
+        "ucn": 880.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Lashes",
+        "trait_id": "PaDNA.EyeDNA.Lashes",
+        "value": "Medium Length, Full",
+        "ucn": 820.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Tone",
+        "trait_id": "PaDNA.SkinDNA.Tone",
+        "value": "Fair With Warm Undertones",
+        "ucn": 930.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Freckles",
+        "trait_id": "PaDNA.SkinDNA.Freckles",
+        "value": "Present, Across Face/Shoulders",
+        "ucn": 970.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.SunSensitivity",
+        "trait_id": "PaDNA.SkinDNA.SunSensitivity",
+        "value": "High",
+        "ucn": 870.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.HeightEstimateCM",
+        "trait_id": "PaDNA.BodyDNA.HeightEstimateCM",
+        "value": 165,
+        "ucn": 750.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Build",
+        "trait_id": "PaDNA.BodyDNA.Build",
+        "value": "Slim/Athletic",
+        "ucn": 880.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.WaistHipRatio",
+        "trait_id": "PaDNA.BodyDNA.WaistHipRatio",
+        "value": "Moderate Hourglass",
+        "ucn": 840.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Bust",
+        "trait_id": "PaDNA.BodyDNA.Bust",
+        "value": "Full",
+        "ucn": 850.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Shoulders",
+        "trait_id": "PaDNA.BodyDNA.Shoulders",
+        "value": "Moderately Broad",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Arms",
+        "trait_id": "PaDNA.BodyDNA.Arms",
+        "value": "Slim",
+        "ucn": 860.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Legs",
+        "trait_id": "PaDNA.BodyDNA.Legs",
+        "value": "Long, Toned",
+        "ucn": 890.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Navel",
+        "trait_id": "PaDNA.BodyDNA.Navel",
+        "value": "Pierced",
+        "ucn": 990.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Teeth",
+        "trait_id": "PaDNA.SmileDNA.Teeth",
+        "value": "Straight, White",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.SmileShape",
+        "trait_id": "PaDNA.SmileDNA.SmileShape",
+        "value": "Broad Smile",
+        "ucn": 930.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Dimples",
+        "trait_id": "PaDNA.SmileDNA.Dimples",
+        "value": "Absent",
+        "ucn": 700.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.FrequentTops",
+        "trait_id": "PaDNA.ApparelDNA.FrequentTops",
+        "value": [
+          "Tank tops",
+          "Bikinis",
+          "Casual fitted T-shirts",
+          "Crop tops",
+          "Mini dresses"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.StyleThemes",
+        "trait_id": "PaDNA.ApparelDNA.StyleThemes",
+        "value": [
+          "Casual sexy",
+          "Playful",
+          "Colorful prints",
+          "Beachwear"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "value": "Often Layered Pendants",
+        "ucn": 820.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "value": "Studs Or Small Hoops",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "value": [
+          "Navel piercing"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.TypicalExpression",
+        "trait_id": "PaDNA.ExpressionDNA.TypicalExpression",
+        "value": "Smiling Warmly Or Playful Smirk",
+        "ucn": 910.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.MoodVariance",
+        "trait_id": "PaDNA.ExpressionDNA.MoodVariance",
+        "value": [
+          "Confident",
+          "Relaxed",
+          "Playful"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.EyeContact",
+        "trait_id": "PaDNA.ExpressionDNA.EyeContact",
+        "value": "Direct And Engaging",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.Indicators",
+        "trait_id": "PaDNA.FitnessDNA.Indicators",
+        "value": [
+          "Flat abdomen",
+          "Defined waist",
+          "Toned legs",
+          "Visible muscle tone"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.LifestyleInference",
+        "trait_id": "PaDNA.FitnessDNA.LifestyleInference",
+        "value": "Active/Fitness-Conscious",
+        "ucn": 770.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:15:54.647563+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Color",
+        "trait_id": "PaDNA.HairDNA.Color",
+        "value": "Red-Auburn",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Length",
+        "trait_id": "PaDNA.HairDNA.Length",
+        "value": "Long",
+        "ucn": 950.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Texture",
+        "trait_id": "PaDNA.HairDNA.Texture",
+        "value": "Wavy",
+        "ucn": 870.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Parting",
+        "trait_id": "PaDNA.HairDNA.Parting",
+        "value": "Side Part, Often Left",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Volume",
+        "trait_id": "PaDNA.HairDNA.Volume",
+        "value": "Thick",
+        "ucn": 890.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Color",
+        "trait_id": "PaDNA.EyeDNA.Color",
+        "value": "Light Green With Hazel Flecks",
+        "ucn": 940.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Shape",
+        "trait_id": "PaDNA.EyeDNA.Shape",
+        "value": "Almond",
+        "ucn": 880.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Lashes",
+        "trait_id": "PaDNA.EyeDNA.Lashes",
+        "value": "Medium Length, Full",
+        "ucn": 820.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Tone",
+        "trait_id": "PaDNA.SkinDNA.Tone",
+        "value": "Fair With Warm Undertones",
+        "ucn": 930.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Freckles",
+        "trait_id": "PaDNA.SkinDNA.Freckles",
+        "value": "Present, Across Face/Shoulders",
+        "ucn": 970.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.SunSensitivity",
+        "trait_id": "PaDNA.SkinDNA.SunSensitivity",
+        "value": "High",
+        "ucn": 870.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.HeightEstimateCM",
+        "trait_id": "PaDNA.BodyDNA.HeightEstimateCM",
+        "value": 165,
+        "ucn": 750.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Build",
+        "trait_id": "PaDNA.BodyDNA.Build",
+        "value": "Slim/Athletic",
+        "ucn": 880.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.WaistHipRatio",
+        "trait_id": "PaDNA.BodyDNA.WaistHipRatio",
+        "value": "Moderate Hourglass",
+        "ucn": 840.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Bust",
+        "trait_id": "PaDNA.BodyDNA.Bust",
+        "value": "Full",
+        "ucn": 850.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Shoulders",
+        "trait_id": "PaDNA.BodyDNA.Shoulders",
+        "value": "Moderately Broad",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Arms",
+        "trait_id": "PaDNA.BodyDNA.Arms",
+        "value": "Slim",
+        "ucn": 860.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Legs",
+        "trait_id": "PaDNA.BodyDNA.Legs",
+        "value": "Long, Toned",
+        "ucn": 890.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Navel",
+        "trait_id": "PaDNA.BodyDNA.Navel",
+        "value": "Pierced",
+        "ucn": 990.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Teeth",
+        "trait_id": "PaDNA.SmileDNA.Teeth",
+        "value": "Straight, White",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.SmileShape",
+        "trait_id": "PaDNA.SmileDNA.SmileShape",
+        "value": "Broad Smile",
+        "ucn": 930.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Dimples",
+        "trait_id": "PaDNA.SmileDNA.Dimples",
+        "value": "Absent",
+        "ucn": 700.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.FrequentTops",
+        "trait_id": "PaDNA.ApparelDNA.FrequentTops",
+        "value": [
+          "Tank tops",
+          "Bikinis",
+          "Casual fitted T-shirts",
+          "Crop tops",
+          "Mini dresses"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.StyleThemes",
+        "trait_id": "PaDNA.ApparelDNA.StyleThemes",
+        "value": [
+          "Casual sexy",
+          "Playful",
+          "Colorful prints",
+          "Beachwear"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "value": "Often Layered Pendants",
+        "ucn": 820.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "value": "Studs Or Small Hoops",
+        "ucn": 810.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "value": [
+          "Navel piercing"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.TypicalExpression",
+        "trait_id": "PaDNA.ExpressionDNA.TypicalExpression",
+        "value": "Smiling Warmly Or Playful Smirk",
+        "ucn": 910.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.MoodVariance",
+        "trait_id": "PaDNA.ExpressionDNA.MoodVariance",
+        "value": [
+          "Confident",
+          "Relaxed",
+          "Playful"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.EyeContact",
+        "trait_id": "PaDNA.ExpressionDNA.EyeContact",
+        "value": "Direct And Engaging",
+        "ucn": 920.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.Indicators",
+        "trait_id": "PaDNA.FitnessDNA.Indicators",
+        "value": [
+          "Flat abdomen",
+          "Defined waist",
+          "Toned legs",
+          "Visible muscle tone"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.LifestyleInference",
+        "trait_id": "PaDNA.FitnessDNA.LifestyleInference",
+        "value": "Active/Fitness-Conscious",
+        "ucn": 770.0,
+        "source": "photo-import",
+        "persona": "photo",
+        "ts": "2025-10-03T16:26:13.826910+00:00",
+        "provenance": {
+          "source": "photo-import",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Color",
+        "trait_id": "PaDNA.HairDNA.Color",
+        "value": "Auburn-Brown With Golden Highlights",
+        "ucn": 920.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Length",
+        "trait_id": "PaDNA.HairDNA.Length",
+        "value": "Long",
+        "ucn": 950.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Texture",
+        "trait_id": "PaDNA.HairDNA.Texture",
+        "value": "Wavy",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Parting",
+        "trait_id": "PaDNA.HairDNA.Parting",
+        "value": "Side Part, Often Left",
+        "ucn": 810.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Volume",
+        "trait_id": "PaDNA.HairDNA.Volume",
+        "value": "Thick",
+        "ucn": 890.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.FaceShape",
+        "trait_id": "PaDNA.FaceDNA.FaceShape",
+        "value": "Heart-Shaped To Oval",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.Cheekbones",
+        "trait_id": "PaDNA.FaceDNA.Cheekbones",
+        "value": "Prominent, High",
+        "ucn": 890.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.Jawline",
+        "trait_id": "PaDNA.FaceDNA.Jawline",
+        "value": "Soft, Slightly Rounded",
+        "ucn": 860.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.Chin",
+        "trait_id": "PaDNA.FaceDNA.Chin",
+        "value": "Slightly Pointed",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.FaceWidth",
+        "trait_id": "PaDNA.FaceDNA.FaceWidth",
+        "value": "Medium-Narrow",
+        "ucn": 820.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyebrowDNA.Shape",
+        "trait_id": "PaDNA.EyebrowDNA.Shape",
+        "value": "Arched With Soft Angle",
+        "ucn": 900.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyebrowDNA.Thickness",
+        "trait_id": "PaDNA.EyebrowDNA.Thickness",
+        "value": "Medium",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyebrowDNA.Color",
+        "trait_id": "PaDNA.EyebrowDNA.Color",
+        "value": "Medium Brown, Lighter Than Hair",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NoseDNA.Size",
+        "trait_id": "PaDNA.NoseDNA.Size",
+        "value": "Small To Medium",
+        "ucn": 860.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NoseDNA.Bridge",
+        "trait_id": "PaDNA.NoseDNA.Bridge",
+        "value": "Straight, Refined",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NoseDNA.Tip",
+        "trait_id": "PaDNA.NoseDNA.Tip",
+        "value": "Slightly Rounded",
+        "ucn": 840.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NoseDNA.Nostrils",
+        "trait_id": "PaDNA.NoseDNA.Nostrils",
+        "value": "Petite",
+        "ucn": 820.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.LipDNA.Fullness",
+        "trait_id": "PaDNA.LipDNA.Fullness",
+        "value": "Medium-Full, Balanced Proportions",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.LipDNA.Shape",
+        "trait_id": "PaDNA.LipDNA.Shape",
+        "value": "Defined Cupid's Bow",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.LipDNA.Color",
+        "trait_id": "PaDNA.LipDNA.Color",
+        "value": "Natural Pink",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Color",
+        "trait_id": "PaDNA.EyeDNA.Color",
+        "value": "Light Green With Hazel Flecks",
+        "ucn": 940.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Shape",
+        "trait_id": "PaDNA.EyeDNA.Shape",
+        "value": "Almond",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Lashes",
+        "trait_id": "PaDNA.EyeDNA.Lashes",
+        "value": "Medium Length, Full",
+        "ucn": 820.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Tone",
+        "trait_id": "PaDNA.SkinDNA.Tone",
+        "value": "Fair With Warm Undertones",
+        "ucn": 930.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Freckles",
+        "trait_id": "PaDNA.SkinDNA.Freckles",
+        "value": "Present, Across Face/Shoulders",
+        "ucn": 970.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.SunSensitivity",
+        "trait_id": "PaDNA.SkinDNA.SunSensitivity",
+        "value": "High",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NeckDNA.Length",
+        "trait_id": "PaDNA.NeckDNA.Length",
+        "value": "Medium-Long",
+        "ucn": 840.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NeckDNA.Width",
+        "trait_id": "PaDNA.NeckDNA.Width",
+        "value": "Slender",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.HeightEstimateCM",
+        "trait_id": "PaDNA.BodyDNA.HeightEstimateCM",
+        "value": 165,
+        "ucn": 750.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Build",
+        "trait_id": "PaDNA.BodyDNA.Build",
+        "value": "Slim/Athletic",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.WaistHipRatio",
+        "trait_id": "PaDNA.BodyDNA.WaistHipRatio",
+        "value": "Moderate Hourglass",
+        "ucn": 840.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Bust",
+        "trait_id": "PaDNA.BodyDNA.Bust",
+        "value": "Full",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Shoulders",
+        "trait_id": "PaDNA.BodyDNA.Shoulders",
+        "value": "Moderately Broad",
+        "ucn": 810.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Arms",
+        "trait_id": "PaDNA.BodyDNA.Arms",
+        "value": "Slim",
+        "ucn": 860.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Legs",
+        "trait_id": "PaDNA.BodyDNA.Legs",
+        "value": "Long, Toned",
+        "ucn": 890.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Navel",
+        "trait_id": "PaDNA.BodyDNA.Navel",
+        "value": "Pierced",
+        "ucn": 990.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Teeth",
+        "trait_id": "PaDNA.SmileDNA.Teeth",
+        "value": "Straight, White",
+        "ucn": 920.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.SmileShape",
+        "trait_id": "PaDNA.SmileDNA.SmileShape",
+        "value": "Broad Smile",
+        "ucn": 930.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Dimples",
+        "trait_id": "PaDNA.SmileDNA.Dimples",
+        "value": "Absent",
+        "ucn": 700.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.FrequentTops",
+        "trait_id": "PaDNA.ApparelDNA.FrequentTops",
+        "value": [
+          "Tank tops",
+          "Bikinis",
+          "Casual fitted T-shirts",
+          "Crop tops",
+          "Mini dresses"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.StyleThemes",
+        "trait_id": "PaDNA.ApparelDNA.StyleThemes",
+        "value": [
+          "Casual sexy",
+          "Playful",
+          "Colorful prints",
+          "Beachwear"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "value": "Often Layered Pendants",
+        "ucn": 820.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "value": "Studs Or Small Hoops",
+        "ucn": 810.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "value": [
+          "Navel piercing"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.TypicalExpression",
+        "trait_id": "PaDNA.ExpressionDNA.TypicalExpression",
+        "value": "Smiling Warmly Or Playful Smirk",
+        "ucn": 910.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.MoodVariance",
+        "trait_id": "PaDNA.ExpressionDNA.MoodVariance",
+        "value": [
+          "Confident",
+          "Relaxed",
+          "Playful"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.EyeContact",
+        "trait_id": "PaDNA.ExpressionDNA.EyeContact",
+        "value": "Direct And Engaging",
+        "ucn": 920.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.Indicators",
+        "trait_id": "PaDNA.FitnessDNA.Indicators",
+        "value": [
+          "Flat abdomen",
+          "Defined waist",
+          "Toned legs",
+          "Visible muscle tone"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.LifestyleInference",
+        "trait_id": "PaDNA.FitnessDNA.LifestyleInference",
+        "value": "Active/Fitness-Conscious",
+        "ucn": 770.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T21:55:42.891297+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Color",
+        "trait_id": "PaDNA.HairDNA.Color",
+        "value": "Auburn-Brown With Golden Highlights",
+        "ucn": 920.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Length",
+        "trait_id": "PaDNA.HairDNA.Length",
+        "value": "Long",
+        "ucn": 950.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Texture",
+        "trait_id": "PaDNA.HairDNA.Texture",
+        "value": "Wavy",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Parting",
+        "trait_id": "PaDNA.HairDNA.Parting",
+        "value": "Side Part, Often Left",
+        "ucn": 810.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.HairDNA.Volume",
+        "trait_id": "PaDNA.HairDNA.Volume",
+        "value": "Thick",
+        "ucn": 890.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.FaceShape",
+        "trait_id": "PaDNA.FaceDNA.FaceShape",
+        "value": "Heart-Shaped To Oval",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.Cheekbones",
+        "trait_id": "PaDNA.FaceDNA.Cheekbones",
+        "value": "Prominent, High",
+        "ucn": 890.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.Jawline",
+        "trait_id": "PaDNA.FaceDNA.Jawline",
+        "value": "Soft, Rounded",
+        "ucn": 860.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.LowerFaceShape",
+        "trait_id": "PaDNA.FaceDNA.LowerFaceShape",
+        "value": "Gently Tapered",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.Chin",
+        "trait_id": "PaDNA.FaceDNA.Chin",
+        "value": "Slightly Pointed",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FaceDNA.FaceWidth",
+        "trait_id": "PaDNA.FaceDNA.FaceWidth",
+        "value": "Medium-Narrow",
+        "ucn": 820.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ForeheadDNA.Height",
+        "trait_id": "PaDNA.ForeheadDNA.Height",
+        "value": "Medium",
+        "ucn": 840.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ForeheadDNA.Shape",
+        "trait_id": "PaDNA.ForeheadDNA.Shape",
+        "value": "Gently Rounded",
+        "ucn": 830.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyebrowDNA.Shape",
+        "trait_id": "PaDNA.EyebrowDNA.Shape",
+        "value": "Arched With Soft Angle",
+        "ucn": 900.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyebrowDNA.Thickness",
+        "trait_id": "PaDNA.EyebrowDNA.Thickness",
+        "value": "Medium-Thin To Medium",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyebrowDNA.Color",
+        "trait_id": "PaDNA.EyebrowDNA.Color",
+        "value": "Light To Medium Brown",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NoseDNA.Size",
+        "trait_id": "PaDNA.NoseDNA.Size",
+        "value": "Small To Medium",
+        "ucn": 860.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NoseDNA.Bridge",
+        "trait_id": "PaDNA.NoseDNA.Bridge",
+        "value": "Straight, Refined",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NoseDNA.Tip",
+        "trait_id": "PaDNA.NoseDNA.Tip",
+        "value": "Slightly Rounded",
+        "ucn": 840.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NoseDNA.Nostrils",
+        "trait_id": "PaDNA.NoseDNA.Nostrils",
+        "value": "Petite",
+        "ucn": 820.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.LipDNA.Fullness",
+        "trait_id": "PaDNA.LipDNA.Fullness",
+        "value": "Medium-Full, Balanced Proportions",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.LipDNA.Shape",
+        "trait_id": "PaDNA.LipDNA.Shape",
+        "value": "Defined Cupid's Bow",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.LipDNA.Color",
+        "trait_id": "PaDNA.LipDNA.Color",
+        "value": "Natural Pink",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Color",
+        "trait_id": "PaDNA.EyeDNA.Color",
+        "value": "Light Green With Hazel Flecks",
+        "ucn": 940.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Shape",
+        "trait_id": "PaDNA.EyeDNA.Shape",
+        "value": "Almond",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Size",
+        "trait_id": "PaDNA.EyeDNA.Size",
+        "value": "Medium-Large",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Spacing",
+        "trait_id": "PaDNA.EyeDNA.Spacing",
+        "value": "Medium-Wide Set",
+        "ucn": 860.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.EyeDNA.Lashes",
+        "trait_id": "PaDNA.EyeDNA.Lashes",
+        "value": "Medium Length, Full",
+        "ucn": 820.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Tone",
+        "trait_id": "PaDNA.SkinDNA.Tone",
+        "value": "Fair With Warm Undertones",
+        "ucn": 930.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.Freckles",
+        "trait_id": "PaDNA.SkinDNA.Freckles",
+        "value": "Present, Across Face/Shoulders",
+        "ucn": 970.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SkinDNA.SunSensitivity",
+        "trait_id": "PaDNA.SkinDNA.SunSensitivity",
+        "value": "High",
+        "ucn": 870.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NeckDNA.Length",
+        "trait_id": "PaDNA.NeckDNA.Length",
+        "value": "Medium-Long",
+        "ucn": 840.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.NeckDNA.Width",
+        "trait_id": "PaDNA.NeckDNA.Width",
+        "value": "Slender",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.HeightEstimateCM",
+        "trait_id": "PaDNA.BodyDNA.HeightEstimateCM",
+        "value": 165,
+        "ucn": 750.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Build",
+        "trait_id": "PaDNA.BodyDNA.Build",
+        "value": "Slim/Athletic",
+        "ucn": 880.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.WaistHipRatio",
+        "trait_id": "PaDNA.BodyDNA.WaistHipRatio",
+        "value": "Moderate Hourglass",
+        "ucn": 840.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Bust",
+        "trait_id": "PaDNA.BodyDNA.Bust",
+        "value": "Full",
+        "ucn": 850.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Shoulders",
+        "trait_id": "PaDNA.BodyDNA.Shoulders",
+        "value": "Moderately Broad",
+        "ucn": 810.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Arms",
+        "trait_id": "PaDNA.BodyDNA.Arms",
+        "value": "Slim",
+        "ucn": 860.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Legs",
+        "trait_id": "PaDNA.BodyDNA.Legs",
+        "value": "Long, Toned",
+        "ucn": 890.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.BodyDNA.Navel",
+        "trait_id": "PaDNA.BodyDNA.Navel",
+        "value": "Pierced",
+        "ucn": 990.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Teeth",
+        "trait_id": "PaDNA.SmileDNA.Teeth",
+        "value": "Straight, White",
+        "ucn": 920.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.SmileShape",
+        "trait_id": "PaDNA.SmileDNA.SmileShape",
+        "value": "Broad Smile",
+        "ucn": 930.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.SmileDNA.Dimples",
+        "trait_id": "PaDNA.SmileDNA.Dimples",
+        "value": "Absent",
+        "ucn": 700.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.FrequentTops",
+        "trait_id": "PaDNA.ApparelDNA.FrequentTops",
+        "value": [
+          "Tank tops",
+          "Bikinis",
+          "Casual fitted T-shirts",
+          "Crop tops",
+          "Mini dresses"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.StyleThemes",
+        "trait_id": "PaDNA.ApparelDNA.StyleThemes",
+        "value": [
+          "Casual sexy",
+          "Playful",
+          "Colorful prints",
+          "Beachwear"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Necklace",
+        "value": "Often Layered Pendants",
+        "ucn": 820.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Earrings",
+        "value": "Studs Or Small Hoops",
+        "ucn": 810.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "trait_id": "PaDNA.ApparelDNA.Jewelry.Piercings",
+        "value": [
+          "Navel piercing"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.TypicalExpression",
+        "trait_id": "PaDNA.ExpressionDNA.TypicalExpression",
+        "value": "Smiling Warmly Or Playful Smirk",
+        "ucn": 910.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.MoodVariance",
+        "trait_id": "PaDNA.ExpressionDNA.MoodVariance",
+        "value": [
+          "Confident",
+          "Relaxed",
+          "Playful"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.ExpressionDNA.EyeContact",
+        "trait_id": "PaDNA.ExpressionDNA.EyeContact",
+        "value": "Direct And Engaging",
+        "ucn": 920.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.Indicators",
+        "trait_id": "PaDNA.FitnessDNA.Indicators",
+        "value": [
+          "Flat abdomen",
+          "Defined waist",
+          "Toned legs",
+          "Visible muscle tone"
+        ],
+        "ucn": 80.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "trait": "PaDNA.FitnessDNA.LifestyleInference",
+        "trait_id": "PaDNA.FitnessDNA.LifestyleInference",
+        "value": "Active/Fitness-Conscious",
+        "ucn": 770.0,
+        "source": "photo-import-ui",
+        "persona": "photo",
+        "ts": "2025-10-03T22:04:56.430970+00:00",
+        "provenance": {
+          "source": "photo-import-ui",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      }
+    ],
+    "by_trait": {
+      "PaDNA.HairDNA.Color": [
+        {
+          "value": "Red-Auburn",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Red-Auburn",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Red-Auburn",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Auburn-Brown With Golden Highlights",
+          "ucn": 920.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Auburn-Brown With Golden Highlights",
+          "ucn": 920.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.HairDNA.Length": [
+        {
+          "value": "Long",
+          "ucn": 950.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Long",
+          "ucn": 950.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Long",
+          "ucn": 950.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Long",
+          "ucn": 950.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Long",
+          "ucn": 950.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.HairDNA.Texture": [
+        {
+          "value": "Wavy",
+          "ucn": 870.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Wavy",
+          "ucn": 870.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Wavy",
+          "ucn": 870.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Wavy",
+          "ucn": 870.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Wavy",
+          "ucn": 870.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.HairDNA.Parting": [
+        {
+          "value": "Side Part, Often Left",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Side Part, Often Left",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Side Part, Often Left",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Side Part, Often Left",
+          "ucn": 810.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Side Part, Often Left",
+          "ucn": 810.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.HairDNA.Volume": [
+        {
+          "value": "Thick",
+          "ucn": 890.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Thick",
+          "ucn": 890.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Thick",
+          "ucn": 890.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Thick",
+          "ucn": 890.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Thick",
+          "ucn": 890.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.EyeDNA.Color": [
+        {
+          "value": "Light Green With Hazel Flecks",
+          "ucn": 940.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Light Green With Hazel Flecks",
+          "ucn": 940.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Light Green With Hazel Flecks",
+          "ucn": 940.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Light Green With Hazel Flecks",
+          "ucn": 940.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Light Green With Hazel Flecks",
+          "ucn": 940.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.EyeDNA.Shape": [
+        {
+          "value": "Almond",
+          "ucn": 880.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Almond",
+          "ucn": 880.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Almond",
+          "ucn": 880.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Almond",
+          "ucn": 880.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Almond",
+          "ucn": 880.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.EyeDNA.Lashes": [
+        {
+          "value": "Medium Length, Full",
+          "ucn": 820.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Medium Length, Full",
+          "ucn": 820.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Medium Length, Full",
+          "ucn": 820.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Medium Length, Full",
+          "ucn": 820.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Medium Length, Full",
+          "ucn": 820.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.SkinDNA.Tone": [
+        {
+          "value": "Fair With Warm Undertones",
+          "ucn": 930.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Fair With Warm Undertones",
+          "ucn": 930.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Fair With Warm Undertones",
+          "ucn": 930.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Fair With Warm Undertones",
+          "ucn": 930.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Fair With Warm Undertones",
+          "ucn": 930.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.SkinDNA.Freckles": [
+        {
+          "value": "Present, Across Face/Shoulders",
+          "ucn": 970.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Present, Across Face/Shoulders",
+          "ucn": 970.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Present, Across Face/Shoulders",
+          "ucn": 970.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Present, Across Face/Shoulders",
+          "ucn": 970.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Present, Across Face/Shoulders",
+          "ucn": 970.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.SkinDNA.SunSensitivity": [
+        {
+          "value": "High",
+          "ucn": 870.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "High",
+          "ucn": 870.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "High",
+          "ucn": 870.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "High",
+          "ucn": 870.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "High",
+          "ucn": 870.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.BodyDNA.HeightEstimateCM": [
+        {
+          "value": 165,
+          "ucn": 750.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": 165,
+          "ucn": 750.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": 165,
+          "ucn": 750.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": 165,
+          "ucn": 750.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": 165,
+          "ucn": 750.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.BodyDNA.Build": [
+        {
+          "value": "Slim/Athletic",
+          "ucn": 880.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slim/Athletic",
+          "ucn": 880.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slim/Athletic",
+          "ucn": 880.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slim/Athletic",
+          "ucn": 880.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slim/Athletic",
+          "ucn": 880.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.BodyDNA.WaistHipRatio": [
+        {
+          "value": "Moderate Hourglass",
+          "ucn": 840.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Moderate Hourglass",
+          "ucn": 840.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Moderate Hourglass",
+          "ucn": 840.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Moderate Hourglass",
+          "ucn": 840.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Moderate Hourglass",
+          "ucn": 840.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.BodyDNA.Bust": [
+        {
+          "value": "Full",
+          "ucn": 850.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Full",
+          "ucn": 850.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Full",
+          "ucn": 850.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Full",
+          "ucn": 850.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Full",
+          "ucn": 850.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.BodyDNA.Shoulders": [
+        {
+          "value": "Moderately Broad",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Moderately Broad",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Moderately Broad",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Moderately Broad",
+          "ucn": 810.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Moderately Broad",
+          "ucn": 810.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.BodyDNA.Arms": [
+        {
+          "value": "Slim",
+          "ucn": 860.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slim",
+          "ucn": 860.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slim",
+          "ucn": 860.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slim",
+          "ucn": 860.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slim",
+          "ucn": 860.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.BodyDNA.Legs": [
+        {
+          "value": "Long, Toned",
+          "ucn": 890.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Long, Toned",
+          "ucn": 890.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Long, Toned",
+          "ucn": 890.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Long, Toned",
+          "ucn": 890.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Long, Toned",
+          "ucn": 890.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.BodyDNA.Navel": [
+        {
+          "value": "Pierced",
+          "ucn": 990.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Pierced",
+          "ucn": 990.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Pierced",
+          "ucn": 990.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Pierced",
+          "ucn": 990.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Pierced",
+          "ucn": 990.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.SmileDNA.Teeth": [
+        {
+          "value": "Straight, White",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Straight, White",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Straight, White",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Straight, White",
+          "ucn": 920.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Straight, White",
+          "ucn": 920.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.SmileDNA.SmileShape": [
+        {
+          "value": "Broad Smile",
+          "ucn": 930.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Broad Smile",
+          "ucn": 930.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Broad Smile",
+          "ucn": 930.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Broad Smile",
+          "ucn": 930.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Broad Smile",
+          "ucn": 930.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.SmileDNA.Dimples": [
+        {
+          "value": "Absent",
+          "ucn": 700.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Absent",
+          "ucn": 700.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Absent",
+          "ucn": 700.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Absent",
+          "ucn": 700.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Absent",
+          "ucn": 700.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ApparelDNA.FrequentTops": [
+        {
+          "value": [
+            "Tank tops",
+            "Bikinis",
+            "Casual fitted T-shirts",
+            "Crop tops",
+            "Mini dresses"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Tank tops",
+            "Bikinis",
+            "Casual fitted T-shirts",
+            "Crop tops",
+            "Mini dresses"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Tank tops",
+            "Bikinis",
+            "Casual fitted T-shirts",
+            "Crop tops",
+            "Mini dresses"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Tank tops",
+            "Bikinis",
+            "Casual fitted T-shirts",
+            "Crop tops",
+            "Mini dresses"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Tank tops",
+            "Bikinis",
+            "Casual fitted T-shirts",
+            "Crop tops",
+            "Mini dresses"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ApparelDNA.StyleThemes": [
+        {
+          "value": [
+            "Casual sexy",
+            "Playful",
+            "Colorful prints",
+            "Beachwear"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Casual sexy",
+            "Playful",
+            "Colorful prints",
+            "Beachwear"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Casual sexy",
+            "Playful",
+            "Colorful prints",
+            "Beachwear"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Casual sexy",
+            "Playful",
+            "Colorful prints",
+            "Beachwear"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Casual sexy",
+            "Playful",
+            "Colorful prints",
+            "Beachwear"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ApparelDNA.Jewelry.Necklace": [
+        {
+          "value": "Often Layered Pendants",
+          "ucn": 820.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Often Layered Pendants",
+          "ucn": 820.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Often Layered Pendants",
+          "ucn": 820.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Often Layered Pendants",
+          "ucn": 820.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Often Layered Pendants",
+          "ucn": 820.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ApparelDNA.Jewelry.Earrings": [
+        {
+          "value": "Studs Or Small Hoops",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Studs Or Small Hoops",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Studs Or Small Hoops",
+          "ucn": 810.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Studs Or Small Hoops",
+          "ucn": 810.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Studs Or Small Hoops",
+          "ucn": 810.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ApparelDNA.Jewelry.Piercings": [
+        {
+          "value": [
+            "Navel piercing"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Navel piercing"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Navel piercing"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Navel piercing"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Navel piercing"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ExpressionDNA.TypicalExpression": [
+        {
+          "value": "Smiling Warmly Or Playful Smirk",
+          "ucn": 910.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Smiling Warmly Or Playful Smirk",
+          "ucn": 910.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Smiling Warmly Or Playful Smirk",
+          "ucn": 910.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Smiling Warmly Or Playful Smirk",
+          "ucn": 910.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Smiling Warmly Or Playful Smirk",
+          "ucn": 910.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ExpressionDNA.MoodVariance": [
+        {
+          "value": [
+            "Confident",
+            "Relaxed",
+            "Playful"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Confident",
+            "Relaxed",
+            "Playful"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Confident",
+            "Relaxed",
+            "Playful"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Confident",
+            "Relaxed",
+            "Playful"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Confident",
+            "Relaxed",
+            "Playful"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ExpressionDNA.EyeContact": [
+        {
+          "value": "Direct And Engaging",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Direct And Engaging",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Direct And Engaging",
+          "ucn": 920.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Direct And Engaging",
+          "ucn": 920.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Direct And Engaging",
+          "ucn": 920.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.FitnessDNA.Indicators": [
+        {
+          "value": [
+            "Flat abdomen",
+            "Defined waist",
+            "Toned legs",
+            "Visible muscle tone"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Flat abdomen",
+            "Defined waist",
+            "Toned legs",
+            "Visible muscle tone"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Flat abdomen",
+            "Defined waist",
+            "Toned legs",
+            "Visible muscle tone"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Flat abdomen",
+            "Defined waist",
+            "Toned legs",
+            "Visible muscle tone"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": [
+            "Flat abdomen",
+            "Defined waist",
+            "Toned legs",
+            "Visible muscle tone"
+          ],
+          "ucn": 80.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.FitnessDNA.LifestyleInference": [
+        {
+          "value": "Active/Fitness-Conscious",
+          "ucn": 770.0,
+          "ts": "2025-10-03T16:15:11.164849+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Active/Fitness-Conscious",
+          "ucn": 770.0,
+          "ts": "2025-10-03T16:15:54.647563+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Active/Fitness-Conscious",
+          "ucn": 770.0,
+          "ts": "2025-10-03T16:26:13.826910+00:00",
+          "source": "photo-import",
+          "provenance": {
+            "source": "photo-import",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Active/Fitness-Conscious",
+          "ucn": 770.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Active/Fitness-Conscious",
+          "ucn": 770.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.FaceDNA.FaceShape": [
+        {
+          "value": "Heart-Shaped To Oval",
+          "ucn": 880.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Heart-Shaped To Oval",
+          "ucn": 880.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.FaceDNA.Cheekbones": [
+        {
+          "value": "Prominent, High",
+          "ucn": 890.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Prominent, High",
+          "ucn": 890.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.FaceDNA.Jawline": [
+        {
+          "value": "Soft, Slightly Rounded",
+          "ucn": 860.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Soft, Rounded",
+          "ucn": 860.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.FaceDNA.Chin": [
+        {
+          "value": "Slightly Pointed",
+          "ucn": 850.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slightly Pointed",
+          "ucn": 850.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.FaceDNA.FaceWidth": [
+        {
+          "value": "Medium-Narrow",
+          "ucn": 820.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Medium-Narrow",
+          "ucn": 820.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.EyebrowDNA.Shape": [
+        {
+          "value": "Arched With Soft Angle",
+          "ucn": 900.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Arched With Soft Angle",
+          "ucn": 900.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.EyebrowDNA.Thickness": [
+        {
+          "value": "Medium",
+          "ucn": 870.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Medium-Thin To Medium",
+          "ucn": 870.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.EyebrowDNA.Color": [
+        {
+          "value": "Medium Brown, Lighter Than Hair",
+          "ucn": 880.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Light To Medium Brown",
+          "ucn": 880.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.NoseDNA.Size": [
+        {
+          "value": "Small To Medium",
+          "ucn": 860.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Small To Medium",
+          "ucn": 860.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.NoseDNA.Bridge": [
+        {
+          "value": "Straight, Refined",
+          "ucn": 850.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Straight, Refined",
+          "ucn": 850.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.NoseDNA.Tip": [
+        {
+          "value": "Slightly Rounded",
+          "ucn": 840.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slightly Rounded",
+          "ucn": 840.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.NoseDNA.Nostrils": [
+        {
+          "value": "Petite",
+          "ucn": 820.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Petite",
+          "ucn": 820.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.LipDNA.Fullness": [
+        {
+          "value": "Medium-Full, Balanced Proportions",
+          "ucn": 880.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Medium-Full, Balanced Proportions",
+          "ucn": 880.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.LipDNA.Shape": [
+        {
+          "value": "Defined Cupid's Bow",
+          "ucn": 870.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Defined Cupid's Bow",
+          "ucn": 870.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.LipDNA.Color": [
+        {
+          "value": "Natural Pink",
+          "ucn": 850.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Natural Pink",
+          "ucn": 850.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.NeckDNA.Length": [
+        {
+          "value": "Medium-Long",
+          "ucn": 840.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Medium-Long",
+          "ucn": 840.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.NeckDNA.Width": [
+        {
+          "value": "Slender",
+          "ucn": 850.0,
+          "ts": "2025-10-03T21:55:42.891297+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        },
+        {
+          "value": "Slender",
+          "ucn": 850.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.FaceDNA.LowerFaceShape": [
+        {
+          "value": "Gently Tapered",
+          "ucn": 850.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ForeheadDNA.Height": [
+        {
+          "value": "Medium",
+          "ucn": 840.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.ForeheadDNA.Shape": [
+        {
+          "value": "Gently Rounded",
+          "ucn": 830.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.EyeDNA.Size": [
+        {
+          "value": "Medium-Large",
+          "ucn": 870.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ],
+      "PaDNA.EyeDNA.Spacing": [
+        {
+          "value": "Medium-Wide Set",
+          "ucn": 860.0,
+          "ts": "2025-10-03T22:04:56.430970+00:00",
+          "source": "photo-import-ui",
+          "provenance": {
+            "source": "photo-import-ui",
+            "step": "soft-import",
+            "adapter": "json",
+            "mode": "json-import"
+          }
+        }
+      ]
+    }
+  }
+}

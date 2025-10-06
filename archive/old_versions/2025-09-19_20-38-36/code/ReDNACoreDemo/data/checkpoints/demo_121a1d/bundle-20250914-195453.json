@@ -1,0 +1,45 @@
+{
+  "schema_version": "redna.bundle/3.0",
+  "Prefs": {
+    "traits": {
+      "eye_color": "gray"
+    }
+  },
+  "PaDNA": {},
+  "provenance": [
+    {
+      "at": "2025-09-14T19:54:26Z",
+      "path": "scores.*",
+      "value": {
+        "rr": 0.0,
+        "ucn": 1.0,
+        "curiosity": 0.8
+      },
+      "source": "ucnrr-gateway:local-fallback"
+    },
+    {
+      "at": "2025-09-14T19:54:53Z",
+      "path": "scores.*",
+      "value": {
+        "rr": 5.0,
+        "ucn": 0.95,
+        "curiosity": 0.765
+      },
+      "source": "ucnrr-gateway:local-fallback"
+    }
+  ],
+  "snapshots": {
+    "rr": [
+      {
+        "at": "2025-09-14T19:54:26Z",
+        "overall": 0.0,
+        "source": "ucnrr-gateway:local-fallback"
+      },
+      {
+        "at": "2025-09-14T19:54:53Z",
+        "overall": 5.0,
+        "source": "ucnrr-gateway:local-fallback"
+      }
+    ]
+  }
+}

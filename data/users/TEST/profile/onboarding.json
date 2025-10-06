@@ -1,0 +1,62 @@
+{
+  "version": 2,
+  "captured_at": "2025-10-03T08:29:30.037+00:00",
+  "user_id": "test",
+  "display_name": "TEST",
+  "quick_facts": {},
+  "interests": {
+    "selected": [],
+    "custom": []
+  },
+  "source": "ui_onboarding_modal",
+  "hc_qa_responses": [
+    {
+      "question_id": "wyr_social",
+      "question_text": "Would you rather: Spend time with a small group of close friends OR Meet new people at a large social gathering",
+      "selected_option": "Spend time with a small group of close friends",
+      "category": "social"
+    },
+    {
+      "question_id": "wyr_planning",
+      "question_text": "Would you rather: Plan everything in advance OR Be spontaneous and go with the flow",
+      "selected_option": "Be spontaneous and go with the flow",
+      "category": "planning"
+    },
+    {
+      "question_id": "wyr_feedback",
+      "question_text": "Would you rather: Get direct, honest feedback right away OR Receive gentle, supportive encouragement",
+      "selected_option": "Get direct, honest feedback right away",
+      "category": "communication"
+    },
+    {
+      "question_id": "wyr_morning",
+      "question_text": "Would you rather: Wake up early and get a head start OR Sleep in and take your time",
+      "selected_option": "Sleep in and take your time",
+      "category": "lifestyle"
+    },
+    {
+      "question_id": "wyr_learning",
+      "question_text": "Would you rather: Learn by doing and experimenting OR Study theory and understand concepts first",
+      "selected_option": "Learn by doing and experimenting",
+      "category": "learning"
+    },
+    {
+      "question_id": "wyr_decisions",
+      "question_text": "Would you rather: Make quick decisions and move forward OR Take time to weigh all options carefully",
+      "selected_option": "Take time to weigh all options carefully",
+      "category": "decision_making"
+    },
+    {
+      "question_id": "activity_level",
+      "question_text": "How active are you typically?",
+      "selected_option": "Moderately active",
+      "category": "lifestyle"
+    },
+    {
+      "question_id": "communication_style",
+      "question_text": "How do you prefer to communicate?",
+      "selected_option": "In person",
+      "category": "communication"
+    }
+  ]
+}

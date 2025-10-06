@@ -1,0 +1,54 @@
+# Persona registration contract schema
+#
+# This lightweight schema mirrors the runtime validation performed in
+# `shared.persona_schema.validate_persona_registration`.  It exists so
+# persona authors have a quick reference when crafting new personas.
+#
+# Fields marked as `required: true` must be supplied. All other fields
+# are optional and default to sensible values (or an empty list).
+
+id:
+  type: string
+  required: true
+  description: Unique identifier for the persona (matches PersonaConfig.id).
+
+version:
+  type: string
+  required: true
+  description: Semantic version of the registration contract.
+
+display_name:
+  type: string
+  required: true
+  description: Human-readable label used in Explorer UI surfaces.
+
+greeting_template:
+  type: string
+  required: true
+  description: Greeting text shown when the persona joins a conversation.
+
+handoff_intents:
+  type: array
+  items:
+    type: object|string
+    description: >-
+      Either a string (matched via substring) or an object with
+      `phrase`, optional `match_type` (contains|startswith|regex), and
+      optional `reason` for analytics logging.
+  description: Phrases that should trigger a hand-off to this persona.
+
+style_presets:
+  type: array
+  items:
+    type: object|string
+    description: >-
+      Either a string label or an object containing `id`, `label`,
+      optional `description`, and optional `prompt_overrides` mapping.
+  description: Named style options exposed to Explorer/Dev tooling.
+
+metrics_keys:
+  type: array
+  items:
+    type: string
+  description: Keys for analytics emitted when this persona is active.
+

@@ -1,0 +1,57 @@
+{
+  "version": "explorer.bundle/1.0",
+  "bundle_id": "padna_celebrity_A_4photos_v3",
+  "user_id": "celebrity_demo_user",
+  "created_at": "2025-09-08T12:30:00Z",
+
+  "photos": [
+    { "photo_id": "p1", "filename": "cZYZkM00.jpg", "recency": "RECENT" },
+    { "photo_id": "p2", "filename": "I2Hq453K.jpg", "recency": "RECENT" },
+    { "photo_id": "p3", "filename": "yZiRnBqU.jpg", "recency": "OLD" },
+    { "photo_id": "p4", "filename": "RZoVDJ8k.jpg", "recency": "RETRO" }
+  ],
+
+  "descriptors": {
+    "PaDNA.HairDNA.Color": { "value": "light-brown" },
+    "PaDNA.HairDNA.Length": { "value": "long" },
+    "PaDNA.HairDNA.Texture": { "value": "wavy" },
+    "PaDNA.HairDNA.Style": { "value": "loose" },
+    "PaDNA.HairDNA.Part": { "value": "center" },
+    "PaDNA.HairDNA.Volume": { "value": "high" },
+    "PaDNA.HairDNA.Hairline": { "value": "rounded" },
+
+    "PaDNA.BrowDNA.Thickness": { "value": "thick" },
+    "PaDNA.BrowDNA.Shape": { "value": "arched" },
+
+    "PaDNA.EyeDNA.Color": { "value": "hazel" },
+    "PaDNA.EyeDNA.Shape": { "value": "almond" },
+    "PaDNA.EyeDNA.Eyelid": { "value": "double" },
+    "PaDNA.EyeDNA.Lashes": { "value": "long" },
+
+    "PaDNA.SkinDNA.Tone": { "value": "medium" },
+    "PaDNA.SkinDNA.Undertone": { "value": "warm" },
+
+    "PaDNA.NoseDNA.Width": { "value": "medium" },
+    "PaDNA.NoseDNA.Tip": { "value": "rounded" },
+
+    "PaDNA.FaceDNA.Jawline": { "value": "defined" },
+    "PaDNA.FaceDNA.Cheekbones": { "value": "high" },
+
+    "PaDNA.LipDNA.Fullness": { "value": "full" },
+    "PaDNA.LipDNA.Shape": { "value": "bowed" },
+
+    "PaDNA.GlassesDNA": { "value": "none" },
+
+    "PaDNA.DistinguishingMarksDNA.Freckles": { "value": "absent" },
+    "PaDNA.DistinguishingMarksDNA.BeautyMarks": { "value": "absent" },
+    "PaDNA.DistinguishingMarksDNA.Tattoos": { "value": "none" },
+    "PaDNA.DistinguishingMarksDNA.Piercings": { "value": "ears-lobe" },
+
+    "PaDNA.AccessoryDNA.Earrings": { "value": "hoops" }
+  },
+
+  "meta": {
+    "provenance": "Richer trait set derived from 4 photos with recency weighting (RECENT>OLD>RETRO).",
+    "notes": "Traits chosen to be consistent across images; extra fields improve portrait fidelity (part, volume, brow, nose, jawline, cheekbones, lashes, earrings)."
+  }
+}

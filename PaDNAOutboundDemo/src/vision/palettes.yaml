@@ -1,0 +1,192 @@
+# palettes.yaml — theme-agnostic color ramps used by the PaDNA renderer
+# Each entry supplies primary fill plus sensible companions (shadow, highlight, line).
+# Keys are stable “ids” that we can map from PaDNA traits.
+
+version: 1
+
+skin:
+  fair_cool:
+    fill:    "#F2D7CF"
+    shadow:  "#D8B9B0"
+    highlight: "#F9E7E2"
+    line:    "#B58F86"
+    blush:   "#E8B3AA"
+    freckles:"#A46E5A"   # sparse, low opacity
+  fair_neutral:
+    fill:    "#EBC8B6"
+    shadow:  "#D0AFA0"
+    highlight: "#F6DACB"
+    line:    "#A98271"
+    blush:   "#E6A99B"
+    freckles:"#8E634F"
+  fair_warm:
+    fill:    "#E7C2A4"
+    shadow:  "#C9A383"
+    highlight: "#F3D7B9"
+    line:    "#9A7A60"
+    blush:   "#E19A7D"
+    freckles:"#7A5543"
+
+  medium_cool:
+    fill:    "#CFA691"
+    shadow:  "#B18570"
+    highlight: "#DCB6A1"
+    line:    "#8D6C5B"
+    blush:   "#D38E80"
+    freckles:"#6F5245"
+  medium_neutral:
+    fill:    "#C89A7C"
+    shadow:  "#AC8065"
+    highlight: "#D7AE92"
+    line:    "#7F5E4C"
+    blush:   "#CC846E"
+    freckles:"#654A3E"
+  medium_warm:
+    fill:    "#C4906B"
+    shadow:  "#A67455"
+    highlight: "#D3A281"
+    line:    "#765941"
+    blush:   "#C67759"
+    freckles:"#5C4337"
+
+  deep_cool:
+    fill:    "#8D5C4B"
+    shadow:  "#6F4638"
+    highlight: "#9E6C58"
+    line:    "#54372C"
+    blush:   "#8C544E"
+    freckles:"#3F2B24"
+  deep_neutral:
+    fill:    "#7A4C3D"
+    shadow:  "#5E3A2E"
+    highlight: "#8A5A49"
+    line:    "#452A22"
+    blush:   "#7D4A44"
+    freckles:"#36241E"
+  deep_warm:
+    fill:    "#6D4436"
+    shadow:  "#523328"
+    highlight: "#7D5142"
+    line:    "#3D271F"
+    blush:   "#71403A"
+    freckles:"#2F1F1A"
+
+hair:
+  platinum_blonde:
+    base:    "#E9E1C9"
+    low:     "#CFC5A8"
+    hi:      "#F5EFDA"
+    line:    "#B9AD8C"
+  light_blonde:
+    base:    "#E2C88B"
+    low:     "#C8A86C"
+    hi:      "#F0D9A7"
+    line:    "#A98D5E"
+  strawberry_blonde:
+    base:    "#E6B07E"
+    low:     "#C98E59"
+    hi:      "#F1C59A"
+    line:    "#A9724A"
+  copper_red:
+    base:    "#C7672E"
+    low:     "#9E4F22"
+    hi:      "#DC7B3E"
+    line:    "#7F3E1B"
+  auburn:
+    base:    "#8E3F2C"
+    low:     "#6B2F22"
+    hi:      "#A6503A"
+    line:    "#56251B"
+  medium_brown:
+    base:    "#6C4B35"
+    low:     "#523827"
+    hi:      "#7E5A41"
+    line:    "#3E2A1E"
+  dark_brown:
+    base:    "#483426"
+    low:     "#35261B"
+    hi:      "#5A4635"
+    line:    "#291D15"
+  black:
+    base:    "#2B221B"
+    low:     "#1E1813"
+    hi:      "#3A2F26"
+    line:    "#17120F"
+
+eyes:
+  blue_light:
+    iris:    "#7FB2E1"
+    ring:    "#345B87"
+    inner:   "#A7C9EA"
+    pupil:   "#1A1A1A"
+    sclera:  "#F4F7FA"
+  blue_deep:
+    iris:    "#3A78B4"
+    ring:    "#204A73"
+    inner:   "#6DA1D3"
+    pupil:   "#111111"
+    sclera:  "#F3F6F9"
+  green:
+    iris:    "#6AAD6A"
+    ring:    "#2E6B3B"
+    inner:   "#8DC48C"
+    pupil:   "#131313"
+    sclera:  "#F5F7FA"
+  hazel:
+    iris:    "#8A6E3E"
+    ring:    "#4F4025"
+    inner:   "#B59257"
+    pupil:   "#141414"
+    sclera:  "#F4F6F8"
+  brown_light:
+    iris:    "#7A5235"
+    ring:    "#4A3221"
+    inner:   "#9B6A44"
+    pupil:   "#121212"
+    sclera:  "#F3F5F7"
+  brown_deep:
+    iris:    "#513523"
+    ring:    "#332114"
+    inner:   "#6B452D"
+    pupil:   "#0F0F0F"
+    sclera:  "#F2F4F6"
+  gray:
+    iris:    "#8DA3B3"
+    ring:    "#50636F"
+    inner:   "#AEBFCA"
+    pupil:   "#141414"
+    sclera:  "#F4F6F8"
+
+brows:
+  blonde:  "#BE9E67"
+  light_brown: "#7A5A40"
+  medium_brown:"#614731"
+  dark_brown: "#3E2C1F"
+  auburn:  "#7E3E2C"
+  black:   "#201912"
+
+lips:
+  natural_pink:
+    fill:   "#D98E8C"
+    line:   "#A56564"
+    highlight: "#E7A9A7"
+  rose:
+    fill:   "#C76876"
+    line:   "#964658"
+    highlight: "#D98290"
+  nude:
+    fill:   "#B9806B"
+    line:   "#875C4C"
+    highlight: "#C89681"
+
+accessory:
+  silver: "#BFC6D1"
+  gold:   "#C8A550"
+  black:  "#1F1F1F"
+  white:  "#FFFFFF"
+
+# Optional default accents to make themes consistent
+accent:
+  cool:   "#9CB4D7"
+  warm:   "#E1A36B"
+  neutral:"#ADB5BD"
