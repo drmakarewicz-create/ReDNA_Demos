@@ -1,0 +1,204 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/hc_intent.schema.json",
+  "title": "Head Coach Intent Classification Schema",
+  "description": "Schema for user message intent classification results from Head Coach v2",
+  "type": "object",
+  "required": [
+    "primary_intent",
+    "confidence",
+    "target_coach",
+    "intent_signals",
+    "policy"
+  ],
+  "properties": {
+    "primary_intent": {
+      "type": "string",
+      "description": "Primary detected intent category",
+      "enum": [
+        "career_guidance",
+        "relationship_advice",
+        "personality_assessment",
+        "photo_analysis",
+        "belief_exploration",
+        "general_coaching",
+        "meta_request",
+        "unclear"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "description": "Confidence score for intent classification (0.0-1.0)",
+      "minimum": 0.0,
+      "maximum": 1.0
+    },
+    "target_coach": {
+      "type": "string",
+      "description": "Recommended specialist coach ID for delegation",
+      "enum": [
+        "career_coach",
+        "relationship_coach",
+        "personality_test_coach",
+        "photo_coach",
+        "beliefdna_coach",
+        "head_coach",
+        null
+      ]
+    },
+    "secondary_intents": {
+      "type": "array",
+      "description": "Additional detected intents with lower confidence",
+      "items": {
+        "type": "object",
+        "required": ["intent", "confidence"],
+        "properties": {
+          "intent": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          }
+        }
+      },
+      "maxItems": 3
+    },
+    "intent_signals": {
+      "type": "object",
+      "description": "Detected signals/keywords that influenced classification",
+      "required": ["keywords", "patterns"],
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "description": "Matched keywords from user message",
+          "items": {"type": "string"},
+          "maxItems": 10
+        },
+        "patterns": {
+          "type": "array",
+          "description": "Matched regex patterns",
+          "items": {"type": "string"},
+          "maxItems": 5
+        },
+        "context_clues": {
+          "type": "array",
+          "description": "Contextual signals (e.g., question marks, tone)",
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "delegation_recommendation": {
+      "type": "object",
+      "description": "Delegation routing recommendation",
+      "required": ["should_delegate", "reason"],
+      "properties": {
+        "should_delegate": {
+          "type": "boolean",
+          "description": "Whether to delegate to specialist coach"
+        },
+        "reason": {
+          "type": "string",
+          "description": "Reasoning for delegation decision"
+        },
+        "routing_strategy": {
+          "type": "string",
+          "description": "How to route (direct, collaborative, escalation)",
+          "enum": ["direct", "collaborative", "escalation", "retain"]
+        },
+        "handoff_context": {
+          "type": "object",
+          "description": "Context to pass to delegated coach",
+          "properties": {
+            "user_state_summary": {"type": "string"},
+            "key_concerns": {"type": "array", "items": {"type": "string"}},
+            "previous_coach": {"type": "string"}
+          }
+        }
+      }
+    },
+    "requires_clarification": {
+      "type": "boolean",
+      "description": "Whether user intent is too ambiguous and needs clarification"
+    },
+    "clarification_prompts": {
+      "type": "array",
+      "description": "Suggested clarifying questions if intent is unclear",
+      "items": {"type": "string"},
+      "maxItems": 3
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Processing metadata",
+      "properties": {
+        "message_length": {"type": "integer"},
+        "question_count": {"type": "integer"},
+        "sentiment": {"type": "string", "enum": ["positive", "neutral", "negative", "mixed"]},
+        "urgency_level": {"type": "string", "enum": ["low", "normal", "high", "critical"]}
+      }
+    },
+    "policy": {
+      "type": "object",
+      "description": "Policy and provenance metadata",
+      "required": ["classifier_version", "schema", "classification_ms"],
+      "properties": {
+        "classifier_version": {
+          "type": "string",
+          "description": "Intent classifier version"
+        },
+        "schema": {
+          "type": "string",
+          "description": "Schema reference"
+        },
+        "classification_ms": {
+          "type": "number",
+          "description": "Time taken for classification in milliseconds"
+        },
+        "method": {
+          "type": "string",
+          "description": "Classification method used",
+          "enum": ["rule_based", "ml_model", "hybrid"]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "primary_intent": "career_guidance",
+      "confidence": 0.89,
+      "target_coach": "career_coach",
+      "secondary_intents": [
+        {"intent": "personality_assessment", "confidence": 0.34}
+      ],
+      "intent_signals": {
+        "keywords": ["job", "interview", "career", "promotion"],
+        "patterns": ["career.*advice", "interview.*tips"],
+        "context_clues": ["contains_question"]
+      },
+      "delegation_recommendation": {
+        "should_delegate": true,
+        "reason": "High confidence career-related query with specific domain expertise needed",
+        "routing_strategy": "direct",
+        "handoff_context": {
+          "user_state_summary": "User exploring career advancement",
+          "key_concerns": ["interview preparation", "promotion readiness"],
+          "previous_coach": "head_coach"
+        }
+      },
+      "requires_clarification": false,
+      "clarification_prompts": [],
+      "metadata": {
+        "message_length": 87,
+        "question_count": 2,
+        "sentiment": "neutral",
+        "urgency_level": "normal"
+      },
+      "policy": {
+        "classifier_version": "v1.0-rule-based",
+        "schema": "hc_intent.schema.json@v1",
+        "classification_ms": 3.2,
+        "method": "rule_based"
+      }
+    }
+  ]
+}

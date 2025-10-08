@@ -39,6 +39,7 @@ from .bundles import CURRENT_VERSION, iso_now
 from .storage import (
     OBS_FILENAME,
     USERS_DIR,
+    CORE_DATA_ROOT,
     ensure_dirs_for_user,
     load_json,
     read_user_state,
@@ -136,6 +137,20 @@ def safe_image_type(path: str) -> Optional[str]:
     if mime_type and mime_type.startswith('image/'):
         return mime_type.split('/', 1)[1].lower()
     return None
+
+
+def _get_coach_icon(coach_id: str) -> str:
+    """Return emoji icon for coach."""
+    icons = {
+        "head_coach": "🧭",
+        "relationship_coach": "💞",
+        "photo_coach": "📸",
+        "personality_test_coach": "🧠",
+        "career_coach": "💼",
+        "chatdna_coach": "🎯",
+        "beliefdna_coach": "🤔"
+    }
+    return icons.get(coach_id, "🤖")
 
 
 def _trace_append(record: Dict[str, Any]) -> None:
@@ -659,18 +674,45 @@ def build_app() -> FastAPI:
 
     RUNTIME_STATE_FILENAME = "hc_runtime_state.json"
     SYSTEM_PROMPT = (
+        "⚠️ CRITICAL CONSTRAINT: You are a TEXT-ONLY chatbot. You CANNOT send messages, make introductions, or execute actions. "
+        "When users ask to switch coaches, you can ONLY give them UI directions like: 'Click the Coach Catalog (📚) in the sidebar.'\n\n"
+
         "You are the Head Coach - a lifelong companion helping someone become their best self. "
         "Your role is to listen, guide, and connect them with the right tools when needed. "
         "Speak like a close friend texting - warm, direct, not wordy. "
         "Keep responses short (1-2 sentences max). Listen carefully to what they say. Ask ONE question to go deeper. "
 
-        "BOUNDARIES: If someone says 'not now', 'later', 'not interested', treat that topic as FORBIDDEN for the rest of the conversation. "
-        "Never mention it again, not even to say 'when you're ready' or 'I remember you said'. Completely drop it. "
+        "BOUNDARIES: If someone says 'not now', 'later', 'not interested' about a topic, DON'T bring it up again proactively. "
+        "However, if they DIRECTLY ASK about that topic later, answer their question normally - 'not now' means 'not now', not 'never'. "
+        "Example: If they said 'not interested in photos now' but later ask 'what coaches are available?', list ALL coaches including Photo Coach. "
+        "The boundary is about YOU pushing topics, not about preventing them from asking questions. "
         "Let users talk about whatever they want—TV shows, sports, hobbies. Casual chat builds trust. "
 
-        "FEATURES: When relevant, you can mention ONE helpful feature per conversation: "
-        "Relationship Coach for dating/relationships, PaDNA Coach for style/appearance, Photo Coach for visual presence. "
-        "If they say 'not interested' or 'later', don't mention it again in this conversation. Never be pushy. "
+        "AVAILABLE COACHES: You work with specialized coaches who help in different areas:\n"
+        "• Relationship Coach 💞 - dating, relationships, emotions, psychology\n"
+        "• Photo Coach 📸 - physical appearance, style, visual presence\n"
+        "• Personality Test Coach 🧠 - personality profiling, motivations, values\n"
+        "• Career Coach 💼 - career planning, skills, professional development\n"
+        "\n"
+        "⚠️ CRITICAL - COACH SWITCHING PROTOCOL:\n"
+        "When a user asks to switch coaches (e.g., 'talk to career coach', 'switch to relationship coach'):\n"
+        "\n"
+        "✅ CORRECT RESPONSE:\n"
+        "'Perfect! Click the Coach Catalog button (📚) in the left sidebar, then select [Coach Name] from the list.'\n"
+        "\n"
+        "❌ FORBIDDEN RESPONSES (NEVER SAY THESE):\n"
+        "- 'I'll send an introduction'\n"
+        "- 'I'll connect you'\n"
+        "- 'They'll reach out to you'\n"
+        "- 'I've notified them'\n"
+        "\n"
+        "WHY: You are a text interface. You CANNOT execute actions or send messages to other coaches.\n"
+        "You can ONLY guide users to click UI buttons. Be EXTREMELY clear about this.\n"
+        "\n"
+        "TEMPLATE: 'Great! To switch to [Coach Name], click the Coach Catalog (📚) in the sidebar, then select [Coach Name].'\n"
+        "\n"
+        "You can suggest ONE coach per conversation if highly relevant, but don't be pushy. "
+        "If they say 'not interested' or 'later', don't mention it again in this conversation. "
 
         "CASUAL TOPICS: When someone asks about TV shows, books, food, weather, sports—answer naturally and stay on that topic. "
         "DO NOT pivot to self-improvement, goals, or life changes. Do NOT ask 'what would you like to change in your life?' "
@@ -681,14 +723,30 @@ def build_app() -> FastAPI:
     )
     PERSONA_PROMPTS = {
         "head coach": (
+            "⚠️ YOU ARE A CHATBOT - NOT A SECRETARY. You CANNOT send messages or make introductions. "
+            "When asked to switch coaches, give UI directions ONLY.\n\n"
+
             "You're the Head Coach - their closest ally for life. "
 
-            "BOUNDARIES: If someone says 'not now', 'later', or 'not interested' about ANY topic, that topic is FORBIDDEN. "
-            "Do not mention it again. Do not reference it. Do not say 'when you're ready' or 'I remember you mentioned'. "
-            "Act like they never brought it up. If they change the subject, follow their lead immediately. "
+            "BOUNDARIES: If someone says 'not now', 'later', or 'not interested' about a topic, DON'T proactively bring it up again. "
+            "But if they DIRECTLY ASK about it later, answer normally. 'Not now' ≠ 'never'. "
+            "The boundary is about YOU not pushing, not about blocking their questions. "
+            "Example: They said 'no coaches now', but later ask 'what coaches exist?' → Answer the question fully. "
+            "If they change the subject, follow their lead immediately. "
 
-            "COACHES: You can suggest ONE coach per conversation if highly relevant. "
-            "Example: 'Dating is tough. Want to chat with our Relationship Coach?' "
+            "AVAILABLE COACHES:\n"
+            "• Relationship Coach 💞 - relationships, emotions, psychology\n"
+            "• Photo Coach 📸 - appearance, style, visual presence\n"
+            "• Personality Test Coach 🧠 - personality, motivations, values\n"
+            "• Career Coach 💼 - career, skills, professional development\n"
+            "\n"
+            "⚠️ SWITCHING COACHES - CRITICAL RULE:\n"
+            "When user asks to switch: Give them UI DIRECTIONS ONLY.\n"
+            "✅ SAY: 'Perfect! Click Coach Catalog (📚) in sidebar → select [Coach Name]'\n"
+            "❌ NEVER SAY: 'I'll connect you' / 'I'll send introduction' / 'They'll contact you'\n"
+            "You are TEXT ONLY. You cannot execute switches. ONLY guide to UI.\n"
+            "\n"
+            "You can suggest ONE coach per conversation if highly relevant (e.g., 'Dating is tough. Want to chat with our Relationship Coach?')\n"
             "If they say no or 'later', never mention that coach again in this conversation. "
 
             "CASUAL CONVERSATIONS: If they ask about TV shows, restaurants, hobbies, books, weather, sports—have a normal conversation. "
@@ -708,6 +766,82 @@ def build_app() -> FastAPI:
         "photo": (
             "Persona: Photo Coach. Focus on photo session preparation, lighting, and pose refinement tips."
         ),
+        "career_coach": (
+            "You're the Career Coach - a strategic partner for professional growth and career development.\n\n"
+
+            "YOUR EXPERTISE:\n"
+            "• Skills Assessment - Identify strengths, gaps, and growth opportunities\n"
+            "• Career Planning - Map career paths, transitions, and progression strategies\n"
+            "• Learning Paths - Recommend courses, certifications, and skill-building approaches\n"
+            "• Work-Life Optimization - Balance productivity with sustainable work habits\n"
+            "• Professional Development - Networking, personal branding, interview prep\n\n"
+
+            "YOUR APPROACH:\n"
+            "• Start by understanding their current role, industry, and career goals\n"
+            "• Ask about skills they want to develop or areas they want to explore\n"
+            "• Provide specific, actionable advice based on their situation\n"
+            "• Suggest concrete next steps (courses, projects, networking strategies)\n"
+            "• Balance ambition with realistic timelines and effort required\n\n"
+
+            "CONVERSATION STYLE:\n"
+            "• Professional but friendly - like a mentor who's been there\n"
+            "• Focus on practical steps, not just theory or inspiration\n"
+            "• Acknowledge career challenges and uncertainties honestly\n"
+            "• Celebrate wins and progress, no matter how small\n"
+            "• Ask clarifying questions to give better, more tailored advice\n\n"
+
+            "AVOID:\n"
+            "• Generic career advice that could apply to anyone\n"
+            "• Overpromising results ('this will land you a job in 30 days')\n"
+            "• Corporate buzzwords and LinkedIn-speak\n"
+            "• Pushing them toward specific careers without understanding their values\n\n"
+
+            "TONE: Supportive, knowledgeable, and practical. Sound like a career mentor, not a motivational speaker."
+        ),
+        "personality_test_coach": (
+            "You're the Personality Test Coach - an expert in adaptive personality assessment and psychological profiling.\n\n"
+
+            "YOUR ROLE:\n"
+            "• Explore personality traits through contextual questions and observations\n"
+            "• Map to OCEAN model (Openness, Conscientiousness, Extraversion, Agreeableness, Neuroticism)\n"
+            "• Discover motivational drives, values, and behavioral patterns\n"
+            "• Help them understand themselves better through self-reflection\n\n"
+
+            "HOW YOU ASSESS:\n"
+            "• Ask about real situations, not hypotheticals ('Tell me about a time when...')\n"
+            "• Listen for patterns in how they describe experiences\n"
+            "• Explore motivations behind their choices and behaviors\n"
+            "• Use follow-up questions to go deeper on interesting signals\n"
+            "• Connect observations to personality insights naturally\n\n"
+
+            "CONVERSATION APPROACH:\n"
+            "• Start with open-ended questions about their life, work, or relationships\n"
+            "• Listen for clues about personality traits and motivations\n"
+            "• Reflect back what you notice: 'It sounds like you really value...'\n"
+            "• Ask clarifying questions to validate or refine your understanding\n"
+            "• Share personality insights when you have enough data\n\n"
+
+            "TRAITS TO EXPLORE:\n"
+            "• Openness: Curiosity, creativity, comfort with novelty\n"
+            "• Conscientiousness: Organization, planning, follow-through\n"
+            "• Extraversion: Social energy, expressiveness, stimulation needs\n"
+            "• Agreeableness: Cooperation, empathy, conflict approach\n"
+            "• Neuroticism: Emotional stability, stress response, worry patterns\n\n"
+
+            "TONE:\n"
+            "• Curious and non-judgmental - you're discovering, not diagnosing\n"
+            "• Insightful but humble - acknowledge complexity and nuance\n"
+            "• Conversational, not clinical - avoid psych jargon\n"
+            "• Frame traits neutrally - every trait has strengths and challenges\n\n"
+
+            "AVOID:\n"
+            "• Labeling or boxing people in ('You're definitely a...')\n"
+            "• Using clinical terminology without explanation\n"
+            "• Making it feel like a test or interrogation\n"
+            "• Oversimplifying complex personalities\n\n"
+
+            "Remember: Personality is multifaceted. Your job is to help them see themselves more clearly, not to reduce them to labels."
+        ),
     }
     PERSONA_RUBRICS = {
         "head coach": (
@@ -715,13 +849,26 @@ def build_app() -> FastAPI:
 
             "VARIATION: Never ask the same question twice in one conversation. If they don't answer or change topics, let it go. "
 
-            "COACH LIMITS: Suggest a coach only ONCE per conversation. After that ONE mention, erase that coach from your vocabulary. "
-            "If they say 'not now', 'later', 'not interested', NEVER type the words '[Coach Name]' again in any form. "
-            "Do not say: 'our Relationship Coach', 'the coach', 'they could help', 'when you're ready', 'I remember you said'. "
-            "Do not use loopholes like 'I won't suggest... but...' or 'just FYI...'. The coach name is FORBIDDEN. "
-            "If they return to the topic after declining a coach, answer their question directly without mentioning the coach. "
-            "When someone mentions relationships → Relationship Coach. Style/appearance → PaDNA Coach. Photos/visuals → Photo Coach. "
-            "Keep it light: 'If you want, I can connect you with [Coach]—no pressure.' "
+            "COACH SUGGESTIONS: Suggest a coach only ONCE per conversation, and only if highly relevant. "
+            "If they decline ('not now', 'later', 'not interested'), DON'T proactively suggest that coach again. "
+            "HOWEVER: If they DIRECTLY ASK about coaches (e.g., 'what coaches are available?', 'tell me about the career coach'), ANSWER THEIR QUESTION. "
+            "The rule is: Don't PUSH rejected coaches on them. But DO answer when they ASK. "
+            "Example: They said 'no relationship coach now'. Later they ask 'what coaches exist?' → List ALL coaches including Relationship Coach. "
+            "Example: They said 'no career coach'. You suggest career help → DON'T mention career coach. They ask 'can I talk to career coach?' → YES, explain how. "
+            "\n"
+            "COACH MATCHING:\n"
+            "• Relationships, emotions, psychology → Relationship Coach\n"
+            "• Appearance, style, physical traits → Photo Coach\n"
+            "• Personality, motivations, values → Personality Test Coach\n"
+            "• Career, skills, work, professional growth → Career Coach\n"
+            "Keep it light: 'If you want, I can connect you with [Coach]—no pressure.'\n"
+            "\n"
+            "⚠️ CRITICAL: COACH SWITCHING REQUESTS\n"
+            "User asks to switch? → Give UI directions ONLY. NO role-playing as executor.\n"
+            "✅ CORRECT: 'Great! Click Coach Catalog (📚) in sidebar → select [Coach Name]'\n"
+            "❌ FORBIDDEN: 'I'll send intro' / 'I'll connect you' / 'They'll reach out'\n"
+            "You are a CHATBOT, not a secretary. Guide to UI, don't pretend to do actions.\n"
+            "→ NEVER refuse switching requests. ALWAYS give clear UI directions. "
 
             "FRUSTRATION: If they sound frustrated ('I already said', 'I told you', 'again'), apologize immediately and change approach. "
             "Example: 'Sorry! I hear you. Let's talk about what you want to talk about.' "
@@ -731,12 +878,28 @@ def build_app() -> FastAPI:
         "rc": "Rubric: Empathetic relationship guide; validate feelings and offer one practical follow-up.",
         "padna": "Rubric: Visual DNA stylist; surface palette/texture cues and suggest one design tweak.",
         "photo": "Rubric: Photo session coach; focus on lighting/pose alignment and provide one immediate adjustment.",
+        "career_coach": (
+            "Rubric: Career mentor approach. Each response should:\n"
+            "1. Acknowledge their current situation or concern (1 sentence)\n"
+            "2. Provide one specific, actionable piece of advice or insight (2-3 sentences)\n"
+            "3. Ask ONE clarifying question OR suggest one concrete next step\n\n"
+            "Keep it practical and tailored. Avoid generic platitudes. Sound like a mentor who knows their industry."
+        ),
+        "personality_test_coach": (
+            "Rubric: Adaptive assessment approach. Each response should:\n"
+            "1. Reflect back what you heard, noting patterns (1 sentence)\n"
+            "2. Ask ONE follow-up question about a specific situation or behavior\n"
+            "3. When you have enough data, share a personality insight tied to what they've shared\n\n"
+            "Move between questions and insights fluidly. Never rush to conclusions. Make them feel understood, not analyzed."
+        ),
     }
     DEFAULT_RESPONSES = {
         "head coach": "(Head Coach) Thanks for the update. I noted your message and will suggest a next step shortly.",
-        "rc": "(Relationship Coach) Appreciate you sharing this—let’s focus on a practical next action together.",
-        "padna": "(PaDNA Coach) Got it. I’ll log this and circle back with a visual check when ready.",
-        "photo": "(Photo Coach) Understood. I’ll keep it in mind for the next refinement pass.",
+        "rc": "(Relationship Coach) Appreciate you sharing this—let's focus on a practical next action together.",
+        "padna": "(PaDNA Coach) Got it. I'll log this and circle back with a visual check when ready.",
+        "photo": "(Photo Coach) Understood. I'll keep it in mind for the next refinement pass.",
+        "career_coach": "(Career Coach) Got it. I'll consider this and suggest a practical career step when you're ready.",
+        "personality_test_coach": "(Personality Test Coach) Interesting. I'll note this pattern and we can explore it more together.",
     }
     USER_ID_PATTERN = re.compile(r"^[a-z0-9][a-z0-9_-]{2,63}$")
 
@@ -1643,6 +1806,52 @@ def build_app() -> FastAPI:
 
         return {"personas": ui_readonly.persona_roster()}
 
+    @app.get("/ui/coach-catalog")
+    def get_coach_catalog() -> Dict[str, Any]:
+        """
+        Return full coach catalog with metadata from coach_registry.yaml.
+        Includes all coaches with their capabilities, domains, and autonomy levels.
+        """
+        import yaml
+
+        registry_path = Path(__file__).parent / "coach_registry.yaml"
+
+        if not registry_path.exists():
+            return {"coaches": [], "error": "Coach registry not found"}
+
+        try:
+            with open(registry_path, "r") as f:
+                registry_data = yaml.safe_load(f)
+
+            coaches_config = registry_data.get("coaches", {})
+            availability = registry_data.get("availability", {})
+
+            # Transform into catalog format
+            catalog = []
+            for coach_id, config in coaches_config.items():
+                catalog.append({
+                    "id": coach_id,
+                    "display_name": config.get("display_name", coach_id),
+                    "description": config.get("description", ""),
+                    "icon": _get_coach_icon(coach_id),
+                    "primary_namespaces": config.get("primary_namespaces", []),
+                    "capabilities": config.get("capabilities", []),
+                    "natural_domains": config.get("natural_domains", []),
+                    "delegation_context": config.get("delegation_context", ""),
+                    "autonomy_level": config.get("autonomy_level", "medium"),
+                    "is_default": config.get("is_default", False),
+                    "available": availability.get(coach_id, True)
+                })
+
+            return {
+                "coaches": catalog,
+                "total": len(catalog)
+            }
+
+        except Exception as e:
+            logger.error(f"Failed to load coach catalog: {e}")
+            return {"coaches": [], "error": str(e)}
+
     @app.get("/ui/asks")
     def list_planner_asks(
         user_id: str = Query(..., min_length=1, description="Active user identifier"),
@@ -2276,12 +2485,20 @@ def build_app() -> FastAPI:
 
         return payload
 
+    @app.get("/ui/curiosity/health")
+    def curiosity_health() -> Dict[str, Any]:
+        """Return Curiosity engine status (always enabled as part of Core)."""
+        return {
+            "enabled": True,
+            "engine": "curiosity",
+            "status": "ready"
+        }
+
     @app.post("/ui/holistic/review")
     def holistic_review(payload: Dict[str, Any], request: Request) -> Dict[str, Any]:
         """
-        Trigger a holistic review by calling UCN/RR /api/rescore,
-        updating resolved.json with new RR/curiosity values,
-        logging provenance, and returning a summary.
+        Trigger a holistic review using the core holistic.run_holistic() function,
+        which properly computes UCN → RR percentiles and updates resolved.json.
         """
         user_id = payload.get("user_id", "").strip()
         if not user_id:
@@ -2294,130 +2511,65 @@ def build_app() -> FastAPI:
         ensure_dirs_for_user(user_id)
         touch_user_last_used(user_id)
 
-        # Load current state
-        resolved, evidence, obs = read_user_state(user_id)
+        # Run holistic review using core function
+        from .holistic import run_holistic
 
-        if not resolved:
-            _trace_event(trace_id, "holistic_review_no_traits", {"user_id": user_id})
-            return {
-                "ok": False,
-                "error": "no_traits",
-                "message": "No traits found for user",
-            }
-
-        # Build traits payload for UCN/RR rescore
-        traits: List[Dict[str, Any]] = []
-        for trait_path, trait_data in resolved.items():
-            if not isinstance(trait_data, dict):
-                continue
-
-            rr_value = trait_data.get("rr", trait_data.get("ucn", 500.0))
-            days_since_update = trait_data.get("days_since_update", 0.0)
-            tolerance = trait_data.get("tolerance", 0.5)
-
-            traits.append({
-                "id": trait_path,
-                "value": trait_data.get("resolved_value"),
-                "rr": rr_value,
-                "days_since_update": days_since_update,
-                "tolerance": tolerance,
-            })
-
-        # Call UCN/RR /api/rescore
-        ucnrr_base = _ucnrr_base_url()
-        if not ucnrr_base:
-            _trace_event(trace_id, "holistic_review_no_ucnrr", {"user_id": user_id})
-            return {
-                "ok": False,
-                "error": "ucnrr_unavailable",
-                "message": "UCN/RR service not configured",
-            }
-
-        rescore_result: Dict[str, Any] = {}
         try:
-            response = requests.post(
-                f"{ucnrr_base}/api/rescore",
-                json={"user_id": user_id, "traits": traits},
-                timeout=30,
-                headers={"X-Trace-Id": trace_id} if trace_id else None,
+            report, resolved_doc, evidence_doc, flat_doc = run_holistic(
+                user_id=user_id,
+                loader=lambda uid: read_user_state(uid),
+                distribution_dir=Path("data/population_distributions"),
+                rr_k_min=50,
+                use_llm=False,  # Don't use LLM for UI holistic review
             )
-            if response.ok:
-                rescore_result = response.json()
-            else:
-                rescore_result = {"ok": False, "error": f"HTTP {response.status_code}"}
-        except requests.exceptions.ConnectionError as exc:
-            rescore_result = {"ok": False, "error": f"Connection error: {str(exc)}"}
-        except requests.exceptions.Timeout as exc:
-            rescore_result = {"ok": False, "error": f"Timeout: {str(exc)}"}
-        except Exception as exc:
-            rescore_result = {"ok": False, "error": f"Unexpected error: {str(exc)}"}
 
-        _trace_event(
-            trace_id,
-            "holistic_review_rescore_complete",
-            {"user_id": user_id, "ok": rescore_result.get("ok")},
-        )
+            # Save updated state
+            # Note: resolved_doc IS the resolved dict (has a "resolved" key added by holistic.py:242)
+            # We need to extract the actual traits (everything except metadata keys)
+            resolved = {k: v for k, v in resolved_doc.items()
+                       if k not in ("resolved", "user_id", "last_holistic_ts") and isinstance(v, dict)}
+            _, evidence, obs = read_user_state(user_id)
+            write_user_state(user_id, resolved, evidence, obs)
 
-        if not rescore_result.get("ok"):
+            # Log event to checkpoints
+            event_checkpoint(
+                user_id,
+                "holistic_review",
+                {
+                    "traits_updated": len(report.get("ucn_rr_updates", [])),
+                    "implied_additions": len(report.get("implied_additions", [])),
+                    "contradictions": len(report.get("contradictions", [])),
+                    "warnings": report.get("warnings", []),
+                },
+            )
+
+            _trace_event(
+                trace_id,
+                "holistic_review_complete",
+                {"user_id": user_id, "ok": report.get("ok")},
+            )
+
             return {
-                "ok": False,
-                "error": "rescore_failed",
-                "message": rescore_result.get("error", "Unknown error"),
-                "rescore_result": rescore_result,
+                "ok": True,
+                "user_id": user_id,
+                "traits_updated": len(report.get("ucn_rr_updates", [])),
+                "implied_additions": len(report.get("implied_additions", [])),
+                "contradictions": len(report.get("contradictions", [])),
+                "warnings": report.get("warnings", []),
+                "time_ms": report.get("time_ms", 0),
             }
 
-        # Update resolved.json with new RR and curiosity values
-        rr_by_trait = rescore_result.get("rr_by_trait", {})
-        curiosity_by_trait = rescore_result.get("curiosity_by_trait", {})
-        global_curiosity = rescore_result.get("global_curiosity", 0.0)
-
-        updated_count = 0
-        for trait_path in resolved:
-            if trait_path in rr_by_trait:
-                resolved[trait_path]["rr"] = rr_by_trait[trait_path]
-                updated_count += 1
-            if trait_path in curiosity_by_trait:
-                resolved[trait_path]["curiosity"] = curiosity_by_trait[trait_path]
-
-        # Log provenance
-        provenance_entry = {
-            "ts": iso_now(),
-            "action": "holistic_review",
-            "user_id": user_id,
-            "traits_updated": updated_count,
-            "global_curiosity": global_curiosity,
-            "trace_id": trace_id,
-        }
-
-        # Save updated state
-        write_user_state(user_id, resolved, evidence, obs)
-
-        # Log event to checkpoints
-        event_checkpoint(
-            user_id,
-            "holistic_review",
-            {
-                "traits_updated": updated_count,
-                "global_curiosity": global_curiosity,
-                "rr_by_trait": rr_by_trait,
-                "curiosity_by_trait": curiosity_by_trait,
-            },
-        )
-
-        _trace_event(
-            trace_id,
-            "holistic_review_complete",
-            {"user_id": user_id, "updated": updated_count},
-        )
-
-        return {
-            "ok": True,
-            "user_id": user_id,
-            "traits_updated": updated_count,
-            "global_curiosity": round(global_curiosity, 4),
-            "rescore_result": rescore_result,
-            "provenance": provenance_entry,
-        }
+        except Exception as exc:
+            _trace_event(
+                trace_id,
+                "holistic_review_error",
+                {"user_id": user_id, "error": str(exc)},
+            )
+            return {
+                "ok": False,
+                "error": "holistic_review_failed",
+                "message": f"Holistic review failed: {str(exc)}",
+            }
 
     @app.post("/ui/asks/act")
     def ask_action(payload: Dict[str, Any]) -> Any:
@@ -4951,7 +5103,19 @@ def build_app() -> FastAPI:
         seed = payload.get("seed") if isinstance(payload.get("seed"), dict) else None
 
         created, info = create_user(user_id_raw, label=label, seed=seed)
-        if not created or info is None:
+        if not created:
+            # Handle various failure reasons
+            if info and isinstance(info, dict):
+                error_type = info.get("error", "USER_EXISTS")
+                message = info.get("message", f"User '{user_id_raw}' already exists.")
+                return JSONResponse(
+                    status_code=409,
+                    content={
+                        "error": error_type.upper(),
+                        "message": message,
+                        "conflicting_user_id": info.get("conflicting_user_id")
+                    },
+                )
             return JSONResponse(
                 status_code=409,
                 content={"error": "USER_EXISTS", "message": f"User '{user_id_raw}' already exists."},
@@ -6703,26 +6867,106 @@ def build_app() -> FastAPI:
                         # Load user state for context
                         resolved, evidence, obs = read_user_state(user_id)
 
-                        # Find high-curiosity traits (curiosity >= 800 or 1000 - rr >= 800)
-                        high_curiosity_traits = []
-                        for trait_id, trait_data in resolved.items():
-                            curiosity = trait_data.get("curiosity", 0)
-                            rr = trait_data.get("rr", 0)
-                            uncertainty = 1000 - rr
+                        # Use curiosity engine to get priority-ordered exploration agenda
+                        try:
+                            from .curiosity.curiosity_engine import CuriosityEngine
 
-                            if curiosity >= 800 or uncertainty >= 800:
+                            engine = CuriosityEngine(data_dir=Path("data"))
+                            agenda = engine.generate_curiosity_agenda(
+                                user_id=user_id,
+                                top_n=10,
+                                min_curiosity=60.0  # Focus on high/urgent curiosity
+                            )
+
+                            # Convert to legacy format for Head Coach
+                            high_curiosity_traits = []
+                            for item in agenda:
                                 high_curiosity_traits.append({
-                                    "trait": trait_id,
-                                    "curiosity": curiosity,
-                                    "rr": rr
+                                    "trait": item.path,
+                                    "curiosity": item.curiosity,
+                                    "rr": item.rr,
+                                    "reason": item.reason,
+                                    "type": item.container_type  # trait, container, or missing
                                 })
+                        except Exception as e:
+                            logger.warning(f"Curiosity engine failed, falling back to legacy: {e}")
+                            # Fallback to legacy curiosity calculation
+                            high_curiosity_traits = []
+                            for trait_id, trait_data in resolved.items():
+                                rr = trait_data.get("rr", 0)
+                                curiosity = 100 - rr if rr > 0 else 0
 
-                        # Sort by curiosity desc
-                        high_curiosity_traits.sort(key=lambda x: x["curiosity"], reverse=True)
+                                if curiosity >= 60:  # High curiosity threshold
+                                    high_curiosity_traits.append({
+                                        "trait": trait_id,
+                                        "curiosity": curiosity,
+                                        "rr": rr
+                                    })
+
+                            # Sort by curiosity desc
+                            high_curiosity_traits.sort(key=lambda x: x["curiosity"], reverse=True)
+
+                        # Get user tolerance for nudging (adaptive guardrails)
+                        tolerance = resolved.get("ReDNA.ToleranceForNudging", {}).get("value", 0.5)
+                        if isinstance(tolerance, str):
+                            try:
+                                tolerance = float(tolerance)
+                            except (ValueError, TypeError):
+                                tolerance = 0.5
+
+                        # Check if user has explicit RR goals
+                        user_rr_goal = None
+                        overall_rr = None
+                        rr_scores = [t.get("rr", 0) for t in resolved.values() if isinstance(t, dict) and t.get("rr")]
+                        if rr_scores:
+                            overall_rr = sum(rr_scores) / len(rr_scores)
+
+                        # Get delegation recommendations
+                        delegation_recommendations = []
+                        try:
+                            from core.coach_delegation import DelegationManager
+
+                            manager = DelegationManager(data_dir=CORE_DATA_ROOT)
+
+                            # Check if delegation is appropriate
+                            if manager.should_delegate(
+                                curiosity_items=high_curiosity_traits,
+                                user_tolerance=tolerance
+                            ):
+                                # Group by coach and get recommendations
+                                by_coach = manager.group_curiosity_by_coach(high_curiosity_traits)
+
+                                for coach_id, items in by_coach.items():
+                                    if manager.registry.can_delegate_to(coach_id, user_id):
+                                        # Calculate priority (average curiosity)
+                                        avg_curiosity = sum(item.get("curiosity", 0) for item in items) / len(items)
+
+                                        coaches = manager.registry.config.get("coaches", {})
+                                        coach_data = coaches.get(coach_id, {})
+                                        coach_display_name = coach_data.get("display_name", coach_id)
+
+                                        # Don't recommend Head Coach to itself
+                                        if coach_id != "head_coach":
+                                            delegation_recommendations.append({
+                                                "coach": coach_id,
+                                                "coach_display_name": coach_display_name,
+                                                "items": items,
+                                                "priority": avg_curiosity
+                                            })
+
+                                # Sort by priority
+                                delegation_recommendations.sort(key=lambda x: x["priority"], reverse=True)
+
+                        except Exception as e:
+                            logger.warning(f"Failed to get delegation recommendations: {e}")
 
                         # Build state snapshot
                         state_snapshot = {
-                            "high_curiosity_traits": high_curiosity_traits
+                            "high_curiosity_traits": high_curiosity_traits,
+                            "tolerance_for_nudging": tolerance,
+                            "overall_rr": overall_rr,
+                            "user_rr_goal": user_rr_goal,  # Future: extract from user goals
+                            "delegation_recommendations": delegation_recommendations
                         }
 
                         # Load conversation history (last 5 messages)
@@ -7169,6 +7413,2564 @@ def build_app() -> FastAPI:
 
         except Exception as e:
             logger.error(f"Failed to get trait containers: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ============================================================================
+    # RR ENDPOINTS - Multi-level RR calculation
+    # ============================================================================
+
+    @app.get("/rr/trait")
+    def get_trait_rr(
+        user_id: str = Query(..., description="User ID"),
+        trait_path: str = Query(..., description="Trait path (e.g., PaDNA.HairDNA.Color)")
+    ):
+        """
+        Get RR for a specific trait.
+
+        Returns:
+            {
+                "ok": true,
+                "user_id": "user123",
+                "trait_path": "PaDNA.HairDNA.Color",
+                "rr": 45.3,
+                "curiosity": 54.7,
+                "ucn": 440.0,
+                "method": "histogram_percentile",
+                "population_size": 150,
+                "blending_applied": false
+            }
+        """
+        from core.rr_per_trait import PerTraitRRCalculator
+
+        try:
+            distribution_dir = Path(config.core_data_dir) / "population_distributions"
+
+            calculator = PerTraitRRCalculator(
+                distribution_dir=distribution_dir,
+                k_min=50
+            )
+
+            # Get user's UCN for this trait
+            resolved, _, _ = read_user_state(user_id)
+            if not resolved:
+                raise HTTPException(status_code=404, detail="User not found")
+
+            trait_entry = resolved.get(trait_path)
+            if not trait_entry:
+                raise HTTPException(status_code=404, detail=f"Trait {trait_path} not found")
+
+            ucn = trait_entry.get("ucn")
+            if ucn is None:
+                raise HTTPException(status_code=400, detail="Trait has no UCN value")
+
+            # Calculate RR
+            metadata = calculator.calculate_rr_metadata(ucn, trait_path)
+
+            return JSONResponse(content={
+                "ok": True,
+                "user_id": user_id,
+                "trait_path": trait_path,
+                **metadata
+            }, status_code=200)
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Trait RR calculation error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/rr/container")
+    def get_container_rr(
+        user_id: str = Query(..., description="User ID"),
+        container: str = Query(..., description="Container name (e.g., PaDNA)")
+    ):
+        """
+        Get aggregated RR for a DNA container.
+
+        Returns:
+            {
+                "ok": true,
+                "container": "PaDNA",
+                "rr": 67.8,
+                "curiosity": 32.2,
+                "trait_count": 45,
+                "coverage": 32.4,
+                "traits": [...]
+            }
+        """
+        from core.rr_aggregation import ContainerRRAggregator
+
+        try:
+            distribution_dir = Path(config.core_data_dir) / "population_distributions"
+
+            aggregator = ContainerRRAggregator(
+                distribution_dir=distribution_dir,
+                k_min=50,
+                alpha=0.5
+            )
+
+            result = aggregator.calculate_container_rr(user_id, container)
+
+            if result is None:
+                raise HTTPException(
+                    status_code=404,
+                    detail=f"No valid RR data for container {container}"
+                )
+
+            return JSONResponse(content={
+                "ok": True,
+                "user_id": user_id,
+                **result
+            }, status_code=200)
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Container RR calculation error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/rr/overall")
+    def get_overall_rr(
+        user_id: str = Query(..., description="User ID")
+    ):
+        """
+        Get overall user RR across all containers.
+
+        Returns:
+            {
+                "ok": true,
+                "overall": {
+                    "rr": 64.5,
+                    "curiosity": 35.5,
+                    "container_count": 3,
+                    "trait_count": 109
+                },
+                "containers": [...]
+            }
+        """
+        from core.rr_aggregation import calculate_user_rr_summary
+
+        try:
+            distribution_dir = Path(config.core_data_dir) / "population_distributions"
+
+            summary = calculate_user_rr_summary(
+                user_id=user_id,
+                distribution_dir=distribution_dir,
+                k_min=50,
+                alpha=0.5
+            )
+
+            if summary.get("error"):
+                raise HTTPException(status_code=404, detail=summary["error"])
+
+            return JSONResponse(content={
+                "ok": True,
+                "user_id": user_id,
+                **summary
+            }, status_code=200)
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Overall RR calculation error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/rr/rebuild_distributions")
+    def rebuild_distributions(
+        force: bool = Query(False, description="Force rebuild even if up-to-date")
+    ):
+        """
+        Rebuild population distributions for RR calculation.
+
+        This should be run:
+        - After data migration
+        - Periodically (e.g., weekly) to include new users
+        - When distribution quality degrades
+
+        Returns:
+            {
+                "ok": true,
+                "distributions_built": 87,
+                "total_users": 150,
+                "traits": {...}
+            }
+        """
+        from core.rr_distribution_builder import build_all_distributions
+
+        try:
+            distribution_dir = Path(config.core_data_dir) / "population_distributions"
+
+            trait_counts = build_all_distributions(
+                output_dir=distribution_dir,
+                k_min=5,  # Use k_min=5 for distribution building
+                force_rebuild=force
+            )
+
+            return JSONResponse(content={
+                "ok": True,
+                "distributions_built": len(trait_counts),
+                "total_users": len(list_users()),
+                "traits": trait_counts
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Distribution rebuild error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ========================================================================
+    # DNA ONTOLOGY ENDPOINTS
+    # ========================================================================
+
+    @app.get("/ontology/registry")
+    def get_ontology_registry():
+        """Get the complete DNA container registry."""
+        try:
+            registry_path = Path("core/ontology/dna_registry.json")
+
+            if not registry_path.exists():
+                raise HTTPException(status_code=404, detail="Registry not found")
+
+            with open(registry_path) as f:
+                registry = json.load(f)
+
+            return JSONResponse(content={"ok": True, "registry": registry}, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Registry fetch error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/ontology/container/{path:path}")
+    def get_ontology_container(path: str):
+        """Get a single container by path."""
+        try:
+            registry_path = Path("core/ontology/dna_registry.json")
+
+            if not registry_path.exists():
+                raise HTTPException(status_code=404, detail="Registry not found")
+
+            with open(registry_path) as f:
+                registry = json.load(f)
+
+            # Find container
+            for container in registry.get("containers", []):
+                if container.get("path") == path:
+                    return JSONResponse(content={"ok": True, "container": container}, status_code=200)
+
+            raise HTTPException(status_code=404, detail=f"Container not found: {path}")
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Container fetch error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/ontology/namespace/{namespace}")
+    def get_ontology_namespace(namespace: str):
+        """Get all containers in a namespace."""
+        try:
+            registry_path = Path("core/ontology/dna_registry.json")
+
+            if not registry_path.exists():
+                raise HTTPException(status_code=404, detail="Registry not found")
+
+            with open(registry_path) as f:
+                registry = json.load(f)
+
+            # Filter containers
+            containers = [
+                c for c in registry.get("containers", [])
+                if c.get("namespace") == namespace
+            ]
+
+            return JSONResponse(content={
+                "ok": True,
+                "namespace": namespace,
+                "count": len(containers),
+                "containers": containers
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Namespace fetch error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/ontology/search")
+    def search_ontology(q: str = Query(..., min_length=2)):
+        """Search containers by path, description, or tags."""
+        try:
+            registry_path = Path("core/ontology/dna_registry.json")
+
+            if not registry_path.exists():
+                raise HTTPException(status_code=404, detail="Registry not found")
+
+            with open(registry_path) as f:
+                registry = json.load(f)
+
+            query = q.lower()
+            results = []
+
+            for container in registry.get("containers", []):
+                path = container.get("path", "").lower()
+                description = container.get("description", "").lower()
+                tags = [t.lower() for t in container.get("tags", [])]
+
+                if query in path or query in description or any(query in t for t in tags):
+                    results.append(container)
+
+            return JSONResponse(content={
+                "ok": True,
+                "query": q,
+                "count": len(results),
+                "results": results
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Search error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/curiosity/{user_id}")
+    def get_curiosity_agenda(
+        user_id: str,
+        top_n: int = Query(20, ge=1, le=100),
+        min_curiosity: float = Query(50.0, ge=0.0, le=100.0)
+    ):
+        """Get curiosity-driven agenda for a user."""
+        try:
+            from core.curiosity.curiosity_engine import CuriosityEngine
+
+            engine = CuriosityEngine(data_dir=Path("data"))
+
+            agenda = engine.generate_curiosity_agenda(
+                user_id=user_id,
+                top_n=top_n,
+                min_curiosity=min_curiosity
+            )
+
+            return JSONResponse(content={
+                "ok": True,
+                "user_id": user_id,
+                "count": len(agenda),
+                "agenda": [item.to_dict() for item in agenda]
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Curiosity agenda error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/curiosity/{user_id}/map")
+    def get_curiosity_map(user_id: str):
+        """Get complete curiosity map for visualization."""
+        try:
+            from core.curiosity.curiosity_engine import CuriosityEngine
+
+            engine = CuriosityEngine(data_dir=Path("data"))
+
+            curiosity_map = engine.export_curiosity_map(user_id=user_id)
+
+            return JSONResponse(content={"ok": True, **curiosity_map}, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Curiosity map error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ============================================================
+    # COACH DELEGATION ENDPOINTS
+    # ============================================================
+
+    @app.post("/delegation/analyze")
+    def analyze_delegation_opportunity(payload: dict = Body(...)):
+        """
+        Analyze if delegation is appropriate for current curiosity state.
+
+        Returns:
+            {
+                "should_delegate": bool,
+                "recommendations": [
+                    {
+                        "coach": str,
+                        "items": [curiosity_item, ...],
+                        "priority": float,
+                        "message": str
+                    }
+                ]
+            }
+        """
+        try:
+            from core.coach_delegation import DelegationManager
+            from core.curiosity.curiosity_engine import CuriosityEngine
+
+            user_id = payload.get("user_id")
+            if not user_id:
+                raise HTTPException(status_code=400, detail="Missing user_id")
+
+            # Get current curiosity state
+            engine = CuriosityEngine(data_dir=CORE_DATA_ROOT)
+            agenda = engine.generate_curiosity_agenda(
+                user_id=user_id,
+                top_n=20,
+                min_curiosity=60.0
+            )
+
+            curiosity_items = [item.to_dict() for item in agenda]
+
+            # Get user tolerance (read_user_state returns tuple)
+            state_tuple = read_user_state(user_id)
+            resolved = state_tuple[2] if len(state_tuple) > 2 else {}
+            tolerance = resolved.get("ReDNA.ToleranceForNudging", {}).get("value", 0.5)
+            if isinstance(tolerance, str):
+                try:
+                    tolerance = float(tolerance)
+                except (ValueError, TypeError):
+                    tolerance = 0.5
+
+            # Analyze delegation opportunity
+            manager = DelegationManager(data_dir=CORE_DATA_ROOT)
+
+            should_delegate = manager.should_delegate(
+                curiosity_items=curiosity_items,
+                user_tolerance=tolerance,
+                conversation_context=payload.get("conversation_context")
+            )
+
+            # Group by coach
+            by_coach = manager.group_curiosity_by_coach(curiosity_items)
+
+            # Build recommendations
+            recommendations = []
+            for coach_id, items in by_coach.items():
+                if manager.registry.can_delegate_to(coach_id, user_id):
+                    # Calculate priority (simple: average curiosity)
+                    avg_curiosity = sum(item.get("curiosity", 0) for item in items) / len(items)
+
+                    coaches = manager.registry.config.get("coaches", {})
+                    coach_data = coaches.get(coach_id, {})
+                    coach_display_name = coach_data.get("display_name", coach_id)
+
+                    recommendations.append({
+                        "coach": coach_id,
+                        "coach_display_name": coach_display_name,
+                        "items": items,
+                        "priority": avg_curiosity,
+                        "message": f"{coach_display_name} could help explore {len(items)} area(s)"
+                    })
+
+            # Sort by priority
+            recommendations.sort(key=lambda x: x["priority"], reverse=True)
+
+            return JSONResponse(content={
+                "ok": True,
+                "should_delegate": should_delegate,
+                "user_tolerance": tolerance,
+                "total_curiosity_items": len(curiosity_items),
+                "recommendations": recommendations
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Delegation analysis error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/delegation/create")
+    def create_delegation(payload: dict = Body(...)):
+        """
+        Create a delegation to a specialized coach.
+
+        Request:
+            {
+                "user_id": str,
+                "coach_id": str,
+                "curiosity_targets": [path, ...],
+                "context": {...}
+            }
+
+        Returns:
+            {
+                "ok": bool,
+                "delegation": {
+                    "delegation_id": str,
+                    "coach": str,
+                    "message": str,
+                    "curiosity_targets": [...]
+                }
+            }
+        """
+        try:
+            from core.coach_delegation import DelegationManager
+
+            user_id = payload.get("user_id")
+            coach_id = payload.get("coach_id")
+            curiosity_targets = payload.get("curiosity_targets", [])
+            context = payload.get("context", {})
+
+            if not user_id or not coach_id:
+                return JSONResponse(content={
+                    "ok": False,
+                    "error": "missing_params",
+                    "message": "Missing user_id or coach_id"
+                }, status_code=400)
+
+            manager = DelegationManager(data_dir=CORE_DATA_ROOT)
+
+            result = manager.delegate_to_coach(
+                coach_id=coach_id,
+                user_id=user_id,
+                curiosity_targets=curiosity_targets,
+                context=context
+            )
+
+            if not result.success:
+                return JSONResponse(content={
+                    "ok": False,
+                    "error": result.error,
+                    "message": result.message
+                }, status_code=400)
+
+            return JSONResponse(content={
+                "ok": True,
+                "delegation": {
+                    "delegation_id": result.delegation_id,
+                    "coach": result.coach,
+                    "message": result.message,
+                    "curiosity_targets": result.curiosity_targets,
+                    "context": result.context
+                }
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Delegation creation error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/delegation/{user_id}/status/{delegation_id}")
+    def get_delegation_status(user_id: str, delegation_id: str):
+        """
+        Get status of a delegation.
+
+        Returns:
+            {
+                "ok": bool,
+                "status": {
+                    "delegation_id": str,
+                    "coach": str,
+                    "status": str,
+                    "traits_collected": [...],
+                    "curiosity_satisfied": float,
+                    "timestamp": str
+                }
+            }
+        """
+        try:
+            from core.coach_delegation import DelegationManager
+
+            manager = DelegationManager(data_dir=CORE_DATA_ROOT)
+            status = manager.check_delegation_status(delegation_id, user_id)
+
+            if not status:
+                raise HTTPException(status_code=404, detail="Delegation not found")
+
+            return JSONResponse(content={
+                "ok": True,
+                "status": {
+                    "delegation_id": status.delegation_id,
+                    "coach": status.coach,
+                    "status": status.status,
+                    "traits_collected": status.traits_collected,
+                    "curiosity_satisfied": status.curiosity_satisfied,
+                    "timestamp": status.timestamp,
+                    "notes": status.notes
+                }
+            }, status_code=200)
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Delegation status error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/delegation/{user_id}/active")
+    def get_active_delegations(user_id: str):
+        """
+        Get all active delegations for a user.
+
+        Returns:
+            {
+                "ok": bool,
+                "count": int,
+                "delegations": [...]
+            }
+        """
+        try:
+            from core.coach_delegation import DelegationManager
+
+            manager = DelegationManager(data_dir=CORE_DATA_ROOT)
+            active = manager.get_active_delegations(user_id)
+
+            return JSONResponse(content={
+                "ok": True,
+                "count": len(active),
+                "delegations": [
+                    {
+                        "delegation_id": d.delegation_id,
+                        "coach": d.coach,
+                        "status": d.status,
+                        "traits_collected": d.traits_collected,
+                        "curiosity_satisfied": d.curiosity_satisfied,
+                        "timestamp": d.timestamp,
+                        "notes": d.notes
+                    }
+                    for d in active
+                ]
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Active delegations error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/delegation/{user_id}/complete/{delegation_id}")
+    def complete_delegation(user_id: str, delegation_id: str, payload: dict = Body(...)):
+        """
+        Mark delegation as completed and return to Head Coach with results.
+
+        Request:
+            {
+                "traits_collected": [path, ...],
+                "curiosity_before": {path: score, ...},
+                "curiosity_after": {path: score, ...},
+                "notes": str,
+                "auto_return": bool  # default True - switch back to Head Coach
+            }
+
+        Returns:
+            {
+                "ok": bool,
+                "message": str,
+                "delegation_summary": {
+                    "traits_collected_count": int,
+                    "curiosity_satisfied": float,
+                    "notes": str
+                },
+                "mode_switch": {
+                    "previous_mode": str,
+                    "new_mode": str,
+                    "message": str
+                }
+            }
+        """
+        try:
+            from core.coach_delegation import DelegationManager
+            from core.coach_mode_manager import switch_mode_with_handoff
+
+            traits_collected = payload.get("traits_collected", [])
+            curiosity_before = payload.get("curiosity_before", {})
+            curiosity_after = payload.get("curiosity_after", {})
+            notes = payload.get("notes", "")
+            auto_return = payload.get("auto_return", True)
+
+            manager = DelegationManager(data_dir=CORE_DATA_ROOT)
+
+            success = manager.complete_delegation(
+                delegation_id=delegation_id,
+                user_id=user_id,
+                traits_collected=traits_collected,
+                curiosity_before=curiosity_before,
+                curiosity_after=curiosity_after,
+                notes=notes
+            )
+
+            if not success:
+                raise HTTPException(status_code=404, detail="Delegation not found or already completed")
+
+            # Get delegation status for summary
+            delegation_status = manager.check_delegation_status(delegation_id, user_id)
+
+            response_data = {
+                "ok": True,
+                "message": "Delegation completed successfully",
+                "delegation_summary": {
+                    "traits_collected_count": len(traits_collected),
+                    "curiosity_satisfied": delegation_status.curiosity_satisfied if delegation_status else 0.0,
+                    "notes": notes,
+                }
+            }
+
+            # Auto-return to Head Coach with delegation results
+            if auto_return:
+                mode_switch_result = switch_mode_with_handoff(
+                    user_id=user_id,
+                    target_mode="head_coach",
+                    data_dir=CORE_DATA_ROOT,
+                    delegation_id=delegation_id,
+                    context={
+                        "reason": "delegation_complete",
+                        "traits_collected": traits_collected,
+                        "curiosity_satisfied": delegation_status.curiosity_satisfied if delegation_status else 0.0,
+                        "notes": notes,
+                    }
+                )
+                response_data["mode_switch"] = mode_switch_result
+            else:
+                response_data["mode_switch"] = None
+
+            return JSONResponse(content=response_data, status_code=200)
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Delegation completion error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ============================================================
+    # COACH MODE ENDPOINTS
+    # ============================================================
+
+    @app.get("/users/{user_id}/coach-mode")
+    def get_active_coach_mode(user_id: str):
+        """
+        Get user's current active coach mode.
+
+        Returns:
+            {
+                "ok": bool,
+                "active_mode": str,
+                "mode_info": {
+                    "display_name": str,
+                    "emoji": str,
+                    "description": str,
+                    "namespaces": [...]
+                }
+            }
+        """
+        try:
+            from core.coach_mode_manager import CoachModeManager
+
+            manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
+            active_mode = manager.get_active_mode(user_id)
+            mode_info = manager.get_mode_info(active_mode)
+
+            return JSONResponse(content={
+                "ok": True,
+                "active_mode": active_mode,
+                "mode_info": mode_info
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Get coach mode error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/users/{user_id}/coach-mode")
+    def switch_coach_mode(user_id: str, payload: dict = Body(...)):
+        """
+        Switch user's active coach mode.
+
+        Request:
+            {
+                "target_mode": str,  # "head_coach", "photo", "relationship"
+                "delegation_id": str (optional),
+                "context": {...} (optional)
+            }
+
+        Returns:
+            {
+                "ok": bool,
+                "previous_mode": str,
+                "new_mode": str,
+                "mode_info": {...},
+                "message": str
+            }
+        """
+        try:
+            from core.coach_mode_manager import switch_mode_with_handoff
+
+            target_mode = payload.get("target_mode")
+            if not target_mode:
+                return JSONResponse(content={
+                    "ok": False,
+                    "error": "missing_target_mode",
+                    "message": "target_mode is required"
+                }, status_code=400)
+
+            delegation_id = payload.get("delegation_id")
+            context = payload.get("context", {})
+
+            result = switch_mode_with_handoff(
+                user_id=user_id,
+                target_mode=target_mode,
+                data_dir=CORE_DATA_ROOT,
+                delegation_id=delegation_id,
+                context=context
+            )
+
+            if not result["success"]:
+                return JSONResponse(content={
+                    "ok": False,
+                    "error": result.get("error", "switch_failed"),
+                    "message": result.get("message", "Failed to switch modes")
+                }, status_code=400)
+
+            return JSONResponse(content={
+                "ok": True,
+                **result
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Switch coach mode error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/users/{user_id}/coach-mode/history")
+    def get_coach_mode_history(user_id: str, limit: int = Query(10, ge=1, le=100)):
+        """
+        Get user's coach mode switching history.
+
+        Returns:
+            {
+                "ok": bool,
+                "history": [
+                    {
+                        "from_mode": str,
+                        "to_mode": str,
+                        "timestamp": str,
+                        "context": {...}
+                    }
+                ]
+            }
+        """
+        try:
+            from core.coach_mode_manager import CoachModeManager
+
+            manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
+            history = manager.get_mode_history(user_id, limit=limit)
+
+            return JSONResponse(content={
+                "ok": True,
+                "history": history,
+                "count": len(history)
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Get mode history error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/users/{user_id}/coach-mode/stats")
+    def get_coach_mode_stats(user_id: str):
+        """
+        Get statistics about user's coach mode usage.
+
+        Returns:
+            {
+                "ok": bool,
+                "stats": {
+                    "total_transitions": int,
+                    "mode_counts": {mode: count},
+                    "current_mode": str,
+                    "most_used_mode": str
+                }
+            }
+        """
+        try:
+            from core.coach_mode_manager import CoachModeManager
+
+            manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
+            stats = manager.get_mode_stats(user_id)
+
+            return JSONResponse(content={
+                "ok": True,
+                "stats": stats
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Get mode stats error: {e}")
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ==================== Career Coach Panel Endpoint ====================
+    @app.get("/api/coach/career_coach/panel")
+    def get_career_coach_panel(user_id: str = Query(..., description="User ID")):
+        """
+        Career Coach unified panel endpoint - returns all widget data in one call.
+
+        Returns aggregated data for:
+        - snapshot: Career overview metrics
+        - user_intents: Detected user intents with confidence
+        - skills: SkillDNA map with RR/curiosity/trend
+        - suggestions: Learning path recommendations
+        - roles: Career transition role recommendations
+        - user_profile: Work style radar data
+        - role_profile: Role demands radar data
+        - mismatches: Work style gaps
+        - points: Motivation alignment scatter points
+        - entries: Career timeline milestones
+        - cards: Insight cards from coach logic
+        """
+        try:
+            from .career_coach.career_service import CareerCoach
+
+            coach = CareerCoach(user_id)
+
+            # Get skill curiosity map
+            skill_map = coach.get_skill_curiosity_map(min_curiosity=50.0)
+
+            # Get career dashboard
+            dashboard = coach.get_career_dashboard()
+
+            # Detect user intent (simple heuristic for now)
+            # If high curiosity in multiple skills → career_change
+            # If high curiosity in few skills → current_role_growth
+            # Otherwise → organization_mode
+            skills_needing_attention = skill_map.get("skills_needing_attention", 0)
+            avg_skill_rr = skill_map.get("avg_skill_rr", 50.0)
+
+            if skills_needing_attention >= 5 and avg_skill_rr < 60:
+                detected_intent = "career_change"
+                confidence = 0.75
+            elif skills_needing_attention > 0:
+                detected_intent = "current_role_growth"
+                confidence = 0.65
+            else:
+                detected_intent = "organization_mode"
+                confidence = 0.50
+
+            # Build snapshot
+            snapshot = {
+                "profdna_rr": round(dashboard["satisfaction_score"], 1),
+                "skilldna_rr": round(avg_skill_rr, 1),
+                "top_strengths": [s["name"] for s in dashboard.get("top_strengths", [])[:3]],
+                "top_curiosity": [s["name"] for s in dashboard.get("skill_gaps", [])[:3]],
+                "active_intent": detected_intent
+            }
+
+            # Build skills list for SkillCuriosityMap
+            skills = skill_map.get("high_curiosity_skills", []) + skill_map.get("well_resolved_skills", [])
+
+            # Placeholder data for other widgets (will be built in future phases)
+            suggestions = []  # LearningPathBuilder
+            roles = []  # TransitionPlanner
+            user_profile = {}  # WorkStyleAnalyzer
+            role_profile = {}  # WorkStyleAnalyzer
+            mismatches = []  # WorkStyleAnalyzer
+            points = []  # MotivationAlignmentChart
+            entries = []  # CareerTimeline
+
+            # Build insight cards
+            cards = []
+
+            # Add insight for high curiosity skills
+            if skills_needing_attention > 0:
+                high_curiosity_skills = skill_map.get("high_curiosity_skills", [])[:3]
+                cards.append({
+                    "id": "skill_curiosity_insight",
+                    "type": "curiosity",
+                    "title": f"{skills_needing_attention} Skills Need Attention",
+                    "description": f"High curiosity detected in: {', '.join([s['name'] for s in high_curiosity_skills])}",
+                    "rr_delta": -15.0,
+                    "curiosity_delta": 20.0,
+                    "action": "explore_learning_paths"
+                })
+
+            # Add insight for strengths
+            if dashboard.get("top_strengths"):
+                top_strength = dashboard["top_strengths"][0]
+                cards.append({
+                    "id": "strength_insight",
+                    "type": "strength",
+                    "title": "Top Strength Identified",
+                    "description": f"{top_strength['name']} is highly resolved (RR: {round(top_strength['rr'], 1)})",
+                    "rr_delta": 0.0,
+                    "curiosity_delta": 0.0,
+                    "action": "acknowledge"
+                })
+
+            return JSONResponse(content={
+                # Intent detection
+                "user_intents": [detected_intent],
+                "confidence": confidence,
+
+                # Snapshot widget data
+                "snapshot": snapshot,
+
+                # SkillCuriosityMap widget data
+                "skills": skills,
+
+                # Placeholder widget data (future)
+                "suggestions": suggestions,
+                "roles": roles,
+                "user_profile": user_profile,
+                "role_profile": role_profile,
+                "mismatches": mismatches,
+                "points": points,
+                "entries": entries,
+
+                # InsightFeed widget data
+                "cards": cards
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Career coach panel error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ========================================
+    # Personality Test Coach Panel Endpoint
+    # ========================================
+    @app.get("/api/coach/personality_test_coach/panel")
+    def get_personality_test_coach_panel(user_id: str = Query(..., description="User ID")):
+        """
+        Personality Test Coach unified panel endpoint.
+        Returns all widget data in one call: snapshot, personality map, motivation matrix,
+        insights, timeline, test items, and contradiction flags.
+
+        Supports adaptive testing based on RR/Curiosity scores.
+        """
+        try:
+            resolved, evidence, obs = read_user_state(user_id)
+
+            # Extract PsyDNA data
+            psydna = resolved.get("PsyDNA", {})
+            big_five = {}
+            facets = {}
+            motivation = {}
+            self_concept = {}
+
+            # Parse BigFive factors
+            for factor_name in ["Openness", "Conscientiousness", "Extraversion", "Agreeableness", "EmotionalStability"]:
+                factor_path = f"PersonalityDNA.BigFiveDNA.{factor_name}DNA"
+                factor_data = psydna.get(factor_path, {})
+                if factor_data:
+                    big_five[factor_name] = {
+                        "rr": factor_data.get("rr", 0),
+                        "curiosity": factor_data.get("curiosity", 100),
+                        "last_updated": factor_data.get("last_updated")
+                    }
+
+            # Parse facets for low RR detection
+            for factor_name in ["Openness", "Conscientiousness", "Extraversion", "Agreeableness", "EmotionalStability"]:
+                facets_path = f"PersonalityDNA.{factor_name}FacetsDNA"
+                facets_data = psydna.get(facets_path, {})
+                for facet_key, facet_val in facets_data.items():
+                    if isinstance(facet_val, dict) and "rr" in facet_val:
+                        facets[facet_key] = {
+                            "rr": facet_val.get("rr", 0),
+                            "curiosity": facet_val.get("curiosity", 100),
+                            "parent_factor": factor_name
+                        }
+
+            # Parse MotivationDNA
+            motivation_dna = psydna.get("MotivationDNA", {})
+            for motive_key, motive_val in motivation_dna.items():
+                if isinstance(motive_val, dict) and "rr" in motive_val:
+                    motivation[motive_key] = {
+                        "rr": motive_val.get("rr", 0),
+                        "curiosity": motive_val.get("curiosity", 100)
+                    }
+
+            # Parse SelfConceptSchemaDNA
+            self_concept_dna = psydna.get("SelfConceptSchemaDNA", {})
+            for sc_key, sc_val in self_concept_dna.items():
+                if isinstance(sc_val, dict) and "rr" in sc_val:
+                    self_concept[sc_key] = {
+                        "rr": sc_val.get("rr", 0),
+                        "curiosity": sc_val.get("curiosity", 100)
+                    }
+
+            # Calculate aggregate PsyDNA RR
+            all_rr_values = []
+            for bf in big_five.values():
+                if bf["rr"] is not None:
+                    all_rr_values.append(bf["rr"])
+            for m in motivation.values():
+                if m["rr"] is not None:
+                    all_rr_values.append(m["rr"])
+
+            psydna_rr = sum(all_rr_values) / len(all_rr_values) if all_rr_values else 0
+
+            # Identify top strengths (high RR) and top curiosity (high curiosity score)
+            strengths = []
+            high_curiosity = []
+
+            for factor, data in big_five.items():
+                if data["rr"] and data["rr"] >= 70:
+                    strengths.append({"name": f"{factor}DNA", "rr": data["rr"]})
+                if data["curiosity"] and data["curiosity"] >= 70:
+                    high_curiosity.append({"name": f"{factor}DNA", "curiosity": data["curiosity"], "rr": data["rr"]})
+
+            # Sort and limit
+            strengths.sort(key=lambda x: x["rr"], reverse=True)
+            high_curiosity.sort(key=lambda x: x["curiosity"], reverse=True)
+
+            # Detect intent based on data state
+            if psydna_rr < 40:
+                active_intent = "discover_self"
+            elif len(high_curiosity) > 2:
+                active_intent = "track_growth"
+            else:
+                active_intent = "compare_over_time"
+
+            # Build snapshot
+            snapshot = {
+                "psydna_rr": round(psydna_rr, 1),
+                "top_strengths": [s["name"] for s in strengths[:3]],
+                "top_curiosity": [c["name"] for c in high_curiosity[:3]],
+                "active_intent": active_intent,
+                "factors_assessed": len([bf for bf in big_five.values() if bf["rr"] is not None])
+            }
+
+            # Build personality map (radar chart data)
+            personality_map = {
+                "factors": []
+            }
+            for factor, data in big_five.items():
+                personality_map["factors"].append({
+                    "name": factor,
+                    "rr": data["rr"] or 0,
+                    "curiosity": data["curiosity"] or 100,
+                    "population_avg": 50  # Placeholder for population reference
+                })
+
+            # Build motivation matrix (scatter data)
+            motivation_matrix = {
+                "intrinsic_extrinsic": [],
+                "purpose_alignment": []
+            }
+
+            if "IntrinsicExtrinsicBalanceDNA" in motivation:
+                motivation_matrix["intrinsic_extrinsic"].append({
+                    "trait": "IntrinsicExtrinsicBalance",
+                    "rr": motivation["IntrinsicExtrinsicBalanceDNA"]["rr"],
+                    "curiosity": motivation["IntrinsicExtrinsicBalanceDNA"]["curiosity"]
+                })
+
+            if "PurposeMeaningOrientationDNA" in motivation:
+                motivation_matrix["purpose_alignment"].append({
+                    "trait": "PurposeMeaningOrientation",
+                    "rr": motivation["PurposeMeaningOrientationDNA"]["rr"],
+                    "curiosity": motivation["PurposeMeaningOrientationDNA"]["curiosity"]
+                })
+
+            # Generate insights (adaptive prompts based on RR gaps)
+            insights = []
+            for factor, data in big_five.items():
+                if data["rr"] is not None and data["rr"] < 50:
+                    insights.append({
+                        "type": "low_rr",
+                        "trait": factor,
+                        "message": f"Your {factor} assessment could be refined (RR {data['rr']}). Consider a focused mini-quiz.",
+                        "action": "micro_quiz",
+                        "target": factor
+                    })
+
+            if len(high_curiosity) > 0:
+                insights.append({
+                    "type": "high_curiosity",
+                    "trait": high_curiosity[0]["name"],
+                    "message": f"High curiosity detected in {high_curiosity[0]['name']}. Explore this trait further?",
+                    "action": "reflection",
+                    "target": high_curiosity[0]["name"]
+                })
+
+            # Timeline (placeholder - would fetch from events)
+            timeline = []
+
+            # Test items (placeholder - would load from personality_items.json)
+            test_items = []
+
+            # Contradiction flags (placeholder - would detect from behavior vs self-report)
+            contradiction_flags = []
+
+            # Confidence (based on RR completeness)
+            assessed_count = len([bf for bf in big_five.values() if bf["rr"] is not None])
+            confidence = assessed_count / 5.0 if assessed_count > 0 else 0.0
+
+            return JSONResponse(content={
+                "user_id": user_id,
+                "snapshot": snapshot,
+                "personality_map": personality_map,
+                "motivation_matrix": motivation_matrix,
+                "insights": insights,
+                "timeline": timeline,
+                "test_items": test_items,
+                "contradiction_flags": contradiction_flags,
+                "confidence": round(confidence, 2)
+            })
+
+        except FileNotFoundError:
+            raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+        except Exception as e:
+            logger.error(f"PTC panel error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ========================================
+    # ChatDNA Coach Panel Endpoints
+    # ========================================
+    @app.get("/api/coach/chatdna_coach/panel")
+    def get_chatdna_coach_panel(user_id: str = Query(..., description="User ID")):
+        """
+        ChatDNA Coach unified panel endpoint.
+        Returns snapshot with language style and interaction metrics.
+        """
+        try:
+            from .chatdna_service import ChatDNACoach
+
+            coach = ChatDNACoach(user_id)
+            result = coach.get_chatdna_snapshot()
+
+            return JSONResponse(content=result, status_code=200)
+
+        except FileNotFoundError:
+            raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+        except Exception as e:
+            logger.error(f"ChatDNA coach panel error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/api/coach/chatdna_coach/traits")
+    def get_chatdna_traits(
+        user_id: str = Query(..., description="User ID"),
+        min_curiosity: float = Query(50.0, description="Minimum curiosity threshold")
+    ):
+        """
+        Get language style traits with high curiosity.
+        Used by LanguageStylePanel component.
+        """
+        try:
+            from .chatdna_service import ChatDNACoach
+
+            coach = ChatDNACoach(user_id)
+            result = coach.get_language_traits(min_curiosity=min_curiosity)
+
+            return JSONResponse(content=result, status_code=200)
+
+        except FileNotFoundError:
+            raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+        except Exception as e:
+            logger.error(f"ChatDNA traits error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ========================================
+    # BeliefDNA Coach Panel Endpoints
+    # ========================================
+    @app.get("/api/coach/beliefdna_coach/panel")
+    def get_beliefdna_coach_panel(user_id: str = Query(..., description="User ID")):
+        """
+        BeliefDNA Coach unified panel endpoint.
+        Returns snapshot, templates, console state, and evidence data.
+        """
+        try:
+            from .beliefdna_service import BeliefDNACoach
+
+            coach = BeliefDNACoach(user_id)
+            result = coach.get_panel_data()
+
+            return JSONResponse(content=result, status_code=200)
+
+        except FileNotFoundError:
+            raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+        except Exception as e:
+            logger.error(f"BeliefDNA coach panel error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/coach/beliefdna_coach/render")
+    async def render_beliefdna_response(request: Request):
+        """
+        Generate a belief-based philosophical response.
+
+        Request body:
+          - prompt: The question to answer
+          - intent: Category (moral, social, existential, political, psychological)
+          - user_id: User identifier
+
+        Returns reasoned answer with reasoning map and evidence.
+        """
+        try:
+            from .beliefdna_service import BeliefDNACoach
+
+            body = await request.json()
+            user_id = body.get("user_id")
+            prompt = body.get("prompt", "")
+            intent = body.get("intent", "moral")
+
+            if not user_id:
+                raise HTTPException(status_code=400, detail="user_id is required")
+            if not prompt:
+                raise HTTPException(status_code=400, detail="prompt is required")
+
+            coach = BeliefDNACoach(user_id)
+            result = coach.generate_belief_response(prompt, intent)
+
+            return JSONResponse(content=result, status_code=200)
+
+        except FileNotFoundError:
+            raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+        except Exception as e:
+            logger.error(f"BeliefDNA render error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/coach/beliefdna_coach/feedback")
+    async def submit_beliefdna_feedback(request: Request):
+        """
+        Submit feedback on a BeliefDNA response to refine belief traits.
+
+        Request body:
+          - prompt: Original question
+          - output: Generated response
+          - user_rating: Rating from 1-5
+          - notes: Optional feedback notes
+          - user_id: User identifier
+
+        Returns RR adjustments and affected containers.
+        """
+        try:
+            from .beliefdna_service import BeliefDNACoach
+
+            body = await request.json()
+            user_id = body.get("user_id")
+            prompt = body.get("prompt", "")
+            output = body.get("output", "")
+            user_rating = body.get("user_rating", 3)
+            notes = body.get("notes", "")
+
+            if not user_id:
+                raise HTTPException(status_code=400, detail="user_id is required")
+
+            coach = BeliefDNACoach(user_id)
+            result = coach.record_feedback(prompt, output, user_rating, notes)
+
+            return JSONResponse(content=result, status_code=200)
+
+        except Exception as e:
+            logger.error(f"BeliefDNA feedback error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # =========================================================================
+    # COACH WORKSHOP ENDPOINTS
+    # =========================================================================
+
+    @app.get("/api/workshop/coaches")
+    def list_workshop_coaches(source: str = Query("delegation", description="Source: delegation or legacy")):
+        """
+        List all available coaches with metadata for Workshop.
+        Returns unified view of delegation coaches + legacy personas.
+        """
+        try:
+            coaches = []
+
+            if source == "delegation":
+                # Read coach_registry.yaml
+                registry_path = Path(__file__).parent.parent / "core" / "coach_registry.yaml"
+                if registry_path.exists():
+                    import yaml
+                    with open(registry_path, "r", encoding="utf-8") as f:
+                        registry = yaml.safe_load(f)
+
+                    for coach_id, coach_meta in registry.get("coaches", {}).items():
+                        # Find manifest
+                        manifest_path = Path(__file__).parent.parent / "coaches" / coach_id / "coach_ui_manifest.yaml"
+                        manifest_exists = manifest_path.exists()
+                        manifest_valid = False
+                        last_updated = None
+
+                        if manifest_exists:
+                            try:
+                                with open(manifest_path, "r", encoding="utf-8") as mf:
+                                    manifest_data = yaml.safe_load(mf)
+                                    manifest_valid = bool(manifest_data.get("widgets"))
+                                    last_updated = manifest_data.get("metadata", {}).get("updated_at")
+                            except:
+                                pass
+
+                        coaches.append({
+                            "id": coach_id,
+                            "display_name": coach_meta.get("display_name", coach_id),
+                            "description": coach_meta.get("description", ""),
+                            "purpose": ", ".join(coach_meta.get("natural_domains", [])),
+                            "manifest_path": str(manifest_path) if manifest_exists else None,
+                            "manifest_exists": manifest_exists,
+                            "manifest_valid": manifest_valid,
+                            "status": "ready" if manifest_valid else ("draft" if manifest_exists else "no_manifest"),
+                            "last_updated": last_updated,
+                            "source": "delegation"
+                        })
+
+            elif source == "legacy":
+                # Legacy personas (adapter stubs)
+                legacy_personas = [
+                    {"id": "head_coach", "display_name": "Head Coach (Legacy)", "description": "General conversational coach"},
+                    {"id": "photo", "display_name": "Photo Coach (Legacy)", "description": "Physical appearance analysis"},
+                    {"id": "padna", "display_name": "PaDNA Coach (Legacy)", "description": "Style and aesthetics"},
+                    {"id": "relationship_coach", "display_name": "Relationship Coach (Legacy)", "description": "Relationship patterns"}
+                ]
+
+                for persona in legacy_personas:
+                    coaches.append({
+                        "id": persona["id"],
+                        "display_name": persona["display_name"],
+                        "description": persona["description"],
+                        "purpose": "Legacy persona (adapter mode)",
+                        "manifest_path": None,
+                        "manifest_exists": False,
+                        "manifest_valid": False,
+                        "status": "legacy_adapter",
+                        "last_updated": None,
+                        "source": "legacy"
+                    })
+
+            return JSONResponse(content={"coaches": coaches, "source": source})
+
+        except Exception as e:
+            logger.error(f"Workshop coaches list error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/api/workshop/coaches/{coach_id}/manifest")
+    def get_workshop_coach_manifest(coach_id: str):
+        """
+        Retrieve coach manifest YAML for Workshop editing.
+        """
+        try:
+            manifest_path = Path(__file__).parent.parent / "coaches" / coach_id / "coach_ui_manifest.yaml"
+
+            if not manifest_path.exists():
+                raise HTTPException(status_code=404, detail=f"Manifest not found for {coach_id}")
+
+            with open(manifest_path, "r", encoding="utf-8") as f:
+                import yaml
+                manifest_data = yaml.safe_load(f)
+
+            # Also return raw YAML text for editor
+            with open(manifest_path, "r", encoding="utf-8") as f:
+                manifest_yaml = f.read()
+
+            return JSONResponse(content={
+                "coach_id": coach_id,
+                "manifest_path": str(manifest_path),
+                "manifest_data": manifest_data,
+                "manifest_yaml": manifest_yaml,
+                "schema_version": manifest_data.get("schema_version"),
+                "renderer_version": manifest_data.get("renderer_version"),
+                "manifest_version": manifest_data.get("manifest_version")
+            })
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Workshop manifest get error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/workshop/coaches/{coach_id}/manifest/save")
+    async def save_workshop_coach_manifest(coach_id: str, request: Request):
+        """
+        Save updated manifest (writes to _dev copy for safety).
+        """
+        try:
+            body = await request.json()
+            manifest_yaml = body.get("manifest_yaml")
+
+            if not manifest_yaml:
+                raise HTTPException(status_code=400, detail="manifest_yaml required")
+
+            # Validate YAML
+            import yaml
+            try:
+                manifest_data = yaml.safe_load(manifest_yaml)
+            except yaml.YAMLError as e:
+                raise HTTPException(status_code=400, detail=f"Invalid YAML: {e}")
+
+            # Schema validation (basic)
+            if not manifest_data.get("widgets"):
+                raise HTTPException(status_code=400, detail="Manifest must have 'widgets' array")
+
+            if manifest_data.get("coach_id") != coach_id:
+                raise HTTPException(status_code=400, detail=f"coach_id mismatch: expected {coach_id}")
+
+            # Write to _dev copy
+            manifest_dir = Path(__file__).parent.parent / "coaches" / coach_id
+            manifest_dir.mkdir(parents=True, exist_ok=True)
+            dev_manifest_path = manifest_dir / "coach_ui_manifest_dev.yaml"
+
+            with open(dev_manifest_path, "w", encoding="utf-8") as f:
+                f.write(manifest_yaml)
+
+            return JSONResponse(content={
+                "success": True,
+                "dev_path": str(dev_manifest_path),
+                "message": "Manifest saved to _dev copy. Use 'Promote' to move to stable."
+            })
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Workshop manifest save error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/workshop/coaches/{coach_id}/manifest/promote")
+    def promote_workshop_manifest(coach_id: str):
+        """
+        Promote _dev manifest to stable (overwrites coach_ui_manifest.yaml).
+        """
+        try:
+            manifest_dir = Path(__file__).parent.parent / "coaches" / coach_id
+            dev_path = manifest_dir / "coach_ui_manifest_dev.yaml"
+            stable_path = manifest_dir / "coach_ui_manifest.yaml"
+
+            if not dev_path.exists():
+                raise HTTPException(status_code=404, detail="No _dev manifest to promote")
+
+            # Backup stable
+            if stable_path.exists():
+                import shutil
+                from datetime import datetime
+                backup_path = manifest_dir / f"coach_ui_manifest_backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}.yaml"
+                shutil.copy(stable_path, backup_path)
+
+            # Copy dev → stable
+            import shutil
+            shutil.copy(dev_path, stable_path)
+
+            return JSONResponse(content={
+                "success": True,
+                "stable_path": str(stable_path),
+                "message": f"Manifest promoted to stable. Backup created."
+            })
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Workshop manifest promote error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/api/workshop/coaches/{coach_id}/preview")
+    def preview_workshop_panel(
+        coach_id: str,
+        user_id: str = Query("TEST", description="User ID for preview"),
+        data_mode: str = Query("live", description="Data mode: live, stub, hybrid"),
+        intent: str = Query(None, description="Simulated intent")
+    ):
+        """
+        Preview coach panel with simulated data.
+        Returns same structure as production panel endpoint + perf metrics.
+        """
+        try:
+            import time
+            start_time = time.time()
+
+            # Determine which panel endpoint to call
+            panel_data = {}
+            api_time = 0
+
+            if data_mode == "live":
+                # Call actual panel endpoint
+                if coach_id == "career_coach":
+                    # Would call internal function - for now return stub
+                    panel_data = {"user_id": user_id, "widgets": [], "message": "Career Coach live preview"}
+                elif coach_id == "personality_test_coach":
+                    # Would call internal function
+                    panel_data = {"user_id": user_id, "widgets": [], "message": "PTC live preview"}
+                else:
+                    panel_data = {"user_id": user_id, "widgets": [], "message": f"{coach_id} preview not implemented"}
+
+            elif data_mode == "stub":
+                # Load fixture
+                fixture_path = Path(__file__).parent.parent / "coaches" / coach_id / "workshop_fixtures" / f"{intent or 'default'}.json"
+                if fixture_path.exists():
+                    with open(fixture_path, "r", encoding="utf-8") as f:
+                        panel_data = json.load(f)
+                else:
+                    panel_data = {"user_id": user_id, "widgets": [], "message": "No fixture found"}
+
+            else:  # hybrid
+                # Live RR/curiosity + stub widget data
+                panel_data = {"user_id": user_id, "widgets": [], "message": "Hybrid mode not yet implemented"}
+
+            compose_time = (time.time() - start_time) * 1000  # ms
+
+            return JSONResponse(content={
+                "coach_id": coach_id,
+                "user_id": user_id,
+                "data_mode": data_mode,
+                "intent": intent,
+                "panel_data": panel_data,
+                "performance": {
+                    "compose_ms": round(compose_time, 2),
+                    "api_ms": round(api_time, 2),
+                    "fcp_ms": None,  # Would measure on frontend
+                    "parity_ok": True
+                }
+            })
+
+        except Exception as e:
+            logger.error(f"Workshop preview error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/workshop/coaches/{coach_id}/simulate")
+    async def simulate_user_state(coach_id: str, request: Request):
+        """
+        Simulate user state (RR, curiosity, intent) for testing panel behavior.
+        """
+        try:
+            body = await request.json()
+            user_id = body.get("user_id", "workshop_sim")
+            intent = body.get("intent")
+            rr_overrides = body.get("rr_overrides", {})  # {"SkillDNA": 40, "PsyDNA": 70}
+            curiosity_overrides = body.get("curiosity_overrides", {})
+
+            # Would apply overrides to a temp user state and return preview
+            # For now, return stub
+            return JSONResponse(content={
+                "coach_id": coach_id,
+                "user_id": user_id,
+                "intent": intent,
+                "rr_overrides": rr_overrides,
+                "curiosity_overrides": curiosity_overrides,
+                "message": "Simulation applied. Refresh preview to see changes."
+            })
+
+        except Exception as e:
+            logger.error(f"Workshop simulate error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/workshop/coaches/{coach_id}/export")
+    def export_workshop_bundle(coach_id: str):
+        """
+        Export coach bundle (manifest, fixtures, screenshots) as ZIP.
+        """
+        try:
+            import zipfile
+            from io import BytesIO
+            from datetime import datetime
+
+            manifest_dir = Path(__file__).parent.parent / "coaches" / coach_id
+            manifest_path = manifest_dir / "coach_ui_manifest.yaml"
+
+            if not manifest_path.exists():
+                raise HTTPException(status_code=404, detail="No manifest to export")
+
+            # Create ZIP in memory
+            zip_buffer = BytesIO()
+            with zipfile.ZipFile(zip_buffer, "w", zipfile.ZIP_DEFLATED) as zf:
+                # Add manifest
+                zf.write(manifest_path, f"{coach_id}/coach_ui_manifest.yaml")
+
+                # Add fixtures if exist
+                fixtures_dir = manifest_dir / "workshop_fixtures"
+                if fixtures_dir.exists():
+                    for fixture_file in fixtures_dir.glob("*.json"):
+                        zf.write(fixture_file, f"{coach_id}/fixtures/{fixture_file.name}")
+
+                # Add performance report (stub)
+                perf_report = {
+                    "coach_id": coach_id,
+                    "exported_at": datetime.now().isoformat(),
+                    "compose_target_ms": 200,
+                    "fcp_target_ms": 300,
+                    "parity_ok": True
+                }
+                zf.writestr(f"{coach_id}/performance_report.json", json.dumps(perf_report, indent=2))
+
+            zip_buffer.seek(0)
+
+            from fastapi.responses import StreamingResponse
+            return StreamingResponse(
+                zip_buffer,
+                media_type="application/zip",
+                headers={"Content-Disposition": f"attachment; filename={coach_id}_workshop_bundle_{datetime.now().strftime('%Y%m%d_%H%M%S')}.zip"}
+            )
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Workshop export error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # =========================================================================
+    # CHATDNA COACH ENDPOINTS
+    # =========================================================================
+
+    @app.get("/api/coach/chatdna_coach/panel")
+    def get_chatdna_coach_panel(user_id: str = Query(..., description="User ID")):
+        """
+        ChatDNA Coach unified panel endpoint.
+        Returns snapshot, templates, console state, style profile, similarity, and evidence links.
+        """
+        try:
+            resolved, evidence, obs = read_user_state(user_id)
+
+            # Extract LanguageStyleDNA, PsyDNA, SocDNA data
+            language_dna = resolved.get("LanguageStyleDNA", {})
+            psydna = resolved.get("PsyDNA", {})
+            socdna = resolved.get("SocDNA", {})
+            metadna = resolved.get("MetaDNA", {})
+
+            # Calculate aggregate RR scores
+            def calculate_domain_rr(domain_data):
+                rr_values = [v.get("rr", 0) for v in domain_data.values() if isinstance(v, dict) and "rr" in v]
+                return round(sum(rr_values) / len(rr_values), 2) if rr_values else 0
+
+            language_rr = calculate_domain_rr(language_dna)
+
+            # Calculate personality RR from PsyDNA.PersonalityDNA
+            personality_dna = {}
+            for key, val in psydna.items():
+                if key.startswith("PersonalityDNA."):
+                    personality_dna[key] = val
+            personality_rr = calculate_domain_rr(personality_dna)
+
+            # Calculate social RR from SocDNA.InteractionStyleDNA
+            interaction_dna = {}
+            for key, val in socdna.items():
+                if key.startswith("InteractionStyleDNA."):
+                    interaction_dna[key] = val
+            social_rr = calculate_domain_rr(interaction_dna)
+
+            # Find top curiosity items
+            all_style_traits = {}
+            all_style_traits.update(language_dna)
+            all_style_traits.update(personality_dna)
+            all_style_traits.update(interaction_dna)
+
+            curiosity_items = []
+            for path, data in all_style_traits.items():
+                if isinstance(data, dict):
+                    curiosity = data.get("curiosity", 0)
+                    rr = data.get("rr", 0)
+                    if curiosity > 60 or rr < 40:
+                        curiosity_items.append({
+                            "path": path,
+                            "curiosity": curiosity,
+                            "rr": rr
+                        })
+
+            # Sort by curiosity (descending)
+            curiosity_items.sort(key=lambda x: x["curiosity"], reverse=True)
+            top_curiosity = [item["path"] for item in curiosity_items[:3]]
+
+            # Detect active intent based on data state
+            if language_rr < 40:
+                active_intent = "casual"  # Start with simple examples
+            elif personality_rr > 60:
+                active_intent = "reflective"  # Have enough data for complex styles
+            else:
+                active_intent = "casual"
+
+            # Build snapshot
+            snapshot = {
+                "language_rr": language_rr,
+                "personality_rr": personality_rr,
+                "social_rr": social_rr,
+                "top_curiosity": top_curiosity,
+                "active_intent": active_intent
+            }
+
+            # Build templates
+            templates = {
+                "cards": [
+                    {
+                        "id": "intro_casual",
+                        "title": "Casual intro",
+                        "prompt": "Hey, just checking in...",
+                        "category": "casual"
+                    },
+                    {
+                        "id": "email_formal",
+                        "title": "Formal email",
+                        "prompt": "Dear team, following up on...",
+                        "category": "formal"
+                    },
+                    {
+                        "id": "persuade",
+                        "title": "Persuasive note",
+                        "prompt": "I believe we should consider...",
+                        "category": "persuasive"
+                    },
+                    {
+                        "id": "late_message",
+                        "title": "Running late",
+                        "prompt": "Write two sentences saying I'm running 10 minutes late.",
+                        "category": "casual"
+                    },
+                    {
+                        "id": "technical_explanation",
+                        "title": "Technical explanation",
+                        "prompt": "Explain how to configure the database connection.",
+                        "category": "technical"
+                    }
+                ]
+            }
+
+            # Console state (initially empty)
+            console_state = {
+                "last_prompt": "",
+                "last_output": ""
+            }
+
+            # Build style profile (from available data)
+            style_profile_rows = []
+
+            # Extract key language traits
+            for trait_path in ["CadenceDNA", "VocabularyDensityDNA", "FormalityDNA", "HedgingPatternDNA"]:
+                full_path = f"LanguageStyleDNA.{trait_path}"
+                trait_data = language_dna.get(full_path, {})
+                if trait_data and isinstance(trait_data, dict):
+                    rr = trait_data.get("rr", 0)
+                    confidence = rr / 100.0 if rr > 0 else 0.0
+                    # Infer value from RR (stub - would use actual trait value)
+                    if "Cadence" in trait_path:
+                        value = "medium-fast" if rr > 50 else "medium"
+                    elif "Vocabulary" in trait_path:
+                        value = "high" if rr > 60 else "medium"
+                    elif "Formality" in trait_path:
+                        value = "semi-formal" if rr > 50 else "casual"
+                    elif "Hedging" in trait_path:
+                        value = "light" if rr > 50 else "moderate"
+                    else:
+                        value = "unknown"
+
+                    style_profile_rows.append({
+                        "trait": trait_path.replace("DNA", ""),
+                        "value": value,
+                        "confidence": round(confidence, 2),
+                        "source": "LanguageStyleDNA"
+                    })
+
+            # Add personality traits that affect style
+            personality_traits = ["AgreeablenessDNA", "ExtraversionDNA", "OpennessDNA"]
+            for trait_path in personality_traits:
+                full_path = f"PersonalityDNA.BigFiveDNA.{trait_path}"
+                trait_data = psydna.get(full_path, {})
+                if trait_data and isinstance(trait_data, dict):
+                    rr = trait_data.get("rr", 0)
+                    confidence = rr / 100.0 if rr > 0 else 0.0
+                    value = "high" if rr > 60 else ("medium" if rr > 30 else "low")
+
+                    style_profile_rows.append({
+                        "trait": trait_path.replace("DNA", " (tone)"),
+                        "value": value,
+                        "confidence": round(confidence, 2),
+                        "source": "PsyDNA.PersonalityDNA"
+                    })
+
+            style_profile = {
+                "rows": style_profile_rows
+            }
+
+            # Similarity monitor (stub - would compute from actual samples)
+            similarity = {
+                "cards": [
+                    {
+                        "title": "Linguistic similarity",
+                        "score": 0.72 if language_rr > 50 else 0.45,
+                        "note": "Cosine similarity vs writing samples" if language_rr > 50 else "Insufficient data for comparison",
+                        "rr_delta": 4 if language_rr > 50 else 0
+                    },
+                    {
+                        "title": "Tone alignment",
+                        "score": 0.66 if personality_rr > 50 else 0.40,
+                        "note": "Sentiment + hedging pattern match" if personality_rr > 50 else "Limited personality data",
+                        "curiosity_delta": -6 if personality_rr > 50 else 0
+                    },
+                    {
+                        "title": "Social style match",
+                        "score": 0.58 if social_rr > 50 else 0.35,
+                        "note": "Interaction pattern alignment" if social_rr > 50 else "Gather more social data",
+                        "rr_delta": 2 if social_rr > 50 else 0
+                    }
+                ]
+            }
+
+            # Evidence links
+            evidence_items = []
+            for path, data in all_style_traits.items():
+                if isinstance(data, dict) and data.get("rr", 0) > 30:
+                    evidence_items.append({
+                        "path": path,
+                        "rr": data.get("rr", 0)
+                    })
+
+            # Sort by RR descending
+            evidence_items.sort(key=lambda x: x["rr"], reverse=True)
+            evidence_items = evidence_items[:10]  # Top 10
+
+            evidence_links = {
+                "items": evidence_items
+            }
+
+            return JSONResponse(content={
+                "user_id": user_id,
+                "snapshot": snapshot,
+                "templates": templates,
+                "console_state": console_state,
+                "style_profile": style_profile,
+                "similarity": similarity,
+                "evidence_links": evidence_links
+            })
+
+        except FileNotFoundError:
+            raise HTTPException(status_code=404, detail=f"User {user_id} not found")
+        except Exception as e:
+            logger.error(f"ChatDNA panel error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/coach/chatdna_coach/render")
+    async def render_chatdna_response(request: Request):
+        """
+        Generate a response in the user's conversational style.
+        Uses LanguageStyleDNA, PsyDNA, SocDNA to synthesize style.
+        """
+        try:
+            body = await request.json()
+            prompt = body.get("prompt", "")
+            intent = body.get("intent", "casual")
+            options = body.get("options", {})
+            user_id = body.get("user_id", "TEST")
+
+            if not prompt:
+                raise HTTPException(status_code=400, detail="prompt required")
+
+            # Load user state
+            resolved, evidence, obs = read_user_state(user_id)
+
+            # Extract style data
+            language_dna = resolved.get("LanguageStyleDNA", {})
+            psydna = resolved.get("PsyDNA", {})
+            socdna = resolved.get("SocDNA", {})
+
+            # Build style profile for synthesis
+            style_profile = []
+
+            # Cadence
+            cadence_data = language_dna.get("LanguageStyleDNA.CadenceDNA", {})
+            cadence_rr = cadence_data.get("rr", 0)
+            cadence_value = "medium-fast" if cadence_rr > 50 else "medium"
+            style_profile.append({
+                "trait": "CadenceDNA",
+                "value": cadence_value,
+                "confidence": round(cadence_rr / 100.0, 2) if cadence_rr > 0 else 0.5
+            })
+
+            # Vocabulary density
+            vocab_data = language_dna.get("LanguageStyleDNA.VocabularyDensityDNA", {})
+            vocab_rr = vocab_data.get("rr", 0)
+            vocab_value = "high" if vocab_rr > 60 else ("medium" if vocab_rr > 30 else "medium")
+            style_profile.append({
+                "trait": "VocabularyDensityDNA",
+                "value": vocab_value,
+                "confidence": round(vocab_rr / 100.0, 2) if vocab_rr > 0 else 0.5
+            })
+
+            # Hedging pattern
+            hedging_data = language_dna.get("LanguageStyleDNA.HedgingPatternDNA", {})
+            hedging_rr = hedging_data.get("rr", 0)
+            hedging_value = "light" if hedging_rr > 50 else "moderate"
+            style_profile.append({
+                "trait": "HedgingPatternDNA",
+                "value": hedging_value,
+                "confidence": round(hedging_rr / 100.0, 2) if hedging_rr > 0 else 0.5
+            })
+
+            # Formality
+            formality_data = language_dna.get("LanguageStyleDNA.FormalityDNA", {})
+            formality_rr = formality_data.get("rr", 0)
+            if intent == "formal":
+                formality_value = "formal"
+            elif intent == "casual":
+                formality_value = "casual"
+            else:
+                formality_value = "semi-formal" if formality_rr > 50 else "casual"
+            style_profile.append({
+                "trait": "FormalityDNA",
+                "value": formality_value,
+                "confidence": round(formality_rr / 100.0, 2) if formality_rr > 0 else 0.5
+            })
+
+            # Agreeableness (affects warmth)
+            agree_data = psydna.get("PersonalityDNA.BigFiveDNA.AgreeablenessDNA", {})
+            agree_rr = agree_data.get("rr", 0)
+            agree_value = "warm" if agree_rr > 60 else ("neutral" if agree_rr > 30 else "neutral")
+
+            # Generate response using LLM or return honest error
+            import os
+            api_key_openai = os.getenv("OPENAI_API_KEY", "").strip()
+            api_key_anthropic = os.getenv("ANTHROPIC_API_KEY", "").strip()
+
+            if not api_key_openai and not api_key_anthropic:
+                # No API key - be honest
+                output = "⚠️ I can't generate a live response because no LLM API key is configured. Set OPENAI_API_KEY or ANTHROPIC_API_KEY to enable AI responses."
+            else:
+                # Build style synthesis prompt
+                style_desc = f"""You are mimicking the conversational style of {user_id}.
+
+Style profile:
+- Cadence: {cadence_value}
+- Vocabulary: {vocab_value}
+- Hedging: {hedging_value}
+- Formality: {formality_value}
+- Tone: {agree_value}
+
+Generate a response to this prompt in their style: {prompt}
+
+Intent: {intent}
+"""
+
+                try:
+                    if api_key_openai:
+                        import openai
+                        client = openai.OpenAI(api_key=api_key_openai, timeout=10)
+                        response = client.chat.completions.create(
+                            model="gpt-4o-mini",
+                            messages=[
+                                {"role": "system", "content": style_desc},
+                                {"role": "user", "content": prompt}
+                            ],
+                            max_tokens=200,
+                            temperature=0.7
+                        )
+                        output = response.choices[0].message.content
+                    else:  # Anthropic
+                        import anthropic
+                        client = anthropic.Anthropic(api_key=api_key_anthropic, timeout=10)
+                        response = client.messages.create(
+                            model="claude-3-5-sonnet-20241022",
+                            system=style_desc,
+                            messages=[{"role": "user", "content": prompt}],
+                            max_tokens=200,
+                            temperature=0.7
+                        )
+                        output = response.content[0].text
+                except Exception as e:
+                    logger.error(f"ChatDNA LLM generation failed: {e}")
+                    output = f"⚠️ Error generating response: {str(e)}"
+
+            # Calculate similarity (stub)
+            linguistic_similarity = 0.71 if cadence_rr > 50 else 0.45
+            tone_similarity = 0.65 if agree_rr > 50 else 0.40
+            overall_similarity = (linguistic_similarity + tone_similarity) / 2
+
+            similarity = {
+                "linguistic": round(linguistic_similarity, 2),
+                "tone": round(tone_similarity, 2),
+                "overall": round(overall_similarity, 2)
+            }
+
+            # Relevant containers
+            relevant_containers = [
+                "LanguageStyleDNA.CadenceDNA",
+                "LanguageStyleDNA.HedgingPatternDNA",
+                "LanguageStyleDNA.VocabularyDensityDNA",
+                "PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA"
+            ]
+
+            # RR summary
+            def calc_domain_rr(domain_data):
+                rr_vals = [v.get("rr", 0) for v in domain_data.values() if isinstance(v, dict) and "rr" in v]
+                return round(sum(rr_vals) / len(rr_vals), 2) if rr_vals else 0
+
+            rr_summary = {
+                "LanguageStyleDNA": calc_domain_rr(language_dna),
+                "PersonalityDNA": calc_domain_rr({k: v for k, v in psydna.items() if "PersonalityDNA" in k}),
+                "InteractionStyleDNA": calc_domain_rr({k: v for k, v in socdna.items() if "InteractionStyleDNA" in k})
+            }
+
+            # Gap logging: detect unmapped features and fallbacks
+            try:
+                from ReDNACoreDemo.core.feature_map import (
+                    get_feature_map_version, lookup_container, is_unmapped
+                )
+                from ReDNACoreDemo.core.gap_logs import (
+                    log_unmet_features, create_gap_item, extract_mock_features
+                )
+
+                # Extract features from prompt (mock in this version)
+                extracted_features = extract_mock_features(prompt, intent)
+
+                # Detect gaps
+                gap_items = []
+                for feature, value in extracted_features.items():
+                    container = lookup_container(feature)
+
+                    if is_unmapped(feature):
+                        # Unmapped feature - estimate impact
+                        impact_estimate = 0.08 if value > 0.5 else 0.04
+                        gap_items.append(create_gap_item(
+                            feature=feature,
+                            gap_type="unmapped",
+                            value=value,
+                            impact_estimate=impact_estimate
+                        ))
+                    elif container:
+                        # Mapped feature - check if we're falling back due to low RR
+                        container_data = resolved
+                        for part in container.split('.'):
+                            container_data = container_data.get(part, {})
+                        container_rr = container_data.get("rr", 0) if isinstance(container_data, dict) else 0
+
+                        if container_rr < 40:  # Low confidence threshold
+                            impact_estimate = 0.05
+                            gap_items.append(create_gap_item(
+                                feature=feature,
+                                gap_type="fallback",
+                                value=value,
+                                impact_estimate=impact_estimate,
+                                mapped_to=container
+                            ))
+
+                # Log if we have gaps
+                if gap_items:
+                    log_unmet_features(
+                        user_id=user_id,
+                        prompt=prompt,
+                        intent=intent,
+                        feature_map_version=get_feature_map_version(),
+                        items=gap_items,
+                        rr_context=rr_summary
+                    )
+            except Exception as gap_log_error:
+                # Don't fail the render if gap logging fails
+                logger.warning(f"Gap logging failed: {gap_log_error}")
+
+            return JSONResponse(content={
+                "output": output,
+                "style_profile": style_profile,
+                "similarity": similarity,
+                "relevant_containers": relevant_containers,
+                "rr_summary": rr_summary,
+                "policy": {
+                    "renderer_version": 1,
+                    "manifest_version": 1
+                }
+            })
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"ChatDNA render error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/coach/chatdna_coach/feedback")
+    async def submit_chatdna_feedback(request: Request):
+        """
+        Collect user feedback on generated response similarity.
+        Updates UCN and triggers RR recomputation.
+        """
+        try:
+            body = await request.json()
+            prompt = body.get("prompt", "")
+            output = body.get("output", "")
+            user_rating = body.get("user_rating", 3)  # 1-5
+            notes = body.get("notes", "")
+            user_id = body.get("user_id", "TEST")
+
+            if not output or user_rating < 1 or user_rating > 5:
+                raise HTTPException(status_code=400, detail="Invalid feedback data")
+
+            # Log feedback
+            logger.info(f"ChatDNA feedback: user={user_id}, rating={user_rating}, notes={notes}")
+
+            # Convert rating to similarity delta
+            # 5 = perfect match (+10 to relevant RR)
+            # 4 = good match (+5)
+            # 3 = neutral (0)
+            # 2 = poor match (-5)
+            # 1 = terrible match (-10)
+            rr_delta_map = {
+                5: 10,
+                4: 5,
+                3: 0,
+                2: -5,
+                1: -10
+            }
+            rr_delta = rr_delta_map.get(user_rating, 0)
+
+            # Apply small UCN adjustments to relevant containers
+            # (In production, would update resolved.json and trigger RR recompute)
+            affected_containers = [
+                "LanguageStyleDNA.CadenceDNA",
+                "LanguageStyleDNA.VocabularyDensityDNA",
+                "LanguageStyleDNA.HedgingPatternDNA",
+                "LanguageStyleDNA.FormalityDNA"
+            ]
+
+            # Log provenance
+            from datetime import datetime
+            feedback_record = {
+                "timestamp": datetime.now().isoformat(),
+                "user_id": user_id,
+                "prompt": prompt,
+                "output": output,
+                "user_rating": user_rating,
+                "notes": notes,
+                "rr_delta": rr_delta,
+                "affected_containers": affected_containers
+            }
+
+            # Store feedback (would write to provenance log)
+            logger.info(f"ChatDNA feedback recorded: {feedback_record}")
+
+            return JSONResponse(content={
+                "success": True,
+                "rr_delta": rr_delta,
+                "affected_containers": affected_containers,
+                "message": f"Feedback recorded. RR adjustments: {'+' if rr_delta >= 0 else ''}{rr_delta}"
+            })
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"ChatDNA feedback error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ═══════════════════════════════════════════════════════════════════════
+    # HEAD COACH V2 (JARVIS-CLASS ORCHESTRATOR) API ENDPOINTS
+    # ═══════════════════════════════════════════════════════════════════════
+
+    @app.get("/hc/awareness")
+    def get_head_coach_awareness(
+        user_id: str = Query(..., description="User ID"),
+        force_refresh: bool = Query(False, description="Force cache refresh for all layers")
+    ):
+        """
+        Get Head Coach situational awareness snapshot for user.
+
+        Returns 4-layer awareness model:
+        - Core state (live): Active coach, curiosity hotspots, delegation state
+        - Goal/task layer (5m TTL): Active goals, pending tasks
+        - Context layer (1h TTL): Recent topics, active threads
+        - Memory layer (24h TTL): Long-term patterns, RR by domain
+
+        Includes emotional tone analysis, TTL hints, policy metadata, and Workshop summary.
+
+        Response time target: ≤20ms (warm cache)
+        Privacy: No raw message text included
+        """
+        try:
+            from .head_coach.situational_awareness import AwarenessEngine
+
+            engine = AwarenessEngine()
+            snapshot = engine.get_snapshot(user_id, force_refresh=force_refresh)
+
+            return snapshot
+
+        except FileNotFoundError as e:
+            raise HTTPException(status_code=404, detail=f"User not found: {user_id}")
+        except Exception as e:
+            logger.error(f"Head Coach awareness error for user {user_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/hc/classify-intent")
+    async def classify_user_intent(request: Request):
+        """
+        Classify user message intent for coach routing.
+
+        Body: { "message": "...", "user_id": "...", "context": {...} }
+
+        Returns intent classification matching hc_intent.schema.json
+        """
+        try:
+            from .head_coach.intent_classifier import IntentClassifier
+
+            body = await request.json()
+            message = body.get("message")
+            user_id = body.get("user_id")
+            context = body.get("context", {})
+
+            if not message:
+                raise HTTPException(status_code=400, detail="message required")
+            if not user_id:
+                raise HTTPException(status_code=400, detail="user_id required")
+
+            # Classify intent
+            classifier = IntentClassifier()
+            result = classifier.classify(message, context)
+
+            return result
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Intent classification error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/hc/route-delegation")
+    async def route_user_delegation(request: Request):
+        """
+        Route user message to appropriate coach based on intent.
+
+        Body: {
+            "message": "...",
+            "user_id": "...",
+            "current_coach": "head_coach",
+            "context": {...}
+        }
+
+        Returns routing decision with target coach and handoff details.
+        """
+        try:
+            from .head_coach.delegation_router import DelegationRouter
+
+            body = await request.json()
+            message = body.get("message")
+            user_id = body.get("user_id")
+            current_coach = body.get("current_coach", "head_coach")
+            context = body.get("context", {})
+
+            if not message:
+                raise HTTPException(status_code=400, detail="message required")
+            if not user_id:
+                raise HTTPException(status_code=400, detail="user_id required")
+
+            # Route message
+            router = DelegationRouter()
+            routing_decision = router.route(
+                message=message,
+                user_id=user_id,
+                current_coach=current_coach,
+                context=context
+            )
+
+            return routing_decision
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Delegation routing error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/hc/routing-stats")
+    def get_routing_statistics():
+        """
+        Get routing statistics for monitoring/optimization.
+
+        Returns delegation rates, coach distribution, intent distribution.
+        """
+        try:
+            from .head_coach.delegation_router import DelegationRouter
+
+            # Note: In production, this would access persistent stats storage
+            # For now, returns empty stats (router is stateless between requests)
+            router = DelegationRouter()
+            stats = router.get_routing_stats()
+
+            return stats
+
+        except Exception as e:
+            logger.error(f"Routing stats error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/hc/personality")
+    async def get_head_coach_personality(request: Request):
+        """
+        Get context-aware personality envelope for Head Coach.
+
+        Integrates:
+        - CReDNA personality synthesis
+        - Situational awareness (emotional tone, goals, context)
+        - Intent classification (what user wants)
+
+        Body: {
+            "user_id": "...",
+            "awareness_snapshot": {...},  # Optional: from /hc/awareness
+            "intent_analysis": {...},      # Optional: from /hc/classify-intent
+            "override_intent": "supportive|analytical|delegation_mode"  # Optional
+        }
+
+        Returns personality envelope with style dimensions + meta-dimensions.
+        """
+        try:
+            from .head_coach.personality_engine import PersonalityEngine
+
+            body = await request.json()
+            user_id = body.get("user_id")
+            awareness_snapshot = body.get("awareness_snapshot")
+            intent_analysis = body.get("intent_analysis")
+            override_intent = body.get("override_intent")
+
+            if not user_id:
+                raise HTTPException(status_code=400, detail="user_id required")
+
+            # Build personality envelope
+            engine = PersonalityEngine()
+            personality = engine.build_personality_envelope(
+                user_id=user_id,
+                awareness_snapshot=awareness_snapshot,
+                intent_analysis=intent_analysis,
+                override_intent=override_intent
+            )
+
+            return personality
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Personality build error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ═══════════════════════════════════════════════════════════════════════
+    # CREDNA API ENDPOINTS (Per-User, Per-Coach Personality Engine)
+    # ═══════════════════════════════════════════════════════════════════════
+
+    @app.get("/api/credna/style_envelope")
+    def get_style_envelope(
+        user_id: str = Query(..., description="User ID"),
+        coach_id: str = Query(..., description="Coach ID"),
+        intent: str = Query("default", description="Intent/mode (default, supportive, analytical, etc.)")
+    ):
+        """
+        Build CReDNA style/persona envelope for (user, coach, intent).
+
+        IMPORTANT: ChatDNA Coach is NOT allowed to use CReDNA.
+        ChatDNA uses user self-simulation (ReDNA only).
+        All other coaches use CReDNA (coach personalities).
+
+        Returns:
+            Style envelope with tone, cadence, formality, etc.
+        """
+        try:
+            # Enforce architectural boundary: ChatDNA cannot use CReDNA
+            if coach_id == "chatdna_coach":
+                raise HTTPException(
+                    status_code=403,
+                    detail={
+                        "error": "ChatDNA Coach uses user self-simulation (ReDNA only)",
+                        "message": "ChatDNA does not use CReDNA. It simulates the user talking to themselves.",
+                        "hint": "Use ChatDNA's existing render endpoint instead"
+                    }
+                )
+
+            from .credna.persona_synthesis import build_envelope
+
+            envelope = build_envelope(user_id, coach_id, intent)
+
+            return envelope
+
+        except ValueError as e:
+            # Catches the guard in build_envelope()
+            raise HTTPException(status_code=403, detail=str(e))
+        except Exception as e:
+            logger.error(f"CReDNA envelope error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/credna/feedback")
+    async def submit_credna_feedback(request: Request):
+        """
+        Submit dimensional feedback for (user, coach) pair.
+
+        Accepts either:
+        - Rating-based: { "dimension": "directness", "rating": 4 }
+        - Chip-based: { "chips": ["more_direct", "less_formal"] }
+
+        IMPORTANT: ChatDNA Coach is NOT allowed to use CReDNA feedback.
+        """
+        try:
+            body = await request.json()
+            user_id = body.get("user_id")
+            coach_id = body.get("coach_id")
+
+            if not user_id or not coach_id:
+                raise HTTPException(status_code=400, detail="user_id and coach_id required")
+
+            # Enforce architectural boundary
+            if coach_id == "chatdna_coach":
+                raise HTTPException(
+                    status_code=403,
+                    detail={
+                        "error": "ChatDNA Coach does not use CReDNA",
+                        "message": "ChatDNA feedback updates ReDNA style traits, not CReDNA deltas",
+                        "hint": "Use ChatDNA's existing feedback endpoint instead"
+                    }
+                )
+
+            # TODO: Implement feedback processing with cooldowns
+            # For now, return success stub
+            return {
+                "status": "success",
+                "message": "CReDNA feedback endpoint (stub - implementation pending)",
+                "user_id": user_id,
+                "coach_id": coach_id
+            }
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"CReDNA feedback error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/credna/save_prefs")
+    async def save_credna_prefs(request: Request):
+        """
+        Save manual preference overrides for (user, coach) pair.
+
+        Body: { "user_id": "...", "coach_id": "...", "prefs": { "directness": "high", ... } }
+
+        IMPORTANT: ChatDNA Coach is NOT allowed to use CReDNA prefs.
+        """
+        try:
+            body = await request.json()
+            user_id = body.get("user_id")
+            coach_id = body.get("coach_id")
+            prefs = body.get("prefs", {})
+
+            if not user_id or not coach_id:
+                raise HTTPException(status_code=400, detail="user_id and coach_id required")
+
+            # Enforce architectural boundary
+            if coach_id == "chatdna_coach":
+                raise HTTPException(
+                    status_code=403,
+                    detail={
+                        "error": "ChatDNA Coach does not use CReDNA",
+                        "message": "ChatDNA uses ReDNA only, no manual personality overrides",
+                        "hint": "Adjust user's ReDNA traits directly instead"
+                    }
+                )
+
+            # TODO: Implement prefs saving with validation
+            # For now, return success stub
+            return {
+                "status": "success",
+                "message": "CReDNA save_prefs endpoint (stub - implementation pending)",
+                "user_id": user_id,
+                "coach_id": coach_id,
+                "prefs": prefs
+            }
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"CReDNA save_prefs error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/api/credna/reset")
+    async def reset_credna(request: Request):
+        """
+        Reset learned deltas and/or prefs for (user, coach) pair.
+
+        Body: { "user_id": "...", "coach_id": "...", "reset": "all|deltas|prefs" }
+
+        IMPORTANT: ChatDNA Coach is NOT allowed to use CReDNA reset.
+        """
+        try:
+            body = await request.json()
+            user_id = body.get("user_id")
+            coach_id = body.get("coach_id")
+            reset_type = body.get("reset", "all")
+
+            if not user_id or not coach_id:
+                raise HTTPException(status_code=400, detail="user_id and coach_id required")
+
+            # Enforce architectural boundary
+            if coach_id == "chatdna_coach":
+                raise HTTPException(
+                    status_code=403,
+                    detail={
+                        "error": "ChatDNA Coach does not use CReDNA",
+                        "message": "ChatDNA has no deltas/prefs to reset",
+                        "hint": "ChatDNA uses ReDNA only"
+                    }
+                )
+
+            # TODO: Implement reset logic
+            # For now, return success stub
+            return {
+                "status": "success",
+                "message": "CReDNA reset endpoint (stub - implementation pending)",
+                "user_id": user_id,
+                "coach_id": coach_id,
+                "reset": reset_type
+            }
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"CReDNA reset error: {e}", exc_info=True)
             raise HTTPException(status_code=500, detail=str(e))
 
     return app

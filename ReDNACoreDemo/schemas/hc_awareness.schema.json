@@ -1,0 +1,386 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/hc_awareness.json",
+  "title": "Head Coach Situational Awareness Snapshot",
+  "description": "4-layer user state model for Jarvis-class context awareness with TTL caching",
+  "version": "v1",
+  "type": "object",
+  "required": [
+    "user_core_state",
+    "goal_task_layer",
+    "context_layer",
+    "memory_layer",
+    "ttl_hints",
+    "policy",
+    "summary"
+  ],
+  "properties": {
+    "user_core_state": {
+      "type": "object",
+      "description": "Always-fresh core user state (no caching)",
+      "required": ["user_id", "active_coach", "last_message_time", "current_mode", "emotional_tone", "emotion_confidence", "curiosity_hotspots"],
+      "properties": {
+        "user_id": {
+          "type": "string",
+          "description": "User identifier"
+        },
+        "active_coach": {
+          "type": "string",
+          "description": "Currently active coach mode",
+          "enum": ["head_coach", "career_coach", "personality_test_coach", "relationship_coach", "chatdna_coach", "beliefdna_coach", "photo_coach"]
+        },
+        "last_message_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of last user message (ISO 8601)"
+        },
+        "current_mode": {
+          "type": "string",
+          "description": "Current conversation mode or context"
+        },
+        "emotional_tone": {
+          "type": "string",
+          "enum": ["positive", "neutral", "negative", "frustrated", "curious"],
+          "description": "Detected emotional tone from recent messages"
+        },
+        "emotion_confidence": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Confidence in emotional tone detection (0.0-1.0)"
+        },
+        "curiosity_hotspots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Top N trait paths with high curiosity (low RR) from curiosity engine"
+        }
+      }
+    },
+    "goal_task_layer": {
+      "type": "object",
+      "description": "User goals and pending tasks (5-minute TTL cache)",
+      "required": ["active_goals", "pending_tasks", "plan_states", "recent_intent_distribution"],
+      "properties": {
+        "active_goals": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "goal_id": {"type": "string"},
+              "description": {"type": "string"},
+              "status": {"type": "string", "enum": ["pending", "in_progress", "completed", "abandoned"]},
+              "created_at": {"type": "string", "format": "date-time"}
+            }
+          },
+          "description": "User's active goals"
+        },
+        "pending_tasks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "task_id": {"type": "string"},
+              "coach": {"type": "string"},
+              "status": {"type": "string"},
+              "priority": {"type": "string", "enum": ["low", "medium", "high"]}
+            }
+          },
+          "description": "Pending tasks delegated to coaches"
+        },
+        "plan_states": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "plan_id": {"type": "string"},
+              "progress": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+              "next_step": {"type": "string"}
+            }
+          },
+          "description": "Multi-step plan states (future: Pillar 4)"
+        },
+        "recent_intent_distribution": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "description": "Distribution of recent intents by domain (e.g., {'career': 0.4, 'personality': 0.3})"
+        }
+      }
+    },
+    "context_layer": {
+      "type": "object",
+      "description": "Environmental and temporal context (1-hour TTL cache)",
+      "required": ["local_time", "day_of_week", "timezone", "availability_flag"],
+      "properties": {
+        "local_time": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Current local time for user (ISO 8601)"
+        },
+        "day_of_week": {
+          "type": "string",
+          "enum": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "description": "Current day of week"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "User timezone (e.g., 'America/Los_Angeles')"
+        },
+        "availability_flag": {
+          "type": "string",
+          "enum": ["active", "away", "busy"],
+          "description": "Inferred user availability"
+        },
+        "recent_external_interactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "service": {"type": "string"},
+              "timestamp": {"type": "string", "format": "date-time"}
+            }
+          },
+          "description": "Recent interactions with external APIs (future)"
+        }
+      }
+    },
+    "memory_layer": {
+      "type": "object",
+      "description": "Aggregated long-term user state (24-hour TTL cache)",
+      "required": ["traits_summary", "hc_history_summary", "meta_feedback_stats"],
+      "properties": {
+        "traits_summary": {
+          "type": "object",
+          "properties": {
+            "high_rr_domains": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Trait domains with high RR (well-understood)"
+            },
+            "low_rr_domains": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Trait domains with low RR (high uncertainty)"
+            },
+            "overall_rr": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Overall RR score across all traits"
+            }
+          },
+          "description": "Summarized ReDNA trait state"
+        },
+        "hc_history_summary": {
+          "type": "object",
+          "properties": {
+            "successful_patterns": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Conversation/delegation patterns that worked well"
+            },
+            "failed_patterns": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Patterns that failed (learn from mistakes)"
+            },
+            "total_interactions": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Total HC interactions with user"
+            }
+          },
+          "description": "Head Coach interaction history summary"
+        },
+        "meta_feedback_stats": {
+          "type": "object",
+          "properties": {
+            "avg_satisfaction": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "Average user satisfaction score (0.0-1.0)"
+            },
+            "total_feedback_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Total feedback events received"
+            }
+          },
+          "description": "Meta feedback statistics"
+        }
+      }
+    },
+    "ttl_hints": {
+      "type": "object",
+      "description": "Cache freshness indicators for each layer",
+      "required": ["core", "goal_task", "context", "memory"],
+      "properties": {
+        "core": {
+          "type": "string",
+          "const": "live",
+          "description": "Core state is always fresh"
+        },
+        "goal_task": {
+          "type": "string",
+          "enum": ["live", "<=5m", ">5m"],
+          "description": "Goal/task layer freshness"
+        },
+        "context": {
+          "type": "string",
+          "enum": ["live", "<=1h", ">1h"],
+          "description": "Context layer freshness"
+        },
+        "memory": {
+          "type": "string",
+          "enum": ["live", "<=24h", ">24h"],
+          "description": "Memory layer freshness"
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "description": "Audit and provenance metadata",
+      "required": ["awareness_version", "schema", "build_ms"],
+      "properties": {
+        "awareness_version": {
+          "type": "string",
+          "pattern": "^v[0-9]+$",
+          "description": "Awareness engine version (e.g., 'v1')"
+        },
+        "schema": {
+          "type": "string",
+          "description": "Schema identifier (e.g., 'hc_awareness.schema.json@v1')"
+        },
+        "build_ms": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Time taken to build snapshot in milliseconds"
+        },
+        "redacted_fields": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Fields redacted for privacy (e.g., raw message text)"
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "description": "Quick summary for Workshop UI display",
+      "required": ["active_goal_count", "pending_tasks", "top_curiosity"],
+      "properties": {
+        "active_goal_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of active goals"
+        },
+        "pending_tasks": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of pending tasks"
+        },
+        "top_curiosity": {
+          "type": "array",
+          "items": {"type": "string"},
+          "maxItems": 5,
+          "description": "Top 3-5 curiosity hotspots (trait paths)"
+        },
+        "emotional_state": {
+          "type": "string",
+          "description": "Human-readable emotional state summary"
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "user_core_state": {
+        "user_id": "TEST",
+        "active_coach": "head_coach",
+        "last_message_time": "2025-10-08T03:30:00Z",
+        "current_mode": "exploration",
+        "emotional_tone": "curious",
+        "emotion_confidence": 0.75,
+        "curiosity_hotspots": [
+          "SkillDNA.PresentationDNA",
+          "BeliefValueDNA.CareFairnessDNA",
+          "LanguageStyleDNA.VocabularyDensityDNA"
+        ]
+      },
+      "goal_task_layer": {
+        "active_goals": [
+          {
+            "goal_id": "goal_001",
+            "description": "Prepare for career transition to tech leadership",
+            "status": "in_progress",
+            "created_at": "2025-10-01T10:00:00Z"
+          }
+        ],
+        "pending_tasks": [
+          {
+            "task_id": "task_001",
+            "coach": "career_coach",
+            "status": "pending",
+            "priority": "high"
+          }
+        ],
+        "plan_states": [],
+        "recent_intent_distribution": {
+          "career": 0.6,
+          "personality": 0.3,
+          "system": 0.1
+        }
+      },
+      "context_layer": {
+        "local_time": "2025-10-08T03:30:00Z",
+        "day_of_week": "Tuesday",
+        "timezone": "America/Los_Angeles",
+        "availability_flag": "active",
+        "recent_external_interactions": []
+      },
+      "memory_layer": {
+        "traits_summary": {
+          "high_rr_domains": ["PersonalityDNA", "SocDNA"],
+          "low_rr_domains": ["SkillDNA", "BeliefValueDNA"],
+          "overall_rr": 62.5
+        },
+        "hc_history_summary": {
+          "successful_patterns": ["delegation_to_career_coach"],
+          "failed_patterns": [],
+          "total_interactions": 15
+        },
+        "meta_feedback_stats": {
+          "avg_satisfaction": 0.85,
+          "total_feedback_count": 5
+        }
+      },
+      "ttl_hints": {
+        "core": "live",
+        "goal_task": "<=5m",
+        "context": "<=1h",
+        "memory": "<=24h"
+      },
+      "policy": {
+        "awareness_version": "v1",
+        "schema": "hc_awareness.schema.json@v1",
+        "build_ms": 12.5,
+        "redacted_fields": ["raw_messages"]
+      },
+      "summary": {
+        "active_goal_count": 1,
+        "pending_tasks": 1,
+        "top_curiosity": [
+          "SkillDNA.PresentationDNA",
+          "BeliefValueDNA.CareFairnessDNA",
+          "LanguageStyleDNA.VocabularyDensityDNA"
+        ],
+        "emotional_state": "Curious and engaged"
+      }
+    }
+  ]
+}
