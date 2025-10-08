@@ -1,0 +1,395 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/dna_registry.schema.json",
+  "title": "DNA Container Registry Schema",
+  "description": "JSON Schema for validating DNA container records in the ontology registry",
+  "type": "object",
+  "required": ["containers", "metadata"],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": ["version", "total_containers", "last_updated"],
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "description": "Semantic version of the registry"
+        },
+        "total_containers": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of containers in this registry"
+        },
+        "last_updated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of last registry update"
+        },
+        "namespace_counts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "description": "Count of containers per namespace"
+        }
+      }
+    },
+    "containers": {
+      "type": "array",
+      "description": "Array of DNA container definitions",
+      "items": {
+        "$ref": "#/definitions/container"
+      }
+    }
+  },
+  "definitions": {
+    "container": {
+      "type": "object",
+      "required": [
+        "id",
+        "namespace",
+        "path",
+        "version",
+        "status",
+        "description",
+        "sensitive",
+        "ai_upgradable",
+        "created_at",
+        "updated_at"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z][a-zA-Z0-9]+(\\.[A-Z][a-zA-Z0-9]+)*\\.v\\d+$",
+          "description": "Unique versioned identifier (e.g., PaDNA.HairDNA.ColorDNA.v1)",
+          "examples": [
+            "PaDNA.HairDNA.ColorDNA.v1",
+            "PsyDNA.PersonalityDNA.OpennessLevelDNA.v2"
+          ]
+        },
+        "namespace": {
+          "type": "string",
+          "enum": [
+            "PaDNA",
+            "PsyDNA",
+            "EmDNA",
+            "CogDNA",
+            "SocDNA",
+            "BehDNA",
+            "HistDNA",
+            "PrefDNA",
+            "SkillDNA",
+            "MetaDNA",
+            "HealthDNA",
+            "RoDNA",
+            "ProfDNA",
+            "EnvDNA"
+          ],
+          "description": "Top-level namespace (umbrella) this container belongs to"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^[A-Z][a-zA-Z0-9]+(\\.[A-Z][a-zA-Z0-9]+)*$",
+          "description": "Dot-separated hierarchical path without version",
+          "examples": [
+            "PaDNA.HairDNA.ColorDNA",
+            "PsyDNA.PersonalityDNA.OpennessLevelDNA"
+          ]
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Version number of this container definition"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["prototype", "candidate", "stable", "deprecated"],
+          "description": "Lifecycle status of the container"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500,
+          "description": "Human-readable description of what this container represents"
+        },
+        "inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of input sources or upstream containers",
+          "default": []
+        },
+        "outputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of downstream containers or outputs",
+          "default": []
+        },
+        "ucn_weight_hint": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0,
+          "description": "Suggested weight for UCN calculation (0.0-1.0)",
+          "default": 0.01
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][a-zA-Z0-9]+(\\.[A-Z][a-zA-Z0-9]+)*$"
+          },
+          "description": "Other containers this one depends on",
+          "default": []
+        },
+        "correlates_with": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[A-Z][a-zA-Z0-9]+(\\.[A-Z][a-zA-Z0-9]+)*$"
+              },
+              "strength": {
+                "type": "number",
+                "minimum": 0.25,
+                "maximum": 1.0,
+                "description": "Correlation strength (0.25-1.0)"
+              },
+              "evidence_score": {
+                "type": "number",
+                "minimum": 0.0,
+                "maximum": 1.0,
+                "description": "Confidence score for the correlation (0.0-1.0)"
+              },
+              "evidence": {
+                "type": "string",
+                "description": "Source of correlation evidence"
+              }
+            },
+            "additionalProperties": false
+          },
+          "description": "Statistical correlations with other containers",
+          "default": []
+        },
+        "contradicts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][a-zA-Z0-9]+(\\.[A-Z][a-zA-Z0-9]+)*$"
+          },
+          "description": "Mutually exclusive containers",
+          "default": []
+        },
+        "sensitive": {
+          "type": "boolean",
+          "description": "Whether this container contains sensitive/private data"
+        },
+        "camouflage": {
+          "type": "boolean",
+          "description": "Whether this container requires camouflaging protocols for cross-user scenarios (e.g., RoDNA)",
+          "default": false
+        },
+        "consent_required": {
+          "type": "boolean",
+          "description": "Whether explicit user consent is required",
+          "default": false
+        },
+        "ai_upgradable": {
+          "type": "boolean",
+          "description": "Whether AI can propose updates to this container"
+        },
+        "rr_baseline": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Resolution Rate baseline (null for containers without traits yet)",
+          "default": null
+        },
+        "curiosity_baseline": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Curiosity score baseline (100 for new containers)",
+          "default": 100
+        },
+        "discovery": {
+          "type": "object",
+          "properties": {
+            "method": {
+              "type": "string",
+              "enum": [
+                "manual",
+                "deterministic_generation",
+                "ai_shadow_proposal",
+                "user_feedback",
+                "statistical_inference"
+              ],
+              "description": "How this container was discovered/created"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "Confidence in this container's validity (0.0-1.0)"
+            },
+            "evidence": {
+              "type": "string",
+              "description": "Supporting evidence for this container's existence"
+            },
+            "proposer": {
+              "type": "string",
+              "description": "Who or what proposed this container"
+            }
+          },
+          "description": "Metadata about how this container was discovered"
+        },
+        "parent_containers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["path", "edge_type"],
+            "properties": {
+              "path": {
+                "type": "string",
+                "pattern": "^[A-Z][a-zA-Z0-9]+(\\.[A-Z][a-zA-Z0-9]+)*$"
+              },
+              "edge_type": {
+                "type": "string",
+                "enum": ["is_a", "part_of", "derived_from"]
+              }
+            }
+          },
+          "description": "Parent containers in the hierarchy",
+          "default": []
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_-]*$"
+          },
+          "description": "Searchable tags for categorization",
+          "default": []
+        },
+        "examples": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Example values or use cases",
+          "default": []
+        },
+        "validation_rules": {
+          "type": "object",
+          "properties": {
+            "value_type": {
+              "type": "string",
+              "enum": [
+                "categorical",
+                "continuous",
+                "ordinal",
+                "boolean",
+                "text",
+                "json"
+              ]
+            },
+            "allowed_values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "For categorical types, allowed values"
+            },
+            "min_value": {
+              "type": "number",
+              "description": "For continuous types, minimum value"
+            },
+            "max_value": {
+              "type": "number",
+              "description": "For continuous types, maximum value"
+            },
+            "regex_pattern": {
+              "type": "string",
+              "description": "For text types, validation regex"
+            }
+          },
+          "description": "Validation rules for trait values"
+        },
+        "population_stats": {
+          "type": "object",
+          "properties": {
+            "user_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Number of users with this trait"
+            },
+            "mean_ucn": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1000,
+              "description": "Mean UCN across population"
+            },
+            "mean_rr": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "Mean RR across population"
+            },
+            "last_computed": {
+              "type": "string",
+              "format": "date-time",
+              "description": "When these stats were last computed"
+            }
+          },
+          "description": "Population statistics for this container"
+        },
+        "created_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when container was created"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp when container was last updated"
+        },
+        "created_by": {
+          "type": "string",
+          "description": "User or system that created this container"
+        },
+        "changelog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["version", "timestamp", "changes"],
+            "properties": {
+              "version": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "changes": {
+                "type": "string",
+                "description": "Description of changes in this version"
+              },
+              "author": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "Version history and changes"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

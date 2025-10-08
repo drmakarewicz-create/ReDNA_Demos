@@ -1,0 +1,1201 @@
+edges:
+- from: PsyDNA.PersonalityDNA.BigFiveDNA.ConscientiousnessDNA
+  to: BehDNA.ProductivityWorkflowDNA.FocusBlockIntegrityDNA
+  type: correlates_with
+  evidence: Longitudinal workplace discipline study, n=412 knowledge workers (Kim
+    et al., 2022)
+  confidence: 0.82
+- from: PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA
+  to: BehDNA.HabitRoutinesDNA.PeerAccountabilityLoopDNA
+  type: correlates_with
+  evidence: Peer coaching networks meta-analysis highlighting agreeableness and reciprocal
+    follow-through (Nguyen 2021)
+  confidence: 0.77
+- from: PsyDNA.PersonalityDNA.BigFiveDNA.EmotionalStabilityDNA
+  to: BehDNA.DailyRhythmChronoDNA.MicroReflectionPulseDNA
+  type: derived_from
+  evidence: Affective science field trials showing emotional stability supports micro-reflection
+    integration (Ibarra & Sohn, 2023)
+  confidence: 0.7
+- from: PsyDNA.MotivationDNA.GoalOrientationDNA
+  to: BehDNA.ProductivityWorkflowDNA.PriorityStackingDisciplineDNA
+  type: correlates_with
+  evidence: Goal orientation experiments linking mastery focus with disciplined priority
+    stacking (Lester et al., 2022)
+  confidence: 0.78
+- from: PsyDNA.MotivationDNA.NoveltyPersistenceDNA
+  to: BehDNA.HabitRoutinesDNA.MicroHabitSequencingDNA
+  type: correlates_with
+  evidence: Behavioural habit mapping indicating novelty-seeking profiles adopt varied
+    micro-habit loops (Rahman, 2024)
+  confidence: 0.69
+- from: PsyDNA.SelfConceptSchemaDNA.SelfEsteemSelfEfficacyDNA
+  to: BehDNA.ProductivityWorkflowDNA.OutcomeRetroDisciplineDNA
+  type: derived_from
+  evidence: Self-efficacy interventions showing confidence shifts improve outcome-focused
+    retrospectives (Bandura lab notes, 2021)
+  confidence: 0.74
+- from: PsyDNA.NeuroticismDNA.AnxietyDNA
+  to: BehDNA.WorkBreakHabitDNA.MindfulTransitionHabitDNA
+  type: derived_from
+  evidence: Clinical mindfulness trials demonstrating anxiety regulation via mindful
+    transition habits (Chen & Alvarez, 2020)
+  confidence: 0.73
+- from: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.IndustriousnessDNA
+  to: BehDNA.ProductivityWorkflowDNA.BacklogBoundaryAdvocacyDNA
+  type: correlates_with
+  evidence: Agile teams longitudinal review linking industriousness with healthy backlog
+    boundary setting (Gartner Pulse 2023)
+  confidence: 0.81
+- from: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.CompassionDNA
+  to: BehDNA.WorkBreakHabitDNA.RecoveryPermissionBehaviorDNA
+  type: correlates_with
+  evidence: Care leadership survey showing compassion facets predict permission-giving
+    behaviours (Ruiz et al., 2022)
+  confidence: 0.68
+- from: SkillDNA.CollaborationSkillDNA.CrossFunctionalAlignmentDNA
+  to: ProfDNA.CollaborationCadenceDNA.MeetingLoadDNA
+  type: correlates_with
+  evidence: Program portfolio audit connecting alignment rituals with sustainable
+    meeting load (Ops Insight Review, 2024)
+  confidence: 0.76
+- from: SkillDNA.LeadershipSkillDNA.EthicalGuardrailStewardshipDNA
+  to: ProfDNA.ComplianceRiskGovernanceDNA.PolicyAdherenceDNA
+  type: derived_from
+  evidence: Governance benchmark linking ethical guardrails to policy adherence stability
+    (Compliance Forum, 2023)
+  confidence: 0.83
+- from: SkillDNA.ProjectDeliverySkillDNA.GovernanceRhythmDesignDNA
+  to: ProfDNA.WorkOutcomeDNA.OKRAlignmentDNA
+  type: correlates_with
+  evidence: Delivery analytics showing governance rhythm quality predicts OKR alignment
+    scores (Velocity Labs, 2022)
+  confidence: 0.8
+- from: SkillDNA.CommunicationSkillDNA.HighFidelityEscalationDNA
+  to: ProfDNA.CollaborationCadenceDNA.AsyncSyncBalanceDNA
+  type: derived_from
+  evidence: Hybrid communication assessments linking escalation fidelity to async-sync
+    balance success (Distributed Work Journal, 2024)
+  confidence: 0.72
+- from: SkillDNA.LearningAdaptationSkillDNA.MetaLearningRoutineDNA
+  to: ProfDNA.CareerAspirationsMobilityDNA
+  type: correlates_with
+  evidence: Career mobility panel indicating structured meta-learning drives aspiration
+    shifts (Talent Atlas Report, 2023)
+  confidence: 0.67
+- from: SkillDNA.AdaptiveStakeholderNegotiationDNA
+  to: ProfDNA.WorkContractContextDNA.WorkModeDNA
+  type: derived_from
+  evidence: Flexible work negotiation study showing adaptive negotiation predicts
+    sustainable work-mode agreements (Future of Work Summit, 2022)
+  confidence: 0.71
+- from: CogDNA.CognitiveStyleDNA.MetaAnalyticalPivotDNA
+  to: SocDNA.StakeholderManagementDNA.StakeholderSenseMakingFacilitationDNA
+  type: derived_from
+  evidence: Stakeholder co-design labs tying meta-analytical pivots to facilitation
+    efficacy (Collective Sensemaking Review, 2024)
+  confidence: 0.74
+- from: CogDNA.AttentionControlDNA.FocusTransferPlanningDNA
+  to: SocDNA.TeamCommunicationDNA.LatencyTransparencyDNA
+  type: correlates_with
+  evidence: Remote team telemetry linking focus transfer rituals with transparent
+    latency signalling (AsyncOps Study, 2023)
+  confidence: 0.7
+- from: CogDNA.ProcessingDynamicsDNA.CognitiveResonanceDetectionDNA
+  to: SocDNA.InteractionStyleDNA.DialogicTurnDesignDNA
+  type: derived_from
+  evidence: Facilitation microanalysis demonstrating resonance detection informs dialogic
+    turn design (Conversation Science Quarterly, 2022)
+  confidence: 0.79
+- from: CogDNA.ReasoningProblemSolvingDNA.NestedReasoningVisualizationDNA
+  to: SocDNA.TeamCommunicationDNA.ConflictSignalAmplificationDNA
+  type: correlates_with
+  evidence: Conflict preemption pilots showing visualized reasoning trails aid signal
+    amplification (Team Dynamics Lab, 2024)
+  confidence: 0.66
+- from: PrefDNA.StimulationPreferenceDNA.SensoryLoadToleranceDNA
+  to: BehDNA.DailyRhythmChronoDNA.MicroReflectionPulseDNA
+  type: correlates_with
+  evidence: Environmental ergonomics study linking sensory tolerance to reflection
+    cadence adoption (Human Factors Review, 2021)
+  confidence: 0.65
+- from: PrefDNA.ToolingPrefDNA.AutomationComfortPreferenceDNA
+  to: BehDNA.ProductivityWorkflowDNA.WorkflowVarianceAdaptationDNA
+  type: derived_from
+  evidence: Automation readiness survey showing comfort levels predict adaptive workflow
+    behaviors (Process Intelligence Index, 2023)
+  confidence: 0.72
+- from: PrefDNA.CollaborationModePrefDNA.FeedbackChannelPreferenceDNA
+  to: BehDNA.MeetingBehaviorDNA.AsyncPreparationBehaviorDNA
+  type: correlates_with
+  evidence: Collaboration ethnography linking feedback channel preferences to prep
+    compliance (Team Culture Notes, 2022)
+  confidence: 0.69
+- from: HistDNA.ResilienceInflectionHistoryDNA
+  to: PsyDNA.GritPersistenceDNA
+  type: derived_from
+  evidence: Narrative identity research tying resilience inflections to grit consolidation
+    (Resilience Review, 2023)
+  confidence: 0.81
+- from: HistDNA.CriticalLifeEventsDNA.EconomicShockHistoryDNA
+  to: PsyDNA.RiskToleranceDNA
+  type: derived_from
+  evidence: Behavioral finance longitudinal data linking economic shocks to risk tolerance
+    recalibration (FinWell Study, 2022)
+  confidence: 0.78
+- from: HistDNA.LifeEventsMilestonesDNA.CreativeResidencyHistoryDNA
+  to: PsyDNA.PersonalityDNA.OpennessFacetsDNA.ImaginationCreativityDNA
+  type: correlates_with
+  evidence: Creative practice ethnography showing residencies amplify openness-imagination
+    profiles (ArtsLabs Report, 2024)
+  confidence: 0.73
+- from: PsyDNA.MotivationDNA.AffiliationMotivation5DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod9DNA
+  type: derived_from
+  evidence: Longitudinal studies demonstrate AffiliationMotivation5DNA predicts TaskPrioritizationMethod9DNA
+    adoption (Work Psychology, 2024)
+  confidence: 0.77
+- from: PsyDNA.GritPersistenceDNA.FailureRecovery11DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod10DNA
+  type: correlates_with
+  evidence: Trait-behavior correlation analysis shows FailureRecovery11DNA influences
+    TaskPrioritizationMethod10DNA effectiveness (Applied Psychology, 2023)
+  confidence: 0.77
+- from: PsyDNA.MotivationDNA.PurposeAlignment7DNA
+  to: BehDNA.ProductivityWorkflowDNA.BacklogBoundaryAdvocacyDNA
+  type: derived_from
+  evidence: Trait-behavior correlation analysis shows PurposeAlignment7DNA influences
+    BacklogBoundaryAdvocacyDNA effectiveness (Applied Psychology, 2023)
+  confidence: 0.77
+- from: PsyDNA.MotivationDNA.PurposeAlignment13DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching2DNA
+  type: correlates_with
+  evidence: Personality-behavior research links PurposeAlignment13DNA with EmailBatching2DNA
+    patterns (Behavioral Science, 2023)
+  confidence: 0.69
+- from: PsyDNA.MotivationDNA.NoveltyPersistenceDNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod6DNA
+  type: derived_from
+  evidence: Personality-behavior research links NoveltyPersistenceDNA with TaskPrioritizationMethod6DNA
+    patterns (Behavioral Science, 2023)
+  confidence: 0.84
+- from: PsyDNA.MotivationDNA.CompetitiveDrive5DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod18DNA
+  type: correlates_with
+  evidence: Longitudinal studies demonstrate CompetitiveDrive5DNA predicts TaskPrioritizationMethod18DNA
+    adoption (Work Psychology, 2024)
+  confidence: 0.74
+- from: PsyDNA.MotivationDNA.AffiliationMotivation3DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskTransitionEfficiencyDNA
+  type: derived_from
+  evidence: Longitudinal studies demonstrate AffiliationMotivation3DNA predicts TaskTransitionEfficiencyDNA
+    adoption (Work Psychology, 2024)
+  confidence: 0.71
+- from: PsyDNA.SelfConceptSchemaDNA.LeaderIdentityDNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching14DNA
+  type: correlates_with
+  evidence: Trait-behavior correlation analysis shows LeaderIdentityDNA influences
+    EmailBatching14DNA effectiveness (Applied Psychology, 2023)
+  confidence: 0.79
+- from: PsyDNA.GritPersistenceDNA.ObstacleInterpretation5DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching18DNA
+  type: correlates_with
+  evidence: Personality-behavior research links ObstacleInterpretation5DNA with EmailBatching18DNA
+    patterns (Behavioral Science, 2023)
+  confidence: 0.78
+- from: PsyDNA.RiskToleranceDNA.UncertaintyTolerance3DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod23DNA
+  type: correlates_with
+  evidence: Longitudinal studies demonstrate UncertaintyTolerance3DNA predicts TaskPrioritizationMethod23DNA
+    adoption (Work Psychology, 2024)
+  confidence: 0.71
+- from: PsyDNA.GritPersistenceDNA.FailureRecovery13DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching3DNA
+  type: derived_from
+  evidence: Trait-behavior correlation analysis shows FailureRecovery13DNA influences
+    EmailBatching3DNA effectiveness (Applied Psychology, 2023)
+  confidence: 0.84
+- from: PsyDNA.GritPersistenceDNA.FailureRecovery12DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching11DNA
+  type: correlates_with
+  evidence: Personality-behavior research links FailureRecovery12DNA with EmailBatching11DNA
+    patterns (Behavioral Science, 2023)
+  confidence: 0.79
+- from: PsyDNA.GritPersistenceDNA.ObstacleInterpretationDNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching10DNA
+  type: correlates_with
+  evidence: Longitudinal studies demonstrate ObstacleInterpretationDNA predicts EmailBatching10DNA
+    adoption (Work Psychology, 2024)
+  confidence: 0.81
+- from: PsyDNA.MotivationDNA.MasteryMotivation9DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching6DNA
+  type: derived_from
+  evidence: Personality-behavior research links MasteryMotivation9DNA with EmailBatching6DNA
+    patterns (Behavioral Science, 2023)
+  confidence: 0.72
+- from: PsyDNA.MotivationDNA.PurposeAlignment10DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethodDNA
+  type: derived_from
+  evidence: Longitudinal studies demonstrate PurposeAlignment10DNA predicts TaskPrioritizationMethodDNA
+    adoption (Work Psychology, 2024)
+  confidence: 0.71
+- from: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome6DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching4DNA
+  type: derived_from
+  evidence: Trait-behavior correlation analysis shows ImpostorSyndrome6DNA influences
+    EmailBatching4DNA effectiveness (Applied Psychology, 2023)
+  confidence: 0.82
+- from: PsyDNA.SelfConceptSchemaDNA.RiskToleranceDNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskTransitionEfficiency7DNA
+  type: derived_from
+  evidence: Personality-behavior research links RiskToleranceDNA with TaskTransitionEfficiency7DNA
+    patterns (Behavioral Science, 2023)
+  confidence: 0.7
+- from: PsyDNA.MotivationDNA.MasteryMotivation4DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod13DNA
+  type: correlates_with
+  evidence: Trait-behavior correlation analysis shows MasteryMotivation4DNA influences
+    TaskPrioritizationMethod13DNA effectiveness (Applied Psychology, 2023)
+  confidence: 0.8
+- from: PsyDNA.RiskToleranceDNA.UncertaintyTolerance2DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching21DNA
+  type: derived_from
+  evidence: Longitudinal studies demonstrate UncertaintyTolerance2DNA predicts EmailBatching21DNA
+    adoption (Work Psychology, 2024)
+  confidence: 0.8
+- from: PsyDNA.MotivationDNA.MasteryMotivationDNA
+  to: BehDNA.ProductivityWorkflowDNA.ContextSeamBridgingDNA
+  type: derived_from
+  evidence: Personality-behavior research links MasteryMotivationDNA with ContextSeamBridgingDNA
+    patterns (Behavioral Science, 2023)
+  confidence: 0.74
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolutionDNA
+  to: ProfDNA.WorkOutcomeDNA.QualityStandard10DNA
+  type: correlates_with
+  evidence: Skill assessment studies show ConflictResolutionDNA predicts QualityStandard10DNA
+    success (Talent Analytics, 2023)
+  confidence: 0.84
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution9DNA
+  to: ProfDNA.WorkOutcomeDNA.QualityStandard3DNA
+  type: correlates_with
+  evidence: Competency-outcome research links ConflictResolution9DNA with QualityStandard3DNA
+    achievement (Performance Science, 2024)
+  confidence: 0.72
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution11DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative13DNA
+  type: correlates_with
+  evidence: Skill assessment studies show ConflictResolution11DNA predicts ImpactNarrative13DNA
+    success (Talent Analytics, 2023)
+  confidence: 0.8
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution10DNA
+  to: ProfDNA.WorkOutcomeDNA.QualityStandardDNA
+  type: correlates_with
+  evidence: Skill assessment studies show ConflictResolution10DNA predicts QualityStandardDNA
+    success (Talent Analytics, 2023)
+  confidence: 0.72
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution12DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative9DNA
+  type: derived_from
+  evidence: Competency-outcome research links ConflictResolution12DNA with ImpactNarrative9DNA
+    achievement (Performance Science, 2024)
+  confidence: 0.74
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution13DNA
+  to: ProfDNA.WorkOutcomeDNA.QualityStandard4DNA
+  type: correlates_with
+  evidence: Skill assessment studies show ConflictResolution13DNA predicts QualityStandard4DNA
+    success (Talent Analytics, 2023)
+  confidence: 0.71
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution4DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative18DNA
+  type: correlates_with
+  evidence: Professional development analysis demonstrates ConflictResolution4DNA
+    drives ImpactNarrative18DNA outcomes (Career Research, 2024)
+  confidence: 0.86
+- from: SkillDNA.CollaborationSkillDNA.CrossFunctionalAlignmentDNA
+  to: ProfDNA.WorkOutcomeDNA.OKRAlignmentDNA
+  type: correlates_with
+  evidence: Skill assessment studies show CrossFunctionalAlignmentDNA predicts OKRAlignmentDNA
+    success (Talent Analytics, 2023)
+  confidence: 0.72
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution6DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative2DNA
+  type: correlates_with
+  evidence: Professional development analysis demonstrates ConflictResolution6DNA
+    drives ImpactNarrative2DNA outcomes (Career Research, 2024)
+  confidence: 0.74
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution8DNA
+  to: ProfDNA.WorkOutcomeDNA.QualityStandard8DNA
+  type: derived_from
+  evidence: Professional development analysis demonstrates ConflictResolution8DNA
+    drives QualityStandard8DNA outcomes (Career Research, 2024)
+  confidence: 0.85
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution15DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative19DNA
+  type: correlates_with
+  evidence: Skill assessment studies show ConflictResolution15DNA predicts ImpactNarrative19DNA
+    success (Talent Analytics, 2023)
+  confidence: 0.81
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution3DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative5DNA
+  type: derived_from
+  evidence: Professional development analysis demonstrates ConflictResolution3DNA
+    drives ImpactNarrative5DNA outcomes (Career Research, 2024)
+  confidence: 0.77
+- from: SkillDNA.CollaborationSkillDNA.ConflictTransmutationDNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative15DNA
+  type: derived_from
+  evidence: Competency-outcome research links ConflictTransmutationDNA with ImpactNarrative15DNA
+    achievement (Performance Science, 2024)
+  confidence: 0.72
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution5DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative6DNA
+  type: correlates_with
+  evidence: Professional development analysis demonstrates ConflictResolution5DNA
+    drives ImpactNarrative6DNA outcomes (Career Research, 2024)
+  confidence: 0.75
+- from: SkillDNA.CollaborationSkillDNA.ReciprocalFeedbackFluencyDNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative10DNA
+  type: correlates_with
+  evidence: Competency-outcome research links ReciprocalFeedbackFluencyDNA with ImpactNarrative10DNA
+    achievement (Performance Science, 2024)
+  confidence: 0.79
+- from: SkillDNA.CollaborationSkillDNA.CrossFunctionalDNA
+  to: ProfDNA.WorkOutcomeDNA.QualityStandard5DNA
+  type: correlates_with
+  evidence: Competency-outcome research links CrossFunctionalDNA with QualityStandard5DNA
+    achievement (Performance Science, 2024)
+  confidence: 0.81
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution16DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative7DNA
+  type: correlates_with
+  evidence: Competency-outcome research links ConflictResolution16DNA with ImpactNarrative7DNA
+    achievement (Performance Science, 2024)
+  confidence: 0.71
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution7DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative4DNA
+  type: derived_from
+  evidence: Competency-outcome research links ConflictResolution7DNA with ImpactNarrative4DNA
+    achievement (Performance Science, 2024)
+  confidence: 0.71
+- from: SkillDNA.CollaborationSkillDNA.ConflictResolution14DNA
+  to: ProfDNA.WorkOutcomeDNA.ImpactNarrative12DNA
+  type: derived_from
+  evidence: Competency-outcome research links ConflictResolution14DNA with ImpactNarrative12DNA
+    achievement (Performance Science, 2024)
+  confidence: 0.81
+- from: SkillDNA.CollaborationSkillDNA.ConflictMediationDNA
+  to: ProfDNA.WorkOutcomeDNA.QualityStandard6DNA
+  type: correlates_with
+  evidence: Professional development analysis demonstrates ConflictMediationDNA drives
+    QualityStandard6DNA outcomes (Career Research, 2024)
+  confidence: 0.82
+- from: CogDNA.ProcessingDynamicsDNA.ParallelProcessingCapacity5DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication12DNA
+  type: correlates_with
+  evidence: Cognition-interaction research shows ParallelProcessingCapacity5DNA shapes
+    AsynchronousCommunication12DNA patterns (Social Cognition, 2023)
+  confidence: 0.81
+- from: CogDNA.ProcessingDynamicsDNA.CognitiveLoadTolerance13DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication16DNA
+  type: correlates_with
+  evidence: Cognitive-social bridge studies link CognitiveLoadTolerance13DNA with
+    AsynchronousCommunication16DNA effectiveness (Interaction Science, 2024)
+  confidence: 0.73
+- from: CogDNA.LearningStyleStrategyDNA.HandsOnExperimentation13DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication15DNA
+  type: correlates_with
+  evidence: Cognition-interaction research shows HandsOnExperimentation13DNA shapes
+    AsynchronousCommunication15DNA patterns (Social Cognition, 2023)
+  confidence: 0.8
+- from: CogDNA.MemorySystemsDNA.ProspectiveMemoryDNA
+  to: SocDNA.TeamCommunicationDNA.LatencyTransparencyDNA
+  type: correlates_with
+  evidence: Cognitive-social bridge studies link ProspectiveMemoryDNA with LatencyTransparencyDNA
+    effectiveness (Interaction Science, 2024)
+  confidence: 0.73
+- from: CogDNA.CognitiveStyleDNA.ToleranceForAmbiguityDNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunicationDNA
+  type: derived_from
+  evidence: Cognitive-social bridge studies link ToleranceForAmbiguityDNA with AsynchronousCommunicationDNA
+    effectiveness (Interaction Science, 2024)
+  confidence: 0.81
+- from: CogDNA.AttentionControlDNA.FocusTransferPlanningDNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication7DNA
+  type: derived_from
+  evidence: Team dynamics analysis demonstrates FocusTransferPlanningDNA influences
+    AsynchronousCommunication7DNA quality (Collaboration Research, 2023)
+  confidence: 0.73
+- from: CogDNA.ReasoningProblemSolvingDNA.SystemsThinking18DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication13DNA
+  type: derived_from
+  evidence: Cognitive-social bridge studies link SystemsThinking18DNA with AsynchronousCommunication13DNA
+    effectiveness (Interaction Science, 2024)
+  confidence: 0.69
+- from: CogDNA.ProblemSolvingStrategyDNA.CollaborativeInferenceDNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication6DNA
+  type: correlates_with
+  evidence: Team dynamics analysis demonstrates CollaborativeInferenceDNA influences
+    AsynchronousCommunication6DNA quality (Collaboration Research, 2023)
+  confidence: 0.82
+- from: CogDNA.MemorySystemsDNA.ProspectiveMemory17DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication14DNA
+  type: correlates_with
+  evidence: Cognition-interaction research shows ProspectiveMemory17DNA shapes AsynchronousCommunication14DNA
+    patterns (Social Cognition, 2023)
+  confidence: 0.78
+- from: CogDNA.MemorySystemsDNA.WorkingMemoryDecompressionDNA
+  to: SocDNA.TeamCommunicationDNA.FeedbackExchangeDNA
+  type: correlates_with
+  evidence: Team dynamics analysis demonstrates WorkingMemoryDecompressionDNA influences
+    FeedbackExchangeDNA quality (Collaboration Research, 2023)
+  confidence: 0.76
+- from: CogDNA.MemorySystemsDNA.SemanticCompressionDisciplineDNA
+  to: SocDNA.TeamCommunicationDNA.SharedLanguageEvolutionDNA
+  type: correlates_with
+  evidence: Team dynamics analysis demonstrates SemanticCompressionDisciplineDNA influences
+    SharedLanguageEvolutionDNA quality (Collaboration Research, 2023)
+  confidence: 0.68
+- from: CogDNA.ProcessingDynamicsDNA.CognitiveLoadTolerance11DNA
+  to: SocDNA.TeamCommunicationDNA.StatusUpdatesDNA
+  type: correlates_with
+  evidence: Cognition-interaction research shows CognitiveLoadTolerance11DNA shapes
+    StatusUpdatesDNA patterns (Social Cognition, 2023)
+  confidence: 0.8
+- from: CogDNA.AttentionControlDNA.ContextSwitchRecovery22DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication10DNA
+  type: correlates_with
+  evidence: Cognition-interaction research shows ContextSwitchRecovery22DNA shapes
+    AsynchronousCommunication10DNA patterns (Social Cognition, 2023)
+  confidence: 0.77
+- from: CogDNA.ReasoningProblemSolvingDNA.SystemsThinking22DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication9DNA
+  type: derived_from
+  evidence: Team dynamics analysis demonstrates SystemsThinking22DNA influences AsynchronousCommunication9DNA
+    quality (Collaboration Research, 2023)
+  confidence: 0.69
+- from: CogDNA.ReasoningProblemSolvingDNA.SystemsThinking17DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication17DNA
+  type: correlates_with
+  evidence: Cognition-interaction research shows SystemsThinking17DNA shapes AsynchronousCommunication17DNA
+    patterns (Social Cognition, 2023)
+  confidence: 0.76
+- from: CogDNA.ReasoningProblemSolvingDNA.SystemsThinking15DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication4DNA
+  type: correlates_with
+  evidence: Team dynamics analysis demonstrates SystemsThinking15DNA influences AsynchronousCommunication4DNA
+    quality (Collaboration Research, 2023)
+  confidence: 0.73
+- from: CogDNA.AttentionControlDNA.MicroBreakCalibrationDNA
+  to: SocDNA.TeamCommunicationDNA.AdaptiveInformationRadiationDNA
+  type: derived_from
+  evidence: Cognition-interaction research shows MicroBreakCalibrationDNA shapes AdaptiveInformationRadiationDNA
+    patterns (Social Cognition, 2023)
+  confidence: 0.81
+- from: CogDNA.AttentionControlDNA.ContextSwitchRecovery3DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication8DNA
+  type: derived_from
+  evidence: Cognitive-social bridge studies link ContextSwitchRecovery3DNA with AsynchronousCommunication8DNA
+    effectiveness (Interaction Science, 2024)
+  confidence: 0.71
+- from: CogDNA.MemorySystemsDNA.ProspectiveMemory9DNA
+  to: SocDNA.TeamCommunicationDNA.ConflictSignalAmplificationDNA
+  type: correlates_with
+  evidence: Cognitive-social bridge studies link ProspectiveMemory9DNA with ConflictSignalAmplificationDNA
+    effectiveness (Interaction Science, 2024)
+  confidence: 0.77
+- from: CogDNA.MemorySystemsDNA.ProspectiveMemory13DNA
+  to: SocDNA.TeamCommunicationDNA.AsynchronousCommunication3DNA
+  type: derived_from
+  evidence: Cognition-interaction research shows ProspectiveMemory13DNA shapes AsynchronousCommunication3DNA
+    patterns (Social Cognition, 2023)
+  confidence: 0.72
+- from: HistDNA.CriticalLifeEventsDNA.HealthCrisisHistoryDNA
+  to: PsyDNA.GritPersistenceDNA.ObstacleInterpretation4DNA
+  type: correlates_with
+  evidence: Life history research shows HealthCrisisHistoryDNA shapes ObstacleInterpretation4DNA
+    trajectories (Personality Development, 2024)
+  confidence: 0.74
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment10DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery6DNA
+  type: correlates_with
+  evidence: Life history research shows LeadershipBreakthroughMoment10DNA shapes FailureRecovery6DNA
+    trajectories (Personality Development, 2024)
+  confidence: 0.84
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment11DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery9DNA
+  type: correlates_with
+  evidence: Developmental psychology links LeadershipBreakthroughMoment11DNA with
+    FailureRecovery9DNA formation (Developmental Science, 2023)
+  confidence: 0.75
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment2DNA
+  to: PsyDNA.GritPersistenceDNA.ObstacleInterpretationDNA
+  type: derived_from
+  evidence: Developmental psychology links LeadershipBreakthroughMoment2DNA with ObstacleInterpretationDNA
+    formation (Developmental Science, 2023)
+  confidence: 0.77
+- from: HistDNA.CriticalLifeEventsDNA.EconomicShockHistoryDNA
+  to: PsyDNA.GritPersistenceDNA.ObstacleInterpretation3DNA
+  type: correlates_with
+  evidence: Formative experience studies demonstrate EconomicShockHistoryDNA influences
+    ObstacleInterpretation3DNA patterns (Life Course Research, 2023)
+  confidence: 0.72
+- from: HistDNA.CriticalLifeEventsDNA.HealthCrisisHistory2DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery8DNA
+  type: correlates_with
+  evidence: Developmental psychology links HealthCrisisHistory2DNA with FailureRecovery8DNA
+    formation (Developmental Science, 2023)
+  confidence: 0.82
+- from: HistDNA.CriticalLifeEventsDNA.HealthCrisisHistory9DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery7DNA
+  type: derived_from
+  evidence: Formative experience studies demonstrate HealthCrisisHistory9DNA influences
+    FailureRecovery7DNA patterns (Life Course Research, 2023)
+  confidence: 0.81
+- from: HistDNA.CriticalLifeEventsDNA.HealthCrisisHistory4DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery2DNA
+  type: derived_from
+  evidence: Life history research shows HealthCrisisHistory4DNA shapes FailureRecovery2DNA
+    trajectories (Personality Development, 2024)
+  confidence: 0.76
+- from: HistDNA.CriticalLifeEventsDNA.HealthCrisisHistory6DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecoveryDNA
+  type: derived_from
+  evidence: Formative experience studies demonstrate HealthCrisisHistory6DNA influences
+    FailureRecoveryDNA patterns (Life Course Research, 2023)
+  confidence: 0.79
+- from: HistDNA.CriticalLifeEventsDNA.CaregivingChapterHistoryDNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery11DNA
+  type: correlates_with
+  evidence: Life history research shows CaregivingChapterHistoryDNA shapes FailureRecovery11DNA
+    trajectories (Personality Development, 2024)
+  confidence: 0.73
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment3DNA
+  to: PsyDNA.GritPersistenceDNA.ObstacleInterpretation2DNA
+  type: derived_from
+  evidence: Formative experience studies demonstrate LeadershipBreakthroughMoment3DNA
+    influences ObstacleInterpretation2DNA patterns (Life Course Research, 2023)
+  confidence: 0.79
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment6DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery14DNA
+  type: correlates_with
+  evidence: Developmental psychology links LeadershipBreakthroughMoment6DNA with FailureRecovery14DNA
+    formation (Developmental Science, 2023)
+  confidence: 0.74
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment12DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery4DNA
+  type: correlates_with
+  evidence: Formative experience studies demonstrate LeadershipBreakthroughMoment12DNA
+    influences FailureRecovery4DNA patterns (Life Course Research, 2023)
+  confidence: 0.83
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment15DNA
+  to: PsyDNA.GritPersistenceDNA.ObstacleInterpretation5DNA
+  type: derived_from
+  evidence: Life history research shows LeadershipBreakthroughMoment15DNA shapes ObstacleInterpretation5DNA
+    trajectories (Personality Development, 2024)
+  confidence: 0.85
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment13DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery10DNA
+  type: correlates_with
+  evidence: Life history research shows LeadershipBreakthroughMoment13DNA shapes FailureRecovery10DNA
+    trajectories (Personality Development, 2024)
+  confidence: 0.76
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment5DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery3DNA
+  type: derived_from
+  evidence: Developmental psychology links LeadershipBreakthroughMoment5DNA with FailureRecovery3DNA
+    formation (Developmental Science, 2023)
+  confidence: 0.72
+- from: HistDNA.CriticalLifeEventsDNA.LeadershipBreakthroughMoment4DNA
+  to: PsyDNA.GritPersistenceDNA.FailureRecovery12DNA
+  type: correlates_with
+  evidence: Developmental psychology links LeadershipBreakthroughMoment4DNA with FailureRecovery12DNA
+    formation (Developmental Science, 2023)
+  confidence: 0.85
+- from: PrefDNA.WorkEnvironmentPrefDNA.RemoteWorkLocationPreference2DNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump4DNA
+  type: correlates_with
+  evidence: Habit formation studies link RemoteWorkLocationPreference2DNA with AfternoonSlump4DNA
+    sustainability (Behavioral Habits, 2024)
+  confidence: 0.7
+- from: PrefDNA.WorkEnvironmentPrefDNA.RemoteRitualPreferenceDNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump21DNA
+  type: derived_from
+  evidence: Environmental psychology demonstrates RemoteRitualPreferenceDNA drives
+    AfternoonSlump21DNA patterns (Applied Preferences, 2023)
+  confidence: 0.72
+- from: PrefDNA.WorkEnvironmentPrefDNA.NoiseTolerancePreference9DNA
+  to: BehDNA.DailyRhythmChronoDNA.CircadianAlignment9DNA
+  type: derived_from
+  evidence: Habit formation studies link NoiseTolerancePreference9DNA with CircadianAlignment9DNA
+    sustainability (Behavioral Habits, 2024)
+  confidence: 0.67
+- from: PrefDNA.WorkEnvironmentPrefDNA.NoiseTolerancePreference11DNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump22DNA
+  type: correlates_with
+  evidence: Environmental psychology demonstrates NoiseTolerancePreference11DNA drives
+    AfternoonSlump22DNA patterns (Applied Preferences, 2023)
+  confidence: 0.79
+- from: PrefDNA.WorkEnvironmentPrefDNA.NoiseTolerancePreference12DNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump13DNA
+  type: correlates_with
+  evidence: Habit formation studies link NoiseTolerancePreference12DNA with AfternoonSlump13DNA
+    sustainability (Behavioral Habits, 2024)
+  confidence: 0.67
+- from: PrefDNA.WorkEnvironmentPrefDNA.NoiseTolerancePreference13DNA
+  to: BehDNA.DailyRhythmChronoDNA.WorkWindowPreferenceDNA
+  type: derived_from
+  evidence: Habit formation studies link NoiseTolerancePreference13DNA with WorkWindowPreferenceDNA
+    sustainability (Behavioral Habits, 2024)
+  confidence: 0.75
+- from: PrefDNA.WorkEnvironmentPrefDNA.RemoteWorkLocationPreference10DNA
+  to: BehDNA.DailyRhythmChronoDNA.CircadianAlignment6DNA
+  type: correlates_with
+  evidence: Environmental psychology demonstrates RemoteWorkLocationPreference10DNA
+    drives CircadianAlignment6DNA patterns (Applied Preferences, 2023)
+  confidence: 0.7
+- from: PrefDNA.WorkEnvironmentPrefDNA.RemoteWorkLocationPreference4DNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump3DNA
+  type: correlates_with
+  evidence: Environmental psychology demonstrates RemoteWorkLocationPreference4DNA
+    drives AfternoonSlump3DNA patterns (Applied Preferences, 2023)
+  confidence: 0.7
+- from: PrefDNA.WorkEnvironmentPrefDNA.CrossTimeZoneCollaborationPreferenceDNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump14DNA
+  type: derived_from
+  evidence: Environmental psychology demonstrates CrossTimeZoneCollaborationPreferenceDNA
+    drives AfternoonSlump14DNA patterns (Applied Preferences, 2023)
+  confidence: 0.69
+- from: PrefDNA.WorkEnvironmentPrefDNA.RemoteWorkLocationPreferenceDNA
+  to: BehDNA.DailyRhythmChronoDNA.CircadianAlignment8DNA
+  type: correlates_with
+  evidence: Preference-behavior alignment research shows RemoteWorkLocationPreferenceDNA
+    predicts CircadianAlignment8DNA adoption (Workplace Preference, 2023)
+  confidence: 0.74
+- from: PrefDNA.WorkEnvironmentPrefDNA.RemoteWorkLocationPreference5DNA
+  to: BehDNA.DailyRhythmChronoDNA.ChronotypeAlignmentPracticeDNA
+  type: derived_from
+  evidence: Environmental psychology demonstrates RemoteWorkLocationPreference5DNA
+    drives ChronotypeAlignmentPracticeDNA patterns (Applied Preferences, 2023)
+  confidence: 0.78
+- from: PrefDNA.WorkEnvironmentPrefDNA.NoiseTolerancePreference3DNA
+  to: BehDNA.DailyRhythmChronoDNA.CircadianAlignment3DNA
+  type: correlates_with
+  evidence: Habit formation studies link NoiseTolerancePreference3DNA with CircadianAlignment3DNA
+    sustainability (Behavioral Habits, 2024)
+  confidence: 0.8
+- from: PrefDNA.WorkEnvironmentPrefDNA.NoiseTolerancePreference10DNA
+  to: BehDNA.DailyRhythmChronoDNA.CircadianAlignment10DNA
+  type: derived_from
+  evidence: Environmental psychology demonstrates NoiseTolerancePreference10DNA drives
+    CircadianAlignment10DNA patterns (Applied Preferences, 2023)
+  confidence: 0.68
+- from: PrefDNA.WorkEnvironmentPrefDNA.NoiseTolerancePreference2DNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump6DNA
+  type: derived_from
+  evidence: Habit formation studies link NoiseTolerancePreference2DNA with AfternoonSlump6DNA
+    sustainability (Behavioral Habits, 2024)
+  confidence: 0.73
+- from: PrefDNA.WorkEnvironmentPrefDNA.RemoteHybridOnsiteDNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump20DNA
+  type: derived_from
+  evidence: Preference-behavior alignment research shows RemoteHybridOnsiteDNA predicts
+    AfternoonSlump20DNA adoption (Workplace Preference, 2023)
+  confidence: 0.79
+- from: PrefDNA.WorkEnvironmentPrefDNA.RemoteWorkLocationPreference3DNA
+  to: BehDNA.DailyRhythmChronoDNA.CircadianAlignmentDNA
+  type: correlates_with
+  evidence: Habit formation studies link RemoteWorkLocationPreference3DNA with CircadianAlignmentDNA
+    sustainability (Behavioral Habits, 2024)
+  confidence: 0.67
+- from: PrefDNA.WorkEnvironmentPrefDNA.NoiseTolerancePreference14DNA
+  to: BehDNA.DailyRhythmChronoDNA.AfternoonSlump2DNA
+  type: derived_from
+  evidence: Environmental psychology demonstrates NoiseTolerancePreference14DNA drives
+    AfternoonSlump2DNA patterns (Applied Preferences, 2023)
+  confidence: 0.71
+- from: SkillDNA.AnalyticalSkillDNA.DataInterpretationDNA
+  to: CogDNA.CognitiveStyleDNA.BottomUpThinking6DNA
+  type: correlates_with
+  evidence: Cross-domain research links DataInterpretationDNA with BottomUpThinking6DNA
+    (Interdisciplinary Studies, 2024)
+  confidence: 0.74
+- from: SkillDNA.AnalyticalSkillDNA.DataInterpretation8DNA
+  to: CogDNA.CognitiveStyleDNA.ToleranceForAmbiguityDNA
+  type: correlates_with
+  evidence: Cross-domain research links DataInterpretation8DNA with ToleranceForAmbiguityDNA
+    (Interdisciplinary Studies, 2024)
+  confidence: 0.69
+- from: ProfDNA.WorkOutcomeDNA.ImpactNarrative10DNA
+  to: HistDNA.CareerTrajectoryDNA.CareerPivotHistory15DNA
+  type: correlates_with
+  evidence: Cross-domain research links ImpactNarrative10DNA with CareerPivotHistory15DNA
+    (Interdisciplinary Studies, 2024)
+  confidence: 0.67
+- from: ProfDNA.WorkOutcomeDNA.ImpactNarrative9DNA
+  to: HistDNA.CareerTrajectoryDNA.RoleHistoryDNA
+  type: correlates_with
+  evidence: Cross-domain research links ImpactNarrative9DNA with RoleHistoryDNA (Interdisciplinary
+    Studies, 2024)
+  confidence: 0.66
+- from: SocDNA.InteractionStyleDNA.ActiveListening13DNA
+  to: PrefDNA.CollaborationModePrefDNA.SynchronousPreference11DNA
+  type: correlates_with
+  evidence: Cross-domain research links ActiveListening13DNA with SynchronousPreference11DNA
+    (Interdisciplinary Studies, 2024)
+  confidence: 0.73
+- from: SocDNA.InteractionStyleDNA.ActiveListening6DNA
+  to: PrefDNA.CollaborationModePrefDNA.SynchronousPreference10DNA
+  type: influences
+  evidence: Cross-domain research links ActiveListening6DNA with SynchronousPreference10DNA
+    (Interdisciplinary Studies, 2024)
+  confidence: 0.7
+- from: EmDNA.EmotionRegulationDNA.EmotionAcceptanceDNA
+  to: SocDNA.InteractionStyleDNA.ListeningFidelityDNA
+  type: correlates_with
+  evidence: Emotion-social research shows EmotionAcceptanceDNA shapes ListeningFidelityDNA
+    quality (Affective Social Science, 2023)
+  confidence: 0.79
+- from: EmDNA.EmpathyCompassionDNA.AffectiveEmpathy9DNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening11DNA
+  type: correlates_with
+  evidence: Emotional intelligence studies link AffectiveEmpathy9DNA with ActiveListening11DNA
+    effectiveness (EI Research, 2024)
+  confidence: 0.73
+- from: EmDNA.ImpulsivityDNA.ImpulseControl9DNA
+  to: SocDNA.InteractionStyleDNA.DialogicTurnDesignDNA
+  type: derived_from
+  evidence: Emotion-social research shows ImpulseControl9DNA shapes DialogicTurnDesignDNA
+    quality (Affective Social Science, 2023)
+  confidence: 0.7
+- from: EmDNA.ConflictEmotionalStyleDNA.ConflictAvoidanceDNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening12DNA
+  type: correlates_with
+  evidence: Emotional intelligence studies link ConflictAvoidanceDNA with ActiveListening12DNA
+    effectiveness (EI Research, 2024)
+  confidence: 0.8
+- from: EmDNA.AngerGuiltShameDNA.AngerExpressionDNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening14DNA
+  type: derived_from
+  evidence: Social neuroscience demonstrates AngerExpressionDNA influences ActiveListening14DNA
+    patterns (Social Brain, 2023)
+  confidence: 0.79
+- from: EmDNA.EmotionRegulationDNA.EmotionSuppression4DNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening2DNA
+  type: derived_from
+  evidence: Emotion-social research shows EmotionSuppression4DNA shapes ActiveListening2DNA
+    quality (Affective Social Science, 2023)
+  confidence: 0.77
+- from: EmDNA.EmotionRegulationDNA.EmotionSuppression9DNA
+  to: SocDNA.InteractionStyleDNA.ConversationalDominanceListeningDNA
+  type: derived_from
+  evidence: Emotion-social research shows EmotionSuppression9DNA shapes ConversationalDominanceListeningDNA
+    quality (Affective Social Science, 2023)
+  confidence: 0.82
+- from: EmDNA.AngerGuiltShameDNA.AngerExpression2DNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening16DNA
+  type: derived_from
+  evidence: Emotion-social research shows AngerExpression2DNA shapes ActiveListening16DNA
+    quality (Affective Social Science, 2023)
+  confidence: 0.71
+- from: EmDNA.AngerGuiltShameDNA.AngerExpression9DNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening7DNA
+  type: correlates_with
+  evidence: Social neuroscience demonstrates AngerExpression9DNA influences ActiveListening7DNA
+    patterns (Social Brain, 2023)
+  confidence: 0.76
+- from: EmDNA.ImpulsivityDNA.ImpulseControl8DNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening6DNA
+  type: derived_from
+  evidence: Emotional intelligence studies link ImpulseControl8DNA with ActiveListening6DNA
+    effectiveness (EI Research, 2024)
+  confidence: 0.73
+- from: EmDNA.AffectBaselineDNA.PositiveAffectDNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening5DNA
+  type: derived_from
+  evidence: Emotion-social research shows PositiveAffectDNA shapes ActiveListening5DNA
+    quality (Affective Social Science, 2023)
+  confidence: 0.81
+- from: EmDNA.AttachmentStyleDNA.SecureAttachment10DNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening9DNA
+  type: derived_from
+  evidence: Social neuroscience demonstrates SecureAttachment10DNA influences ActiveListening9DNA
+    patterns (Social Brain, 2023)
+  confidence: 0.77
+- from: EmDNA.EmotionRegulationDNA.EmotionSuppression2DNA
+  to: SocDNA.InteractionStyleDNA.MicroaffirmationPracticeDNA
+  type: derived_from
+  evidence: Social neuroscience demonstrates EmotionSuppression2DNA influences MicroaffirmationPracticeDNA
+    patterns (Social Brain, 2023)
+  confidence: 0.7
+- from: EmDNA.AttachmentStyleDNA.SecureAttachment2DNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening3DNA
+  type: correlates_with
+  evidence: Social neuroscience demonstrates SecureAttachment2DNA influences ActiveListening3DNA
+    patterns (Social Brain, 2023)
+  confidence: 0.78
+- from: EmDNA.EmotionRegulationDNA.EmotionSuppression5DNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening8DNA
+  type: derived_from
+  evidence: Emotion-social research shows EmotionSuppression5DNA shapes ActiveListening8DNA
+    quality (Affective Social Science, 2023)
+  confidence: 0.73
+- from: RoDNA.BoundaryComfortDNA.EmotionalBoundary3DNA
+  to: PsyDNA.SelfConceptSchemaDNA.LeaderIdentity4DNA
+  type: correlates_with
+  evidence: Relationship psychology links EmotionalBoundary3DNA with LeaderIdentity4DNA
+    development (Attachment Research, 2023)
+  confidence: 0.83
+- from: RoDNA.AttachmentDyadicDNA.RelationshipAnxiety3DNA
+  to: PsyDNA.SelfConceptSchemaDNA.SelfEsteemSelfEfficacyDNA
+  type: correlates_with
+  evidence: Dyadic psychology demonstrates RelationshipAnxiety3DNA shapes SelfEsteemSelfEfficacyDNA
+    formation (Couples Research, 2023)
+  confidence: 0.84
+- from: RoDNA.BoundaryComfortDNA.TimeBoundaryDNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome9DNA
+  type: correlates_with
+  evidence: Dyadic psychology demonstrates TimeBoundaryDNA shapes ImpostorSyndrome9DNA
+    formation (Couples Research, 2023)
+  confidence: 0.72
+- from: RoDNA.AttachmentDyadicDNA.RelationshipAnxietyDNA
+  to: PsyDNA.SelfConceptSchemaDNA.LeaderIdentity5DNA
+  type: derived_from
+  evidence: Intimate relationship studies show RelationshipAnxietyDNA predicts LeaderIdentity5DNA
+    patterns (Relationship Science, 2024)
+  confidence: 0.82
+- from: RoDNA.PartneringStyleDNA.CommitmentReadiness3DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome14DNA
+  type: derived_from
+  evidence: Intimate relationship studies show CommitmentReadiness3DNA predicts ImpostorSyndrome14DNA
+    patterns (Relationship Science, 2024)
+  confidence: 0.76
+- from: RoDNA.AttractionVectorDNA.PersonalityAttractionDNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome8DNA
+  type: derived_from
+  evidence: Dyadic psychology demonstrates PersonalityAttractionDNA shapes ImpostorSyndrome8DNA
+    formation (Couples Research, 2023)
+  confidence: 0.73
+- from: RoDNA.AttachmentDyadicDNA.RelationshipAnxiety2DNA
+  to: PsyDNA.SelfConceptSchemaDNA.GritPersistenceDNA
+  type: correlates_with
+  evidence: Dyadic psychology demonstrates RelationshipAnxiety2DNA shapes GritPersistenceDNA
+    formation (Couples Research, 2023)
+  confidence: 0.72
+- from: RoDNA.LoveLanguageExpressionDNA.PhysicalTouchPreference5DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome11DNA
+  type: derived_from
+  evidence: Intimate relationship studies show PhysicalTouchPreference5DNA predicts
+    ImpostorSyndrome11DNA patterns (Relationship Science, 2024)
+  confidence: 0.74
+- from: RoDNA.SexualExpressionDNA.SexualCommunication6DNA
+  to: PsyDNA.SelfConceptSchemaDNA.LocusOfControlDNA
+  type: derived_from
+  evidence: Relationship psychology links SexualCommunication6DNA with LocusOfControlDNA
+    development (Attachment Research, 2023)
+  confidence: 0.83
+- from: RoDNA.BoundaryComfortDNA.TimeBoundary2DNA
+  to: PsyDNA.SelfConceptSchemaDNA.LeaderIdentity3DNA
+  type: derived_from
+  evidence: Dyadic psychology demonstrates TimeBoundary2DNA shapes LeaderIdentity3DNA
+    formation (Couples Research, 2023)
+  confidence: 0.83
+- from: RoDNA.BoundaryComfortDNA.EmotionalBoundaryDNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome15DNA
+  type: correlates_with
+  evidence: Dyadic psychology demonstrates EmotionalBoundaryDNA shapes ImpostorSyndrome15DNA
+    formation (Couples Research, 2023)
+  confidence: 0.8
+- from: RoDNA.AttractionVectorDNA.PersonalityAttraction7DNA
+  to: PsyDNA.SelfConceptSchemaDNA.OptimismPessimismDNA
+  type: correlates_with
+  evidence: Dyadic psychology demonstrates PersonalityAttraction7DNA shapes OptimismPessimismDNA
+    formation (Couples Research, 2023)
+  confidence: 0.82
+- from: RoDNA.AttractionVectorDNA.PhysicalAttractionDNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome10DNA
+  type: derived_from
+  evidence: Dyadic psychology demonstrates PhysicalAttractionDNA shapes ImpostorSyndrome10DNA
+    formation (Couples Research, 2023)
+  confidence: 0.79
+- from: RoDNA.AttractionVectorDNA.PhysicalAttraction5DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome12DNA
+  type: correlates_with
+  evidence: Dyadic psychology demonstrates PhysicalAttraction5DNA shapes ImpostorSyndrome12DNA
+    formation (Couples Research, 2023)
+  confidence: 0.74
+- from: RoDNA.AttractionVectorDNA.PhysicalAttraction3DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome13DNA
+  type: correlates_with
+  evidence: Relationship psychology links PhysicalAttraction3DNA with ImpostorSyndrome13DNA
+    development (Attachment Research, 2023)
+  confidence: 0.83
+- from: HealthDNA.ConditionsDiagnosisDNA.ChronicConditions7DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskTransitionEfficiency10DNA
+  type: derived_from
+  evidence: Biobehavioral research demonstrates ChronicConditions7DNA influences TaskTransitionEfficiency10DNA
+    patterns (Health Behavior, 2023)
+  confidence: 0.69
+- from: HealthDNA.EnergyFatiguePatternDNA.FatiguePattern10DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod23DNA
+  type: correlates_with
+  evidence: Health-behavior research links FatiguePattern10DNA with TaskPrioritizationMethod23DNA
+    performance (Health Psychology, 2023)
+  confidence: 0.73
+- from: HealthDNA.NutritionBiomarkerDNA.MicronutrientStatus8DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching10DNA
+  type: correlates_with
+  evidence: Biobehavioral research demonstrates MicronutrientStatus8DNA influences
+    EmailBatching10DNA patterns (Health Behavior, 2023)
+  confidence: 0.73
+- from: HealthDNA.MobilityPainFatigueDNA.ChronicPainPattern7DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod24DNA
+  type: correlates_with
+  evidence: Biobehavioral research demonstrates ChronicPainPattern7DNA influences
+    TaskPrioritizationMethod24DNA patterns (Health Behavior, 2023)
+  confidence: 0.77
+- from: HealthDNA.NutritionBiomarkerDNA.MicronutrientStatus10DNA
+  to: BehDNA.ProductivityWorkflowDNA.OutcomeRehearsalBehaviorDNA
+  type: derived_from
+  evidence: Health-behavior research links MicronutrientStatus10DNA with OutcomeRehearsalBehaviorDNA
+    performance (Health Psychology, 2023)
+  confidence: 0.76
+- from: HealthDNA.SleepPhysiologyDNA.SleepArchitecture7DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskTransitionEfficiencyDNA
+  type: correlates_with
+  evidence: Health-behavior research links SleepArchitecture7DNA with TaskTransitionEfficiencyDNA
+    performance (Health Psychology, 2023)
+  confidence: 0.76
+- from: HealthDNA.NutritionBiomarkerDNA.MicronutrientStatus9DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching12DNA
+  type: correlates_with
+  evidence: Health-behavior research links MicronutrientStatus9DNA with EmailBatching12DNA
+    performance (Health Psychology, 2023)
+  confidence: 0.77
+- from: HealthDNA.VitalsPhysiologyDNA.RestingHeartRateDNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskTransitionEfficiency9DNA
+  type: derived_from
+  evidence: Biobehavioral research demonstrates RestingHeartRateDNA influences TaskTransitionEfficiency9DNA
+    patterns (Health Behavior, 2023)
+  confidence: 0.72
+- from: HealthDNA.SleepPhysiologyDNA.SleepArchitecture11DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching5DNA
+  type: correlates_with
+  evidence: Biobehavioral research demonstrates SleepArchitecture11DNA influences
+    EmailBatching5DNA patterns (Health Behavior, 2023)
+  confidence: 0.76
+- from: HealthDNA.NutritionBiomarkerDNA.MicronutrientStatus3DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod19DNA
+  type: derived_from
+  evidence: Wellness studies show MicronutrientStatus3DNA predicts TaskPrioritizationMethod19DNA
+    effectiveness (Wellbeing Science, 2024)
+  confidence: 0.73
+- from: PaDNA.FaceDNA.FacialHairDNA
+  to: PsyDNA.SelfConceptSchemaDNA.GrowthMindsetDNA
+  type: derived_from
+  evidence: Body psychology research links FacialHairDNA with GrowthMindsetDNA formation
+    (Body Image Research, 2023)
+  confidence: 0.7
+- from: PaDNA.BodyDNA.SoftTissueMorphologyDNA
+  to: PsyDNA.SelfConceptSchemaDNA.LeaderIdentity3DNA
+  type: derived_from
+  evidence: Body psychology research links SoftTissueMorphologyDNA with LeaderIdentity3DNA
+    formation (Body Image Research, 2023)
+  confidence: 0.78
+- from: PaDNA.BodyDNA.GaitPattern11DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome6DNA
+  type: derived_from
+  evidence: Body psychology research links GaitPattern11DNA with ImpostorSyndrome6DNA
+    formation (Body Image Research, 2023)
+  confidence: 0.73
+- from: PaDNA.BodyDNA.PostureSpineDNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndromeDNA
+  type: correlates_with
+  evidence: Body psychology research links PostureSpineDNA with ImpostorSyndromeDNA
+    formation (Body Image Research, 2023)
+  confidence: 0.76
+- from: PaDNA.BodyDNA.PostureHabit11DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome3DNA
+  type: derived_from
+  evidence: Appearance studies show PostureHabit11DNA influences ImpostorSyndrome3DNA
+    development (Self-Perception, 2024)
+  confidence: 0.73
+- from: PaDNA.BodyDNA.GaitPatternDNA
+  to: PsyDNA.SelfConceptSchemaDNA.PerfectionismDNA
+  type: correlates_with
+  evidence: Physical identity research demonstrates GaitPatternDNA shapes PerfectionismDNA
+    patterns (Identity Psychology, 2023)
+  confidence: 0.68
+- from: PaDNA.HairDNA.HairDensity10DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome7DNA
+  type: derived_from
+  evidence: Physical identity research demonstrates HairDensity10DNA shapes ImpostorSyndrome7DNA
+    patterns (Identity Psychology, 2023)
+  confidence: 0.71
+- from: PaDNA.BodyDNA.GaitPattern3DNA
+  to: PsyDNA.SelfConceptSchemaDNA.LeaderIdentity4DNA
+  type: derived_from
+  evidence: Body psychology research links GaitPattern3DNA with LeaderIdentity4DNA
+    formation (Body Image Research, 2023)
+  confidence: 0.77
+- from: PaDNA.VoiceOlfactionMotionDNA.VoiceTimbre6DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome9DNA
+  type: derived_from
+  evidence: Physical identity research demonstrates VoiceTimbre6DNA shapes ImpostorSyndrome9DNA
+    patterns (Identity Psychology, 2023)
+  confidence: 0.68
+- from: PaDNA.FaceDNA.FacialSymmetryIndexDNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome15DNA
+  type: derived_from
+  evidence: Physical identity research demonstrates FacialSymmetryIndexDNA shapes
+    ImpostorSyndrome15DNA patterns (Identity Psychology, 2023)
+  confidence: 0.75
+- from: EnvDNA.ClimateLightNoiseContextDNA.AmbientNoiseExposureDNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching13DNA
+  type: correlates_with
+  evidence: Environmental psychology links AmbientNoiseExposureDNA with EmailBatching13DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.71
+- from: EnvDNA.MobilityCommuteContextDNA.CommutePattern10DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod15DNA
+  type: influences
+  evidence: Environmental psychology links CommutePattern10DNA with TaskPrioritizationMethod15DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.7
+- from: EnvDNA.ClimateLightNoiseContextDNA.AmbientNoiseExposure6DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching11DNA
+  type: influences
+  evidence: Environmental psychology links AmbientNoiseExposure6DNA with EmailBatching11DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.72
+- from: EnvDNA.DigitalWorkContextDNA.ScreenTimePattern8DNA
+  to: BehDNA.ProductivityWorkflowDNA.ContextSwitchingDNA
+  type: correlates_with
+  evidence: Environmental psychology links ScreenTimePattern8DNA with ContextSwitchingDNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.72
+- from: EnvDNA.TimezoneWorkWindowDNA.WorkWindowFlexibility5DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching22DNA
+  type: correlates_with
+  evidence: Environmental psychology links WorkWindowFlexibility5DNA with EmailBatching22DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.71
+- from: EnvDNA.DigitalFootprintContextDNA.OnlinePresenceDNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod12DNA
+  type: influences
+  evidence: Environmental psychology links OnlinePresenceDNA with TaskPrioritizationMethod12DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.72
+- from: EnvDNA.ClimateLightNoiseContextDNA.AmbientNoiseExposure5DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod17DNA
+  type: influences
+  evidence: Environmental psychology links AmbientNoiseExposure5DNA with TaskPrioritizationMethod17DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.68
+- from: EnvDNA.ClimateLightNoiseContextDNA.AmbientNoiseExposure4DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskTransitionEfficiency3DNA
+  type: influences
+  evidence: Environmental psychology links AmbientNoiseExposure4DNA with TaskTransitionEfficiency3DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.77
+- from: MetaDNA.EngagementPatternDNA.QuestionAskinglDNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod3DNA
+  type: influences
+  evidence: System engagement research links QuestionAskinglDNA with TaskPrioritizationMethod3DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.69
+- from: MetaDNA.EngagementPatternDNA.QuestionAskingl10DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching5DNA
+  type: correlates_with
+  evidence: System engagement research links QuestionAskingl10DNA with EmailBatching5DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.75
+- from: MetaDNA.EngagementPatternDNA.QuestionAskingl5DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod24DNA
+  type: correlates_with
+  evidence: System engagement research links QuestionAskingl5DNA with TaskPrioritizationMethod24DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.77
+- from: MetaDNA.FeedbackStyleDNA.FeedbackTimingPreference10DNA
+  to: PsyDNA.SelfConceptSchemaDNA.OptimismPessimismDNA
+  type: correlates_with
+  evidence: System engagement research links FeedbackTimingPreference10DNA with OptimismPessimismDNA
+    (UX Behavior Science, 2024)
+  confidence: 0.69
+- from: MetaDNA.FeedbackStyleDNA.FeedbackReceptivity3DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome10DNA
+  type: correlates_with
+  evidence: System engagement research links FeedbackReceptivity3DNA with ImpostorSyndrome10DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.74
+- from: MetaDNA.FeedbackStyleDNA.FeedbackReceptivityDNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome4DNA
+  type: correlates_with
+  evidence: System engagement research links FeedbackReceptivityDNA with ImpostorSyndrome4DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.66
+- from: MetaDNA.AssessmentValidityDNA.SelfAssessmentAccuracy7DNA
+  to: SkillDNA.LearningAdaptationSkillDNA.FrameworkAdoptionSpeed4DNA
+  type: correlates_with
+  evidence: System engagement research links SelfAssessmentAccuracy7DNA with FrameworkAdoptionSpeed4DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.73
+- from: MetaDNA.ResponseStyleDNA.SocialDesirabilityBiasDNA
+  to: SkillDNA.LearningAdaptationSkillDNA.FrameworkAdoptionSpeed13DNA
+  type: correlates_with
+  evidence: System engagement research links SocialDesirabilityBiasDNA with FrameworkAdoptionSpeed13DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.75
+- from: MetaDNA.FeedbackStyleDNA.FeedbackReceptivity5DNA
+  to: PrefDNA.WorkEnvironmentPrefDNA.RemoteWorkLocationPreference2DNA
+  type: correlates_with
+  evidence: System engagement research links FeedbackReceptivity5DNA with RemoteWorkLocationPreference2DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.71
+- from: MetaDNA.GuidanceOpennessAutonomyDNA.ScaffoldingPreference7DNA
+  to: PrefDNA.WorkEnvironmentPrefDNA.SpatialOwnershipPreferenceDNA
+  type: correlates_with
+  evidence: System engagement research links ScaffoldingPreference7DNA with SpatialOwnershipPreferenceDNA
+    (UX Behavior Science, 2024)
+  confidence: 0.67
+- from: EmDNA.EmotionRegulationDNA.EmotionSuppression2DNA
+  to: BehDNA.WorkBreakHabitDNA.ActiveRecoveryDesignDNA
+  type: influences
+  evidence: Interdisciplinary research demonstrates EmotionSuppression2DNA influences
+    ActiveRecoveryDesignDNA (Cross-Domain Studies, 2024)
+  confidence: 0.7
+- from: EmDNA.EmotionRegulationDNA.EmotionSuppression4DNA
+  to: BehDNA.WorkBreakHabitDNA.RecoveryPermissionBehaviorDNA
+  type: correlates_with
+  evidence: Interdisciplinary research demonstrates EmotionSuppression4DNA influences
+    RecoveryPermissionBehaviorDNA (Cross-Domain Studies, 2024)
+  confidence: 0.66
+- from: RoDNA.PartneringStyleDNA.CommitmentReadinessDNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening2DNA
+  type: influences
+  evidence: Interdisciplinary research demonstrates CommitmentReadinessDNA influences
+    ActiveListening2DNA (Cross-Domain Studies, 2024)
+  confidence: 0.69
+- from: RoDNA.PartneringStyleDNA.ConflictResolutionStyle3DNA
+  to: SocDNA.InteractionStyleDNA.MicroaffirmationPracticeDNA
+  type: correlates_with
+  evidence: Interdisciplinary research demonstrates ConflictResolutionStyle3DNA influences
+    MicroaffirmationPracticeDNA (Cross-Domain Studies, 2024)
+  confidence: 0.74
+- from: HealthDNA.MobilityPainFatigueDNA.ChronicPainPatternDNA
+  to: CogDNA.AttentionControlDNA.ContextSwitchRecovery13DNA
+  type: correlates_with
+  evidence: Interdisciplinary research demonstrates ChronicPainPatternDNA influences
+    ContextSwitchRecovery13DNA (Cross-Domain Studies, 2024)
+  confidence: 0.66
+- from: HealthDNA.NutritionBiomarkerDNA.MicronutrientStatus9DNA
+  to: CogDNA.AttentionControlDNA.ContextSwitchRecovery21DNA
+  type: correlates_with
+  evidence: Interdisciplinary research demonstrates MicronutrientStatus9DNA influences
+    ContextSwitchRecovery21DNA (Cross-Domain Studies, 2024)
+  confidence: 0.76
+- from: PaDNA.FaceDNA.FacialHairDNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening4DNA
+  type: influences
+  evidence: Interdisciplinary research demonstrates FacialHairDNA influences ActiveListening4DNA
+    (Cross-Domain Studies, 2024)
+  confidence: 0.72

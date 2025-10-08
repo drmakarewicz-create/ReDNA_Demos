@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/credna_delta.json",
+  "title": "CReDNA User-Coach Deltas",
+  "description": "Learned dimensional adjustments from feedback for a specific (user_id, coach_id)",
+  "type": "object",
+  "properties": {
+    "tone": {
+      "type": "integer",
+      "minimum": -5,
+      "maximum": 5,
+      "description": "Numeric shift for tone dimension"
+    },
+    "cadence": {
+      "type": "integer",
+      "minimum": -3,
+      "maximum": 3,
+      "description": "Numeric shift for cadence dimension"
+    },
+    "formality": {
+      "type": "integer",
+      "minimum": -3,
+      "maximum": 3,
+      "description": "Numeric shift for formality dimension"
+    },
+    "vocabulary": {
+      "type": "integer",
+      "minimum": -2,
+      "maximum": 2,
+      "description": "Numeric shift for vocabulary dimension"
+    },
+    "hedging": {
+      "type": "integer",
+      "minimum": -2,
+      "maximum": 2,
+      "description": "Numeric shift for hedging dimension"
+    },
+    "humor": {
+      "type": "integer",
+      "minimum": -3,
+      "maximum": 3,
+      "description": "Numeric shift for humor dimension"
+    },
+    "directness": {
+      "type": "integer",
+      "minimum": -2,
+      "maximum": 2,
+      "description": "Numeric shift for directness dimension"
+    },
+    "empathy": {
+      "type": "integer",
+      "minimum": -2,
+      "maximum": 2,
+      "description": "Numeric shift for empathy dimension"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp (ISO 8601)"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Schema version"
+    }
+  },
+  "additionalProperties": false
+}

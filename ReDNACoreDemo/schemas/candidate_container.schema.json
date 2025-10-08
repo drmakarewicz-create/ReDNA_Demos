@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Candidate Container",
+  "description": "Schema for automatically proposed DNA containers based on gap analysis",
+  "type": "object",
+  "required": [
+    "id",
+    "parent",
+    "status",
+    "ai_upgradable",
+    "description",
+    "scoring_plan",
+    "evidence_summary",
+    "governance"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Container ID in format: Parent.NameDNA.v1",
+      "pattern": "^[A-Za-z]+DNA\\.[A-Za-z]+DNA\\.v\\d+$"
+    },
+    "parent": {
+      "type": "string",
+      "description": "Parent domain (e.g., LanguageStyleDNA, SocDNA)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["prototype"],
+      "description": "Container status (always prototype for proposals)"
+    },
+    "ai_upgradable": {
+      "type": "boolean",
+      "description": "Whether container can be upgraded by AI"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the container",
+      "minLength": 10
+    },
+    "scoring_plan": {
+      "type": "object",
+      "required": ["extractor_feature", "method", "expected_value", "ucn_seed"],
+      "properties": {
+        "extractor_feature": {
+          "type": "string",
+          "description": "The extractor feature this container would use"
+        },
+        "method": {
+          "type": "string",
+          "description": "Extraction method description"
+        },
+        "expected_value": {
+          "type": "string",
+          "description": "Expected value type/range"
+        },
+        "ucn_seed": {
+          "type": "number",
+          "description": "Initial UCN value for prototype",
+          "minimum": 0,
+          "maximum": 1000
+        }
+      }
+    },
+    "evidence_summary": {
+      "type": "object",
+      "required": ["daily_count", "avg_impact"],
+      "properties": {
+        "daily_count": {
+          "type": "number",
+          "description": "Number of times feature appeared in daily logs",
+          "minimum": 0
+        },
+        "avg_impact": {
+          "type": "number",
+          "description": "Average estimated impact on similarity",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "top_intents": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Most common intent categories"
+        },
+        "sample_users": {
+          "type": "number",
+          "description": "Number of unique users affected",
+          "minimum": 0
+        }
+      }
+    },
+    "governance": {
+      "type": "object",
+      "required": ["sensitive", "consent_required"],
+      "properties": {
+        "sensitive": {
+          "type": "boolean",
+          "description": "Whether container involves sensitive data"
+        },
+        "consent_required": {
+          "type": "boolean",
+          "description": "Whether explicit user consent is required"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Additional governance notes"
+        }
+      }
+    }
+  }
+}

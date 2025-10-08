@@ -1,0 +1,544 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/coach_ui_manifest.json",
+  "title": "Coach UI Manifest",
+  "description": "Schema for coach right-pane UI manifests in the delegation system",
+  "type": "object",
+  "required": ["schema_version", "coach_id", "manifest_version", "renderer_version", "widgets"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Coach UI manifest schema version",
+      "pattern": "^\\d+\\.\\d+$",
+      "examples": ["1.0"]
+    },
+    "coach_id": {
+      "type": "string",
+      "description": "Coach identifier (must match coach_registry.yaml)",
+      "pattern": "^[a-z_]+$",
+      "examples": ["career_coach", "personality_test_coach"]
+    },
+    "manifest_version": {
+      "type": "string",
+      "description": "Version of this specific manifest",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["0.1.0", "1.2.3"]
+    },
+    "renderer_version": {
+      "type": "string",
+      "description": "Required RPUF renderer version",
+      "pattern": "^\\d+\\.\\d+$",
+      "examples": ["1.0"]
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional manifest metadata",
+      "properties": {
+        "author": {
+          "type": "string",
+          "description": "Manifest author"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update timestamp"
+        },
+        "description": {
+          "type": "string",
+          "description": "Manifest description"
+        },
+        "changelog": {
+          "type": "array",
+          "description": "Version changelog",
+          "items": {
+            "type": "object",
+            "required": ["version", "date", "changes"],
+            "properties": {
+              "version": {
+                "type": "string"
+              },
+              "date": {
+                "type": "string",
+                "format": "date"
+              },
+              "changes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "widgets": {
+      "type": "array",
+      "description": "Widget definitions for right pane",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "type", "component"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique widget identifier",
+            "pattern": "^[a-z_][a-z0-9_]*$",
+            "examples": ["skill_curiosity_map", "transition_planner"]
+          },
+          "type": {
+            "type": "string",
+            "description": "Widget category",
+            "enum": [
+              "visualization",
+              "interactive",
+              "form",
+              "display",
+              "action",
+              "diagnostic"
+            ]
+          },
+          "component": {
+            "type": "string",
+            "description": "React component name or path",
+            "examples": ["SkillCuriosityMap", "TransitionPlanner", "PersonalityRadar"]
+          },
+          "title": {
+            "type": "string",
+            "description": "Widget display title"
+          },
+          "description": {
+            "type": "string",
+            "description": "Widget description (for tooltips/help)"
+          },
+          "position": {
+            "type": "integer",
+            "description": "Default sort order (lower = higher priority)",
+            "minimum": 0
+          },
+          "default_visible": {
+            "type": "boolean",
+            "description": "Whether widget is visible by default",
+            "default": true
+          },
+          "pinnable": {
+            "type": "boolean",
+            "description": "Whether user can pin this widget",
+            "default": true
+          },
+          "collapsible": {
+            "type": "boolean",
+            "description": "Whether widget can be collapsed",
+            "default": true
+          },
+          "data_source": {
+            "type": "object",
+            "description": "Data binding configuration",
+            "required": ["type"],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["api", "static", "computed", "hybrid"],
+                "description": "Data source type"
+              },
+              "endpoint": {
+                "type": "string",
+                "description": "API endpoint (for type=api)",
+                "examples": ["/api/coach/career_coach/skill-map"]
+              },
+              "method": {
+                "type": "string",
+                "enum": ["GET", "POST"],
+                "default": "GET",
+                "description": "HTTP method"
+              },
+              "params": {
+                "type": "object",
+                "description": "Static query parameters",
+                "additionalProperties": true
+              },
+              "cache_ttl": {
+                "type": "integer",
+                "description": "Cache TTL in seconds",
+                "minimum": 0,
+                "default": 60
+              },
+              "static_data": {
+                "description": "Static data payload (for type=static)",
+                "additionalProperties": true
+              },
+              "compute_fn": {
+                "type": "string",
+                "description": "Compute function name (for type=computed)"
+              }
+            }
+          },
+          "conditions": {
+            "type": "array",
+            "description": "Visibility conditions (AND logic)",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "intent",
+                    "rr_threshold",
+                    "curiosity_threshold",
+                    "user_pref",
+                    "feature_flag",
+                    "data_available"
+                  ]
+                },
+                "intent": {
+                  "type": "array",
+                  "description": "Required intents (OR logic)",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "rr_threshold": {
+                  "type": "object",
+                  "description": "RR threshold condition",
+                  "properties": {
+                    "domain": {
+                      "type": "string",
+                      "description": "DNA domain (e.g., SkillDNA, PsyDNA.PersonalityDNA)"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "enum": ["<", "<=", ">", ">=", "=="],
+                      "default": ">="
+                    },
+                    "value": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100
+                    }
+                  },
+                  "required": ["domain", "value"]
+                },
+                "curiosity_threshold": {
+                  "type": "object",
+                  "description": "Curiosity threshold condition",
+                  "properties": {
+                    "domain": {
+                      "type": "string"
+                    },
+                    "operator": {
+                      "type": "string",
+                      "enum": ["<", "<=", ">", ">=", "=="],
+                      "default": ">="
+                    },
+                    "value": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 100
+                    }
+                  },
+                  "required": ["domain", "value"]
+                },
+                "user_pref": {
+                  "type": "object",
+                  "description": "User preference condition",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "description": "Expected value"
+                    }
+                  },
+                  "required": ["key", "value"]
+                },
+                "feature_flag": {
+                  "type": "string",
+                  "description": "Required feature flag name"
+                },
+                "data_available": {
+                  "type": "object",
+                  "description": "Check if data exists",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "description": "Data path to check (dot notation)"
+                    },
+                    "min_count": {
+                      "type": "integer",
+                      "description": "Minimum item count (for arrays)",
+                      "default": 1
+                    }
+                  },
+                  "required": ["path"]
+                }
+              },
+              "required": ["type"]
+            }
+          },
+          "ai_suggestions": {
+            "type": "object",
+            "description": "AI-powered suggestion configuration",
+            "properties": {
+              "enabled": {
+                "type": "boolean",
+                "description": "Enable AI suggestions for this widget",
+                "default": false
+              },
+              "policy_gate": {
+                "type": "string",
+                "description": "Policy gate name (from policy_gate.yaml)",
+                "examples": ["career_suggestions", "personality_insights"]
+              },
+              "model": {
+                "type": "string",
+                "description": "AI model to use",
+                "examples": ["gpt-4", "claude-3-5-sonnet"]
+              },
+              "max_suggestions": {
+                "type": "integer",
+                "description": "Maximum number of suggestions",
+                "minimum": 1,
+                "maximum": 10,
+                "default": 3
+              },
+              "shadow_mode": {
+                "type": "boolean",
+                "description": "Log but don't show suggestions (for testing)",
+                "default": false
+              }
+            },
+            "required": ["enabled"]
+          },
+          "telemetry": {
+            "type": "object",
+            "description": "Widget telemetry configuration",
+            "properties": {
+              "track_renders": {
+                "type": "boolean",
+                "description": "Track render performance",
+                "default": true
+              },
+              "track_interactions": {
+                "type": "boolean",
+                "description": "Track user interactions",
+                "default": true
+              },
+              "custom_events": {
+                "type": "array",
+                "description": "Custom event names to track",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "props": {
+            "type": "object",
+            "description": "Static props passed to component",
+            "additionalProperties": true
+          },
+          "zone": {
+            "type": "string",
+            "description": "Optional zone assignment for zone-based layouts",
+            "enum": ["header", "actions", "primary", "secondary"],
+            "examples": ["header", "primary"]
+          },
+          "zone_priority": {
+            "type": "integer",
+            "description": "Priority within zone (lower = higher, only applies if zone is set)",
+            "minimum": 0,
+            "default": 0
+          }
+        }
+      }
+    },
+    "layout_mode": {
+      "type": "string",
+      "description": "Layout rendering mode",
+      "enum": ["list", "zones"],
+      "default": "list",
+      "examples": ["list", "zones"]
+    },
+    "zones": {
+      "type": "object",
+      "description": "Zone-based layout configuration (only used if layout_mode=zones)",
+      "properties": {
+        "header": {
+          "type": "object",
+          "description": "Header zone configuration",
+          "properties": {
+            "max_widgets": {
+              "type": "integer",
+              "description": "Maximum widgets in this zone",
+              "minimum": 0,
+              "default": 2
+            },
+            "collapsible": {
+              "type": "boolean",
+              "description": "Whether zone can collapse",
+              "default": false
+            }
+          }
+        },
+        "actions": {
+          "type": "object",
+          "description": "Action zone configuration",
+          "properties": {
+            "max_widgets": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 3
+            },
+            "layout": {
+              "type": "string",
+              "enum": ["horizontal", "vertical", "grid"],
+              "default": "horizontal"
+            }
+          }
+        },
+        "primary": {
+          "type": "object",
+          "description": "Primary content zone",
+          "properties": {
+            "max_widgets": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 5
+            }
+          }
+        },
+        "secondary": {
+          "type": "object",
+          "description": "Secondary content zone",
+          "properties": {
+            "max_widgets": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 10
+            },
+            "collapsible": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        }
+      }
+    },
+    "intent_layouts": {
+      "type": "object",
+      "description": "Intent-specific layout overrides",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "priority_boost": {
+            "type": "array",
+            "description": "Widget IDs to boost (move to top)",
+            "items": {
+              "type": "string"
+            }
+          },
+          "hide": {
+            "type": "array",
+            "description": "Widget IDs to hide",
+            "items": {
+              "type": "string"
+            }
+          },
+          "show": {
+            "type": "array",
+            "description": "Widget IDs to force visible",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reorder": {
+            "type": "array",
+            "description": "Complete reorder (widget IDs in order)",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "default_layout": {
+      "type": "object",
+      "description": "Default layout configuration",
+      "properties": {
+        "max_visible_widgets": {
+          "type": "integer",
+          "description": "Maximum widgets to show at once",
+          "minimum": 1,
+          "default": 10
+        },
+        "auto_collapse_below": {
+          "type": "integer",
+          "description": "Auto-collapse widgets beyond this position",
+          "minimum": 1
+        },
+        "spacing": {
+          "type": "string",
+          "enum": ["compact", "normal", "relaxed"],
+          "default": "normal"
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "description": "Performance targets and budgets",
+      "properties": {
+        "compose_target_ms": {
+          "type": "integer",
+          "description": "Target compose time in milliseconds",
+          "default": 200
+        },
+        "fcp_target_ms": {
+          "type": "integer",
+          "description": "First Contentful Paint target in ms",
+          "default": 300
+        },
+        "max_api_calls": {
+          "type": "integer",
+          "description": "Max concurrent API calls",
+          "minimum": 1,
+          "default": 3
+        }
+      }
+    },
+    "workshop_fixtures": {
+      "type": "object",
+      "description": "Workshop testing fixtures",
+      "properties": {
+        "default_fixture": {
+          "type": "string",
+          "description": "Default fixture filename"
+        },
+        "fixtures": {
+          "type": "array",
+          "description": "Available fixture definitions",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Fixture name (filename without .json)"
+              },
+              "description": {
+                "type": "string",
+                "description": "Fixture description"
+              },
+              "intents": {
+                "type": "array",
+                "description": "Intents this fixture simulates",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

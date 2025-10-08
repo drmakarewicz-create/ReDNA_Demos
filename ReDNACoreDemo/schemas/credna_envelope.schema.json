@@ -1,0 +1,136 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/credna_envelope.json",
+  "title": "CReDNA Style/Persona Envelope",
+  "description": "Per-user, per-coach personality envelope with dimensional traits",
+  "type": "object",
+  "required": [
+    "tone",
+    "cadence",
+    "formality",
+    "vocabulary",
+    "hedging",
+    "humor",
+    "directness",
+    "empathy",
+    "stance_hints",
+    "merge_weights",
+    "sources",
+    "materialized",
+    "credna_version",
+    "policy"
+  ],
+  "properties": {
+    "tone": {
+      "type": "string",
+      "enum": ["cool", "neutral", "warm", "encouraging", "reflective", "optimistic"],
+      "description": "Overall emotional tone of responses"
+    },
+    "cadence": {
+      "type": "string",
+      "enum": ["slow", "medium", "medium-fast", "fast"],
+      "description": "Pacing and response length"
+    },
+    "formality": {
+      "type": "string",
+      "enum": ["casual", "neutral", "semi-formal", "formal"],
+      "description": "Level of professional structure"
+    },
+    "vocabulary": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Complexity and sophistication of language"
+    },
+    "hedging": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Use of qualifiers and cautious language"
+    },
+    "humor": {
+      "type": "string",
+      "enum": ["none", "dry", "witty", "playful"],
+      "description": "Use and style of humor"
+    },
+    "directness": {
+      "type": "string",
+      "enum": ["indirect", "balanced", "direct"],
+      "description": "How straightforward responses are"
+    },
+    "empathy": {
+      "type": "string",
+      "enum": ["low", "moderate", "high"],
+      "description": "Level of emotional warmth and supportiveness"
+    },
+    "stance_hints": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Value/belief anchors from BeliefValueDNA (privacy-gated)"
+    },
+    "merge_weights": {
+      "type": "object",
+      "required": ["user_style", "coach_role", "user_delta", "manual_prefs"],
+      "properties": {
+        "user_style": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "coach_role": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "user_delta": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "manual_prefs": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["role_overlay", "user_style", "user_delta", "manual_prefs"]
+      },
+      "description": "Which layers contributed to this envelope"
+    },
+    "materialized": {
+      "type": "boolean",
+      "description": "True if per-user-per-coach files exist (training has occurred)"
+    },
+    "credna_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Schema version for migration safety"
+    },
+    "policy": {
+      "type": "object",
+      "required": ["overlay_id", "consent_applied", "sensitive_suppressed"],
+      "properties": {
+        "overlay_id": {
+          "type": "string",
+          "description": "Which role overlay was used (e.g., career_coach/default)"
+        },
+        "consent_applied": {
+          "type": "boolean",
+          "description": "Whether consent gates were checked"
+        },
+        "sensitive_suppressed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of sensitive trait paths that were gated"
+        }
+      }
+    }
+  }
+}

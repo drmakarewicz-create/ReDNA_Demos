@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://redna.ai/schemas/credna_prefs.json",
+  "title": "CReDNA Manual Preference Overrides",
+  "description": "Explicit user preference settings for a specific (user_id, coach_id)",
+  "type": "object",
+  "properties": {
+    "tone": {
+      "type": "string",
+      "enum": ["cool", "neutral", "warm", "encouraging", "reflective", "optimistic"],
+      "description": "Override for tone dimension"
+    },
+    "cadence": {
+      "type": "string",
+      "enum": ["slow", "medium", "medium-fast", "fast"],
+      "description": "Override for cadence dimension"
+    },
+    "formality": {
+      "type": "string",
+      "enum": ["casual", "neutral", "semi-formal", "formal"],
+      "description": "Override for formality dimension"
+    },
+    "vocabulary": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Override for vocabulary dimension"
+    },
+    "hedging": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "description": "Override for hedging dimension"
+    },
+    "humor": {
+      "type": "string",
+      "enum": ["none", "dry", "witty", "playful"],
+      "description": "Override for humor dimension"
+    },
+    "directness": {
+      "type": "string",
+      "enum": ["indirect", "balanced", "direct"],
+      "description": "Override for directness dimension"
+    },
+    "empathy": {
+      "type": "string",
+      "enum": ["low", "moderate", "high"],
+      "description": "Override for empathy dimension"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp (ISO 8601)"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$",
+      "description": "Schema version"
+    }
+  },
+  "additionalProperties": false
+}
