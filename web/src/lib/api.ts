@@ -23,6 +23,17 @@ export interface PlannerAskPolicy {
 
 export type AskListStatus = 'all' | 'open' | 'done';
 
+export interface CoachPane {
+  title: string;
+  type: 'switch' | 'slider' | 'text' | 'select' | 'meter';
+  path: string;
+  options?: Array<{ label: string; value: any }>;
+  min?: number;
+  max?: number;
+  step?: number;
+  placeholder?: string;
+}
+
 export interface FetchAsksOptions {
   status?: AskListStatus;
   limit?: number;

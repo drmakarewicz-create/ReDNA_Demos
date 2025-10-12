@@ -22,6 +22,9 @@
       "node",
       "jest"
     ],
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "plugins": [
       {
         "name": "next"
