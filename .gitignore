@@ -1,8 +1,45 @@
+# >>> git-sanity ignore block >>>
+# --- deps & caches ---
 .venv/
 PhotoRefinementCoach/.venv/
+**/node_modules/
+**/.venv/
 __pycache__/
+**/__pycache__/
 *.pyc
+**/.pytest_cache/
 .DS_Store
-*.tar.gz
+**/.DS_Store
+
+# --- build outputs ---
+**/dist/
+**/.vite/
+**/coverage/
+web/.next/
 snapshots/full_backup_*
+
+# --- runtime data (ReDNA) ---
+ReDNACoreDemo/data/**
+backups/**
+data/telemetry/**
+prompts/insights/**
 control_panel_logs/*
+# keep docs in these dirs
+!ReDNACoreDemo/data/README.md
+!backups/README.md
+!data/telemetry/README.md
+!prompts/insights/README.md
+
+# --- iCloud (external paths, not in repo) ---
+# iCloud Drive backup mirroring - these paths are on the user's system
+# ~/Library/Mobile Documents/com~apple~CloudDocs/ReDNA_Backups/
+# (nothing to ignore in-repo, just noting for clarity)
+
+# --- generated media ---
+**/*.mp3
+**/*.wav
+**/*.zip
+**/*.gz
+
+*.tar.gz
+# <<< git-sanity ignore block <<<
