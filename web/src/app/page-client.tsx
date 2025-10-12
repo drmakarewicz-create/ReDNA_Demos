@@ -2219,7 +2219,9 @@ export default function HeadCoachPage() {
           isOpen={coachCatalogOpen}
           onClose={() => setCoachCatalogOpen(false)}
           onSelectCoach={(coachId) => {
-            pushNotice(`Switched to coach: ${coachId}`, 'success');
+            // Switch to the selected coach/persona
+            setActivePersona(coachId);
+            pushNotice(`Switched to ${coachId}`, 'success');
           }}
           currentCoach={activePersonaMeta?.key}
         />
