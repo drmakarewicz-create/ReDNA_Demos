@@ -2122,12 +2122,6 @@ export default function HeadCoachPage() {
     <CoachToolsPane title="Coach Tools">
       {/* Persona-specific tools FIRST (Coach Catalog, Life OS, Photo upload, Avatar rendering, etc.) */}
       {renderPersonaTools(activePersonaMeta?.key ?? 'head_coach', personaContext, () => setCoachCatalogOpen(true))}
-      <PersonaRail
-        id="tour-persona-rail"
-        personas={personas}
-        activePersona={activePersona}
-        onPersonaChange={setActivePersona}
-      />
       <PanelBoundary resetKeys={[activeUser]} onRetry={retryUnabridged}>
         <RRDnaPanel
           snapshot={unabridged}
