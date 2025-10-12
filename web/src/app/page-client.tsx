@@ -74,6 +74,8 @@ import { useCelebrationsAgent, type MilestoneItem } from '../agents/celebrations
 import { LayoutSwitcher } from '../components/layout-switcher';
 import { useFeatureFlags } from '../lib/feature-flags';
 import { CoachToolsPane } from '../components/coach-tools-pane';
+import { LifeOSChatPanel } from '../components/life-os-chat-panel';
+import { CoachCatalogModal } from '../components/coach-catalog-modal';
 
 const LOCAL_STORAGE_KEY = '_active_user_id';
 
@@ -202,6 +204,7 @@ export default function HeadCoachPage() {
   const [onboardingWizardOpen, setOnboardingWizardOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [commandOpen, setCommandOpen] = useState(false);
+  const [coachCatalogOpen, setCoachCatalogOpen] = useState(false);
   const [isMac, setIsMac] = useState(false);
   const { dismissed: tourDismissed, hydrated: tourHydrated, markDismissed: markTourDismissed } = useTourState();
   const [tourOpen, setTourOpen] = useState(false);
@@ -2141,8 +2144,8 @@ export default function HeadCoachPage() {
           onRefresh={refreshAllPanels}
         />
       </PanelBoundary>
-      {/* Persona-specific tools (Photo upload, Avatar rendering, etc.) */}
-      {renderPersonaTools(activePersonaMeta?.key ?? 'head_coach', personaContext)}
+      {/* Persona-specific tools (Photo upload, Avatar rendering, Coach Catalog, Life OS, etc.) */}
+      {renderPersonaTools(activePersonaMeta?.key ?? 'head_coach', personaContext, () => setCoachCatalogOpen(true))}
       {/* Support panels (ObservationSummary, CoachAsks, NudgeInbox) */}
       {renderSharedSupportPanels(personaContext)}
     </CoachToolsPane>
@@ -2217,6 +2220,14 @@ export default function HeadCoachPage() {
           onUpdate={updatePreference}
           onReset={resetPreferences}
           shortcutModifier={isMac ? '⌘' : 'Ctrl'}
+        />
+      <CoachCatalogModal
+          isOpen={coachCatalogOpen}
+          onClose={() => setCoachCatalogOpen(false)}
+          onSelectCoach={(coachId) => {
+            pushNotice(`Switched to coach: ${coachId}`, 'success');
+          }}
+          currentCoach={activePersonaMeta?.key}
         />
       <OnboardUserModal
           open={userModalOpen}
@@ -2488,11 +2499,37 @@ interface PersonaCenterContext {
  */
 function renderPersonaTools(
   personaKey: string,
-  context: PersonaCenterContext
+  context: PersonaCenterContext,
+  onOpenCoachCatalog?: () => void
 ): ReactNode {
   const normalized = normalizePersonaKey(personaKey);
 
   switch (normalized) {
+    case 'head_coach':
+      return (
+        <>
+          {/* Coach Catalog Button */}
+          <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-4">
+            <button
+              type="button"
+              onClick={onOpenCoachCatalog}
+              className="w-full rounded-lg bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/30 px-4 py-3 text-left transition hover:from-cyan-500/20 hover:to-violet-500/20"
+            >
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">👥</div>
+                <div>
+                  <div className="font-semibold text-cyan-200">Coach Catalog</div>
+                  <div className="text-xs text-slate-400">Browse and switch coaches</div>
+                </div>
+              </div>
+            </button>
+          </div>
+          {/* Life OS Panel */}
+          <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
+            <LifeOSChatPanel userId={context.activeUser} variant="full" />
+          </PanelBoundary>
+        </>
+      );
     case 'rendering':
       return (
         <>
@@ -2511,7 +2548,7 @@ function renderPersonaTools(
         </PanelBoundary>
       );
     default:
-      // Head Coach and RC: no specialized tools, just support panels
+      // RC and other personas: no specialized tools, just support panels
       return null;
   }
 }
