@@ -7416,6 +7416,155 @@ def build_app() -> FastAPI:
             raise HTTPException(status_code=500, detail=str(e))
 
     # ============================================================================
+    # ONTOLOGY V2 ENDPOINTS - Full registry access
+    # ============================================================================
+
+    @app.get("/api/ontology/containers")
+    async def get_ontology_containers(
+        namespace: Optional[str] = Query(None, description="Filter by namespace"),
+        tags: Optional[str] = Query(None, description="Comma-separated tags"),
+        search: Optional[str] = Query(None, description="Search term"),
+        limit: int = Query(100, description="Max results", ge=1, le=1000)
+    ):
+        """
+        Get containers from the Ontology V2 registry.
+
+        Query Parameters:
+        - namespace: Filter by namespace (e.g., "BehDNA", "PaDNA")
+        - tags: Comma-separated list of tags (e.g., "beh,social")
+        - search: Search in ID, description, or path
+        - limit: Maximum number of results (1-1000, default 100)
+
+        Returns:
+            {
+                "ok": true,
+                "containers": [...],
+                "count": 42,
+                "total_available": 2000
+            }
+        """
+        try:
+            from .ontology_service import get_ontology_service
+
+            service = get_ontology_service()
+            tag_list = tags.split(",") if tags else None
+
+            containers = service.search_containers(
+                namespace=namespace,
+                tags=tag_list,
+                search_term=search,
+                limit=limit
+            )
+
+            total = len(service.get_all_containers())
+
+            return JSONResponse(content={
+                "ok": True,
+                "containers": containers,
+                "count": len(containers),
+                "total_available": total
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Failed to get ontology containers: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/api/ontology/container/{container_id}")
+    async def get_ontology_container(container_id: str):
+        """
+        Get a specific container by ID.
+
+        Example: /api/ontology/container/BehDNA.v1
+
+        Returns:
+            {
+                "ok": true,
+                "container": {...}
+            }
+        """
+        try:
+            from .ontology_service import get_ontology_service
+
+            service = get_ontology_service()
+            container = service.get_container_by_id(container_id)
+
+            if not container:
+                raise HTTPException(status_code=404, detail=f"Container '{container_id}' not found")
+
+            return JSONResponse(content={
+                "ok": True,
+                "container": container
+            }, status_code=200)
+
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Failed to get container {container_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/api/ontology/namespaces")
+    async def get_ontology_namespaces():
+        """
+        Get all namespaces with container counts.
+
+        Returns:
+            {
+                "ok": true,
+                "namespaces": {
+                    "BehDNA": 150,
+                    "PaDNA": 200,
+                    ...
+                }
+            }
+        """
+        try:
+            from .ontology_service import get_ontology_service
+
+            service = get_ontology_service()
+            namespaces = service.get_namespaces()
+
+            return JSONResponse(content={
+                "ok": True,
+                "namespaces": namespaces
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Failed to get ontology namespaces: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/api/ontology/stats")
+    async def get_ontology_stats():
+        """
+        Get comprehensive ontology registry statistics.
+
+        Returns:
+            {
+                "ok": true,
+                "stats": {
+                    "total_containers": 2000,
+                    "namespaces": {...},
+                    "status_breakdown": {...},
+                    "sensitive_containers": 50,
+                    ...
+                }
+            }
+        """
+        try:
+            from .ontology_service import get_ontology_service
+
+            service = get_ontology_service()
+            stats = service.get_stats()
+
+            return JSONResponse(content={
+                "ok": True,
+                "stats": stats
+            }, status_code=200)
+
+        except Exception as e:
+            logger.error(f"Failed to get ontology stats: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # ============================================================================
     # RR ENDPOINTS - Multi-level RR calculation
     # ============================================================================
 
