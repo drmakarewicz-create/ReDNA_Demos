@@ -2120,6 +2120,8 @@ export default function HeadCoachPage() {
 
   const sidebarSection = flags.focusedChatLayout ? (
     <CoachToolsPane title="Coach Tools">
+      {/* Persona-specific tools FIRST (Coach Catalog, Life OS, Photo upload, Avatar rendering, etc.) */}
+      {renderPersonaTools(activePersonaMeta?.key ?? 'head_coach', personaContext, () => setCoachCatalogOpen(true))}
       <PersonaRail
         id="tour-persona-rail"
         personas={personas}
@@ -2144,8 +2146,6 @@ export default function HeadCoachPage() {
           onRefresh={refreshAllPanels}
         />
       </PanelBoundary>
-      {/* Persona-specific tools (Photo upload, Avatar rendering, Coach Catalog, Life OS, etc.) */}
-      {renderPersonaTools(activePersonaMeta?.key ?? 'head_coach', personaContext, () => setCoachCatalogOpen(true))}
       {/* Support panels (ObservationSummary, CoachAsks, NudgeInbox) */}
       {renderSharedSupportPanels(personaContext)}
     </CoachToolsPane>
