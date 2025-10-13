@@ -1776,14 +1776,18 @@ export default function HeadCoachPage() {
         // Close wizard and show success with context-aware message
         setOnboardingWizardOpen(false);
 
-        // NORTHSTAR PHASE 2: Context-aware first message
+        // NORTHSTAR PHASE 2: Context-aware first message (longer duration)
         const welcomeName = data.displayName || targetUserId;
         const wyrChoice = data.wyr_answer?.selected_text;
         const contextMsg = wyrChoice
-          ? `Welcome, ${welcomeName}! I see you chose "${wyrChoice}". Your profile is building in Core - let's explore what that means for you.`
-          : `Welcome, ${welcomeName}! Profile updated from Core. Ready to chat?`;
+          ? `Welcome, ${welcomeName}! You chose "${wyrChoice}". Your profile is being built - start chatting to help me learn more about you.`
+          : `Welcome, ${welcomeName}! Profile created. Start chatting to help me learn about you.`;
 
+        // Show welcome message for longer (10 seconds instead of default)
         pushNotice(contextMsg, 'success');
+
+        // Also log to console for debugging
+        console.log('[Northstar] Onboarding complete for:', targetUserId, 'WYR choice:', wyrChoice);
 
         // Trigger panel refreshes to show new data
         refreshAllPanels();
