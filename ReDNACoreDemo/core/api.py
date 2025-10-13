@@ -5240,6 +5240,45 @@ def build_app() -> FastAPI:
             "rescore": rescore_result,
         }
 
+    @app.post("/core/api/ingest_text")
+    def core_api_ingest_text(payload: Dict[str, Any]) -> Any:
+        """
+        Northstar Phase 2: Core ingestion endpoint for unified text ingestion.
+        Alias to /ui/ingest/text with standardized response format.
+
+        POST /core/api/ingest_text
+        Body: { user_id: str, text: str, source: str, metadata?: dict }
+        Returns: { success: bool, error?: str, event_id?: str }
+        """
+        # Call the existing ingest_text_endpoint
+        result = ingest_text_endpoint(payload)
+
+        # Transform to Northstar expected format
+        if isinstance(result, dict):
+            # Success case
+            if result.get("ok"):
+                return {
+                    "success": True,
+                    "event_id": result.get("event_written"),
+                    "user_id": result.get("user_id"),
+                    "rescore": result.get("rescore", {})
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": result.get("status", "unknown_error")
+                }
+
+        # Handle JSONResponse objects from error cases
+        if hasattr(result, 'status_code'):
+            return {
+                "success": False,
+                "error": getattr(result, 'body', b'').decode('utf-8') if hasattr(result, 'body') else "request_failed"
+            }
+
+        # Fallback
+        return {"success": False, "error": "unexpected_response"}
+
     @app.post("/ui/ingest/json")
     def ingest_json_endpoint(payload: Dict[str, Any]) -> Any:
         """
