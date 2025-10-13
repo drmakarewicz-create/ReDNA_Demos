@@ -59,10 +59,8 @@ lifeOs.interceptors.request.use((config) => {
   const stored = getActiveCapabilityToken();
   const capability = memToken || stored;
   if (capability) {
-    config.headers = {
-      ...(config.headers || {}),
-      Authorization: `Bearer ${capability}`,
-    };
+    // Use set method to properly set headers in axios
+    config.headers.set('Authorization', `Bearer ${capability}`);
     if (!memToken && stored) {
       (window as any).__devxCapToken = stored;
     }
