@@ -187,6 +187,17 @@ Agents:
 - [ ] Codex: Implement Curiosity v3 prototype.
 - [ ] Claude: Expand empathy model.
 - [ ] Codex: Implement empathy tracker + bonding metrics.
+- [x] Codex: Wire empathy & curiosity telemetry into Life OS DevX + chat surfaces.
+
+### Evergreen Integration Telemetry Tests (2025-10-13)
+
+```
+$ pytest ReDNACoreDemo/tests/test_hc_human_intel.py -q
+..                                                                       [100%]
+2 passed, 4 warnings in 0.22s
+```
+
+> Note: `npm run build` in `ReDNACoreDemo/devx/frontend` still fails due to pre-existing TypeScript warnings unrelated to this change (unused imports, legacy interfaces).
 
 ### Evergreen 9 Test Results (2025-10-12)
 

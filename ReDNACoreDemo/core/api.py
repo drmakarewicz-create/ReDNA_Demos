@@ -34,7 +34,7 @@ from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
 
 from PIL import Image, UnidentifiedImageError
 
-from . import curiosity_engine, hierarchy, ui_readonly, planner, nudges, trait_timeline, decay, conversation_analyzer, hc_trait_bridge, preference_extractor, trait_container_discovery, hc_life
+from . import curiosity_engine, hierarchy, ui_readonly, planner, nudges, trait_timeline, decay, conversation_analyzer, hc_trait_bridge, preference_extractor, trait_container_discovery, hc_life, hc_human_intel
 from .bundles import CURRENT_VERSION, iso_now
 from .storage import (
     OBS_FILENAME,
@@ -10134,6 +10134,18 @@ Intent: {intent}
             return {"ok": True, **summary}
         except Exception as e:
             logger.error(f"Life OS summary error for {user_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/ui/hc/life/{user_id}/human_intel")
+    async def get_life_human_intel(user_id: str, days: int = Query(7, ge=1, le=30)):
+        """Expose empathy + curiosity telemetry for DevX Life OS surfaces."""
+        start = time.perf_counter()
+        try:
+            snapshot = hc_human_intel.build_human_intel_snapshot(user_id, window_days=days)
+            duration_ms = round((time.perf_counter() - start) * 1000.0, 3)
+            return {"ok": True, "snapshot": snapshot, "duration_ms": duration_ms}
+        except Exception as e:
+            logger.error(f"Life OS human intel error for {user_id}: {e}", exc_info=True)
             raise HTTPException(status_code=500, detail=str(e))
 
     @app.post("/ui/hc/life/{user_id}/capture")
