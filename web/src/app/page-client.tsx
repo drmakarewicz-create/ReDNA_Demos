@@ -1312,6 +1312,18 @@ export default function HeadCoachPage() {
   const personaSendKey = personaSendKeyFromRosterKey(activePersonaMeta?.key ?? 'head_coach');
   const firstWidgetType = 'TranscriptPanel';
   const composerRendered = true;
+
+  // NORTHSTAR FIX: Robust persona change handler that updates both URL and state
+  const handlePersonaChange = useCallback((newPersona: string) => {
+    // Update URL first for reliable routing
+    const url = new URL(window.location.href);
+    url.searchParams.set('persona', newPersona);
+    const href = (url.pathname + url.search + url.hash) as Route;
+    router.push(href, { scroll: false });
+
+    // Update state (this will be redundant after URL update triggers useEffect, but ensures immediate response)
+    setActivePersona(newPersona);
+  }, [router]);
   const personaDensity = preferences.compactDensity ? 'compact' : 'comfortable';
   const offlineBannerActive = asksCached || nudgesCached || snapshotsCached;
   const retryAsks = useCallback(() => {
@@ -2191,7 +2203,7 @@ export default function HeadCoachPage() {
           id="tour-persona-rail"
           personas={personas}
           activePersona={activePersona}
-          onPersonaChange={setActivePersona}
+          onPersonaChange={handlePersonaChange}
         />
         <PanelBoundary resetKeys={[activeUser]} onRetry={retryUnabridged}>
           <UnabridgedPanel
@@ -2217,7 +2229,7 @@ export default function HeadCoachPage() {
           activeUserId={activeUser}
           disabled={!activeUser.trim()}
           onProviderConfigError={handleProviderConfigError}
-          onPersonaChange={setActivePersona}
+          onPersonaChange={handlePersonaChange}
           streamingPreference={preferences.streaming}
           enterToSendPreference={preferences.enterToSend}
           providerModel={preferences.providerModel}
@@ -2260,8 +2272,8 @@ export default function HeadCoachPage() {
           isOpen={coachCatalogOpen}
           onClose={() => setCoachCatalogOpen(false)}
           onSelectCoach={(coachId) => {
-            // Switch to the selected coach/persona
-            setActivePersona(coachId);
+            // Use unified persona change handler
+            handlePersonaChange(coachId);
             pushNotice(`Switched to ${coachId}`, 'success');
           }}
           currentCoach={activePersonaMeta?.key}
