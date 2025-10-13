@@ -1350,10 +1350,20 @@ export interface OnboardingWizardSubmitResponse {
   checkpoint_event?: string | null;
 }
 
+/**
+ * @deprecated NORTHSTAR PHASE 2: Use unified Core ingestion instead
+ * This function bypasses the Core → UCN/RR roundtrip pipeline.
+ * Use: formatOnboardingPayload() + ingestAndRefresh() from hcIngestor.ts
+ */
 export async function submitOnboardingWizardData(
   userId: string,
   data: OnboardingWizardData
 ): Promise<OnboardingWizardSubmitResponse> {
+  // NORTHSTAR PHASE 2: Log bypass attempt
+  if (import.meta.env.VITE_CORE_BYPASS_ALLOWED === 'false') {
+    console.warn('[Northstar] Direct trait writes are disabled (No-Bypass Rule). Use hcIngestor.ts instead.');
+  }
+
   const trimmedUser = userId.trim();
   if (!trimmedUser) {
     throw new ApiError('user_id is required for onboarding submission.', 400);

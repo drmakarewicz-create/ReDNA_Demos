@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Head Coach Shell',
-  description: 'React/Next.js Head Coach experience for demo bake-off'
+  title: 'Northstar',
+  description: 'React/Next.js Northstar - AI orchestrator and user experience'
 };
 
 export default function RootLayout({

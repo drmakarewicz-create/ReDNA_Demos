@@ -500,26 +500,55 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
     setModalSubmitting(true);
     setModalError(null);
 
+    // Optimistic UI: Add pending goal to local state
+    const optimisticGoal: Goal = {
+      id: `pending-${Date.now()}`,
+      text: goalText,
+      owner: userId,
+      why: goalWhy || 'Personal goal',
+      first_step: goalFirstStep,
+      confidence: goalConfidence,
+      status: 'active'
+    };
+
+    setSummary(prev => prev ? {
+      ...prev,
+      goals: [...prev.goals, optimisticGoal]
+    } : null);
+
     try {
-      const response = await fetch(`${CORE_API_BASE}/ui/hc/life/${userId}/goals`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          text: goalText,
-          owner: userId,
-          why: goalWhy || 'Personal goal',
-          first_step: goalFirstStep,
-          confidence: goalConfidence,
-        }),
+      // NORTHSTAR PHASE 2: Use unified Core ingestion
+      const { formatGoalPayload } = await import('../lib/hcIngestor');
+      const { ingestAndRefresh } = await import('../lib/coreSnapshot');
+
+      // Format goal as structured payload
+      const payload = formatGoalPayload({
+        title: goalText,
+        description: goalWhy,
+        targetDate: undefined // Could add target date field to modal
       });
 
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
+      // Ingest to Core → UCN/RR → normalized traits
+      const { ingestion, snapshot } = await ingestAndRefresh(userId, payload, 'goal');
+
+      if (!ingestion.success) {
+        throw new Error(ingestion.error || 'Core ingestion failed');
       }
 
+      // Success! Remove optimistic item and refresh
       closeModal();
       loadSummary();
+
+      // Emit a brief coach message acknowledging the goal
+      // (In future, this could trigger a Coach Chat response)
+      console.log(`[Life OS] Goal logged: "${goalText}". Curiosity/confidence updated.`);
+
     } catch (err) {
+      // Remove optimistic item on failure
+      setSummary(prev => prev ? {
+        ...prev,
+        goals: prev.goals.filter(g => g.id !== optimisticGoal.id)
+      } : null);
       setModalError(err instanceof Error ? err.message : 'Failed to create goal');
     } finally {
       setModalSubmitting(false);

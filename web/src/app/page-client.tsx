@@ -1095,6 +1095,8 @@ export default function HeadCoachPage() {
     []
   );
 
+  // NORTHSTAR PHASE 2: Unabridged auto-refreshes when Core snapshot updates
+  // After ingestion → Core stores traits → refreshSnapshot() → refreshAllPanels() → loadUnabridged()
   const loadUnabridged = useCallback(
     async (userId: string, options?: { reset?: boolean }) => {
       const target = userId.trim();
@@ -1521,6 +1523,7 @@ export default function HeadCoachPage() {
   const personaContext = useMemo<PersonaCenterContext>(
     () => ({
       activeUser,
+      activePersona,
       aggregates,
       aggregatesLoading,
       aggregatesError,
@@ -1569,6 +1572,7 @@ export default function HeadCoachPage() {
     }),
     [
       activeUser,
+      activePersona,
       aggregates,
       aggregatesLoading,
       aggregatesError,
@@ -1705,15 +1709,52 @@ export default function HeadCoachPage() {
         // Switch to the newly created user
         queueActiveUserChange(targetUserId, data.displayName || targetUserId, { immediate: true, suppressNotice: true });
 
-        // Submit onboarding data
-        const response = await submitOnboardingWizardData(targetUserId, data);
-        if (response.ok) {
-          setOnboardingWizardOpen(false);
-          pushNotice(`Welcome, ${data.displayName || targetUserId}! Your Head Coach is ready.`, 'success');
-          refreshAllPanels();
-        } else {
-          pushNotice('Failed to save onboarding data. Please try again.', 'error');
+        // NORTHSTAR PHASE 2: Use unified Core ingestion instead of direct trait writes
+        // Import dynamically to avoid top-level circular deps
+        const { formatOnboardingPayload, ingestToCore } = await import('../lib/hcIngestor');
+        const { refreshSnapshot } = await import('../lib/coreSnapshot');
+
+        // Format onboarding data as structured payload
+        const payload = formatOnboardingPayload({
+          name: data.displayName || targetUserId,
+          ...data.basic_setup,
+          wyrdChoice: data.wyr_answer?.selected_text,
+          headCoachName: data.head_coach_name
+        });
+
+        // Show brief toast while processing
+        pushNotice('Analyzing in Core…', 'info');
+
+        // Ingest to Core → UCN/RR → normalized traits
+        const ingestionResult = await ingestToCore(targetUserId, payload, 'onboarding');
+
+        if (!ingestionResult.success) {
+          throw new Error(ingestionResult.error || 'Core ingestion failed');
         }
+
+        // Refresh snapshot to get updated profile
+        await refreshSnapshot(targetUserId);
+
+        // NORTHSTAR PHASE 2: Set flag for first-message experience
+        if (typeof window !== 'undefined') {
+          window.localStorage.setItem(`northstar_just_onboarded_${targetUserId}`, 'true');
+        }
+
+        // Close wizard and show success with context-aware message
+        setOnboardingWizardOpen(false);
+
+        // NORTHSTAR PHASE 2: Context-aware first message
+        const welcomeName = data.displayName || targetUserId;
+        const wyrChoice = data.wyr_answer?.selected_text;
+        const contextMsg = wyrChoice
+          ? `Welcome, ${welcomeName}! I see you chose "${wyrChoice}". Your profile is building in Core - let's explore what that means for you.`
+          : `Welcome, ${welcomeName}! Profile updated from Core. Ready to chat?`;
+
+        pushNotice(contextMsg, 'success');
+
+        // Trigger panel refreshes to show new data
+        refreshAllPanels();
+
       } catch (err) {
         console.error('Onboarding submission error:', err);
         const message = isApiError(err) ? err.message : 'Failed to save onboarding.';
@@ -2442,6 +2483,7 @@ function PerfHud({ enabled, fps, commitDuration, commitCount, virtualizers }: Pe
 
 interface PersonaCenterContext {
   activeUser: string;
+  activePersona: string;
   aggregates: ObservationAggregates | null;
   aggregatesLoading: boolean;
   aggregatesError: string | null;
@@ -2602,7 +2644,8 @@ function renderPersonaCenter(
         />
       </div>
       <div className={context.fillHeightMode ? "flex-1 min-h-0" : ""}>
-        <PanelBoundary resetKeys={[context.activeUser]} onRetry={context.retryTranscript}>
+        {/* NORTHSTAR PHASE 2: Force remount when persona changes by including activePersona in resetKeys */}
+        <PanelBoundary resetKeys={[context.activePersona, context.activeUser]} onRetry={context.retryTranscript}>
           <TranscriptPanel
             ref={context.transcriptRef}
             aggregates={context.aggregates}

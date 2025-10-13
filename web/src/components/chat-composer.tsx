@@ -443,6 +443,24 @@ export const ChatComposer = forwardRef<ChatComposerHandle, ChatComposerProps>(fu
 
         void recordChatTurn(recordPayload);
 
+        // NORTHSTAR PHASE 2: Ingest user message to Core for fact extraction
+        // This runs async in background - doesn't block UI
+        void (async () => {
+          try {
+            const { ingestToCore } = await import('../lib/hcIngestor');
+            const { refreshSnapshot } = await import('../lib/coreSnapshot');
+
+            // Ingest user's message verbatim
+            await ingestToCore(payload.userId, payload.text, 'chat');
+
+            // Refresh snapshot to get any extracted facts
+            await refreshSnapshot(payload.userId, { silent: true });
+          } catch (error) {
+            // Log but don't interrupt user experience
+            console.warn('[Northstar] Background fact ingestion failed:', error);
+          }
+        })();
+
         setLiveAnnouncement('Assistant reply ready.');
         setPendingSend(null);
         setSendError(null);
@@ -550,7 +568,7 @@ export const ChatComposer = forwardRef<ChatComposerHandle, ChatComposerProps>(fu
           photo: 'Photo Coach',
           relationship_coach: 'Relationship Coach',
           padna: 'PaDNA Coach',
-          head_coach: 'Head Coach'
+          head_coach: 'Northstar'
         };
         const targetName = personaNames[switchToPersona] || 'coach';
         setStatusMessage(`Switching to ${targetName}...`);
@@ -587,8 +605,8 @@ export const ChatComposer = forwardRef<ChatComposerHandle, ChatComposerProps>(fu
       });
 
       setMessage('');
-      setStatusMessage('Message sent to Head Coach.');
-      setLiveAnnouncement('Message sent to Head Coach.');
+      setStatusMessage('Message sent to Northstar.');
+      setLiveAnnouncement('Message sent to Northstar.');
       setSendError(null);
       textareaRef.current?.focus();
 
@@ -746,7 +764,7 @@ export const ChatComposer = forwardRef<ChatComposerHandle, ChatComposerProps>(fu
               rows={1}
               className="w-full resize-y rounded-2xl border border-slate-700 bg-slate-950/70 p-4 text-sm text-slate-100 outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/40"
               disabled={disabled}
-              aria-label="Compose message for Head Coach"
+              aria-label="Compose message for Northstar"
               aria-describedby={statusMessage ? statusId : undefined}
             />
             <div className="flex items-center justify-between gap-3">
