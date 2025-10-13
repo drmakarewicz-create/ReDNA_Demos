@@ -2580,7 +2580,7 @@ function renderPersonaTools(
           </PanelBoundary>
         </>
       );
-    case 'rendering':
+    case 'padna':
       return (
         <>
           <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
@@ -2597,8 +2597,10 @@ function renderPersonaTools(
           <PhotoPanel userId={context.activeUser} />
         </PanelBoundary>
       );
+    case 'relationship_coach':
+      // RC: no specialized tools, just support panels
+      return null;
     default:
-      // RC and other personas: no specialized tools, just support panels
       return null;
   }
 }
@@ -2679,16 +2681,17 @@ function renderPersonaCenter(
   );
 }
 
-function normalizePersonaKey(key: string): 'head_coach' | 'photo' | 'rc' | 'rendering' {
+function normalizePersonaKey(key: string): 'head_coach' | 'photo' | 'relationship_coach' | 'padna' {
   const normalized = key.trim().toLowerCase();
   switch (normalized) {
     case 'padna':
+    case 'padna_coach':
     case 'padna coach':
     case 'rendering':
     case 'rendering coach':
     case 'avatar':
     case 'renderer':
-      return 'rendering';
+      return 'padna';
     case 'photo':
     case 'photo_coach':
     case 'photo coach':
@@ -2696,7 +2699,12 @@ function normalizePersonaKey(key: string): 'head_coach' | 'photo' | 'rc' | 'rend
     case 'rc':
     case 'relationship':
     case 'relationship_coach':
-      return 'rc';
+    case 'relationship coach':
+      return 'relationship_coach';
+    case 'head_coach':
+    case 'head coach':
+    case 'hc':
+      return 'head_coach';
     default:
       return 'head_coach';
   }
