@@ -27,6 +27,20 @@ import streamlit as st
 
 from cpplusplus import envstore, services, ports
 
+# Import DevX bootstrap helpers
+try:
+    from ReDNACoreDemo.core.devx_bootstrap import (
+        devx_backend_health,
+        devx_ui_health,
+        ensure_devx_requirements_commands,
+        start_devx_backend,
+        start_devx_ui,
+        stop_devx,
+    )
+    DEVX_BOOTSTRAP_AVAILABLE = True
+except ImportError:
+    DEVX_BOOTSTRAP_AVAILABLE = False
+
 
 def safe_rerun() -> None:
     try:
@@ -3594,41 +3608,112 @@ def main() -> None:
     # Quick launch Developer Tools
     st.sidebar.markdown("---")
     st.sidebar.markdown("**🛠️ Quick Launch**")
+    st.sidebar.markdown("**Developer Explorer (DevX)**")
 
-    # Determine Dev Explorer URL (from environment or default)
-    env = _env()
-    dev_explorer_port = env.get("dev_explorer_port") or 8550
-    dev_explorer_url = f"http://localhost:{dev_explorer_port}"
+    if DEVX_BOOTSTRAP_AVAILABLE:
+        # Use new DevX bootstrap system
+        backend_port = int(os.environ.get("DEVX_BACKEND_PORT", "8100") or "8100")
+        ui_port = int(os.environ.get("DEVX_UI_PORT", "8550") or "8550")
 
-    # Check if Dev Explorer service URL is available
-    service_url = _build_service_url(SERVICE_DEV_EXPLORER)
-    if service_url:
-        dev_explorer_url = service_url
+        # Check health status
+        backend_healthy = devx_backend_health(backend_port)
+        ui_healthy = devx_ui_health(ui_port)
 
-    # Check if Dev Explorer is running
-    dev_explorer_running = False
-    try:
-        response = requests.head(dev_explorer_url, timeout=0.5, allow_redirects=True)
-        dev_explorer_running = response.status_code < 500
-    except requests.RequestException:
-        pass
+        # Display status indicators
+        st.sidebar.write(f"Backend: {'🟢' if backend_healthy else '🔴'} port {backend_port}")
+        st.sidebar.write(f"UI: {'🟢' if ui_healthy else '🔴'} port {ui_port}")
 
-    # Display button with status indicator
-    button_col, status_col = st.sidebar.columns([3, 1])
-    with button_col:
-        if st.button("🚀 Open Developer Explorer", use_container_width=True):
-            webbrowser.open_new_tab(dev_explorer_url)
-            st.sidebar.success(f"Opened in new tab!")
-    with status_col:
-        if dev_explorer_running:
-            st.markdown("🟢")  # Green dot for running
-        else:
-            st.markdown("⚪")  # White dot for not running
+        # Control buttons
+        col1, col2, col3 = st.sidebar.columns([1, 1, 1])
 
-    if dev_explorer_running:
-        st.sidebar.caption(f"✅ Running on port {dev_explorer_port}")
+        if col1.button("▶️ Start", key="devx_start", help="Start DevX backend and UI"):
+            with st.spinner("Starting DevX services..."):
+                # Check if dependencies are needed
+                cmds = ensure_devx_requirements_commands()
+                if cmds:
+                    st.sidebar.info("💡 Ensure dependencies are installed:")
+                    for cmd in cmds:
+                        st.sidebar.code(cmd, language="bash")
+
+                # Start backend
+                ok_backend, msg_backend, actual_backend_port = start_devx_backend()
+                if ok_backend:
+                    st.sidebar.success(msg_backend)
+                else:
+                    st.sidebar.error(msg_backend)
+
+                # Start UI
+                ok_ui, msg_ui, actual_ui_port = start_devx_ui()
+                if ok_ui:
+                    if actual_ui_port != ui_port:
+                        st.sidebar.warning(msg_ui)
+                    else:
+                        st.sidebar.success(msg_ui)
+
+                    # Store the actual port for the Open button
+                    st.session_state["_devx_ui_actual_port"] = actual_ui_port
+                else:
+                    st.sidebar.error(msg_ui)
+
+                time.sleep(0.5)
+                safe_rerun()
+
+        if col2.button("⏹️ Stop", key="devx_stop", help="Stop DevX backend and UI"):
+            with st.spinner("Stopping DevX services..."):
+                stop_devx()
+                st.sidebar.success("Stopped DevX backend and UI")
+                if "_devx_ui_actual_port" in st.session_state:
+                    del st.session_state["_devx_ui_actual_port"]
+                time.sleep(0.5)
+                safe_rerun()
+
+        if col3.button("🚀 Open", key="devx_open", help="Open Developer Explorer in browser"):
+            # Use actual port if available, otherwise default
+            actual_port = st.session_state.get("_devx_ui_actual_port", ui_port)
+            dev_explorer_url = f"http://localhost:{actual_port}"
+
+            if ui_healthy or devx_ui_health(actual_port):
+                webbrowser.open_new_tab(dev_explorer_url)
+                st.sidebar.success(f"Opened Developer Explorer at port {actual_port}")
+            else:
+                st.sidebar.warning(f"DevX UI not running. Click 'Start' first.")
+
     else:
-        st.sidebar.caption(f"⚠️ Not detected (port {dev_explorer_port})")
+        # Fallback to legacy behavior if devx_bootstrap not available
+        env = _env()
+        dev_explorer_port = env.get("dev_explorer_port") or 8550
+        dev_explorer_url = f"http://localhost:{dev_explorer_port}"
+
+        # Check if Dev Explorer service URL is available
+        service_url = _build_service_url(SERVICE_DEV_EXPLORER)
+        if service_url:
+            dev_explorer_url = service_url
+
+        # Check if Dev Explorer is running
+        dev_explorer_running = False
+        try:
+            response = requests.head(dev_explorer_url, timeout=0.5, allow_redirects=True)
+            dev_explorer_running = response.status_code < 500
+        except requests.RequestException:
+            pass
+
+        # Display button with status indicator
+        button_col, status_col = st.sidebar.columns([3, 1])
+        with button_col:
+            if st.button("🚀 Open Developer Explorer", use_container_width=True):
+                webbrowser.open_new_tab(dev_explorer_url)
+                st.sidebar.success(f"Opened in new tab!")
+        with status_col:
+            if dev_explorer_running:
+                st.markdown("🟢")  # Green dot for running
+            else:
+                st.markdown("⚪")  # White dot for not running
+
+        if dev_explorer_running:
+            st.sidebar.caption(f"✅ Running on port {dev_explorer_port}")
+        else:
+            st.sidebar.caption(f"⚠️ Not detected (port {dev_explorer_port})")
+
     st.sidebar.markdown("---")
 
     st.sidebar.checkbox(
