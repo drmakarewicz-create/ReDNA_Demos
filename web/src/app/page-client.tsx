@@ -1146,8 +1146,12 @@ export default function HeadCoachPage() {
       setActiveUserLabel((current) => (current ? current : initialUser));
     }
     const personaFromUrl = normalizePersonaParam(url.searchParams.get('persona'));
-    if (personaFromUrl && personaFromUrl !== activePersona) {
-      setActivePersona(personaFromUrl);
+    if (personaFromUrl) {
+      // Normalize persona ID for consistency (photo_coach -> photo, padna_coach -> padna)
+      const normalizedPersona = normalizePersonaKey(personaFromUrl);
+      if (normalizedPersona !== activePersona) {
+        setActivePersona(normalizedPersona);
+      }
     }
     const centerFromUrl = normalizeCenterParam(url.searchParams.get('center'));
     if (centerFromUrl && centerFromUrl !== centerView) {
@@ -1315,14 +1319,17 @@ export default function HeadCoachPage() {
 
   // NORTHSTAR FIX: Robust persona change handler that updates both URL and state
   const handlePersonaChange = useCallback((newPersona: string) => {
-    // Update URL first for reliable routing
+    // Normalize the persona ID (e.g., photo_coach -> photo, padna_coach -> padna)
+    const normalizedPersona = normalizePersonaKey(newPersona);
+
+    // Update URL with normalized persona
     const url = new URL(window.location.href);
-    url.searchParams.set('persona', newPersona);
+    url.searchParams.set('persona', normalizedPersona);
     const href = (url.pathname + url.search + url.hash) as Route;
     router.push(href, { scroll: false });
 
-    // Update state (this will be redundant after URL update triggers useEffect, but ensures immediate response)
-    setActivePersona(newPersona);
+    // Update state with normalized persona for consistent resetKeys
+    setActivePersona(normalizedPersona);
   }, [router]);
   const personaDensity = preferences.compactDensity ? 'compact' : 'comfortable';
   const offlineBannerActive = asksCached || nudgesCached || snapshotsCached;
