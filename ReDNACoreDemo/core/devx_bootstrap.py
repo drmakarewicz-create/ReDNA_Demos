@@ -197,18 +197,15 @@ def devx_backend_health(port: int) -> bool:
 
 
 def devx_ui_health(port: int) -> bool:
-    """Check if DevX UI (Streamlit) is healthy."""
+    """Check if DevX UI (React/Vite) is healthy."""
     if requests is None:
         return False
-    # Streamlit exposes /healthz; fallback to root
-    for path in ("/healthz", "/"):
-        try:
-            r = requests.get(f"http://127.0.0.1:{port}{path}", timeout=0.6)
-            if r.ok:
-                return True
-        except Exception:
-            continue
-    return False
+    # Vite dev server serves at root
+    try:
+        r = requests.get(f"http://127.0.0.1:{port}/", timeout=0.6)
+        return r.ok
+    except Exception:
+        return False
 
 
 def ensure_devx_requirements_commands() -> list[str]:
@@ -273,13 +270,11 @@ def start_devx_backend() -> Tuple[bool, str, int]:
 
 def start_devx_ui() -> Tuple[bool, str, int]:
     """
-    Start DevX UI (Streamlit).
+    Start DevX UI (React/Vite frontend).
     Returns: (success, message, actual_port)
     Auto-selects next free port if desired port is busy.
     """
-    py = env_get("DEVX_PY", sys.executable) or sys.executable
-    entry = env_get("DEVX_UI_ENTRY", "ExplorerDev/explorer_dev.py")
-    desired_port = int(env_get("DEVX_UI_PORT", "8550") or "8550")
+    desired_port = int(env_get("DEVX_UI_PORT", "3100") or "3100")
     port = desired_port
 
     # Find free port if desired port is busy
@@ -289,33 +284,38 @@ def start_devx_ui() -> Tuple[bool, str, int]:
             return False, f"Port {port} busy and no free port found nearby", port
         port = free
 
+    # DevX frontend is a React/Vite app, use npm run dev
+    frontend_dir = env_get("DEVX_UI_DIR", "ReDNACoreDemo/devx/frontend")
     cmd = [
-        py, "-m", "streamlit", "run",
-        entry,
-        "--server.port", str(port),
-        "--server.headless", "true"
+        "npm", "run", "dev",
+        "--", "--port", str(port), "--host", "127.0.0.1"
     ]
 
     try:
         # Get log handles based on verbose setting
         out, err = _log_handles("devx_ui")
 
+        # Change to frontend directory for npm
+        frontend_path = Path(frontend_dir)
+        if not frontend_path.exists():
+            return False, f"DevX frontend directory not found: {frontend_dir}", port
+
         proc = subprocess.Popen(
             cmd,
             stdout=out,
             stderr=err,
-            cwd=str(Path.cwd())
+            cwd=str(frontend_path)
         )
         _write_pidfile(DEVX_UI_PID, proc.pid)
 
-        # Wait for health check with bounded backoff (Streamlit takes longer)
-        ok = _wait_until(lambda: devx_ui_health(port), timeout_s=15.0)
+        # Wait for health check with bounded backoff (Vite dev server startup)
+        ok = _wait_until(lambda: devx_ui_health(port), timeout_s=20.0)
 
         if ok:
             # Save the UI port to state file for persistence
             save_last_ui_port(port)
 
-            msg = f"DevX UI started on {port} (pid {proc.pid})"
+            msg = f"DevX UI (React) started on {port} (pid {proc.pid})"
             if port != desired_port:
                 msg = f"⚠️ Port {desired_port} busy, started on {port} (pid {proc.pid})"
             return True, msg, port

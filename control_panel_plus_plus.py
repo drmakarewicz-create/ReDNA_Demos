@@ -3615,7 +3615,7 @@ def main() -> None:
     if DEVX_BOOTSTRAP_AVAILABLE:
         # Use new DevX bootstrap system
         backend_port = int(os.environ.get("DEVX_BACKEND_PORT", "8100") or "8100")
-        ui_port = int(os.environ.get("DEVX_UI_PORT", "8550") or "8550")
+        ui_port = int(os.environ.get("DEVX_UI_PORT", "3100") or "3100")
 
         # Try to load persisted UI port
         persisted_ui_port = load_last_ui_port()
