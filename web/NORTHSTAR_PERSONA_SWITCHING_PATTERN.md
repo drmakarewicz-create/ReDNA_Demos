@@ -95,7 +95,39 @@ onSelect={(id) => {
 
 For persona switching to work, these pieces must be in place:
 
-### 1. PanelBoundary with activePersona in resetKeys
+### 1. normalizePersonaKey Return Type 🚨 CRITICAL
+**This is the #1 failure mode from ADDING_NEW_COACH_PROTOCOL.md.**
+
+TypeScript return type MUST match coaches in `CANONICAL_ORDER` from `web/src/lib/api.ts`.
+
+```typescript
+// ✅ CORRECT - Matches CANONICAL_ORDER ['head_coach', 'relationship_coach', 'padna', 'photo']
+function normalizePersonaKey(key: string): 'head_coach' | 'relationship_coach' | 'padna' | 'photo' {
+  // ...
+}
+
+// ❌ WRONG - Mismatched types cause silent failures
+function normalizePersonaKey(key: string): 'head_coach' | 'rc' | 'rendering' | 'photo' {
+  // TypeScript will reject 'relationship_coach' and 'padna', falling back to 'head_coach'
+}
+```
+
+**Location**: [page-client.tsx:2682](web/src/app/page-client.tsx#L2682)
+
+**Why this matters**: TypeScript validates the return type at compile time. If a coach ID from `CANONICAL_ORDER` isn't in the union type, TypeScript silently rejects it and uses the `default` case, causing all clicks to that coach to fail and revert to Head Coach.
+
+**To verify**:
+```bash
+# Check CANONICAL_ORDER
+grep "CANONICAL_ORDER" web/src/lib/api.ts
+
+# Check normalizePersonaKey return type
+grep "function normalizePersonaKey" web/src/app/page-client.tsx
+
+# They MUST match exactly
+```
+
+### 2. PanelBoundary with activePersona in resetKeys
 ```typescript
 <PanelBoundary resetKeys={[activePersona, activeUser]} onRetry={retryTranscript}>
   <TranscriptPanel ... />
@@ -104,7 +136,7 @@ For persona switching to work, these pieces must be in place:
 
 Location: [page-client.tsx:2640](web/src/app/page-client.tsx#L2640)
 
-### 2. activePersona in PersonaCenterContext
+### 3. activePersona in PersonaCenterContext
 ```typescript
 interface PersonaCenterContext {
   activeUser: string;
@@ -115,7 +147,7 @@ interface PersonaCenterContext {
 
 Location: [page-client.tsx:2469](web/src/app/page-client.tsx#L2469)
 
-### 3. URL Sync Effect (for browser back/forward)
+### 4. URL Sync Effect (for browser back/forward)
 ```typescript
 useEffect(() => {
   const personaFromUrl = normalizePersonaParam(url.searchParams.get('persona'));
