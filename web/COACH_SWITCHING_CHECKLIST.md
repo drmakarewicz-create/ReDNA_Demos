@@ -4,7 +4,35 @@
 
 **Coach switching breaks repeatedly.** Coaches appear in the catalog but clicking them does nothing - URL changes but UI stays on Head Coach.
 
-**This happens because coaches must be registered in 7 DIFFERENT places**, and missing ANY of them causes silent failures.
+**This happens because:**
+1. Coaches must be registered in **7 DIFFERENT places**, and missing ANY of them causes silent failures
+2. **ID normalization issues** - Backend sends `photo_coach`, frontend uses `photo` (inconsistent state causes PanelBoundary mismatches)
+
+## The Normalization Rule (CHECK THIS FIRST!)
+
+🚨 **CRITICAL INSIGHT from Oct 13, 2025:**
+
+Backend sends IDs like `photo_coach` and `padna_coach`, but frontend must IMMEDIATELY normalize them to `photo` and `padna` when storing in `activePersona` state.
+
+**Why:** `PanelBoundary` uses `resetKeys={[activePersona, ...]}` to trigger remounts. If `activePersona='photo_coach'` but components call `normalizePersonaKey('photo_coach')` which returns `'photo'`, the keys don't match and panels don't remount.
+
+**The Fix:**
+```typescript
+// In handlePersonaChange() - MUST normalize before setting state
+const normalizedPersona = normalizePersonaKey(newPersona);  // photo_coach -> photo
+setActivePersona(normalizedPersona);  // Store normalized ID
+
+// In URL sync effect - MUST normalize from URL params
+const personaFromUrl = normalizePersonaParam(url.searchParams.get('persona'));
+const normalizedPersona = normalizePersonaKey(personaFromUrl);  // Normalize!
+setActivePersona(normalizedPersona);  // Store normalized ID
+```
+
+**Location:** `web/src/app/page-client.tsx` lines 1317-1329 and 1148-1155
+
+**If Photo/PaDNA coaches don't work but others do → This is the issue.**
+
+---
 
 ## The 7-Layer Checklist
 
