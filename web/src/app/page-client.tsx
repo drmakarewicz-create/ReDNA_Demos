@@ -1991,9 +1991,13 @@ export default function HeadCoachPage() {
               className="flex flex-wrap items-center gap-2 text-sm font-medium text-slate-300"
               aria-label={translate('nav.quickLinks')}
             >
-              <Link href="/" className="hover:text-slate-50">
+              <button
+                type="button"
+                onClick={() => handlePersonaChange('head_coach')}
+                className="hover:text-slate-50 cursor-pointer"
+              >
                 {translate('nav.home')}
-              </Link>
+              </button>
               <button
                 type="button"
                 onClick={() => handleJump('unabridged')}
@@ -2561,34 +2565,38 @@ function renderPersonaTools(
 ): ReactNode {
   const normalized = normalizePersonaKey(personaKey);
 
+  // Coach Catalog Button - appears for ALL coaches
+  const catalogButton = onOpenCoachCatalog ? (
+    <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-4">
+      <button
+        type="button"
+        onClick={onOpenCoachCatalog}
+        className="w-full rounded-lg bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/30 px-4 py-3 text-left transition hover:from-cyan-500/20 hover:to-violet-500/20"
+      >
+        <div className="flex items-center gap-3">
+          <div className="text-2xl">👥</div>
+          <div>
+            <div className="font-semibold text-cyan-200">Coach Catalog</div>
+            <div className="text-xs text-slate-400">Browse and switch coaches</div>
+          </div>
+        </div>
+      </button>
+    </div>
+  ) : null;
+
+  // Coach-specific tools
+  let specificTools: ReactNode = null;
+
   switch (normalized) {
     case 'head_coach':
-      return (
-        <>
-          {/* Coach Catalog Button */}
-          <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-4">
-            <button
-              type="button"
-              onClick={onOpenCoachCatalog}
-              className="w-full rounded-lg bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/30 px-4 py-3 text-left transition hover:from-cyan-500/20 hover:to-violet-500/20"
-            >
-              <div className="flex items-center gap-3">
-                <div className="text-2xl">👥</div>
-                <div>
-                  <div className="font-semibold text-cyan-200">Coach Catalog</div>
-                  <div className="text-xs text-slate-400">Browse and switch coaches</div>
-                </div>
-              </div>
-            </button>
-          </div>
-          {/* Life OS Panel */}
-          <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
-            <LifeOSChatPanel userId={context.activeUser} variant="full" />
-          </PanelBoundary>
-        </>
+      specificTools = (
+        <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
+          <LifeOSChatPanel userId={context.activeUser} variant="full" />
+        </PanelBoundary>
       );
+      break;
     case 'padna':
-      return (
+      specificTools = (
         <>
           <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
             <AvatarRenderPanel userId={context.activeUser} />
@@ -2598,23 +2606,34 @@ function renderPersonaTools(
           </PanelBoundary>
         </>
       );
+      break;
     case 'photo':
-      return (
+      specificTools = (
         <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
           <PhotoPanel userId={context.activeUser} />
         </PanelBoundary>
       );
+      break;
     case 'relationship_coach':
     case 'career_coach':
     case 'personality_test_coach':
     case 'chatdna_coach':
     case 'beliefdna_coach':
     case 'permission_coach':
-      // These coaches: no specialized tools, just support panels
-      return null;
+      // These coaches have no specialized tools beyond the catalog
+      specificTools = null;
+      break;
     default:
-      return null;
+      specificTools = null;
   }
+
+  // Return catalog button + coach-specific tools
+  return (
+    <>
+      {catalogButton}
+      {specificTools}
+    </>
+  );
 }
 
 /**
