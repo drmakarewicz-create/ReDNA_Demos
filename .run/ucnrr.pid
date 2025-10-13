@@ -1,1 +1,0 @@
- sleep 3 curl -s -m 5 http://localhost:8011/health
