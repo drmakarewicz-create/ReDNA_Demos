@@ -60,7 +60,9 @@ export async function ingestToCore(
   metadata?: Record<string, any>
 ): Promise<IngestionResponse> {
   // Safeguard: Check if Core bypass is disabled
-  const bypassAllowed = import.meta.env.VITE_CORE_BYPASS_ALLOWED !== 'false';
+  const bypassAllowed = typeof process !== 'undefined'
+    ? process.env.NEXT_PUBLIC_CORE_BYPASS_ALLOWED !== 'false'
+    : true;
   if (!bypassAllowed) {
     console.warn(
       '[Northstar] Direct trait writes are disabled. All data must flow through Core ingestion.'

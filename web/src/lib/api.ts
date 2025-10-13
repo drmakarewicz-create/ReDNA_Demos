@@ -1360,7 +1360,7 @@ export async function submitOnboardingWizardData(
   data: OnboardingWizardData
 ): Promise<OnboardingWizardSubmitResponse> {
   // NORTHSTAR PHASE 2: Log bypass attempt
-  if (import.meta.env.VITE_CORE_BYPASS_ALLOWED === 'false') {
+  if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_CORE_BYPASS_ALLOWED === 'false') {
     console.warn('[Northstar] Direct trait writes are disabled (No-Bypass Rule). Use hcIngestor.ts instead.');
   }
 
