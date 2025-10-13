@@ -36,10 +36,12 @@ try:
         start_devx_backend,
         start_devx_ui,
         stop_devx,
+        load_last_ui_port,
     )
     DEVX_BOOTSTRAP_AVAILABLE = True
 except ImportError:
     DEVX_BOOTSTRAP_AVAILABLE = False
+    load_last_ui_port = lambda: None  # type: ignore
 
 
 def safe_rerun() -> None:
@@ -3615,13 +3617,38 @@ def main() -> None:
         backend_port = int(os.environ.get("DEVX_BACKEND_PORT", "8100") or "8100")
         ui_port = int(os.environ.get("DEVX_UI_PORT", "8550") or "8550")
 
+        # Try to load persisted UI port
+        persisted_ui_port = load_last_ui_port()
+        display_ui_port = ui_port
+
         # Check health status
         backend_healthy = devx_backend_health(backend_port)
         ui_healthy = devx_ui_health(ui_port)
 
+        # If persisted port is different and healthy, prefer it
+        if persisted_ui_port and persisted_ui_port != ui_port:
+            if devx_ui_health(persisted_ui_port):
+                display_ui_port = persisted_ui_port
+                ui_healthy = True
+
         # Display status indicators
         st.sidebar.write(f"Backend: {'🟢' if backend_healthy else '🔴'} port {backend_port}")
-        st.sidebar.write(f"UI: {'🟢' if ui_healthy else '🔴'} port {ui_port}")
+        if persisted_ui_port and persisted_ui_port != ui_port and ui_healthy:
+            st.sidebar.write(f"UI: {'🟢' if ui_healthy else '🔴'} port {display_ui_port} (last: {persisted_ui_port})")
+        else:
+            st.sidebar.write(f"UI: {'🟢' if ui_healthy else '🔴'} port {display_ui_port}")
+
+        # Verbose logging toggle
+        verbose_logging = st.sidebar.checkbox(
+            "Write DevX logs to ~/.redna (verbose)",
+            value=os.environ.get("DEVX_VERBOSE_LOGS", "").lower() == "true",
+            key="_devx_verbose_logging",
+            help="Enable detailed logging of DevX processes to ~/.redna/devx_*.log"
+        )
+        if verbose_logging:
+            os.environ["DEVX_VERBOSE_LOGS"] = "true"
+        else:
+            os.environ.pop("DEVX_VERBOSE_LOGS", None)
 
         # Control buttons
         col1, col2, col3 = st.sidebar.columns([1, 1, 1])
@@ -3660,23 +3687,36 @@ def main() -> None:
 
         if col2.button("⏹️ Stop", key="devx_stop", help="Stop DevX backend and UI"):
             with st.spinner("Stopping DevX services..."):
-                stop_devx()
-                st.sidebar.success("Stopped DevX backend and UI")
+                backend_pid, ui_pid = stop_devx()
+                pids_msg = []
+                if backend_pid:
+                    pids_msg.append(f"backend (PID {backend_pid})")
+                if ui_pid:
+                    pids_msg.append(f"UI (PID {ui_pid})")
+
+                if pids_msg:
+                    st.sidebar.success(f"Stopped DevX: {', '.join(pids_msg)}")
+                else:
+                    st.sidebar.info("No DevX processes were running")
+
                 if "_devx_ui_actual_port" in st.session_state:
                     del st.session_state["_devx_ui_actual_port"]
                 time.sleep(0.5)
                 safe_rerun()
 
         if col3.button("🚀 Open", key="devx_open", help="Open Developer Explorer in browser"):
-            # Use actual port if available, otherwise default
-            actual_port = st.session_state.get("_devx_ui_actual_port", ui_port)
-            dev_explorer_url = f"http://localhost:{actual_port}"
+            # Priority: 1) session port 2) persisted port 3) default port
+            target_port = st.session_state.get("_devx_ui_actual_port")
+            if not target_port:
+                target_port = persisted_ui_port if persisted_ui_port else ui_port
 
-            if ui_healthy or devx_ui_health(actual_port):
+            # Verify the target port is healthy
+            if devx_ui_health(target_port):
+                dev_explorer_url = f"http://localhost:{target_port}"
                 webbrowser.open_new_tab(dev_explorer_url)
-                st.sidebar.success(f"Opened Developer Explorer at port {actual_port}")
+                st.sidebar.success(f"Opened Developer Explorer at port {target_port}")
             else:
-                st.sidebar.warning(f"DevX UI not running. Click 'Start' first.")
+                st.sidebar.warning(f"DevX UI not running on port {target_port}. Click 'Start' first.")
 
     else:
         # Fallback to legacy behavior if devx_bootstrap not available
