@@ -3599,6 +3599,31 @@ def main() -> None:
     st.sidebar.title("Control Panel Plus Plus")
     st.sidebar.caption("Service orchestrator for Core, UCN/RR, and React.")
 
+    # LLM Status Tile
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("### 🤖 LLM Status")
+
+    try:
+        from ReDNACoreDemo.core.llm.provider import get_client
+        provider = os.environ.get("LLM_PROVIDER", "ollama")
+        model = os.environ.get("OLLAMA_MODEL", "llama3:8b")
+
+        try:
+            llm = get_client()
+            llm_ok = llm.health()
+        except Exception:
+            llm_ok = False
+
+        st.sidebar.write(f"Provider: **{provider}**")
+        st.sidebar.write(f"Model: **{model}**")
+        st.sidebar.write(f"Health: {'🟢' if llm_ok else '🔴'}")
+
+        if not llm_ok:
+            st.sidebar.info("Ensure Ollama is running locally and the model is pulled.")
+            st.sidebar.code("ollama pull llama3:8b\nollama run llama3:8b 'hello'", language="bash")
+    except ImportError:
+        st.sidebar.warning("LLM adapter not available")
+
     # Quick launch Developer Tools
     st.sidebar.markdown("---")
     st.sidebar.markdown("**🛠️ Quick Launch**")
