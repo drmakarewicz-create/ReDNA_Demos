@@ -143,6 +143,7 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   const [humanIntel, setHumanIntel] = useState<HumanIntelSnapshot | null>(null);
   const [captureText, setCaptureText] = useState('');
   const [capturing, setCapturing] = useState(false);
+  const [devCapActive, setDevCapActive] = useState(false);
 
   // Modal state
   const [activeModal, setActiveModal] = useState<ModalType>(null);
@@ -270,6 +271,16 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
       loadSummary();
     }
   }, [collapsed, loadSummary]);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV !== 'development') return;
+    try {
+      const flag = typeof window !== 'undefined' ? window.localStorage.getItem('DEVX_CAP_USED') : null;
+      setDevCapActive(Boolean(flag));
+    } catch {
+      setDevCapActive(false);
+    }
+  }, []);
 
   const trendSymbolMap: Record<HumanIntelDirection, string> = { up: '↑', down: '↓', steady: '→' };
   const trendStyleMap: Record<HumanIntelDirection, string> = {
@@ -485,6 +496,11 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
     } finally {
       setModalSubmitting(false);
     }
+  };
+
+  const openDevxCap = () => {
+    if (typeof window === 'undefined') return;
+    window.open(`http://localhost:3100/user-ops/${userId}/hc`, '_blank', 'noopener');
   };
 
   const empathyState = humanIntel?.empathy.latest?.emotional_state ?? 'neutral';
@@ -783,7 +799,7 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   };
 
   return (
-    <div className="rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-900/40 to-slate-950/60 overflow-hidden">
+    <div className="rounded-xl border border-slate-700/50 bg-gradient-to-br from-slate-900/40 to-slate-950/60 overflow-visible">
       {/* Header */}
       <div className="px-4 py-3 flex items-center justify-between border-b border-slate-700/50">
         <button
@@ -852,11 +868,21 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
             )}
           </div>
         )}
+
+        {process.env.NODE_ENV === 'development' && devCapActive && (
+          <button
+            onClick={openDevxCap}
+            className="ml-3 rounded-full border border-cyan-400/50 px-3 py-1 text-[10px] font-medium text-cyan-300 hover:bg-cyan-600/20"
+            type="button"
+          >
+            Cap token active
+          </button>
+        )}
       </div>
 
       {/* Content */}
       {!collapsed && (
-        <div className="px-4 pb-4 space-y-4">
+        <div className="px-4 pb-4 space-y-4 max-h-[calc(100vh-16rem)] overflow-y-auto pr-2">
           {loading && (
             <div className="text-xs text-slate-400 text-center py-4">Loading...</div>
           )}

@@ -188,6 +188,7 @@ Agents:
 - [ ] Claude: Expand empathy model.
 - [ ] Codex: Implement empathy tracker + bonding metrics.
 - [x] Codex: Wire empathy & curiosity telemetry into Life OS DevX + chat surfaces.
+- [x] Codex: DevX capability token modal added; tested issuing token & enabling Quick Capture.
 
 ### Evergreen Integration Telemetry Tests (2025-10-13)
 
