@@ -1,5 +1,0 @@
-{"trait_id": "Eye Color", "value": "blue", "source": "imported", "confidence_weight": 0.6, "schema_version": 1, "timestamp": 1758026832.2085152, "provenance": {"from": "ExplorerFinal/legacy_form"}}
-{"ts": "2025-09-16T23:18:27.994442+00:00", "user_id": "TEST", "legacy_key": "Eye Color", "value": "blue", "confidence": 0.6, "source": "imported"}
-{"ts": "2025-09-17T00:41:10.505625+00:00", "legacy_key": "Eye Color", "mapped_trait": "PaDNA.LooksDNA.EyeDNA.IrisColor", "value": "Blue", "confidence": 0.6, "source": "imported", "ingest_type": "legacy"}
-{"ts": "2025-09-17T02:32:21.898501+00:00", "legacy_key": "Eye Color", "mapped_trait": "PaDNA.LooksDNA.EyeDNA.IrisColor", "value": "Blue", "confidence": 0.6, "source": "imported", "ingest_type": "legacy"}
-{"ts": "2025-09-17T14:42:49.661028+00:00", "legacy_key": "Eye Color", "mapped_trait": "PaDNA.LooksDNA.EyeDNA.IrisColor", "value": "Blue", "confidence": 0.6, "source": "imported", "ingest_type": "legacy"}
