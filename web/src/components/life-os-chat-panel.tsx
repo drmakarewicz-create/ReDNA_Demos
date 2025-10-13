@@ -1,7 +1,10 @@
 'use client';
 
+import axios from 'axios';
 import { useState, useEffect, useCallback } from 'react';
 import { CORE_API_BASE } from '../lib/api';
+import { clearActiveCapabilityToken, getActiveCapabilityToken } from '../lib/lifeOsClient';
+import { quickCapture } from '../lib/lifeOsQuickCapture';
 import { LifeWeekReview } from './life-week-review';
 
 interface NorthStar {
@@ -80,6 +83,31 @@ interface LifeSummary {
   quote: Inspiration | null;
 }
 
+const CAP_STORAGE_KEYS = ['DEVX_CAP_TOKEN', 'DEVX_CAP_EXPIRES_AT', 'DEVX_CAP_META'] as const;
+
+type CapabilityPillState = {
+  scope: string;
+  expiresAt: number;
+  remainingMs: number;
+};
+
+const formatCapabilityCountdown = (ms: number): string => {
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+};
+
+const capabilityPillClass = (ms: number): string => {
+  if (ms <= 30_000) {
+    return 'border-red-500/40 bg-red-800/40 text-red-200';
+  }
+  if (ms <= 120_000) {
+    return 'border-amber-500/40 bg-amber-800/40 text-amber-200';
+  }
+  return 'border-emerald-500/40 bg-emerald-800/40 text-emerald-200';
+};
+
 interface LifeOSChatPanelProps {
   userId: string;
   variant?: 'full' | 'relationship' | 'hidden';
@@ -143,7 +171,7 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   const [humanIntel, setHumanIntel] = useState<HumanIntelSnapshot | null>(null);
   const [captureText, setCaptureText] = useState('');
   const [capturing, setCapturing] = useState(false);
-  const [devCapActive, setDevCapActive] = useState(false);
+  const [capStatus, setCapStatus] = useState<CapabilityPillState | null>(null);
 
   // Modal state
   const [activeModal, setActiveModal] = useState<ModalType>(null);
@@ -176,6 +204,50 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   const [nsIdentity, setNsIdentity] = useState('');
   const [nsPurpose, setNsPurpose] = useState('');
   const [nsHappiness, setNsHappiness] = useState('');
+
+  const readCapabilityStatus = useCallback((): CapabilityPillState | null => {
+    if (typeof window === 'undefined') return null;
+    const token = getActiveCapabilityToken();
+    if (!token) return null;
+
+    let expiresRaw: string | null = null;
+    try {
+      expiresRaw = window.localStorage.getItem('DEVX_CAP_EXPIRES_AT');
+    } catch {
+      clearActiveCapabilityToken();
+      return null;
+    }
+
+    if (!expiresRaw) {
+      clearActiveCapabilityToken();
+      return null;
+    }
+
+    const expiresAt = Date.parse(expiresRaw);
+    if (Number.isNaN(expiresAt) || expiresAt <= Date.now()) {
+      clearActiveCapabilityToken();
+      return null;
+    }
+
+    let scope = 'life.os';
+    try {
+      const metaRaw = window.localStorage.getItem('DEVX_CAP_META');
+      if (metaRaw) {
+        const parsed = JSON.parse(metaRaw);
+        if (parsed?.scope) {
+          scope = parsed.scope;
+        }
+      }
+    } catch {
+      // ignore malformed metadata
+    }
+
+    return {
+      scope,
+      expiresAt,
+      remainingMs: expiresAt - Date.now(),
+    };
+  }, []);
 
   const loadSummary = useCallback(async () => {
     setLoading(true);
@@ -273,14 +345,22 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   }, [collapsed, loadSummary]);
 
   useEffect(() => {
-    if (process.env.NODE_ENV !== 'development') return;
-    try {
-      const flag = typeof window !== 'undefined' ? window.localStorage.getItem('DEVX_CAP_USED') : null;
-      setDevCapActive(Boolean(flag));
-    } catch {
-      setDevCapActive(false);
-    }
-  }, []);
+    if (typeof window === 'undefined') return;
+    const refresh = () => setCapStatus(readCapabilityStatus());
+    refresh();
+    const interval = window.setInterval(refresh, 1_000);
+    const handleStorage = (event: StorageEvent) => {
+      if (!event.key) return;
+      if (CAP_STORAGE_KEYS.includes(event.key as (typeof CAP_STORAGE_KEYS)[number])) {
+        refresh();
+      }
+    };
+    window.addEventListener('storage', handleStorage);
+    return () => {
+      window.clearInterval(interval);
+      window.removeEventListener('storage', handleStorage);
+    };
+  }, [readCapabilityStatus]);
 
   const trendSymbolMap: Record<HumanIntelDirection, string> = { up: '↑', down: '↓', steady: '→' };
   const trendStyleMap: Record<HumanIntelDirection, string> = {
@@ -302,24 +382,39 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
     if (!captureText.trim()) return;
 
     setCapturing(true);
+    setError(null);
     try {
-      const response = await fetch(`${CORE_API_BASE}/ui/hc/life/${userId}/capture`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: captureText, when: 'today' }),
+      await quickCapture({
+        user_id: userId,
+        text: captureText.trim(),
+        when: 'today',
       });
-
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}`);
-      }
 
       setCaptureText('');
       loadSummary();
+      setCapStatus(readCapabilityStatus());
     } catch (err) {
-      console.error('Quick capture failed:', err);
-      setError('Failed to capture task');
+      let message = 'Failed to capture task';
+      if (axios.isAxiosError(err)) {
+        const status = err.response?.status;
+        if (status === 401 || status === 403) {
+          message = 'Capability expired or missing. Generate a new token in DevX → Head Coach.';
+          setCapStatus(readCapabilityStatus());
+        } else if (typeof err.response?.data === 'string') {
+          message = err.response.data;
+        } else if (err.response?.data && typeof err.response.data === 'object' && 'detail' in err.response.data) {
+          const detail = (err.response.data as { detail?: string }).detail;
+          if (detail) {
+            message = detail;
+          }
+        } else if (status) {
+          message = `HTTP ${status}`;
+        }
+      }
+      if (process.env.NODE_ENV === 'development') {
+        console.error('Quick capture failed', err);
+      }
+      setError(message);
     } finally {
       setCapturing(false);
     }
@@ -502,6 +597,17 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
     if (typeof window === 'undefined') return;
     window.open(`http://localhost:3100/user-ops/${userId}/hc`, '_blank', 'noopener');
   };
+
+  const forgetCapability = useCallback(() => {
+    clearActiveCapabilityToken();
+    setCapStatus(null);
+  }, []);
+
+  const showCapabilityPill =
+    Boolean(capStatus) &&
+    (process.env.NODE_ENV === 'development' || process.env.NEXT_PUBLIC_DEVX_DEV_PILL === 'true');
+
+  const capabilityCountdown = capStatus ? formatCapabilityCountdown(capStatus.remainingMs) : '';
 
   const empathyState = humanIntel?.empathy.latest?.emotional_state ?? 'neutral';
   const trustPercent = humanIntel?.empathy.latest
@@ -869,14 +975,27 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
           </div>
         )}
 
-        {process.env.NODE_ENV === 'development' && devCapActive && (
-          <button
-            onClick={openDevxCap}
-            className="ml-3 rounded-full border border-cyan-400/50 px-3 py-1 text-[10px] font-medium text-cyan-300 hover:bg-cyan-600/20"
-            type="button"
+        {showCapabilityPill && capStatus && (
+          <div
+            className={`ml-3 flex items-center gap-2 rounded-full border px-3 py-1 text-[10px] font-medium ${capabilityPillClass(
+              capStatus.remainingMs
+            )}`}
           >
-            Cap token active
-          </button>
+            <button
+              onClick={openDevxCap}
+              type="button"
+              className="hover:underline"
+            >
+              Capability Active: {capStatus.scope} (T-{capabilityCountdown})
+            </button>
+            <button
+              type="button"
+              onClick={forgetCapability}
+              className="rounded bg-slate-900/60 px-2 py-0.5 text-[10px] text-slate-100 hover:bg-slate-900/80"
+            >
+              Forget
+            </button>
+          </div>
         )}
       </div>
 

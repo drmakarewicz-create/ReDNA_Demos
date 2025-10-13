@@ -11,6 +11,7 @@ import AutonomyPanel from '@/components/AutonomyPanel'
 import { agentApi, AgentDetail } from '@/lib/agentApi'
 import userOpsApi, { ConfigureAgentPayload, ConfigureAgentResponse } from '@/lib/userOpsApi'
 import { FEATURE_FLAGS } from '@/lib/featureFlags'
+import { clearStoredCapabilityToken } from '@/lib/capabilityClient'
 import CapabilityTokenModal from '@/routes/coach-workshop/components/CapabilityTokenModal'
 
 interface HCTabProps {
@@ -99,6 +100,38 @@ export default function HCTab({ userId }: HCTabProps) {
   useEffect(() => {
     loadAgent()
   }, [loadAgent])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    const ensureCapabilityForUser = () => {
+      try {
+        const metaRaw = window.localStorage.getItem('DEVX_CAP_META')
+        if (!metaRaw) {
+          ;(window as any).__devxCapToken = undefined
+          return
+        }
+        const metadata = JSON.parse(metaRaw) as { user_id?: string }
+        if (!metadata?.user_id || metadata.user_id !== userId) {
+          clearStoredCapabilityToken()
+        }
+      } catch {
+        clearStoredCapabilityToken()
+      }
+    }
+
+    ensureCapabilityForUser()
+
+    const handleLogout = () => clearStoredCapabilityToken()
+
+    window.addEventListener('devx:logout', handleLogout)
+    window.addEventListener('devx:user-switch', handleLogout)
+
+    return () => {
+      window.removeEventListener('devx:logout', handleLogout)
+      window.removeEventListener('devx:user-switch', handleLogout)
+    }
+  }, [userId])
 
   const configSummary: ConfigureAgentResponse | null = useMemo(() => {
     if (latestConfig) return latestConfig

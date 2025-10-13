@@ -1,5 +1,9 @@
 import { devxUrl } from './env'
 
+const CAP_TOKEN_KEY = 'DEVX_CAP_TOKEN'
+const CAP_EXPIRES_KEY = 'DEVX_CAP_EXPIRES_AT'
+const CAP_META_KEY = 'DEVX_CAP_META'
+
 interface CapabilityCacheEntry {
   token: string
   exp: number
@@ -9,10 +13,31 @@ const cache = new Map<string, Map<string, CapabilityCacheEntry>>()
 const ONE_MINUTE = 60_000
 const DEFAULT_TTL_MINUTES = 5
 
-function devxAdminToken(): string {
+function devxAgentAdminToken(): string {
   const metaEnv: Record<string, string> | undefined = (import.meta as any)?.env
   const envToken = metaEnv?.VITE_DEVX_AGENT_ADMIN_TOKEN || ''
   return envToken.trim() || 'devx-local'
+}
+
+function resolveAdminToken(): string {
+  const metaEnv: Record<string, string> | undefined = (import.meta as any)?.env
+  const envValue = metaEnv?.VITE_DEVX_ADMIN_TOKEN ?? ''
+  if (envValue && envValue.trim()) {
+    return envValue.trim()
+  }
+
+  if (typeof window !== 'undefined') {
+    try {
+      const stored = window.localStorage.getItem('DEVX_ADMIN_TOKEN') ?? ''
+      if (stored.trim()) {
+        return stored.trim()
+      }
+    } catch {
+      // ignore storage access errors
+    }
+  }
+
+  throw new Error('Admin token missing. Set VITE_DEVX_ADMIN_TOKEN or DEVX_ADMIN_TOKEN in localStorage.')
 }
 
 function getUserCache(userId: string): Map<string, CapabilityCacheEntry> {
@@ -34,6 +59,18 @@ function parseExpiry(expiresAt: string | undefined, ttlMinutes: number): number 
   return Date.now() + ttlMinutes * 60_000
 }
 
+export function clearStoredCapabilityToken(): void {
+  if (typeof window === 'undefined') return
+  try {
+    window.localStorage.removeItem(CAP_TOKEN_KEY)
+    window.localStorage.removeItem(CAP_EXPIRES_KEY)
+    window.localStorage.removeItem(CAP_META_KEY)
+  } catch {
+    // ignore storage cleanup errors
+  }
+  ;(window as any).__devxCapToken = undefined
+}
+
 export function invalidateCapability(userId: string, scope: string): void {
   const userCache = cache.get(userId)
   if (userCache) {
@@ -46,7 +83,7 @@ async function requestCapabilityToken(userId: string, scope: string, ttlMinutes:
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-devx-auth': devxAdminToken(),
+      'x-devx-auth': devxAgentAdminToken(),
     },
     body: JSON.stringify({
       user_id: userId,
@@ -172,29 +209,28 @@ export async function issueCapability({
     throw new Error('Capability response missing fields')
   }
 
+  if (typeof window !== 'undefined') {
+    ;(window as any).__devxCapToken = payload.token
+    try {
+      window.localStorage.setItem(CAP_TOKEN_KEY, payload.token)
+      window.localStorage.setItem(CAP_EXPIRES_KEY, payload.expires_at)
+      window.localStorage.setItem(
+        CAP_META_KEY,
+        JSON.stringify({
+          capability_id: payload.capability_id,
+          scope,
+          expires_at: payload.expires_at,
+          user_id: userId,
+        })
+      )
+    } catch {
+      // ignore storage errors; token still lives in memory for this tab
+    }
+  }
+
   return {
     token: payload.token,
     capability_id: payload.capability_id,
     expires_at: payload.expires_at,
   }
-}
-function resolveAdminToken(): string {
-  const metaEnv: Record<string, string> | undefined = (import.meta as any)?.env
-  const envValue = metaEnv?.VITE_DEVX_ADMIN_TOKEN ?? ''
-  if (envValue && envValue.trim()) {
-    return envValue.trim()
-  }
-
-  if (typeof window !== 'undefined') {
-    try {
-      const stored = window.localStorage.getItem('DEVX_ADMIN_TOKEN') ?? ''
-      if (stored.trim()) {
-        return stored.trim()
-      }
-    } catch {
-      // ignore storage access errors
-    }
-  }
-
-  throw new Error('Admin token missing. Set VITE_DEVX_ADMIN_TOKEN or DEVX_ADMIN_TOKEN in localStorage.')
 }

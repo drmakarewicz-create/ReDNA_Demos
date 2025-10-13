@@ -29,6 +29,18 @@ If neither variable is set, the modal raises `Admin token missing…`.
 
 Paste the copied token into the Life OS Quick Capture request header (`X-Capability`) or any client that needs temporary access.
 
+## How Life OS Uses the Token
+
+- The modal stores the token in `localStorage` under `DEVX_CAP_TOKEN`, `DEVX_CAP_EXPIRES_AT`, and `DEVX_CAP_META`, and also places the raw value in `window.__devxCapToken`.
+- The Head Coach web app reads those keys through `web/src/lib/lifeOsClient.ts`. An axios interceptor automatically attaches `Authorization: Bearer <token>` to `/ui/hc/**` calls while the token remains valid.
+- If Core returns **401/403**, the interceptor purges the stored token/metadata, clears the in-memory copy, and prompts the UI to request a new capability.
+- Quick Capture now calls `lifeOs.post('/life/{user}/capture')`, so issuing a token in DevX immediately unlocks Life OS writes (no manual copy/paste required).
+
+## Dev Pill & Forget
+
+- In development builds (or when `NEXT_PUBLIC_DEVX_DEV_PILL=true`), the chat right pane shows a “Capability Active” pill while a valid token exists. The badge displays scope + countdown, links back to DevX Head Coach, and offers a **Forget** action that clears the stored capability (`DEVX_CAP_*` keys and `window.__devxCapToken`).
+- If the token expires or is forgotten, the pill disappears and Life OS write operations will 401 until a new token is minted.
+
 ## Smoke Test
 
 1. `npm run dev` inside `ReDNACoreDemo/devx/frontend`.
@@ -42,3 +54,4 @@ Paste the copied token into the Life OS Quick Capture request header (`X-Capabil
 - Tokens are short-lived; default TTL is 30 minutes and capped at 4 hours.
 - The React code never logs tokens to the console. Only the masked value is shown in the UI.
 - `.env` remains ignored—admin secrets live in local `.env.local` or runtime localStorage.
+- DevX clears any stored capability token when the active user changes (or when a `devx:logout` event fires) to prevent cross-account reuse.

@@ -97,6 +97,24 @@ export default function CapabilityTokenModal({ userId, open, onClose }: Capabili
         reason: reason.trim() || DEFAULT_REASON,
       })
       setResult(payload)
+      if (typeof window !== 'undefined') {
+        ;(window as any).__devxCapToken = payload.token
+        try {
+          window.localStorage.setItem('DEVX_CAP_TOKEN', payload.token)
+          window.localStorage.setItem('DEVX_CAP_EXPIRES_AT', payload.expires_at)
+          window.localStorage.setItem(
+            'DEVX_CAP_META',
+            JSON.stringify({
+              capability_id: payload.capability_id,
+              scope,
+              expires_at: payload.expires_at,
+              user_id: userId,
+            })
+          )
+        } catch {
+          // Ignore storage errors; token remains in memory for the current tab.
+        }
+      }
       toast.success('Capability token issued')
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to issue capability token.'
