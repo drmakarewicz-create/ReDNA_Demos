@@ -56,3 +56,4 @@ data/system_logs/
 web/.next/
 dist/
 coverage/
+snapshots/
