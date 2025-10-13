@@ -117,6 +117,68 @@ def ingest_text(body: IngestText):
     _write_json(udir / "latest.json", out)
     return out
 
+# ---------- Northstar Phase 2: /api/rescore endpoint ----------
+@app.post("/api/rescore")
+def api_rescore(body: IngestText):
+    """
+    Northstar Core ingestion endpoint.
+    Receives text, extracts traits, calculates RR scores.
+
+    Expected by Core API for Northstar Phase 2 ingestion roundtrip.
+    """
+    uid, text = body.user_id.strip(), body.text.strip()
+    if not uid or not text:
+        raise HTTPException(400, "user_id and text required")
+
+    # Ensure user storage exists
+    udir = ensure_user(uid)
+
+    # Log ingestion for debugging
+    log = {
+        "ts": now_iso(),
+        "user_id": uid,
+        "raw_text": text,
+        "note": "api/rescore received from Core",
+    }
+    _write_json(udir / f"rescore_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json", log)
+
+    # ---- Extract traits (placeholder AI logic) ----
+    rr_by_trait: Dict[str, float] = {}
+    curiosity_by_trait: Dict[str, float] = {}
+
+    # Simple extraction: look for patterns like "I am 25 years old"
+    text_lower = text.lower()
+
+    # Age extraction
+    if "25" in text or "twenty" in text_lower or "age" in text_lower:
+        rr_by_trait["BasicDNA.Age"] = 95.0
+        curiosity_by_trait["BasicDNA.Age"] = 15.0
+
+    # Gender/orientation extraction
+    if any(word in text_lower for word in ["male", "female", "man", "woman", "non-binary"]):
+        rr_by_trait["BasicDNA.Gender"] = 85.0
+        curiosity_by_trait["BasicDNA.Gender"] = 20.0
+
+    # Interest extraction
+    if any(word in text_lower for word in ["love", "enjoy", "like", "hobby"]):
+        rr_by_trait["InterestDNA.Hobbies"] = 70.0
+        curiosity_by_trait["InterestDNA.Hobbies"] = 40.0
+
+    # Would You Rather extraction
+    if "option a" in text_lower or "option b" in text_lower or "cozy" in text_lower or "adventure" in text_lower:
+        rr_by_trait["PersonalityDNA.WYRChoice"] = 90.0
+        curiosity_by_trait["PersonalityDNA.WYRChoice"] = 10.0
+
+    # Return format expected by Core
+    return {
+        "ok": True,
+        "user_id": uid,
+        "rr_by_trait": rr_by_trait,
+        "curiosity_by_trait": curiosity_by_trait,
+        "traits_updated": len(rr_by_trait),
+        "timestamp": now_iso()
+    }
+
 # ---------- Export for Core ingest ----------
 @app.post("/legacy_import")
 def legacy_import(payload: Dict[str, Any]):

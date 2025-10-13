@@ -5221,9 +5221,21 @@ def build_app() -> FastAPI:
             rr_by_trait = rescore_result.get("rr_by_trait", {})
             curiosity_by_trait = rescore_result.get("curiosity_by_trait", {})
 
+            # Northstar Phase 2: CREATE traits if they don't exist
             for trait_id, rr_value in rr_by_trait.items():
                 if trait_id in resolved:
                     resolved[trait_id]["rr"] = rr_value
+                else:
+                    # Create new trait from ingestion
+                    resolved[trait_id] = {
+                        "id": trait_id,
+                        "rr": rr_value,
+                        "curiosity": curiosity_by_trait.get(trait_id, 50.0),
+                        "value": None,  # Will be extracted later
+                        "provenance": [{"source": "text_ingest", "event_id": event_id, "ts": ts_iso}]
+                    }
+
+            # Update curiosity for existing traits
             for trait_id, curiosity_value in curiosity_by_trait.items():
                 if trait_id in resolved:
                     resolved[trait_id]["curiosity"] = curiosity_value
