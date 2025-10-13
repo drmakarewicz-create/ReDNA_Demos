@@ -57,3 +57,4 @@ web/.next/
 dist/
 coverage/
 snapshots/
+.env
