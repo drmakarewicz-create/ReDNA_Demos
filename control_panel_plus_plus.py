@@ -82,7 +82,7 @@ SERVICE_UCNRR = "ucnrr"
 SERVICE_ROUTER = "router"
 SERVICE_TEST_PLAYWRIGHT = "test_playwright"
 SERVICE_TEST_CI = "test_ci"
-SERVICE_DEV_EXPLORER = "dev_explorer"
+# SERVICE_DEV_EXPLORER = "dev_explorer"  # RETIRED: Use DevX (port 3100) instead
 
 CORE_PORT_RANGE = (8015, 8020)
 REACT_PORT_RANGE = (3000, 3005)
@@ -2221,11 +2221,7 @@ def _build_service_url(service: str, force_debug: Optional[bool] = None) -> Opti
         if not port:
             return None
         base = f"http://127.0.0.1:{int(port)}/"
-    elif service == SERVICE_DEV_EXPLORER:
-        port = env.get("dev_explorer_port")
-        if not port:
-            return None
-        base = f"http://127.0.0.1:{int(port)}/"
+    # SERVICE_DEV_EXPLORER removed - retired in favor of DevX (port 3100)
     else:
         return None
 
@@ -3046,18 +3042,12 @@ def _render_env_tab() -> None:
             "Auto-open Streamlit after Launch All",
             value=bool(env.get("AUTO_OPEN_STREAMLIT_AFTER_LAUNCH", False)),
         )
-        auto_open_dev = st.toggle(
-            "Auto-open Dev Explorer after Launch All",
-            value=bool(env.get("AUTO_OPEN_DEVEXPLORER_AFTER_LAUNCH", False)),
-        )
+        # Removed: Auto-open Dev Explorer (retired - use DevX instead)
         append_debug = st.toggle(
             "Append ?ui_debug=1 when opening UIs",
             value=bool(env.get("APPEND_UI_DEBUG_PARAM", False)),
         )
-        dev_port_input = st.text_input(
-            "Dev Explorer port (optional)",
-            value=str(env.get("dev_explorer_port") or ""),
-        )
+        # Removed: Dev Explorer port input (retired - DevX uses port 3100)
 
         st.markdown("#### Frontend feature flags")
         st.caption("Controls experimental UI behavior in the React app.")
@@ -3124,9 +3114,9 @@ def _render_env_tab() -> None:
                     "UCNRR_BASE_URL": ucnrr_base_value,
                     "AUTO_OPEN_REACT_AFTER_LAUNCH": bool(auto_open_react),
                     "AUTO_OPEN_STREAMLIT_AFTER_LAUNCH": bool(auto_open_streamlit),
-                    "AUTO_OPEN_DEVEXPLORER_AFTER_LAUNCH": bool(auto_open_dev),
+                    # Removed: AUTO_OPEN_DEVEXPLORER (retired)
                     "APPEND_UI_DEBUG_PARAM": bool(append_debug),
-                    "dev_explorer_port": dev_port_value,
+                    # Removed: dev_explorer_port (retired - DevX uses 3100)
                     "WORKSPACE_ROOT": workspace_root_input.strip() or default_workspace_root,
                     "WORKSPACE_LABEL": workspace_label_input.strip() or envstore.DEFAULT_ENV.get("WORKSPACE_LABEL", "Workspace"),
                     "NEXT_PUBLIC_FLAGS": _serialize_frontend_flags(
