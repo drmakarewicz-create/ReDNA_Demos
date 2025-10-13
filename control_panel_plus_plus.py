@@ -2655,14 +2655,16 @@ def _render_launch_tab() -> None:
                 REACT_PORT_RANGE,
             )
             if env.get("AUTO_OPEN_DEVEXPLORER_AFTER_LAUNCH"):
-                dev_url = _build_service_url(SERVICE_DEV_EXPLORER, bool(env.get("APPEND_UI_DEBUG_PARAM", False)))
-                if dev_url:
-                    _open_ui(dev_url, "Dev Explorer", notify=False)
+                # Open DevX (new React frontend) instead of old Dev Explorer
+                devx_url = "http://localhost:3100"
+                _open_ui(devx_url, "DevX", notify=False)
     with col_open:
         st.caption("Open UIs")
         _render_open_button(SERVICE_REACT, "Open React")
-        if _build_service_url(SERVICE_DEV_EXPLORER) is not None:
-            _render_open_button(SERVICE_DEV_EXPLORER, "Open Dev Explorer")
+        # Open DevX (new React frontend on port 3100) instead of old Dev Explorer
+        devx_url = "http://localhost:3100"
+        if st.button("Open DevX", key="open-devx-ui"):
+            _open_ui(devx_url, "DevX", notify=False)
         core_base_url = _build_service_url(SERVICE_CORE)
         docs_url = f"{core_base_url}docs" if core_base_url else None
         if st.button("Open Core Docs", key="open-core-docs", disabled=docs_url is None):
