@@ -43,3 +43,18 @@ control_panel_logs/*
 
 *.tar.gz
 # <<< git-sanity ignore block <<<
+
+.run/
+*.pid
+*.log
+web/tsconfig.tsbuildinfo
+.cp_state.json
+.claude/
+docs/ops/health_archive/
+data/checkpoints/
+data/system_logs/
+web/.next/
+dist/
+coverage/
+snapshots/
+.env

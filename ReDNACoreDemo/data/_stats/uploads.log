@@ -1,7 +1,0 @@
-{"ts": "2025-10-03T00:48:24.752+00:00", "reason": "EXTENSION_FORBIDDEN", "user_id": "TEST", "filename": "bad.txt", "size": 3, "content_type": "text/plain", "detail": "extension=.txt"}
-{"ts": "2025-10-03T00:48:32.357+00:00", "reason": "EXTENSION_FORBIDDEN", "user_id": "TEST", "filename": "bad.txt", "size": 3, "content_type": "text/plain", "detail": "extension=.txt"}
-{"ts": "2025-10-03T00:50:12.757+00:00", "reason": "EXTENSION_FORBIDDEN", "user_id": "TEST", "filename": "bad.txt", "size": 3, "content_type": "text/plain", "detail": "extension=.txt"}
-{"ts": "2025-10-03T01:05:20.899+00:00", "reason": "EXTENSION_FORBIDDEN", "user_id": "TEST", "filename": "bad.txt", "size": 3, "content_type": "text/plain", "detail": "extension=.txt"}
-{"ts": "2025-10-03T01:05:51.140+00:00", "reason": "EXTENSION_FORBIDDEN", "user_id": "TEST", "filename": "bad.txt", "size": 3, "content_type": "text/plain", "detail": "extension=.txt"}
-{"ts": "2025-10-05T12:09:01.654+00:00", "reason": "EXTENSION_FORBIDDEN", "user_id": "TEST", "filename": "bad.txt", "size": 3, "content_type": "text/plain", "detail": "extension=.txt"}
-{"ts": "2025-10-05T12:09:17.765+00:00", "reason": "EXTENSION_FORBIDDEN", "user_id": "TEST", "filename": "bad.txt", "size": 3, "content_type": "text/plain", "detail": "extension=.txt"}

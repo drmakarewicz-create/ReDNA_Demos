@@ -34,7 +34,7 @@ from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
 
 from PIL import Image, UnidentifiedImageError
 
-from . import curiosity_engine, hierarchy, ui_readonly, planner, nudges, trait_timeline, decay, conversation_analyzer, hc_trait_bridge, preference_extractor, trait_container_discovery
+from . import curiosity_engine, hierarchy, ui_readonly, planner, nudges, trait_timeline, decay, conversation_analyzer, hc_trait_bridge, preference_extractor, trait_container_discovery, hc_life
 from .bundles import CURRENT_VERSION, iso_now
 from .storage import (
     OBS_FILENAME,
@@ -10120,6 +10120,101 @@ Intent: {intent}
             raise
         except Exception as e:
             logger.error(f"CReDNA reset error: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    # =====================================================================
+    # HEAD COACH LIFE OS ENDPOINTS
+    # =====================================================================
+
+    @app.get("/ui/hc/life/{user_id}/summary")
+    async def get_life_summary(user_id: str):
+        """Get Life OS summary (north star, goals, todos, links, quote)."""
+        try:
+            summary = hc_life.get_life_summary(user_id)
+            return {"ok": True, **summary}
+        except Exception as e:
+            logger.error(f"Life OS summary error for {user_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/ui/hc/life/{user_id}/capture")
+    async def quick_capture(user_id: str, request: Request):
+        """Quick capture text into a todo."""
+        try:
+            body = await request.json()
+            text = body.get("text", "").strip()
+            when = body.get("when", "today")
+
+            if not text:
+                raise HTTPException(status_code=400, detail="text required")
+
+            todo = hc_life.Todo(
+                id="",
+                text=text,
+                when=when,
+                tags=body.get("tags", [])
+            )
+            created = hc_life.create_todo(user_id, todo)
+
+            return {"ok": True, "todo": hc_life.asdict(created)}
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Life OS capture error for {user_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/ui/hc/life/{user_id}/goals")
+    async def list_goals(user_id: str, status: str = None):
+        """List goals for user."""
+        try:
+            goals = hc_life.list_goals(user_id, status)
+            return {"ok": True, "goals": [hc_life.asdict(g) for g in goals]}
+        except Exception as e:
+            logger.error(f"Life OS list goals error for {user_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.post("/ui/hc/life/{user_id}/goals")
+    async def create_goal(user_id: str, request: Request):
+        """Create a new goal."""
+        try:
+            body = await request.json()
+            goal = hc_life.Goal(
+                id="",
+                text=body.get("text", ""),
+                owner=body.get("owner", user_id),
+                why=body.get("why", ""),
+                first_step=body.get("first_step", ""),
+                confidence=body.get("confidence", 0.5),
+                target_date=body.get("target_date")
+            )
+            created = hc_life.create_goal(user_id, goal)
+            return {"ok": True, "goal": hc_life.asdict(created)}
+        except Exception as e:
+            logger.error(f"Life OS create goal error for {user_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.get("/ui/hc/life/{user_id}/todos")
+    async def list_todos(user_id: str, when: str = None):
+        """List todos for user."""
+        try:
+            todos = hc_life.list_todos(user_id, when)
+            return {"ok": True, "todos": [hc_life.asdict(t) for t in todos]}
+        except Exception as e:
+            logger.error(f"Life OS list todos error for {user_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
+    @app.patch("/ui/hc/life/{user_id}/todos/{todo_id}")
+    async def update_todo(user_id: str, todo_id: str, request: Request):
+        """Update a todo."""
+        try:
+            body = await request.json()
+            success = hc_life.update_todo(user_id, todo_id, body)
+            if success:
+                return {"ok": True}
+            raise HTTPException(status_code=404, detail="Todo not found")
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Life OS update todo error for {user_id}/{todo_id}: {e}", exc_info=True)
             raise HTTPException(status_code=500, detail=str(e))
 
     return app
