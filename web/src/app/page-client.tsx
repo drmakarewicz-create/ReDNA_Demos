@@ -1728,31 +1728,45 @@ export default function HeadCoachPage() {
         // Switch to the newly created user
         queueActiveUserChange(targetUserId, data.displayName || targetUserId, { immediate: true, suppressNotice: true });
 
-        // NORTHSTAR PHASE 2: Use unified Core ingestion instead of direct trait writes
-        // Import dynamically to avoid top-level circular deps
-        const { formatOnboardingPayload, ingestToCore } = await import('../lib/hcIngestor');
-        const { refreshSnapshot } = await import('../lib/coreSnapshot');
+        // NORTHSTAR PHASE 2: Use unified Core ingestion with fallback
+        try {
+          // Import dynamically to avoid top-level circular deps
+          const { formatOnboardingPayload, ingestToCore } = await import('../lib/hcIngestor');
+          const { refreshSnapshot } = await import('../lib/coreSnapshot');
 
-        // Format onboarding data as structured payload
-        const payload = formatOnboardingPayload({
-          name: data.displayName || targetUserId,
-          ...data.basic_setup,
-          wyrdChoice: data.wyr_answer?.selected_text,
-          headCoachName: data.head_coach_name
-        });
+          // Format onboarding data as structured payload
+          const payload = formatOnboardingPayload({
+            name: data.displayName || targetUserId,
+            ...data.basic_setup,
+            wyrdChoice: data.wyr_answer?.selected_text,
+            headCoachName: data.head_coach_name
+          });
 
-        // Show brief toast while processing
-        pushNotice('Analyzing in Core…', 'info');
+          // Show brief toast while processing
+          pushNotice('Analyzing in Core…', 'info');
 
-        // Ingest to Core → UCN/RR → normalized traits
-        const ingestionResult = await ingestToCore(targetUserId, payload, 'onboarding');
+          // Ingest to Core → UCN/RR → normalized traits
+          const ingestionResult = await ingestToCore(targetUserId, payload, 'onboarding');
 
-        if (!ingestionResult.success) {
-          throw new Error(ingestionResult.error || 'Core ingestion failed');
+          if (ingestionResult.success) {
+            // Refresh snapshot to get updated profile
+            await refreshSnapshot(targetUserId);
+          } else {
+            // Core ingestion failed - fall back to legacy endpoint
+            console.warn('[Northstar] Core ingestion failed, using fallback:', ingestionResult.error);
+            const response = await submitOnboardingWizardData(targetUserId, data);
+            if (!response.ok) {
+              throw new Error('Both Core ingestion and fallback failed');
+            }
+          }
+        } catch (coreError) {
+          // If Core system has any issues, fall back to legacy endpoint
+          console.warn('[Northstar] Core ingestion error, using legacy fallback:', coreError);
+          const response = await submitOnboardingWizardData(targetUserId, data);
+          if (!response.ok) {
+            throw new Error('Failed to save onboarding data');
+          }
         }
-
-        // Refresh snapshot to get updated profile
-        await refreshSnapshot(targetUserId);
 
         // NORTHSTAR PHASE 2: Set flag for first-message experience
         if (typeof window !== 'undefined') {
