@@ -2479,7 +2479,17 @@ function normalizeProviderSettings(value: any): ChatProviderSettings | undefined
   return Object.keys(normalized).length ? normalized : undefined;
 }
 
-const CANONICAL_ORDER = ['head_coach', 'relationship_coach', 'padna', 'photo'] as const;
+const CANONICAL_ORDER = [
+  'head_coach',
+  'relationship_coach',
+  'career_coach',
+  'personality_test_coach',
+  'chatdna_coach',
+  'beliefdna_coach',
+  'padna',
+  'photo',
+  'permission_coach'
+] as const;
 type CanonicalKey = (typeof CANONICAL_ORDER)[number];
 
 const CANONICAL_DEFAULTS: Record<CanonicalKey, PersonaRosterEntry> = {
@@ -2497,6 +2507,34 @@ const CANONICAL_DEFAULTS: Record<CanonicalKey, PersonaRosterEntry> = {
     enabled: true,
     accent_color: null
   },
+  career_coach: {
+    key: 'career_coach',
+    label: 'Career Coach',
+    icon: '💼',
+    enabled: true,
+    accent_color: null
+  },
+  personality_test_coach: {
+    key: 'personality_test_coach',
+    label: 'Personality Test Coach',
+    icon: '🧠',
+    enabled: true,
+    accent_color: null
+  },
+  chatdna_coach: {
+    key: 'chatdna_coach',
+    label: 'ChatDNA Coach',
+    icon: '💬',
+    enabled: true,
+    accent_color: null
+  },
+  beliefdna_coach: {
+    key: 'beliefdna_coach',
+    label: 'BeliefDNA Coach',
+    icon: '🔮',
+    enabled: true,
+    accent_color: null
+  },
   padna: {
     key: 'padna',
     label: 'PaDNA Coach',
@@ -2510,6 +2548,13 @@ const CANONICAL_DEFAULTS: Record<CanonicalKey, PersonaRosterEntry> = {
     icon: '📸',
     enabled: true,
     accent_color: null
+  },
+  permission_coach: {
+    key: 'permission_coach',
+    label: 'Permission Coach',
+    icon: '🔐',
+    enabled: true,
+    accent_color: null
   }
 };
 
@@ -2517,15 +2562,36 @@ const PERSONA_ALIASES: Record<string, CanonicalKey> = {
   head_coach: 'head_coach',
   'head coach': 'head_coach',
   headcoach: 'head_coach',
+  hc: 'head_coach',
   relationship_coach: 'relationship_coach',
   'relationship coach': 'relationship_coach',
   rc: 'relationship_coach',
+  relationship: 'relationship_coach',
+  career_coach: 'career_coach',
+  'career coach': 'career_coach',
+  career: 'career_coach',
+  personality_test_coach: 'personality_test_coach',
+  'personality test coach': 'personality_test_coach',
+  'personality coach': 'personality_test_coach',
+  ptc: 'personality_test_coach',
+  chatdna_coach: 'chatdna_coach',
+  'chatdna coach': 'chatdna_coach',
+  chatdna: 'chatdna_coach',
+  beliefdna_coach: 'beliefdna_coach',
+  'beliefdna coach': 'beliefdna_coach',
+  beliefdna: 'beliefdna_coach',
   padna: 'padna',
   padna_coach: 'padna',
   'padna coach': 'padna',
+  rendering: 'padna',
+  'rendering coach': 'padna',
+  avatar: 'padna',
   photo: 'photo',
   photo_coach: 'photo',
-  'photo coach': 'photo'
+  'photo coach': 'photo',
+  permission_coach: 'permission_coach',
+  'permission coach': 'permission_coach',
+  permissions: 'permission_coach'
 };
 
 type RawPersonaEntry = {

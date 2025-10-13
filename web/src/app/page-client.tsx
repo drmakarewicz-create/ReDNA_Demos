@@ -2598,7 +2598,12 @@ function renderPersonaTools(
         </PanelBoundary>
       );
     case 'relationship_coach':
-      // RC: no specialized tools, just support panels
+    case 'career_coach':
+    case 'personality_test_coach':
+    case 'chatdna_coach':
+    case 'beliefdna_coach':
+    case 'permission_coach':
+      // These coaches: no specialized tools, just support panels
       return null;
     default:
       return null;
@@ -2681,30 +2686,51 @@ function renderPersonaCenter(
   );
 }
 
-function normalizePersonaKey(key: string): 'head_coach' | 'photo' | 'relationship_coach' | 'padna' {
+function normalizePersonaKey(key: string): 'head_coach' | 'relationship_coach' | 'career_coach' | 'personality_test_coach' | 'chatdna_coach' | 'beliefdna_coach' | 'padna' | 'photo' | 'permission_coach' {
   const normalized = key.trim().toLowerCase();
   switch (normalized) {
+    case 'head_coach':
+    case 'head coach':
+    case 'hc':
+    case 'headcoach':
+      return 'head_coach';
+    case 'relationship_coach':
+    case 'relationship coach':
+    case 'rc':
+    case 'relationship':
+      return 'relationship_coach';
+    case 'career_coach':
+    case 'career coach':
+    case 'career':
+      return 'career_coach';
+    case 'personality_test_coach':
+    case 'personality test coach':
+    case 'personality coach':
+    case 'ptc':
+      return 'personality_test_coach';
+    case 'chatdna_coach':
+    case 'chatdna coach':
+    case 'chatdna':
+      return 'chatdna_coach';
+    case 'beliefdna_coach':
+    case 'beliefdna coach':
+    case 'beliefdna':
+      return 'beliefdna_coach';
     case 'padna':
     case 'padna_coach':
     case 'padna coach':
     case 'rendering':
     case 'rendering coach':
     case 'avatar':
-    case 'renderer':
       return 'padna';
     case 'photo':
     case 'photo_coach':
     case 'photo coach':
       return 'photo';
-    case 'rc':
-    case 'relationship':
-    case 'relationship_coach':
-    case 'relationship coach':
-      return 'relationship_coach';
-    case 'head_coach':
-    case 'head coach':
-    case 'hc':
-      return 'head_coach';
+    case 'permission_coach':
+    case 'permission coach':
+    case 'permissions':
+      return 'permission_coach';
     default:
       return 'head_coach';
   }
