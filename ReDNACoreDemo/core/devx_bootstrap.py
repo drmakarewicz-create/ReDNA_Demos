@@ -210,14 +210,23 @@ def devx_ui_health(port: int) -> bool:
 
 def ensure_devx_requirements_commands() -> list[str]:
     """
-    Return pip command(s) to install missing deps.
+    Return command(s) to install missing deps.
     Present to the user; do not auto-run silently.
     """
-    req = env_get("DEVX_REQUIREMENTS", "ExplorerDev/requirements.txt")
     py = env_get("DEVX_PY", sys.executable) or sys.executable
-    if Path(req).exists():
-        return [f"{py} -m pip install -r {req}"]
-    return [f"{py} -m pip install streamlit fastapi uvicorn requests"]
+    frontend_dir = env_get("DEVX_UI_DIR", "ReDNACoreDemo/devx/frontend")
+
+    cmds = []
+    # Backend: Python dependencies
+    cmds.append(f"{py} -m pip install fastapi uvicorn requests")
+
+    # Frontend: npm dependencies
+    if Path(frontend_dir).exists():
+        cmds.append(f"cd {frontend_dir} && npm install")
+    else:
+        cmds.append("# DevX frontend: npm install (directory not found)")
+
+    return cmds
 
 
 def start_devx_backend() -> Tuple[bool, str, int]:
