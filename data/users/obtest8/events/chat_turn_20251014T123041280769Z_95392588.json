@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest8",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Hi",
+  "assistant_text": "OB8! It looks like we got cut off. No worries, let's start fresh. What would you like to talk about? Want to share something on your mind or just chat about life?",
+  "client_message_id": "f49f7b13-b373-4907-8aa3-7d086d6fcb02",
+  "assistant_message_id": "chat-0dca7122703f4acba9f40cebbce688c7",
+  "server_ts": "2025-10-14T12:30:41.280+00:00",
+  "server_ts_ms": 1760445041280,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

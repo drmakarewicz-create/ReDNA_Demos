@@ -335,6 +335,8 @@ export interface UnabridgedTrait {
   last_observed?: string | null;
   metadata?: Record<string, unknown>;
   badges: string[];
+  status?: 'resolved' | 'inferred' | 'unknown' | 'conflict';
+  ui_hidden?: boolean;
 }
 
 export interface UnabridgedSnapshot {

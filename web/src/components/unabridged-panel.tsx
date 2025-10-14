@@ -16,6 +16,7 @@ import { updateVirtualizerMetrics, removeVirtualizerMetrics } from '../lib/perf-
 import { RRBadge, CuriosityBadge } from './rr-curiosity-badges';
 import { ProvenanceModal } from './provenance-modal';
 import { overrideTrait } from '../lib/api';
+import TraitProvenanceDrawer from './provenance/trait-provenance-drawer';
 
 interface TraitChange {
   trait: string;
@@ -47,6 +48,8 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
   const [editValue, setEditValue] = useState('');
   const [saving, setSaving] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [provenanceTraitId, setProvenanceTraitId] = useState<string | null>(null);
+  const [provenanceDrawerOpen, setProvenanceDrawerOpen] = useState(false);
 
   const containers = useMemo(() => {
     if (!snapshot?.traits?.length) {
@@ -237,6 +240,16 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
                   ⚠️
                 </span>
               ) : null}
+              <button
+                onClick={() => {
+                  setProvenanceTraitId(row.original.trait_id);
+                  setProvenanceDrawerOpen(true);
+                }}
+                className="text-xs px-2 py-1 rounded border border-slate-600 text-slate-300 hover:bg-slate-700 transition-colors"
+                title="View trait provenance and evidence"
+              >
+                Why?
+              </button>
               <button
                 onClick={() => handleEditStart(row.original.trait_id, row.original.value)}
                 className="ml-auto text-xs text-slate-400 hover:text-slate-200"
@@ -529,6 +542,24 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
         <div className="fixed bottom-4 right-4 rounded-lg border border-emerald-500/60 bg-slate-950/90 px-4 py-3 text-sm text-emerald-200 shadow-xl">
           {toastMessage}
         </div>
+      )}
+
+      {/* Provenance Drawer */}
+      {provenanceTraitId && (
+        <TraitProvenanceDrawer
+          userId={snapshot?.user_id || ''}
+          traitId={provenanceTraitId}
+          open={provenanceDrawerOpen}
+          onClose={() => {
+            setProvenanceDrawerOpen(false);
+            setProvenanceTraitId(null);
+          }}
+          onCompose={(text) => {
+            window.dispatchEvent(new CustomEvent('northstar-compose', { detail: text }));
+            setProvenanceDrawerOpen(false);
+          }}
+          devMode={typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')}
+        />
       )}
     </section>
   );

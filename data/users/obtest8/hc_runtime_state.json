@@ -1,0 +1,17 @@
+{
+  "last_user_ts": "2025-10-14T12:51:15.163000+00:00",
+  "last_user_text": "What color are my eyes?",
+  "turns_observed": 4,
+  "dialog_history": [
+    "question",
+    "answer",
+    "answer",
+    "question"
+  ],
+  "last_assistant_ts": "2025-10-14T12:51:15.166992+00:00",
+  "latency_history_ms": [
+    133463,
+    30136,
+    1224593
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest3",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have blue eyes",
+  "assistant_text": "You're really proud of your eye color? Do you feel like it's a unique feature that sets you apart from others?",
+  "client_message_id": "734c060d-88ab-43e7-890d-65a5a9959adb",
+  "assistant_message_id": "chat-98a7fcca1c7f4820ad8fe7e40e350f8d",
+  "server_ts": "2025-10-14T15:56:44.474+00:00",
+  "server_ts_ms": 1760457404474,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

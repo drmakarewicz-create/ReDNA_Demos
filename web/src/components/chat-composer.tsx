@@ -338,6 +338,22 @@ export const ChatComposer = forwardRef<ChatComposerHandle, ChatComposerProps>(fu
     return () => window.clearInterval(timer);
   }, [providerLockActive, providerLockSeconds]);
 
+  // Listen for northstar-compose events (e.g., from inferred trait confirmation)
+  useEffect(() => {
+    const handler = (e: Event) => {
+      const customEvent = e as CustomEvent<string>;
+      if (customEvent.detail && typeof customEvent.detail === 'string') {
+        setMessage(customEvent.detail);
+        // Focus the textarea after setting the message
+        if (textareaRef.current) {
+          textareaRef.current.focus();
+        }
+      }
+    };
+    window.addEventListener('northstar-compose', handler);
+    return () => window.removeEventListener('northstar-compose', handler);
+  }, []);
+
   const dispatchLocalMessage = useCallback(
     (detail: LocalMessageDetail) => dispatchCustomEvent('hc-local-message', detail),
     []

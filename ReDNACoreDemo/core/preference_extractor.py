@@ -213,15 +213,29 @@ class PreferenceExtractor:
             if not value:
                 continue
 
+            # Map LLM categories to trait_id format expected by mapper
+            # physical.eye_color -> attributes.physical.eye_color
+            # physical.hair_color -> attributes.physical.hair_color
+            category_map = {
+                "physical.eye_color": "attributes.physical.eye_color",
+                "physical.hair_color": "attributes.physical.hair_color",
+                "physical.height": "attributes.physical.height",
+                "age": "attributes.age",
+                "gender": "attributes.gender",
+                "orientation": "attributes.orientation",
+                "relationship_status": "attributes.relationship_status",
+            }
+
+            trait_id = category_map.get(category, f"attributes.{category}")
+
             observations.append({
-                "trait_category": "facts",
-                "signal": f"{category}: {value}",
-                "fact_category": category,
+                "trait_id": trait_id,
                 "fact_value": value,
                 "confidence": confidence,
                 "raw_text": message,
                 "timestamp": timestamp,
                 "extraction_method": "llm",
+                "signal": f"{category}: {value}",  # Keep for debugging
             })
 
         return observations

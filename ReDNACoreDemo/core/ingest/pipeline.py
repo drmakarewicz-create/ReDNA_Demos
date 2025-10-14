@@ -148,15 +148,25 @@ def _store_evidence(user_id: str, evidence: List[Dict[str, Any]], req_id: str, t
         req_id: Request ID for tracing
         tag: Optional tag (e.g., "inference")
     """
-    from .. import hc_trait_bridge
+    from ..storage import read_user_state, write_user_state
 
-    count = hc_trait_bridge.store_observations(
-        user_id=user_id,
-        observations=evidence,
-        timestamp=evidence[0].get("ts") if evidence else now_iso(),
-        message_text=f"[{tag or 'direct'}]"
-    )
-    logger.info(f"stored_observations{{req_id={req_id}, count={count}, tag={tag or 'direct'}}}")
+    # Read current state
+    resolved, evidence_doc, observations = read_user_state(user_id)
+
+    # Append new evidence items
+    if not isinstance(evidence_doc, dict):
+        evidence_doc = {"items": []}
+    if "items" not in evidence_doc:
+        evidence_doc["items"] = []
+
+    evidence_doc["items"].extend(evidence)
+
+    # Write back (only evidence is updated)
+    write_user_state(user_id, resolved, evidence_doc, observations, enforce_governance=False)
+
+    # Log evidence storage with file path for traceability
+    logger.info(f"chat_store{{req_id={req_id}, path=\"users/{user_id}/evidence.json\", count={len(evidence)}}}")
+    logger.info(f"stored_observations{{req_id={req_id}, count={len(evidence)}, tag={tag or 'direct'}}}")
 
 
 def _resolve_direct(user_id: str, evidence: List[Dict[str, Any]], req_id: str) -> int:
@@ -171,20 +181,40 @@ def _resolve_direct(user_id: str, evidence: List[Dict[str, Any]], req_id: str) -
     Returns:
         Number of traits resolved
     """
-    from ..storage import read_user_state, write_user_state
-    from ..redna_core import build_observations, resolve_traits
+    from ..resolver.impl import resolve_roundtrip
+    from ..resolver.debug import new_trace, write_trace
+    from ..resolver.resolved_io import get_resolver_trace_dir
 
     try:
-        prior_resolved, prior_evidence, prior_obs = read_user_state(user_id)
-        new_obs = build_observations(evidence)
-        (out, evidence_result, observations_result) = resolve_traits(
-            prior_resolved, prior_evidence, prior_obs, new_obs
-        )
+        # Create trace for debugging
+        trace = new_trace(req_id)
 
-        write_user_state(user_id, out["resolved"], evidence_result, observations_result)
-        logger.info(f"ingest_resolve{{req_id={req_id}, direct_items={len(evidence)}, resolved={len(out.get('resolved', dict()))}}}")
+        # Convert evidence to canonical Evidence schema
+        # Evidence should already have: trait_id, value, source, ts
+        canonical_evidence = []
+        for e in evidence:
+            canonical_evidence.append({
+                "trait_id": e.get("trait_id"),
+                "value": e.get("value", {}),
+                "source": e.get("source", "ingestion"),
+                "ts": e.get("ts", now_iso()),
+                "ucn_prior": float(e.get("ucn_prior", 0.2)),
+                "provenance": e.get("provenance", "direct")
+            })
 
-        return len(out.get("resolved", {}))
+        # Run resolver
+        result = resolve_roundtrip(user_id, canonical_evidence, source="ingestion", trace=trace)
+
+        # Write trace for debugging
+        trace_dir = get_resolver_trace_dir(user_id)
+        write_trace(trace_dir, trace)
+
+        resolved = result["resolved"]
+        rr_ok = result["rr_ok"]
+
+        logger.info(f"ingest_resolve{{req_id={req_id}, direct_items={len(evidence)}, resolved={len(resolved)}, rr_ok={rr_ok}}}")
+
+        return len(resolved)
 
     except Exception as e:
         logger.error(f"resolve_direct_error{{req_id={req_id}, error={str(e)}}}", exc_info=True)
@@ -203,18 +233,37 @@ def _resolve_inferred(user_id: str, evidence: List[Dict[str, Any]], req_id: str)
     Returns:
         Number of inferred traits resolved
     """
-    from ..storage import read_user_state, write_user_state
-    from ..redna_core import build_observations, resolve_traits
+    from ..resolver.impl import resolve_roundtrip
+    from ..resolver.debug import new_trace, write_trace
+    from ..resolver.resolved_io import get_resolver_trace_dir
 
     try:
-        prior_resolved, prior_evidence, prior_obs = read_user_state(user_id)
-        inferred_obs = build_observations(evidence)
-        (out, evidence_result, observations_result) = resolve_traits(
-            prior_resolved, prior_evidence, prior_obs, inferred_obs
-        )
+        # Create trace for debugging
+        trace = new_trace(f"{req_id}-inferred")
 
-        write_user_state(user_id, out["resolved"], evidence_result, observations_result)
-        logger.info(f"ingest_resolve{{req_id={req_id}, inferred_items={len(evidence)}, resolved={len(out.get('resolved', dict()))}}}")
+        # Convert evidence to canonical Evidence schema
+        canonical_evidence = []
+        for e in evidence:
+            canonical_evidence.append({
+                "trait_id": e.get("trait_id"),
+                "value": e.get("value", {}),
+                "source": e.get("source", "ingestion:inference"),
+                "ts": e.get("ts", now_iso()),
+                "ucn_prior": float(e.get("ucn_prior", 0.15)),  # Lower prior for inferences
+                "provenance": e.get("provenance", "inference:unknown")
+            })
+
+        # Run resolver
+        result = resolve_roundtrip(user_id, canonical_evidence, source="inference", trace=trace)
+
+        # Write trace for debugging
+        trace_dir = get_resolver_trace_dir(user_id)
+        write_trace(trace_dir, trace)
+
+        resolved = result["resolved"]
+        rr_ok = result["rr_ok"]
+
+        logger.info(f"ingest_resolve{{req_id={req_id}, inferred_items={len(evidence)}, resolved={len(resolved)}, rr_ok={rr_ok}}}")
 
         return len(evidence)
 
@@ -276,7 +325,7 @@ def _build_snapshot(user_id: str) -> Dict[str, Any]:
     """
     try:
         from .. import ui_readonly
-        return ui_readonly.unabridged(user_id)
+        return ui_readonly.unabridged_snapshot(user_id)
     except Exception as e:
         logger.error(f"build_snapshot_error: {e}", exc_info=True)
         return {"traits": []}

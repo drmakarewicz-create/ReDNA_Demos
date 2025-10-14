@@ -3565,6 +3565,72 @@ def _render_test_tab() -> None:
         logs = _service_log_lines(SERVICE_TEST_CI, limit=200)
         st.code("\n".join(logs) if logs else "No output yet.")
 
+    st.markdown("---")
+    st.markdown("### 🧪 Post-Merge QA")
+    st.caption("Runs: Mapper audit + Golden fixtures + Live smoke test")
+    qa_cols = st.columns([1, 2])
+    with qa_cols[0]:
+        if st.button("Run Post-Merge QA"):
+            # Run the QA harness
+            qa_script = ROOT / "scripts" / "post_merge_qa.sh"
+            if not qa_script.exists():
+                st.error(f"QA script not found: {qa_script}")
+            else:
+                with st.spinner("Running post-merge QA harness..."):
+                    env = os.environ.copy()
+                    env.setdefault("QA_USER", "TEST_QA_USER")
+                    env.setdefault("QA_ENDPOINT", "http://127.0.0.1:8015/ui/chat/send")
+                    env.setdefault("DATA_ROOT", str(ROOT / "data"))
+
+                    try:
+                        proc = subprocess.run(
+                            [str(qa_script)],
+                            env=env,
+                            cwd=ROOT,
+                            text=True,
+                            capture_output=True,
+                            timeout=120  # 2 minute timeout
+                        )
+
+                        # Store result in session state
+                        st.session_state["qa_result"] = {
+                            "returncode": proc.returncode,
+                            "stdout": proc.stdout,
+                            "stderr": proc.stderr,
+                        }
+                    except subprocess.TimeoutExpired:
+                        st.session_state["qa_result"] = {
+                            "returncode": 1,
+                            "stdout": "",
+                            "stderr": "QA harness timed out after 120 seconds",
+                        }
+                    except Exception as e:
+                        st.session_state["qa_result"] = {
+                            "returncode": 1,
+                            "stdout": "",
+                            "stderr": f"Error running QA harness: {e}",
+                        }
+
+                safe_rerun()
+
+    with qa_cols[1]:
+        if "qa_result" in st.session_state:
+            result = st.session_state["qa_result"]
+
+            if result["returncode"] == 0:
+                st.success("✅ QA PASSED — Ready for merge!")
+            else:
+                st.error("❌ QA FAILED — See output below")
+
+            if result["stdout"]:
+                st.code(result["stdout"], language="text")
+
+            if result["stderr"]:
+                st.error("Errors:")
+                st.code(result["stderr"], language="text")
+        else:
+            st.caption("Click 'Run Post-Merge QA' to validate the resolver pipeline")
+
 
 def _render_router_tab() -> None:
     st.subheader("HC Shell Router")

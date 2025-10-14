@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest8",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What color are my eyes?",
+  "assistant_text": "Your eyes are blue! So, do you like getting comments on them, or is it not something you think about much?",
+  "client_message_id": "19585fb1-7db9-46e8-99c9-842a3262ba1c",
+  "assistant_message_id": "chat-9cc43f01e57e41e59dac926635ba31e6",
+  "server_ts": "2025-10-14T12:51:40.672+00:00",
+  "server_ts_ms": 1760446300672,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

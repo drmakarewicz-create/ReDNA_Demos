@@ -1,0 +1,784 @@
+{
+  "items": [
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:28:06.958000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.turn_length",
+      "trait": "conversation.turn_length",
+      "value": 41,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:28:06.958000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.dialog_act",
+      "trait": "conversation.dialog_act",
+      "value": "question",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:28:06.958000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.dialog_distribution",
+      "trait": "conversation.dialog_distribution",
+      "value": "question:1",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:28:06.958000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.sentiment_polarity",
+      "trait": "tone.sentiment_polarity",
+      "value": 0.5,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:28:06.958000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.formality_gradient",
+      "trait": "tone.formality_gradient",
+      "value": 0.5229268292682927,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency",
+      "trait": "conversation.response_latency",
+      "value": "slow",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.turn_length",
+      "trait": "conversation.turn_length",
+      "value": 1,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.dialog_act",
+      "trait": "conversation.dialog_act",
+      "value": "answer",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.cadence",
+      "trait": "conversation.cadence",
+      "value": "slow",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.cadence_histogram",
+      "trait": "conversation.cadence_histogram",
+      "value": "slow:1",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency_median",
+      "trait": "conversation.response_latency_median",
+      "value": 133463.0,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency_mean",
+      "trait": "conversation.response_latency_mean",
+      "value": 133463.0,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.dialog_distribution",
+      "trait": "conversation.dialog_distribution",
+      "value": "answer:1, question:1",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.sentiment_polarity",
+      "trait": "tone.sentiment_polarity",
+      "value": 0.5,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:20.424000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.formality_gradient",
+      "trait": "tone.formality_gradient",
+      "value": 0.44,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency",
+      "trait": "conversation.response_latency",
+      "value": "slow",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.turn_length",
+      "trait": "conversation.turn_length",
+      "value": 4,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.dialog_act",
+      "trait": "conversation.dialog_act",
+      "value": "answer",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.cadence",
+      "trait": "conversation.cadence",
+      "value": "slow",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.cadence_histogram",
+      "trait": "conversation.cadence_histogram",
+      "value": "slow:2",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency_median",
+      "trait": "conversation.response_latency_median",
+      "value": 81799.5,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency_mean",
+      "trait": "conversation.response_latency_mean",
+      "value": 81799.5,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.dialog_distribution",
+      "trait": "conversation.dialog_distribution",
+      "value": "answer:2, question:1",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.sentiment_polarity",
+      "trait": "tone.sentiment_polarity",
+      "value": 0.5,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.formality_gradient",
+      "trait": "tone.formality_gradient",
+      "value": 0.44,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:30:50.566000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.aggression_assertiveness",
+      "trait": "tone.aggression_assertiveness",
+      "value": 1.0,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency",
+      "trait": "conversation.response_latency",
+      "value": "slow",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.turn_length",
+      "trait": "conversation.turn_length",
+      "value": 5,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.dialog_act",
+      "trait": "conversation.dialog_act",
+      "value": "question",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.cadence",
+      "trait": "conversation.cadence",
+      "value": "slow",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.cadence_histogram",
+      "trait": "conversation.cadence_histogram",
+      "value": "slow:3",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency_median",
+      "trait": "conversation.response_latency_median",
+      "value": 133463.0,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.response_latency_mean",
+      "trait": "conversation.response_latency_mean",
+      "value": 462730.6666666667,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "conversational_dynamics",
+      "trait_id": "conversation.dialog_distribution",
+      "trait": "conversation.dialog_distribution",
+      "value": "answer:2, question:2",
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.sentiment_polarity",
+      "trait": "tone.sentiment_polarity",
+      "value": 0.5,
+      "persona": "head coach"
+    },
+    {
+      "user_id": "obtest8",
+      "ts": "2025-10-14T12:51:15.163000+00:00",
+      "source": "ui_chat_turn",
+      "ucn": 20.0,
+      "confidence": "low",
+      "provenance": "observed_chat_turn",
+      "decay": true,
+      "container": "communication_tone",
+      "trait_id": "tone.formality_gradient",
+      "trait": "tone.formality_gradient",
+      "value": 0.44,
+      "persona": "head coach"
+    }
+  ],
+  "by_trait": {
+    "conversation.turn_length": [
+      {
+        "value": 41,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:28:06.958000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 1,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 4,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 5,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "conversation.dialog_act": [
+      {
+        "value": "question",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:28:06.958000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "answer",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "answer",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "question",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "conversation.dialog_distribution": [
+      {
+        "value": "question:1",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:28:06.958000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "answer:1, question:1",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "answer:2, question:1",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "answer:2, question:2",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "tone.sentiment_polarity": [
+      {
+        "value": 0.5,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:28:06.958000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 0.5,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 0.5,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 0.5,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "tone.formality_gradient": [
+      {
+        "value": 0.5229268292682927,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:28:06.958000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 0.44,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 0.44,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 0.44,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "conversation.response_latency": [
+      {
+        "value": "slow",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "slow",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "slow",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "conversation.cadence": [
+      {
+        "value": "slow",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "slow",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "slow",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "conversation.cadence_histogram": [
+      {
+        "value": "slow:1",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "slow:2",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": "slow:3",
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "conversation.response_latency_median": [
+      {
+        "value": 133463.0,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 81799.5,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 133463.0,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "conversation.response_latency_mean": [
+      {
+        "value": 133463.0,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:20.424000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 81799.5,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      },
+      {
+        "value": 462730.6666666667,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:51:15.163000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ],
+    "tone.aggression_assertiveness": [
+      {
+        "value": 1.0,
+        "ucn": 20.0,
+        "ts": "2025-10-14T12:30:50.566000+00:00",
+        "source": "ui_chat_turn",
+        "persona": "head coach"
+      }
+    ]
+  }
+}

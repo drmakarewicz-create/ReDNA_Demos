@@ -2107,6 +2107,49 @@ def build_app() -> FastAPI:
         clean_user = user_id.strip()
         return ui_readonly.unabridged_snapshot(clean_user)
 
+    @app.get("/core/api/user/{user_id}/provenance/{trait_id}")
+    def get_provenance(user_id: str, trait_id: str) -> Dict[str, Any]:
+        """
+        Return complete provenance for a specific trait.
+
+        Includes:
+        - Current resolved value and UCN
+        - Evidence timeline (all observations)
+        - Inference items (rule-based derivations)
+        - Resolver trace references
+        - RR scoring status
+
+        Used by Northstar "Why?" panel for trait explainability.
+        """
+        from core.provenance.service import build_provenance
+
+        try:
+            clean_user = user_id.strip()
+            clean_trait = trait_id.strip()
+
+            if not clean_user or not clean_trait:
+                return JSONResponse(
+                    status_code=400,
+                    content={"error": "BAD_REQUEST", "message": "user_id and trait_id are required"}
+                )
+
+            prov = build_provenance(clean_user, clean_trait)
+
+            if not prov:
+                return JSONResponse(
+                    status_code=404,
+                    content={"error": "NOT_FOUND", "message": f"No provenance found for trait {clean_trait}"}
+                )
+
+            return prov
+
+        except Exception as e:
+            logger.error(f"Provenance error for user {user_id}, trait {trait_id}: {e}", exc_info=True)
+            return JSONResponse(
+                status_code=500,
+                content={"error": "INTERNAL_ERROR", "message": f"provenance_error: {str(e)}"}
+            )
+
     @app.get("/ui/nudges")
     def list_nudges(
         user_id: str = Query(..., min_length=1, description="Active user identifier")
@@ -2786,6 +2829,10 @@ def build_app() -> FastAPI:
 
         user_ts_iso = _ms_to_iso(client_ts_ms) if client_ts_ms is not None else server_ts_iso
 
+        # Create request ID for tracing
+        from uuid import uuid4
+        req_id = str(uuid4())[:8]
+
         # Extract observations from conversation (hungry data ingestion)
         # Phase 1: Keyword-based extraction
         keyword_observations = conversation_analyzer.analyze_message(user_id, text, user_ts_iso)
@@ -2808,6 +2855,25 @@ def build_app() -> FastAPI:
         # Combine both extraction methods
         all_observations = keyword_observations + llm_observations
 
+        # Log extraction results
+        sample_item = all_observations[0] if all_observations else None
+        logger.info(f"chat_extract{{req_id={req_id}, user={user_id}, items={len(all_observations)}, sample={sample_item}}}")
+
+        # FALLBACK: If zero evidence extracted, use lexical fallback for critical traits
+        if not all_observations:
+            logger.warning(f"Zero evidence extracted for user {user_id}, attempting fallback lexical extraction")
+            try:
+                from .ingest.fallback_lex import fallback_extract, format_fallback_summary
+                fallback_items = fallback_extract(text)
+                if fallback_items:
+                    trait_ids = format_fallback_summary(fallback_items)
+                    logger.info(f"chat_fallback{{req_id={req_id}, items={len(fallback_items)}, types={trait_ids}}}")
+                    all_observations = fallback_items
+                else:
+                    logger.warning(f"Fallback extractor also found zero evidence for: '{text[:50]}...'")
+            except Exception as e:
+                logger.error(f"Fallback extraction failed: {e}", exc_info=True)
+
         if all_observations:
             logger.info(f"Total extracted {len(all_observations)} observations from message for user {user_id}")
             # NORTHSTAR PHASE 2: Unified ingestion pipeline
@@ -2821,13 +2887,18 @@ def build_app() -> FastAPI:
                     user_id=user_id,
                     source="chat",
                     evidence=all_observations,
-                    req_id=None  # Auto-generated
+                    req_id=req_id  # Pass through for tracing
                 )
 
+                # Log resolution success
+                resolved_path = f"users/{user_id}/resolved.json"
+                logger.info(f"chat_resolve{{req_id={req_id}, wrote_resolved=true, resolved_path=\"{resolved_path}\"}}")
                 logger.info(f"Chat ingestion complete: {result.get('ingested', 0)} direct + {result.get('inferred', 0)} inferred traits")
 
             except Exception as e:
                 logger.error(f"Failed to process chat evidence through unified pipeline: {e}", exc_info=True)
+        else:
+            logger.warning(f"No observations extracted (primary or fallback) for user {user_id}, message: '{text[:100]}...'")
 
         observation_result = capture_turn_observation(
             user_id=user_id,

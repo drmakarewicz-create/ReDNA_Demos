@@ -28,5 +28,16 @@
         "ts": "2025-10-14T00:54:40+00:00"
       }
     ]
+  },
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T16:13:10+00:00"
   }
 }
