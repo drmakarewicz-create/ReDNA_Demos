@@ -1,0 +1,41 @@
+{
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 95.0,
+    "curiosity": 15.0,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760403804915",
+        "ts": "2025-10-14T01:03:24+00:00"
+      }
+    ]
+  },
+  "BasicDNA.Gender": {
+    "id": "BasicDNA.Gender",
+    "rr": 85.0,
+    "curiosity": 20.0,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760403804915",
+        "ts": "2025-10-14T01:03:24+00:00"
+      }
+    ]
+  },
+  "PersonalityDNA.WYRChoice": {
+    "id": "PersonalityDNA.WYRChoice",
+    "rr": 90.0,
+    "curiosity": 10.0,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760403804915",
+        "ts": "2025-10-14T01:03:24+00:00"
+      }
+    ]
+  }
+}
