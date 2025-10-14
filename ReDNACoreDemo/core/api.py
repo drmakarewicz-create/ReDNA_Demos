@@ -2810,76 +2810,24 @@ def build_app() -> FastAPI:
 
         if all_observations:
             logger.info(f"Total extracted {len(all_observations)} observations from message for user {user_id}")
-            # NORTHSTAR PHASE 2: Full pipeline - Evidence → Canonical → Resolve → Infer → Re-Resolve
+            # NORTHSTAR PHASE 2: Unified ingestion pipeline
+            # Single source of truth for evidence processing (chat, onboarding, etc.)
             try:
-                # Import trait pipeline components
-                from .traits import normalize_evidence, run_inference
+                from .ingest import ingest_evidence_roundtrip
 
-                # STEP 1: Normalize evidence to canonical trait IDs
-                # Maps attributes.physical.eye_color → PaDNA.EyeDNA.IrisColor
-                canonical_observations = normalize_evidence(all_observations)
-                logger.info(f"Normalized {len(canonical_observations)} observations to canonical trait IDs")
-
-                # STEP 2: Store canonical evidence
-                items_stored = hc_trait_bridge.store_observations(
+                # Call unified pipeline with chat evidence
+                # This handles: canonicalization, validation, resolve, inference, snapshot
+                result = ingest_evidence_roundtrip(
                     user_id=user_id,
-                    observations=canonical_observations,
-                    timestamp=user_ts_iso,
-                    message_text=text
+                    source="chat",
+                    evidence=all_observations,
+                    req_id=None  # Auto-generated
                 )
-                logger.info(f"Stored {items_stored} observations as evidence for user {user_id}")
 
-                # STEP 3: First resolution pass (direct evidence → traits)
-                try:
-                    prior_resolved, prior_evidence, prior_obs = read_user_state(user_id)
-                    new_obs = build_observations(canonical_observations)
-                    (out, evidence, observations) = resolve_traits(
-                        prior_resolved, prior_evidence, prior_obs, new_obs
-                    )
-
-                    # Save after first resolution
-                    write_user_state(user_id, out["resolved"], evidence, observations)
-                    logger.info(f"Resolved {len(out.get('resolved', {}))} direct traits for user {user_id}")
-
-                    # STEP 4: Run inference engine on canonical evidence
-                    inferred_traits = run_inference(canonical_observations)
-
-                    if inferred_traits:
-                        logger.info(f"Inference engine generated {len(inferred_traits)} trait proposals")
-
-                        # STEP 5: Merge inferred traits (only if absent or low UCN)
-                        inferred_to_add = []
-                        current_resolved = out.get("resolved", {})
-
-                        for inf in inferred_traits:
-                            inf_trait_id = inf.get("trait_id")
-                            existing = current_resolved.get(inf_trait_id, {})
-                            existing_ucn = existing.get("ucn", 0) if isinstance(existing, dict) else 0
-
-                            # Only add inference if trait doesn't exist or has very low confidence
-                            if existing_ucn < 0.3:  # Low UCN threshold
-                                inferred_to_add.append(inf)
-                                logger.info(f"  → Accepting inference: {inf_trait_id} (existing UCN={existing_ucn})")
-                            else:
-                                logger.info(f"  → Skipping inference: {inf_trait_id} (existing UCN={existing_ucn} too high)")
-
-                        # STEP 6: Second resolution pass (incorporate inferences)
-                        if inferred_to_add:
-                            prior_resolved, prior_evidence, prior_obs = read_user_state(user_id)
-                            inferred_obs = build_observations(inferred_to_add)
-                            (out2, evidence2, observations2) = resolve_traits(
-                                prior_resolved, prior_evidence, prior_obs, inferred_obs
-                            )
-
-                            # Save final resolved state
-                            write_user_state(user_id, out2["resolved"], evidence2, observations2)
-                            logger.info(f"Re-resolved with {len(inferred_to_add)} inferred traits")
-
-                except Exception as resolve_error:
-                    logger.error(f"Failed to resolve traits from evidence: {resolve_error}", exc_info=True)
+                logger.info(f"Chat ingestion complete: {result.get('ingested', 0)} direct + {result.get('inferred', 0)} inferred traits")
 
             except Exception as e:
-                logger.error(f"Failed to process observations through trait pipeline: {e}", exc_info=True)
+                logger.error(f"Failed to process chat evidence through unified pipeline: {e}", exc_info=True)
 
         observation_result = capture_turn_observation(
             user_id=user_id,

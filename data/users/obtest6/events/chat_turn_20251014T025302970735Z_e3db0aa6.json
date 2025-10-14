@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest6",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have blue eyes",
+  "assistant_text": "It sounds like we've got a guy who loves quiet nights in and deep conversations! You chose A cozy home dinner with deep conversation? What's on the menu for that dinner?",
+  "client_message_id": "c807bf05-a055-4b90-a3ed-69a4369eb725",
+  "assistant_message_id": "chat-091ff4da76be4028839b846c22dc82ab",
+  "server_ts": "2025-10-14T02:53:02.970+00:00",
+  "server_ts_ms": 1760410382970,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}
