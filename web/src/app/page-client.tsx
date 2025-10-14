@@ -1734,14 +1734,11 @@ export default function HeadCoachPage() {
         // Wait a moment for user switch to complete before ingesting data
         await new Promise(resolve => setTimeout(resolve, 300));
 
-        // NORTHSTAR PHASE 2: Silent programmatic ingestion of onboarding data
-        // Use ingestText instead of sendChat - this will:
-        // 1. Extract traits immediately without showing in transcript
-        // 2. Automatically rescore the user
-        // 3. Update RR by DNA and Unabridged panels
-        // 4. NOT generate any chat response or welcome message
+        // NORTHSTAR PHASE 2: Send onboarding data as a chat message
+        // This allows the Head Coach to respond naturally and welcome the user
+        // Traits will be extracted from the conversation automatically
 
-        // Format onboarding data as natural text for trait extraction
+        // Format onboarding data as natural text for Head Coach
         const onboardingParts = [];
         if (data.displayName) onboardingParts.push(`My name is ${data.displayName}`);
 
@@ -1763,35 +1760,33 @@ export default function HeadCoachPage() {
 
         const onboardingMessage = onboardingParts.join('. ') + '.';
 
-        // Silent ingestion - no chat, no welcome message, just trait extraction
+        // Send as chat message so Head Coach can respond naturally
         try {
-          const { ingestText } = await import('../lib/api');
+          const { sendChat } = await import('../lib/api');
 
-          const result = await ingestText({
+          // Send onboarding data as a user message to Head Coach
+          const result = await sendChat({
             userId: targetUserId,
+            persona: 'head_coach',
             text: onboardingMessage,
-            source: 'onboarding'
+            clientTs: Date.now()
           });
 
-          console.log('[Onboarding] Ingestion complete:', result);
+          console.log('[Onboarding] Chat message sent, HC responded:', result);
 
-          // Show simple welcome notice (no green bubble, no transcript message)
-          pushNotice(`Welcome, ${data.displayName || targetUserId}! Your profile has been created.`, 'success');
-
-          // Refresh panels immediately
+          // Refresh panels to show updated traits and HC response
           refreshAllPanels();
 
-          // IMPORTANT: Also refresh after a delay to ensure Core has finished writing
-          // and the panels can fetch the updated data
+          // Also refresh after a delay to ensure everything is loaded
           setTimeout(() => {
             console.log('[Onboarding] Delayed panel refresh');
             refreshAllPanels();
           }, 500);
 
-        } catch (ingestError) {
-          console.error('[Onboarding] Failed to ingest onboarding data:', ingestError);
+        } catch (chatError) {
+          console.error('[Onboarding] Failed to send onboarding chat:', chatError);
           // Non-fatal - user is created, just show warning
-          pushNotice(`Welcome, ${data.displayName || targetUserId}! (Profile data will be saved shortly)`, 'warning');
+          pushNotice(`Welcome, ${data.displayName || targetUserId}! (There was an issue connecting to your coach)`, 'warning');
           refreshAllPanels();
         }
 
