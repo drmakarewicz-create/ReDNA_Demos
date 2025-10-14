@@ -1130,6 +1130,21 @@ export default function HeadCoachPage() {
     []
   );
 
+  // Auto-refresh unabridged panel every 5 seconds to pick up chat ingestion updates
+  useEffect(() => {
+    if (!activeUser.trim()) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      loadUnabridged(activeUser);
+    }, 5000); // Refresh every 5 seconds
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [activeUser, loadUnabridged]);
+
   useEffect(() => {
     if (typeof window === 'undefined' || initialHydratedRef.current) {
       return;

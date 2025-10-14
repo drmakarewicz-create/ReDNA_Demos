@@ -24,5 +24,16 @@
     ],
     "status": "resolved",
     "last_updated": "2025-10-14T16:34:30+00:00"
+  },
+  "BasicDNA.Age": {
+    "value": {
+      "text": "50 years old"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T16:40:23+00:00"
   }
 }

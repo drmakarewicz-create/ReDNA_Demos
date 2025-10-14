@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest2",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I am 50 years old",
+  "assistant_text": "Happy birthday is not quite today, but close enough! What's one thing you're looking forward to in the next chapter of your life?",
+  "client_message_id": "016998ae-34e4-45f1-9042-3d6ce8a0bfaa",
+  "assistant_message_id": "chat-26aa631e395f45779ecb5da93d25a649",
+  "server_ts": "2025-10-14T16:40:39.135+00:00",
+  "server_ts_ms": 1760460039135,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

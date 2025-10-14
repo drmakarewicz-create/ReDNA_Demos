@@ -41,6 +41,19 @@
       },
       "source": "chat",
       "ts": "2025-10-14T16:29:59+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Age",
+      "confidence": 100,
+      "raw_text": "I am 50 years old",
+      "timestamp": "2025-10-14T16:40:17.599000+00:00",
+      "extraction_method": "llm",
+      "signal": "age: 50 years old",
+      "value": {
+        "text": "50 years old"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T16:40:23+00:00"
     }
   ]
 }
