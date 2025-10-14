@@ -1,8 +1,8 @@
 # ReDNA Implementation Status
 
-**Last Updated**: 2025-10-14 21:35 UTC
-**Phase**: 1 (Architectural Reliability)
-**Current Task**: Phase 1.2 (Dynamic HC Prompt Loader)
+**Last Updated**: 2025-10-14 22:45 UTC
+**Phase**: 1 (Architectural Reliability) — **COMPLETE** ✅
+**Next Phase**: 2 (Operational Integrity)
 
 ---
 
@@ -14,13 +14,14 @@
 
 ---
 
-## Current Sprint: Phase 1 — Architectural Reliability
+## 🎉 Phase 1 — Architectural Reliability (**COMPLETE**)
 
-### ✅ Completed
+### ✅ All Tasks Completed
 
 - [x] **Architecture Reality Check** — Comprehensive as-built analysis ([ARCHITECTURE_REALITY_CHECK.md](./ARCHITECTURE_REALITY_CHECK.md))
 - [x] **Master Plan Created** — Full roadmap with acceptance criteria ([Architecture_Reliability_Plan.md](./Architecture_Reliability_Plan.md))
-- [x] **Task 1.1: UCNRR AI Activation** (Claude) — **COMPLETE** ✅
+
+- [x] **Task 1.1: UCNRR AI Activation** (Claude) — ✅ **COMPLETE**
   - ✅ Created `prompts/ucn_rr_ai.md` with comprehensive system prompt (v1.0)
   - ✅ Added prompt loader with SHA256 hashing to UCNRR
   - ✅ Updated `/health` endpoint with prompt metadata
@@ -31,20 +32,29 @@
   - Commit: `adc2669` — feat(ucnrr): Phase 1.1 - UCNRR AI activation + endpoint alignment
   - **All acceptance criteria met**
 
-### 🚧 In Progress
+- [x] **Task 1.2: Dynamic HC Prompt Loader** (Claude) — ✅ **COMPLETE**
+  - ✅ Created `core/hc_prompt_loader.py` module with thread-safe loading
+  - ✅ Replaced hard-coded HC prompt with dynamic loader
+  - ✅ Added `hc_prompt_sha256` and `hc_prompt_version` to `/health` endpoint
+  - ✅ Added `rr_mode` to Core `/health` endpoint (online/fallback/unavailable)
+  - ✅ Implemented `/core/admin/reload_prompt` endpoint (dev-only, token-protected)
+  - ✅ Graceful fallback if prompt load fails
+  - ✅ Created comprehensive unit tests (6 tests, all passing)
+  - Commit: `eb04dbd` — feat(core): Phase 1.2 - Dynamic HC prompt loader with hot-reload
+  - **All acceptance criteria met**
 
-- [ ] **Task 1.2: Dynamic HC Prompt Loader** (Claude)
-  - Status: Ready to start
-  - Blocker: None
-
-### 📋 Pending (Phase 1)
-
-- [ ] **Task 1.3: Strict Validation Pipeline** (Claude)
-  - Implement fail-closed validation (400 on invalid evidence)
-  - Add `UCNRR_REQUIRED` mode (503 if UCNRR down)
-  - Return actionable 400 errors with suggestions
-  - Status: Blocked by Task 1.1, 1.2 completion
-  - Blocker: None
+- [x] **Task 1.3: Strict Validation Pipeline** (Claude) — ✅ **COMPLETE**
+  - ✅ Added `EVIDENCE_STRICT` env var (default: false for compatibility)
+  - ✅ Created `EvidenceValidationError` exception with actionable suggestions
+  - ✅ Strict mode validates trait_id, value presence, and value shape
+  - ✅ Returns HTTP 400 with error code, sample, and suggestions
+  - ✅ Added `UCNRR_REQUIRED` env var (default: false)
+  - ✅ Created `UCNRRRequiredError` exception for strict RR enforcement
+  - ✅ Returns HTTP 503 when UCNRR unavailable in required mode
+  - ✅ Permissive mode maintains legacy fallback behavior
+  - ✅ Created comprehensive unit tests (7 tests, all passing)
+  - Commit: `64810e9` — feat(core): Phase 1.3 - Strict validation pipeline + UCNRR required mode
+  - **All acceptance criteria met**
 
 ---
 
@@ -77,15 +87,27 @@
 
 ### 2025-10-14
 
-| Commit | Description | Files | Status |
-|--------|-------------|-------|--------|
-| `adc2669` | **Phase 1.1: UCNRR AI activation + endpoint alignment** | 7 files (docs, prompts, UCNRR) | ✅ **COMPLETE** |
-|  | - Created Architecture Reliability Plan & STATUS | `docs/Architecture_Reliability_Plan.md`, `docs/STATUS.md` | ✅ |
-|  | - Created UCNRR AI system prompt (v1.0) | `prompts/ucn_rr_ai.md` | ✅ |
-|  | - Added prompt loader with SHA256 to UCNRR | `UCN_RR_Demo/ucnrr_app.py` | ✅ |
-|  | - Implemented `/ucn/score` endpoint | `UCN_RR_Demo/ucnrr_app.py` | ✅ |
-|  | - Implemented `/ucnrr/selftest` endpoint | `UCN_RR_Demo/ucnrr_app.py` | ✅ |
-|  | - Created placeholder files (retention, curiosity) | policy.yaml, curiosity_queue.json | ✅ |
+| Commit | Description | Files Changed | Lines | Status |
+|--------|-------------|---------------|-------|--------|
+| `adc2669` | **Phase 1.1: UCNRR AI activation + endpoint alignment** | 7 files | +2067/-95 | ✅ Complete |
+|  | - Architecture Reliability Plan & STATUS docs | `docs/*.md` | | ✅ |
+|  | - UCNRR AI system prompt (v1.0) | `prompts/ucn_rr_ai.md` | | ✅ |
+|  | - UCNRR prompt loader with SHA256 | `UCN_RR_Demo/ucnrr_app.py` | | ✅ |
+|  | - `/ucn/score` and `/ucnrr/selftest` endpoints | `UCN_RR_Demo/ucnrr_app.py` | | ✅ |
+|  | - Placeholder files (retention, curiosity) | `*.yaml`, `*.json` | | ✅ |
+| `530242e` | docs: update STATUS.md with Phase 1.1 completion | 1 file | +21/-20 | ✅ Complete |
+| `eb04dbd` | **Phase 1.2: Dynamic HC prompt loader with hot-reload** | 3 files | +408/-58 | ✅ Complete |
+|  | - HC prompt loader module (thread-safe) | `core/hc_prompt_loader.py` | | ✅ |
+|  | - Dynamic prompt in Core API | `core/api.py` | | ✅ |
+|  | - `/health` with prompt SHA + rr_mode | `core/api.py` | | ✅ |
+|  | - `/core/admin/reload_prompt` endpoint | `core/api.py` | | ✅ |
+|  | - Comprehensive unit tests (6 tests) | `tests/test_hc_prompt_loader.py` | | ✅ |
+| `64810e9` | **Phase 1.3: Strict validation pipeline + UCNRR required mode** | 5 files | +404/-9 | ✅ Complete |
+|  | - EvidenceValidationError with suggestions | `core/ingest/evidence_schema.py` | | ✅ |
+|  | - Strict validation with EVIDENCE_STRICT | `core/ingest/pipeline.py` | | ✅ |
+|  | - UCNRRRequiredError for strict RR | `core/resolver/impl.py` | | ✅ |
+|  | - HTTP 400/503 error handling | `core/api.py` | | ✅ |
+|  | - Comprehensive unit tests (7 tests) | `tests/test_strict_validation.py` | | ✅ |
 
 ---
 
