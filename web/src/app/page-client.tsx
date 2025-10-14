@@ -1728,8 +1728,11 @@ export default function HeadCoachPage() {
         // Close wizard first
         setOnboardingWizardOpen(false);
 
-        // Switch to the newly created user
+        // Switch to the newly created user immediately (this triggers panel loading)
         queueActiveUserChange(targetUserId, data.displayName || targetUserId, { immediate: true, suppressNotice: true });
+
+        // Wait a moment for user switch to complete before ingesting data
+        await new Promise(resolve => setTimeout(resolve, 300));
 
         // NORTHSTAR PHASE 2: Silent programmatic ingestion of onboarding data
         // Use ingestText instead of sendChat - this will:
@@ -1741,9 +1744,21 @@ export default function HeadCoachPage() {
         // Format onboarding data as natural text for trait extraction
         const onboardingParts = [];
         if (data.displayName) onboardingParts.push(`My name is ${data.displayName}`);
-        if (data.basic_setup?.age) onboardingParts.push(`I am ${data.basic_setup.age} years old`);
+
+        // Age range (the wizard collects 'age_range', not 'age')
+        if (data.basic_setup?.age_range) {
+          onboardingParts.push(`My age range is ${data.basic_setup.age_range}`);
+        } else if (data.basic_setup?.age) {
+          onboardingParts.push(`I am ${data.basic_setup.age} years old`);
+        }
+
+        // Gender, orientation, language, relationship status
         if (data.basic_setup?.gender) onboardingParts.push(`My gender is ${data.basic_setup.gender}`);
         if (data.basic_setup?.orientation) onboardingParts.push(`My orientation is ${data.basic_setup.orientation}`);
+        if (data.basic_setup?.preferred_language) onboardingParts.push(`My preferred language is ${data.basic_setup.preferred_language}`);
+        if (data.basic_setup?.relationship_status) onboardingParts.push(`My relationship status is ${data.basic_setup.relationship_status}`);
+
+        // WYR choice
         if (data.wyr_answer?.selected_text) onboardingParts.push(`For the 'Would You Rather' question, I chose: ${data.wyr_answer.selected_text}`);
 
         const onboardingMessage = onboardingParts.join('. ') + '.';
@@ -1760,11 +1775,18 @@ export default function HeadCoachPage() {
 
           console.log('[Onboarding] Ingestion complete:', result);
 
-          // Refresh panels to show updated traits
-          refreshAllPanels();
-
           // Show simple welcome notice (no green bubble, no transcript message)
           pushNotice(`Welcome, ${data.displayName || targetUserId}! Your profile has been created.`, 'success');
+
+          // Refresh panels immediately
+          refreshAllPanels();
+
+          // IMPORTANT: Also refresh after a delay to ensure Core has finished writing
+          // and the panels can fetch the updated data
+          setTimeout(() => {
+            console.log('[Onboarding] Delayed panel refresh');
+            refreshAllPanels();
+          }, 500);
 
         } catch (ingestError) {
           console.error('[Onboarding] Failed to ingest onboarding data:', ingestError);
