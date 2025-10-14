@@ -1,0 +1,62 @@
+{
+  "items": [
+    {
+      "trait": "PaDNA.EyeDNA.Color",
+      "trait_id": "PaDNA.EyeDNA.Color",
+      "value": "Blue",
+      "ucn": 80.0,
+      "source": "test",
+      "persona": "photo",
+      "ts": "2025-10-06T14:40:00.417432+00:00",
+      "provenance": {
+        "source": "test",
+        "step": "soft-import",
+        "adapter": "json",
+        "mode": "json-import"
+      }
+    },
+    {
+      "trait": "PaDNA.EyeDNA.Color",
+      "trait_id": "PaDNA.EyeDNA.Color",
+      "value": "Blue",
+      "ucn": 80.0,
+      "source": "test",
+      "persona": "photo",
+      "ts": "2025-10-06T14:40:05.252616+00:00",
+      "provenance": {
+        "source": "test",
+        "step": "soft-import",
+        "adapter": "json",
+        "mode": "json-import"
+      }
+    }
+  ],
+  "by_trait": {
+    "PaDNA.EyeDNA.Color": [
+      {
+        "value": "Blue",
+        "ucn": 80.0,
+        "ts": "2025-10-06T14:40:00.417432+00:00",
+        "source": "test",
+        "provenance": {
+          "source": "test",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      },
+      {
+        "value": "Blue",
+        "ucn": 80.0,
+        "ts": "2025-10-06T14:40:05.252616+00:00",
+        "source": "test",
+        "provenance": {
+          "source": "test",
+          "step": "soft-import",
+          "adapter": "json",
+          "mode": "json-import"
+        }
+      }
+    ]
+  }
+}

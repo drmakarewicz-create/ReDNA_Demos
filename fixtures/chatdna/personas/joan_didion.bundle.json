@@ -1,0 +1,213 @@
+{
+  "user_id": "persona_joan_didion",
+  "profile": {
+    "label": "Joan Didion",
+    "source": "Published essays and journalism analysis (Slouching Towards Bethlehem, The White Album)",
+    "note": "Characterized by precise vocabulary, cool detachment, high metaphor density, fragmented sentences with controlled rhythm",
+    "embedding_model": "text-embedding-ada-002"
+  },
+  "paths": {
+    "LanguageStyleDNA.SentenceLengthDNA": {
+      "resolved_value": "mixed",
+      "ucn": 720,
+      "rr": 72,
+      "curiosity": 28,
+      "reasons": ["Alternates between terse fragments and longer analytical sentences", "Avg sentence length: 15-20 words", "Strategic variation for emphasis"],
+      "provenance": {
+        "source": "corpus_analysis",
+        "method": "nlp_sentence_parsing",
+        "evidence_refs": ["'Slouching Towards Bethlehem' structural analysis", "'The White Album' opening paragraphs"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.CadenceDNA": {
+      "resolved_value": "controlled",
+      "ucn": 810,
+      "rr": 81,
+      "curiosity": 19,
+      "reasons": ["Deliberate pacing with pauses", "Fragmented for effect", "Cool, measured rhythm"],
+      "provenance": {
+        "source": "literary_analysis",
+        "method": "prosody_analysis",
+        "evidence_refs": ["New Journalism style analysis", "Didion's characteristic 'controlled hysteria'"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.VocabularyDensityDNA": {
+      "resolved_value": "high",
+      "ucn": 840,
+      "rr": 84,
+      "curiosity": 16,
+      "reasons": ["Precise word choice", "High lexical diversity", "Sophisticated but accessible vocabulary"],
+      "provenance": {
+        "source": "lexical_analysis",
+        "method": "vocabulary_scoring",
+        "evidence_refs": ["Type-token ratio: 0.71"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.FormalityDNA": {
+      "resolved_value": "semi-formal",
+      "ucn": 760,
+      "rr": 76,
+      "curiosity": 24,
+      "reasons": ["Literary register", "Balanced between journalistic and literary", "Cool detachment"],
+      "provenance": {
+        "source": "formality_scoring",
+        "method": "register_analysis",
+        "evidence_refs": ["New Journalism formality patterns"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.HedgingPatternDNA": {
+      "resolved_value": "moderate",
+      "ucn": 730,
+      "rr": 73,
+      "curiosity": 27,
+      "reasons": ["Strategic use of 'seems', 'perhaps'", "Epistemic uncertainty for effect", "Controlled ambiguity"],
+      "provenance": {
+        "source": "hedging_analysis",
+        "method": "marker_frequency",
+        "evidence_refs": ["Hedging frequency: 0.06 per 100 words"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.MetaphorDensityDNA": {
+      "resolved_value": "high",
+      "ucn": 880,
+      "rr": 88,
+      "curiosity": 12,
+      "reasons": ["Rich figurative language", "Extended metaphors", "Cultural and historical allusions", "Visual imagery"],
+      "provenance": {
+        "source": "literary_analysis",
+        "method": "metaphor_extraction",
+        "evidence_refs": ["Metaphor count: 4.8 per 1000 words", "'We tell ourselves stories in order to live' metaphorical framework"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.FragmentationDNA": {
+      "resolved_value": "frequent",
+      "ucn": 850,
+      "rr": 85,
+      "curiosity": 15,
+      "reasons": ["Sentence fragments for emphasis", "Controlled syntactic breaks", "Mimics thought patterns"],
+      "provenance": {
+        "source": "syntactic_analysis",
+        "method": "fragment_detection",
+        "evidence_refs": ["Fragment frequency: high in opening paragraphs"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.OpennessDNA": {
+      "resolved_value": 80,
+      "ucn": 670,
+      "rr": 67,
+      "curiosity": 33,
+      "reasons": ["Experimental literary forms", "Cultural observer", "Intellectual curiosity"],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": ["New Journalism pioneer", "Wide-ranging subject matter"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.NeuroticismDNA": {
+      "resolved_value": 55,
+      "ucn": 580,
+      "rr": 58,
+      "curiosity": 42,
+      "reasons": ["Acknowledgment of anxiety", "Self-examination", "Controlled emotional expression"],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": ["'The White Album' self-disclosure", "Essays on personal breakdown"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "SocDNA.InteractionStyleDNA.DirectnessDNA": {
+      "resolved_value": "direct",
+      "ucn": 790,
+      "rr": 79,
+      "curiosity": 21,
+      "reasons": ["Unflinching observations", "Minimal social cushioning", "Direct cultural critique"],
+      "provenance": {
+        "source": "discourse_analysis",
+        "method": "directness_scoring",
+        "evidence_refs": ["'Slouching Towards Bethlehem' social commentary"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "SocDNA.InteractionStyleDNA.EmpathyToneDNA": {
+      "resolved_value": "cool",
+      "ucn": 820,
+      "rr": 82,
+      "curiosity": 18,
+      "reasons": ["Detached observation", "Emotional restraint", "Clinical precision", "Observer stance"],
+      "provenance": {
+        "source": "empathy_analysis",
+        "method": "tone_scoring",
+        "evidence_refs": ["Critics note 'cool detachment'", "'I am what I am. To look for reasons is beside the point'"],
+        "timestamp": "2025-10-07T22:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    }
+  },
+  "corpus_samples": [
+    {
+      "text": "We tell ourselves stories in order to live. Or at least we do for a while.",
+      "embedding": [0.025, -0.018, 0.041],
+      "metadata": {
+        "source_work": "The White Album",
+        "genre": "essay"
+      }
+    },
+    {
+      "text": "I think we are well advised to keep on nodding terms with the people we used to be.",
+      "embedding": [0.031, -0.012, 0.038],
+      "metadata": {
+        "source_work": "Slouching Towards Bethlehem",
+        "genre": "essay"
+      }
+    },
+    {
+      "text": "The center was not holding. It was a country of bankruptcy notices.",
+      "embedding": [0.022, -0.025, 0.035],
+      "metadata": {
+        "source_work": "Slouching Towards Bethlehem",
+        "genre": "essay"
+      }
+    }
+  ]
+}

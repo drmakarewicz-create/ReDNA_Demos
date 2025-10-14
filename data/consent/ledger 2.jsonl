@@ -1,0 +1,1 @@
+{"event_id":"7dc3a019-f0fa-48c8-bf75-bb5f44063744","timestamp":"2025-10-08T21:26:20.503506Z","event_type":"grant","user_id":"TEST","cap_id":"0bce735b-3d2c-4b77-9d6a-77e3bc8f2ba2","grantee_id":"career_coach","purpose":"resume_builder","scopes":["read:SkillDNA"],"ttl":"PT1H","reason":null,"metadata":null}

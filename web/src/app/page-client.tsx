@@ -1725,72 +1725,53 @@ export default function HeadCoachPage() {
           throw new Error('No userId provided in onboarding data');
         }
 
+        // Close wizard first
+        setOnboardingWizardOpen(false);
+
         // Switch to the newly created user
         queueActiveUserChange(targetUserId, data.displayName || targetUserId, { immediate: true, suppressNotice: true });
 
-        // NORTHSTAR PHASE 2: Use unified Core ingestion with fallback
-        try {
-          // Import dynamically to avoid top-level circular deps
-          const { formatOnboardingPayload, ingestToCore } = await import('../lib/hcIngestor');
-          const { refreshSnapshot } = await import('../lib/coreSnapshot');
+        // NORTHSTAR PHASE 2: Silent programmatic ingestion of onboarding data
+        // Use ingestText instead of sendChat - this will:
+        // 1. Extract traits immediately without showing in transcript
+        // 2. Automatically rescore the user
+        // 3. Update RR by DNA and Unabridged panels
+        // 4. NOT generate any chat response or welcome message
 
-          // Format onboarding data as structured payload
-          const payload = formatOnboardingPayload({
-            name: data.displayName || targetUserId,
-            ...data.basic_setup,
-            wyrdChoice: data.wyr_answer?.selected_text,
-            headCoachName: data.head_coach_name
+        // Format onboarding data as natural text for trait extraction
+        const onboardingParts = [];
+        if (data.displayName) onboardingParts.push(`My name is ${data.displayName}`);
+        if (data.basic_setup?.age) onboardingParts.push(`I am ${data.basic_setup.age} years old`);
+        if (data.basic_setup?.gender) onboardingParts.push(`My gender is ${data.basic_setup.gender}`);
+        if (data.basic_setup?.orientation) onboardingParts.push(`My orientation is ${data.basic_setup.orientation}`);
+        if (data.wyr_answer?.selected_text) onboardingParts.push(`For the 'Would You Rather' question, I chose: ${data.wyr_answer.selected_text}`);
+
+        const onboardingMessage = onboardingParts.join('. ') + '.';
+
+        // Silent ingestion - no chat, no welcome message, just trait extraction
+        try {
+          const { ingestText } = await import('../lib/api');
+
+          const result = await ingestText({
+            userId: targetUserId,
+            text: onboardingMessage,
+            source: 'onboarding'
           });
 
-          // Show brief toast while processing
-          pushNotice('Analyzing in Core…', 'info');
+          console.log('[Onboarding] Ingestion complete:', result);
 
-          // Ingest to Core → UCN/RR → normalized traits
-          const ingestionResult = await ingestToCore(targetUserId, payload, 'onboarding');
+          // Refresh panels to show updated traits
+          refreshAllPanels();
 
-          if (ingestionResult.success) {
-            // Refresh snapshot to get updated profile
-            await refreshSnapshot(targetUserId);
-          } else {
-            // Core ingestion failed - fall back to legacy endpoint
-            console.warn('[Northstar] Core ingestion failed, using fallback:', ingestionResult.error);
-            const response = await submitOnboardingWizardData(targetUserId, data);
-            if (!response.ok) {
-              throw new Error('Both Core ingestion and fallback failed');
-            }
-          }
-        } catch (coreError) {
-          // If Core system has any issues, fall back to legacy endpoint
-          console.warn('[Northstar] Core ingestion error, using legacy fallback:', coreError);
-          const response = await submitOnboardingWizardData(targetUserId, data);
-          if (!response.ok) {
-            throw new Error('Failed to save onboarding data');
-          }
+          // Show simple welcome notice (no green bubble, no transcript message)
+          pushNotice(`Welcome, ${data.displayName || targetUserId}! Your profile has been created.`, 'success');
+
+        } catch (ingestError) {
+          console.error('[Onboarding] Failed to ingest onboarding data:', ingestError);
+          // Non-fatal - user is created, just show warning
+          pushNotice(`Welcome, ${data.displayName || targetUserId}! (Profile data will be saved shortly)`, 'warning');
+          refreshAllPanels();
         }
-
-        // NORTHSTAR PHASE 2: Set flag for first-message experience
-        if (typeof window !== 'undefined') {
-          window.localStorage.setItem(`northstar_just_onboarded_${targetUserId}`, 'true');
-        }
-
-        // Close wizard and show success with context-aware message
-        setOnboardingWizardOpen(false);
-
-        // NORTHSTAR PHASE 2: Context-aware first message (longer duration)
-        const welcomeName = data.displayName || targetUserId;
-        const wyrChoice = data.wyr_answer?.selected_text;
-        const contextMsg = wyrChoice
-          ? `Welcome, ${welcomeName}! You chose "${wyrChoice}". Your profile is being built - start chatting to help me learn more about you.`
-          : `Welcome, ${welcomeName}! Profile created. Start chatting to help me learn about you.`;
-
-        // Show welcome message for longer (10 seconds instead of default)
-        pushNotice(contextMsg, 'success');
-
-        // Also log to console for debugging
-        console.log('[Northstar] Onboarding complete for:', targetUserId, 'WYR choice:', wyrChoice);
-
-        // Trigger panel refreshes to show new data
-        refreshAllPanels();
 
       } catch (err) {
         console.error('Onboarding submission error:', err);
@@ -1798,7 +1779,7 @@ export default function HeadCoachPage() {
         pushNotice(message, 'error');
       }
     },
-    [pushNotice, refreshAllPanels, queueActiveUserChange]
+    [pushNotice, refreshAllPanels, queueActiveUserChange, isApiError]
   );
 
 

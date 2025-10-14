@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I want to switch to the career coach",
+  "assistant_text": "You're switching gears to focus on the Career Coach again! What specific areas of your career are you hoping to improve or explore with their guidance? \n\nI'll send a note to our Career Coach, and they'll be in touch soon.",
+  "client_message_id": "d777c10b-5a2e-4d32-97a5-7afd215b9605",
+  "assistant_message_id": "chat-97a2d91adb104b8da677950dcb8dc457",
+  "server_ts": "2025-10-07T01:46:46.601+00:00",
+  "server_ts_ms": 1759801606601,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

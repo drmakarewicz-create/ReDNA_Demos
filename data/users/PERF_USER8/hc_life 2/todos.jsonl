@@ -1,0 +1,2 @@
+{"id": "td_c646c78f", "text": "Quick task", "when": "today", "priority": 0.6, "status": "done", "goal_id": null, "project_id": null, "tags": ["test"], "metadata": {}, "created_at": "2025-10-11T05:03:38.293753+00:00", "updated_at": "2025-10-11T05:04:03.137785+00:00", "scheduled_for": null}
+{"id": "td_bad6063a", "text": "Quick task", "when": "today", "priority": 0.6, "status": "open", "goal_id": null, "project_id": null, "tags": ["test"], "metadata": {}, "created_at": "2025-10-11T05:04:03.137579+00:00", "updated_at": "2025-10-11T05:04:03.137579+00:00", "scheduled_for": null}

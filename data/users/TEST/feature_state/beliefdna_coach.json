@@ -1,0 +1,11 @@
+{
+  "coach_id": "beliefdna_coach",
+  "user_id": "TEST",
+  "version": "1.0",
+  "updated_at": "2025-10-09T18:52:00Z",
+  "values": {
+    "tone": "Analytical",
+    "creativity": 60,
+    "insights_enabled": false
+  }
+}

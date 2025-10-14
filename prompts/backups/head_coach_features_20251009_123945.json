@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "showInUI": true,
+  "panes": [
+    {
+      "title": "Awareness Level",
+      "type": "meter",
+      "path": "awareness_score",
+      "min": 0,
+      "max": 100
+    }
+  ]
+}

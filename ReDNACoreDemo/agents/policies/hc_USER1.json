@@ -1,0 +1,50 @@
+{
+  "user_id": "USER1",
+  "agent_id": "hc_USER1",
+  "autonomy": "auto",
+  "quotas": {
+    "jobs_per_day": 50
+  },
+  "permissions": {
+    "namespaces": [
+      "SkillDNA",
+      "Career",
+      "Core"
+    ],
+    "sensitive": [
+      "PsyDNA",
+      "PaDNA"
+    ]
+  },
+  "escalation": {
+    "manual_review": [
+      "core.refinement.resolve"
+    ],
+    "notify": [
+      "sensitive.read"
+    ]
+  },
+  "features": {
+    "automation": {
+      "enabled": true,
+      "mode": "auto"
+    },
+    "self_improvement": {
+      "trivial_auto_apply": true
+    },
+    "refinement": {
+      "auto_accept_threshold": 0.75,
+      "max_risk": "low"
+    },
+    "consent": {
+      "fail_closed_sensitive": true
+    }
+  },
+  "rsc_enabled": true,
+  "rsc_partners_allow": [
+    "hc_USER2"
+  ],
+  "rsc_partners_deny": [
+    "hc_USER2"
+  ]
+}

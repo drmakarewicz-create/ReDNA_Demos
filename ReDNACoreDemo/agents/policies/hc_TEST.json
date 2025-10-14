@@ -1,0 +1,31 @@
+{
+  "user_id": "TEST",
+  "agent_id": "hc_TEST",
+  "autonomy": null,
+  "quotas": {
+    "jobs_per_day": 50
+  },
+  "permissions": {
+    "namespaces": [
+      "SkillDNA",
+      "Career",
+      "Core"
+    ],
+    "sensitive": [
+      "PsyDNA",
+      "PaDNA"
+    ]
+  },
+  "escalation": {
+    "manual_review": [
+      "core.refinement.resolve"
+    ],
+    "notify": [
+      "sensitive.read"
+    ]
+  },
+  "features": {},
+  "rsc_enabled": false,
+  "rsc_partners_allow": [],
+  "rsc_partners_deny": []
+}

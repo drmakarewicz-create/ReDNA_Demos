@@ -1,0 +1,9 @@
+{
+  "coach_id": "onboarding_coach",
+  "label": "Onboarding Coach",
+  "purged_at": "2025-10-09T15:24:07.217713",
+  "reason": "Onboarding does not actually use a coach to complete the onboarding wizard",
+  "original_path": "prompts/onboarding_ai.md",
+  "references_found": 1,
+  "forced": true
+}

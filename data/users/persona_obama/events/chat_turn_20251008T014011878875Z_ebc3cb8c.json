@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "persona_obama",
+  "persona": "head coach",
+  "persona_label": "ChatDNA Coach",
+  "user_text": "Are you nice?",
+  "assistant_text": "I logged that for the Head Coach board. You mentioned 'Are you nice'. Building on what we discussed earlier, Let's turn it into one concrete action to keep momentum going.",
+  "client_message_id": "02720968-f7d9-42ce-babc-75500bfaeab3",
+  "assistant_message_id": "chat-1b17675edf67477f806e289aebd58f6e",
+  "server_ts": "2025-10-08T01:40:11.878+00:00",
+  "server_ts_ms": 1759887611878,
+  "provider": "stub",
+  "source": "ui_chat_turn"
+}

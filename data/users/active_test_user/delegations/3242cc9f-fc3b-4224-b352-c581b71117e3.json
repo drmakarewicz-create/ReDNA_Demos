@@ -1,0 +1,12 @@
+{
+  "delegation_id": "3242cc9f-fc3b-4224-b352-c581b71117e3",
+  "coach": "photo_coach",
+  "user_id": "active_test_user",
+  "curiosity_targets": [
+    "PaDNA.HairDNA.Color"
+  ],
+  "context": {},
+  "status": "pending",
+  "created_at": "2025-10-11T13:15:21.601262+00:00",
+  "updated_at": "2025-10-11T13:15:21.601262+00:00"
+}

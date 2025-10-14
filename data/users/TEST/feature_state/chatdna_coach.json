@@ -1,0 +1,11 @@
+{
+  "coach_id": "chatdna_coach",
+  "user_id": "TEST",
+  "version": "1.0",
+  "updated_at": "2025-10-09T18:50:00Z",
+  "values": {
+    "tone": "Empathetic",
+    "creativity": 75,
+    "insights_enabled": true
+  }
+}

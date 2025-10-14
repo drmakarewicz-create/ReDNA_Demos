@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="1200" height="720" fill="#FFFFFF" />
+<text x="600.0" y="40.0" fill="#0B1B34" font-size="32" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track-Based Development Philosophy</text>
+<text x="600.0" y="80.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Parallel execution with milestone convergence</text>
+<line x1="100.0" y1="90.0" x2="1100.0" y2="90.0" stroke="#53627C" stroke-width="3.0" />
+<line x1="200.0" y1="80.0" x2="200.0" y2="100.0" stroke="#53627C" stroke-width="2.0" />
+<text x="200.0" y="56.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Month 1</text>
+<line x1="200.0" y1="100.0" x2="200.0" y2="580.0" stroke="#CBD2E1" stroke-width="1.0" stroke-dasharray="6,8" />
+<line x1="400.0" y1="80.0" x2="400.0" y2="100.0" stroke="#53627C" stroke-width="2.0" />
+<text x="400.0" y="56.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M1 (Month 3)</text>
+<line x1="400.0" y1="100.0" x2="400.0" y2="580.0" stroke="#CBD2E1" stroke-width="1.0" stroke-dasharray="6,8" />
+<line x1="650.0" y1="80.0" x2="650.0" y2="100.0" stroke="#53627C" stroke-width="2.0" />
+<text x="650.0" y="56.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M2 (Month 6)</text>
+<line x1="650.0" y1="100.0" x2="650.0" y2="580.0" stroke="#CBD2E1" stroke-width="1.0" stroke-dasharray="6,8" />
+<line x1="950.0" y1="80.0" x2="950.0" y2="100.0" stroke="#53627C" stroke-width="2.0" />
+<text x="950.0" y="56.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M3 (Month 12)</text>
+<line x1="950.0" y1="100.0" x2="950.0" y2="580.0" stroke="#CBD2E1" stroke-width="1.0" stroke-dasharray="6,8" />
+<rect x="110.0" y="130.0" width="230.0" height="450.0" rx="12.0" ry="12.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#E0E5EE" stroke-width="2.0" />
+<text x="225.0" y="146.0" fill="#1F77B4" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 1: Core Intelligence</text>
+<rect x="262.5" y="250.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#1F77B4" stroke-width="3.0" />
+<text x="350.0" y="266.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M1: Ontology V6<tspan x="350.0" dy="23.4">bootstrapped</tspan></text>
+<rect x="562.5" y="360.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#1F77B4" stroke-width="3.0" />
+<text x="650.0" y="376.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M2: Inference V3<tspan x="650.0" dy="23.4">live</tspan></text>
+<rect x="812.5" y="470.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#1F77B4" stroke-width="3.0" />
+<text x="900.0" y="486.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M3: Adaptive<tspan x="900.0" dy="23.4">analytics + RL</tspan><tspan x="900.0" dy="23.4">rollout</tspan></text>
+<rect x="360.0" y="130.0" width="230.0" height="450.0" rx="12.0" ry="12.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#E0E5EE" stroke-width="2.0" />
+<text x="475.0" y="146.0" fill="#FF7F0E" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 2: Human Interface</text>
+<rect x="232.5" y="250.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="3.0" />
+<text x="320.0" y="266.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M1: Life OS hub<tspan x="320.0" dy="23.4">beta</tspan></text>
+<rect x="532.5" y="360.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="3.0" />
+<text x="620.0" y="376.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M2: Coach catalog<tspan x="620.0" dy="23.4">AI handoffs</tspan></text>
+<rect x="792.5" y="470.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="3.0" />
+<text x="880.0" y="486.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M3: UX polish +<tspan x="880.0" dy="23.4">mobile ready</tspan></text>
+<rect x="610.0" y="130.0" width="230.0" height="450.0" rx="12.0" ry="12.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#E0E5EE" stroke-width="2.0" />
+<text x="725.0" y="146.0" fill="#2CA02C" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 3: Ecosystem &amp; Ethics</text>
+<rect x="292.5" y="250.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#2CA02C" stroke-width="3.0" />
+<text x="380.0" y="266.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M1: Consent<tspan x="380.0" dy="23.4">guardian</tspan><tspan x="380.0" dy="23.4">foundation</tspan></text>
+<rect x="612.5" y="360.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#2CA02C" stroke-width="3.0" />
+<text x="700.0" y="376.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M2: Collaborative<tspan x="700.0" dy="23.4">intelligence pilot</tspan></text>
+<rect x="832.5" y="470.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#2CA02C" stroke-width="3.0" />
+<text x="920.0" y="486.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M3: Ethics review<tspan x="920.0" dy="23.4">+ transparency UI</tspan></text>
+<rect x="860.0" y="130.0" width="230.0" height="450.0" rx="12.0" ry="12.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#E0E5EE" stroke-width="2.0" />
+<text x="975.0" y="146.0" fill="#9467BD" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 4: Maintenance &amp; Operations</text>
+<rect x="262.5" y="250.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#9467BD" stroke-width="3.0" />
+<text x="350.0" y="266.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M1: DevX platform<tspan x="350.0" dy="23.4">launch</tspan></text>
+<rect x="592.5" y="360.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#9467BD" stroke-width="3.0" />
+<text x="680.0" y="376.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M2: Observability<tspan x="680.0" dy="23.4">&amp; reliability SLAs</tspan></text>
+<rect x="862.5" y="470.0" width="175.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#9467BD" stroke-width="3.0" />
+<text x="950.0" y="486.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M3: Autonomous<tspan x="950.0" dy="23.4">ops + chaos drills</tspan></text>
+<text x="600.0" y="600.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Tracks progress independently but sync at each milestone integration checkpoint.</text>
+</svg>

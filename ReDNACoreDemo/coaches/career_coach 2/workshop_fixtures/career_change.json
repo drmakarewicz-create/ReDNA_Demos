@@ -1,0 +1,164 @@
+{
+  "fixture_name": "career_change",
+  "description": "User considering major career transition from software engineer to product manager",
+  "intent": "career_change",
+  "user_context": {
+    "current_role": "Senior Software Engineer",
+    "target_role": "Product Manager",
+    "years_experience": 8,
+    "satisfaction_score": 62.0
+  },
+  "skill_map_data": {
+    "high_curiosity_skills": [
+      {
+        "path": "SkillDNA.ProductManagement",
+        "name": "ProductManagement",
+        "value": null,
+        "rr": 15.0,
+        "curiosity": 85.0,
+        "ucn": 820.0
+      },
+      {
+        "path": "SkillDNA.UserResearch",
+        "name": "UserResearch",
+        "value": null,
+        "rr": 25.0,
+        "curiosity": 78.0,
+        "ucn": 750.0
+      },
+      {
+        "path": "SkillDNA.Roadmapping",
+        "name": "Roadmapping",
+        "value": null,
+        "rr": 30.0,
+        "curiosity": 72.0,
+        "ucn": 680.0
+      },
+      {
+        "path": "SkillDNA.StakeholderManagement",
+        "name": "StakeholderManagement",
+        "value": null,
+        "rr": 35.0,
+        "curiosity": 68.0,
+        "ucn": 640.0
+      }
+    ],
+    "well_resolved_skills": [
+      {
+        "path": "SkillDNA.Python",
+        "name": "Python",
+        "value": "expert",
+        "rr": 92.0,
+        "curiosity": 15.0,
+        "ucn": 150.0
+      },
+      {
+        "path": "SkillDNA.JavaScript",
+        "name": "JavaScript",
+        "value": "advanced",
+        "rr": 88.0,
+        "curiosity": 20.0,
+        "ucn": 200.0
+      },
+      {
+        "path": "SkillDNA.SystemDesign",
+        "name": "SystemDesign",
+        "value": "advanced",
+        "rr": 85.0,
+        "curiosity": 22.0,
+        "ucn": 220.0
+      }
+    ],
+    "total_skills": 18,
+    "avg_skill_rr": 64.5,
+    "skills_needing_attention": 4
+  },
+  "career_dashboard_data": {
+    "satisfaction_score": 62.0,
+    "skill_distribution": {
+      "technical": 12,
+      "leadership": 3,
+      "product": 2,
+      "design": 1
+    },
+    "career_health": {
+      "growth_trajectory": "plateauing",
+      "skill_diversity": 0.65,
+      "market_alignment": 0.78
+    },
+    "recent_achievements": [
+      "Led architecture redesign for payment system",
+      "Mentored 2 junior engineers",
+      "Completed AWS Solutions Architect certification"
+    ]
+  },
+  "transition_planner_data": {
+    "current_role": "Senior Software Engineer",
+    "target_role": "Product Manager",
+    "feasibility_score": 72.0,
+    "transition_timeline": "12-18 months",
+    "critical_gaps": [
+      {
+        "skill": "Product Strategy",
+        "current_level": "beginner",
+        "required_level": "intermediate",
+        "priority": "critical",
+        "estimated_time": "6 months"
+      },
+      {
+        "skill": "User Research",
+        "current_level": "novice",
+        "required_level": "intermediate",
+        "priority": "high",
+        "estimated_time": "4 months"
+      },
+      {
+        "skill": "Data Analysis",
+        "current_level": "intermediate",
+        "required_level": "advanced",
+        "priority": "medium",
+        "estimated_time": "3 months"
+      }
+    ],
+    "transferable_skills": [
+      "Technical Leadership",
+      "System Thinking",
+      "Cross-functional Communication",
+      "Problem Solving"
+    ],
+    "ai_suggestions": [
+      {
+        "type": "learning_path",
+        "title": "Product Management Fundamentals",
+        "description": "Start with Reforge's Product Strategy course, then apply learnings through side projects",
+        "confidence": 0.85,
+        "rationale": "Your strong technical background provides a foundation for technical PM roles"
+      },
+      {
+        "type": "networking",
+        "title": "Connect with PMs in your company",
+        "description": "Shadow product managers on your team for 2-3 sprint cycles to understand daily workflows",
+        "confidence": 0.90,
+        "rationale": "Internal transitions have higher success rates and leverage existing relationships"
+      },
+      {
+        "type": "project",
+        "title": "Lead a feature from concept to launch",
+        "description": "Volunteer to own a small feature end-to-end, including user research and metrics definition",
+        "confidence": 0.88,
+        "rationale": "Hands-on experience will provide concrete examples for PM interviews"
+      }
+    ]
+  },
+  "rr_data": {
+    "SkillDNA": 64.5,
+    "ProfDNA": 58.0,
+    "BehDNA.ProductivityWorkflowDNA": 72.0,
+    "PsyDNA.MotivationDNA": 65.0
+  },
+  "curiosity_data": {
+    "SkillDNA": 68.0,
+    "ProfDNA": 75.0,
+    "BehDNA.ProductivityWorkflowDNA": 45.0
+  }
+}

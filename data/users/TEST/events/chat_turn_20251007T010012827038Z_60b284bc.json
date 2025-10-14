@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Can you switch to the personality test coach",
+  "assistant_text": "Sorry, but we didn't discuss a coach earlier. If you'd like, I can connect you with our Relationship Coach instead? They're great at helping people navigate complex relationships.",
+  "client_message_id": "441304c0-87a3-4ad3-85a1-f1a89ab3576e",
+  "assistant_message_id": "chat-98b442cbd3c5471c9ee37c40a587fced",
+  "server_ts": "2025-10-07T01:00:12.827+00:00",
+  "server_ts_ms": 1759798812827,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

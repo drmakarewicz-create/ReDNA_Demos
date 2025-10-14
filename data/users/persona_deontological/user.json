@@ -1,0 +1,12 @@
+{
+  "user_id": "persona_deontological",
+  "profile": {
+    "label": "Deontological Ethicist",
+    "source": "Philosophical analysis of Kantian ethics (Kant, Korsgaard, O'Neill)",
+    "note": "Duty-based, categorical imperative, rights and obligations, rule-following",
+    "embedding_model": "text-embedding-ada-002"
+  },
+  "created_at": "2025-10-07T20:50:02.801445",
+  "source": "style_bundle_ingestion",
+  "bundle_path": "/Users/davidmakarewicz/Documents/ReDNA_Demos/fixtures/beliefdna/personas/deontological.bundle.json"
+}

@@ -1,0 +1,106 @@
+[
+  {
+    "capability_id": "6246d01345ca4051bbe0d4eb50cb40bc",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjXzEwLTEtdGVzdCIsImV4cCI6IjIwMjUtMTAtMTJUMTQ6NTY6MTQuODA2Mzc4WiIsImlzc3VlZF9hdCI6IjIwMjUtMTAtMTJUMTQ6NTE6MTQuODA2Mzc4WiIsIm1ldGFkYXRhIjp7ImNhcGFiaWxpdHlfaWQiOiI2MjQ2ZDAxMzQ1Y2E0MDUxYmJlMGQ0ZWI1MGNiNDBiYyIsImlzc3VlZF9ieSI6ImRldnhfYXBpIiwicmVxdWVzdGVkX2J5IjoiZGV2eF9hcGkifSwic2NvcGUiOiJjb3JlLmFnZW50LmNvbmZpZyIsInVzZXJfaWQiOiIxMC0xLXRlc3QifQ.PDa2xQYpFOTp2wSXrcMGDLT1QDwbSNG9AXRBagtD6do",
+    "payload": {
+      "agent": "hc_10-1-test",
+      "scope": "core.agent.config",
+      "exp": "2025-10-12T14:56:14.806378Z",
+      "issued_at": "2025-10-12T14:51:14.806378Z",
+      "user_id": "10-1-test",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "6246d01345ca4051bbe0d4eb50cb40bc"
+      }
+    },
+    "issued_at": "2025-10-12T14:51:14.806378Z",
+    "expires_at": "2025-10-12T14:56:14.806378Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "6246d01345ca4051bbe0d4eb50cb40bc"
+    }
+  },
+  {
+    "capability_id": "9ab7a30e366146d9a17fa5352540f88b",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjXzEwLTEtdGVzdCIsImV4cCI6IjIwMjUtMTAtMTJUMTQ6NTY6MTQuODA4MzU0WiIsImlzc3VlZF9hdCI6IjIwMjUtMTAtMTJUMTQ6NTE6MTQuODA4MzU0WiIsIm1ldGFkYXRhIjp7ImNhcGFiaWxpdHlfaWQiOiI5YWI3YTMwZTM2NjE0NmQ5YTE3ZmE1MzUyNTQwZjg4YiIsImlzc3VlZF9ieSI6ImRldnhfYXBpIiwicmVxdWVzdGVkX2J5IjoiZGV2eF9hcGkifSwic2NvcGUiOiJjb3JlLmFnZW50LmNvbmZpZyIsInVzZXJfaWQiOiIxMC0xLXRlc3QifQ.o7ejonBA1BOaMpFlvTx5JNe-h2LdL-VChXt1ClIO1mo",
+    "payload": {
+      "agent": "hc_10-1-test",
+      "scope": "core.agent.config",
+      "exp": "2025-10-12T14:56:14.808354Z",
+      "issued_at": "2025-10-12T14:51:14.808354Z",
+      "user_id": "10-1-test",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "9ab7a30e366146d9a17fa5352540f88b"
+      }
+    },
+    "issued_at": "2025-10-12T14:51:14.808354Z",
+    "expires_at": "2025-10-12T14:56:14.808354Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "9ab7a30e366146d9a17fa5352540f88b"
+    }
+  },
+  {
+    "capability_id": "dec09c66b50a4415aa05a2bb1f273d80",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjXzEwLTEtdGVzdCIsImV4cCI6IjIwMjUtMTAtMTJUMTQ6NTY6MTQuODA4ODY5WiIsImlzc3VlZF9hdCI6IjIwMjUtMTAtMTJUMTQ6NTE6MTQuODA4ODY5WiIsIm1ldGFkYXRhIjp7ImNhcGFiaWxpdHlfaWQiOiJkZWMwOWM2NmI1MGE0NDE1YWEwNWEyYmIxZjI3M2Q4MCIsImlzc3VlZF9ieSI6ImRldnhfYXBpIiwicmVxdWVzdGVkX2J5IjoiZGV2eF9hcGkifSwic2NvcGUiOiJjb3JlLmFnZW50LmNvbmZpZyIsInVzZXJfaWQiOiIxMC0xLXRlc3QifQ.1AvvStdzskpzwm7E1Tjyel4B3nxadlDdOH6_5866I1M",
+    "payload": {
+      "agent": "hc_10-1-test",
+      "scope": "core.agent.config",
+      "exp": "2025-10-12T14:56:14.808869Z",
+      "issued_at": "2025-10-12T14:51:14.808869Z",
+      "user_id": "10-1-test",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "dec09c66b50a4415aa05a2bb1f273d80"
+      }
+    },
+    "issued_at": "2025-10-12T14:51:14.808869Z",
+    "expires_at": "2025-10-12T14:56:14.808869Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "dec09c66b50a4415aa05a2bb1f273d80"
+    }
+  },
+  {
+    "capability_id": "d36664cf0c9449b788790d12747770be",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjXzEwLTEtdGVzdCIsImV4cCI6IjIwMjUtMTAtMTJUMTQ6NTY6MTQuODA5MzEzWiIsImlzc3VlZF9hdCI6IjIwMjUtMTAtMTJUMTQ6NTE6MTQuODA5MzEzWiIsIm1ldGFkYXRhIjp7ImNhcGFiaWxpdHlfaWQiOiJkMzY2NjRjZjBjOTQ0OWI3ODg3OTBkMTI3NDc3NzBiZSIsImlzc3VlZF9ieSI6ImRldnhfYXBpIiwicmVxdWVzdGVkX2J5IjoiZGV2eF9hcGkifSwic2NvcGUiOiJjb3JlLmFnZW50LmNvbmZpZyIsInVzZXJfaWQiOiIxMC0xLXRlc3QifQ.3boFxDkHQczRN7EuetxX4O5s2D0NIB8-gQjcQ6DOI-g",
+    "payload": {
+      "agent": "hc_10-1-test",
+      "scope": "core.agent.config",
+      "exp": "2025-10-12T14:56:14.809313Z",
+      "issued_at": "2025-10-12T14:51:14.809313Z",
+      "user_id": "10-1-test",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "d36664cf0c9449b788790d12747770be"
+      }
+    },
+    "issued_at": "2025-10-12T14:51:14.809313Z",
+    "expires_at": "2025-10-12T14:56:14.809313Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "d36664cf0c9449b788790d12747770be"
+    }
+  }
+]

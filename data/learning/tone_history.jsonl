@@ -1,0 +1,10 @@
+{"ts": "2025-10-10T21:50:00.765992+00:00", "user_id": "USER_DEMO3", "tone_score": 0.3, "formality_score": 0.4, "empathy_cue": "low"}
+{"ts": "2025-10-10T23:50:00.765996+00:00", "user_id": "USER_DEMO3", "tone_score": 0.5, "formality_score": 0.5, "empathy_cue": "neutral"}
+{"ts": "2025-10-11T01:50:00.766000+00:00", "user_id": "USER_DEMO3", "tone_score": 0.7, "formality_score": 0.6, "empathy_cue": "neutral"}
+{"ts": "2025-10-11T03:50:00.766003+00:00", "user_id": "USER_DEMO3", "tone_score": 0.6, "formality_score": 0.55, "empathy_cue": "neutral"}
+{"ts": "2025-10-11T05:50:00.766005+00:00", "user_id": "USER_DEMO3", "tone_score": 0.8, "formality_score": 0.65, "empathy_cue": "high"}
+{"ts": "2025-10-11T07:50:00.766008+00:00", "user_id": "USER_DEMO3", "tone_score": 0.4, "formality_score": 0.45, "empathy_cue": "neutral"}
+{"ts": "2025-10-11T09:50:00.766010+00:00", "user_id": "USER_DEMO3", "tone_score": 0.7, "formality_score": 0.6, "empathy_cue": "neutral"}
+{"ts": "2025-10-11T11:50:00.766012+00:00", "user_id": "USER_DEMO3", "tone_score": 0.5, "formality_score": 0.5, "empathy_cue": "neutral"}
+{"ts": "2025-10-11T13:50:00.766014+00:00", "user_id": "USER_DEMO3", "tone_score": 0.9, "formality_score": 0.7, "empathy_cue": "high"}
+{"ts": "2025-10-11T15:50:00.766016+00:00", "user_id": "USER_DEMO3", "tone_score": 0.6, "formality_score": 0.55, "empathy_cue": "neutral"}

@@ -1,0 +1,122 @@
+coach_id: beliefdna_coach
+version: 1
+title: BeliefDNA Coach
+description: >
+  Interprets the User's ReDNA to simulate how they reason about philosophical and moral questions.
+  Uses BeliefValueDNA, MotivationDNA, CogDNA, and EmDNA to generate nuanced, evidence-backed answers
+  and identify belief inconsistencies for reflection and refinement.
+
+layout:
+  zones: [header, actions, primary, secondary]
+  default_order:
+    header: [BeliefOverviewCard]
+    actions: [PromptTemplates, QuickActionsBar]
+    primary: [BeliefConsole, BeliefReasonMap]
+    secondary: [BeliefContradictionPanel, EvidenceLinks]
+
+widgets:
+
+  BeliefOverviewCard:
+    type: Summary
+    title: Belief & Reason Snapshot
+    data: snapshot
+    conditions:
+      any_intent: ["*"]
+    props:
+      show_rr: ["BeliefValueDNA","MotivationDNA","CogDNA"]
+      show_top_curiosity: 3
+      description_field: "dominant_moral_foundations"
+
+  PromptTemplates:
+    type: TemplateCards
+    title: Question Starters
+    data: templates
+    conditions:
+      any_intent: ["*"]
+    props:
+      categories: [moral, social, existential, political, psychological]
+    actions:
+      - id: use_template
+        label: Ask This Question
+        endpoint: /api/coach/beliefdna_coach/render
+
+  BeliefConsole:
+    type: ChatConsole
+    title: Ask Anything
+    data: console_state
+    actions:
+      - id: render
+        label: Generate Belief Response
+        endpoint: /api/coach/beliefdna_coach/render
+      - id: feedback
+        label: Agree / Disagree
+        endpoint: /api/coach/beliefdna_coach/feedback
+    props:
+      placeholder: "Example: Do humans have free will? Are people fundamentally good?"
+      response_style: "reasoned"
+      show_tokens: false
+
+  BeliefReasonMap:
+    type: DataTable
+    title: Reasoning Basis
+    data: reason_map
+    props:
+      columns: [trait, influence, direction, confidence]
+    conditions:
+      any_intent: ["*"]
+
+  BeliefContradictionPanel:
+    type: InsightCards
+    title: Contradictions & Reflection
+    data: contradictions
+    props:
+      show_rr_delta: true
+      show_curiosity_delta: true
+      max_cards: 5
+    conditions:
+      any_intent: ["*"]
+
+  EvidenceLinks:
+    type: LinkList
+    title: Evidence Applied
+    data: evidence_links
+    props:
+      show_container_paths: true
+    conditions:
+      any_intent: ["*"]
+
+personalization:
+  allow_reorder: true
+  allow_hide: true
+  pinned_defaults: [BeliefOverviewCard, BeliefConsole]
+
+feature_flags:
+  enable_ai_suggestions: shadow
+  renderer_version: 1
+
+data_bindings:
+  panel_endpoint: /api/coach/beliefdna_coach/panel
+  expects:
+    snapshot: [belief_rr, cog_rr, motivation_rr, top_curiosity, dominant_moral_foundations]
+    templates: [cards]
+    console_state: [last_prompt, last_output]
+    reason_map: [rows]
+    contradictions: [cards]
+    evidence_links: [items]
+
+intents:
+  options: [moral, social, existential, political, psychological]
+  default: moral
+
+rr_rules:
+  defaults:
+    rr_elevate_threshold: 60
+    rr_critical_threshold: 40
+  cooldown_hours: 24
+  curiosity_floor: 10
+
+audit:
+  record:
+    manifest_version: true
+    renderer_version: true
+    policy_decisions: true

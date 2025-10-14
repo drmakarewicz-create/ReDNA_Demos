@@ -1,0 +1,287 @@
+{
+  "timestamp": "2025-10-07T18:55:15.156523",
+  "personas": [
+    "persona_hemingway",
+    "persona_obama",
+    "persona_joan_didion",
+    "persona_winston_churchill",
+    "persona_maya_angelou"
+  ],
+  "prompt_count": 2,
+  "aa_tests": {
+    "persona_hemingway": {
+      "mean": 0.8,
+      "scores": [
+        0.8,
+        0.8
+      ],
+      "n": 2
+    },
+    "persona_obama": {
+      "mean": 0.8,
+      "scores": [
+        0.8,
+        0.8
+      ],
+      "n": 2
+    },
+    "persona_joan_didion": {
+      "mean": 0.8,
+      "scores": [
+        0.8,
+        0.8
+      ],
+      "n": 2
+    },
+    "persona_winston_churchill": {
+      "mean": 0.8,
+      "scores": [
+        0.8,
+        0.8
+      ],
+      "n": 2
+    },
+    "persona_maya_angelou": {
+      "mean": 0.8,
+      "scores": [
+        0.8,
+        0.8
+      ],
+      "n": 2
+    }
+  },
+  "ab_matrix": {
+    "persona_hemingway": {
+      "persona_hemingway": {
+        "mean": 1.0,
+        "scores": [],
+        "n": 0
+      },
+      "persona_obama": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_joan_didion": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_winston_churchill": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_maya_angelou": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      }
+    },
+    "persona_obama": {
+      "persona_hemingway": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_obama": {
+        "mean": 1.0,
+        "scores": [],
+        "n": 0
+      },
+      "persona_joan_didion": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_winston_churchill": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_maya_angelou": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      }
+    },
+    "persona_joan_didion": {
+      "persona_hemingway": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_obama": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_joan_didion": {
+        "mean": 1.0,
+        "scores": [],
+        "n": 0
+      },
+      "persona_winston_churchill": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_maya_angelou": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      }
+    },
+    "persona_winston_churchill": {
+      "persona_hemingway": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_obama": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_joan_didion": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_winston_churchill": {
+        "mean": 1.0,
+        "scores": [],
+        "n": 0
+      },
+      "persona_maya_angelou": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      }
+    },
+    "persona_maya_angelou": {
+      "persona_hemingway": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_obama": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_joan_didion": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_winston_churchill": {
+        "mean": 0.8,
+        "scores": [
+          0.8,
+          0.8
+        ],
+        "n": 2
+      },
+      "persona_maya_angelou": {
+        "mean": 1.0,
+        "scores": [],
+        "n": 0
+      }
+    }
+  },
+  "leaderboard": [
+    {
+      "persona": "persona_hemingway",
+      "aa_score": 0.8,
+      "avg_ab_score": 0.8,
+      "delta": 0.0,
+      "rank": 1
+    },
+    {
+      "persona": "persona_obama",
+      "aa_score": 0.8,
+      "avg_ab_score": 0.8,
+      "delta": 0.0,
+      "rank": 2
+    },
+    {
+      "persona": "persona_joan_didion",
+      "aa_score": 0.8,
+      "avg_ab_score": 0.8,
+      "delta": 0.0,
+      "rank": 3
+    },
+    {
+      "persona": "persona_winston_churchill",
+      "aa_score": 0.8,
+      "avg_ab_score": 0.8,
+      "delta": 0.0,
+      "rank": 4
+    },
+    {
+      "persona": "persona_maya_angelou",
+      "aa_score": 0.8,
+      "avg_ab_score": 0.8,
+      "delta": 0.0,
+      "rank": 5
+    }
+  ]
+}

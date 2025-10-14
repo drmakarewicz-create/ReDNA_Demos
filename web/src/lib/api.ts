@@ -2720,6 +2720,64 @@ export async function rescoreNow(params: {
   };
 }
 
+export interface IngestTextResponse {
+  success: boolean;
+  event_id?: string;
+  user_id: string;
+  rescore?: {
+    ok: boolean;
+    user_id: string;
+    rr_by_trait?: Record<string, number>;
+    curiosity_by_trait?: Record<string, number>;
+    traits_updated?: number;
+    timestamp?: string;
+  };
+}
+
+/**
+ * Ingest text programmatically into Core for a user.
+ * This is for silent ingestion (e.g., onboarding data, Life OS entries, photo metadata)
+ * that should be processed immediately without showing in the chat transcript.
+ *
+ * Core will automatically extract traits and rescore the user.
+ */
+export async function ingestText(params: {
+  userId: string;
+  text: string;
+  source?: string;
+}): Promise<IngestTextResponse> {
+  const trimmedUser = params.userId.trim();
+  const trimmedText = params.text.trim();
+  if (!trimmedUser || !trimmedText) {
+    throw new ApiError('user_id and text are required for ingestion.', 400);
+  }
+
+  const payload: Record<string, unknown> = {
+    user_id: trimmedUser,
+    text: trimmedText,
+    source: params.source || 'web_ui_programmatic',
+  };
+
+  const response = await ensureOk(
+    await fetch(`${CORE_API_BASE}/core/api/ingest_text`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+  );
+
+  const body = await response.json();
+  return {
+    success: Boolean(body?.success),
+    event_id: body?.event_id,
+    user_id: body?.user_id || trimmedUser,
+    rescore: body?.rescore,
+  };
+}
+
 export interface RevertLastResponse {
   ok: boolean;
   reverted_count?: number;

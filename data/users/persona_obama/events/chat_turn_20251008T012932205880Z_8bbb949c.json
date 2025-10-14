@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "persona_obama",
+  "persona": "head coach",
+  "persona_label": "ChatDNA Coach",
+  "user_text": "Hello",
+  "assistant_text": "I logged that for the Head Coach board. You mentioned 'Hello'. Let's turn it into one concrete action to keep momentum going.",
+  "client_message_id": "3a92bf57-a134-4338-a955-dd51f88530a4",
+  "assistant_message_id": "chat-aa1b74a1349248aeab7c1a5faa806d24",
+  "server_ts": "2025-10-08T01:29:32.205+00:00",
+  "server_ts_ms": 1759886972205,
+  "provider": "stub",
+  "source": "ui_chat_turn"
+}

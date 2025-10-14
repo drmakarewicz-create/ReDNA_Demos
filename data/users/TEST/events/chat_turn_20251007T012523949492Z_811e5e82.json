@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Send the introduction",
+  "assistant_text": "I'll send the introduction to our Career Coach, and they'll be in touch soon. What specific areas of your career are you hoping to improve or explore with their guidance?",
+  "client_message_id": "f66bfe64-17d6-4aaa-bc44-7c57ee61b1b1",
+  "assistant_message_id": "chat-2a812b18bf30468190d64bb7904d9211",
+  "server_ts": "2025-10-07T01:25:23.949+00:00",
+  "server_ts_ms": 1759800323949,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

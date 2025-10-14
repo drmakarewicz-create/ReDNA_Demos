@@ -1,0 +1,10 @@
+{
+  "users": {
+    "TEST": {
+      "SkillDNA.sample_trait": {
+        "trust": 0.55,
+        "samples": 1
+      }
+    }
+  }
+}

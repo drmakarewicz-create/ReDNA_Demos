@@ -1,0 +1,89 @@
+{
+  "snapshot": {
+    "user_core_state": {
+      "user_id": "TEST",
+      "active_coach": "head_coach",
+      "last_message_time": "2025-10-08T01:41:48.455903+00:00",
+      "current_mode": "exploration",
+      "emotional_tone": "negative",
+      "emotion_confidence": 0.77,
+      "curiosity_hotspots": [
+        "PaDNA.HairDNA.Color",
+        "PaDNA.HairDNA.Length",
+        "PaDNA.EyeDNA.Color",
+        "PaDNA.SkinDNA.Tone",
+        "PaDNA.LooksDNA.EyeDNA.IrisColor"
+      ]
+    },
+    "goal_task_layer": {
+      "active_goals": [],
+      "pending_tasks": [],
+      "plan_states": [],
+      "recent_intent_distribution": {}
+    },
+    "context_layer": {
+      "local_time": "2025-10-08T13:05:39.154599+00:00",
+      "day_of_week": "Wednesday",
+      "timezone": "UTC",
+      "availability_flag": "active",
+      "recent_external_interactions": []
+    },
+    "memory_layer": {
+      "traits_summary": {
+        "high_rr_domains": [],
+        "low_rr_domains": [
+          "PaDNA",
+          "BioDNA"
+        ],
+        "overall_rr": 27.2
+      },
+      "hc_history_summary": {
+        "successful_patterns": [],
+        "failed_patterns": [],
+        "total_interactions": 0
+      },
+      "meta_feedback_stats": {
+        "avg_satisfaction": 0.0,
+        "total_feedback_count": 0
+      },
+      "ontology_context": {
+        "high_rr_concepts": [],
+        "low_rr_concepts": [],
+        "related_concepts": [],
+        "coverage_score": 0.0
+      }
+    },
+    "ttl_hints": {
+      "core": "live",
+      "goal_task": "live",
+      "context": "live",
+      "memory": "live"
+    },
+    "policy": {
+      "awareness_version": "v1",
+      "schema": "hc_awareness.schema.json@v1",
+      "build_ms": 145.44,
+      "redacted_fields": [
+        "raw_messages"
+      ]
+    },
+    "summary": {
+      "active_goal_count": 0,
+      "pending_tasks": 0,
+      "top_curiosity": [
+        "PaDNA.HairDNA.Color",
+        "PaDNA.HairDNA.Length",
+        "PaDNA.EyeDNA.Color",
+        "PaDNA.SkinDNA.Tone",
+        "PaDNA.LooksDNA.EyeDNA.IrisColor"
+      ],
+      "emotional_state": "Concerned or uncertain"
+    }
+  },
+  "cache_timestamps": {
+    "user_core_state": "2025-10-08T13:05:39.199518+00:00",
+    "goal_task": "2025-10-08T13:05:39.199518+00:00",
+    "context": "2025-10-08T13:05:39.199518+00:00",
+    "memory": "2025-10-08T13:05:39.199518+00:00"
+  }
+}

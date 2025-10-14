@@ -1,0 +1,1 @@
+This folder holds ad-hoc insight logs and JSONL exports generated during prompt experiments. The raw files are ignored by Git so that large or sensitive outputs do not slow down collaborators. Commit only lightweight documentation describing the experiments.

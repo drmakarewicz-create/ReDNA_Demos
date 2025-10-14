@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="1200" height="720" fill="#FFFFFF" />
+<text x="600.0" y="40.0" fill="#0B1B34" font-size="32" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track Interdependencies</text>
+<text x="600.0" y="80.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">How capabilities flow across tracks</text>
+<rect x="210.0" y="190.0" width="300.0" height="140.0" rx="16.0" ry="16.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="360.0" y="220.0" fill="#1F77B4" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 1</text>
+<text x="360.0" y="250.0" fill="#0B1B34" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Core Intelligence<tspan x="360.0" dy="22.1">Data models • inference APIs</tspan></text>
+<rect x="690.0" y="150.0" width="300.0" height="140.0" rx="16.0" ry="16.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="840.0" y="180.0" fill="#FF7F0E" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 2</text>
+<text x="840.0" y="210.0" fill="#0B1B34" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Human Interface<tspan x="840.0" dy="22.1">Coach UX • Life OS surfaces</tspan></text>
+<rect x="690.0" y="330.0" width="300.0" height="140.0" rx="16.0" ry="16.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#2CA02C" stroke-width="2.0" />
+<text x="840.0" y="360.0" fill="#2CA02C" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 3</text>
+<text x="840.0" y="390.0" fill="#0B1B34" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Ecosystem &amp; Ethics<tspan x="840.0" dy="22.1">Consent • collaboration •</tspan><tspan x="840.0" dy="22.1">governance</tspan></text>
+<rect x="210.0" y="410.0" width="300.0" height="140.0" rx="16.0" ry="16.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#9467BD" stroke-width="2.0" />
+<text x="360.0" y="440.0" fill="#9467BD" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 4</text>
+<text x="360.0" y="470.0" fill="#0B1B34" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Maintenance &amp; Operations<tspan x="360.0" dy="22.1">Infrastructure • reliability •</tspan><tspan x="360.0" dy="22.1">tooling</tspan></text>
+<line x1="510.0" y1="260.0" x2="690.0" y2="220.0" stroke="#1F77B4" stroke-width="4.0" />
+<polygon points="690.0,220.0 681.2,228.1 678.6,216.4" fill="#1F77B4" />
+<line x1="510.0" y1="260.0" x2="690.0" y2="400.0" stroke="#1F77B4" stroke-width="4.0" />
+<polygon points="690.0,400.0 678.1,398.4 685.5,388.9" fill="#1F77B4" />
+<line x1="360.0" y1="410.0" x2="360.0" y2="340.0" stroke="#9467BD" stroke-width="4.0" />
+<polygon points="360.0,340.0 366.0,350.4 354.0,350.4" fill="#9467BD" />
+<line x1="360.0" y1="410.0" x2="360.0" y2="450.0" stroke="#9467BD" stroke-width="4.0" />
+<polygon points="360.0,450.0 354.0,439.6 366.0,439.6" fill="#9467BD" />
+<line x1="690.0" y1="220.0" x2="510.0" y2="260.0" stroke="#FF7F0E" stroke-width="2.0" />
+<polygon points="510.0,260.0 518.8,251.9 521.4,263.6" fill="#FF7F0E" />
+<line x1="690.0" y1="400.0" x2="510.0" y2="260.0" stroke="#2CA02C" stroke-width="2.0" />
+<polygon points="510.0,260.0 521.9,261.6 514.5,271.1" fill="#2CA02C" />
+<text x="600.0" y="580.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track 1 intelligence powers Track 2 &amp; 3. Track 4 enables and stabilizes every track.</text>
+</svg>

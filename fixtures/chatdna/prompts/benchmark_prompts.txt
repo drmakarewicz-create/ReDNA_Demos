@@ -1,0 +1,32 @@
+# ChatDNA Benchmark Prompts
+# 20 prompts covering casual, formal, persuasive, reflective, technical scenarios
+
+## Casual (5 prompts)
+Write two sentences saying you're 10 minutes late.
+Tell a friend you can't make it to dinner tonight.
+Ask a colleague if they want to grab coffee.
+Respond to "How was your weekend?"
+Send a quick text checking in on someone.
+
+## Formal (5 prompts)
+Write a professional email following up on a meeting.
+Explain why quarterly reviews are important for team growth.
+Summarize the key points from a policy document.
+Request a meeting with a senior executive.
+Decline a speaking invitation politely.
+
+## Persuasive (5 prompts)
+Convince a friend to try a new restaurant you discovered.
+Argue why investing in employee training pays off.
+Persuade your team to adopt a new workflow tool.
+Make a case for working remotely two days a week.
+Convince someone to read a book you loved.
+
+## Reflective (3 prompts)
+Describe your ideal weekend and why it matters to you.
+Reflect on a difficult decision you made recently.
+Explain what success means to you personally.
+
+## Technical (2 prompts)
+Explain how to configure a database connection in plain English.
+Summarize an article about climate policy for a general audience.

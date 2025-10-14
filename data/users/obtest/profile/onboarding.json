@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "captured_at": "2025-10-13T22:59:31.750+00:00",
+  "user_id": "obtest",
+  "display_name": "Onboard Test",
+  "quick_facts": {},
+  "interests": {
+    "selected": [],
+    "custom": []
+  },
+  "source": "ui_onboarding_modal"
+}

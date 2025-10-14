@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="1200" height="720" fill="#FFFFFF" />
+<text x="600.0" y="40.0" fill="#0B1B34" font-size="32" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Platform Maturity Model</text>
+<text x="600.0" y="80.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Five-stage evolution toward ecosystem readiness</text>
+<rect x="160.0" y="460.0" width="180.0" height="80.0" rx="10.0" ry="10.0" fill="#dcdfe4" fill-opacity="1.00" stroke="#53627C" stroke-width="2.0" />
+<text x="250.0" y="472.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Level 0: Prototype</text>
+<text x="250.0" y="498.0" fill="#0B1B34" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Pre-v2.1 • ✅ Complete</text>
+<rect x="344.0" y="360.0" width="180.0" height="80.0" rx="10.0" ry="10.0" fill="#d2e3f0" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="434.0" y="372.0" fill="#1F77B4" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Level 1: Foundation</text>
+<text x="434.0" y="398.0" fill="#0B1B34" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">v2.1 • 2K containers,<tspan x="434.0" dy="19.5">RSC, Consent</tspan></text>
+<rect x="528.0" y="260.0" width="180.0" height="80.0" rx="10.0" ry="10.0" fill="#f8f0d2" fill-opacity="1.00" stroke="#E0B422" stroke-width="2.0" />
+<text x="618.0" y="272.0" fill="#E0B422" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Level 2: Intelligence</text>
+<text x="618.0" y="298.0" fill="#0B1B34" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">v3.0 M1-M2 • 6-8K<tspan x="618.0" dy="19.5">containers, Predictions,</tspan><tspan x="618.0" dy="19.5">Cross-Coach</tspan></text>
+<rect x="712.0" y="160.0" width="180.0" height="80.0" rx="10.0" ry="10.0" fill="#ffe5ce" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="802.0" y="172.0" fill="#FF7F0E" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Level 3: Production</text>
+<text x="802.0" y="198.0" fill="#0B1B34" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">v3.0 M3 • 99.9% uptime,<tspan x="802.0" dy="19.5">WCAG AA, Ethics</tspan><tspan x="802.0" dy="19.5">Review</tspan></text>
+<rect x="896.0" y="60.0" width="180.0" height="80.0" rx="10.0" ry="10.0" fill="#e9e0f1" fill-opacity="1.00" stroke="#9467BD" stroke-width="2.0" />
+<text x="986.0" y="72.0" fill="#9467BD" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Level 4: Ecosystem</text>
+<text x="986.0" y="98.0" fill="#0B1B34" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Post-v3.0 • API<tspan x="986.0" dy="19.5">platform, 3rd-party,</tspan><tspan x="986.0" dy="19.5">Longitudinal</tspan></text>
+<text x="600.0" y="620.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Status: Levels 0-1 complete, Level 2 in progress, Levels 3-4 planned/future.</text>
+</svg>

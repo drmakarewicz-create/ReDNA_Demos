@@ -1,0 +1,41 @@
+{
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 95.0,
+    "curiosity": 15.0,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760402833406",
+        "ts": "2025-10-14T00:47:13+00:00"
+      }
+    ]
+  },
+  "InterestDNA.Hobbies": {
+    "id": "InterestDNA.Hobbies",
+    "rr": 70.0,
+    "curiosity": 40.0,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760402833406",
+        "ts": "2025-10-14T00:47:13+00:00"
+      }
+    ]
+  },
+  "PersonalityDNA.WYRChoice": {
+    "id": "PersonalityDNA.WYRChoice",
+    "rr": 90.0,
+    "curiosity": 10.0,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760402833406",
+        "ts": "2025-10-14T00:47:13+00:00"
+      }
+    ]
+  }
+}

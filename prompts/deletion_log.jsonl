@@ -1,0 +1,6 @@
+{"timestamp": "2025-10-09T12:13:24.374964", "action": "retire", "coach_id": "permission_coach", "mode": "retire", "operator": "devx", "reason": "Testing retirement workflow", "references": 19}
+{"timestamp": "2025-10-09T12:13:49.573181", "action": "restore", "coach_id": "permission_coach", "mode": "from_retired", "operator": "devx"}
+{"timestamp": "2025-10-09T12:16:36.208941", "action": "purge", "coach_id": "credit_card_coach", "mode": "purge", "operator": "devx", "reason": "Testing purge workflow", "references": 1, "forced": true}
+{"timestamp": "2025-10-09T12:22:32.618953", "action": "retire", "coach_id": "padna_coach", "mode": "retire", "operator": "devx", "reason": "Testing workflow verification", "references": 13}
+{"timestamp": "2025-10-09T12:22:45.532737", "action": "restore", "coach_id": "padna_coach", "mode": "from_retired", "operator": "devx"}
+{"timestamp": "2025-10-09T15:24:07.217820", "action": "purge", "coach_id": "onboarding_coach", "mode": "purge", "operator": "devx", "reason": "Onboarding does not actually use a coach to complete the onboarding wizard", "references": 1, "forced": true}

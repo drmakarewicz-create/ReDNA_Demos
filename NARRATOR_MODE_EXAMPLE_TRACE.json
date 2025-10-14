@@ -1,0 +1,21 @@
+{
+  "ts": "2025-10-11T15:42:33.123456Z",
+  "user_id": "TEST",
+  "context_version": 87,
+  "decision": "Switch from head_coach to career_coach",
+  "reasoning": [
+    "SkillDNA curiosity priority 0.87",
+    "Career Coach historically >80% positive sentiment",
+    "User mentioned career planning in last message",
+    "Intent analysis: career_focused (confidence: 0.91)"
+  ],
+  "confidence": 0.89,
+  "impact": "high",
+  "duration_ms": 38,
+  "session_id": "session_2025-10-11_15-40",
+  "metadata": {
+    "type": "coach_switch",
+    "from_coach": "head_coach",
+    "to_coach": "career_coach"
+  }
+}

@@ -1,0 +1,6 @@
+{"ts": "2025-10-10T17:50:00.765476+00:00", "namespace": "PaDNA", "reason": "Profile photo analysis requested", "status": "granted", "accessed_data": ["photo_metadata"]}
+{"ts": "2025-10-10T18:50:00.765478+00:00", "namespace": "SkillDNA", "reason": "Career assessment access", "status": "granted", "accessed_data": ["skills", "experience"]}
+{"ts": "2025-10-10T19:50:00.765480+00:00", "namespace": "Photo", "reason": "Image generation requested", "status": "pending", "accessed_data": []}
+{"ts": "2025-10-10T20:50:00.765481+00:00", "namespace": "BeliefDNA", "reason": "Value system exploration", "status": "granted", "accessed_data": ["core_beliefs"]}
+{"ts": "2025-10-10T21:50:00.765482+00:00", "namespace": "PaDNA", "reason": "Personality trait inference", "status": "denied", "accessed_data": []}
+{"ts": "2025-10-10T22:50:00.765483+00:00", "namespace": "ChatDNA", "reason": "Communication style analysis", "status": "granted", "accessed_data": ["message_history"]}

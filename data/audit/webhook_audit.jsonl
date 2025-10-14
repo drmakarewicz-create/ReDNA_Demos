@@ -1,0 +1,6 @@
+{"timestamp": "2025-10-11T17:07:22.559660Z", "event_type": "webhook_received", "webhook_type": "unknown", "source": "test", "valid": false, "reason": "signature_mismatch", "webhook_id": null, "user_id": null}
+{"timestamp": "2025-10-11T17:07:22.561647Z", "event_type": "webhook_received", "webhook_type": "unknown", "source": "test", "valid": false, "reason": "signature_mismatch", "webhook_id": null, "user_id": null}
+{"timestamp": "2025-10-11T17:07:22.561920Z", "event_type": "webhook_received", "webhook_type": "unknown", "source": "test", "valid": false, "reason": "timestamp_too_old: 600.000017s > 300s", "webhook_id": null, "user_id": null}
+{"timestamp": "2025-10-11T17:07:22.562180Z", "event_type": "webhook_received", "webhook_type": "unknown", "source": "test", "valid": false, "reason": "timestamp_in_future: -299.999988s", "webhook_id": null, "user_id": null}
+{"timestamp": "2025-10-11T17:07:22.562832Z", "event_type": "webhook_received", "webhook_type": "unknown", "source": "external_service", "valid": false, "reason": "signature_mismatch", "webhook_id": null, "user_id": null}
+{"timestamp": "2025-10-11T17:07:22.565647Z", "event_type": "webhook_received", "webhook_type": "unknown", "source": "test", "valid": false, "reason": "signature_mismatch", "webhook_id": null, "user_id": null}

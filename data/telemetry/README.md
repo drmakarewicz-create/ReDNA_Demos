@@ -1,0 +1,1 @@
+Telemetry exports and analytics bundles land here during local development. These files can grow quickly and may include sensitive user traces, so the directory is ignored by Git. If you need to document telemetry schemas, add small markdown or text notes instead of raw data.

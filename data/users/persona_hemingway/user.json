@@ -1,0 +1,12 @@
+{
+  "user_id": "persona_hemingway",
+  "profile": {
+    "label": "Ernest Hemingway",
+    "source": "Public domain works analysis (The Sun Also Rises, For Whom the Bell Tolls)",
+    "note": "Characterized by short sentences, direct prose, minimal hedging, sparse adjectives",
+    "embedding_model": "text-embedding-ada-002"
+  },
+  "created_at": "2025-10-07T18:47:10.502424",
+  "source": "style_bundle_ingestion",
+  "bundle_path": "/Users/davidmakarewicz/Documents/ReDNA_Demos/fixtures/chatdna/personas/hemingway.bundle.json"
+}

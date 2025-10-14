@@ -99,17 +99,10 @@ function storageKey(userId: string): string {
 }
 
 function buildDefaultTranscript(): TranscriptEntry[] {
-  return [
-    {
-      role: 'assistant',
-      persona: 'Head Coach (Orchestrator)',
-      text: 'Welcome back! Ready to keep momentum going today?',
-      ts: Date.now(),
-      pending: false,
-      cancelled: false,
-      source: 'client-cache',
-    },
-  ];
+  // NORTHSTAR PHASE 2: Empty transcript by default
+  // No more "keep momentum going" message for new users
+  // Let users start naturally or have onboarding populate their profile silently
+  return [];
 }
 
 function loadCachedTranscript(userId: string): TranscriptEntry[] | null {

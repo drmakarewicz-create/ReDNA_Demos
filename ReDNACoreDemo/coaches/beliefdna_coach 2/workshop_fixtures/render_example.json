@@ -1,0 +1,35 @@
+{
+  "output": "You'd likely say that free will exists within limits—people make choices, but those choices are shaped by circumstance and empathy. Your reasoning leans toward compatibilism.",
+  "reason_map": [
+    {
+      "trait": "CogDNA.CognitiveStyleDNA.AnalyticalVsIntuitiveDNA",
+      "influence": "+",
+      "confidence": 0.72
+    },
+    {
+      "trait": "PsyDNA.PersonalityDNA.OpennessDNA",
+      "influence": "+",
+      "confidence": 0.69
+    },
+    {
+      "trait": "PsyDNA.PersonalityDNA.ConscientiousnessDNA",
+      "influence": "-",
+      "confidence": 0.58
+    }
+  ],
+  "similarity": {
+    "conceptual": 0.77,
+    "linguistic": 0.71,
+    "overall": 0.74
+  },
+  "relevant_containers": [
+    "BeliefValueDNA.MoralFoundationDNA.LibertyOppressionDNA",
+    "CogDNA.CognitiveStyleDNA.NeedForClosureDNA",
+    "PsyDNA.PersonalityDNA.OpennessDNA"
+  ],
+  "rr_summary": {
+    "BeliefValueDNA": 65,
+    "CogDNA": 59,
+    "MotivationDNA": 70
+  }
+}

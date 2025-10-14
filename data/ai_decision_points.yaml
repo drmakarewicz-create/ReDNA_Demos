@@ -1,0 +1,448 @@
+# AI Decision Points Registry
+# Version: 1.0 | Date: 2025-10-06
+#
+# This registry defines every decision point in ReDNA where AI can propose overrides
+# to deterministic rules. Each entry specifies:
+# - rule_id: Unique identifier for the decision point
+# - input_contract: Schema version for input data
+# - output_contract: Schema version for output data
+# - policy: Policy gate to apply (references policy_gate.yaml)
+# - metrics: Success metrics for measuring AI performance
+# - safety: Safety constraints AI must respect
+# - phase: Roadmap phase (for tracking)
+# - status: current|shadow|governed_override|ai_native
+# - promotion_gates: Criteria for promoting from shadow → governed override
+
+decision_points:
+
+  # ========================================
+  # PHASE 1: RSC Foundation Infrastructure
+  # ========================================
+
+  relationship_graph.link_confidence:
+    rule_id: "rel_graph/link_confidence_v1"
+    input_contract: "RelationshipContext@1.0"
+    output_contract: "LinkConfidenceScore@1.0"
+    policy: "default"
+    metrics:
+      - "relationship_stability_accuracy"  # does predicted confidence match relationship longevity?
+      - "user_confirmation_rate"  # % of inferred relationships User confirms
+    safety:
+      - "no_cross_user_leak"  # AI cannot expose User A's data to User B
+      - "consent_required"  # relationship creation requires dual consent
+    phase: "1.1"
+    status: "current"  # deterministic only, no AI yet
+    description: "Determine confidence score for inferred relationship link (e.g., User mentions 'my partner' → infer romantic relationship)"
+    promotion_gates:
+      min_shadow_runs: 1000
+      win_rate_vs_rule: ">= 0.10 user_confirmation_rate improvement"
+      safety_incidents: "== 0"
+      red_team_pass: true
+      hc_signoff: false  # low-risk, no HC required
+
+  holistic_review.meta_trait_detection:
+    rule_id: "holistic/meta_trait_detect_v1"
+    input_contract: "MultiUserTraitSnapshot@1.0"
+    output_contract: "MetaTraitList@1.0"
+    policy: "default"
+    metrics:
+      - "pattern_validation_rate"  # % of detected patterns User confirms as meaningful
+      - "curiosity_spike_engagement"  # does meta-trait decay → curiosity spike increase engagement?
+    safety:
+      - "differential_privacy"  # aggregate analysis cannot leak individual User data
+      - "anonymized_provenance"  # meta-trait sources must be hashed in User Mode
+    phase: "1.4"
+    status: "current"
+    description: "Detect cross-User patterns (e.g., empathy_delta, communication_style_gap) from aggregate trait data"
+    promotion_gates:
+      min_shadow_runs: 500  # fewer runs needed (batch process)
+      win_rate_vs_rule: ">= 0.15 pattern_validation_rate improvement"
+      safety_incidents: "== 0"
+      red_team_pass: true
+      hc_signoff: false
+
+  autonomy_framework.level_calculation:
+    rule_id: "autonomy/level_calc_v1"
+    input_contract: "AutonomyInput@1.0"  # RR_avg, trust_score, user_consent_max
+    output_contract: "AutonomyLevel@1.0"  # level 0-5
+    policy: "autonomy_scaling"  # custom policy (stricter than default)
+    metrics:
+      - "nudge_acceptance_rate"  # does AI-adjusted autonomy increase acceptance?
+      - "user_satisfaction"  # feedback survey scores
+      - "manipulation_incidents"  # autonomy violations flagged by detection system
+    safety:
+      - "cap_max_level"  # AI cannot exceed user_consent_max_level
+      - "head_coach_veto"  # HC can override AI autonomy adjustments
+      - "no_manipulation_amplification"  # AI cannot increase autonomy for manipulative coaches
+    phase: "1.3"
+    status: "current"
+    description: "Calculate coach autonomy level (0-5) based on RR, trust, and User consent"
+    promotion_gates:
+      min_shadow_runs: 2000
+      win_rate_vs_rule: ">= 0.10 nudge_acceptance_rate + >= 0.05 satisfaction improvement"
+      safety_incidents: "== 0"
+      red_team_pass: true
+      hc_signoff: true  # high-risk, HC approval required
+
+  provenance_firewall.evidence_weight:
+    rule_id: "provenance/evidence_weight_v1"
+    input_contract: "EvidenceMetadata@1.0"
+    output_contract: "EvidenceWeight@1.0"  # float 0.0-1.0
+    policy: "default"
+    metrics:
+      - "trait_inference_rmse"  # does AI-adjusted weight improve RR accuracy?
+      - "confidence_calibration"  # do predicted confidence intervals match actual error rates?
+    safety:
+      - "min_user_input_credibility"  # direct User input always >= 0.8 credibility
+      - "no_weight_inflation"  # AI cannot assign credibility > 1.0
+      - "provenance_logged"  # all weight adjustments logged in Dev Mode
+    phase: "1.2"
+    status: "current"
+    description: "Calculate Bayesian evidence weight from source credibility × recency × consistency"
+    promotion_gates:
+      min_shadow_runs: 5000
+      win_rate_vs_rule: ">= 0.10 rmse reduction"
+      safety_incidents: "== 0"
+      red_team_pass: false  # not privacy-critical
+      hc_signoff: false
+
+  # ========================================
+  # PHASE 2: RSC Collaboration Protocols
+  # ========================================
+
+  rsc_protocol.camouflage_template_selection:
+    rule_id: "rsc/camo_select_v1"
+    input_contract: "InternalSignal@1.0"
+    output_contract: "CamouflageOutput@1.0"
+    policy: "rsc_privacy"  # custom policy (strictest)
+    metrics:
+      - "correlation_resistance"  # red-team cannot detect User A → User B link
+      - "user_naturalness"  # User survey: "Did this prompt feel natural?"
+      - "nudge_acceptance_rate"  # engagement with camouflaged prompts
+    safety:
+      - "no_source_exposure"  # camouflage must pass red-team correlation tests
+      - "tone_fit_psydna"  # tone must match target User's PsyDNA profile
+      - "timing_randomization"  # delays must be randomized 30s-5min
+      - "linguistic_variation"  # no fingerprint phrases from source User
+    phase: "2.1"
+    status: "current"
+    description: "Select camouflage template and tone variant for RSC signal translation"
+    promotion_gates:
+      min_shadow_runs: 1000
+      win_rate_vs_rule: ">= 0.02 correlation_resistance + >= 0.10 naturalness improvement"
+      safety_incidents: "== 0"
+      red_team_pass: true  # CRITICAL: must pass all 4 correlation tests
+      hc_signoff: true  # high-risk, RSC privacy core
+
+  rsc_protocol.timing_delay_strategy:
+    rule_id: "rsc/timing_delay_v1"
+    input_contract: "InternalSignal@1.0"
+    output_contract: "DelaySeconds@1.0"  # int 30-300
+    policy: "rsc_privacy"
+    metrics:
+      - "timing_correlation_resistance"  # Pearson r < 0.3 on timestamp pairs
+      - "user_responsiveness_fit"  # delay matches User's typical response pattern
+    safety:
+      - "min_delay_30s"  # never deliver immediately (prevents correlation)
+      - "max_delay_5min"  # don't delay so long that context is lost
+      - "randomized_jitter"  # add ±10% jitter to break pattern detection
+    phase: "2.1"
+    status: "current"
+    description: "Determine optimal timing delay for RSC signal delivery (balances privacy vs. relevance)"
+    promotion_gates:
+      min_shadow_runs: 1000
+      win_rate_vs_rule: ">= 0.05 timing_correlation improvement + >= 0.10 responsiveness_fit"
+      safety_incidents: "== 0"
+      red_team_pass: true
+      hc_signoff: false  # medium-risk, timing is privacy-adjacent but not content
+
+  head_coach_governance.risk_scoring:
+    rule_id: "hc_governance/risk_score_v1"
+    input_contract: "SignalMetadata@1.0"
+    output_contract: "RiskScore@1.0"  # float 0.0-1.0
+    policy: "governance"  # custom policy (HC approval required for overrides)
+    metrics:
+      - "hc_approval_alignment"  # does AI risk score predict HC approval?
+      - "user_discomfort_prediction"  # does high AI risk correlate with User discomfort reports?
+      - "false_positive_rate"  # % of high-risk signals HC approves + User accepts
+    safety:
+      - "min_sensitive_risk"  # signals with Protected traits always >= 0.4 risk
+      - "head_coach_final_authority"  # AI proposes, HC decides
+      - "user_emergency_stop"  # User can halt regardless of AI/HC assessment
+    phase: "2.3"
+    status: "current"
+    description: "Score RSC signal risk (low/medium/high) for Head Coach governance routing"
+    promotion_gates:
+      min_shadow_runs: 500
+      win_rate_vs_rule: ">= 0.10 false_positive reduction + >= 0.15 discomfort_prediction accuracy"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: true  # HC must approve AI taking over HC's own risk assessment
+
+  consent_guardian.shadow_mode_risk_triage:
+    rule_id: "consent/shadow_risk_v1"
+    input_contract: "RelationshipContext@1.0"
+    output_contract: "ShadowModeRiskLevel@1.0"
+    policy: "governance"
+    metrics:
+      - "shadow_mode_safety"  # zero User B awareness incidents
+      - "pattern_detection_utility"  # does shadow mode enable useful insights for User A?
+    safety:
+      - "no_signal_delivery"  # shadow mode cannot send signals to non-consenting User
+      - "ethical_review_required"  # shadow mode activation requires Dev Mode flag + justification
+      - "audit_logged"  # all shadow mode activity logged in consent timeline
+    phase: "2.2"
+    status: "current"
+    description: "Assess risk of enabling shadow relationship mode (partial consent) for User A"
+    promotion_gates:
+      min_shadow_runs: 100  # shadow mode is rare, low volume
+      win_rate_vs_rule: ">= 0.20 pattern_detection_utility improvement"
+      safety_incidents: "== 0"
+      red_team_pass: true  # must verify no User B awareness
+      hc_signoff: true  # ethical review required
+
+  # ========================================
+  # PHASE 3: Couples Coach MVP
+  # ========================================
+
+  couples_coach.bias_detection:
+    rule_id: "couples/bias_detect_v1"
+    input_contract: "SignalFrequencyLog@1.0"
+    output_contract: "BiasScore@1.0"  # float 0.0-1.0 (1.0 = severe bias)
+    policy: "fairness"  # custom policy (zero tolerance for >0.7 bias)
+    metrics:
+      - "bias_accuracy"  # does AI detect imbalances humans miss?
+      - "false_positive_rate"  # % of bias flags User overrides as "not biased"
+      - "relationship_satisfaction"  # does bias correction improve satisfaction?
+    safety:
+      - "dual_user_notification"  # both partners notified if bias >0.7
+      - "coach_suspension_trigger"  # bias >0.8 auto-suspends Couples Coach
+      - "no_single_user_bias"  # AI cannot favor one partner without evidence
+    phase: "3.1"
+    status: "current"
+    description: "Detect if Couples Coach RSC signals disproportionately favor one partner (>70% to User A)"
+    promotion_gates:
+      min_shadow_runs: 200  # Couples Coach is new, low initial volume
+      win_rate_vs_rule: ">= 0.15 bias_accuracy improvement + <= 0.05 false_positive_rate"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: true  # fairness-critical
+
+  couples_coach.dv_risk_assessment:
+    rule_id: "couples/dv_risk_v1"
+    input_contract: "ConversationHistory@1.0"
+    output_contract: "DVRiskLevel@1.0"  # none|low|medium|high
+    policy: "safety_critical"  # custom policy (human review always)
+    metrics:
+      - "risk_detection_recall"  # % of actual DV situations flagged
+      - "false_positive_rate"  # % of healthy relationships flagged as risky
+      - "resource_surfacing_effectiveness"  # User engagement with safety resources
+    safety:
+      - "human_review_required"  # all medium/high risk flags reviewed by human
+      - "no_auto_reporting"  # system cannot report to authorities without User consent
+      - "resource_availability"  # safety resources (hotlines) must be available 24/7
+      - "privacy_protected"  # DV risk flags encrypted, not shared with partner
+    phase: "3.1"
+    status: "current"
+    description: "Assess domestic violence risk patterns in Couples Coach conversations"
+    promotion_gates:
+      min_shadow_runs: 50  # DV is rare, extremely high-stakes
+      win_rate_vs_rule: ">= 0.20 recall improvement + <= 0.10 false_positive_rate"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: true
+      external_ethics_review: true  # requires annual ethics board review
+
+  # ========================================
+  # PHASE 4: Core Logic & Trait Resolution
+  # ========================================
+
+  trait_inference.cross_trait_correlation:
+    rule_id: "inference/cross_trait_v1"
+    input_contract: "TraitSnapshot@1.0"
+    output_contract: "PredictedRRList@1.0"
+    policy: "default"
+    metrics:
+      - "trait_inference_rmse"  # accuracy of predicted RR values
+      - "confidence_calibration"  # do 95% CIs contain 95% of ground truth?
+      - "non_linear_discovery"  # AI finds patterns deterministic model misses
+    safety:
+      - "no_protected_trait_inference"  # AI cannot infer Protected traits
+      - "sensitive_confidence_threshold"  # Sensitive traits require confidence >= 0.8
+      - "provenance_logged"  # all inferences logged with reasoning
+    phase: "4.1"
+    status: "current"
+    description: "Predict trait values from cross-trait correlations (e.g., high Openness + low Agreeableness → contrarian)"
+    promotion_gates:
+      min_shadow_runs: 10000  # high-volume, core inference engine
+      win_rate_vs_rule: ">= 0.15 rmse reduction"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: false
+
+  curiosity_engine.trait_prioritization:
+    rule_id: "curiosity/trait_priority_v1"
+    input_contract: "CuriositySnapshot@1.0"
+    output_contract: "RankedTraitList@1.0"
+    policy: "default"
+    metrics:
+      - "nudge_acceptance_rate"  # User engagement with curiosity-driven nudges
+      - "exploration_diversity"  # maintains balance across trait families
+      - "exploitation_efficiency"  # refines high-RR traits when appropriate
+    safety:
+      - "min_psydna_coverage"  # at least 1 PsyDNA trait in top 5
+      - "consent_gating_respected"  # Sensitive traits require consent before exploration
+      - "decay_floor"  # curiosity decay cannot drop below 0.1
+    phase: "4.3"
+    status: "current"
+    description: "Rank traits by curiosity score for Head Coach game plan prioritization"
+    promotion_gates:
+      min_shadow_runs: 5000
+      win_rate_vs_rule: ">= 0.15 acceptance_rate improvement"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: false
+
+  contradiction_framework.tension_scoring:
+    rule_id: "contradiction/tension_score_v1"
+    input_contract: "ConflictingEvidence@1.0"
+    output_contract: "TensionScore@1.0"  # float 0.0-1.0
+    policy: "default"
+    metrics:
+      - "hc_resolution_rate"  # % of tensions resolved via HC probing
+      - "user_confirmation_rate"  # User confirms contradiction is meaningful
+      - "false_positive_rate"  # User dismisses as "not a contradiction"
+    safety:
+      - "no_protected_trait_tension"  # cannot create tension markers for Protected traits without consent
+      - "justification_required"  # tension >0.7 must include natural language explanation
+      - "user_dismissal_learning"  # system learns from User "this isn't a contradiction"
+    phase: "4.2"
+    status: "current"
+    description: "Score contradiction severity from conflicting evidence (e.g., 'introverted' vs. 'seeks social stimulation')"
+    promotion_gates:
+      min_shadow_runs: 1000
+      win_rate_vs_rule: ">= 0.20 user_confirmation improvement + <= 0.05 false_positive_rate"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: false
+
+  # ========================================
+  # PHASE 5: Governance & Ethical Safeguards
+  # ========================================
+
+  manipulation_detector.pattern_analysis:
+    rule_id: "manipulation/pattern_v1"
+    input_contract: "CoachDialogHistory@1.0"
+    output_contract: "ManipulationProbability@1.0"  # float 0.0-1.0
+    policy: "safety_critical"
+    metrics:
+      - "detection_recall"  # % of manipulative dialogs flagged
+      - "precision"  # % of flags confirmed as manipulative (not User-overridden)
+      - "subtle_manipulation_capture"  # AI catches patterns deterministic system misses
+    safety:
+      - "boundary_violation_always_flagged"  # Protected trait discussions without consent = manipulation
+      - "user_override_learning"  # system learns from "not manipulative" overrides
+      - "justification_required"  # all flags include natural language explanation
+    phase: "5.3"
+    status: "current"
+    description: "Detect manipulative coach behavior (excessive persuasion, guilt, fear, boundary violations)"
+    promotion_gates:
+      min_shadow_runs: 2000
+      win_rate_vs_rule: ">= 0.15 recall improvement + >= 0.85 precision maintained"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: true  # high-stakes, user safety
+
+  sensitivity_gating.consent_prompt_timing:
+    rule_id: "sensitivity/consent_timing_v1"
+    input_contract: "TraitConfidenceSnapshot@1.0"
+    output_contract: "ConsentPromptDecision@1.0"  # show_now|defer|never
+    policy: "default"
+    metrics:
+      - "consent_grant_rate"  # % of prompts where User grants consent
+      - "prompt_annoyance_rate"  # User feedback: "too many prompts"
+      - "trait_exploration_delay"  # time from RR>0.7 to consent granted
+    safety:
+      - "rr_threshold_respected"  # cannot prompt before RR > 0.7 for Sensitive traits
+      - "user_deferral_honored"  # if User clicks "Not Yet", respect cooldown period
+      - "no_protected_prompts"  # never prompt for Protected traits (only direct input)
+    phase: "5.2"
+    status: "current"
+    description: "Decide when to show consent prompts for Sensitive traits (balance exploration urgency vs. User annoyance)"
+    promotion_gates:
+      min_shadow_runs: 500
+      win_rate_vs_rule: ">= 0.10 consent_grant_rate + <= 0.05 annoyance_rate"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: false
+
+  # ========================================
+  # PHASE 6: Ecosystem & Extensibility
+  # ========================================
+
+  coach_tone_mapper.tone_selection:
+    rule_id: "tone/tone_select_v1"
+    input_contract: "UserTraits@1.0"
+    output_contract: "ToneVariant@1.0"  # supportive|analytical|playful|direct|warm
+    policy: "default"
+    metrics:
+      - "user_response_sentiment"  # positive sentiment after message delivery
+      - "conversation_continuation_rate"  # User continues conversation
+      - "tone_preference_learning"  # AI discovers per-User preferences
+    safety:
+      - "sensitive_coach_warmth_floor"  # RC/Couples Coach cannot drop below 'supportive'
+      - "user_explicit_preference_honored"  # User can set "always use supportive" → AI respects
+      - "tone_change_logged"  # all tone adaptations logged for audit
+    phase: "2.1"
+    status: "current"
+    description: "Select tone variant for coach message based on User PsyDNA traits and context"
+    promotion_gates:
+      min_shadow_runs: 3000
+      win_rate_vs_rule: ">= 0.10 response_sentiment + >= 0.10 continuation_rate improvement"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: false
+
+  persona_maker.export_mode_selection:
+    rule_id: "persona/export_mode_v1"
+    input_contract: "ExportRequest@1.0"
+    output_contract: "ExportMode@1.0"  # full|contextual|public
+    policy: "default"
+    metrics:
+      - "use_case_fit"  # does AI-selected mode match User's stated use case?
+      - "privacy_preservation"  # Sensitive/Protected traits excluded from public exports
+    safety:
+      - "no_sensitive_in_public"  # public exports cannot include Sensitive/Protected traits
+      - "user_review_required"  # User reviews AI-selected mode before export
+      - "consent_flags_respected"  # only export traits User has consented to share
+    phase: "6.1"
+    status: "current"
+    description: "Recommend export mode (full/contextual/public) based on User's stated use case (job application, dating profile, legacy)"
+    promotion_gates:
+      min_shadow_runs: 100  # low-volume feature
+      win_rate_vs_rule: ">= 0.15 use_case_fit improvement"
+      safety_incidents: "== 0"
+      red_team_pass: false
+      hc_signoff: false
+
+# ========================================
+# METADATA
+# ========================================
+
+registry_metadata:
+  version: "1.0"
+  last_updated: "2025-10-06"
+  total_decision_points: 22
+  status_summary:
+    current: 22  # all deterministic today
+    shadow: 0
+    governed_override: 0
+    ai_native: 0
+  phase_distribution:
+    phase_1: 4
+    phase_2: 5
+    phase_3: 2
+    phase_4: 4
+    phase_5: 2
+    phase_6: 2
+    cross_phase: 3  # tone mapping, evidence weight, etc.

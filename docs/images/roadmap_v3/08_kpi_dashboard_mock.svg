@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="1200" height="720" fill="#FFFFFF" />
+<text x="600.0" y="40.0" fill="#0B1B34" font-size="32" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Success Metrics Dashboard Mockup</text>
+<text x="600.0" y="80.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Illustrative layout for KPIs</text>
+<rect x="100.0" y="140.0" width="1000.0" height="460.0" rx="20.0" ry="20.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#E0E5EE" stroke-width="2.0" />
+<rect x="130.0" y="170.0" width="940.0" height="120.0" rx="16.0" ry="16.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="150.0" y="190.0" fill="#1F77B4" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Milestone Progress</text>
+<text x="150.0" y="220.0" fill="#1F77B4" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="start">M1 Completion</text>
+<rect x="150.0" y="250.0" width="220.0" height="24.0" rx="12.0" ry="12.0" fill="#d6e6f1" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<rect x="150.0" y="250.0" width="143.0" height="24.0" rx="12.0" ry="12.0" fill="#1F77B4" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="260.0" y="282.0" fill="#1F77B4" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">65% of scope</text>
+<text x="450.0" y="220.0" fill="#FF7F0E" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="start">M2 Completion</text>
+<rect x="450.0" y="250.0" width="220.0" height="24.0" rx="12.0" ry="12.0" fill="#ffe7d3" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<rect x="450.0" y="250.0" width="88.0" height="24.0" rx="12.0" ry="12.0" fill="#FF7F0E" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="560.0" y="282.0" fill="#FF7F0E" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">40% of scope</text>
+<text x="750.0" y="220.0" fill="#9467BD" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="start">M3 Completion</text>
+<rect x="750.0" y="250.0" width="220.0" height="24.0" rx="12.0" ry="12.0" fill="#ebe3f3" fill-opacity="1.00" stroke="#9467BD" stroke-width="2.0" />
+<rect x="750.0" y="250.0" width="33.0" height="24.0" rx="12.0" ry="12.0" fill="#9467BD" fill-opacity="1.00" stroke="#9467BD" stroke-width="2.0" />
+<text x="860.0" y="282.0" fill="#9467BD" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">15% of scope</text>
+<rect x="130.0" y="310.0" width="280.0" height="270.0" rx="16.0" ry="16.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#2CA02C" stroke-width="2.0" />
+<text x="150.0" y="330.0" fill="#2CA02C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Platform KPIs</text>
+<text x="150.0" y="360.0" fill="#53627C" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Ontology coverage: 5,200 / 8,000<tspan x="150.0" dy="20.8">(65%)</tspan></text>
+<text x="150.0" y="400.0" fill="#53627C" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Edges indexed: 92,410 (target<tspan x="150.0" dy="20.8">120K)</tspan></text>
+<text x="150.0" y="440.0" fill="#53627C" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Uptime: 99.92% (target 99.9%) ✅</text>
+<text x="150.0" y="480.0" fill="#53627C" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Trust score: 4.3 / 4.5 🟡</text>
+<rect x="430.0" y="310.0" width="320.0" height="270.0" rx="16.0" ry="16.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="450.0" y="330.0" fill="#FF7F0E" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Track Metrics</text>
+<rect x="450.0" y="354.0" width="280.0" height="44.0" rx="10.0" ry="10.0" fill="#dbe9f3" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="460.0" y="360.0" fill="#1F77B4" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Track 1</text>
+<text x="460.0" y="384.0" fill="#53627C" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Ontology velocity + predictive accuracy</text>
+<rect x="450.0" y="409.0" width="280.0" height="44.0" rx="10.0" ry="10.0" fill="#ffead8" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="460.0" y="415.0" fill="#FF7F0E" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Track 2</text>
+<text x="460.0" y="439.0" fill="#53627C" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Coach NPS + Life OS retention</text>
+<rect x="450.0" y="464.0" width="280.0" height="44.0" rx="10.0" ry="10.0" fill="#ddefdd" fill-opacity="1.00" stroke="#2CA02C" stroke-width="2.0" />
+<text x="460.0" y="470.0" fill="#2CA02C" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Track 3</text>
+<text x="460.0" y="494.0" fill="#53627C" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Consent latency + audit completion</text>
+<rect x="450.0" y="519.0" width="280.0" height="44.0" rx="10.0" ry="10.0" fill="#ede6f4" fill-opacity="1.00" stroke="#9467BD" stroke-width="2.0" />
+<text x="460.0" y="525.0" fill="#9467BD" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Track 4</text>
+<text x="460.0" y="549.0" fill="#53627C" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Deploy frequency + MTTR</text>
+<rect x="770.0" y="310.0" width="300.0" height="270.0" rx="16.0" ry="16.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#9467BD" stroke-width="2.0" />
+<text x="790.0" y="330.0" fill="#9467BD" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Qualitative Signals</text>
+<circle cx="820.0" cy="370.0" r="26.0" fill="#e9e0f1" stroke="#9467BD" stroke-width="3.0" />
+<text x="820.0" y="360.0" fill="#9467BD" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Tr</text>
+<text x="860.0" y="358.0" fill="#53627C" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Transparency</text>
+<text x="860.0" y="386.0" fill="#53627C" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="start">3.8 / 4.5 target</text>
+<circle cx="820.0" cy="440.0" r="26.0" fill="#e9e0f1" stroke="#9467BD" stroke-width="3.0" />
+<text x="820.0" y="430.0" fill="#9467BD" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Et</text>
+<text x="860.0" y="428.0" fill="#53627C" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Ethics Board Readiness</text>
+<text x="860.0" y="456.0" fill="#53627C" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="start">M2 charter drafted</text>
+<circle cx="820.0" cy="510.0" r="26.0" fill="#e9e0f1" stroke="#9467BD" stroke-width="3.0" />
+<text x="820.0" y="500.0" fill="#9467BD" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">St</text>
+<text x="860.0" y="498.0" fill="#53627C" font-size="17" font-family="Arial, Helvetica, sans-serif" text-anchor="start">Stakeholder Satisfaction</text>
+<text x="860.0" y="526.0" fill="#53627C" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="start">4.2 / 5 survey</text>
+</svg>

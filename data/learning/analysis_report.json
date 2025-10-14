@@ -1,0 +1,143 @@
+{
+  "generated_at": "2025-10-10T00:48:13.026147+00:00",
+  "telemetry_files_analyzed": 4,
+  "total_entries": 5,
+  "coaches": {
+    "beliefdna_coach": {
+      "coach_id": "beliefdna_coach",
+      "entries_analyzed": 1,
+      "entries_valid": 1,
+      "entries_invalid": 0,
+      "sentiment_trend": {
+        "positive": 0.0,
+        "neutral": 1.0,
+        "negative": 0.0
+      },
+      "token_efficiency": 0.0,
+      "latency_percentiles": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0
+      },
+      "tone_correlation": {
+        "top_tone": "neutral",
+        "top_tone_score": 0.0,
+        "tone_scores": {
+          "neutral": 0.0
+        }
+      },
+      "creativity_analysis": {
+        "optimal_creativity": 0.7,
+        "sample_size": 0
+      },
+      "curiosity_gap_closure": {
+        "gap_closures": 0,
+        "avg_closure_rate": 0.0,
+        "note": "Full RR tracking integration pending"
+      }
+    },
+    "chatdna_coach": {
+      "coach_id": "chatdna_coach",
+      "entries_analyzed": 1,
+      "entries_valid": 1,
+      "entries_invalid": 0,
+      "sentiment_trend": {
+        "positive": 0.0,
+        "neutral": 1.0,
+        "negative": 0.0
+      },
+      "token_efficiency": 0.0,
+      "latency_percentiles": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0
+      },
+      "tone_correlation": {
+        "top_tone": "neutral",
+        "top_tone_score": 0.0,
+        "tone_scores": {
+          "neutral": 0.0
+        }
+      },
+      "creativity_analysis": {
+        "optimal_creativity": 0.7,
+        "sample_size": 0
+      },
+      "curiosity_gap_closure": {
+        "gap_closures": 0,
+        "avg_closure_rate": 0.0,
+        "note": "Full RR tracking integration pending"
+      }
+    },
+    "self_improvement_daemon": {
+      "coach_id": "self_improvement_daemon",
+      "entries_analyzed": 2,
+      "entries_valid": 2,
+      "entries_invalid": 0,
+      "sentiment_trend": {
+        "positive": 0.0,
+        "neutral": 1.0,
+        "negative": 0.0
+      },
+      "token_efficiency": 0.0,
+      "latency_percentiles": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0
+      },
+      "tone_correlation": {
+        "top_tone": "neutral",
+        "top_tone_score": 0.0,
+        "tone_scores": {
+          "neutral": 0.0
+        }
+      },
+      "creativity_analysis": {
+        "optimal_creativity": 0.7,
+        "sample_size": 0
+      },
+      "curiosity_gap_closure": {
+        "gap_closures": 0,
+        "avg_closure_rate": 0.0,
+        "note": "Full RR tracking integration pending"
+      }
+    },
+    "head_coach": {
+      "coach_id": "head_coach",
+      "entries_analyzed": 1,
+      "entries_valid": 1,
+      "entries_invalid": 0,
+      "sentiment_trend": {
+        "positive": 0.0,
+        "neutral": 1.0,
+        "negative": 0.0
+      },
+      "token_efficiency": 0.0,
+      "latency_percentiles": {
+        "p50": 0.0,
+        "p95": 0.0,
+        "p99": 0.0
+      },
+      "tone_correlation": {
+        "top_tone": "neutral",
+        "top_tone_score": 0.0,
+        "tone_scores": {
+          "neutral": 0.0
+        }
+      },
+      "creativity_analysis": {
+        "optimal_creativity": 0.7,
+        "sample_size": 0
+      },
+      "curiosity_gap_closure": {
+        "gap_closures": 0,
+        "avg_closure_rate": 0.0,
+        "note": "Full RR tracking integration pending"
+      }
+    }
+  },
+  "processing_time_ms": 1.34,
+  "malformed_lines_skipped": 0,
+  "defaults_injected": 4,
+  "files_cleaned": 1
+}

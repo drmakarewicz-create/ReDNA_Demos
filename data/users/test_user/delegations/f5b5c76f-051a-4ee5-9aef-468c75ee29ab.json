@@ -1,0 +1,24 @@
+{
+  "delegation_id": "f5b5c76f-051a-4ee5-9aef-468c75ee29ab",
+  "coach": "photo_coach",
+  "user_id": "test_user",
+  "curiosity_targets": [
+    "PaDNA.HairDNA.Color"
+  ],
+  "context": {},
+  "status": "completed",
+  "created_at": "2025-10-06T20:02:46.687466+00:00",
+  "updated_at": "2025-10-06T20:02:46.690819+00:00",
+  "traits_collected": [
+    "PaDNA.HairDNA.Color"
+  ],
+  "curiosity_before": {
+    "PaDNA.HairDNA.Color": 75
+  },
+  "curiosity_after": {
+    "PaDNA.HairDNA.Color": 12
+  },
+  "curiosity_satisfied": 0.84,
+  "notes": "Photo analysis completed",
+  "completed_at": "2025-10-06T20:02:46.690813+00:00"
+}

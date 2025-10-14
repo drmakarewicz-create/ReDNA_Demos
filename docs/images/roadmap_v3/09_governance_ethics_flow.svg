@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="1200" height="720" fill="#FFFFFF" />
+<text x="600.0" y="40.0" fill="#0B1B34" font-size="32" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Governance &amp; Ethics Integration Flow</text>
+<text x="600.0" y="80.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Escalation and review cadence</text>
+<rect x="200.0" y="180.0" width="260.0" height="100.0" rx="14.0" ry="14.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#2CA02C" stroke-width="2.0" />
+<text x="330.0" y="192.0" fill="#2CA02C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Quarterly Reviews</text>
+<text x="330.0" y="220.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Weeks 12, 24, 36 → JSON audit<tspan x="330.0" dy="20.8">+ Markdown report</tspan></text>
+<rect x="500.0" y="180.0" width="260.0" height="100.0" rx="14.0" ry="14.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="630.0" y="192.0" fill="#FF7F0E" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Monthly Check-Ins</text>
+<text x="630.0" y="220.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Every 4 weeks → Track owner<tspan x="630.0" dy="20.8">updates</tspan></text>
+<rect x="800.0" y="180.0" width="260.0" height="100.0" rx="14.0" ry="14.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#9467BD" stroke-width="2.0" />
+<text x="930.0" y="192.0" fill="#9467BD" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Annual Ethics Review</text>
+<text x="930.0" y="220.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">M2 board established • M3 review<tspan x="930.0" dy="20.8">• +90d changes • public report</tspan></text>
+<line x1="460.0" y1="230.0" x2="500.0" y2="230.0" stroke="#53627C" stroke-width="3.0" />
+<polygon points="500.0,230.0 489.6,236.0 489.6,224.0" fill="#53627C" />
+<line x1="760.0" y1="230.0" x2="800.0" y2="230.0" stroke="#53627C" stroke-width="3.0" />
+<polygon points="800.0,230.0 789.6,236.0 789.6,224.0" fill="#53627C" />
+<rect x="180.0" y="320.0" width="840.0" height="160.0" rx="16.0" ry="16.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#E0E5EE" stroke-width="2.0" />
+<text x="600.0" y="336.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Risk Escalation Flow</text>
+<rect x="100.0" y="370.0" width="240.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#2CA02C" stroke-width="2.0" />
+<text x="220.0" y="384.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Low / Medium</text>
+<text x="220.0" y="408.0" fill="#0B1B34" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Track owner mitigation</text>
+<rect x="300.0" y="370.0" width="240.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#2CA02C" stroke-width="2.0" />
+<text x="420.0" y="384.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">High</text>
+<text x="420.0" y="408.0" fill="#0B1B34" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Escalate to quarterly review →<tspan x="420.0" dy="19.5">CTO sign-off</tspan></text>
+<rect x="500.0" y="370.0" width="240.0" height="80.0" rx="12.0" ry="12.0" fill="#FFFFFF" fill-opacity="1.00" stroke="#D62728" stroke-width="2.0" />
+<text x="620.0" y="384.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Critical</text>
+<text x="620.0" y="408.0" fill="#0B1B34" font-size="15" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Immediate escalation → CTO<tspan x="620.0" dy="19.5">+ Ethics Board</tspan></text>
+</svg>

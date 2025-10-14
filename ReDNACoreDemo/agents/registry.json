@@ -1,0 +1,153 @@
+{
+  "agents": [
+    {
+      "user_id": "10-1-test",
+      "agent_id": "hc_10-1-test",
+      "status": "enabled",
+      "autonomy": "manual",
+      "quotas": {
+        "jobs_per_day": 50
+      },
+      "permissions": {
+        "namespaces": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "sensitive": [
+          "PsyDNA",
+          "PaDNA"
+        ]
+      },
+      "created_at": "2025-10-12T14:51:14.805908Z",
+      "updated_at": "2025-10-12T14:51:14.805916Z",
+      "metadata": {}
+    },
+    {
+      "user_id": "1013test",
+      "agent_id": "hc_1013test",
+      "status": "enabled",
+      "autonomy": "manual",
+      "quotas": {
+        "jobs_per_day": 50
+      },
+      "permissions": {
+        "namespaces": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "sensitive": [
+          "PsyDNA",
+          "PaDNA"
+        ]
+      },
+      "created_at": "2025-10-13T22:18:06.335991Z",
+      "updated_at": "2025-10-13T22:18:06.336015Z",
+      "metadata": {}
+    },
+    {
+      "user_id": "LLTEST",
+      "agent_id": "hc_LLTEST",
+      "status": "enabled",
+      "autonomy": "manual",
+      "quotas": {
+        "jobs_per_day": 50
+      },
+      "permissions": {
+        "namespaces": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "sensitive": [
+          "PsyDNA",
+          "PaDNA"
+        ]
+      },
+      "created_at": "2025-10-13T20:40:28.364845Z",
+      "updated_at": "2025-10-13T20:40:28.364852Z",
+      "metadata": {}
+    },
+    {
+      "user_id": "TEST",
+      "agent_id": "hc_TEST",
+      "status": "enabled",
+      "autonomy": "manual",
+      "quotas": {
+        "jobs_per_day": 50
+      },
+      "permissions": {
+        "namespaces": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "sensitive": [
+          "PsyDNA",
+          "PaDNA"
+        ]
+      },
+      "created_at": "2025-10-11T02:01:17.600523Z",
+      "updated_at": "2025-10-11T02:01:17.600531Z",
+      "metadata": {}
+    },
+    {
+      "user_id": "USER1",
+      "agent_id": "hc_USER1",
+      "status": "enabled",
+      "autonomy": "auto",
+      "quotas": {
+        "jobs_per_day": 50
+      },
+      "permissions": {
+        "namespaces": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "sensitive": [
+          "PsyDNA",
+          "PaDNA"
+        ]
+      },
+      "created_at": "2025-10-12T00:00:00Z",
+      "updated_at": "2025-10-10T23:26:40.049545Z",
+      "metadata": {
+        "notes": "Phase 5.A baseline head coach agent",
+        "agency_level": 2,
+        "agency_level_name": "Autonomous",
+        "preset_applied_at": "2025-10-10T23:26:40.049490Z",
+        "rsc_enabled": false,
+        "schedule": {
+          "interval_hours": 4
+        },
+        "preset_notes": "Autonomous execution with short-lived capability tokens."
+      }
+    },
+    {
+      "user_id": "USER2",
+      "agent_id": "hc_USER2",
+      "status": "enabled",
+      "autonomy": "manual",
+      "quotas": {
+        "jobs_per_day": 50
+      },
+      "permissions": {
+        "namespaces": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "sensitive": [
+          "PsyDNA",
+          "PaDNA"
+        ]
+      },
+      "created_at": "2025-10-10T21:24:30.331696Z",
+      "updated_at": "2025-10-10T21:24:30.331794Z",
+      "metadata": {}
+    }
+  ],
+  "updated_at": "2025-10-13T22:18:06.336245Z"
+}

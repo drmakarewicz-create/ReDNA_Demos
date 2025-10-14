@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Please connect me with the Career Coach",
+  "assistant_text": "You're ready to move forward with a Career Coach! Let's get started. To ensure we find the right fit, what specific areas of your career are you hoping to improve or explore? (Also, I'll send an introduction to our Career Coach for you both to connect)",
+  "client_message_id": "78609fe4-2951-4c2c-89aa-475a5fbfbf15",
+  "assistant_message_id": "chat-1bee2854f2f649cea53cbb0d1db26cba",
+  "server_ts": "2025-10-07T01:24:51.917+00:00",
+  "server_ts_ms": 1759800291917,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

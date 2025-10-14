@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "We can talk about coaches",
+  "assistant_text": "Now that we've cleared the air, let's get back on track. What type of coach are you interested in learning more about? (Also, if you'd like, I can connect you with our PaDNA Coach for some style inspiration to complement your favorite team's colors.)",
+  "client_message_id": "57335b3b-0d66-48a2-aa83-7b13a6cdd4b9",
+  "assistant_message_id": "chat-aabbeeebd86043deac18a4ad67f9e04c",
+  "server_ts": "2025-10-07T01:23:39.910+00:00",
+  "server_ts_ms": 1759800219910,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

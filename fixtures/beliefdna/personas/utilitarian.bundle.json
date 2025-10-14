@@ -1,0 +1,260 @@
+{
+  "user_id": "persona_utilitarian",
+  "profile": {
+    "label": "Utilitarian Ethicist",
+    "source": "Philosophical analysis of utilitarian thinkers (Bentham, Mill, Singer)",
+    "note": "Prioritizes outcomes, greatest good for greatest number, consequentialist reasoning",
+    "embedding_model": "text-embedding-ada-002"
+  },
+  "paths": {
+    "BeliefValueDNA.MoralFoundationDNA.CareFairnessDNA": {
+      "resolved_value": 85,
+      "ucn": 900,
+      "rr": 90,
+      "curiosity": 10,
+      "reasons": [
+        "Strong emphasis on reducing suffering",
+        "Fairness defined by equal consideration of interests",
+        "Harm minimization as core principle"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": [
+          "Mill: Utilitarianism (1863)",
+          "Singer: Practical Ethics (1979)"
+        ],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.LibertyOppressionDNA": {
+      "resolved_value": 70,
+      "ucn": 750,
+      "rr": 75,
+      "curiosity": 25,
+      "reasons": [
+        "Liberty valued insofar as it promotes overall wellbeing",
+        "Not absolute - can be constrained for greater good",
+        "Moderate libertarian leanings in Mill's harm principle"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Mill: On Liberty (1859)"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.AuthorityRespectDNA": {
+      "resolved_value": 30,
+      "ucn": 820,
+      "rr": 82,
+      "curiosity": 18,
+      "reasons": [
+        "Authority not inherently valued - only if it produces good outcomes",
+        "Skeptical of tradition and hierarchy",
+        "Challenges to authority if they harm wellbeing"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Bentham's critique of natural rights"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.SanctityPurityDNA": {
+      "resolved_value": 25,
+      "ucn": 850,
+      "rr": 85,
+      "curiosity": 15,
+      "reasons": [
+        "No sacred/profane distinction in moral reasoning",
+        "Purity norms rejected unless they reduce harm",
+        "Secular ethical framework"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Singer's critique of sacred value ethics"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.LoyaltyInGroupDNA": {
+      "resolved_value": 40,
+      "ucn": 780,
+      "rr": 78,
+      "curiosity": 22,
+      "reasons": [
+        "Impartial consideration of all beings",
+        "Expanding moral circle beyond in-group",
+        "Moderate: some partiality to family/friends acceptable if net positive"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Singer: The Expanding Circle (1981)"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "CogDNA.CognitiveStyleDNA.NeedForClosureDNA": {
+      "resolved_value": 35,
+      "ucn": 700,
+      "rr": 70,
+      "curiosity": 30,
+      "reasons": [
+        "Comfortable with moral uncertainty",
+        "Consequentialist calculations require probabilistic reasoning",
+        "Open to revising beliefs based on evidence"
+      ],
+      "provenance": {
+        "source": "cognitive_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Utilitarian emphasis on empirical evidence"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "CogDNA.CognitiveStyleDNA.AnalyticalVsIntuitiveDNA": {
+      "resolved_value": 85,
+      "ucn": 880,
+      "rr": 88,
+      "curiosity": 12,
+      "reasons": [
+        "Highly analytical - weighs costs/benefits systematically",
+        "Rejects moral intuition as unreliable",
+        "Preference for quantification and calculation"
+      ],
+      "provenance": {
+        "source": "cognitive_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Bentham's felicific calculus"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.OpennessDNA": {
+      "resolved_value": 75,
+      "ucn": 720,
+      "rr": 72,
+      "curiosity": 28,
+      "reasons": [
+        "Challenges conventional moral norms",
+        "Willing to entertain counterintuitive conclusions",
+        "Open to revising traditional values"
+      ],
+      "provenance": {
+        "source": "personality_inference",
+        "method": "philosophical_profile",
+        "evidence_refs": ["Singer's controversial stances on animal rights, effective altruism"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA": {
+      "resolved_value": 65,
+      "ucn": 650,
+      "rr": 65,
+      "curiosity": 35,
+      "reasons": [
+        "Compassionate concern for suffering",
+        "But willing to make tough tradeoffs",
+        "Moderate - empathy balanced with logic"
+      ],
+      "provenance": {
+        "source": "personality_inference",
+        "method": "philosophical_profile",
+        "evidence_refs": ["Utilitarian emphasis on reducing suffering"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "EmDNA.EmpathyCompassionDNA": {
+      "resolved_value": 80,
+      "ucn": 850,
+      "rr": 85,
+      "curiosity": 15,
+      "reasons": [
+        "Strong empathic concern for all sentient beings",
+        "Compassion extends to animals, future generations",
+        "Empathy drives utilitarian commitments"
+      ],
+      "provenance": {
+        "source": "empathy_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Singer's animal liberation arguments"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "MotivationDNA.CoreValueDNA.AltruismDNA": {
+      "resolved_value": 95,
+      "ucn": 920,
+      "rr": 92,
+      "curiosity": 8,
+      "reasons": [
+        "Impartial concern for welfare of all",
+        "Effective altruism movement",
+        "Personal sacrifice for greater good"
+      ],
+      "provenance": {
+        "source": "value_system_analysis",
+        "method": "doctrine_extraction",
+        "evidence_refs": ["Singer's donations to effective charities"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    }
+  },
+  "corpus_samples": [
+    {
+      "text": "The right act is the one that produces the greatest good for the greatest number.",
+      "embedding": [0.045, -0.023, 0.067],
+      "metadata": {
+        "source_work": "Utilitarian Ethics Framework",
+        "genre": "philosophy"
+      }
+    },
+    {
+      "text": "If we can prevent something bad without sacrificing anything of comparable moral significance, we ought to do it.",
+      "embedding": [0.052, -0.018, 0.071],
+      "metadata": {
+        "source_work": "Singer: Famine, Affluence, and Morality",
+        "genre": "philosophy"
+      }
+    },
+    {
+      "text": "The capacity for suffering, not species membership, determines moral consideration.",
+      "embedding": [0.048, -0.025, 0.063],
+      "metadata": {
+        "source_work": "Singer: Animal Liberation",
+        "genre": "philosophy"
+      }
+    }
+  ]
+}

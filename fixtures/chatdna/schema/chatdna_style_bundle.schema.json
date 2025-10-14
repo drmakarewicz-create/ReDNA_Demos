@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ChatDNA Style Bundle",
+  "description": "Style bundle for ChatDNA Coach persona ingestion, matching Core's trait object shape",
+  "type": "object",
+  "required": ["user_id", "profile", "paths"],
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "description": "Unique identifier for this persona/user",
+      "pattern": "^persona_[a-z_]+$"
+    },
+    "profile": {
+      "type": "object",
+      "required": ["label", "source"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Human-readable persona name (e.g., 'Ernest Hemingway')"
+        },
+        "source": {
+          "type": "string",
+          "description": "Source attribution (e.g., 'Public domain works', 'Corpus analysis')"
+        },
+        "note": {
+          "type": "string",
+          "description": "Additional context about this persona"
+        },
+        "embedding_model": {
+          "type": "string",
+          "description": "Embedding model version used for similarity (e.g., 'text-embedding-ada-002')"
+        }
+      }
+    },
+    "paths": {
+      "type": "object",
+      "description": "DNA container paths with resolved values, UCN, and provenance",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["resolved_value", "ucn", "provenance"],
+        "properties": {
+          "resolved_value": {
+            "description": "Trait value (number, string, boolean, or object)"
+          },
+          "ucn": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "description": "Uncertainty/Confidence/Novelty score (0-1000)"
+          },
+          "rr": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Resolution/Reliability score (0-100, computed from UCN)"
+          },
+          "curiosity": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Curiosity priority score (0-100)"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Human-readable reasons for this trait value"
+          },
+          "provenance": {
+            "type": "object",
+            "required": ["source", "method"],
+            "properties": {
+              "source": {
+                "type": "string",
+                "description": "Source of trait data (e.g., 'corpus_analysis', 'expert_annotation')"
+              },
+              "method": {
+                "type": "string",
+                "description": "Method used to derive trait (e.g., 'nlp_analysis', 'manual_coding')"
+              },
+              "evidence_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "References to evidence (e.g., 'The Sun Also Rises, Ch. 3')"
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time",
+                "description": "When this trait was derived"
+              }
+            }
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^\\.v[0-9]+$",
+            "description": "Trait version (e.g., '.v1')"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["prototype", "stable", "deprecated"],
+            "description": "Trait lifecycle status"
+          },
+          "ai_upgradable": {
+            "type": "boolean",
+            "description": "Whether AI can refine this trait via feedback"
+          }
+        }
+      }
+    },
+    "corpus_samples": {
+      "type": "array",
+      "description": "Short text samples for similarity evaluation",
+      "items": {
+        "type": "object",
+        "required": ["text", "embedding"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "maxLength": 200,
+            "description": "Short sample text (≤200 chars)"
+          },
+          "embedding": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "description": "Embedding vector for similarity comparison"
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "source_work": {
+                "type": "string"
+              },
+              "genre": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

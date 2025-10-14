@@ -1,0 +1,18 @@
+{
+  "nudge_frequency_multiplier": 1.0,
+  "nudge_timing_preference": "adaptive",
+  "tone_bias": 0.0,
+  "formality_bias": 0.0,
+  "creativity_bias": 0.5,
+  "focus_weights": {
+    "career": 1.5,
+    "health": 1.0,
+    "personal": 1.2,
+    "creative": 0.8
+  },
+  "last_update": "2025-10-11T12:00:00Z",
+  "update_count": 1,
+  "baseline_metrics": {},
+  "version": "1.0",
+  "computed_at": ""
+}

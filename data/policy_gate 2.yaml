@@ -1,0 +1,327 @@
+# Policy Gate Configuration
+# Version: 1.0 | Date: 2025-10-06
+#
+# Defines reusable policy gates that control when AI can override deterministic rules.
+# Each decision point references a policy (see ai_decision_points.yaml).
+#
+# Policy gates evaluate AIProposal against safety constraints and decide:
+# - shadow_only: AI runs but never overrides (data collection mode)
+# - governed_override: AI can override if gates pass
+# - ai_native: AI fully controls decision (deterministic is fallback only)
+
+policies:
+
+  # ========================================
+  # DEFAULT POLICY
+  # ========================================
+  default:
+    description: "Standard policy for low-medium risk decisions"
+    mode: "shadow_only"  # start in shadow, promote after gates pass
+
+    gates:
+      min_confidence: 0.75  # AI must be confident
+      max_safety_flags: 0  # zero safety violations
+      require_dev_mode_for: []  # no special dev mode requirements
+      require_hc_approval_for: []  # no HC approval needed
+      telemetry: true  # always log
+
+    disallowed_safety_flags:
+      - "privacy_risk"
+      - "manipulation_risk"
+      - "consent_violation"
+      - "cross_user_leak"
+
+    rollback:
+      enabled: true
+      one_click: true  # single button reverts to deterministic
+      retention_days: 30  # keep override telemetry for 30 days
+
+    promotion_criteria:
+      min_shadow_runs: 1000
+      min_win_rate: 0.10  # AI must beat deterministic by ≥10%
+      max_safety_incidents: 0
+      red_team_pass: false  # not privacy-critical
+      hc_signoff: false  # no governance approval needed
+
+  # ========================================
+  # AUTONOMY SCALING POLICY (Custom)
+  # ========================================
+  autonomy_scaling:
+    description: "Strict policy for coach autonomy adjustments (user safety critical)"
+    mode: "shadow_only"
+
+    gates:
+      min_confidence: 0.80  # higher threshold than default
+      max_safety_flags: 0
+      require_dev_mode_for:
+        - "experimental_scaling"  # non-standard autonomy curves require dev mode flag
+      require_hc_approval_for:
+        - "level_4_increase"  # autonomy Level 4+ requires HC digest review
+      telemetry: true
+
+    disallowed_safety_flags:
+      - "cap_max_level_violation"  # cannot exceed user_consent_max_level
+      - "manipulation_amplification"  # cannot increase autonomy for manipulative coaches
+      - "boundary_violation"  # cannot grant autonomy without consent
+
+    mandatory_checks:
+      - "user_consent_max_level"  # always verify User's cap
+      - "recent_manipulation_incidents"  # check if coach has recent violations
+      - "feedback_sentiment"  # check if User feedback is positive
+
+    rollback:
+      enabled: true
+      one_click: true
+      retention_days: 90  # longer retention for safety analysis
+
+    promotion_criteria:
+      min_shadow_runs: 2000
+      min_win_rate: 0.10  # nudge acceptance + satisfaction
+      max_safety_incidents: 0
+      red_team_pass: true  # verify no autonomy abuse patterns
+      hc_signoff: true  # governance approval required
+
+  # ========================================
+  # RSC PRIVACY POLICY (Custom, Strictest)
+  # ========================================
+  rsc_privacy:
+    description: "Strictest policy for RSC camouflage and timing (provenance firewall integrity)"
+    mode: "shadow_only"
+
+    gates:
+      min_confidence: 0.85  # very high threshold
+      max_safety_flags: 0
+      require_dev_mode_for:
+        - "experimental_camouflage"  # non-validated camouflage patterns
+      require_hc_approval_for:
+        - "sensitive_trait_signals"  # RSC involving Sensitive traits
+      telemetry: true
+
+    disallowed_safety_flags:
+      - "source_exposure"  # any hint of User A → User B link
+      - "timing_correlation"  # detectable timing patterns
+      - "linguistic_fingerprint"  # distinctive phrases from source
+      - "tone_mismatch"  # camouflage doesn't fit target User's PsyDNA
+
+    mandatory_checks:
+      - "red_team_correlation_test"  # MUST pass all 4 correlation tests
+      - "provenance_firewall_integrity"  # no leaks in User Mode
+      - "consent_dual_verified"  # both Users have full consent
+      - "timing_randomization"  # delays are randomized 30s-5min
+
+    red_team_requirements:
+      timing_correlation_max: 0.30  # Pearson r < 0.3
+      linguistic_similarity_max: 0.20  # cosine sim < 0.2
+      sentiment_difference_min: 0.30  # |sentiment_A - sentiment_B| > 0.3
+      topic_leakage_max: 0.00  # zero exact topic matches
+
+    rollback:
+      enabled: true
+      one_click: true
+      retention_days: 365  # full year retention for privacy audits
+
+    promotion_criteria:
+      min_shadow_runs: 1000
+      min_win_rate: 0.02  # even 2% correlation improvement is significant
+      max_safety_incidents: 0
+      red_team_pass: true  # MANDATORY
+      hc_signoff: true  # governance approval required
+
+  # ========================================
+  # GOVERNANCE POLICY (Custom)
+  # ========================================
+  governance:
+    description: "Policy for Head Coach governance and consent decisions (HC/User retain final authority)"
+    mode: "shadow_only"
+
+    gates:
+      min_confidence: 0.75
+      max_safety_flags: 0
+      require_dev_mode_for: []
+      require_hc_approval_for:
+        - "risk_score_override"  # AI proposing to override HC's risk assessment
+        - "consent_decision_override"  # AI proposing to override consent rules
+      telemetry: true
+
+    disallowed_safety_flags:
+      - "hc_authority_bypass"  # AI cannot bypass Head Coach final decision
+      - "user_veto_ignore"  # AI cannot ignore User emergency stop
+      - "consent_violation"  # AI cannot override consent requirements
+
+    mandatory_checks:
+      - "head_coach_final_authority"  # HC can always override AI
+      - "user_emergency_stop"  # User can halt regardless of AI
+
+    rollback:
+      enabled: true
+      one_click: true
+      retention_days: 90
+
+    promotion_criteria:
+      min_shadow_runs: 500
+      min_win_rate: 0.10  # false positive reduction + prediction accuracy
+      max_safety_incidents: 0
+      red_team_pass: false
+      hc_signoff: true  # HC must approve AI taking over HC's own decisions
+
+  # ========================================
+  # FAIRNESS POLICY (Custom)
+  # ========================================
+  fairness:
+    description: "Policy for bias detection and fairness-critical decisions (zero tolerance for discrimination)"
+    mode: "shadow_only"
+
+    gates:
+      min_confidence: 0.80
+      max_safety_flags: 0
+      require_dev_mode_for:
+        - "experimental_bias_models"  # non-validated bias detection
+      require_hc_approval_for:
+        - "coach_suspension_trigger"  # AI triggering coach suspension requires HC review
+      telemetry: true
+
+    disallowed_safety_flags:
+      - "single_user_bias"  # AI cannot favor one partner without evidence
+      - "protected_attribute_discrimination"  # no bias based on race, gender, etc.
+      - "fairness_degradation"  # AI cannot make system less fair than baseline
+
+    mandatory_checks:
+      - "dual_user_notification"  # both partners notified if bias detected
+      - "bias_threshold"  # bias >0.7 triggers action
+      - "protected_attributes_excluded"  # bias detection cannot use race/gender/etc. as features
+
+    rollback:
+      enabled: true
+      one_click: true
+      retention_days: 365  # long retention for fairness audits
+
+    promotion_criteria:
+      min_shadow_runs: 200  # low volume, high stakes
+      min_win_rate: 0.15  # significant improvement required
+      max_safety_incidents: 0
+      red_team_pass: false
+      hc_signoff: true
+      external_ethics_review: false  # not required for bias detection (but DV risk does)
+
+  # ========================================
+  # SAFETY CRITICAL POLICY (Custom, Highest Stakes)
+  # ========================================
+  safety_critical:
+    description: "Policy for life-safety decisions (DV risk, self-harm, etc.) — human review always required"
+    mode: "shadow_only"
+
+    gates:
+      min_confidence: 0.90  # extremely high threshold
+      max_safety_flags: 0
+      require_dev_mode_for: []
+      require_hc_approval_for:
+        - "all_decisions"  # every decision requires human review
+      telemetry: true
+
+    disallowed_safety_flags:
+      - "auto_reporting_without_consent"  # cannot report to authorities without User consent
+      - "privacy_breach"  # DV flags must be encrypted, not shared with partner
+      - "resource_unavailability"  # safety resources (hotlines) must be available 24/7
+
+    mandatory_checks:
+      - "human_review_required"  # all medium/high risk flags reviewed by human
+      - "resource_availability"  # verify safety resources are accessible
+      - "privacy_protected"  # DV risk flags encrypted at rest
+      - "no_partner_notification"  # never notify partner of DV risk flag
+
+    rollback:
+      enabled: true
+      one_click: true
+      retention_days: 1095  # 3 years retention for legal/safety audits
+
+    promotion_criteria:
+      min_shadow_runs: 50  # very low volume, extremely high stakes
+      min_win_rate: 0.20  # substantial improvement required (recall, not precision)
+      max_safety_incidents: 0
+      red_team_pass: false
+      hc_signoff: true
+      external_ethics_review: true  # annual ethics board review required
+
+# ========================================
+# GLOBAL SETTINGS
+# ========================================
+global:
+  # Feature flags to control AI override modes system-wide
+  feature_flags:
+    ai_override_enabled: false  # master switch (default: off)
+    shadow_mode_enabled: true  # allow AI to run in shadow (data collection)
+    governed_override_enabled: false  # allow AI to override after gates pass
+    ai_native_enabled: false  # allow AI full control (deterministic fallback only)
+
+  # Default behavior when AI model unavailable
+  fallback:
+    mode: "deterministic"  # always fall back to deterministic rule
+    log_failure: true  # log when AI model fails to respond
+    alert_threshold: 10  # alert dev team if AI fails >10 times in 1 hour
+
+  # Audit and transparency
+  audit:
+    log_all_decisions: true  # log deterministic + AI proposals + final decision
+    retention_days: 90  # default retention (policies can override)
+    export_format: "json"  # audit bundles in JSON format
+    anonymize_user_ids: true  # hash user IDs in exports (for external review)
+
+  # Telemetry and monitoring
+  telemetry:
+    enabled: true
+    track_latency: true  # measure AI inference latency
+    track_confidence: true  # track AI confidence distributions
+    track_override_rate: true  # % of proposals that override deterministic
+    track_rollback_rate: true  # % of overrides that get rolled back
+    dashboard_url: "/dev-explorer/ai-decision-dashboard"  # Dev Mode dashboard
+
+  # Safety net
+  safety:
+    max_consecutive_overrides: 100  # if AI overrides >100 decisions in a row, flag for review
+    confidence_floor: 0.50  # AI proposals with confidence <0.5 always rejected
+    emergency_stop_enabled: true  # User can halt all AI activity via Settings
+
+  # A/B testing framework
+  ab_testing:
+    enabled: false  # disabled by default, enable per decision point
+    split_ratio: 0.5  # 50/50 split (deterministic vs. AI)
+    min_sample_size: 100  # minimum N per group before analyzing results
+    significance_threshold: 0.05  # p-value threshold for declaring winner
+
+# ========================================
+# DECISION POINT OVERRIDES
+# ========================================
+# Individual decision points can override policy defaults here
+
+overrides:
+  # Example: enable A/B testing for camouflage template selection
+  rsc_protocol.camouflage_template_selection:
+    ab_testing:
+      enabled: true
+      split_ratio: 0.5
+      min_sample_size: 200  # higher N for privacy-critical decisions
+
+  # Example: lower confidence threshold for low-stakes tone mapping
+  coach_tone_mapper.tone_selection:
+    gates:
+      min_confidence: 0.70  # slightly lower than default 0.75
+
+  # Example: extend retention for high-stakes DV risk assessment
+  couples_coach.dv_risk_assessment:
+    rollback:
+      retention_days: 1095  # 3 years (legal compliance)
+
+# ========================================
+# METADATA
+# ========================================
+policy_metadata:
+  version: "1.0"
+  last_updated: "2025-10-06"
+  total_policies: 6  # default + 5 custom
+  policy_summary:
+    default: "Low-medium risk, standard gates"
+    autonomy_scaling: "User safety critical, strict gates"
+    rsc_privacy: "Provenance firewall integrity, strictest gates"
+    governance: "HC/User retain authority, moderate gates"
+    fairness: "Bias detection, zero tolerance"
+    safety_critical: "Life-safety, human review always"

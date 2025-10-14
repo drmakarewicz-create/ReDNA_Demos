@@ -1,0 +1,45 @@
+# SkillDNA Template for Expansion Engine v5
+# Defines patterns for generating skill-related containers
+
+namespace: SkillDNA
+category: ""  # Will be filled by specific templates
+description_template: "Proficiency in {trait}"
+parent_path: SkillDNA
+sensitive: false
+properties:
+  ucn_weight_hint: 0.02
+  ai_upgradable: true
+  curiosity_baseline: 80
+
+# Programming Languages
+programming_languages:
+  - name: Python
+    description: "Proficiency in Python programming for data science, web development, and automation"
+  - name: JavaScript
+    description: "Proficiency in JavaScript for web development, Node.js, and full-stack applications"
+  - name: TypeScript
+    description: "Proficiency in TypeScript for type-safe JavaScript development"
+  - name: Java
+    description: "Proficiency in Java for enterprise applications and Android development"
+  - name: C++
+    description: "Proficiency in C++ for systems programming and high-performance applications"
+
+# Frameworks
+web_frameworks:
+  - React
+  - Vue
+  - Angular
+  - Next.js
+  - Django
+  - Flask
+  - FastAPI
+  - Express
+
+# Tools
+devops_tools:
+  - Docker
+  - Kubernetes
+  - Terraform
+  - Ansible
+  - Jenkins
+  - GitHub Actions

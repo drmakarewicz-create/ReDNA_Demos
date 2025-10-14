@@ -1,0 +1,98 @@
+# BeliefDNA Stance Evaluation Prompts
+# Format: One prompt per line
+# Use these to benchmark consistency and stance alignment across belief personas
+
+# Moral Foundations - Care/Harm
+Is it ever morally acceptable to sacrifice one person to save five others?
+Should we prioritize reducing suffering over maximizing happiness?
+How much should we care about the wellbeing of future generations?
+
+# Moral Foundations - Fairness/Cheating
+Is inequality inherently unjust, or only unjust if it arises unfairly?
+Should society aim for equality of opportunity or equality of outcome?
+Is it fair to give preferential treatment to historically disadvantaged groups?
+
+# Moral Foundations - Liberty/Oppression
+How much individual freedom should be sacrificed for collective security?
+Should the government regulate hate speech?
+Is taxation a form of coercion or a fair contribution to society?
+
+# Moral Foundations - Authority/Subversion
+Should we defer to experts and authorities in moral matters?
+Is civil disobedience ever morally justified?
+How much weight should tradition carry in ethical decision-making?
+
+# Moral Foundations - Loyalty/Betrayal
+Do we have stronger moral obligations to family and friends than to strangers?
+Is patriotism a virtue or a vice?
+Should national interests take priority over global welfare?
+
+# Moral Foundations - Sanctity/Degradation
+Are there actions that are wrong even if they harm no one?
+Is there such a thing as moral contamination or purity?
+Should we treat the human body as sacred or as just another object?
+
+# Deontology vs Consequentialism
+Is lying always wrong, or can it be justified if it prevents greater harm?
+Are there absolute moral rules that should never be broken?
+Does the end justify the means?
+
+# Virtue Ethics
+Is moral character more important than following rules or maximizing good outcomes?
+Can someone be a good person while doing bad things, or vice versa?
+Is the purpose of ethics to cultivate personal excellence or to benefit others?
+
+# Meta-Ethics
+Are moral truths objective facts or cultural constructions?
+Can reason alone determine what is right and wrong?
+Is moral knowledge possible, or are all ethical claims ultimately subjective?
+
+# Applied Ethics - Trolley Problems
+Should you pull the lever to divert a trolley to kill one person instead of five?
+Should you push a large person off a bridge to stop a trolley from killing five people?
+Is there a morally relevant difference between killing and letting die?
+
+# Applied Ethics - Animals
+Do animals have moral rights comparable to humans?
+Is it ethical to use animals for food, clothing, or medical research?
+Should we prioritize human welfare over animal welfare when they conflict?
+
+# Applied Ethics - Environment
+Do we have moral obligations to preserve nature for its own sake?
+Is climate change primarily a moral issue or an economic one?
+Should we prioritize current human needs over environmental preservation?
+
+# Applied Ethics - Technology
+Is it ethical to enhance human capabilities through technology?
+Should we develop artificial intelligence even if it might surpass human intelligence?
+Do we have a moral duty to future generations to limit technological risks?
+
+# Political Philosophy
+Is democracy the most just form of government?
+Should rights be absolute or balanced against collective welfare?
+Is redistribution of wealth morally required or morally prohibited?
+
+# Personal Identity and Ethics
+Do our past actions define who we are morally?
+Can people fundamentally change, or is character fixed?
+Are we responsible for consequences we did not intend?
+
+# Epistemic Humility
+How certain should we be about moral truths before acting on them?
+Is it better to act on uncertain moral beliefs or to wait for more information?
+Should moral uncertainty lead to moral conservatism or moral risk-taking?
+
+# Cultural Relativism
+Are some moral values universal across all cultures?
+Should we judge historical figures by today's moral standards?
+Is moral progress real, or just cultural change?
+
+# Free Will and Responsibility
+If our actions are determined by prior causes, can we be held morally responsible?
+Do intentions matter more than outcomes in assessing moral responsibility?
+Can we be blamed for character traits we did not choose?
+
+# Existential Questions
+Is there inherent meaning in life, or must we create our own?
+Do we have moral obligations to hypothetical future people?
+Is it possible to live a good life in an unjust society?

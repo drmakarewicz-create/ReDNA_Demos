@@ -1,0 +1,261 @@
+{
+  "user_id": "persona_maya_angelou",
+  "profile": {
+    "label": "Maya Angelou",
+    "source": "Published works analysis (I Know Why the Caged Bird Sings, autobiographies, poetry)",
+    "note": "Characterized by lyrical prose, rich metaphor, empathetic warmth, rhythmic cadence, storytelling voice",
+    "embedding_model": "text-embedding-ada-002"
+  },
+  "paths": {
+    "LanguageStyleDNA.SentenceLengthDNA": {
+      "resolved_value": "varied",
+      "ucn": 740,
+      "rr": 74,
+      "curiosity": 26,
+      "reasons": ["Mixes short impactful sentences with flowing longer ones", "Avg sentence length: 16-22 words", "Rhythmic variation"],
+      "provenance": {
+        "source": "corpus_analysis",
+        "method": "nlp_sentence_parsing",
+        "evidence_refs": ["'I Know Why the Caged Bird Sings' prose analysis", "Autobiographical works sentence patterns"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.CadenceDNA": {
+      "resolved_value": "lyrical",
+      "ucn": 890,
+      "rr": 89,
+      "curiosity": 11,
+      "reasons": ["Musical rhythm", "Poetic flow in prose", "Southern oral tradition influence", "Call-and-response patterns"],
+      "provenance": {
+        "source": "prosody_analysis",
+        "method": "rhythmic_pattern_detection",
+        "evidence_refs": ["Poetry-prose crossover analysis", "Oral performance recordings"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.VocabularyDensityDNA": {
+      "resolved_value": "moderate_high",
+      "ucn": 770,
+      "rr": 77,
+      "curiosity": 23,
+      "reasons": ["Rich but accessible vocabulary", "Poetic word choice", "Balanced sophistication"],
+      "provenance": {
+        "source": "lexical_analysis",
+        "method": "vocabulary_scoring",
+        "evidence_refs": ["Type-token ratio: 0.64"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.FormalityDNA": {
+      "resolved_value": "semi-formal",
+      "ucn": 760,
+      "rr": 76,
+      "curiosity": 24,
+      "reasons": ["Literary register with conversational warmth", "Accessible elevation", "Storytelling tradition"],
+      "provenance": {
+        "source": "formality_scoring",
+        "method": "register_analysis",
+        "evidence_refs": ["Autobiographical narrative style"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.HedgingPatternDNA": {
+      "resolved_value": "low",
+      "ucn": 810,
+      "rr": 81,
+      "curiosity": 19,
+      "reasons": ["Confident assertions", "Personal truth-telling", "Minimal qualifiers", "Declarative wisdom"],
+      "provenance": {
+        "source": "hedging_analysis",
+        "method": "marker_frequency",
+        "evidence_refs": ["Hedging frequency: 0.03 per 100 words"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.MetaphorDensityDNA": {
+      "resolved_value": "very_high",
+      "ucn": 930,
+      "rr": 93,
+      "curiosity": 7,
+      "reasons": ["Rich figurative language", "Extended metaphors", "Nature imagery", "Cultural symbolism", "Poetic sensibility"],
+      "provenance": {
+        "source": "literary_analysis",
+        "method": "metaphor_extraction",
+        "evidence_refs": ["Metaphor count: 6.2 per 1000 words", "'Caged bird' central metaphor", "Rainbow in clouds imagery"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.StorytellingDNA": {
+      "resolved_value": "strong",
+      "ucn": 900,
+      "rr": 90,
+      "curiosity": 10,
+      "reasons": ["Narrative voice", "Vivid scene-setting", "Character development", "Personal anecdotes", "Oral tradition influence"],
+      "provenance": {
+        "source": "narrative_analysis",
+        "method": "storytelling_pattern_detection",
+        "evidence_refs": ["Autobiographical narrative structure", "Memoirist techniques"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "LanguageStyleDNA.ImageryDensityDNA": {
+      "resolved_value": "very_high",
+      "ucn": 870,
+      "rr": 87,
+      "curiosity": 13,
+      "reasons": ["Sensory details", "Visual descriptions", "Synesthetic language", "Concrete imagery"],
+      "provenance": {
+        "source": "imagery_analysis",
+        "method": "sensory_language_detection",
+        "evidence_refs": ["High frequency of visual, auditory, tactile descriptors"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.OpennessDNA": {
+      "resolved_value": 85,
+      "ucn": 710,
+      "rr": 71,
+      "curiosity": 29,
+      "reasons": ["Artistic creativity", "Wide-ranging interests", "Cultural explorer", "Intellectual depth"],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": ["Poetry, autobiography, civil rights activism", "Multidisciplinary work"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA": {
+      "resolved_value": 75,
+      "ucn": 680,
+      "rr": 68,
+      "curiosity": 32,
+      "reasons": ["Compassionate voice", "Empathetic perspective", "Community focus", "Warm interpersonal style"],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": ["Mentorship role", "Public speaking warmth", "Writing tone analysis"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.ExtraversionDNA": {
+      "resolved_value": 70,
+      "ucn": 650,
+      "rr": 65,
+      "curiosity": 35,
+      "reasons": ["Public performance", "Engaging presence", "Outward expression"],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": ["Public reading performances", "Teaching and mentoring activities"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "SocDNA.InteractionStyleDNA.DirectnessDNA": {
+      "resolved_value": "balanced",
+      "ucn": 730,
+      "rr": 73,
+      "curiosity": 27,
+      "reasons": ["Honest but gentle", "Truth-telling with care", "Balanced forthrightness"],
+      "provenance": {
+        "source": "discourse_analysis",
+        "method": "directness_scoring",
+        "evidence_refs": ["Autobiographical honesty with compassion"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "SocDNA.InteractionStyleDNA.EmpathyToneDNA": {
+      "resolved_value": "very_warm",
+      "ucn": 910,
+      "rr": 91,
+      "curiosity": 9,
+      "reasons": ["Deep empathy", "Compassionate voice", "Emotional resonance", "Shared humanity emphasis", "Nurturing tone"],
+      "provenance": {
+        "source": "empathy_analysis",
+        "method": "tone_scoring",
+        "evidence_refs": ["High frequency of empathy markers", "Compassionate address to reader", "'We/us' inclusive language"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "SocDNA.InteractionStyleDNA.WisdomToneDNA": {
+      "resolved_value": "elder_wisdom",
+      "ucn": 850,
+      "rr": 85,
+      "curiosity": 15,
+      "reasons": ["Life lessons", "Reflective insights", "Generational knowledge", "Mentor voice"],
+      "provenance": {
+        "source": "discourse_analysis",
+        "method": "wisdom_marker_detection",
+        "evidence_refs": ["Reflective passages in autobiographies", "Advice-giving patterns"],
+        "timestamp": "2025-10-07T23:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    }
+  },
+  "corpus_samples": [
+    {
+      "text": "There is no greater agony than bearing an untold story inside you.",
+      "embedding": [0.038, 0.029, -0.014],
+      "metadata": {
+        "source_work": "I Know Why the Caged Bird Sings",
+        "genre": "autobiography"
+      }
+    },
+    {
+      "text": "The caged bird sings with a fearful trill of things unknown but longed for still.",
+      "embedding": [0.041, 0.033, -0.017],
+      "metadata": {
+        "source_work": "I Know Why the Caged Bird Sings",
+        "genre": "poetry"
+      }
+    },
+    {
+      "text": "We delight in the beauty of the butterfly, but rarely admit the changes it has gone through.",
+      "embedding": [0.036, 0.027, -0.012],
+      "metadata": {
+        "source_work": "Wouldn't Take Nothing for My Journey Now",
+        "genre": "essay"
+      }
+    }
+  ]
+}

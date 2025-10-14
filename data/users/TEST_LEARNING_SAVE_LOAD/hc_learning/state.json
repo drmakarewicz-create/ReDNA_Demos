@@ -1,0 +1,18 @@
+{
+  "nudge_frequency_multiplier": 1.2,
+  "nudge_timing_preference": "morning",
+  "tone_bias": 0.3,
+  "formality_bias": 0.0,
+  "creativity_bias": 0.6,
+  "focus_weights": {
+    "career": 1.2,
+    "health": 0.9
+  },
+  "last_update": "2025-10-11T04:19:01.816654+00:00Z",
+  "update_count": 1,
+  "baseline_metrics": {
+    "completion_rate": 0.7
+  },
+  "version": "1.0",
+  "computed_at": ""
+}

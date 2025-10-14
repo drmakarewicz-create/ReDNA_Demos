@@ -1,0 +1,15 @@
+{
+  "nudge_frequency_multiplier": 0.8,
+  "nudge_timing_preference": "evening",
+  "tone_bias": -0.2,
+  "formality_bias": 0.0,
+  "creativity_bias": 0.4,
+  "focus_weights": {
+    "learning": 1.3
+  },
+  "last_update": "2025-10-11T18:00:00Z",
+  "update_count": 2,
+  "baseline_metrics": {},
+  "version": "1.0",
+  "computed_at": ""
+}

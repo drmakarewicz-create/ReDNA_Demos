@@ -1,0 +1,106 @@
+[
+  {
+    "capability_id": "c59d8233682c4b67a999647de0f3df97",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX0xMVEVTVCIsImV4cCI6IjIwMjUtMTAtMTNUMjA6NDU6MjguMzY1NDI3WiIsImlzc3VlZF9hdCI6IjIwMjUtMTAtMTNUMjA6NDA6MjguMzY1NDI3WiIsIm1ldGFkYXRhIjp7ImNhcGFiaWxpdHlfaWQiOiJjNTlkODIzMzY4MmM0YjY3YTk5OTY0N2RlMGYzZGY5NyIsImlzc3VlZF9ieSI6ImRldnhfYXBpIiwicmVxdWVzdGVkX2J5IjoiZGV2eF9hcGkifSwic2NvcGUiOiJjb3JlLmFnZW50LmNvbmZpZyIsInVzZXJfaWQiOiJMTFRFU1QifQ.rODz0ym-Ike05ZJwrSuM9e0DE6GBvEVKp8H-RJ4D120",
+    "payload": {
+      "agent": "hc_LLTEST",
+      "scope": "core.agent.config",
+      "exp": "2025-10-13T20:45:28.365427Z",
+      "issued_at": "2025-10-13T20:40:28.365427Z",
+      "user_id": "LLTEST",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "c59d8233682c4b67a999647de0f3df97"
+      }
+    },
+    "issued_at": "2025-10-13T20:40:28.365427Z",
+    "expires_at": "2025-10-13T20:45:28.365427Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "c59d8233682c4b67a999647de0f3df97"
+    }
+  },
+  {
+    "capability_id": "052d976226064c4e8b3a407e4cff182b",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX0xMVEVTVCIsImV4cCI6IjIwMjUtMTAtMTNUMjA6NDU6MjguMzY5MzUxWiIsImlzc3VlZF9hdCI6IjIwMjUtMTAtMTNUMjA6NDA6MjguMzY5MzUxWiIsIm1ldGFkYXRhIjp7ImNhcGFiaWxpdHlfaWQiOiIwNTJkOTc2MjI2MDY0YzRlOGIzYTQwN2U0Y2ZmMTgyYiIsImlzc3VlZF9ieSI6ImRldnhfYXBpIiwicmVxdWVzdGVkX2J5IjoiZGV2eF9hcGkifSwic2NvcGUiOiJjb3JlLmFnZW50LmNvbmZpZyIsInVzZXJfaWQiOiJMTFRFU1QifQ.gDUJjcqB7Gun7ABOr48zna08vAhUnQmJb1kwg5on1mY",
+    "payload": {
+      "agent": "hc_LLTEST",
+      "scope": "core.agent.config",
+      "exp": "2025-10-13T20:45:28.369351Z",
+      "issued_at": "2025-10-13T20:40:28.369351Z",
+      "user_id": "LLTEST",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "052d976226064c4e8b3a407e4cff182b"
+      }
+    },
+    "issued_at": "2025-10-13T20:40:28.369351Z",
+    "expires_at": "2025-10-13T20:45:28.369351Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "052d976226064c4e8b3a407e4cff182b"
+    }
+  },
+  {
+    "capability_id": "d054f5c396684132aa586f0ee4cf0762",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX0xMVEVTVCIsImV4cCI6IjIwMjUtMTAtMTNUMjA6NDU6MjguMzcwMzI2WiIsImlzc3VlZF9hdCI6IjIwMjUtMTAtMTNUMjA6NDA6MjguMzcwMzI2WiIsIm1ldGFkYXRhIjp7ImNhcGFiaWxpdHlfaWQiOiJkMDU0ZjVjMzk2Njg0MTMyYWE1ODZmMGVlNGNmMDc2MiIsImlzc3VlZF9ieSI6ImRldnhfYXBpIiwicmVxdWVzdGVkX2J5IjoiZGV2eF9hcGkifSwic2NvcGUiOiJjb3JlLmFnZW50LmNvbmZpZyIsInVzZXJfaWQiOiJMTFRFU1QifQ.eTSfR1twxAFapvGYVzCpa2vuv8fj8-PAQyONdimQJXc",
+    "payload": {
+      "agent": "hc_LLTEST",
+      "scope": "core.agent.config",
+      "exp": "2025-10-13T20:45:28.370326Z",
+      "issued_at": "2025-10-13T20:40:28.370326Z",
+      "user_id": "LLTEST",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "d054f5c396684132aa586f0ee4cf0762"
+      }
+    },
+    "issued_at": "2025-10-13T20:40:28.370326Z",
+    "expires_at": "2025-10-13T20:45:28.370326Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "d054f5c396684132aa586f0ee4cf0762"
+    }
+  },
+  {
+    "capability_id": "06e3d2bc1fe347a2b55bf54241373004",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX0xMVEVTVCIsImV4cCI6IjIwMjUtMTAtMTNUMjA6NDU6MjguMzcxMTQ4WiIsImlzc3VlZF9hdCI6IjIwMjUtMTAtMTNUMjA6NDA6MjguMzcxMTQ4WiIsIm1ldGFkYXRhIjp7ImNhcGFiaWxpdHlfaWQiOiIwNmUzZDJiYzFmZTM0N2EyYjU1YmY1NDI0MTM3MzAwNCIsImlzc3VlZF9ieSI6ImRldnhfYXBpIiwicmVxdWVzdGVkX2J5IjoiZGV2eF9hcGkifSwic2NvcGUiOiJjb3JlLmFnZW50LmNvbmZpZyIsInVzZXJfaWQiOiJMTFRFU1QifQ.eIzHN3mKkCHL8oX13REmyLo4tDNL0WHJJAcOyJjsRcI",
+    "payload": {
+      "agent": "hc_LLTEST",
+      "scope": "core.agent.config",
+      "exp": "2025-10-13T20:45:28.371148Z",
+      "issued_at": "2025-10-13T20:40:28.371148Z",
+      "user_id": "LLTEST",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "06e3d2bc1fe347a2b55bf54241373004"
+      }
+    },
+    "issued_at": "2025-10-13T20:40:28.371148Z",
+    "expires_at": "2025-10-13T20:45:28.371148Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "06e3d2bc1fe347a2b55bf54241373004"
+    }
+  }
+]
