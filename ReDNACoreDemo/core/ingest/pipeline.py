@@ -3,13 +3,14 @@ from typing import List, Dict, Any, Optional
 from uuid import uuid4
 from datetime import datetime, timezone
 import logging
+import os
 
 logger = logging.getLogger(__name__)
 
 # Import canonical trait ID mapper and inference engine
 from ..traits.trait_id_mapper import normalize_evidence as id_normalize
 from ..traits.inference_engine import run_inference
-from .evidence_schema import validate_batch
+from .evidence_schema import validate_batch, EvidenceValidationError
 
 
 def now_iso() -> str:
@@ -53,15 +54,70 @@ def ingest_evidence_roundtrip(
 
     logger.info(f"ingest_start{{req_id={rid}, user={user_id}, source={source}, items_in={len(evidence)}}}")
 
+    # Check strict mode
+    strict_mode = os.getenv("EVIDENCE_STRICT", "false").lower() in ("1", "true", "yes")
+
     try:
         # STEP 1: Canonicalize trait IDs
         # Maps attributes.physical.eye_color → PaDNA.EyeDNA.IrisColor
         ev1 = id_normalize(evidence)
         logger.info(f"  → Canonicalized {len(ev1)} trait IDs")
 
+        # STEP 1b: In strict mode, reject evidence without trait IDs
+        # In permissive mode, drop them silently (legacy behavior)
+        filtered: List[Dict[str, Any]] = []
+        dropped: List[Dict[str, Any]] = []
+        for item in ev1:
+            if item.get("trait_id") or item.get("trait") or (
+                item.get("trait_category") and item.get("fact_category")
+            ):
+                filtered.append(item)
+            else:
+                dropped.append(item)
+
+        if dropped:
+            if strict_mode:
+                # In strict mode, raise validation error
+                raise EvidenceValidationError(
+                    error_code="NO_CANONICAL_TRAIT_ID",
+                    message=f"Could not map {len(dropped)} evidence item(s) to canonical trait_id after canonicalization",
+                    evidence_sample=dropped[0] if dropped else {},
+                    suggestions=[
+                        {"hint": "Use canonical trait ID", "example": "PaDNA.EyeDNA.IrisColor"},
+                        {"hint": "Or mappable attribute path", "example": "attributes.physical.eye_color"}
+                    ]
+                )
+            else:
+                # Permissive mode: just warn and drop
+                logger.warning(
+                    "  → Dropping %d evidence items missing trait identifiers (keys: %s)",
+                    len(dropped),
+                    [sorted(x.keys())[:3] for x in dropped],
+                )
+
+        if not filtered:
+            msg = "No evidence with trait identifiers after filtering"
+            if strict_mode:
+                raise EvidenceValidationError(
+                    error_code="NO_VALID_EVIDENCE",
+                    message=msg,
+                    evidence_sample=evidence[0] if evidence else {},
+                    suggestions=[{"hint": "Ensure evidence includes trait_id or mappable attribute"}]
+                )
+            logger.warning(f"  → {msg}; skipping ingestion")
+            snapshot = _build_snapshot(user_id)
+            return {
+                "ok": True,
+                "req_id": rid,
+                "snapshot": snapshot,
+                "ingested": 0,
+                "inferred": 0,
+            }
+
         # STEP 2: Enforce evidence schema
         # Converts fact_value → value, normalizes value shape
-        ev2 = validate_batch(ev1)
+        # This will raise EvidenceValidationError in strict mode if validation fails
+        ev2 = validate_batch(filtered)
         logger.info(f"  → Validated schema for {len(ev2)} evidence records")
 
         # STEP 3: Stamp source/timestamp if missing

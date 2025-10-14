@@ -2952,6 +2952,8 @@ def build_app() -> FastAPI:
             # Single source of truth for evidence processing (chat, onboarding, etc.)
             try:
                 from .ingest import ingest_evidence_roundtrip
+                from .ingest.evidence_schema import EvidenceValidationError
+                from .resolver.impl import UCNRRRequiredError
 
                 logger.info(f"Calling ingest_evidence_roundtrip for user={user_id}, req_id={req_id}")
 
@@ -2970,6 +2972,36 @@ def build_app() -> FastAPI:
                 resolved_path = f"users/{user_id}/resolved.json"
                 logger.info(f"chat_resolve{{req_id={req_id}, wrote_resolved=true, resolved_path=\"{resolved_path}\"}}")
                 logger.info(f"Chat ingestion complete: {result.get('ingested', 0)} direct + {result.get('inferred', 0)} inferred traits")
+
+            except EvidenceValidationError as e:
+                # Strict validation failed - return 400 with actionable error
+                logger.warning(f"Evidence validation failed in strict mode: {e.error_code} - {e.message}")
+                raise HTTPException(
+                    status_code=400,
+                    detail={
+                        "error": e.error_code,
+                        "message": e.message,
+                        "evidence_sample": e.evidence_sample,
+                        "suggestions": e.suggestions,
+                        "req_id": req_id,
+                        "strict_mode": True
+                    }
+                )
+
+            except UCNRRRequiredError as e:
+                # UCNRR required but unavailable - return 503
+                logger.error(f"UCNRR required but unavailable: {e.message}")
+                raise HTTPException(
+                    status_code=503,
+                    detail={
+                        "error": "UCNRR_REQUIRED",
+                        "message": e.message,
+                        "rr_error": str(e.rr_error) if e.rr_error else None,
+                        "req_id": req_id,
+                        "ucnrr_required_mode": True,
+                        "action": "Ensure UCNRR service is running at configured URL, or disable UCNRR_REQUIRED mode"
+                    }
+                )
 
             except Exception as e:
                 logger.exception(f"CRITICAL: Failed to process chat evidence through unified pipeline for user {user_id}, req_id={req_id}")

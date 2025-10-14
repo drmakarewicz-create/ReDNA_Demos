@@ -10,12 +10,26 @@ This module implements the canonical trait resolution pipeline:
 from __future__ import annotations
 from typing import List, Dict, Any, Optional
 from datetime import datetime, timezone
+import os
 
-from core.resolver.contracts import Evidence, Resolved, ResolvedTrait
-from core.resolver.debug import log_step
-from core.resolver.resolved_io import read_resolved, write_resolved
+from .contracts import Evidence, Resolved, ResolvedTrait
+from .debug import log_step
+from .resolved_io import read_resolved, write_resolved
 from core.traits.ontology import get_trait_spec
 from core.rr.client import score_ucn
+
+
+class UCNRRRequiredError(Exception):
+    """
+    Exception raised when UCNRR is required but unavailable.
+
+    This signals that the system should return 503 to the client
+    rather than silently falling back to prior UCN values.
+    """
+    def __init__(self, message: str, rr_error: Optional[Exception] = None):
+        self.message = message
+        self.rr_error = rr_error
+        super().__init__(message)
 
 
 def _now() -> str:
@@ -89,13 +103,23 @@ def resolve_roundtrip(
 
     # Try RR scoring
     rr_ok = False
+    ucnrr_required = os.getenv("UCNRR_REQUIRED", "false").lower() in ("1", "true", "yes")
+
     try:
         rr_scores = score_ucn(user_id, rr_input)
         rr_ok = True
         trace and log_step(trace, "rr_success", rr_scores)
     except Exception as e:
         trace and log_step(trace, "rr_error", repr(e))
-        # Fallback: use priors
+
+        # In UCNRR_REQUIRED mode, raise error instead of falling back
+        if ucnrr_required:
+            raise UCNRRRequiredError(
+                message="UCNRR service required but unavailable. Resolution blocked in strict mode.",
+                rr_error=e
+            )
+
+        # Fallback: use priors (permissive mode)
         rr_scores = [
             {
                 "trait_id": x["trait_id"],
