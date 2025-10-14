@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest2",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have red hair",
+  "assistant_text": "Red hair suits you! You must get compliments everywhere you go. How do you like to style your fiery locks?",
+  "client_message_id": "7aa7551b-3521-40d7-badd-be6a6af729ed",
+  "assistant_message_id": "chat-8138a39fffac40199d7475829311d213",
+  "server_ts": "2025-10-14T16:30:14.158+00:00",
+  "server_ts_ms": 1760459414158,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

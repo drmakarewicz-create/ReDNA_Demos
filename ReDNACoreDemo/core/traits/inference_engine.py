@@ -34,11 +34,24 @@ def run_inference(canonical_evidence: List[Dict[str, Any]]) -> List[Dict[str, An
     inferred: List[Dict[str, Any]] = []
 
     # Build a set of (trait_id, normalized_value) tuples for fast lookup
-    observed = {
-        (ev.get("trait_id"), str(ev.get("fact_value", "")).lower())
-        for ev in canonical_evidence
-        if ev.get("trait_id") and ev.get("fact_value")
-    }
+    # Evidence comes in validated format: {trait_id, value: {enum|number|text}, ...}
+    observed = set()
+    for ev in canonical_evidence:
+        trait_id = ev.get("trait_id")
+        if not trait_id:
+            continue
+
+        # Extract scalar value from canonical value shape
+        value_obj = ev.get("value", {})
+        if isinstance(value_obj, dict):
+            # Try enum, then number, then text
+            scalar_value = value_obj.get("enum") or value_obj.get("number") or value_obj.get("text")
+        else:
+            # Fallback to fact_value for backward compatibility
+            scalar_value = ev.get("fact_value")
+
+        if scalar_value:
+            observed.add((trait_id, str(scalar_value).lower()))
 
     logger.info(f"Running inference on {len(observed)} observed traits")
 
