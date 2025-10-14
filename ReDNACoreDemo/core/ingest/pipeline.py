@@ -4,6 +4,7 @@ from uuid import uuid4
 from datetime import datetime, timezone
 import logging
 import os
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -11,6 +12,7 @@ logger = logging.getLogger(__name__)
 from ..traits.trait_id_mapper import normalize_evidence as id_normalize
 from ..traits.inference_engine import run_inference
 from .evidence_schema import validate_batch, EvidenceValidationError
+from ..metrics import METRICS, MetricNames
 
 
 def now_iso() -> str:

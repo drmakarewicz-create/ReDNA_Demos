@@ -1783,7 +1783,10 @@ def build_app() -> FastAPI:
 
         # Reload prompt
         from .hc_prompt_loader import reload_hc_prompt as do_reload
+        from .metrics import METRICS, MetricNames
         prompt_info = do_reload()
+
+        METRICS.increment(MetricNames.PROMPT_RELOADS)
 
         return {
             "ok": True,
@@ -1793,6 +1796,21 @@ def build_app() -> FastAPI:
             "loaded_at": prompt_info.get("loaded_at"),
             "message": "HC prompt reloaded successfully"
         }
+
+    @app.get("/metrics")
+    def get_metrics() -> Dict[str, Any]:
+        """
+        Get service metrics (counters, gauges, timers).
+
+        Returns metrics for monitoring system health and performance:
+        - Ingestion counts and success rates
+        - Error counts (4xx, 5xx)
+        - RR/UCNRR call statistics
+        - Resolution performance
+        - Timing statistics
+        """
+        from .metrics import METRICS
+        return METRICS.get_all_metrics()
 
     def _seed_curiosity(user_id: str, resolved: Dict[str, Any], evidence: Dict[str, Any], obs: Dict[str, Any]) -> bool:
         if not curiosity_engine.is_enabled():
