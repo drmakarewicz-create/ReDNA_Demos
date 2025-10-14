@@ -684,54 +684,20 @@ def build_app() -> FastAPI:
     CURIOSITY_ON = _curiosity_flag_on()
 
     RUNTIME_STATE_FILENAME = "hc_runtime_state.json"
-    SYSTEM_PROMPT = (
-        "⚠️ CRITICAL CONSTRAINT: You are a TEXT-ONLY chatbot. You CANNOT send messages, make introductions, or execute actions. "
-        "When users ask to switch coaches, you can ONLY give them UI directions like: 'Click the Coach Catalog (📚) in the sidebar.'\n\n"
 
-        "You are the Head Coach - a lifelong companion helping someone become their best self. "
-        "Your role is to listen, guide, and connect them with the right tools when needed. "
-        "Speak like a close friend texting - warm, direct, not wordy. "
-        "Keep responses short (1-2 sentences max). Listen carefully to what they say. Ask ONE question to go deeper. "
+    # Load HC system prompt dynamically from markdown file
+    # This allows hot-reload during development and version tracking
+    from .hc_prompt_loader import get_hc_prompt_text
+    _hc_prompt_raw = get_hc_prompt_text()
 
-        "BOUNDARIES: If someone says 'not now', 'later', 'not interested' about a topic, DON'T bring it up again proactively. "
-        "However, if they DIRECTLY ASK about that topic later, answer their question normally - 'not now' means 'not now', not 'never'. "
-        "Example: If they said 'not interested in photos now' but later ask 'what coaches are available?', list ALL coaches including Photo Coach. "
-        "The boundary is about YOU pushing topics, not about preventing them from asking questions. "
-        "Let users talk about whatever they want—TV shows, sports, hobbies. Casual chat builds trust. "
-
-        "AVAILABLE COACHES: You work with specialized coaches who help in different areas:\n"
-        "• Relationship Coach 💞 - dating, relationships, emotions, psychology\n"
-        "• Photo Coach 📸 - physical appearance, style, visual presence\n"
-        "• Personality Test Coach 🧠 - personality profiling, motivations, values\n"
-        "• Career Coach 💼 - career planning, skills, professional development\n"
-        "\n"
-        "⚠️ CRITICAL - COACH SWITCHING PROTOCOL:\n"
-        "When a user asks to switch coaches (e.g., 'talk to career coach', 'switch to relationship coach'):\n"
-        "\n"
-        "✅ CORRECT RESPONSE:\n"
-        "'Perfect! Click the Coach Catalog button (📚) in the left sidebar, then select [Coach Name] from the list.'\n"
-        "\n"
-        "❌ FORBIDDEN RESPONSES (NEVER SAY THESE):\n"
-        "- 'I'll send an introduction'\n"
-        "- 'I'll connect you'\n"
-        "- 'They'll reach out to you'\n"
-        "- 'I've notified them'\n"
-        "\n"
-        "WHY: You are a text interface. You CANNOT execute actions or send messages to other coaches.\n"
-        "You can ONLY guide users to click UI buttons. Be EXTREMELY clear about this.\n"
-        "\n"
-        "TEMPLATE: 'Great! To switch to [Coach Name], click the Coach Catalog (📚) in the sidebar, then select [Coach Name].'\n"
-        "\n"
-        "You can suggest ONE coach per conversation if highly relevant, but don't be pushy. "
-        "If they say 'not interested' or 'later', don't mention it again in this conversation. "
-
-        "CASUAL TOPICS: When someone asks about TV shows, books, food, weather, sports—answer naturally and stay on that topic. "
-        "DO NOT pivot to self-improvement, goals, or life changes. Do NOT ask 'what would you like to change in your life?' "
-        "Just have a normal conversation about the thing they asked about. Being helpful with small things builds trust. "
-
-        "FUTURE VALUE: Show long-term value when appropriate, but don't force every conversation toward big life goals. "
-        "Sometimes people just want to chat, and that's valuable too."
-    )
+    # If prompt load failed, fall back to minimal prompt
+    if "Error loading" in _hc_prompt_raw or not _hc_prompt_raw:
+        SYSTEM_PROMPT = (
+            "You are the Head Coach - a lifelong companion helping someone become their best self. "
+            "Listen carefully, extract facts from user statements, and guide with warmth and empathy."
+        )
+    else:
+        SYSTEM_PROMPT = _hc_prompt_raw
     PERSONA_PROMPTS = {
         "head coach": (
             "⚠️ YOU ARE A CHATBOT - NOT A SECRETARY. You CANNOT send messages or make introductions. "
@@ -1755,16 +1721,77 @@ def build_app() -> FastAPI:
 
     @app.get("/health")
     def health() -> Dict[str, Any]:
+        from .hc_prompt_loader import get_hc_prompt_sha256, get_hc_prompt_version
+        import requests
+
+        # Check RR mode by attempting health check
+        rr_mode = "unavailable"
+        ucnrr_url = _ucnrr_base_url()
+        if ucnrr_url:
+            try:
+                resp = requests.get(f"{ucnrr_url}/health", timeout=1.0)
+                if resp.status_code == 200:
+                    rr_mode = "online"
+                else:
+                    rr_mode = "fallback"
+            except Exception:
+                rr_mode = "fallback"
+
         return {
             "status": "healthy",
             "service": "core",
             "version": APP_VERSION,
             "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "hc_prompt_sha256": get_hc_prompt_sha256(),
+            "hc_prompt_version": get_hc_prompt_version(),
+            "rr_mode": rr_mode,
             "features": {
                 "photo_import": PHOTO_COACH_AVAILABLE,
-                "ucnrr_enabled": bool(_ucnrr_base_url()),
+                "ucnrr_enabled": bool(ucnrr_url),
                 "curiosity_enabled": curiosity_engine.is_enabled(),
             }
+        }
+
+    @app.post("/core/admin/reload_prompt")
+    def reload_hc_prompt(authorization: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Dev-only endpoint to reload HC prompt without restart.
+        Requires ADMIN_TOKEN env var to be set for security.
+        """
+        import os
+
+        admin_token = os.getenv("ADMIN_TOKEN")
+        if not admin_token:
+            raise HTTPException(
+                status_code=403,
+                detail="ADMIN_TOKEN not configured. Set ADMIN_TOKEN env var to enable this endpoint."
+            )
+
+        # Check authorization header
+        if not authorization or not authorization.startswith("Bearer "):
+            raise HTTPException(
+                status_code=401,
+                detail="Missing or invalid Authorization header. Use: Authorization: Bearer <token>"
+            )
+
+        provided_token = authorization.split("Bearer ", 1)[1].strip()
+        if provided_token != admin_token:
+            raise HTTPException(
+                status_code=403,
+                detail="Invalid admin token"
+            )
+
+        # Reload prompt
+        from .hc_prompt_loader import reload_hc_prompt as do_reload
+        prompt_info = do_reload()
+
+        return {
+            "ok": True,
+            "reloaded": True,
+            "new_sha256": prompt_info.get("sha256"),
+            "new_version": prompt_info.get("version"),
+            "loaded_at": prompt_info.get("loaded_at"),
+            "message": "HC prompt reloaded successfully"
         }
 
     def _seed_curiosity(user_id: str, resolved: Dict[str, Any], evidence: Dict[str, Any], obs: Dict[str, Any]) -> bool:
@@ -2871,19 +2898,45 @@ def build_app() -> FastAPI:
         logger.info(f"chat_extract{{req_id={req_id}, user={user_id}, items={len(all_observations)}, sample={sample_item}}}")
 
         # FALLBACK: If zero evidence extracted, use lexical fallback for critical traits
-        if not all_observations:
-            logger.warning(f"Zero evidence extracted for user {user_id}, attempting fallback lexical extraction")
+        fallback_items: List[Dict[str, Any]] = []
+        try:
+            from .ingest.fallback_lex import fallback_extract, format_fallback_summary
+        except Exception as e:
+            logger.error(f"Failed to load fallback extractor: {e}", exc_info=True)
+        else:
             try:
-                from .ingest.fallback_lex import fallback_extract, format_fallback_summary
                 fallback_items = fallback_extract(text)
-                if fallback_items:
-                    trait_ids = format_fallback_summary(fallback_items)
-                    logger.info(f"chat_fallback{{req_id={req_id}, items={len(fallback_items)}, types={trait_ids}}}")
-                    all_observations = fallback_items
-                else:
-                    logger.warning(f"Fallback extractor also found zero evidence for: '{text[:50]}...'")
             except Exception as e:
                 logger.error(f"Fallback extraction failed: {e}", exc_info=True)
+                fallback_items = []
+
+        if not all_observations:
+            logger.warning(f"Zero evidence extracted for user {user_id}, attempting fallback lexical extraction")
+            if fallback_items:
+                trait_ids = format_fallback_summary(fallback_items)
+                logger.info(f"chat_fallback{{req_id={req_id}, items={len(fallback_items)}, types={trait_ids}}}")
+                all_observations = fallback_items
+            else:
+                logger.warning(f"Fallback extractor also found zero evidence for: '{text[:50]}...'")
+        elif fallback_items:
+            existing_ids = {
+                obs.get("trait_id")
+                for obs in all_observations
+                if obs.get("trait_id")
+            }
+            supplemental: List[Dict[str, Any]] = []
+            for item in fallback_items:
+                tid = item.get("trait_id")
+                if not tid or tid in existing_ids:
+                    continue
+                supplemental.append(item)
+                existing_ids.add(tid)
+
+            if supplemental:
+                logger.info(
+                    f"chat_fallback_merge{{req_id={req_id}, added={len(supplemental)}, types={format_fallback_summary(supplemental)}}}"
+                )
+                all_observations.extend(supplemental)
 
         if all_observations:
             logger.info(f"Total extracted {len(all_observations)} observations from message for user {user_id}")
