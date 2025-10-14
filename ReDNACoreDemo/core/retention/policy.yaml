@@ -1,22 +1,53 @@
-# core/retention/policy.yaml
-# ReDNA Retention Policy Configuration
-# Status: Placeholder for Phase 2 Implementation
-# See docs/PRINCIPLES.md Principles 7 & 28 for specification
+# ReDNA Data Retention Policy
+# Version: 1.0.0-placeholder
+# Status: Stub - Full implementation pending Phase 3
 
-version: "1.0-placeholder"
-status: "not_enforced"
+version: "1.0.0"
+status: "placeholder"
+last_updated: "2025-10-14"
 
-# Phase 2: Define retention rules
-# Example structure:
-# rules:
-#   - trait_type: "physical"
-#     min_confidence: 0.3
-#     max_age_days: 3650  # 10 years
-#   - trait_type: "behavioral"
-#     min_confidence: 0.5
-#     max_age_days: 365   # 1 year
+# Retention rules for ReDNA data lifecycle
+# This is a placeholder file referenced by Architecture_Reliability_Plan.md
 
-# Enforcement:
-#   schedule: "daily_3am"
-#   dry_run: true
-#   log_path: "logs/retention.log"
+retention_rules:
+  evidence:
+    # Raw evidence items (evidence.json)
+    retention_days: 365
+    archive_after_days: 90
+    compression: true
+
+  resolved:
+    # Resolved traits (resolved.json)
+    retention_days: -1  # Keep forever
+    snapshot_frequency_days: 30
+
+  observations:
+    # Legacy observations (observations.json)
+    retention_days: 180
+    migration_status: "pending_v2_schema"
+
+  chat_history:
+    # Chat turn events
+    retention_days: 365
+    pii_redaction: true
+
+  resolver_traces:
+    # Debug traces from resolver
+    retention_days: 30
+    auto_cleanup: true
+
+# Cleanup policies
+cleanup:
+  enabled: false  # Will be enabled in Phase 3
+  schedule_cron: "0 2 * * 0"  # Weekly at 2am Sunday
+
+# Audit logging
+audit:
+  enabled: false
+  log_all_deletions: true
+
+# Notes for implementation:
+# - This file will be read by core/retention/policy_engine.py (to be created)
+# - Retention logic will run as scheduled background task
+# - User consent overrides (right to deletion) will be handled separately
+# - See Phase 3 tasks in Architecture_Reliability_Plan.md

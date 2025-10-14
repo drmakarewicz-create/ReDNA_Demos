@@ -1,8 +1,19 @@
 {
-  "version": "1.0-placeholder",
-  "status": "not_computed",
-  "traits": [
-    { "trait_id": "PaDNA.EyeDNA.IrisColor", "curiosity_score": 0.8 },
-    { "trait_id": "BasicDNA.Demographics.AgeYears", "curiosity_score": 0.9 }
-  ]
+  "version": "1.0.0-placeholder",
+  "status": "stub",
+  "last_updated": "2025-10-14T00:00:00Z",
+  "user_id": "template_user",
+  "queue": [],
+  "_note": "This is a placeholder file for Phase 3 Curiosity Engine. Format: [{trait_id, curiosity_score, importance, ucn, last_updated, priority}, ...]",
+  "_example": {
+    "trait_id": "PaDNA.EyeDNA.IrisColor",
+    "curiosity_score": 0.75,
+    "importance": 0.9,
+    "ucn": 0.3,
+    "recency_decay": 0.8,
+    "priority": "high",
+    "last_updated": "2025-10-14T00:00:00Z",
+    "ask_count": 0,
+    "max_asks": 3
+  }
 }

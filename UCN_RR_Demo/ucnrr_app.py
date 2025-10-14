@@ -18,6 +18,7 @@ from datetime import datetime, timezone
 
 from textwrap import shorten
 
+import hashlib
 import yaml
 from fastapi import Body, FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
@@ -48,10 +49,12 @@ ROUNDTRIP_CIRCUIT_BREAK_MS = int(float(os.getenv("ROUNDTRIP_CIRCUIT_BREAK_MS", "
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 TRACE_PATH = _REPO_ROOT / "data" / "dev_logs" / "trace_ucnrr.jsonl"
 DNA_WEIGHTS_PATH = DATA_DIR / "config" / "dna_weights.yaml"
+PROMPT_PATH = _REPO_ROOT / "prompts" / "ucn_rr_ai.md"
 
 _circuit_state: Dict[str, Dict[str, float]] = {}
 _dna_weights_cache: Optional[Dict[str, Any]] = None
 _trait_registry_cache: Dict[str, Dict[str, Any]] = {}
+_prompt_cache: Optional[Dict[str, str]] = None
 
 app = FastAPI(title="ReDNA UCN/RR Demo", version="1.2.1")
 UCNRR_VERSION = "dev"
@@ -128,6 +131,66 @@ def _circuit_check(user_id: str) -> Dict[str, float]:
 
 def _circuit_reset(user_id: str) -> None:
     _circuit_state.pop(user_id, None)
+
+
+def _load_prompt() -> Dict[str, str]:
+    """
+    Load UCNRR AI prompt from markdown file and compute SHA256 hash.
+
+    Returns:
+        Dict with keys: text, sha256, version, loaded_at
+    """
+    global _prompt_cache
+
+    # Return cached if available
+    if _prompt_cache is not None:
+        return _prompt_cache
+
+    try:
+        if not PROMPT_PATH.exists():
+            # Return placeholder if prompt file missing
+            return {
+                "text": "UCNRR AI prompt not loaded (file missing)",
+                "sha256": "none",
+                "version": "missing",
+                "loaded_at": datetime.now(timezone.utc).isoformat(),
+                "error": f"Prompt file not found at {PROMPT_PATH}"
+            }
+
+        # Read prompt file
+        prompt_text = PROMPT_PATH.read_text(encoding="utf-8")
+
+        # Compute SHA256
+        prompt_sha = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
+
+        # Extract version from markdown (look for **Version**: X.X)
+        version_match = re.search(r'\*\*Version\*\*:\s*(\S+)', prompt_text)
+        version = version_match.group(1) if version_match else "unknown"
+
+        _prompt_cache = {
+            "text": prompt_text,
+            "sha256": prompt_sha,
+            "version": version,
+            "loaded_at": datetime.now(timezone.utc).isoformat()
+        }
+
+        return _prompt_cache
+
+    except Exception as e:
+        return {
+            "text": f"Error loading prompt: {e}",
+            "sha256": "error",
+            "version": "error",
+            "loaded_at": datetime.now(timezone.utc).isoformat(),
+            "error": str(e)
+        }
+
+
+def _reload_prompt() -> Dict[str, str]:
+    """Force reload of prompt cache."""
+    global _prompt_cache
+    _prompt_cache = None
+    return _load_prompt()
 
 
 def _circuit_record_failure(user_id: str) -> Dict[str, float]:
@@ -624,11 +687,18 @@ def _llm_extract(text: str) -> Dict[str, Any]:
 
 @app.get("/api/health")
 def api_health() -> Dict[str, Any]:
+    prompt_info = _load_prompt()
     return {
         "status": "healthy",
         "service": "ucnrr",
         "version": UCNRR_VERSION,
         "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "prompt_sha256": prompt_info.get("sha256", "none"),
+        "prompt_version": prompt_info.get("version", "unknown"),
+        "prompt_loaded_at": prompt_info.get("loaded_at", "never"),
+        "llm_provider": LLM_PROVIDER or "none",
+        "llm_model": LLM_MODEL or "none",
+        "llm_configured": bool(LLM_PROVIDER and LLM_API_KEY),
     }
 
 
@@ -641,6 +711,137 @@ class RescoreRequest(BaseModel):
     user_id: str
     traits: Optional[List[Dict[str, Any]]] = None
     text: Optional[str] = None
+
+
+class UCNScoreRequest(BaseModel):
+    user_id: str
+    items: List[Dict[str, Any]]
+
+
+@app.post("/ucn/score")
+def ucn_score(body: UCNScoreRequest) -> List[Dict[str, Any]]:
+    """
+    Score UCN for a batch of trait evidence (Core RR client endpoint).
+
+    Input:
+        {
+            "user_id": "TEST",
+            "items": [
+                {
+                    "trait_id": "PaDNA.EyeDNA.IrisColor",
+                    "value": {"enum": "blue"},
+                    "ucn_prior": 0.8,
+                    "source": "photo_analysis"
+                }
+            ]
+        }
+
+    Output:
+        [
+            {
+                "trait_id": "PaDNA.EyeDNA.IrisColor",
+                "ucn": 0.85
+            }
+        ]
+    """
+    user_id = body.user_id.strip()
+    if not user_id:
+        raise HTTPException(status_code=400, detail="user_id required")
+
+    if not body.items:
+        raise HTTPException(status_code=400, detail="items list required")
+
+    results = []
+    for item in body.items:
+        trait_id = item.get("trait_id")
+        if not trait_id:
+            continue
+
+        # Get ucn_prior (0..1 scale)
+        ucn_prior = float(item.get("ucn_prior", 0.5))
+
+        # Get source for reliability adjustment
+        source = item.get("source", "unknown")
+
+        # Apply source reliability multiplier
+        if source in ["photo_analysis", "document_verified"]:
+            ucn_multiplier = 1.1  # +10% boost for high-reliability sources
+        elif source in ["inference", "third_party"]:
+            ucn_multiplier = 0.7  # -30% for low-reliability sources
+        else:
+            ucn_multiplier = 1.0  # Neutral for user statements, chat
+
+        # Compute final UCN (scale to 0-1)
+        ucn_final = min(1.0, ucn_prior * ucn_multiplier)
+
+        results.append({
+            "trait_id": trait_id,
+            "ucn": round(ucn_final, 4)
+        })
+
+    return results
+
+
+@app.get("/ucnrr/selftest")
+def ucnrr_selftest() -> Dict[str, Any]:
+    """
+    Self-test endpoint that scores a canonical test case: "I have blue eyes".
+
+    Expected: UCN in range [0.80-0.90], indicating high confidence for direct observation.
+    """
+    test_start = time.time()
+
+    # Canonical test case
+    test_input = {
+        "user_id": "SELFTEST",
+        "items": [
+            {
+                "trait_id": "PaDNA.EyeDNA.IrisColor",
+                "value": {"enum": "blue"},
+                "ucn_prior": 0.8,
+                "source": "selftest"
+            }
+        ]
+    }
+
+    try:
+        # Call scoring endpoint
+        result = ucn_score(UCNScoreRequest(**test_input))
+
+        if not result or len(result) == 0:
+            return {
+                "ok": False,
+                "error": "No results returned from ucn_score",
+                "test_case": "blue_eyes"
+            }
+
+        scored = result[0]
+        ucn = scored.get("ucn", 0)
+
+        # Validate UCN in expected range
+        ucn_ok = 0.75 <= ucn <= 0.95
+
+        elapsed_ms = int((time.time() - test_start) * 1000)
+
+        return {
+            "ok": ucn_ok,
+            "test_case": "blue_eyes",
+            "trait_id": scored.get("trait_id"),
+            "ucn": ucn,
+            "ucn_expected_range": [0.75, 0.95],
+            "ucn_in_range": ucn_ok,
+            "elapsed_ms": elapsed_ms,
+            "prompt_sha256": _load_prompt().get("sha256", "none"),
+            "llm_configured": bool(LLM_PROVIDER and LLM_API_KEY)
+        }
+
+    except Exception as e:
+        return {
+            "ok": False,
+            "error": str(e),
+            "test_case": "blue_eyes",
+            "elapsed_ms": int((time.time() - test_start) * 1000)
+        }
 
 
 @app.post("/api/rescore")
