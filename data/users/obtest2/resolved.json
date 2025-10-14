@@ -2,5 +2,16 @@
   "profile": {
     "label": "OB2",
     "created_ts": "2025-10-14T00:32:15.657116+00:00"
+  },
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T16:24:36+00:00"
   }
 }

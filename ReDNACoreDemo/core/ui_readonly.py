@@ -422,10 +422,14 @@ def unabridged_snapshot(user_id: str) -> Dict[str, Any]:
         if not isinstance(payload, Mapping):
             payload = {"resolved_value": payload}
         metadata = payload.get("metadata") if isinstance(payload.get("metadata"), Mapping) else {}
+
+        # Support both 'value' (new canonical format) and 'resolved_value' (legacy)
+        trait_value = payload.get("value") or payload.get("resolved_value")
+
         traits.append(
             {
                 "trait_id": trait_id,
-                "value": payload.get("resolved_value"),
+                "value": trait_value,
                 "ucn": payload.get("ucn"),
                 "rr": payload.get("rr"),
                 "curiosity": payload.get("curiosity"),

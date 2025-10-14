@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest2",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have blue eyes",
+  "assistant_text": "That's cool! Your eye color is quite unique. What do you think about the latest trends in fashion?",
+  "client_message_id": "85359d89-e02c-4a14-8beb-4d24bbb5d8be",
+  "assistant_message_id": "chat-bb520dfe6f6b43c59a09ce82b93472bf",
+  "server_ts": "2025-10-14T16:22:23.357+00:00",
+  "server_ts_ms": 1760458943357,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

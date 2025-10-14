@@ -1,3 +1,25 @@
 {
-  "items": []
+  "items": [
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "confidence": 100,
+      "raw_text": "I have blue eyes",
+      "timestamp": "2025-10-14T16:21:58.549000+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.eye_color: blue",
+      "value": {
+        "enum": "blue"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T16:22:08+00:00"
+    },
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "value": {
+        "enum": "blue"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T16:22:08+00:00"
+    }
+  ]
 }
