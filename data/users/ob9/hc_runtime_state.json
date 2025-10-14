@@ -1,0 +1,23 @@
+{
+  "last_user_ts": "2025-10-14T22:13:20+00:00",
+  "last_user_text": "I am 30 years old",
+  "turns_observed": 7,
+  "dialog_history": [
+    "question",
+    "answer",
+    "answer",
+    "answer",
+    "answer",
+    "answer",
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-14T18:02:53.746984+00:00",
+  "latency_history_ms": [
+    15044,
+    9030425,
+    664490,
+    12332071,
+    13112549,
+    17074751
+  ]
+}

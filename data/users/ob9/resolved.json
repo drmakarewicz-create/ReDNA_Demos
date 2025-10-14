@@ -1,0 +1,72 @@
+{
+  "profile": {
+    "label": "OBTest9",
+    "created_ts": "2025-10-14T16:55:17.654098+00:00"
+  },
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "brown"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T17:30:40+00:00"
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "value": {
+      "enum": "higher_likelihood"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-14T17:12:04+00:00"
+  },
+  "PaDNA.HairDNA.DarknessPrior": {
+    "value": {
+      "enum": "slightly_higher"
+    },
+    "ucn": 0.15,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T17:30:40+00:00"
+  },
+  "PaDNA.HairDNA.Color.Natural": {
+    "value": {
+      "enum": "green"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T17:13:32+00:00"
+  },
+  "attributes.physical.height": {
+    "value": {
+      "text": "6 feet tall"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T17:27:50+00:00"
+  },
+  "BasicDNA.Age": {
+    "value": {
+      "text": "30 years old"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T18:03:03+00:00"
+  }
+}

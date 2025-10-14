@@ -1,0 +1,79 @@
+{
+  "req_id": "fix_ob9_height",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "attributes.physical.height",
+          "value": {
+            "text": "6 feet tall"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T17:24:37+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      ],
+      "ts": 1760462870.609451
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "attributes.physical.height": 1
+      },
+      "ts": 1760462870.609453
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "attributes.physical.height": {
+          "trait_id": "attributes.physical.height",
+          "value": {
+            "text": "6 feet tall"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T17:24:37+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      },
+      "ts": 1760462870.6094542
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "attributes.physical.height",
+          "value": {
+            "text": "6 feet tall"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760462870.609455
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760462870.613672
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "attributes.physical.height": 0.2
+      },
+      "ts": 1760462870.613696
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 6,
+        "rr_ok": false
+      },
+      "ts": 1760462870.614997
+    }
+  ],
+  "ts": 1760462870.60944
+}

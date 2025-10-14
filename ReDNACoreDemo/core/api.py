@@ -20,6 +20,17 @@ import threading
 import queue
 
 logger = logging.getLogger(__name__)
+
+# Configure robust logging for debugging chat ingestion pipeline
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('/tmp/core_pipeline.log'),
+        logging.StreamHandler()
+    ]
+)
+
 from functools import lru_cache
 import unicodedata
 from datetime import datetime, timezone, timedelta
@@ -2876,10 +2887,20 @@ def build_app() -> FastAPI:
 
         if all_observations:
             logger.info(f"Total extracted {len(all_observations)} observations from message for user {user_id}")
+            logger.info(f"chat_extract{{req_id={req_id}, user={user_id}, items={len(all_observations)}}}")
+
+            # Log sample evidence for debugging
+            for i, obs in enumerate(all_observations[:3]):
+                trait_id = obs.get('trait_id', obs.get('fact_category', 'UNKNOWN'))
+                value = obs.get('fact_value', obs.get('value', 'UNKNOWN'))
+                logger.info(f"  Evidence[{i}]: trait_id={trait_id}, value={value}, keys={list(obs.keys())}")
+
             # NORTHSTAR PHASE 2: Unified ingestion pipeline
             # Single source of truth for evidence processing (chat, onboarding, etc.)
             try:
                 from .ingest import ingest_evidence_roundtrip
+
+                logger.info(f"Calling ingest_evidence_roundtrip for user={user_id}, req_id={req_id}")
 
                 # Call unified pipeline with chat evidence
                 # This handles: canonicalization, validation, resolve, inference, snapshot
@@ -2890,13 +2911,16 @@ def build_app() -> FastAPI:
                     req_id=req_id  # Pass through for tracing
                 )
 
+                logger.info(f"ingest_evidence_roundtrip returned: {result.keys()}")
+
                 # Log resolution success
                 resolved_path = f"users/{user_id}/resolved.json"
                 logger.info(f"chat_resolve{{req_id={req_id}, wrote_resolved=true, resolved_path=\"{resolved_path}\"}}")
                 logger.info(f"Chat ingestion complete: {result.get('ingested', 0)} direct + {result.get('inferred', 0)} inferred traits")
 
             except Exception as e:
-                logger.error(f"Failed to process chat evidence through unified pipeline: {e}", exc_info=True)
+                logger.exception(f"CRITICAL: Failed to process chat evidence through unified pipeline for user {user_id}, req_id={req_id}")
+                logger.error(f"Evidence that failed: {all_observations[:2] if len(all_observations) > 2 else all_observations}")
         else:
             logger.warning(f"No observations extracted (primary or fallback) for user {user_id}, message: '{text[:100]}...'")
 
