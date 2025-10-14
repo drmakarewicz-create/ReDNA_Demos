@@ -2819,6 +2819,24 @@ def build_app() -> FastAPI:
                     message_text=text
                 )
                 logger.info(f"Stored {items_stored} observations as evidence for user {user_id}")
+
+                # CRITICAL FIX: Resolve evidence → traits with RR scores
+                # The chat endpoint was storing evidence but never resolving it into traits
+                # This is why evidence.json had data but resolved.json stayed empty
+                try:
+                    prior_resolved, prior_evidence, prior_obs = read_user_state(user_id)
+                    new_obs = build_observations(all_observations)
+                    (out, evidence, observations) = resolve_traits(
+                        prior_resolved, prior_evidence, prior_obs, new_obs
+                    )
+
+                    # Save resolved traits
+                    write_user_state(user_id, out["resolved"], evidence, observations)
+                    logger.info(f"Resolved {len(out.get('resolved', {}))} traits for user {user_id}")
+
+                except Exception as resolve_error:
+                    logger.error(f"Failed to resolve traits from evidence: {resolve_error}", exc_info=True)
+
             except Exception as e:
                 logger.error(f"Failed to store observations as evidence: {e}", exc_info=True)
 
