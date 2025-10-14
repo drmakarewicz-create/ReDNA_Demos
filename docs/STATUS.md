@@ -1,7 +1,8 @@
 # ReDNA Implementation Status
 
-**Last Updated**: 2025-10-14
+**Last Updated**: 2025-10-14 21:35 UTC
 **Phase**: 1 (Architectural Reliability)
+**Current Task**: Phase 1.2 (Dynamic HC Prompt Loader)
 
 ---
 
@@ -19,25 +20,24 @@
 
 - [x] **Architecture Reality Check** — Comprehensive as-built analysis ([ARCHITECTURE_REALITY_CHECK.md](./ARCHITECTURE_REALITY_CHECK.md))
 - [x] **Master Plan Created** — Full roadmap with acceptance criteria ([Architecture_Reliability_Plan.md](./Architecture_Reliability_Plan.md))
+- [x] **Task 1.1: UCNRR AI Activation** (Claude) — **COMPLETE** ✅
+  - ✅ Created `prompts/ucn_rr_ai.md` with comprehensive system prompt (v1.0)
+  - ✅ Added prompt loader with SHA256 hashing to UCNRR
+  - ✅ Updated `/health` endpoint with prompt metadata
+  - ✅ Implemented `/ucn/score` endpoint (Core RR client compatible)
+  - ✅ Implemented `/ucnrr/selftest` endpoint (blue-eyes test case)
+  - ✅ Verified Core RR client compatibility
+  - ✅ Tested source reliability multipliers (photo +10%, inference -30%)
+  - Commit: `adc2669` — feat(ucnrr): Phase 1.1 - UCNRR AI activation + endpoint alignment
+  - **All acceptance criteria met**
 
 ### 🚧 In Progress
 
-- [ ] **Task 1.1: UCNRR AI Activation** (Claude)
-  - Creating `prompts/ucn_rr_ai.md`
-  - Adding prompt loader to UCNRR
-  - Implementing `/ucn/score` endpoint
-  - Adding `/ucnrr/selftest` endpoint
-  - Status: Implementation starting
+- [ ] **Task 1.2: Dynamic HC Prompt Loader** (Claude)
+  - Status: Ready to start
   - Blocker: None
 
 ### 📋 Pending (Phase 1)
-
-- [ ] **Task 1.2: Dynamic HC Prompt Loader** (Claude)
-  - Replace hard-coded HC prompt with dynamic loader
-  - Expose `hc_prompt_sha256` in `/health`
-  - Add `/core/admin/reload_prompt` endpoint
-  - Status: Blocked by Task 1.1 completion
-  - Blocker: None
 
 - [ ] **Task 1.3: Strict Validation Pipeline** (Claude)
   - Implement fail-closed validation (400 on invalid evidence)
@@ -79,12 +79,13 @@
 
 | Commit | Description | Files | Status |
 |--------|-------------|-------|--------|
-| _Pending_ | Create Architecture Reliability Plan | `docs/Architecture_Reliability_Plan.md` | ✅ Committed |
-| _Pending_ | Create STATUS dashboard | `docs/STATUS.md` | ✅ Committed |
-| _Pending_ | Create UCNRR AI prompt | `prompts/ucn_rr_ai.md` | 🚧 In Progress |
-| _Pending_ | Add UCNRR prompt loader | `UCN_RR_Demo/ucnrr_app.py` | 🚧 In Progress |
-| _Pending_ | Add /ucn/score endpoint | `UCN_RR_Demo/ucnrr_app.py` | 🚧 In Progress |
-| _Pending_ | Add /ucnrr/selftest endpoint | `UCN_RR_Demo/ucnrr_app.py` | 🚧 In Progress |
+| `adc2669` | **Phase 1.1: UCNRR AI activation + endpoint alignment** | 7 files (docs, prompts, UCNRR) | ✅ **COMPLETE** |
+|  | - Created Architecture Reliability Plan & STATUS | `docs/Architecture_Reliability_Plan.md`, `docs/STATUS.md` | ✅ |
+|  | - Created UCNRR AI system prompt (v1.0) | `prompts/ucn_rr_ai.md` | ✅ |
+|  | - Added prompt loader with SHA256 to UCNRR | `UCN_RR_Demo/ucnrr_app.py` | ✅ |
+|  | - Implemented `/ucn/score` endpoint | `UCN_RR_Demo/ucnrr_app.py` | ✅ |
+|  | - Implemented `/ucnrr/selftest` endpoint | `UCN_RR_Demo/ucnrr_app.py` | ✅ |
+|  | - Created placeholder files (retention, curiosity) | policy.yaml, curiosity_queue.json | ✅ |
 
 ---
 
