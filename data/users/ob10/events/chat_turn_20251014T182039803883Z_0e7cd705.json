@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob10",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have blue eyes",
+  "assistant_text": "Nice connection! Blue eyes can be really striking. What's your favorite TV show that explores character development and relationships?",
+  "client_message_id": "cca169fc-4a3f-4936-97ff-107dc300699c",
+  "assistant_message_id": "chat-88836331738940ffae7fe5bc77e09c26",
+  "server_ts": "2025-10-14T18:20:39.803+00:00",
+  "server_ts_ms": 1760466039803,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

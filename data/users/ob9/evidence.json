@@ -124,6 +124,19 @@
       },
       "source": "chat",
       "ts": "2025-10-14T18:03:03+00:00"
+    },
+    {
+      "trait_id": "PaDNA.HairDNA.Color.Natural",
+      "confidence": 100,
+      "raw_text": "I have red hair",
+      "timestamp": "2025-10-14T18:07:10.176000+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.hair_color: red",
+      "value": {
+        "enum": "red"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T18:07:16+00:00"
     }
   ]
 }
