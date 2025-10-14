@@ -58,18 +58,27 @@
 
 ---
 
-## Phase 2 — Operational Integrity (Not Started)
+## Phase 2 — Operational Integrity (In Progress)
 
 - [ ] **Task 2.1: CP++ Troubleshooter UI** (Codex)
-  - Status: Awaiting Phase 1 completion
+  - Status: Ready for implementation
   - Prompt: [Available in plan doc](./Architecture_Reliability_Plan.md#task-21-api-only-mode--cp-troubleshooter)
+  - Blocker: None
 
-- [ ] **Task 2.2: Unified Logging + Metrics** (Claude)
-  - Status: Awaiting Phase 1 completion
+- [x] **Task 2.2: Unified Logging + Metrics** (Claude) — ✅ **FOUNDATION COMPLETE**
+  - ✅ Created `core/logging_config.py` with JSON-structured logging
+  - ✅ Created `core/metrics.py` with counters/gauges/timers
+  - ✅ Added `GET /metrics` endpoint to Core API
+  - ✅ Defined standard metric names (MetricNames class)
+  - ✅ Thread-safe implementation ready for production
+  - Commit: `5310ed1` — feat(core): Phase 2.2 - Unified logging and metrics foundation
+  - Status: **Foundation complete** — Full integration ongoing
+  - Remaining: Integrate metrics throughout pipeline, add to UCNRR, create tests
 
 - [ ] **Task 2.3: CI Hardening** (Codex)
-  - Status: Awaiting Phase 1 completion
+  - Status: Ready for implementation
   - Prompt: [Available in plan doc](./Architecture_Reliability_Plan.md#task-23-ci-hardening)
+  - Blocker: None
 
 ---
 
@@ -108,6 +117,12 @@
 |  | - UCNRRRequiredError for strict RR | `core/resolver/impl.py` | | ✅ |
 |  | - HTTP 400/503 error handling | `core/api.py` | | ✅ |
 |  | - Comprehensive unit tests (7 tests) | `tests/test_strict_validation.py` | | ✅ |
+| `32b8552` | docs: update STATUS.md - Phase 1 complete | 1 file | +50/-28 | ✅ Complete |
+| `5310ed1` | **Phase 2.2: Unified logging and metrics foundation** | 4 files | +442/- | ✅ Foundation |
+|  | - JSON-structured logging module | `core/logging_config.py` | | ✅ |
+|  | - Metrics tracking (counters/gauges/timers) | `core/metrics.py` | | ✅ |
+|  | - GET /metrics endpoint | `core/api.py` | | ✅ |
+|  | - Unified log directory (.run/logs/) | | | ✅ |
 
 ---
 
