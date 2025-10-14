@@ -1,0 +1,8 @@
+{
+  "version": "1.0-placeholder",
+  "status": "not_computed",
+  "traits": [
+    { "trait_id": "PaDNA.EyeDNA.IrisColor", "curiosity_score": 0.8 },
+    { "trait_id": "BasicDNA.Demographics.AgeYears", "curiosity_score": 0.9 }
+  ]
+}

@@ -71,8 +71,9 @@ III · Autonomy & Authority
 
 11. AI is the Epistemic Authority
 
-The HC’s probabilistic model defines truth internally.
-Users cannot delete or override traits; self-reports are evidence, not fact.
+The HC’s probabilistic model defines internal truth.
+User overrides are treated as high-confidence self-reports (source: "user_override", ucn_prior: 0.8), not as absolute truth.
+Overrides enter the same Bayesian evidence pool as all other sources and may later be confirmed or superseded by stronger evidence.
 
 12. Self-Report Credibility Index (SRCI)
 
@@ -105,8 +106,9 @@ Each resolved value links to its evidence, inference, RR score, and trace ID.
 
 17. Adaptive Provenance Transparency
 
-Five levels of detail (1 opaque → 5 forensic).
-HC auto-adjusts level based on user curiosity and behavior.
+Every trait links to its full evidence chain and resolver trace.
+Users can always drill down via the “Why?” panel.
+Adaptive transparency levels (1 – 5) are planned for Phase 2.
 
 18. Provenance Includes Failures
 
@@ -229,6 +231,11 @@ Every step—from evidence file to resolver trace—must reconstruct how the sys
 
 Principles evolve through logged, explainable updates—never silently.
 
+40. Responsive UX (Auto-Refresh)
+
+Northstar updates its display automatically within seconds of new evidence ingestion.
+The system maintains continuous feedback between ingestion and visible user state, ensuring transparency and immediacy.
+
 ⸻
 
 🧩 In a Sentence
@@ -238,5 +245,110 @@ ReDNA is an endlessly curious, probabilistic intelligence that learns from every
 ⸻
 
 © ReDNA Project 2025 — This document defines behavioral, architectural, and ethical standards for all modules (Core, UCN/RR, Northstar UI, CP++).
+
+
+
+🔄 Revisions — v1.0a (2025-10-14)
+
+🧭 Principle 11 · AI is the Epistemic Authority (clarified)
+
+The HC’s probabilistic model defines internal truth.
+User overrides are treated as high-confidence self-reports (source: "user_override", ucn_prior: 0.8), not as absolute truth.
+Overrides enter the same Bayesian evidence pool as all other sources and may later be confirmed or superseded by stronger evidence.
+
+🧭 Principle 17 · Provenance on Demand (simplified)
+
+Every trait links to its full evidence chain and resolver trace.
+Users can always drill down via the “Why?” panel.
+Adaptive transparency levels (1 – 5) are planned for Phase 2.
+
+⸻
+
+⚙️ Implementation Status & Roadmap
+
+Current build = v1.0 Foundation
+
+| Principle # | Title | Status | Notes |
+|-------------|-------|--------|-------|
+| 3 | Unified Ingestion | ✅ Implemented | Canonical pipeline active |
+| 4 | Always Ingest, Never Ignore | ✅ Implemented | Everything flows through unified pipeline |
+| 5 | Immutable Evidence | ✅ Implemented | Evidence append-only |
+| 6 | Confidence ≠ Certainty | ✅ Implemented | UCN/RR distinction enforced |
+| 14 | User as Participant | ✅ Implemented | Users provide evidence; AI decides |
+| 16 | Traceable by Design | ✅ Implemented | Resolver traces working |
+| 23 | Ethical Inference Boundaries | ✅ Implemented | Inference rules respect thresholds |
+| 27 | Sparse Storage | ✅ Implemented | Users store populated traits only |
+| 35 | Unified Schema Contracts | ✅ Implemented | Canonical schema enforced |
+| 36 | Non-Zero Confidence Rule | ✅ Implemented | Priors ≥ 0.15 UCN |
+| 40 | Responsive UX (Auto-Refresh) | ✅ Implemented | 5-second polling for trait updates |
+| 1 | Vacuum Principle | ⚠️ Partial | Chat ingestion works; external feeds Phase 2 |
+| 2 | Endless Curiosity | ⚠️ Partial | Curiosity engine design complete; not active |
+| 8 | Conflict as Data | ⚠️ Partial | Stored but not yet actively analyzed |
+| 11 | Epistemic Authority | ⚠️ Partial | Override handling clarified above |
+| 17 | Provenance on Demand | ⚠️ Partial | "Why?" panel complete; adaptive levels Phase 2 |
+| 31 | User Feedback is Data | ⚠️ Partial | Feedback logger planned |
+| 7 | Dynamic Retention | 🔮 Planned | retention/policy.yaml to be implemented |
+| 9 | Adaptive Decay | 🔮 Planned | Per-trait decay model Phase 3 |
+| 12 | Self-Report Credibility Index | 🔮 Planned | SRCI design drafted for Phase 2 |
+| 19 | Quantitative Curiosity | 🔮 Planned | Curiosity queue JSON Phase 2 |
+| 28 | Retention as Policy | 🔮 Planned | Placeholder config added |
+
+
+⸻
+
+🧱 Known Gaps & Phase 2 Priorities
+
+Phase 2a (Q4 2025 – Q1 2026):
+	•	Curiosity Engine
+	•	Self-Report Credibility Index (SRCI)
+	•	Retention Policy Enforcement
+
+Phase 2b (Mid-2026):
+	•	Provenance Detail Levels (1–5)
+	•	Feedback Logger
+	•	External Feed/Vacuum Adapters
+
+Phase 3 (Late 2026+):
+	•	Adaptive Decay per Trait Type
+	•	Dynamic Retention Based on Utility Scores
+	•	Long-Term Behavioral Simulation Harness
+
+⸻
+
+📁 Placeholder Configs for Reference
+
+These files are recognized by the current build even if empty – they document intended systems:
+
+core/retention/policy.yaml        # retention thresholds & cleanup cadence
+users/<id>/curiosity_queue.json   # per-user curiosity scoring
+
+
+⸻
+
+🧩 Version Summary
+	•	v1.0 (2025-10-13) – Original PRINCIPLES.md established philosophical foundation.
+	•	v1.0a (2025-10-14) – Clarified Principles 11 & 17, added Implementation Status, Known Gaps, and Placeholder Configs.
+	•	Next Milestone → v2.0 (Phase 2) with active Curiosity engine & SRCI.
+
+⸻
+
+✅ In a Sentence
+
+ReDNA is an endlessly curious, probabilistic intelligence that learns from everything, forgets nothing meaningful, explains every belief, resists manipulation, and continually seeks greater accuracy and understanding — now grounded by clear implementation milestones.
+
+⸻
+
+🔍 Implementation Audit Checklist
+
+| Check | Description | Pass? |
+|-------|-------------|-------|
+| Unified Pipeline Enforced | All ingestion routes call ingest_evidence_roundtrip | ✅ |
+| Evidence Append-Only | No deletions from evidence store | ✅ |
+| Resolver Traces per Request | Each ingestion creates a trace file | ✅ |
+| UI Refresh Active | Trait changes visible within 5 seconds | ✅ |
+
+⸻
+
+
 
 

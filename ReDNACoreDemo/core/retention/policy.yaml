@@ -1,0 +1,22 @@
+# core/retention/policy.yaml
+# ReDNA Retention Policy Configuration
+# Status: Placeholder for Phase 2 Implementation
+# See docs/PRINCIPLES.md Principles 7 & 28 for specification
+
+version: "1.0-placeholder"
+status: "not_enforced"
+
+# Phase 2: Define retention rules
+# Example structure:
+# rules:
+#   - trait_type: "physical"
+#     min_confidence: 0.3
+#     max_age_days: 3650  # 10 years
+#   - trait_type: "behavioral"
+#     min_confidence: 0.5
+#     max_age_days: 365   # 1 year
+
+# Enforcement:
+#   schedule: "daily_3am"
+#   dry_run: true
+#   log_path: "logs/retention.log"
