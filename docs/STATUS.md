@@ -126,12 +126,12 @@
 |  | - Metrics tracking (counters/gauges/timers) | `core/metrics.py` | | ✅ |
 |  | - GET /metrics endpoint | `core/api.py` | | ✅ |
 |  | - Unified log directory (.run/logs/) | | | ✅ |
-| `PENDING` | **DevX Bootstrap Import Fixes** | 3 files | +~50/-~15 | 🚧 In Progress |
+| `f6a467f` | **DevX Bootstrap Import Fixes** | 4 files | +942/-11 | ✅ Complete |
 |  | - Fixed DevX module path: `devx.backend.api:app` → `ReDNACoreDemo.devx.backend.api:app` | `stack_api.py` | | ✅ |
 |  | - Fixed UCNRR module path: `ucnrr_app:app` → `UCN_RR_Demo.ucnrr_app:app` | `stack_api.py` | | ✅ |
-|  | - Bootstrap uses `sys.executable` + PYTHONPATH shim | `cppp_bootstrap.py` | | ✅ |
+|  | - Bootstrap uses `sys.executable` + PYTHONPATH shim (verified) | `cppp_bootstrap.py` | | ✅ |
 |  | - Added Python interpreter diagnostic output | `cppp_bootstrap.py` | | ✅ |
-|  | - Created import sanity tests (4 tests) | `tests/test_devx_import.py` | | ✅ |
+|  | - Created import sanity tests (3 passed, 1 skipped) | `tests/test_devx_import.py` | | ✅ |
 
 ---
 
