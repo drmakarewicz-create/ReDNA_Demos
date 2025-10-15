@@ -182,6 +182,11 @@
 |  | - Fixed Head Coach UI status: UCNRR now shows green | | | ✅ |
 |  | - Core /health shows rr_mode="online" | | | ✅ |
 |  | - Updated .env service URLs to correct ports | `.env` | | ✅ |
+| `2523709` | **Core Health Endpoint: HC Chat Status** | 1 file | +59/- | ✅ Complete |
+|  | - Added hc_chat_enabled and hc_chat_provider to /health | `core/api.py` | | ✅ |
+|  | - Fixed onboarding "problem connecting to coach" error | | | ✅ |
+|  | - Frontend can now detect chat availability | | | ✅ |
+|  | - Exposes HC_CHAT_PROVIDER env var (ollama/openai/anthropic) | | | ✅ |
 
 ---
 
