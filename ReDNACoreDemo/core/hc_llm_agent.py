@@ -138,32 +138,30 @@ def _build_context_messages(
 def _build_system_message(state_snapshot: Dict[str, Any]) -> str:
     """
     Build system message with HC persona and current user state.
+    Uses the loaded HC prompt from file, not hardcoded text.
     """
+    from .hc_prompt_loader import get_hc_prompt_text
+
+    # Load the full HC system prompt from file
+    base_prompt = get_hc_prompt_text()
+
+    # Append current user state context
     high_curiosity_traits = state_snapshot.get("high_curiosity_traits", [])
 
-    system_msg = """You are the Head Coach, a personal AI assistant helping users build their digital identity.
-
-Your role:
-- Guide users to reduce uncertainty in their trait profiles
-- Suggest evidence collection for high-curiosity traits
-- Be concise, supportive, and action-oriented (1-2 sentences max)
-- Use casual, friendly tone
-
-Current User State:
-"""
+    state_context = "\n\n---\n\nCurrent User State:\n"
 
     if high_curiosity_traits:
-        system_msg += "High-Curiosity Traits (need evidence):\n"
+        state_context += "High-Curiosity Traits (need evidence):\n"
         for trait in high_curiosity_traits[:3]:  # Top 3
             trait_name = trait.get("trait", "Unknown").split(".")[-1]
             curiosity = int(trait.get("curiosity", 0))
-            system_msg += f"  • {trait_name}: curiosity {curiosity}\n"
+            state_context += f"  • {trait_name}: curiosity {curiosity}\n"
     else:
-        system_msg += "No high-curiosity traits right now.\n"
+        state_context += "No high-curiosity traits right now.\n"
 
-    system_msg += "\nRespond to the user's message with actionable guidance."
+    state_context += "\nRespond to the user's message with actionable guidance based on the principles above."
 
-    return system_msg
+    return base_prompt + state_context
 
 
 def _generate_openai_reply(
