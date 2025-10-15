@@ -61,9 +61,12 @@
 ## Phase 2 — Operational Integrity (In Progress)
 
 - [ ] **Task 2.1: CP++ Troubleshooter UI** (Codex)
-  - Status: Ready for implementation
-  - Prompt: [Available in plan doc](./Architecture_Reliability_Plan.md#task-21-api-only-mode--cp-troubleshooter)
+  - Status: **READY FOR CODEX** — Prompt complete with DevX stack details
+  - Prompt: [CODEX_PROMPT_CPPP_DEVX_BOOTSTRAP.md](./CODEX_PROMPT_CPPP_DEVX_BOOTSTRAP.md)
+  - Backup: [Architecture plan](./Architecture_Reliability_Plan.md#task-21-api-only-mode--cp-troubleshooter)
   - Blocker: None
+  - DevX Stack Verified: Vite + React 18 + React Router, FastAPI backend
+  - Deliverables: Stack Status UI, Troubleshooter wizard, Bootstrap script, 6 new API endpoints
 
 - [x] **Task 2.2: Unified Logging + Metrics** (Claude) — ✅ **FOUNDATION COMPLETE**
   - ✅ Created `core/logging_config.py` with JSON-structured logging
@@ -123,6 +126,12 @@
 |  | - Metrics tracking (counters/gauges/timers) | `core/metrics.py` | | ✅ |
 |  | - GET /metrics endpoint | `core/api.py` | | ✅ |
 |  | - Unified log directory (.run/logs/) | | | ✅ |
+| `PENDING` | **DevX Bootstrap Import Fixes** | 3 files | +~50/-~15 | 🚧 In Progress |
+|  | - Fixed DevX module path: `devx.backend.api:app` → `ReDNACoreDemo.devx.backend.api:app` | `stack_api.py` | | ✅ |
+|  | - Fixed UCNRR module path: `ucnrr_app:app` → `UCN_RR_Demo.ucnrr_app:app` | `stack_api.py` | | ✅ |
+|  | - Bootstrap uses `sys.executable` + PYTHONPATH shim | `cppp_bootstrap.py` | | ✅ |
+|  | - Added Python interpreter diagnostic output | `cppp_bootstrap.py` | | ✅ |
+|  | - Created import sanity tests (4 tests) | `tests/test_devx_import.py` | | ✅ |
 
 ---
 
@@ -218,16 +227,13 @@ curl -s http://127.0.0.1:8100/health | jq
 
 ## Next Actions
 
-### Immediate (Today)
+### Immediate (Now)
 
-1. ✅ Create master plan doc
-2. ✅ Create STATUS dashboard
-3. 🚧 **Start Phase 1.1: UCNRR AI Activation**
-   - Create UCNRR prompt file
-   - Add prompt loader with SHA
-   - Implement `/ucn/score` endpoint
-   - Implement `/ucnrr/selftest` endpoint
-   - Update Core RR client
+1. ✅ Phase 1 complete (all tasks)
+2. ✅ Phase 2.2 foundation complete (logging + metrics)
+3. ✅ **Codex Task 2.1 prompt ready** — [CODEX_PROMPT_CPPP_DEVX_BOOTSTRAP.md](./CODEX_PROMPT_CPPP_DEVX_BOOTSTRAP.md)
+4. **Hand off to Codex**: Task 2.1 (CP++ Troubleshooter UI)
+5. **Optional (Claude)**: Complete Phase 2.2 full integration (metrics throughout pipeline)
 
 ### This Week
 
