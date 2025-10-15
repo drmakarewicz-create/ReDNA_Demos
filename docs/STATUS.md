@@ -1,9 +1,9 @@
 # ReDNA Implementation Status
 
-**Last Updated**: 2025-10-15 04:15 UTC
+**Last Updated**: 2025-10-15 05:40 UTC
 **Phase**: 1 (Architectural Reliability) — **COMPLETE** ✅
 **Next Phase**: 2 (Operational Integrity) — **IN PROGRESS** 🚧
-**Bootstrap Status**: ✅ All services running with correct module paths
+**Bootstrap Status**: ✅ All services running with correct module paths (prints sys.executable)
 
 ---
 
@@ -91,10 +91,15 @@
 ## Phase 2 — Operational Integrity (In Progress)
 
 - [ ] **Task 2.1: CP++ Troubleshooter UI** (Codex)
-  - Status: **READY FOR CODEX** — Prompt complete with DevX stack details
+  - Status: **IN PROGRESS** — Stack Status dashboard + Troubleshooter wizard implemented (Codex, 2025-10-15)
   - Prompt: [CODEX_PROMPT_CPPP_DEVX_BOOTSTRAP.md](./CODEX_PROMPT_CPPP_DEVX_BOOTSTRAP.md)
   - Backup: [Architecture plan](./Architecture_Reliability_Plan.md#task-21-api-only-mode--cp-troubleshooter)
-  - Blocker: None
+  - Latest: `/stack` page now shows live status with version + interpreter, Troubleshooter handles restart/change-port/self-test/log tail, bootstrap prints interpreter path and surfaces first log error on failure
+  - Build: DevX frontend TypeScript diagnostics resolved (unused imports, typings); `npm run build` now clean (Commit: _pending_)
+  - ✅ Added `/ingest_text` compatibility shim → forwards to `/core/api/ingest_evidence`
+  - ✅ Frontend ingestion requests target `/core/api/ingest_evidence`
+  - ✅ Legacy ingestion 404s eliminated in Core logs
+  - Blocker: None (guardrail wiring for ingest buttons tracked separately)
   - DevX Stack Verified: Vite + React 18 + React Router, FastAPI backend
   - Deliverables: Stack Status UI, Troubleshooter wizard, Bootstrap script, 6 new API endpoints
 
@@ -172,6 +177,11 @@
 |  | - Bootstrap uses `sys.executable` + PYTHONPATH shim (verified) | `cppp_bootstrap.py` | | ✅ |
 |  | - Added Python interpreter diagnostic output | `cppp_bootstrap.py` | | ✅ |
 |  | - Created import sanity tests (3 passed, 1 skipped) | `tests/test_devx_import.py` | | ✅ |
+| `bcd2e02` | **Core UCNRR_BASE Environment Fix** | 2 files | +22/-7 | ✅ Complete |
+|  | - Core now receives UCNRR_BASE during spawn | `stack_api.py` | | ✅ |
+|  | - Fixed Head Coach UI status: UCNRR now shows green | | | ✅ |
+|  | - Core /health shows rr_mode="online" | | | ✅ |
+|  | - Updated .env service URLs to correct ports | `.env` | | ✅ |
 
 ---
 
