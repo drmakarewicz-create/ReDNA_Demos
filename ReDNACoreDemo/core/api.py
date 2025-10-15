@@ -673,6 +673,26 @@ def _curiosity_flag_on() -> bool:
 def build_app() -> FastAPI:
     app = FastAPI(title="ReDNA Core Demo", version="2.0")
 
+    # --- legacy ingestion alias for backward compatibility ---
+    @app.post("/ingest_text")
+    async def ingest_text_compat(request: Request):
+        """Legacy alias for /core/api/ingest_evidence. Allows older clients still calling /ingest_text to work."""
+        try:
+            data = await request.json()
+        except Exception:
+            return JSONResponse({"error": "Invalid JSON"}, status_code=400)
+
+        user_id = data.get("user_id")
+        text = data.get("text") or data.get("message")
+
+        if not user_id or not text:
+            return JSONResponse({"error": "Missing user_id or text"}, status_code=400)
+
+        payload = {"user_id": user_id, "text": text, "source": data.get("source") or "legacy_ui"}
+        return ingest_text_endpoint(payload)
+    # --- end legacy ingestion alias ---
+
+
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -1745,10 +1765,13 @@ def build_app() -> FastAPI:
             "hc_prompt_sha256": get_hc_prompt_sha256(),
             "hc_prompt_version": get_hc_prompt_version(),
             "rr_mode": rr_mode,
+            "hc_chat_enabled": _hc_chat_enabled(),
+            "hc_chat_provider": os.getenv("HC_CHAT_PROVIDER"),
             "features": {
                 "photo_import": PHOTO_COACH_AVAILABLE,
                 "ucnrr_enabled": bool(ucnrr_url),
                 "curiosity_enabled": curiosity_engine.is_enabled(),
+                "hc_chat_enabled": _hc_chat_enabled(),
             }
         }
 
@@ -5495,6 +5518,42 @@ def build_app() -> FastAPI:
 
         # Fallback
         return {"success": False, "error": "unexpected_response"}
+
+    @app.post("/core/api/ingest_evidence")
+    def core_api_ingest_evidence(payload: Dict[str, Any]) -> Dict[str, Any]:
+        """Unified ingestion endpoint that accepts structured evidence payloads."""
+        user_id = payload.get("user_id")
+        evidence = payload.get("evidence")
+        source = payload.get("source") or "api"
+        req_id = payload.get("req_id")
+
+        if not user_id or not isinstance(evidence, list) or not evidence:
+            raise HTTPException(status_code=400, detail="user_id and evidence are required")
+
+        try:
+            from .ingest import ingest_evidence_roundtrip
+            from .ingest.evidence_schema import EvidenceValidationError
+
+            result = ingest_evidence_roundtrip(
+                user_id=user_id,
+                source=source,
+                evidence=evidence,
+                req_id=req_id,
+            )
+            return result
+        except EvidenceValidationError as exc:
+            raise HTTPException(
+                status_code=400,
+                detail={
+                    "error": exc.error_code,
+                    "message": exc.message,
+                    "suggestions": exc.suggestions,
+                },
+            ) from exc
+        except Exception as exc:
+            logger.error(f"ingest_evidence failed for user {user_id}: {exc}", exc_info=True)
+            raise HTTPException(status_code=500, detail="Ingestion failed")
+
 
     @app.post("/ui/ingest/json")
     def ingest_json_endpoint(payload: Dict[str, Any]) -> Any:
