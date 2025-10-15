@@ -138,30 +138,46 @@ def _build_context_messages(
 def _build_system_message(state_snapshot: Dict[str, Any]) -> str:
     """
     Build system message with HC persona and current user state.
-    Uses the loaded HC prompt from file, not hardcoded text.
+    Uses simplified prompt for local models (ollama), full prompt for cloud models.
     """
-    from .hc_prompt_loader import get_hc_prompt_text
+    import os
+    from pathlib import Path
 
-    # Load the full HC system prompt from file
-    base_prompt = get_hc_prompt_text()
+    # Check if using local model (Ollama) - use simplified prompt
+    provider = os.getenv("HC_CHAT_PROVIDER", "").lower()
+    use_simple = provider in ["ollama", "local"]
 
-    # Append current user state context
-    high_curiosity_traits = state_snapshot.get("high_curiosity_traits", [])
-
-    state_context = "\n\n---\n\nCurrent User State:\n"
-
-    if high_curiosity_traits:
-        state_context += "High-Curiosity Traits (need evidence):\n"
-        for trait in high_curiosity_traits[:3]:  # Top 3
-            trait_name = trait.get("trait", "Unknown").split(".")[-1]
-            curiosity = int(trait.get("curiosity", 0))
-            state_context += f"  • {trait_name}: curiosity {curiosity}\n"
+    # Load appropriate prompt
+    if use_simple:
+        prompt_file = Path(__file__).parent.parent / "prompts" / "head_coach_simple.md"
+        try:
+            base_prompt = prompt_file.read_text(encoding="utf-8")
+        except Exception:
+            # Fallback to inline simple prompt if file not found
+            base_prompt = "You are the Head Coach, a friendly AI assistant. Chat naturally, keep responses short (2-3 sentences), and show genuine interest in learning about the user."
     else:
-        state_context += "No high-curiosity traits right now.\n"
+        # Use full v2.0 prompt for capable cloud models
+        from .hc_prompt_loader import get_hc_prompt_text
+        base_prompt = get_hc_prompt_text()
 
-    state_context += "\nRespond to the user's message with actionable guidance based on the principles above."
+    # Append current user state context (only for full prompt)
+    if not use_simple:
+        high_curiosity_traits = state_snapshot.get("high_curiosity_traits", [])
+        state_context = "\n\n---\n\nCurrent User State:\n"
 
-    return base_prompt + state_context
+        if high_curiosity_traits:
+            state_context += "High-Curiosity Traits (need evidence):\n"
+            for trait in high_curiosity_traits[:3]:  # Top 3
+                trait_name = trait.get("trait", "Unknown").split(".")[-1]
+                curiosity = int(trait.get("curiosity", 0))
+                state_context += f"  • {trait_name}: curiosity {curiosity}\n"
+        else:
+            state_context += "No high-curiosity traits right now.\n"
+
+        state_context += "\nRespond to the user's message with actionable guidance based on the principles above."
+        return base_prompt + state_context
+
+    return base_prompt
 
 
 def _generate_openai_reply(
