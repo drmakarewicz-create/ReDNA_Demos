@@ -181,6 +181,7 @@ class ServiceDefinition:
     cwd: Path = field(default=REPO_ROOT)
     restart_label: str = field(default="")
     extra_args: Sequence[str] = field(default_factory=tuple)
+    python_path: str = field(default_factory=lambda: sys.executable)
 
     pid_file: Path = field(init=False)
     log_file: Path = field(init=False)
@@ -192,6 +193,7 @@ class ServiceDefinition:
         self.legacy_log_file = RUN_DIR / f"{self.key}.log"
         if not self.restart_label:
             self.restart_label = self.key
+        self.python_path = sys.executable
 
     @property
     def port(self) -> int:
@@ -237,7 +239,7 @@ SERVICES: Dict[str, ServiceDefinition] = {
         env_var="UCNRR_PORT",
         default_port=8011,
         uvicorn_app="UCN_RR_Demo.ucnrr_app:app",
-        cwd=REPO_ROOT,
+        cwd=REPO_ROOT / "UCN_RR_Demo",
     ),
     "devx": ServiceDefinition(
         key="devx",
@@ -257,6 +259,8 @@ class ServiceStatus(BaseModel):
     health: Optional[Dict[str, Any]] = None
     error: Optional[str] = None
     last_check: str
+    version: Optional[str] = None
+    python: Optional[str] = None
 
 
 class StackStatusResponse(BaseModel):
@@ -376,6 +380,8 @@ async def _probe_service(service: ServiceDefinition) -> ServiceStatus:
                 port=port,
                 health=payload,
                 last_check=timestamp,
+                version=str(payload.get("version")) if payload.get("version") is not None else None,
+                python=str(payload.get("python") or service.python_path),
             )
         except Exception as exc:
             return ServiceStatus(
@@ -384,6 +390,7 @@ async def _probe_service(service: ServiceDefinition) -> ServiceStatus:
                 port=port,
                 error=str(exc),
                 last_check=timestamp,
+                python=service.python_path,
             )
 
 
@@ -464,7 +471,14 @@ def _start_service_sync(service: ServiceDefinition, port: int) -> int:
     env[service.env_var] = str(port)
     env["PYTHONPATH"] = _default_py_path(env.get("PYTHONPATH"))
 
+    # Set UCNRR_BASE for Core service so it can check UCNRR health
+    if service.key == "core":
+        ucnrr_port = SERVICES["ucnrr"].port
+        env["UCNRR_BASE"] = f"http://127.0.0.1:{ucnrr_port}"
+
     cmd = service.build_command(port)
+
+    service.python_path = cmd[0]
 
     with log_path.open("ab") as log_handle:
         process = subprocess.Popen(
@@ -590,8 +604,8 @@ SELFTEST_HANDLERS = {
 }
 
 
-@router.post("/selftest/{service}", response_model=SelfTestResult)
-async def post_selftest(service: Literal["core", "ucnrr", "devx"]) -> SelfTestResult:
+@router.get("/selftest/{service}", response_model=SelfTestResult)
+async def get_selftest(service: Literal["core", "ucnrr", "devx"]) -> SelfTestResult:
     handler = SELFTEST_HANDLERS[service]
     target = SERVICES[service]
     try:
