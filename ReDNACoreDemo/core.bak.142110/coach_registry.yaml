@@ -1,0 +1,321 @@
+# Coach Registry v1
+# Maps DNA namespaces/containers to specialized coaches
+# Last Updated: October 6, 2025
+
+coaches:
+  # Physical Appearance Coach (Photo Coach)
+  photo_coach:
+    display_name: "Photo Coach"
+    id: "photo_coach"
+    description: "Analyzes photos to extract physical appearance traits"
+    primary_namespaces:
+      - PaDNA
+    capabilities:
+      - PaDNA.HairDNA
+      - PaDNA.FaceDNA
+      - PaDNA.FacialDNA
+      - PaDNA.EyeDNA
+      - PaDNA.NoseDNA
+      - PaDNA.SkinDNA
+      - PaDNA.BodyDNA
+      - PaDNA.StyleDNA
+    delegation_context: "photo analysis and visual trait extraction"
+    natural_domains:
+      - "facial features"
+      - "hair characteristics"
+      - "skin attributes"
+      - "body composition"
+      - "style and appearance"
+    suitable_for_types:
+      - trait  # Can refine existing traits
+      - missing  # Can discover new traits from photos
+
+  # PaDNA Coach (Physical Appearance DNA Specialist)
+  padna_coach:
+    display_name: "PaDNA Coach"
+    id: "padna_coach"
+    description: "Specialized in Physical Appearance DNA - style, aesthetics, and visual presentation"
+    primary_namespaces:
+      - PaDNA
+    capabilities:
+      - PaDNA.*
+    delegation_context: "physical appearance and aesthetic profiling"
+    natural_domains:
+      - "style and aesthetics"
+      - "visual presentation"
+      - "appearance preferences"
+    suitable_for_types:
+      - trait
+      - container
+      - missing
+    autonomy_level: "medium"
+
+  # Relationship Coach (Psychology/Emotional Expert)
+  relationship_coach:
+    display_name: "Relationship Coach"
+    id: "relationship_coach"
+    description: "Explores relationship patterns, emotional dynamics, and psychological traits"
+    primary_namespaces:
+      - ReDNA
+      - PsyDNA
+      - EmDNA
+    capabilities:
+      - ReDNA.*  # All relationship traits
+      - PsyDNA.PersonalityDNA
+      - PsyDNA.MotivationDNA
+      - PsyDNA.BeliefDNA
+      - PsyDNA.ValuesDNA
+      - PsyDNA.FearDNA
+      - EmDNA.BaselineDNA
+      - EmDNA.TriggerDNA
+      - EmDNA.RegulationDNA
+      - EmDNA.ExpressionDNA
+      - EmDNA.AttachmentDNA
+    delegation_context: "psychological profiling, emotional patterns, and relationship dynamics"
+    natural_domains:
+      - "attachment styles"
+      - "conflict resolution"
+      - "emotional regulation"
+      - "relationship patterns"
+      - "personality traits"
+      - "values and beliefs"
+    suitable_for_types:
+      - trait
+      - container
+      - missing
+
+  # Head Coach (Cognitive/Conversational)
+  head_coach:
+    display_name: "Head Coach"
+    id: "head_coach"
+    description: "General conversation and cognitive trait exploration"
+    primary_namespaces:
+      - CogDNA
+      - GenDNA  # General traits
+    capabilities:
+      - CogDNA.ThinkingStyleDNA
+      - CogDNA.LearningDNA
+      - CogDNA.MemoryDNA
+      - CogDNA.AttentionDNA
+      - CogDNA.ProblemSolvingDNA
+      - GenDNA.*
+    delegation_context: "direct conversation and reflection"
+    natural_domains:
+      - "learning styles"
+      - "thinking patterns"
+      - "problem-solving approaches"
+      - "memory and attention"
+      - "general preferences"
+    suitable_for_types:
+      - trait
+      - container
+      - missing
+    is_default: true  # Fallback coach when no specialized coach fits
+
+  # Personality Test Coach (Adaptive Personality Profiling)
+  personality_test_coach:
+    display_name: "Personality Test Coach"
+    id: "personality_test_coach"
+    description: "Adaptive personality assessment through contextual questions and behavioral observations"
+    primary_namespaces:
+      - PsyDNA.PersonalityDNA
+      - PsyDNA.MotivationDNA
+      - PsyDNA.BeliefValueDNA
+    capabilities:
+      - PsyDNA.PersonalityDNA.*  # OCEAN and all personality facets
+      - PsyDNA.MotivationDNA.*   # Intrinsic/extrinsic drives
+      - PsyDNA.BeliefValueDNA.*  # Core beliefs and values
+    delegation_context: "personality assessment and psychological profiling"
+    natural_domains:
+      - "personality traits"
+      - "motivational drives"
+      - "behavioral patterns"
+      - "values and beliefs"
+      - "psychological facets"
+    suitable_for_types:
+      - trait
+      - missing
+    autonomy_level: "medium"  # Can collect data directly through adaptive questions
+    triggers:
+      - type: "curiosity"
+        threshold: 70.0
+        namespaces: ["PsyDNA.PersonalityDNA", "PsyDNA.MotivationDNA"]
+      - type: "schedule"
+        interval: "weekly"
+        condition: "low_rr_count > 5"
+
+  # Career Coach (Professional Development & Skill Optimization)
+  career_coach:
+    display_name: "Career Coach"
+    id: "career_coach"
+    description: "Career optimization, skill development, and professional growth guidance"
+    primary_namespaces:
+      - SkillDNA
+      - ProfDNA
+      - BehDNA.ProductivityWorkflowDNA
+    capabilities:
+      - SkillDNA.*                        # All technical and soft skills
+      - ProfDNA.*                         # Career history and roles
+      - BehDNA.ProductivityWorkflowDNA.*  # Work habits and productivity
+      - SocDNA.InteractionStyleDNA.*      # Workplace interaction patterns
+      - PsyDNA.MotivationDNA.*           # Career motivations (read-only)
+      - PsyDNA.PersonalityDNA.*          # Work style alignment (read-only)
+    delegation_context: "career development, skill optimization, and professional growth"
+    natural_domains:
+      - "skill assessment"
+      - "career planning"
+      - "work-life optimization"
+      - "professional development"
+      - "learning paths"
+      - "career transitions"
+    suitable_for_types:
+      - trait
+      - container
+      - missing
+    autonomy_level: "medium-high"  # Can propose cross-domain actions and create learning paths
+    triggers:
+      - type: "curiosity"
+        threshold: 60.0
+        namespaces: ["SkillDNA", "ProfDNA"]
+      - type: "user_request"
+        keywords: ["career", "job", "skill", "learning", "transition", "work"]
+
+  # ChatDNA Coach (Conversational Style Simulator)
+  chatdna_coach:
+    display_name: "ChatDNA Coach"
+    id: "chatdna_coach"
+    description: "Conversational simulator that generates text in the user's speaking style"
+    primary_namespaces:
+      - LanguageStyleDNA
+      - PsyDNA.PersonalityDNA
+      - SocDNA.InteractionStyleDNA
+    capabilities:
+      - LanguageStyleDNA.*                # All language style traits
+      - PsyDNA.PersonalityDNA.*          # Personality traits affecting tone
+      - SocDNA.InteractionStyleDNA.*     # Social interaction patterns
+      - MetaDNA.FeedbackStyleDNA.*       # Communication preferences
+    delegation_context: "conversational style simulation and language pattern analysis"
+    natural_domains:
+      - "writing style"
+      - "conversational tone"
+      - "language patterns"
+      - "communication style"
+      - "speech synthesis"
+    suitable_for_types:
+      - trait
+      - missing
+    autonomy_level: "medium"
+    output_mode: "text"  # Generates text responses
+    triggers:
+      - type: "curiosity"
+        threshold: 60.0
+        namespaces: ["LanguageStyleDNA", "SocDNA.InteractionStyleDNA"]
+      - type: "user_request"
+        keywords: ["write", "speak", "style", "tone", "communication", "message"]
+
+  # BeliefDNA Coach (Philosophy & Values Simulator)
+  beliefdna_coach:
+    display_name: "BeliefDNA Coach"
+    id: "beliefdna_coach"
+    description: "Philosophical and moral reasoning simulator that generates belief-based answers"
+    primary_namespaces:
+      - BeliefValueDNA
+      - PsyDNA.PersonalityDNA
+      - MotivationDNA
+      - CogDNA.CognitiveStyleDNA
+      - EmDNA
+    capabilities:
+      - BeliefValueDNA.*                    # All belief and value traits
+      - PsyDNA.PersonalityDNA.*            # Personality traits affecting reasoning
+      - MotivationDNA.*                     # Motivational drivers
+      - CogDNA.CognitiveStyleDNA.*         # Cognitive reasoning patterns
+      - EmDNA.EmpathyCompassionDNA         # Empathy in moral reasoning
+      - EmDNA.AffectBaselineDNA            # Emotional baseline
+    delegation_context: "philosophical reasoning, moral questions, belief exploration, value analysis"
+    natural_domains:
+      - "moral reasoning"
+      - "philosophical questions"
+      - "belief exploration"
+      - "value analysis"
+      - "ethical dilemmas"
+      - "worldview simulation"
+    suitable_for_types:
+      - trait
+      - container
+      - missing
+    autonomy_level: "medium"
+    output_mode: "text"  # Generates reasoned philosophical responses
+    triggers:
+      - type: "curiosity"
+        threshold: 60.0
+        namespaces: ["BeliefValueDNA", "CogDNA.CognitiveStyleDNA"]
+      - type: "user_request"
+        keywords: ["believe", "moral", "ethics", "philosophy", "values", "right", "wrong"]
+
+  # Permission Coach (Consent & Capability Mediator)
+  permission_coach:
+    display_name: "Permission Coach"
+    id: "permission_coach"
+    description: "Exclusive mediator of consent and capabilities; guardian of privacy and data access"
+    primary_namespaces: []  # Does not own DNA namespaces - manages permissions across all
+    capabilities: []  # Special: Has full system access but does not use capabilities
+    delegation_context: "permission management, consent mediation, privacy protection"
+    natural_domains:
+      - "capability issuance"
+      - "consent management"
+      - "permission auditing"
+      - "privacy dashboard"
+      - "access control"
+    suitable_for_types: []  # Not trait-focused - system coach
+    autonomy_level: "full"  # Can grant/revoke capabilities without further approval
+    trusted: true  # Trusted system role - bypasses capability checks
+    system_role: "permission_mediator"  # Special role marker
+    output_mode: "conversational"  # Explains permissions in human terms
+    triggers:
+      - type: "user_request"
+        keywords: ["permission", "access", "privacy", "capability", "consent", "revoke", "audit"]
+      - type: "coach_request"
+        condition: "any_coach_needs_capability"  # Intercepts all capability requests
+
+# Delegation Rules
+delegation_rules:
+  # When to delegate
+  min_curiosity_for_delegation: 60.0  # Only delegate for high/urgent curiosity
+
+  # User tolerance thresholds
+  min_tolerance_for_proactive_delegation: 0.5  # Below this, only delegate if user requests
+  aggressive_delegation_tolerance: 0.8  # Above this, delegate freely
+
+  # Delegation limits
+  max_concurrent_delegations: 2  # Don't overwhelm user with multiple coach switches
+  min_items_per_delegation: 1  # Minimum curiosity items to justify delegation
+
+  # Priority scoring
+  delegation_priority_weights:
+    curiosity: 0.5  # How curious we are
+    namespace_coverage: 0.3  # How many items in that namespace
+    user_tolerance: 0.2  # User's tolerance for nudging
+
+# Fallback Strategy
+fallback_strategy:
+  # What to do if specialized coach unavailable
+  if_photo_coach_unavailable:
+    action: "hold"  # hold (wait), fallback (use Head Coach), skip (abandon)
+    message: "Photo analysis would help explore these traits. Would you like to share a photo later?"
+
+  if_relationship_coach_unavailable:
+    action: "fallback"  # RC might not be available yet, HC can handle conversationally
+    message: "Let's explore your relationship patterns through conversation."
+
+  default_unavailable_action: "hold"
+
+# Coach Availability (can be overridden at runtime)
+availability:
+  photo_coach: true
+  relationship_coach: true
+  head_coach: true  # Always available
+  personality_test_coach: true
+  career_coach: true
+  chatdna_coach: true
+  beliefdna_coach: true
+  permission_coach: true  # Always available - system coach

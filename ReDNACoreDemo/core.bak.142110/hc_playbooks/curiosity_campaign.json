@@ -1,0 +1,45 @@
+{
+  "playbook_id": "curiosity_campaign",
+  "name": "Curiosity Campaign",
+  "description": "When a trait's curiosity > 800, propose the smallest next data action",
+  "version": "1.0",
+  "trigger": {
+    "condition": "trait.curiosity > 800",
+    "check_frequency": "on_observation_ingest"
+  },
+  "steps": [
+    {
+      "step_id": "identify_hotspot",
+      "action": "find_highest_curiosity_trait",
+      "params": {
+        "min_curiosity": 800
+      }
+    },
+    {
+      "step_id": "recommend_action",
+      "action": "suggest_evidence_addition",
+      "params": {
+        "eta_mins": 2,
+        "message_template": "Add one piece of evidence for {{trait_name}} to reduce uncertainty",
+        "why_template": "High curiosity detected ({{curiosity}}). Quick action = big impact."
+      }
+    },
+    {
+      "step_id": "queue_task",
+      "action": "create_task",
+      "params": {
+        "title": "Reduce uncertainty for {{trait_name}}",
+        "eta_mins": 2,
+        "link": "/coach/{{source_coach}}"
+      }
+    }
+  ],
+  "success_criteria": {
+    "curiosity_reduction": "> 50",
+    "evidence_count_increase": ">= 1"
+  },
+  "follow_up": {
+    "if_successful": "celebrate_win",
+    "if_incomplete": "gentle_reminder_after_24h"
+  }
+}

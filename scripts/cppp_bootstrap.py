@@ -12,8 +12,11 @@ from __future__ import annotations
 # --- bootstrap path fix (inserted) ---
 from pathlib import Path
 import sys
+
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 from ReDNACoreDemo.devx.backend import stack_api
 # --- end bootstrap path fix ---
 
@@ -21,7 +24,6 @@ import argparse
 import asyncio
 import json
 import os
-import sys
 import time
 from dataclasses import dataclass
 from typing import Dict, List, Optional
@@ -113,14 +115,27 @@ def _print_summary(results: List[ServiceResult]) -> None:
     print("  - UCNRR: http://127.0.0.1:{}/health".format(stack_api.SERVICES["ucnrr"].port))
 
 
-def _print_failure(name: str, error: Exception, log_snippet: str) -> None:
+def _first_error_line(lines: List[str]) -> Optional[str]:
+    for line in lines:
+        if "ERROR" in line or '"level": "ERROR"' in line or '"level": "error"' in line.lower():
+            return line
+    return lines[0] if lines else None
+
+
+def _print_failure(name: str, error: Exception, log_lines: List[str]) -> None:
     print(f"\n❌ Failed to start {name}: {error}")
-    if log_snippet:
+    if log_lines:
+        error_line = _first_error_line(log_lines)
         print("\nLast log entries:")
-        print(log_snippet)
+        if error_line:
+            print(error_line)
+        for line in log_lines[:5]:
+            if line == error_line:
+                continue
+            print(line)
 
 
-def _tail_logs(service: stack_api.ServiceDefinition, lines: int = 20) -> str:
+def _tail_logs(service: stack_api.ServiceDefinition, lines: int = 20) -> List[str]:
     entries = stack_api._tail_json(service.resolve_log_path(), lines)
     rendered = []
     for entry in entries:
@@ -128,7 +143,7 @@ def _tail_logs(service: stack_api.ServiceDefinition, lines: int = 20) -> str:
             rendered.append(json.dumps(entry, ensure_ascii=False))
         else:
             rendered.append(str(entry))
-    return "\n".join(rendered)
+    return rendered
 
 
 def _stop_started(started: List[ServiceResult]) -> None:
@@ -180,9 +195,9 @@ def bootstrap_stack(interactive: bool = True) -> int:
 
     except Exception as exc:
         failing_service = current_service or stack_api.SERVICES[SERVICE_SEQUENCE[0]]
-        log_snippet = _tail_logs(failing_service)
+        log_lines = _tail_logs(failing_service)
         if interactive:
-            _print_failure(failing_service.display_name, exc, log_snippet)
+            _print_failure(failing_service.display_name, exc, log_lines)
         _stop_started(started)
         if current_service and all(result.service != current_service for result in started):
             # ensure current service is terminated if it failed before recording

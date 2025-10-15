@@ -134,7 +134,7 @@ export interface ExportBatchResponse {
 }
 
 export interface HolisticHistoryEntry extends CoreHolisticHistoryEntry {
-  path?: string
+  path: string
   size_bytes?: number | null
 }
 

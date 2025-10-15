@@ -484,6 +484,9 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
                 style={{ position: 'relative', height: `${totalSize}px` }}
               >
                 {virtualRows.map((virtualRow) => {
+                  if (!rowModel.rows.length) {
+                    return null;
+                  }
                   const row = rowModel.rows[virtualRow.index];
                   if (!row) {
                     return null;
@@ -491,11 +494,8 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
                   return (
                     <tr
                       key={row.id}
-                      ref={(node) => {
-                        if (node) {
-                          rowVirtualizer.measureElement(node);
-                        }
-                      }}
+                      ref={rowVirtualizer.measureElement}
+                      data-index={virtualRow.index}
                       className="hover:bg-slate-900/70"
                       style={{
                         position: 'absolute',

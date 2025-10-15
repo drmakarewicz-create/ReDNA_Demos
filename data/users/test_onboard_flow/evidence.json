@@ -1,0 +1,80 @@
+{
+  "items": [
+    {
+      "trait_id": "BasicDNA.Age",
+      "confidence": 90,
+      "raw_text": "My name is TestUser. My age range is 25-34. My gender is Female. My orientation is Bisexual. My preferred language is English. My relationship status is Single. For the Would You Rather question, I chose: A cozy home dinner with deep conversation.",
+      "timestamp": "2025-10-16T07:33:20+00:00",
+      "extraction_method": "llm",
+      "signal": "age: 25-34",
+      "value": {
+        "text": "25-34"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:49:06+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Gender",
+      "confidence": 100,
+      "raw_text": "My name is TestUser. My age range is 25-34. My gender is Female. My orientation is Bisexual. My preferred language is English. My relationship status is Single. For the Would You Rather question, I chose: A cozy home dinner with deep conversation.",
+      "timestamp": "2025-10-16T07:33:20+00:00",
+      "extraction_method": "llm",
+      "signal": "gender: Female",
+      "value": {
+        "enum": "female"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:49:06+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Orientation",
+      "confidence": 100,
+      "raw_text": "My name is TestUser. My age range is 25-34. My gender is Female. My orientation is Bisexual. My preferred language is English. My relationship status is Single. For the Would You Rather question, I chose: A cozy home dinner with deep conversation.",
+      "timestamp": "2025-10-16T07:33:20+00:00",
+      "extraction_method": "llm",
+      "signal": "orientation: Bisexual",
+      "value": {
+        "enum": "bisexual"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:49:06+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.RelationshipStatus",
+      "confidence": 100,
+      "raw_text": "My name is TestUser. My age range is 25-34. My gender is Female. My orientation is Bisexual. My preferred language is English. My relationship status is Single. For the Would You Rather question, I chose: A cozy home dinner with deep conversation.",
+      "timestamp": "2025-10-16T07:33:20+00:00",
+      "extraction_method": "llm",
+      "signal": "relationship_status: Single",
+      "value": {
+        "enum": "single"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:49:06+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Orientation",
+      "value": {
+        "enum": "bisexual"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:49:06+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Gender",
+      "value": {
+        "enum": "female"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:49:06+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Name",
+      "value": {
+        "text": "Testuser"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:49:06+00:00"
+    }
+  ]
+}

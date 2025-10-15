@@ -1,0 +1,49 @@
+{
+  "items": [
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "confidence": 100,
+      "raw_text": "I have blue eyes",
+      "timestamp": "2025-10-15T04:00:00+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.eye_color: blue",
+      "value": {
+        "enum": "blue"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:33:09+00:00"
+    },
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "value": {
+        "enum": "blue"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T15:33:09+00:00"
+    },
+    {
+      "trait_id": "PaDNA.SkinDNA.Freckles",
+      "ucn_prior": 0.2,
+      "provenance": "inference:iris_blue_freckles_hint",
+      "display_hint": "needs_confirmation",
+      "ui_hidden": false,
+      "value": {
+        "enum": "higher_likelihood"
+      },
+      "source": "chat:inference",
+      "ts": "2025-10-15T15:33:09+00:00"
+    },
+    {
+      "trait_id": "PaDNA.HairDNA.DarknessPrior",
+      "ucn_prior": 0.15,
+      "provenance": "inference:iris_blue_dark_hair_less_likely",
+      "display_hint": "needs_confirmation",
+      "ui_hidden": true,
+      "value": {
+        "enum": "slightly_lower"
+      },
+      "source": "chat:inference",
+      "ts": "2025-10-15T15:33:09+00:00"
+    }
+  ]
+}

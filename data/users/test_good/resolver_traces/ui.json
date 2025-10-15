@@ -1,0 +1,84 @@
+{
+  "req_id": "ui",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "ui",
+          "ts": "2025-10-15T18:33:47+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      ],
+      "ts": 1760553227.896204
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 1
+      },
+      "ts": 1760553227.896205
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "ui",
+          "ts": "2025-10-15T18:33:47+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      },
+      "ts": 1760553227.896207
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "ucn_prior": 0.2,
+          "source": "ui"
+        }
+      ],
+      "ts": 1760553227.8962078
+    },
+    {
+      "name": "rr_success",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "ucn": 0.2
+        }
+      ],
+      "ts": 1760553227.9011068
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 0.2
+      },
+      "ts": 1760553227.901108
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 1,
+        "rr_ok": true
+      },
+      "ts": 1760553227.9019399
+    }
+  ],
+  "ts": 1760553227.896197
+}

@@ -1,0 +1,30 @@
+{
+  "total_containers": 989,
+  "by_namespace": {
+    "BehDNA": 180,
+    "CogDNA": 170,
+    "EmDNA": 26,
+    "EnvDNA": 11,
+    "HealthDNA": 8,
+    "HistDNA": 50,
+    "MetaDNA": 40,
+    "PaDNA": 35,
+    "PrefDNA": 60,
+    "ProfDNA": 120,
+    "PsyDNA": 151,
+    "RoDNA": 8,
+    "SkillDNA": 70,
+    "SocDNA": 60
+  },
+  "by_status": {
+    "prototype": 989
+  },
+  "sensitive_count": 227,
+  "consent_required_count": 227,
+  "depth_distribution": {
+    "1": 14,
+    "2": 174,
+    "3": 776,
+    "4": 25
+  }
+}

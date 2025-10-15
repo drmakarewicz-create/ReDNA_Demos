@@ -8,6 +8,8 @@
 import { useState, useEffect } from 'react';
 import { CORE_API_BASE } from '../lib/api';
 
+const LIFE_ENABLED = (process.env.NEXT_PUBLIC_LIFE_ENABLED ?? 'false') === 'true';
+
 // ============================================================================
 // Types
 // ============================================================================
@@ -76,6 +78,11 @@ export function LifeWeekReview({ userId, collapsed = false }: LifeWeekReviewProp
   const [audioElement, setAudioElement] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    if (!LIFE_ENABLED) {
+      setLoading(false);
+      setReviewData(null);
+      return;
+    }
     loadWeekReview();
   }, [userId]);
 
@@ -90,6 +97,12 @@ export function LifeWeekReview({ userId, collapsed = false }: LifeWeekReviewProp
   }, [audioElement]);
 
   async function loadWeekReview() {
+    if (!LIFE_ENABLED) {
+      setLoading(false);
+      setReviewData(null);
+      return;
+    }
+
     setLoading(true);
     setError(null);
 
@@ -180,7 +193,7 @@ export function LifeWeekReview({ userId, collapsed = false }: LifeWeekReviewProp
   }
 
   async function handlePlayAudio() {
-    if (!reviewData?.audio_url) return;
+    if (!LIFE_ENABLED || !reviewData?.audio_url) return;
 
     if (playingAudio && audioElement) {
       audioElement.pause();

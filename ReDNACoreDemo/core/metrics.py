@@ -8,9 +8,9 @@ from __future__ import annotations
 
 import threading
 import time
-from collections import defaultdict
+from collections import defaultdict, deque
 from datetime import datetime, timezone
-from typing import Any, Dict, Optional
+from typing import Any, Deque, Dict, Optional, Tuple
 
 
 class MetricsCollector:
@@ -122,7 +122,7 @@ class MetricsCollector:
             for metric, measurements in self._timers.items():
                 timer_stats[metric] = self.get_timer_stats(metric)
 
-            return {
+            payload = {
                 "service": self.service_name,
                 "timestamp": datetime.now(timezone.utc).isoformat(),
                 "uptime_seconds": uptime_seconds,
@@ -130,6 +130,12 @@ class MetricsCollector:
                 "gauges": dict(self._gauges),
                 "timers": timer_stats,
             }
+            rolling_snapshot = ROLLING_REQUESTS.snapshot()
+            payload["counters"]["errors_5xx_window_5m"] = rolling_snapshot["errors_5xx_window_5m"]
+            payload["counters"]["requests_window_5m"] = rolling_snapshot["requests_window_5m"]
+            payload["gauges"]["latency_p95_ms_window_5m"] = rolling_snapshot["latency_p95_ms_window_5m"]
+            payload["rolling_window"] = rolling_snapshot
+            return payload
 
     def reset(self) -> None:
         """Reset all metrics (for testing)."""
@@ -137,6 +143,61 @@ class MetricsCollector:
             self._counters.clear()
             self._gauges.clear()
             self._timers.clear()
+
+
+# Rolling request metrics
+class RollingWindowTracker:
+    """Track request counts, error counts, and latency percentiles over a rolling window."""
+
+    def __init__(self, window_seconds: int = 300):
+        self.window_seconds = window_seconds
+        self._durations: Deque[Tuple[float, float]] = deque()
+        self._errors: Deque[float] = deque()
+        self._lock = threading.Lock()
+
+    def record(self, duration_ms: float, status_code: int) -> None:
+        now = time.time()
+        with self._lock:
+            self._durations.append((now, float(duration_ms)))
+            if status_code >= 500:
+                self._errors.append(now)
+            self._trim(now)
+
+    def _trim(self, now: float) -> None:
+        cutoff = now - self.window_seconds
+        while self._durations and self._durations[0][0] < cutoff:
+            self._durations.popleft()
+        while self._errors and self._errors[0] < cutoff:
+            self._errors.popleft()
+
+    def snapshot(self) -> Dict[str, Any]:
+        now = time.time()
+        with self._lock:
+            self._trim(now)
+            requests = len(self._durations)
+            errors = len(self._errors)
+            latencies = [entry[1] for entry in self._durations]
+
+            p95_ms: Optional[float] = None
+            if latencies:
+                sorted_latencies = sorted(latencies)
+                index = max(
+                    0,
+                    min(len(sorted_latencies) - 1, int(0.95 * (len(sorted_latencies) - 1))),
+                )
+                p95_ms = float(sorted_latencies[index])
+
+            first_event = self._durations[0][0] if self._durations else None
+            span_seconds = (now - first_event) if first_event else 0.0
+
+            return {
+                "window_seconds": self.window_seconds,
+                "requests_window_5m": requests,
+                "errors_5xx_window_5m": errors,
+                "latency_p95_ms_window_5m": p95_ms,
+                "span_seconds": span_seconds,
+                "warming": requests == 0 or span_seconds < min(self.window_seconds, 60),
+            }
 
 
 # Global metrics collector instances
@@ -162,6 +223,7 @@ def get_metrics_collector(service_name: str = "core") -> MetricsCollector:
 
 # Default collector for convenience
 METRICS = get_metrics_collector("core")
+ROLLING_REQUESTS = RollingWindowTracker()
 
 
 # Context manager for timing operations

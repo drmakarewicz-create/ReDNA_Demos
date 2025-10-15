@@ -1,0 +1,151 @@
+edges:
+- from: EnvDNA.ClimateLightNoiseContextDNA.AmbientNoiseExposureDNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching13DNA
+  type: correlates_with
+  evidence: Environmental psychology links AmbientNoiseExposureDNA with EmailBatching13DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.71
+- from: EnvDNA.MobilityCommuteContextDNA.CommutePattern10DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod15DNA
+  type: influences
+  evidence: Environmental psychology links CommutePattern10DNA with TaskPrioritizationMethod15DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.7
+- from: EnvDNA.ClimateLightNoiseContextDNA.AmbientNoiseExposure6DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching11DNA
+  type: influences
+  evidence: Environmental psychology links AmbientNoiseExposure6DNA with EmailBatching11DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.72
+- from: EnvDNA.DigitalWorkContextDNA.ScreenTimePattern8DNA
+  to: BehDNA.ProductivityWorkflowDNA.ContextSwitchingDNA
+  type: correlates_with
+  evidence: Environmental psychology links ScreenTimePattern8DNA with ContextSwitchingDNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.72
+- from: EnvDNA.TimezoneWorkWindowDNA.WorkWindowFlexibility5DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching22DNA
+  type: correlates_with
+  evidence: Environmental psychology links WorkWindowFlexibility5DNA with EmailBatching22DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.71
+- from: EnvDNA.DigitalFootprintContextDNA.OnlinePresenceDNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod12DNA
+  type: influences
+  evidence: Environmental psychology links OnlinePresenceDNA with TaskPrioritizationMethod12DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.72
+- from: EnvDNA.ClimateLightNoiseContextDNA.AmbientNoiseExposure5DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod17DNA
+  type: influences
+  evidence: Environmental psychology links AmbientNoiseExposure5DNA with TaskPrioritizationMethod17DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.68
+- from: EnvDNA.ClimateLightNoiseContextDNA.AmbientNoiseExposure4DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskTransitionEfficiency3DNA
+  type: influences
+  evidence: Environmental psychology links AmbientNoiseExposure4DNA with TaskTransitionEfficiency3DNA
+    patterns (Environment-Behavior Research, 2024)
+  confidence: 0.77
+- from: MetaDNA.EngagementPatternDNA.QuestionAskinglDNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod3DNA
+  type: influences
+  evidence: System engagement research links QuestionAskinglDNA with TaskPrioritizationMethod3DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.69
+- from: MetaDNA.EngagementPatternDNA.QuestionAskingl10DNA
+  to: BehDNA.ProductivityWorkflowDNA.EmailBatching5DNA
+  type: correlates_with
+  evidence: System engagement research links QuestionAskingl10DNA with EmailBatching5DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.75
+- from: MetaDNA.EngagementPatternDNA.QuestionAskingl5DNA
+  to: BehDNA.ProductivityWorkflowDNA.TaskPrioritizationMethod24DNA
+  type: correlates_with
+  evidence: System engagement research links QuestionAskingl5DNA with TaskPrioritizationMethod24DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.77
+- from: MetaDNA.FeedbackStyleDNA.FeedbackTimingPreference10DNA
+  to: PsyDNA.SelfConceptSchemaDNA.OptimismPessimismDNA
+  type: correlates_with
+  evidence: System engagement research links FeedbackTimingPreference10DNA with OptimismPessimismDNA
+    (UX Behavior Science, 2024)
+  confidence: 0.69
+- from: MetaDNA.FeedbackStyleDNA.FeedbackReceptivity3DNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome10DNA
+  type: correlates_with
+  evidence: System engagement research links FeedbackReceptivity3DNA with ImpostorSyndrome10DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.74
+- from: MetaDNA.FeedbackStyleDNA.FeedbackReceptivityDNA
+  to: PsyDNA.SelfConceptSchemaDNA.ImpostorSyndrome4DNA
+  type: correlates_with
+  evidence: System engagement research links FeedbackReceptivityDNA with ImpostorSyndrome4DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.66
+- from: MetaDNA.AssessmentValidityDNA.SelfAssessmentAccuracy7DNA
+  to: SkillDNA.LearningAdaptationSkillDNA.FrameworkAdoptionSpeed4DNA
+  type: correlates_with
+  evidence: System engagement research links SelfAssessmentAccuracy7DNA with FrameworkAdoptionSpeed4DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.73
+- from: MetaDNA.ResponseStyleDNA.SocialDesirabilityBiasDNA
+  to: SkillDNA.LearningAdaptationSkillDNA.FrameworkAdoptionSpeed13DNA
+  type: correlates_with
+  evidence: System engagement research links SocialDesirabilityBiasDNA with FrameworkAdoptionSpeed13DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.75
+- from: MetaDNA.FeedbackStyleDNA.FeedbackReceptivity5DNA
+  to: PrefDNA.WorkEnvironmentPrefDNA.RemoteWorkLocationPreference2DNA
+  type: correlates_with
+  evidence: System engagement research links FeedbackReceptivity5DNA with RemoteWorkLocationPreference2DNA
+    (UX Behavior Science, 2024)
+  confidence: 0.71
+- from: MetaDNA.GuidanceOpennessAutonomyDNA.ScaffoldingPreference7DNA
+  to: PrefDNA.WorkEnvironmentPrefDNA.SpatialOwnershipPreferenceDNA
+  type: correlates_with
+  evidence: System engagement research links ScaffoldingPreference7DNA with SpatialOwnershipPreferenceDNA
+    (UX Behavior Science, 2024)
+  confidence: 0.67
+- from: EmDNA.EmotionRegulationDNA.EmotionSuppression2DNA
+  to: BehDNA.WorkBreakHabitDNA.ActiveRecoveryDesignDNA
+  type: influences
+  evidence: Interdisciplinary research demonstrates EmotionSuppression2DNA influences
+    ActiveRecoveryDesignDNA (Cross-Domain Studies, 2024)
+  confidence: 0.7
+- from: EmDNA.EmotionRegulationDNA.EmotionSuppression4DNA
+  to: BehDNA.WorkBreakHabitDNA.RecoveryPermissionBehaviorDNA
+  type: correlates_with
+  evidence: Interdisciplinary research demonstrates EmotionSuppression4DNA influences
+    RecoveryPermissionBehaviorDNA (Cross-Domain Studies, 2024)
+  confidence: 0.66
+- from: RoDNA.PartneringStyleDNA.CommitmentReadinessDNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening2DNA
+  type: influences
+  evidence: Interdisciplinary research demonstrates CommitmentReadinessDNA influences
+    ActiveListening2DNA (Cross-Domain Studies, 2024)
+  confidence: 0.69
+- from: RoDNA.PartneringStyleDNA.ConflictResolutionStyle3DNA
+  to: SocDNA.InteractionStyleDNA.MicroaffirmationPracticeDNA
+  type: correlates_with
+  evidence: Interdisciplinary research demonstrates ConflictResolutionStyle3DNA influences
+    MicroaffirmationPracticeDNA (Cross-Domain Studies, 2024)
+  confidence: 0.74
+- from: HealthDNA.MobilityPainFatigueDNA.ChronicPainPatternDNA
+  to: CogDNA.AttentionControlDNA.ContextSwitchRecovery13DNA
+  type: correlates_with
+  evidence: Interdisciplinary research demonstrates ChronicPainPatternDNA influences
+    ContextSwitchRecovery13DNA (Cross-Domain Studies, 2024)
+  confidence: 0.66
+- from: HealthDNA.NutritionBiomarkerDNA.MicronutrientStatus9DNA
+  to: CogDNA.AttentionControlDNA.ContextSwitchRecovery21DNA
+  type: correlates_with
+  evidence: Interdisciplinary research demonstrates MicronutrientStatus9DNA influences
+    ContextSwitchRecovery21DNA (Cross-Domain Studies, 2024)
+  confidence: 0.76
+- from: PaDNA.FaceDNA.FacialHairDNA
+  to: SocDNA.InteractionStyleDNA.ActiveListening4DNA
+  type: influences
+  evidence: Interdisciplinary research demonstrates FacialHairDNA influences ActiveListening4DNA
+    (Cross-Domain Studies, 2024)
+  confidence: 0.72

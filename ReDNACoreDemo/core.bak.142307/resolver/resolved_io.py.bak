@@ -1,0 +1,71 @@
+"""
+I/O utilities for resolved trait data.
+
+Thin wrapper around core.storage for resolver-specific operations.
+"""
+from __future__ import annotations
+from typing import Dict, Any, Optional
+from pathlib import Path
+
+from core.storage import read_user_state, write_user_state, ensure_dirs_for_user
+from .contracts import Resolved
+
+
+def read_resolved(user_id: str) -> Optional[Resolved]:
+    """
+    Read resolved traits for a user.
+
+    Args:
+        user_id: User identifier
+
+    Returns:
+        Resolved trait dict, or None if no data exists
+    """
+    try:
+        resolved, _, _ = read_user_state(user_id)
+        return resolved if resolved else None
+    except Exception:
+        return None
+
+
+def write_resolved(user_id: str, resolved: Resolved) -> None:
+    """
+    Write resolved traits for a user.
+
+    This preserves evidence and observations, only updating resolved.
+
+    Args:
+        user_id: User identifier
+        resolved: Resolved trait dict to write
+    """
+    # Read current evidence and observations to preserve them
+    try:
+        _, evidence, observations = read_user_state(user_id)
+    except Exception:
+        evidence = {"items": []}
+        observations = {"items": [], "by_trait": {}}
+
+    # Write back with updated resolved
+    write_user_state(
+        user_id,
+        resolved,
+        evidence,
+        observations,
+        enforce_governance=True
+    )
+
+
+def get_resolver_trace_dir(user_id: str) -> Path:
+    """
+    Get the directory for resolver trace files.
+
+    Args:
+        user_id: User identifier
+
+    Returns:
+        Path to resolver_traces directory
+    """
+    paths = ensure_dirs_for_user(user_id)
+    trace_dir = paths["udir"] / "resolver_traces"
+    trace_dir.mkdir(parents=True, exist_ok=True)
+    return trace_dir

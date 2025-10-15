@@ -18,6 +18,7 @@ import zipfile
 import shutil
 import threading
 import queue
+import traceback
 
 logger = logging.getLogger(__name__)
 
@@ -103,6 +104,8 @@ from .redna_core import build_observations, resolve_traits
 from .events import capture
 from .security import allow
 from .priority import priority_score, trait_importance_for
+from .logutil import stack_log
+from .metrics import ROLLING_REQUESTS
 
 TRACE_TRUE = {"1", "true", "yes", "on"}
 APP_VERSION = str(CURRENT_VERSION or "dev")
@@ -693,66 +696,59 @@ def build_app() -> FastAPI:
     # --- end legacy ingestion alias ---
 
 
+    # --- CORS middleware for local UI/dev servers ---
+    # Allow requests from local dev and preview origins
+    ALLOWED_ORIGINS = [
+        "http://127.0.0.1:3000", "http://localhost:3000",  # Next.js dev (main)
+        "http://127.0.0.1:3001", "http://localhost:3001",  # Next.js dev (alt port)
+        "http://127.0.0.1:4173", "http://localhost:4173",  # Next.js preview
+        "http://127.0.0.1:3100", "http://localhost:3100",  # DevX Vite
+        "http://127.0.0.1:3101", "http://localhost:3101",  # DevX Vite (alt)
+        "http://127.0.0.1:3102", "http://localhost:3102",  # DevX Vite (alt 2)
+    ]
+
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=ALLOWED_ORIGINS,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
+    # --- end CORS block ---
 
     CURIOSITY_ON = _curiosity_flag_on()
 
     RUNTIME_STATE_FILENAME = "hc_runtime_state.json"
 
     # Load HC system prompt dynamically from markdown file
-    # This allows hot-reload during development and version tracking
-    from .hc_prompt_loader import get_hc_prompt_text
-    _hc_prompt_raw = get_hc_prompt_text()
+    # For Ollama/local models, use minimal prompt to avoid confusion
+    # For cloud models, use full sophisticated prompt
+    _hc_chat_provider = (os.getenv("HC_CHAT_PROVIDER", "") or "").strip().lower()
+    _use_simple_prompt = _hc_chat_provider in ["ollama", "local"]
 
-    # If prompt load failed, fall back to minimal prompt
-    if "Error loading" in _hc_prompt_raw or not _hc_prompt_raw:
-        SYSTEM_PROMPT = (
-            "You are the Head Coach - a lifelong companion helping someone become their best self. "
-            "Listen carefully, extract facts from user statements, and guide with warmth and empathy."
-        )
+    if _use_simple_prompt:
+        # Ultra-minimal prompt for Ollama - avoid any instructions that confuse the model
+        SYSTEM_PROMPT = ""
     else:
-        SYSTEM_PROMPT = _hc_prompt_raw
+        # Load full prompt for capable cloud models
+        from .hc_prompt_loader import get_hc_prompt_text
+        _hc_prompt_raw = get_hc_prompt_text()
+
+        # If prompt load failed, fall back to minimal prompt
+        if "Error loading" in _hc_prompt_raw or not _hc_prompt_raw:
+            SYSTEM_PROMPT = (
+                "You are the Head Coach - a lifelong companion helping someone become their best self. "
+                "Listen carefully, extract facts from user statements, and guide with warmth and empathy."
+            )
+        else:
+            SYSTEM_PROMPT = _hc_prompt_raw
     PERSONA_PROMPTS = {
         "head coach": (
-            "⚠️ YOU ARE A CHATBOT - NOT A SECRETARY. You CANNOT send messages or make introductions. "
-            "When asked to switch coaches, give UI directions ONLY.\n\n"
-
-            "You're the Head Coach - their closest ally for life. "
-
-            "BOUNDARIES: If someone says 'not now', 'later', or 'not interested' about a topic, DON'T proactively bring it up again. "
-            "But if they DIRECTLY ASK about it later, answer normally. 'Not now' ≠ 'never'. "
-            "The boundary is about YOU not pushing, not about blocking their questions. "
-            "Example: They said 'no coaches now', but later ask 'what coaches exist?' → Answer the question fully. "
-            "If they change the subject, follow their lead immediately. "
-
-            "AVAILABLE COACHES:\n"
-            "• Relationship Coach 💞 - relationships, emotions, psychology\n"
-            "• Photo Coach 📸 - appearance, style, visual presence\n"
-            "• Personality Test Coach 🧠 - personality, motivations, values\n"
-            "• Career Coach 💼 - career, skills, professional development\n"
-            "\n"
-            "⚠️ SWITCHING COACHES - CRITICAL RULE:\n"
-            "When user asks to switch: Give them UI DIRECTIONS ONLY.\n"
-            "✅ SAY: 'Perfect! Click Coach Catalog (📚) in sidebar → select [Coach Name]'\n"
-            "❌ NEVER SAY: 'I'll connect you' / 'I'll send introduction' / 'They'll contact you'\n"
-            "You are TEXT ONLY. You cannot execute switches. ONLY guide to UI.\n"
-            "\n"
-            "You can suggest ONE coach per conversation if highly relevant (e.g., 'Dating is tough. Want to chat with our Relationship Coach?')\n"
-            "If they say no or 'later', never mention that coach again in this conversation. "
-
-            "CASUAL CONVERSATIONS: If they ask about TV shows, restaurants, hobbies, books, weather, sports—have a normal conversation. "
-            "Stay on their topic. DO NOT redirect to self-improvement, goals, life changes, or meaningful decisions. "
-            "DO NOT ask 'what would you like to change' or 'are you looking to improve'. Just chat about the thing they asked about. "
-            "Example: If they ask about TV shows, talk about TV shows. Don't ask about their life goals. "
-
-            "TONE: Be casual and helpful, not salesy. Avoid therapy-speak, business jargon, and phrases like 'Next step:' or 'Let's explore.' "
-            "Sound like a real person texting a friend."
+            "You are the Head Coach, a friendly life coach. "
+            "Chat casually and show genuine interest in the user. "
+            "Keep responses short (2-3 sentences). "
+            "Ask follow-up questions to learn about them. "
+            "Be warm, supportive, and encouraging."
         ),
         "rc": (
             "Persona: Relationship Coach. Offer empathetic, practical relationship guidance with a collaborative tone."
@@ -2200,7 +2196,7 @@ def build_app() -> FastAPI:
 
         Used by Northstar "Why?" panel for trait explainability.
         """
-        from core.provenance.service import build_provenance
+        from ReDNACoreDemo.core.provenance.service import build_provenance
 
         try:
             clean_user = user_id.strip()
@@ -5519,40 +5515,124 @@ def build_app() -> FastAPI:
         # Fallback
         return {"success": False, "error": "unexpected_response"}
 
+    log = logging.getLogger("ingest_evidence")
+
+    def _validate_evidence_item(ev: dict) -> tuple[bool, str | None]:
+        """Check evidence structure before entering the pipeline."""
+        if not isinstance(ev, dict) or "trait_id" not in ev:
+            return False, "NO_CANONICAL_TRAIT_ID"
+
+        val = ev.get("value")
+        if not isinstance(val, dict) or not any(key in val for key in ("enum", "number", "text")):
+            return False, "INVALID_VALUE_SHAPE"
+
+        return True, None
+
     @app.post("/core/api/ingest_evidence")
-    def core_api_ingest_evidence(payload: Dict[str, Any]) -> Dict[str, Any]:
-        """Unified ingestion endpoint that accepts structured evidence payloads."""
-        user_id = payload.get("user_id")
-        evidence = payload.get("evidence")
-        source = payload.get("source") or "api"
-        req_id = payload.get("req_id")
-
-        if not user_id or not isinstance(evidence, list) or not evidence:
-            raise HTTPException(status_code=400, detail="user_id and evidence are required")
-
+    async def ingest_evidence_route(payload: dict):
+        start_time = time.perf_counter()
+        status_code = 200
         try:
-            from .ingest import ingest_evidence_roundtrip
-            from .ingest.evidence_schema import EvidenceValidationError
+            user_id = payload.get("user_id")
+            source = payload.get("source") or "ui"
+            req_id = payload.get("req_id") or "ui"
 
-            result = ingest_evidence_roundtrip(
-                user_id=user_id,
-                source=source,
-                evidence=evidence,
-                req_id=req_id,
-            )
-            return result
-        except EvidenceValidationError as exc:
-            raise HTTPException(
-                status_code=400,
-                detail={
-                    "error": exc.error_code,
-                    "message": exc.message,
-                    "suggestions": exc.suggestions,
+            raw_items = payload.get("evidence")
+            items = raw_items if isinstance(raw_items, list) else []
+
+            if isinstance(payload.get("text"), str) and not items:
+                items = [{
+                    "trait_id": "FreeText",
+                    "value": {"text": payload["text"]},
+                    "source": source
+                }]
+
+            if not user_id or not isinstance(user_id, str):
+                raise HTTPException(
+                    status_code=400,
+                    detail={"error": "BAD_REQUEST", "message": "user_id and evidence[] required"}
+                )
+
+            if not items:
+                raise HTTPException(
+                    status_code=400,
+                    detail={"error": "BAD_REQUEST", "message": "user_id and evidence[] required"}
+                )
+
+            bad: list[dict[str, Any]] = []
+            for idx, ev in enumerate(items):
+                ok, code = _validate_evidence_item(ev)
+                if not ok:
+                    bad.append({"index": idx, "error": code})
+
+            if bad:
+                raise HTTPException(
+                    status_code=400,
+                    detail={
+                        "error": "EVIDENCE_VALIDATION_FAILED",
+                        "bad": bad,
+                        "message": "One or more evidence items are not canonical (missing trait_id or typed value)."
+                    }
+                )
+
+            from ReDNACoreDemo.core.ingest.pipeline import ingest_evidence_roundtrip
+
+            res = ingest_evidence_roundtrip(user_id, source, items, req_id)
+            response = {"ok": True, **res}
+            stack_log(
+                "core",
+                "INFO",
+                "ingest_ok",
+                "ingest_evidence succeeded",
+                {
+                    "user_id": user_id,
+                    "source": source,
+                    "req_id": req_id,
+                    "ingested": res.get("ingested"),
+                    "inferred": res.get("inferred"),
                 },
-            ) from exc
-        except Exception as exc:
-            logger.error(f"ingest_evidence failed for user {user_id}: {exc}", exc_info=True)
-            raise HTTPException(status_code=500, detail="Ingestion failed")
+            )
+            return JSONResponse(response, status_code=200)
+
+        except HTTPException as exc:
+            status_code = exc.status_code
+            detail = exc.detail if isinstance(exc.detail, dict) else {"error": exc.detail}
+            log.error("ingest_400{%s}: %s", payload.get("user_id"), detail)
+            stack_log(
+                "core",
+                "WARN",
+                "ingest_fail",
+                "ingest_evidence rejected",
+                {
+                    "user_id": payload.get("user_id"),
+                    "status_code": status_code,
+                    "detail": detail,
+                },
+            )
+            return JSONResponse({"ok": False, **detail}, status_code=status_code)
+
+        except Exception as exc:  # noqa: BLE001 - propagate structured 500s
+            status_code = 500
+            tb = traceback.format_exc()
+            log.error("ingest_500{%s}: %s\n%s", payload.get("user_id"), str(exc), tb)
+            stack_log(
+                "core",
+                "ERROR",
+                "ingest_fail",
+                "ingest_evidence raised exception",
+                {
+                    "user_id": payload.get("user_id"),
+                    "status_code": status_code,
+                    "error": str(exc),
+                },
+            )
+            return JSONResponse(
+                {"ok": False, "error": "INGEST_FAILURE", "message": str(exc)},
+                status_code=500
+            )
+        finally:
+            duration_ms = (time.perf_counter() - start_time) * 1000
+            ROLLING_REQUESTS.record(duration_ms, status_code)
 
 
     @app.post("/ui/ingest/json")
@@ -7239,7 +7319,7 @@ def build_app() -> FastAPI:
                         # Get delegation recommendations
                         delegation_recommendations = []
                         try:
-                            from core.coach_delegation import DelegationManager
+                            from ReDNACoreDemo.core.coach_delegation import DelegationManager
 
                             manager = DelegationManager(data_dir=CORE_DATA_ROOT)
 
@@ -7904,7 +7984,7 @@ def build_app() -> FastAPI:
                 "blending_applied": false
             }
         """
-        from core.rr_per_trait import PerTraitRRCalculator
+        from ReDNACoreDemo.core.rr_per_trait import PerTraitRRCalculator
 
         try:
             distribution_dir = Path(config.core_data_dir) / "population_distributions"
@@ -7962,7 +8042,7 @@ def build_app() -> FastAPI:
                 "traits": [...]
             }
         """
-        from core.rr_aggregation import ContainerRRAggregator
+        from ReDNACoreDemo.core.rr_aggregation import ContainerRRAggregator
 
         try:
             distribution_dir = Path(config.core_data_dir) / "population_distributions"
@@ -8012,7 +8092,7 @@ def build_app() -> FastAPI:
                 "containers": [...]
             }
         """
-        from core.rr_aggregation import calculate_user_rr_summary
+        from ReDNACoreDemo.core.rr_aggregation import calculate_user_rr_summary
 
         try:
             distribution_dir = Path(config.core_data_dir) / "population_distributions"
@@ -8059,7 +8139,7 @@ def build_app() -> FastAPI:
                 "traits": {...}
             }
         """
-        from core.rr_distribution_builder import build_all_distributions
+        from ReDNACoreDemo.core.rr_distribution_builder import build_all_distributions
 
         try:
             distribution_dir = Path(config.core_data_dir) / "population_distributions"
@@ -8199,7 +8279,7 @@ def build_app() -> FastAPI:
     ):
         """Get curiosity-driven agenda for a user."""
         try:
-            from core.curiosity.curiosity_engine import CuriosityEngine
+            from ReDNACoreDemo.core.curiosity.curiosity_engine import CuriosityEngine
 
             engine = CuriosityEngine(data_dir=Path("data"))
 
@@ -8224,7 +8304,7 @@ def build_app() -> FastAPI:
     def get_curiosity_map(user_id: str):
         """Get complete curiosity map for visualization."""
         try:
-            from core.curiosity.curiosity_engine import CuriosityEngine
+            from ReDNACoreDemo.core.curiosity.curiosity_engine import CuriosityEngine
 
             engine = CuriosityEngine(data_dir=Path("data"))
 
@@ -8259,8 +8339,8 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
-            from core.curiosity.curiosity_engine import CuriosityEngine
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.curiosity.curiosity_engine import CuriosityEngine
 
             user_id = payload.get("user_id")
             if not user_id:
@@ -8357,7 +8437,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
 
             user_id = payload.get("user_id")
             coach_id = payload.get("coach_id")
@@ -8421,7 +8501,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
 
             manager = DelegationManager(data_dir=CORE_DATA_ROOT)
             status = manager.check_delegation_status(delegation_id, user_id)
@@ -8461,7 +8541,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
 
             manager = DelegationManager(data_dir=CORE_DATA_ROOT)
             active = manager.get_active_delegations(user_id)
@@ -8518,8 +8598,8 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
-            from core.coach_mode_manager import switch_mode_with_handoff
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.coach_mode_manager import switch_mode_with_handoff
 
             traits_collected = payload.get("traits_collected", [])
             curiosity_before = payload.get("curiosity_before", {})
@@ -8602,7 +8682,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_mode_manager import CoachModeManager
+            from ReDNACoreDemo.core.coach_mode_manager import CoachModeManager
 
             manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
             active_mode = manager.get_active_mode(user_id)
@@ -8640,7 +8720,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_mode_manager import switch_mode_with_handoff
+            from ReDNACoreDemo.core.coach_mode_manager import switch_mode_with_handoff
 
             target_mode = payload.get("target_mode")
             if not target_mode:
@@ -8696,7 +8776,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_mode_manager import CoachModeManager
+            from ReDNACoreDemo.core.coach_mode_manager import CoachModeManager
 
             manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
             history = manager.get_mode_history(user_id, limit=limit)
@@ -8728,7 +8808,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_mode_manager import CoachModeManager
+            from ReDNACoreDemo.core.coach_mode_manager import CoachModeManager
 
             manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
             stats = manager.get_mode_stats(user_id)

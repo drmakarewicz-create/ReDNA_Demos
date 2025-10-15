@@ -2754,14 +2754,19 @@ export async function ingestText(params: {
     throw new ApiError('user_id and text are required for ingestion.', 400);
   }
 
+  const evidenceEntry: Record<string, unknown> = {
+    trait_id: 'FreeText',
+    value: { text: trimmedText },
+    source: params.source || 'web_ui_programmatic',
+  };
   const payload: Record<string, unknown> = {
     user_id: trimmedUser,
-    text: trimmedText,
     source: params.source || 'web_ui_programmatic',
+    evidence: [evidenceEntry],
   };
 
   const response = await ensureOk(
-    await fetch(`${CORE_API_BASE}/core/api/ingest_text`, {
+    await fetch(`${CORE_API_BASE}/core/api/ingest_evidence`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -2773,7 +2778,7 @@ export async function ingestText(params: {
 
   const body = await response.json();
   return {
-    success: Boolean(body?.success),
+    success: Boolean(body?.success ?? body?.ok),
     event_id: body?.event_id,
     user_id: body?.user_id || trimmedUser,
     rescore: body?.rescore,

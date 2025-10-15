@@ -1,0 +1,64 @@
+{
+  "playbook_id": "on_new_user",
+  "name": "New User Onboarding",
+  "description": "Welcome new users, confirm tone preferences, schedule gentle 'get started' plan",
+  "version": "1.0",
+  "trigger": {
+    "condition": "user_created",
+    "check_frequency": "immediate"
+  },
+  "steps": [
+    {
+      "step_id": "welcome",
+      "action": "send_message",
+      "params": {
+        "message_template": "Welcome! I'm **{{hc_name}}**, your Head Coach. I'm here to help you build and refine your ReDNA profile.",
+        "tone": "warm"
+      }
+    },
+    {
+      "step_id": "confirm_preferences",
+      "action": "ask_preference",
+      "params": {
+        "question": "How would you like me to communicate?",
+        "options": [
+          {"value": "warm", "label": "Warm & friendly"},
+          {"value": "professional", "label": "Professional & concise"},
+          {"value": "casual", "label": "Casual & relaxed"}
+        ],
+        "default": "warm"
+      }
+    },
+    {
+      "step_id": "set_goals",
+      "action": "ask_goals",
+      "params": {
+        "question": "What would you like to accomplish with ReDNA?",
+        "suggestions": [
+          "Improve portrait accuracy",
+          "Understand my appearance traits",
+          "Experiment with style variations"
+        ],
+        "optional": true
+      }
+    },
+    {
+      "step_id": "first_task",
+      "action": "suggest_first_task",
+      "params": {
+        "title": "Import your first photo",
+        "eta_mins": 5,
+        "link": "/coach/photo",
+        "message_template": "Your quickest win: Import a photo to start building your PaDNA profile."
+      }
+    }
+  ],
+  "success_criteria": {
+    "preferences_set": true,
+    "first_observation_ingested": true
+  },
+  "follow_up": {
+    "if_successful": "schedule_day2_check_in",
+    "if_incomplete": "gentle_reminder_after_24h"
+  }
+}

@@ -2,7 +2,7 @@
  * Privacy Dashboard - User privacy and consent management
  */
 
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { DEVX_API_BASE, devxUrl } from '@/lib/env'
 
 interface Capability {
@@ -49,7 +49,7 @@ export default function PrivacyDashboard() {
   const [userId, setUserId] = useState('TEST')
   const [capabilities, setCapabilities] = useState<Capability[]>([])
   const [ledgerEvents, setLedgerEvents] = useState<LedgerEvent[]>([])
-  const [preferences, setPreferences] = useState<PrivacyPreferences>({
+  const [_preferences, setPreferences] = useState<PrivacyPreferences>({
     refinement_enabled: true,
     auto_approve_low_risk: false,
     audit_notifications: true,
@@ -249,29 +249,6 @@ export default function PrivacyDashboard() {
     }
   }
 
-  const handleToggleRefinement = async (enabled: boolean) => {
-    const newPrefs = { ...preferences, refinement_enabled: enabled }
-
-    try {
-      const response = await fetch(`${API_BASE}/privacy/preferences`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          user_id: userId,
-          preferences: newPrefs,
-        }),
-      })
-
-      if (response.ok) {
-        setPreferences(newPrefs)
-      } else {
-        alert('Failed to update preferences')
-      }
-    } catch (err) {
-      alert(`Error updating preferences: ${err instanceof Error ? err.message : 'Unknown error'}`)
-    }
-  }
-
   const handleRequestExport = async (format: string) => {
     try {
       const response = await fetch(`${API_BASE}/privacy/export-request`, {
@@ -328,9 +305,18 @@ export default function PrivacyDashboard() {
       const anomalies = Array.isArray(report?.anomalies) ? report.anomalies : []
       const severityBreakdown = report?.summary?.severity_breakdown ?? {}
       const counts = {
-        high: typeof severityBreakdown.high === 'number' ? severityBreakdown.high : anomalies.filter((a) => (a.severity || 'low').toLowerCase() === 'high').length,
-        medium: typeof severityBreakdown.medium === 'number' ? severityBreakdown.medium : anomalies.filter((a) => (a.severity || 'low').toLowerCase() === 'medium').length,
-        low: typeof severityBreakdown.low === 'number' ? severityBreakdown.low : anomalies.filter((a) => (a.severity || 'low').toLowerCase() === 'low').length,
+        high:
+          typeof severityBreakdown.high === 'number'
+            ? severityBreakdown.high
+            : anomalies.filter((a: { severity?: string | null }) => (a.severity || 'low').toLowerCase() === 'high').length,
+        medium:
+          typeof severityBreakdown.medium === 'number'
+            ? severityBreakdown.medium
+            : anomalies.filter((a: { severity?: string | null }) => (a.severity || 'low').toLowerCase() === 'medium').length,
+        low:
+          typeof severityBreakdown.low === 'number'
+            ? severityBreakdown.low
+            : anomalies.filter((a: { severity?: string | null }) => (a.severity || 'low').toLowerCase() === 'low').length,
       }
       setInfoMessage(`Audit complete — ${counts.high} high / ${counts.medium} medium / ${counts.low} low`)
     } catch (err) {

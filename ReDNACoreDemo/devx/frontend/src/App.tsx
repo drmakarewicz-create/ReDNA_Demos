@@ -10,6 +10,7 @@ import UserOps from './routes/user-ops/UserOps'
 import UserDetail from './routes/user-ops/UserDetail'
 import HolisticSummary from './routes/holistic/HolisticSummary'
 import SystemMonitor from './routes/system/SystemMonitor'
+import StackStatusPage from './routes/stack/StackStatusPage'
 import CoachWorkshop from './routes/coach-workshop/CoachWorkshop'
 import SelfImprovementPanel from './routes/self-improvement/SelfImprovementPanel'
 import JarvisCodexPanel from './routes/jarvis-codex/JarvisCodexPanel'
@@ -169,6 +170,17 @@ function App() {
                 🖥️ System
               </NavLink>
               <NavLink
+                to="/stack"
+                className={({ isActive }) =>
+                  [
+                    'px-3 py-2 rounded-md transition-colors',
+                    isActive ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-700',
+                  ].join(' ')
+                }
+              >
+                🛠️ Stack
+              </NavLink>
+              <NavLink
                 to="/coaches"
                 className={({ isActive }) =>
                   [
@@ -269,6 +281,7 @@ function App() {
             <Route path="/user-ops/:userId/*" element={<UserDetail />} />
             <Route path="/holistic" element={<HolisticSummary />} />
             <Route path="/system" element={<SystemMonitor />} />
+            <Route path="/stack" element={<StackStatusPage />} />
             <Route path="/coaches" element={<CoachWorkshop />} />
             <Route path="/coach-brain" element={<CoachBrainPanel />} />
             <Route path="/self-improvement" element={<SelfImprovementPanel />} />

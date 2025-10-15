@@ -1,6 +1,18 @@
 import { useEffect, useState } from 'react'
 import holisticApi, { HolisticHistoryEntry, HolisticResult } from '@/lib/holisticApi'
 
+function getCountSafe(
+  counts: Map<string, number> | Record<string, number> | undefined,
+  key: string
+): number | undefined {
+  if (!counts) return undefined
+  const possibleMap = counts as any
+  if (typeof possibleMap?.get === 'function') {
+    return (counts as Map<string, number>).get(key)
+  }
+  return (counts as Record<string, number>)[key]
+}
+
 function formatNumber(value: number | null | undefined, fallback = '—'): string {
   if (value === null || value === undefined || Number.isNaN(value)) return fallback
   return value.toFixed(2)
@@ -193,7 +205,7 @@ export default function HolisticSummary() {
                       <p className="text-xs text-slate-500">{entry.path}</p>
                     </div>
                     <div className="text-right text-xs text-slate-500">
-                      Containers: {entry.counts?.get('containers', '—')} · RR:{' '}
+                      Containers: {getCountSafe(entry.counts as any, 'containers') ?? '—'} · RR:{' '}
                       {formatNumber(Number((entry.rr as any)?.overall_rr))}
                     </div>
                   </li>

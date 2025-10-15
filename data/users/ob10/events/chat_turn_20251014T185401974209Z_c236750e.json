@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob10",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I am 6 feet tall",
+  "assistant_text": "Nice to connect with your physical traits, OB10! You're quite tall - does your height affect how you perceive yourself in social situations? \n\nAlso, since you mentioned relationships in your \"Would You Rather\" answer, would you like to chat with our Relationship Coach about building stronger connections with others?",
+  "client_message_id": "67c51d65-1f83-4e20-958b-02fe6a2d7ba6",
+  "assistant_message_id": "chat-f31e42ea1103492e9820d625fa2fc7ac",
+  "server_ts": "2025-10-14T18:54:01.974+00:00",
+  "server_ts_ms": 1760468041974,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

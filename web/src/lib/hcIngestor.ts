@@ -18,6 +18,26 @@
 
 import { CORE_API_BASE } from './api';
 
+type NoticeTone = 'success' | 'info' | 'warning' | 'error';
+type PushNoticeFn = (message: string, tone?: NoticeTone) => void;
+
+interface IngestionError extends Error {
+  status?: number;
+  shouldQueue?: boolean;
+}
+
+function pushNotice(message: string, tone: NoticeTone = 'info'): void {
+  if (typeof window !== 'undefined') {
+    const fn = (window as typeof window & { __northstar_push_notice__?: PushNoticeFn })
+      .__northstar_push_notice__;
+    if (typeof fn === 'function') {
+      fn(message, tone);
+      return;
+    }
+  }
+  console.debug(`[Northstar Notice][${tone}] ${message}`);
+}
+
 export interface IngestionPayload {
   user_id: string;
   text: string;
@@ -73,34 +93,106 @@ export async function ingestToCore(
   console.log(`[Northstar Ingestion] source=${source} length=${payload.length} user=${userId}`);
 
   try {
-    const response = await fetch(`${CORE_API_BASE}/ingest_text`, {
+    const evidenceEntry: Record<string, unknown> = {
+      trait_id: 'FreeText',
+      value: { text: payload },
+      source: source || 'ui',
+    };
+
+    if (metadata) {
+      evidenceEntry.metadata = metadata;
+    }
+
+    const requestPayload = {
+      user_id: userId,
+      source,
+      evidence: [evidenceEntry],
+    };
+
+    console.debug(
+      '[Northstar Ingestion] POST',
+      `${CORE_API_BASE}/core/api/ingest_evidence`,
+      {
+        userId,
+        source,
+        count: requestPayload.evidence?.length ?? 0,
+        sample: requestPayload.evidence?.slice(0, 1),
+      }
+    );
+
+    const response = await fetch(`${CORE_API_BASE}/core/api/ingest_evidence`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        user_id: userId,
-        text: payload,
-        source,
-        metadata,
-      }),
+      body: JSON.stringify(requestPayload),
     });
 
+    const contentType = response.headers.get('content-type') ?? '';
+    const isJson = contentType.includes('application/json');
+    const body = isJson ? await response.json() : undefined;
+
     if (!response.ok) {
-      throw new Error(`Core ingestion failed: ${response.statusText}`);
+      const reason =
+        body && typeof body === 'object' && body !== null && 'error' in body && typeof body.error === 'string'
+          ? (body.error as string)
+          : response.statusText || 'Unknown error';
+
+      console.error('[Northstar Ingestion] HTTP error', response.status, reason, body);
+
+      if (response.status >= 500) {
+        pushNotice('Coach ingestion error (server). Check logs.', 'error');
+        const error = new Error(`Core ingestion failed: ${reason}`) as IngestionError;
+        error.status = response.status;
+        error.shouldQueue = false;
+        throw error;
+      }
+
+      if (response.status === 400) {
+        const badCount = Array.isArray((body as { bad?: unknown })?.bad)
+          ? ((body as { bad?: unknown[] }).bad?.length ?? 0)
+          : 0;
+        const suffix = badCount > 0 ? ` (${badCount} invalid items)` : '';
+        pushNotice(`Coach rejected data${suffix}. Please try rephrasing.`, 'warning');
+        const error = new Error(`Core validation failed: ${reason}`) as IngestionError;
+        error.status = response.status;
+        error.shouldQueue = false;
+        throw error;
+      }
+
+      const error = new Error(`Core ingestion failed: ${reason}`) as IngestionError;
+      error.status = response.status;
+      throw error;
     }
 
-    const data: IngestionResponse = await response.json();
+    const raw = (body ?? {}) as Record<string, unknown>;
+    const shaped = raw as {
+      success?: boolean;
+      ok?: boolean;
+      message?: string;
+      snapshot?: unknown;
+      error?: string;
+    };
+    const result: IngestionResponse = {
+      success: Boolean(shaped.success ?? shaped.ok),
+      message: shaped.message,
+      snapshot: shaped.snapshot,
+      error: shaped.error,
+    };
 
-    console.log(`[Northstar Ingestion] Success: ${data.message || 'OK'}`);
+    console.log(`[Northstar Ingestion] Success: ${result.message || 'OK'}`);
 
-    return data;
+    return result;
   } catch (error) {
     console.error('[Northstar Ingestion] Error:', error);
 
-    // If Core is offline, queue locally (simple in-memory for now)
-    // Future: implement persistent queue
-    queueForRetry({ user_id: userId, text: payload, source, metadata });
+    const shouldQueue =
+      !(error instanceof Error) || (error as IngestionError).shouldQueue !== false;
+    if (shouldQueue) {
+      // If Core is offline, queue locally (simple in-memory for now)
+      // Future: implement persistent queue
+      queueForRetry({ user_id: userId, text: payload, source, metadata });
+    }
 
     return {
       success: false,
@@ -157,8 +249,15 @@ export function formatGoalPayload(goal: {
  * Future: implement persistent queue with IndexedDB or similar.
  */
 const ingestionQueue: IngestionPayload[] = [];
+const MAX_RETRY = 5;
 
 function queueForRetry(payload: IngestionPayload): void {
+  if (ingestionQueue.length >= MAX_RETRY) {
+    console.warn('[Northstar] Pausing retries after many failures. Queue size:', ingestionQueue.length);
+    pushNotice('Pausing coach ingestion retries after repeated failures.', 'warning');
+    return;
+  }
+
   ingestionQueue.push(payload);
   console.warn(`[Northstar] Core offline. Queued payload (queue size: ${ingestionQueue.length})`);
 

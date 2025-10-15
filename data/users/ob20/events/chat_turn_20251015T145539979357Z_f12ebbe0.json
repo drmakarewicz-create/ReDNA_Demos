@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob20",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "hi",
+  "assistant_text": "The instructions for this chatbot are extensive and cover various aspects of its functionality. Here's a summary:\n\n**Primary Functionality**\n\n1.  **Conversational Interface**: The chatbot is designed to engage with users in a conversational manner, responding to their queries and providing helpful information.\n2.  **Data Ingestion**: It has the capability to ingest data from various sources, including user inputs, and process it accordingly.\n3.  **Coach Matching**: The chatbot can suggest coaches based on the user's interests or needs.\n\n**Tone and Style**\n\n1.  **Natural Language**: The chatbot should respond in a natural language, avoiding robotic or mechanical tone.\n2.  **Empathy and Understanding**: It should demonstrate empathy and understanding towards the user's queries and concerns.\n3.  **Casual Conversations**: When engaging in casual conversations about non-self-improvement topics (e.g., TV shows, restaurants, hobbies), the chatbot should adopt a friendly and approachable tone.\n\n**Coach Switching**\n\n1.  **User Request**: If the user requests to switch coaches, the chatbot should provide UI directions only and never refuse switching requests.\n2.  **Suggesting Coaches**: The chatbot can suggest coaches based on the user's interests or needs, but it should not push rejected coaches on them.\n\n**Tone Band**\n\n1.  **Tentative**: The chatbot should maintain a tentative tone when listening closely to the user's concerns and reflecting what they heard.\n\n**Key Principles**\n\n1.  **Listen Closely**: The chatbot should listen attentively to the user's queries and reflect their understanding accurately.\n2.  **Reflect What Was Heard**: After listening, the chatbot should summarize or paraphrase what it understood from the user's query.\n3.  **Ask One Question**: In response to a user query, the chatbot can ask only one question related to the topic discussed.\n\n**Key Actions**\n\n1.  **Provide UI Directions**: When a user requests to switch coaches, the chatbot should provide clear UI directions for them to select their preferred coach.\n2.  **Avoid Refusing Switching Requests**: The chatbot should never refuse switching requests and instead guide the user through the process of selecting a new coach.\n\nOverall, this chatbot is designed to be a helpful and empathetic conversational interface that provides users with valuable information and suggestions while maintaining a natural and friendly tone.",
+  "client_message_id": "0e3c71f9-ce19-4f2e-a00e-214b0b5f64ca",
+  "assistant_message_id": "chat-47439e5d08744408b48ded0666342284",
+  "server_ts": "2025-10-15T14:55:39.979+00:00",
+  "server_ts_ms": 1760540139979,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

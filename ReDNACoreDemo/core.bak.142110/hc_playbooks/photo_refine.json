@@ -1,0 +1,59 @@
+{
+  "playbook_id": "photo_refine",
+  "name": "Photo Refinement Flow",
+  "description": "If PaDNA deltas exist, propose: import one photo → update 2 traits → re-render",
+  "version": "1.0",
+  "trigger": {
+    "condition": "padna_deltas_exist",
+    "check_frequency": "on_portrait_render_complete"
+  },
+  "steps": [
+    {
+      "step_id": "identify_deltas",
+      "action": "list_padna_deltas",
+      "params": {
+        "min_delta_severity": "medium",
+        "max_deltas": 5
+      }
+    },
+    {
+      "step_id": "suggest_import",
+      "action": "suggest_photo_import",
+      "params": {
+        "title": "Import one photo to refine {{top_delta_trait}}",
+        "eta_mins": 3,
+        "link": "/coach/photo",
+        "message_template": "I noticed {{delta_count}} rendering deltas. Importing one more photo can help refine {{top_delta_trait}}."
+      }
+    },
+    {
+      "step_id": "suggest_trait_update",
+      "action": "suggest_trait_updates",
+      "params": {
+        "max_traits": 2,
+        "eta_mins": 5,
+        "message_template": "Update these 2 traits for the biggest impact: {{trait_list}}"
+      }
+    },
+    {
+      "step_id": "suggest_rerender",
+      "action": "suggest_portrait_rerender",
+      "params": {
+        "title": "Re-render portrait with updated traits",
+        "eta_mins": 1,
+        "link": "/coach/padna",
+        "message_template": "After updating, re-render to see the improvements."
+      }
+    }
+  ],
+  "success_criteria": {
+    "photo_imported": true,
+    "traits_updated": ">= 2",
+    "portrait_rerendered": true,
+    "delta_reduction": "> 20%"
+  },
+  "follow_up": {
+    "if_successful": "celebrate_delta_reduction",
+    "if_incomplete": "offer_alternative_path"
+  }
+}

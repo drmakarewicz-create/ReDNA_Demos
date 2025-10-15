@@ -1,4 +1,4 @@
-import React, {
+import {
   useCallback,
   useEffect,
   useMemo,
@@ -21,6 +21,8 @@ import {
   ProposalType,
   AutoReviewResult,
 } from '../../lib/jarvisCodexApi';
+
+type GuardrailStatus = 'pass' | 'fail' | 'warn' | 'skipped';
 
 type FilterStatus = 'all' | ProposalStatus;
 
@@ -627,12 +629,14 @@ function GuardrailsChecklist({ checks }: GuardrailsChecklistProps) {
   const statusColor: Record<GuardrailStatus, string> = {
     pass: 'text-emerald-600',
     fail: 'text-red-600',
+    warn: 'text-amber-600',
     skipped: 'text-gray-400',
   };
 
   const statusIcon: Record<GuardrailStatus, string> = {
     pass: '✓',
     fail: '✗',
+    warn: '⚠',
     skipped: '○',
   };
 

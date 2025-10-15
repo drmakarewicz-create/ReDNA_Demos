@@ -1,0 +1,15 @@
+{
+  "last_user_ts": "2025-10-15T18:41:51.843000+00:00",
+  "last_user_text": "I have blue eyes",
+  "turns_observed": 3,
+  "dialog_history": [
+    "question",
+    "answer",
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-15T18:41:51.846492+00:00",
+  "latency_history_ms": [
+    46097,
+    49013
+  ]
+}

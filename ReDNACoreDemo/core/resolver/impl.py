@@ -15,8 +15,8 @@ import os
 from .contracts import Evidence, Resolved, ResolvedTrait
 from .debug import log_step
 from .resolved_io import read_resolved, write_resolved
-from core.traits.ontology import get_trait_spec
-from core.rr.client import score_ucn
+from ReDNACoreDemo.core.traits.ontology import get_trait_spec
+from ReDNACoreDemo.core.rr.client import score_ucn
 
 
 class UCNRRRequiredError(Exception):

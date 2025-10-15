@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob28",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I used to have red hair but now I'm mostly bald",
+  "assistant_text": "It sounds like life has been changing for you, ob28! The transition from red hair to being mostly bald can be a significant one. Can you tell me more about how this change is making you feel and if there's anything specific you'd like to work through or explore?",
+  "client_message_id": "162aeff8-a6a2-4db6-8853-bda6f65f5b78",
+  "assistant_message_id": "chat-8b71cfa5bf254ee39fd2e5e094fe9956",
+  "server_ts": "2025-10-15T19:51:10.580+00:00",
+  "server_ts_ms": 1760557870580,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

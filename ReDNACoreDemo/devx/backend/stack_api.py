@@ -21,11 +21,14 @@ from collections import deque
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Literal, Optional, Sequence
+from typing import Annotated, Any, Dict, Iterable, List, Literal, Optional, Sequence, Tuple, Union
 
 import httpx
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, Body, HTTPException, Query, status
 from pydantic import BaseModel, Field, field_validator
+
+from ReDNACoreDemo.core.logutil import stack_log
+from . import supervisor
 
 try:
     from cpplusplus.ports import find_free_port, who_listens
@@ -155,6 +158,13 @@ def _compose_health_url(port: int, path: str) -> str:
     return base + (path if path.startswith("/") else f"/{path}")
 
 
+def _summarize_error(exc: Exception) -> str:
+    message = str(exc).strip()
+    if not message:
+        message = exc.__class__.__name__
+    return message.splitlines()[0]
+
+
 def _fallback_find_port(start: int, end: int) -> Optional[int]:
     if start > end:
         start, end = end, start
@@ -221,6 +231,9 @@ class ServiceDefinition:
         if self.legacy_log_file.exists():
             return self.legacy_log_file
         return self.log_file
+
+
+RestartableService = Literal["core", "ucnrr"]
 
 
 SERVICES: Dict[str, ServiceDefinition] = {
@@ -348,6 +361,49 @@ class LogsResponse(BaseModel):
     lines: List[LogEntry]
 
 
+class StackReadyResponse(BaseModel):
+    ready: bool
+    status: Literal["ready", "warming", "unready"]
+    reasons: List[str]
+    fail_conditions: List[str]
+    recovery_suggestions: List[Dict[str, str]]
+    checked_at: str
+    unready_since: Optional[str] = None
+    rolling_window_sec: int = 300
+    error_rate_5m: Optional[float] = None
+    p95_latency_ms_5m: Optional[float] = None
+    failures_by_service: Dict[str, List[str]] = Field(default_factory=dict)
+    rate_limit: Dict[str, Dict[str, Any]] = Field(default_factory=dict)
+
+
+class RestartAction(BaseModel):
+    service: Literal["core", "ucnrr"]
+    status: Literal["restarted", "skipped", "rate_limited", "unknown_service", "not_eligible"]
+    pid: Optional[int] = None
+
+
+class SupervisorRestartRequest(BaseModel):
+    services: List[Literal["core", "ucnrr"]]
+    reason: str = Field(..., min_length=1, max_length=200)
+    force: bool = False
+
+
+class SupervisorRestartResponse(BaseModel):
+    force: bool
+    reason: str
+    grace_seconds: int
+    requested: List[Literal["core", "ucnrr"]]
+    eligible: List[Literal["core", "ucnrr"]]
+    restarted: List[RestartAction]
+    skipped: List[RestartAction]
+    rate_limited: List[RestartAction]
+    history: List[Dict[str, Any]]
+
+
+class RestartHistoryResponse(BaseModel):
+    history: List[Dict[str, Any]]
+
+
 class SelfTestResult(BaseModel):
     service: Literal["core", "ucnrr", "devx"]
     passed: bool
@@ -356,6 +412,268 @@ class SelfTestResult(BaseModel):
 
 
 router = APIRouter(prefix="/stack", tags=["stack"])
+
+
+@dataclass
+class ReadinessCache:
+    ready: Optional[bool] = None
+    status: str = "warming"
+    fail_conditions: Tuple[str, ...] = field(default_factory=tuple)
+    unready_since_ts: Optional[float] = None
+
+
+READINESS_CACHE = ReadinessCache()
+
+
+async def _fetch_stack_inputs() -> Dict[str, Any]:
+    core_service = SERVICES["core"]
+    ucnrr_service = SERVICES["ucnrr"]
+    outputs: Dict[str, Any] = {}
+
+    async with httpx.AsyncClient(timeout=2.0) as client:
+        metrics_url = _compose_health_url(core_service.port, "/metrics")
+        health_url = _compose_health_url(core_service.port, "/health")
+        selftest_url = _compose_health_url(ucnrr_service.port, "/ucnrr/selftest")
+
+        try:
+            metrics_resp = await client.get(metrics_url)
+            metrics_resp.raise_for_status()
+            outputs["metrics"] = metrics_resp.json()
+        except Exception as exc:  # pragma: no cover - network dependent
+            outputs["metrics_error"] = _summarize_error(exc)
+
+        try:
+            health_resp = await client.get(health_url)
+            health_resp.raise_for_status()
+            outputs["health"] = health_resp.json()
+        except Exception as exc:  # pragma: no cover - network dependent
+            outputs["health_error"] = _summarize_error(exc)
+
+        try:
+            selftest_resp = await client.get(selftest_url)
+            selftest_resp.raise_for_status()
+            outputs["ucnrr_selftest"] = selftest_resp.json()
+        except Exception as exc:  # pragma: no cover - network dependent
+            outputs["ucnrr_error"] = _summarize_error(exc)
+
+    return outputs
+
+
+def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[RestartableService]]:
+    rate_limit = supervisor.get_rate_limit_status()
+    reasons: List[str] = []
+    fail_conditions: List[str] = []
+    fail_map: Dict[str, List[str]] = {"core": [], "ucnrr": []}
+    fail_details: Dict[str, str] = {}
+
+    rolling_window_sec = 300
+    error_rate = None
+    p95_latency = None
+    warming = False
+
+    def add_failure(code: str, service: Optional[RestartableService], message: str) -> None:
+        if code not in fail_conditions:
+            fail_conditions.append(code)
+        if message and message not in reasons:
+            reasons.append(message)
+        if service:
+            bucket = fail_map.setdefault(service, [])
+            if message not in bucket:
+                bucket.append(message)
+        fail_details[code] = message
+
+    metrics_payload = inputs.get("metrics")
+    metrics_error = inputs.get("metrics_error")
+
+    if metrics_error:
+        add_failure("core_metrics_unavailable", "core", f"Core metrics unavailable ({metrics_error})")
+    elif metrics_payload:
+        rolling = metrics_payload.get("rolling_window") or {}
+        rolling_window_sec = int(rolling.get("window_seconds") or 300)
+        requests = int(rolling.get("requests_window_5m") or 0)
+        errors = int(rolling.get("errors_5xx_window_5m") or 0)
+        if requests > 0:
+            error_rate = errors / max(1, requests)
+        else:
+            error_rate = 0.0
+        p95_latency = rolling.get("latency_p95_ms_window_5m")
+        warming = bool(rolling.get("warming", False))
+        if warming:
+            add_failure("metrics_warming", "core", "Core metrics warming (insufficient window data)")
+        else:
+            if error_rate is not None and error_rate > 0.02:
+                add_failure(
+                    "core_error_rate_high",
+                    "core",
+                    f"Core error rate over 5m is {error_rate:.2%}",
+                )
+            if p95_latency is not None and p95_latency > 750:
+                add_failure(
+                    "core_latency_high",
+                    "core",
+                    f"Core p95 latency over 5m is {float(p95_latency):.0f}ms",
+                )
+    else:
+        warming = True
+        add_failure("metrics_warming", "core", "Core metrics warming (no samples yet)")
+
+    health_payload = inputs.get("health")
+    health_error = inputs.get("health_error")
+    if health_error:
+        add_failure("core_health_unreachable", "core", f"Core health unreachable ({health_error})")
+    elif health_payload:
+        declared_status = str(health_payload.get("status", "")).lower()
+        if declared_status and declared_status not in {"healthy", "ok", "green"}:
+            add_failure(
+                "core_health_degraded",
+                "core",
+                f"Core health reported '{declared_status}'",
+            )
+        rr_mode = str(health_payload.get("rr_mode") or "").lower()
+        if rr_mode and rr_mode != "online":
+            add_failure(
+                "core_rr_mode_fallback",
+                "core",
+                f"Core rr_mode is '{rr_mode}'",
+            )
+    else:
+        add_failure("core_health_unreachable", "core", "Core health payload missing")
+
+    selftest_payload = inputs.get("ucnrr_selftest")
+    selftest_error = inputs.get("ucnrr_error")
+    if selftest_error:
+        add_failure("ucnrr_selftest_unreachable", "ucnrr", f"UCNRR self-test unreachable ({selftest_error})")
+    elif selftest_payload:
+        if not selftest_payload.get("ok"):
+            reason = selftest_payload.get("error") or "Self-test failed"
+            add_failure("ucnrr_selftest_fail", "ucnrr", f"UCNRR self-test failed ({reason})")
+    else:
+        add_failure("ucnrr_selftest_unreachable", "ucnrr", "UCNRR self-test payload missing")
+
+    max_per_hour = supervisor.max_restarts_per_hour()
+    for service, info in rate_limit.items():
+        if info.get("rate_limited"):
+            add_failure(
+                f"{service}_rate_limited",
+                service if service in {"core", "ucnrr"} else None,
+                f"{service.upper()} restart rate limited (>{max_per_hour} per hour)",
+            )
+
+    failures_by_service = {svc: msgs for svc, msgs in fail_map.items() if msgs}
+
+    actionable_failures = {
+        svc: [msg for msg in msgs if "warming" not in msg.lower() and "rate limited" not in msg.lower()]
+        for svc, msgs in failures_by_service.items()
+    }
+    eligible_services = sorted(
+        svc for svc, msgs in actionable_failures.items() if msgs and svc in {"core", "ucnrr"}
+    )
+
+    recovery_suggestions: List[Dict[str, str]] = []
+    for svc, msgs in actionable_failures.items():
+        if not msgs:
+            continue
+        recovery_suggestions.append({
+            "service": svc,
+            "action": "restart",
+            "reason": msgs[0],
+        })
+
+    if not reasons:
+        reasons.append("Stack ready")
+
+    has_failures = bool(fail_conditions)
+    only_warming = has_failures and all(code == "metrics_warming" for code in fail_conditions)
+    status_value = "ready"
+    if has_failures:
+        status_value = "warming" if only_warming else "unready"
+
+    analysis = {
+        "ready": status_value == "ready",
+        "status": status_value,
+        "reasons": reasons,
+        "fail_conditions": fail_conditions,
+        "recovery_suggestions": recovery_suggestions,
+        "rolling_window_sec": rolling_window_sec,
+        "error_rate_5m": error_rate,
+        "p95_latency_ms_5m": p95_latency,
+        "failures_by_service": failures_by_service,
+        "rate_limit": rate_limit,
+        "eligible_services": eligible_services,
+    }
+
+    return analysis, eligible_services
+
+
+def _apply_readiness_state(analysis: Dict[str, Any], *, emit_log: bool) -> None:
+    now = time.time()
+
+    if analysis["ready"]:
+        READINESS_CACHE.unready_since_ts = None
+        analysis["unready_since"] = None
+    else:
+        if READINESS_CACHE.unready_since_ts is None:
+            READINESS_CACHE.unready_since_ts = now
+        ts = datetime.fromtimestamp(READINESS_CACHE.unready_since_ts, tz=timezone.utc)
+        analysis["unready_since"] = ts.isoformat().replace("+00:00", "Z")
+
+    analysis["checked_at"] = _now_iso()
+    analysis["_unready_since_ts"] = READINESS_CACHE.unready_since_ts
+
+    previous_ready = READINESS_CACHE.ready
+    previous_conditions = READINESS_CACHE.fail_conditions
+
+    READINESS_CACHE.ready = analysis["ready"]
+    READINESS_CACHE.status = analysis["status"]
+    READINESS_CACHE.fail_conditions = tuple(sorted(analysis["fail_conditions"]))
+    if analysis["ready"]:
+        READINESS_CACHE.unready_since_ts = None
+        analysis["_unready_since_ts"] = None
+    else:
+        READINESS_CACHE.unready_since_ts = READINESS_CACHE.unready_since_ts or now
+        analysis["_unready_since_ts"] = READINESS_CACHE.unready_since_ts
+
+    if emit_log:
+        changed = (
+            previous_ready is None
+            or previous_ready != analysis["ready"]
+            or previous_conditions != tuple(sorted(analysis["fail_conditions"]))
+        )
+        if changed:
+            event = (
+                "readiness_ok"
+                if analysis["ready"]
+                else ("readiness_warming" if analysis["status"] == "warming" else "readiness_fail")
+            )
+            level = "INFO" if analysis["ready"] else "WARN"
+            stack_log(
+                "devx",
+                level,
+                event,
+                "Stack readiness updated",
+                {
+                    "status": analysis["status"],
+                    "fail_conditions": analysis["fail_conditions"],
+                    "reasons": analysis["reasons"],
+                },
+            )
+
+
+async def _evaluate_stack_readiness(update_state: bool, emit_log: bool) -> Tuple[Dict[str, Any], List[RestartableService]]:
+    inputs = await _fetch_stack_inputs()
+    analysis, eligible = _compute_readiness(inputs)
+    if update_state:
+        _apply_readiness_state(analysis, emit_log=emit_log)
+    else:
+        analysis["checked_at"] = _now_iso()
+        if READINESS_CACHE.unready_since_ts:
+            ts = datetime.fromtimestamp(READINESS_CACHE.unready_since_ts, tz=timezone.utc)
+            analysis["unready_since"] = ts.isoformat().replace("+00:00", "Z")
+            analysis["_unready_since_ts"] = READINESS_CACHE.unready_since_ts
+        else:
+            analysis["unready_since"] = None
+            analysis["_unready_since_ts"] = None
+    return analysis, eligible
 
 
 async def _probe_service(service: ServiceDefinition) -> ServiceStatus:
@@ -398,6 +716,14 @@ async def _probe_service(service: ServiceDefinition) -> ServiceStatus:
 async def get_stack_status() -> StackStatusResponse:
     snapshots = await asyncio.gather(*[_probe_service(service) for service in SERVICES.values()])
     return StackStatusResponse(services=list(snapshots), timestamp=_now_iso())
+
+
+@router.get("/ready", response_model=StackReadyResponse)
+async def get_stack_ready() -> StackReadyResponse:
+    analysis, _ = await _evaluate_stack_readiness(update_state=True, emit_log=True)
+    analysis.pop("eligible_services", None)
+    analysis.pop("_unready_since_ts", None)
+    return StackReadyResponse(**analysis)
 
 
 def _listeners_for(service: ServiceDefinition, port: int) -> List[ListenerInfo]:
@@ -513,10 +839,43 @@ async def _wait_for_health(service: ServiceDefinition, port: int, attempts: int 
         return last_payload
 
 
-@router.post("/restart", response_model=RestartResponse)
-async def post_restart(request: RestartRequest) -> RestartResponse:
-    service = SERVICES[request.service]
-    port = request.port
+RestartRequestUnion = Annotated[Union[SupervisorRestartRequest, RestartRequest], Body(...) ]
+
+
+@router.post("/restart", response_model=RestartResponse | SupervisorRestartResponse)
+async def post_restart(request: RestartRequestUnion):
+    if isinstance(request, SupervisorRestartRequest):
+        analysis, eligible = await _evaluate_stack_readiness(update_state=True, emit_log=False)
+        unready_ts = analysis.get("_unready_since_ts")
+        grace = supervisor.restart_grace_seconds()
+        now = time.time()
+
+        if request.force:
+            allowed = set(request.services)
+        else:
+            long_enough = unready_ts is not None and (now - unready_ts) >= grace
+            if analysis.get("status") == "warming" or analysis.get("ready") or not long_enough:
+                allowed = set()
+            else:
+                allowed = {svc for svc in eligible if svc in request.services}
+
+        supervisor_result = supervisor.restart_services(
+            services=request.services,
+            reason=request.reason,
+            force=request.force,
+            eligible_services=allowed,
+        )
+        response_payload = {
+            **supervisor_result,
+            "requested": request.services,
+            "eligible": sorted(list(allowed)),
+        }
+        return SupervisorRestartResponse(**response_payload)
+
+    # Legacy restart path (single service)
+    legacy_request = request
+    service = SERVICES[legacy_request.service]
+    port = legacy_request.port
 
     await _kill_service(service)
     pid = await _start_service(service, port)
@@ -532,6 +891,12 @@ async def post_restart(request: RestartRequest) -> RestartResponse:
         startup_logs=startup_logs,
         last_health=health_payload or None,
     )
+
+
+@router.get("/restart/history", response_model=RestartHistoryResponse)
+async def get_restart_history(limit: int = Query(50, ge=1, le=200)) -> RestartHistoryResponse:
+    history = supervisor.get_restart_history(limit)
+    return RestartHistoryResponse(history=history)
 
 
 @router.post("/change_port", response_model=ChangePortResponse)

@@ -1,0 +1,167 @@
+{
+  "items": [
+    {
+      "trait_id": "BasicDNA.Age",
+      "confidence": 90,
+      "raw_text": "My name is ob28. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+      "timestamp": "2025-10-15T19:23:15.486000+00:00",
+      "extraction_method": "llm",
+      "signal": "age: 45-54",
+      "value": {
+        "text": "45-54"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:23:33+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Gender",
+      "confidence": 100,
+      "raw_text": "My name is ob28. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+      "timestamp": "2025-10-15T19:23:15.486000+00:00",
+      "extraction_method": "llm",
+      "signal": "gender: Male",
+      "value": {
+        "enum": "male"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:23:33+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Orientation",
+      "confidence": 100,
+      "raw_text": "My name is ob28. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+      "timestamp": "2025-10-15T19:23:15.486000+00:00",
+      "extraction_method": "llm",
+      "signal": "orientation: Straight",
+      "value": {
+        "enum": "straight"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:23:33+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.RelationshipStatus",
+      "confidence": 100,
+      "raw_text": "My name is ob28. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+      "timestamp": "2025-10-15T19:23:15.486000+00:00",
+      "extraction_method": "llm",
+      "signal": "relationship_status: Married",
+      "value": {
+        "enum": "married"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:23:33+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Orientation",
+      "value": {
+        "enum": "heterosexual"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:23:33+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Gender",
+      "value": {
+        "enum": "male"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:23:33+00:00"
+    },
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "confidence": 100,
+      "raw_text": "I have blue eyes",
+      "timestamp": "2025-10-15T19:24:05.898000+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.eye_color: blue",
+      "value": {
+        "enum": "blue"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:24:10+00:00"
+    },
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "value": {
+        "enum": "blue"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:24:10+00:00"
+    },
+    {
+      "trait_id": "PaDNA.SkinDNA.Freckles",
+      "ucn_prior": 0.2,
+      "provenance": "inference:iris_blue_freckles_hint",
+      "display_hint": "needs_confirmation",
+      "ui_hidden": false,
+      "value": {
+        "enum": "higher_likelihood"
+      },
+      "source": "chat:inference",
+      "ts": "2025-10-15T19:24:10+00:00"
+    },
+    {
+      "trait_id": "PaDNA.HairDNA.DarknessPrior",
+      "ucn_prior": 0.15,
+      "provenance": "inference:iris_blue_dark_hair_less_likely",
+      "display_hint": "needs_confirmation",
+      "ui_hidden": true,
+      "value": {
+        "enum": "slightly_lower"
+      },
+      "source": "chat:inference",
+      "ts": "2025-10-15T19:24:10+00:00"
+    },
+    {
+      "trait_id": "FreeText",
+      "value": {
+        "text": "I have blue eyes"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:24:23+00:00"
+    },
+    {
+      "trait_id": "PaDNA.HairDNA.Color.Natural",
+      "confidence": 80,
+      "raw_text": "I used to have red hair but now I'm mostly bald",
+      "timestamp": "2025-10-15T19:50:46.140000+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.hair_color: red",
+      "value": {
+        "enum": "red"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:50:58+00:00"
+    },
+    {
+      "trait_id": "attributes.physical.attributes",
+      "confidence": 90,
+      "raw_text": "I used to have red hair but now I'm mostly bald",
+      "timestamp": "2025-10-15T19:50:46.140000+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.attributes: mostly bald",
+      "value": {
+        "text": "mostly bald"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:50:58+00:00"
+    },
+    {
+      "trait_id": "PaDNA.HairDNA.Bald",
+      "value": {
+        "enum": "true"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:50:58+00:00"
+    },
+    {
+      "trait_id": "FreeText",
+      "value": {
+        "text": "I used to have red hair but now I'm mostly bald"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T19:51:10+00:00"
+    }
+  ]
+}

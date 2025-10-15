@@ -20,6 +20,7 @@ from . import (
     semantics_api,
     batch_ops_api,
     health_api,
+    stack_api,
     holistic_api,
     coach_api,
     agent_api,
@@ -104,6 +105,7 @@ app.include_router(rsc_api.router, tags=["rsc"])
 app.include_router(agent_api.capability_router, tags=["capability"])
 app.include_router(trigger_api.router, tags=["triggers"])
 app.include_router(adaptive_analytics_api.router, tags=["adaptive-analytics"])
+app.include_router(stack_api.router, prefix="/devx/api", tags=["stack"])
 
 
 @app.get("/devx/api/synthetic/traits")
@@ -180,7 +182,7 @@ if __name__ == "__main__":
     logger.info(f"Starting DevX backend on {DEVX_HOST}:{port}")
 
     uvicorn.run(
-        "devx.backend.api:app",
+        "ReDNACoreDemo.devx.backend.api:app",
         host=DEVX_HOST,
         port=port,
         reload=True,

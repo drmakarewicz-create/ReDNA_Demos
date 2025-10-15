@@ -5,8 +5,8 @@
  * Includes expandable Priority Matrix view for organizing todos.
  */
 
-import React, { useState, useEffect } from 'react';
-import { ChevronDown, ChevronUp, Grid3x3, AlertCircle, Target } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Grid3x3, AlertCircle, Target } from 'lucide-react';
 
 interface Project {
   id: string;

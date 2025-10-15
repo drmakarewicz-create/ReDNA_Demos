@@ -1079,6 +1079,7 @@ export const TranscriptPanel = forwardRef<TranscriptPanelHandle, TranscriptPanel
     index: number,
     { key, isVirtual, start }: { key: string; isVirtual: boolean; start?: number }
   ): React.ReactElement | null => {
+    if (!displayEntries.length) return null;
     const turn = displayEntries[index];
     if (!turn) return null;
 
@@ -1132,11 +1133,7 @@ export const TranscriptPanel = forwardRef<TranscriptPanelHandle, TranscriptPanel
     return (
       <div
         key={key}
-        ref={(node) => {
-          if (isVirtual && isHydrated && node) {
-            virtualizer.measureElement(node);
-          }
-        }}
+        ref={isVirtual && isHydrated ? virtualizer.measureElement : undefined}
         data-index={index}
         style={containerStyle}
       >

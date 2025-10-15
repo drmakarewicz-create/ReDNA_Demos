@@ -1,0 +1,47 @@
+name: Stability Baseline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: venv
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install -U pip
+          pip install -r requirements.txt pytest
+      - name: Unit contracts (Core only)
+        run: |
+          . .venv/bin/activate
+          pytest -q \
+            tests/test_imports_canary.py \
+            tests/test_ingestion_contract.py \
+            tests/test_readiness_window.py \
+            tests/test_supervisor_restart.py \
+            tests/test_unified_logging.py
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: venv
+        run: |
+          python -m venv .venv
+          . .venv/bin/activate
+          pip install -U pip
+          pip install -r requirements.txt requests pytest
+      - name: UCNRR + Core smoke
+        run: |
+          . .venv/bin/activate
+          bash scripts/smoke.sh

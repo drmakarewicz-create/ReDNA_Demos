@@ -1,0 +1,94 @@
+🔍 Ontology Linter v1.0
+======================================================================
+
+📂 Loading files...
+  ✓ Loaded 382 containers
+  ✓ Loaded 14 namespace definitions
+
+🔎 Running validation checks...
+  • Checking naming conventions...
+  • Checking hierarchy depth...
+  • Checking namespaces...
+  • Checking uniqueness...
+  • Checking parent relationships...
+  • Checking required fields...
+  • Checking sensitive flags...
+  • Checking RR/curiosity baselines...
+
+📊 Generating statistics...
+
+======================================================================
+📈 STATISTICS
+======================================================================
+Total containers:        382
+  Umbrellas (depth=1):   14
+  Sub-DNAs (depth=2):    156
+  Sub-Sub-DNAs (depth=3): 212
+
+Sensitive containers:    173
+Camouflage-aware:        8
+Consent-required:        34
+
+Namespace breakdown:
+  BehDNA         23 containers
+  CogDNA         25 containers
+  EmDNA          22 containers
+  EnvDNA         11 containers
+  HealthDNA       8 containers
+  HistDNA        22 containers
+  MetaDNA        18 containers
+  PaDNA          35 containers
+  PrefDNA        31 containers
+  ProfDNA        27 containers
+  PsyDNA         77 containers
+  RoDNA           8 containers
+  SkillDNA       48 containers
+  SocDNA         27 containers
+
+Depth histogram:
+  Depth 1:  14  ██
+  Depth 2: 156  ███████████████████████████████
+  Depth 3: 212  ██████████████████████████████████████████
+
+======================================================================
+❌ ERRORS (28)
+======================================================================
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA' missing required field 'created_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA' missing required field 'updated_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.ProgrammingLanguagesDNA' missing required field 'created_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.ProgrammingLanguagesDNA' missing required field 'updated_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.DatabaseSystemsDNA' missing required field 'created_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.DatabaseSystemsDNA' missing required field 'updated_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.CloudPlatformsDNA' missing required field 'created_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.CloudPlatformsDNA' missing required field 'updated_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.DevOpsToolingDNA' missing required field 'created_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.DevOpsToolingDNA' missing required field 'updated_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.DataEngineeringDNA' missing required field 'created_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.DataEngineeringDNA' missing required field 'updated_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.MachineLearningAIDNA' missing required field 'created_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.MachineLearningAIDNA' missing required field 'updated_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.CybersecurityDNA' missing required field 'created_at'
+❌ ERROR: Container 'SkillDNA.TechnicalSkillDNA.CybersecurityDNA' missing required field 'updated_at'
+❌ ERROR: Container 'ProfDNA.CompensationEquityDNA' missing required field 'created_at'
+❌ ERROR: Container 'ProfDNA.CompensationEquityDNA' missing required field 'updated_at'
+❌ ERROR: Container 'ProfDNA.CompensationEquityDNA.SalaryExpectationDNA' missing required field 'created_at'
+❌ ERROR: Container 'ProfDNA.CompensationEquityDNA.SalaryExpectationDNA' missing required field 'updated_at'
+❌ ERROR: Container 'ProfDNA.CompensationEquityDNA.EquityLiteracyDNA' missing required field 'created_at'
+❌ ERROR: Container 'ProfDNA.CompensationEquityDNA.EquityLiteracyDNA' missing required field 'updated_at'
+❌ ERROR: Container 'PsyDNA.CareerIdentityDNA' missing required field 'created_at'
+❌ ERROR: Container 'PsyDNA.CareerIdentityDNA' missing required field 'updated_at'
+❌ ERROR: Container 'PsyDNA.CareerIdentityDNA.ProfessionalSelfConceptDNA' missing required field 'created_at'
+❌ ERROR: Container 'PsyDNA.CareerIdentityDNA.ProfessionalSelfConceptDNA' missing required field 'updated_at'
+❌ ERROR: Container 'PsyDNA.CareerIdentityDNA.RoleAttachmentDNA' missing required field 'created_at'
+❌ ERROR: Container 'PsyDNA.CareerIdentityDNA.RoleAttachmentDNA' missing required field 'updated_at'
+
+======================================================================
+⚠️  WARNINGS (4)
+======================================================================
+⚠️  WARNING: Container 'PsyDNA.TypeModelDNA.CognitivePreferenceDNA' parent 'PsyDNA.PersonalityDNA.TypeModelDNA' is not a hierarchical parent
+⚠️  WARNING: Container 'PsyDNA.CareerIdentityDNA' in sensitive namespace 'PsyDNA' is not marked sensitive
+⚠️  WARNING: Container 'PsyDNA.CareerIdentityDNA.ProfessionalSelfConceptDNA' in sensitive namespace 'PsyDNA' is not marked sensitive
+⚠️  WARNING: Container 'PsyDNA.CareerIdentityDNA.RoleAttachmentDNA' in sensitive namespace 'PsyDNA' is not marked sensitive
+
+======================================================================
+❌ VALIDATION FAILED

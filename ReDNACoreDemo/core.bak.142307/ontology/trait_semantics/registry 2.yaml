@@ -1,0 +1,12 @@
+BehDNA.AdaptiveRoutineIterationDNA:
+  counterexamples: []
+  definition: Seeded semantics for BehDNA.AdaptiveRoutineIterationDNA. Replace with
+    real definition.
+  examples:
+  - description: Placeholder example for demonstrations.
+    name: Sample positive scenario
+  last_reviewed: '2025-10-09'
+  reviewers:
+  - DevX Seeder
+  scope_notes: Auto-seeded by DevX for demo purposes.
+  version: 0.1.0

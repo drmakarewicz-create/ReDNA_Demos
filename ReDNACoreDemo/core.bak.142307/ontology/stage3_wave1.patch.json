@@ -1,0 +1,836 @@
+{
+  "containers": [
+    {
+      "id": "ProfDNA.WorkStyleDecisionDNA.DecisionVelocityDNA.v1",
+      "namespace": "ProfDNA",
+      "path": "ProfDNA.WorkStyleDecisionDNA.DecisionVelocityDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines how quickly professionals commit to decisions under ambiguity when deadlines compress timelines. It synthesizes evidence from decision logs, sprint retrospectives, escalation patterns, commit timestamps from delivery cycles to quantify decision latency distributions identifying adaptive versus paralyzed response modes. These insights help teams calibrate decision cadences matching urgency without sacrificing alignment.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "ProfDNA.WorkStyleDecisionDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "prof",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "ProfDNA.WorkStyleDecisionDNA.IterativeRefinementPreferenceDNA.v1",
+      "namespace": "ProfDNA",
+      "path": "ProfDNA.WorkStyleDecisionDNA.IterativeRefinementPreferenceDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines whether professionals favor early imperfect releases with rapid iteration or prolonged refinement. It synthesizes evidence from release logs, feedback timelines, MVP notes, stakeholder reviews from delivery histories to map refinement tolerance distinguishing agile iterators from perfection-oriented contributors. These insights enable workflow assignments matching preferences with project phases and stakeholder expectations.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "ProfDNA.WorkStyleDecisionDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "prof",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "ProfDNA.CollaborationCadenceDNA.StandupEngagementPatternDNA.v1",
+      "namespace": "ProfDNA",
+      "path": "ProfDNA.CollaborationCadenceDNA.StandupEngagementPatternDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines how professionals engage in daily standups measuring participation depth and blockers surfaced. It synthesizes evidence from standup transcripts, meeting analytics, blocker resolution times, peer feedback over sprints to detect engagement signatures separating attendance from high-value problem-solving contributions. These insights guide facilitators adapting formats to maximize engagement and surface critical dependencies.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "ProfDNA.CollaborationCadenceDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "prof",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "ProfDNA.CollaborationCadenceDNA.CrossTeamSyncRhythmDNA.v1",
+      "namespace": "ProfDNA",
+      "path": "ProfDNA.CollaborationCadenceDNA.CrossTeamSyncRhythmDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines how professionals coordinate async updates and sync touchpoints across distributed teams. It synthesizes evidence from Slack threads, status updates, calendar patterns, dependency timelines from cross-functional programs to reveal sync rhythms balancing autonomy with alignment and identify friction stalling velocity. These insights optimize coordination matching sync preferences with integration needs reducing meeting fatigue.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "ProfDNA.CollaborationCadenceDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "prof",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "ProfDNA.WorkOutcomeDNA.v1",
+      "namespace": "ProfDNA",
+      "path": "ProfDNA.WorkOutcomeDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines professional outcomes including deliverable quality, impact metrics, and career trajectory patterns. It synthesizes evidence from performance reviews, impact narratives, promotion packets, peer endorsements across progressions to synthesize outcome profiles distinguishing high-impact contributors from high-output workers lacking influence. These insights enable development plans connecting work patterns to advancement opportunities and skill gaps.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "ProfDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "prof",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "ProfDNA.WorkOutcomeDNA.DeliverableQualitySignatureDNA.v1",
+      "namespace": "ProfDNA",
+      "path": "ProfDNA.WorkOutcomeDNA.DeliverableQualitySignatureDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines observable quality signatures measuring clarity, completeness, and defect density over time. It synthesizes evidence from code reviews, documentation scores, revision requests, defect rates tracked longitudinally to quantify quality consistency across pressure cycles identifying degradation signals. These insights guide quality interventions targeting dimensions driving highest stakeholder satisfaction gains.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "ProfDNA.WorkOutcomeDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "prof",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "BehDNA.ProductivityWorkflowDNA.DeepWorkBlockProtectionDNA.v1",
+      "namespace": "BehDNA",
+      "path": "BehDNA.ProductivityWorkflowDNA.DeepWorkBlockProtectionDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines how individuals protect focus blocks from interruptions when high-load tasks demand sustained attention. It synthesizes evidence from calendar blocks, notification silencing, interruption recovery times, session durations from tracking tools to identify deep work capacity and protection strategies maximizing throughput on demanding deliverables. These insights enable personalized focus protocols optimizing uninterrupted windows aligned with energy and collaboration.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "BehDNA.ProductivityWorkflowDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "beh",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "BehDNA.ProductivityWorkflowDNA.TaskBatchingStrategyDNA.v1",
+      "namespace": "BehDNA",
+      "path": "BehDNA.ProductivityWorkflowDNA.TaskBatchingStrategyDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines whether individuals batch similar tasks minimizing switches or interleave diverse tasks maintaining variety. It synthesizes evidence from task logs, context switch tracking, energy annotations, productivity metrics across batching patterns to reveal batching preferences distinguishing linear processors from variety-seeking multi-threaders. These insights guide workflow design matching batching strategies with phase demands and cognitive load.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "BehDNA.ProductivityWorkflowDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "beh",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "BehDNA.HabitRoutinesDNA.MorningRoutineConsistencyDNA.v1",
+      "namespace": "BehDNA",
+      "path": "BehDNA.HabitRoutinesDNA.MorningRoutineConsistencyDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines stability of morning rituals including wake time and work onset anchoring productivity cycles. It synthesizes evidence from habit logs, chronotype assessments, morning energy ratings, onset metrics over extended periods to quantify routine stability identifying degradation signaling stress, burnout, or environmental disruption. These insights support habit interventions strengthening morning anchors improving energy management and execution quality.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "BehDNA.HabitRoutinesDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "beh",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "BehDNA.DailyRhythmChronoDNA.EnergyPeakWindowDNA.v1",
+      "namespace": "BehDNA",
+      "path": "BehDNA.DailyRhythmChronoDNA.EnergyPeakWindowDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines timing of peak cognitive and physical energy within daily cycles affecting scheduling. It synthesizes evidence from energy annotations, productivity by time, chronotype assessments, completion quality across hours to map individual energy curves optimizing scheduling aligning high-demand work with peak windows. These insights enable personalized scheduling maximizing output by matching task types to energy availability.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "BehDNA.DailyRhythmChronoDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "beh",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "CogDNA.ReasoningProblemSolvingDNA.FirstPrinciplesReasoningDNA.v1",
+      "namespace": "CogDNA",
+      "path": "CogDNA.ReasoningProblemSolvingDNA.FirstPrinciplesReasoningDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines tendency to deconstruct problems to foundational assumptions versus analogical thinking. It synthesizes evidence from problem-solving transcripts, architectural records, debugging strategies, innovation logs capturing approaches to distinguish first-principles thinkers from pattern matchers revealing when foundational reasoning unlocks breakthroughs. These insights guide complex problem assignments leveraging first-principles capacity when conventional approaches fail.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "CogDNA.ReasoningProblemSolvingDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "cog",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "CogDNA.LearningStyleStrategyDNA.LearningVelocityDNA.v1",
+      "namespace": "CogDNA",
+      "path": "CogDNA.LearningStyleStrategyDNA.LearningVelocityDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines speed of acquiring new skills and knowledge measured through concept mastery timelines. It synthesizes evidence from learning logs, skill assessments, certification timelines, project ramp-up durations, peer comparisons to quantify learning velocity profiles predicting ramp-up times for new technologies or domains. These insights enable realistic onboarding timelines and targeted support for professionals entering unfamiliar landscapes.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "CogDNA.LearningStyleStrategyDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "cog",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "CogDNA.AttentionControlDNA.DistractionResilienceDNA.v1",
+      "namespace": "CogDNA",
+      "path": "CogDNA.AttentionControlDNA.DistractionResilienceDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines ability to maintain focus amid noise, interruptions, and notifications without productivity degradation. It synthesizes evidence from interruption logs, focus recovery times, productivity in noisy versus quiet environments, tracking data to reveal distraction tolerance thresholds informing workspace design and notification management strategies. These insights guide environment optimization matching individual resilience with ambient conditions and collaboration density.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "CogDNA.AttentionControlDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "cog",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "PsyDNA.MotivationDNA.AutonomyMotivationDNA.v1",
+      "namespace": "PsyDNA",
+      "path": "PsyDNA.MotivationDNA.AutonomyMotivationDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines strength of intrinsic drive from self-directed work versus external guidance as motivational factor. It synthesizes evidence from self-direction preferences, micromanagement sensitivity, initiative patterns, satisfaction across management styles to quantify autonomy needs distinguishing self-starters from those thriving with structured guidance. These insights enable management matching aligning autonomy preferences with leadership styles optimizing engagement.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "PsyDNA.MotivationDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "psy",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "PsyDNA.SelfConceptSchemaDNA.ProfessionalIdentityDNA.v1",
+      "namespace": "PsyDNA",
+      "path": "PsyDNA.SelfConceptSchemaDNA.ProfessionalIdentityDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines core professional identity narratives including role perception and identity anchors shaping meaning. It synthesizes evidence from identity narratives, career reflection journals, role transition stories, purpose alignment statements to reveal identity foundations driving career decisions and predicting fulfillment in professional contexts. These insights support career counseling honoring identity anchors while expanding growth aligned with evolving self-concept.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": true,
+      "camouflage": false,
+      "consent_required": true,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "PsyDNA.SelfConceptSchemaDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "psy",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    },
+    {
+      "id": "PsyDNA.RiskToleranceDNA.CareerRiskToleranceDNA.v1",
+      "namespace": "PsyDNA",
+      "path": "PsyDNA.RiskToleranceDNA.CareerRiskToleranceDNA",
+      "version": 1,
+      "status": "prototype",
+      "description": "This container examines willingness to take career risks including role changes or skill pivots introducing uncertainty. It synthesizes evidence from career transition histories, risk decisions, financial preferences, growth versus stability trade-offs to map risk tolerance profiles predicting career mobility and openness to stretch assignments. These insights guide career pathing matching risk appetite with opportunity sets maximizing growth within comfort.",
+      "inputs": [],
+      "outputs": [],
+      "ucn_weight_hint": 0.01,
+      "dependencies": [],
+      "correlates_with": [],
+      "contradicts": [],
+      "sensitive": false,
+      "camouflage": false,
+      "consent_required": false,
+      "ai_upgradable": true,
+      "rr_baseline": null,
+      "curiosity_baseline": 100,
+      "discovery": {
+        "method": "deterministic_generation",
+        "confidence": 0.85,
+        "evidence": "ReDNA Stage 3 taxonomy expansion (Wave 1)",
+        "proposer": "claude_sonnet_4.5"
+      },
+      "parent_containers": [
+        {
+          "path": "PsyDNA.RiskToleranceDNA",
+          "edge_type": "part_of"
+        }
+      ],
+      "tags": [
+        "psy",
+        "stage3",
+        "wave1"
+      ],
+      "examples": [],
+      "validation_rules": {
+        "value_type": "ordinal"
+      },
+      "created_at": "2025-10-08T05:00:00Z",
+      "updated_at": "2025-10-08T05:00:00Z",
+      "created_by": "claude_stage3_wave1",
+      "changelog": [
+        {
+          "version": 1,
+          "timestamp": "2025-10-08T05:00:00Z",
+          "changes": "Initial creation during Stage 3 Wave 1 expansion",
+          "author": "claude_stage3_wave1"
+        }
+      ]
+    }
+  ]
+}

@@ -14,7 +14,6 @@ import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import {
   hcLearningApi,
-  LearningState,
   LearningStateResponse,
   formatToneBias,
   formatCreativityBias,

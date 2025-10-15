@@ -1,0 +1,15 @@
+{
+  "last_user_ts": "2025-10-15T19:50:46.140000+00:00",
+  "last_user_text": "I used to have red hair but now I'm mostly bald",
+  "turns_observed": 3,
+  "dialog_history": [
+    "question",
+    "answer",
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-15T19:50:46.144950+00:00",
+  "latency_history_ms": [
+    50407,
+    1600237
+  ]
+}

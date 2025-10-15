@@ -51,7 +51,7 @@ Opens: http://localhost:3100
 ```bash
 # Backend
 cd ReDNACoreDemo
-PYTHONPATH=$(pwd):$PYTHONPATH python3 -m uvicorn devx.backend.api:app --port 8100
+PYTHONPATH=$(pwd):$PYTHONPATH python3 -m uvicorn ReDNACoreDemo.devx.backend.api:app --port 8100
 
 # Frontend
 cd ReDNACoreDemo/devx/frontend

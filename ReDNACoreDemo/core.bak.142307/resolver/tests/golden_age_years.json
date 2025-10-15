@@ -1,0 +1,17 @@
+{
+  "user_id": "TEST_USER",
+  "evidence": [
+    {
+      "trait_id": "BasicDNA.Age",
+      "value": {"number": 47},
+      "source": "chat",
+      "ts": "2025-10-14T00:00:00Z"
+    }
+  ],
+  "expect_resolved": {
+    "BasicDNA.Age": {
+      "value": {"number": 47},
+      "ucn_min": 0.2
+    }
+  }
+}

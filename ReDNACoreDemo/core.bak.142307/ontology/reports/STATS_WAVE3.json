@@ -1,0 +1,20 @@
+{
+  "total_containers": 1787,
+  "by_namespace": {
+    "BehDNA": 180,
+    "CogDNA": 170,
+    "EmDNA": 99,
+    "EnvDNA": 80,
+    "HealthDNA": 80,
+    "HistDNA": 140,
+    "MetaDNA": 120,
+    "PaDNA": 120,
+    "PrefDNA": 150,
+    "ProfDNA": 120,
+    "PsyDNA": 180,
+    "RoDNA": 8,
+    "SkillDNA": 180,
+    "SocDNA": 160
+  },
+  "sensitive_count": 626
+}

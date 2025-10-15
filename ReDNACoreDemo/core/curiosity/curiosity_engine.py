@@ -23,8 +23,8 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, List, Set, Tuple
 
-from core.rr_per_trait import PerTraitRRCalculator
-from core.rr_aggregation import ContainerRRAggregator
+from ReDNACoreDemo.core.rr_per_trait import PerTraitRRCalculator
+from ReDNACoreDemo.core.rr_aggregation import ContainerRRAggregator
 
 
 @dataclass
@@ -119,7 +119,7 @@ class CuriosityEngine:
         Returns:
             Sorted list of CuriosityItem objects (highest priority first)
         """
-        from core.storage import read_user_state
+        from ReDNACoreDemo.core.storage import read_user_state
 
         resolved, _, _ = read_user_state(user_id)
         curiosity_items: List[CuriosityItem] = []

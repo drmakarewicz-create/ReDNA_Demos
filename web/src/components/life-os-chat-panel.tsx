@@ -7,6 +7,8 @@ import { clearActiveCapabilityToken, getActiveCapabilityToken } from '../lib/lif
 import { quickCapture } from '../lib/lifeOsQuickCapture';
 import { LifeWeekReview } from './life-week-review';
 
+const LIFE_ENABLED = (process.env.NEXT_PUBLIC_LIFE_ENABLED ?? 'false') === 'true';
+
 interface NorthStar {
   identity: string;
   purpose: string;
@@ -250,6 +252,15 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   }, []);
 
   const loadSummary = useCallback(async () => {
+    if (!LIFE_ENABLED) {
+      setSummary(null);
+      setTopProject(null);
+      setInsights(null);
+      setHumanIntel(null);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     setError(null);
     setHumanIntel(null);
@@ -339,6 +350,10 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   }, [userId, variant]);
 
   useEffect(() => {
+    if (!LIFE_ENABLED) {
+      setLoading(false);
+      return;
+    }
     if (!collapsed) {
       loadSummary();
     }
@@ -381,6 +396,11 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   const handleQuickCapture = async () => {
     if (!captureText.trim()) return;
 
+    if (!LIFE_ENABLED) {
+      setError('Life OS is disabled.');
+      return;
+    }
+
     setCapturing(true);
     setError(null);
     try {
@@ -422,6 +442,11 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
 
   const handleToggleTodo = async (todoId: string, currentStatus: string) => {
     const newStatus = currentStatus === 'done' ? 'open' : 'done';
+
+    if (!LIFE_ENABLED) {
+      console.debug('Life OS disabled; skipping todo toggle.');
+      return;
+    }
 
     try {
       const response = await fetch(`${CORE_API_BASE}/ui/hc/life/${userId}/todos/${todoId}`, {
@@ -497,6 +522,11 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
       return;
     }
 
+    if (!LIFE_ENABLED) {
+      setModalError('Life OS is disabled.');
+      return;
+    }
+
     setModalSubmitting(true);
     setModalError(null);
 
@@ -561,6 +591,11 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
       return;
     }
 
+    if (!LIFE_ENABLED) {
+      setModalError('Life OS is disabled.');
+      return;
+    }
+
     setModalSubmitting(true);
     setModalError(null);
 
@@ -591,6 +626,11 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   const handleSubmitLink = async () => {
     if (!linkTitle.trim() || !linkUrl.trim()) {
       setModalError('Title and URL are required');
+      return;
+    }
+
+    if (!LIFE_ENABLED) {
+      setModalError('Life OS is disabled.');
       return;
     }
 
@@ -653,6 +693,11 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
       return;
     }
 
+    if (!LIFE_ENABLED) {
+      setModalError('Life OS is disabled.');
+      return;
+    }
+
     setModalSubmitting(true);
     setModalError(null);
 
@@ -685,6 +730,12 @@ export function LifeOSChatPanel({ userId, variant = 'full' }: LifeOSChatPanelPro
   const handleSubmitNorthStar = async () => {
     setModalSubmitting(true);
     setModalError(null);
+
+    if (!LIFE_ENABLED) {
+      setModalError('Life OS is disabled.');
+      setModalSubmitting(false);
+      return;
+    }
 
     try {
       // Use PATCH on summary endpoint with north_star field

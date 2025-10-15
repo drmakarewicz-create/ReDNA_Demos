@@ -1,0 +1,95 @@
+# CReDNA Feedback Chips Mapping
+# Maps intuitive user feedback chips to dimensional adjustments
+#
+# Format:
+#   chip_name:
+#     dimension: <dimension_key>
+#     delta: <numeric_shift>
+#     description: <human-readable explanation>
+
+# Directness
+more_direct:
+  dimension: directness
+  delta: 1
+  description: "Make responses more straightforward and to-the-point"
+
+less_direct:
+  dimension: directness
+  delta: -1
+  description: "Make responses more nuanced and diplomatic"
+
+# Formality
+more_formal:
+  dimension: formality
+  delta: 1
+  description: "Increase professional tone and structure"
+
+less_formal:
+  dimension: formality
+  delta: -1
+  description: "Use more casual and conversational language"
+
+# Empathy / Warmth
+warmer:
+  dimension: empathy
+  delta: 1
+  description: "Add more emotional warmth and supportiveness"
+
+cooler:
+  dimension: empathy
+  delta: -1
+  description: "Use more neutral, objective tone"
+
+more_supportive:
+  dimension: tone
+  delta: 1
+  description: "Be more encouraging and affirming"
+
+more_neutral:
+  dimension: tone
+  delta: -1
+  description: "Be more balanced and factual"
+
+# Cadence / Pacing
+faster:
+  dimension: cadence
+  delta: 1
+  description: "Speak more quickly, get to the point faster"
+
+slower:
+  dimension: cadence
+  delta: -1
+  description: "Take more time, elaborate more thoroughly"
+
+# Humor
+wittier:
+  dimension: humor
+  delta: 1
+  description: "Add more wit and playfulness"
+
+more_serious:
+  dimension: humor
+  delta: -1
+  description: "Keep responses serious and professional"
+
+# Hedging / Confidence
+more_confident:
+  dimension: hedging
+  delta: -1
+  description: "Use fewer qualifiers, be more assertive"
+
+more_cautious:
+  dimension: hedging
+  delta: 1
+  description: "Add more hedging and qualifiers"
+
+# Vocabulary
+simpler_language:
+  dimension: vocabulary
+  delta: -1
+  description: "Use simpler, more accessible vocabulary"
+
+richer_vocabulary:
+  dimension: vocabulary
+  delta: 1
+  description: "Use more sophisticated and precise language"

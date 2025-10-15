@@ -1,13 +1,17 @@
 {
-  "last_user_ts": "2025-10-14T18:20:17.488000+00:00",
-  "last_user_text": "I have blue eyes",
-  "turns_observed": 2,
+  "last_user_ts": "2025-10-14T20:22:24.974000+00:00",
+  "last_user_text": "I am 6 feet tall and pretty bald",
+  "turns_observed": 4,
   "dialog_history": [
     "question",
+    "answer",
+    "answer",
     "answer"
   ],
-  "last_assistant_ts": "2025-10-14T18:20:18.651378+00:00",
+  "last_assistant_ts": "2025-10-14T20:22:24.977343+00:00",
   "latency_history_ms": [
-    32097
+    32097,
+    1995099,
+    5331219
   ]
 }

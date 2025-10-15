@@ -49,7 +49,7 @@ def main():
     # Start server
     try:
         uvicorn.run(
-            "devx.backend.api:app",
+            "ReDNACoreDemo.devx.backend.api:app",
             host=DEVX_HOST,
             port=port,
             reload=True,

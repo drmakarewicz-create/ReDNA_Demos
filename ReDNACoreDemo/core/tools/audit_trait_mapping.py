@@ -29,7 +29,7 @@ def to_canonical_safe(trait_id: str) -> str:
     """
     try:
         # Try importing the mapper
-        from core.traits.trait_id_mapper import to_canonical
+        from ReDNACoreDemo.core.traits.trait_id_mapper import to_canonical
         return to_canonical(trait_id)
     except ImportError:
         # If mapper doesn't exist yet, we can't map

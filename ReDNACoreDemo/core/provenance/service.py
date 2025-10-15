@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 
-from core.storage import USERS_DIR, CORE_DATA_ROOT
+from ReDNACoreDemo.core.storage import USERS_DIR, CORE_DATA_ROOT
 
 
 def _user_dir(user_id: str) -> Path:

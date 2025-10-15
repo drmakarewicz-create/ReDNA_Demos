@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import {
   type RSCMessage,
-  type MessageType,
   getInbox,
   getSent,
   sendRSCMessage,

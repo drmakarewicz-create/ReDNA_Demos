@@ -1,0 +1,38 @@
+{
+  "weights": {
+    "gap": 0.5,
+    "impact": 0.3,
+    "recency": 0.1,
+    "cost": 0.1
+  },
+  "max_items": 12,
+  "min_priority": 0.55,
+  "namespace_to_coach": {
+    "SkillDNA": "career_coach",
+    "ProfDNA": "career_coach",
+    "LanguageStyleDNA": "chatdna_coach",
+    "CommStyleDNA": "chatdna_coach",
+    "BeliefValueDNA": "beliefdna_coach",
+    "MoralDNA": "beliefdna_coach",
+    "PaDNA": "padna_coach",
+    "PsyDNA": "personality_test_coach",
+    "BehDNA": "personality_test_coach",
+    "EmDNA": "relationship_coach",
+    "ReDNA": "relationship_coach",
+    "CogDNA": "head_coach",
+    "GenDNA": "head_coach"
+  },
+  "recency_window_hours": 72,
+  "cost_failure_multiplier": 0.7,
+  "suggested_prompts": {
+    "SkillDNA": "Tell me about your recent work experience and the skills you've been developing.",
+    "LanguageStyleDNA": "How would you describe your communication style? Share some examples of how you typically express yourself.",
+    "BeliefValueDNA": "What values and beliefs guide your important decisions? Can you share a recent example?",
+    "PaDNA": "I'd love to understand your visual preferences and aesthetic choices better.",
+    "PsyDNA": "Let's explore your personality traits and behavioral patterns.",
+    "EmDNA": "How do you typically handle emotions in challenging situations?",
+    "ReDNA": "Tell me about your important relationships and how you navigate them.",
+    "CogDNA": "How do you approach problem-solving and decision-making?",
+    "GenDNA": "What are your general preferences and tendencies across different contexts?"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "interval_hours": 6,
+  "auto_threshold": 0.9,
+  "max_suggestions_per_coach": 5,
+  "dry_run": false,
+  "log_path": "prompts/insights/self_improvement_daemon.jsonl",
+  "enable_daemon": true,
+  "tolerant_validation": true,
+  "notification_email": null,
+  "backup_retention_days": 30
+}

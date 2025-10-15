@@ -1,0 +1,57 @@
+{
+  "BasicDNA.Age": {
+    "value": {
+      "text": "25-34"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T15:49:06+00:00"
+  },
+  "BasicDNA.Gender": {
+    "value": {
+      "enum": "female"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T15:49:06+00:00"
+  },
+  "BasicDNA.Orientation": {
+    "value": {
+      "enum": "bisexual"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T15:49:06+00:00"
+  },
+  "BasicDNA.RelationshipStatus": {
+    "value": {
+      "enum": "single"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T15:49:06+00:00"
+  },
+  "BasicDNA.Name": {
+    "value": {
+      "text": "Testuser"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T15:49:06+00:00"
+  }
+}

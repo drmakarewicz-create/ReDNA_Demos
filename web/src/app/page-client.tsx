@@ -463,6 +463,19 @@ export default function HeadCoachPage() {
     [actOnAsk]
   );
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const scoped = window as typeof window & { __northstar_push_notice__?: typeof pushNotice };
+    scoped.__northstar_push_notice__ = pushNotice;
+    return () => {
+      if (scoped.__northstar_push_notice__ === pushNotice) {
+        delete scoped.__northstar_push_notice__;
+      }
+    };
+  }, [pushNotice]);
+
   const { milestones, clearMilestone, clearAllMilestones } = useCelebrationsAgent({
     activeUserId: activeUser,
     asks,
@@ -1776,17 +1789,27 @@ export default function HeadCoachPage() {
         const onboardingMessage = onboardingParts.join('. ') + '.';
 
         // Send as chat message so Head Coach can respond naturally
+        let runtimeCoreApiBase: string | undefined;
+
         try {
-          const { sendChat } = await import('../lib/api');
+          const { sendChat, CORE_API_BASE } = await import('../lib/api');
+          runtimeCoreApiBase = CORE_API_BASE;
 
           // Send onboarding data as a user message to Head Coach
+          // Use longer timeout for Ollama (can take 60+ seconds for long onboarding messages)
+          const abortController = new AbortController();
+          const timeoutId = setTimeout(() => abortController.abort(), 90000); // 90 second timeout
+
           const result = await sendChat({
             userId: targetUserId,
             persona: 'head_coach',
             text: onboardingMessage,
             clientTs: Date.now()
+          }, {
+            signal: abortController.signal
           });
 
+          clearTimeout(timeoutId);
           console.log('[Onboarding] Chat message sent, HC responded:', result);
 
           // Refresh panels to show updated traits and HC response
@@ -1800,8 +1823,22 @@ export default function HeadCoachPage() {
 
         } catch (chatError) {
           console.error('[Onboarding] Failed to send onboarding chat:', chatError);
+          console.error('[Onboarding] CORE_API_BASE (runtime):', runtimeCoreApiBase);
+          console.error('[Onboarding] Error details:', {
+            type: typeof chatError,
+            name: chatError instanceof Error ? chatError.name : 'unknown',
+            message: chatError instanceof Error ? chatError.message : String(chatError),
+            stack: chatError instanceof Error ? chatError.stack : undefined,
+            onboardingMessage: onboardingMessage
+          });
+
           // Non-fatal - user is created, just show warning
-          pushNotice(`Welcome, ${data.displayName || targetUserId}! (There was an issue connecting to your coach)`, 'warning');
+          // This usually means Ollama is taking too long to respond (>90s)
+          const isTimeout = chatError instanceof Error && chatError.name === 'AbortError';
+          const message = isTimeout
+            ? `Welcome, ${data.displayName || targetUserId}! (Your coach is taking longer than usual to respond - check back in a moment)`
+            : `Welcome, ${data.displayName || targetUserId}! (There was an issue connecting to your coach)`;
+          pushNotice(message, 'warning');
           refreshAllPanels();
         }
 

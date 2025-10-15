@@ -381,7 +381,7 @@ curl -X POST http://127.0.0.1:8100/devx/api/traits/apply-change \
 **Run with auto-reload**:
 ```bash
 cd ReDNACoreDemo
-PYTHONPATH=$(pwd):$PYTHONPATH uvicorn devx.backend.api:app --reload --port 8100
+PYTHONPATH=$(pwd):$PYTHONPATH uvicorn ReDNACoreDemo.devx.backend.api:app --reload --port 8100
 ```
 
 **Test API endpoints**:

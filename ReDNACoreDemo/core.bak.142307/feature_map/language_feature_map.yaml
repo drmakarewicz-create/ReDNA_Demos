@@ -1,0 +1,112 @@
+# Language Feature → Container Mapping
+# Maps low-level extractor features to existing DNA container paths
+# Features marked with unmapped: true indicate gaps in the ontology
+
+schema_version: "1.0"
+version: "1.0.0"
+last_updated: "2025-10-07"
+
+# Mapped features (extractor → container)
+features:
+  # LanguageStyleDNA - Sentence & Cadence
+  cadence_rate_wpm:
+    container: "LanguageStyleDNA.CadenceDNA"
+    description: "Words per minute / speaking rate"
+
+  sentence_length_avg:
+    container: "LanguageStyleDNA.SentenceLengthDNA"
+    description: "Average sentence length in words"
+
+  # LanguageStyleDNA - Vocabulary
+  vocab_density_ttr:
+    container: "LanguageStyleDNA.VocabularyDensityDNA"
+    description: "Type-token ratio for vocabulary richness"
+
+  formality_index:
+    container: "LanguageStyleDNA.FormalityDNA"
+    description: "Register formality score"
+
+  # LanguageStyleDNA - Hedging & Certainty
+  hedge_rate_per_100:
+    container: "LanguageStyleDNA.HedgingPatternDNA"
+    description: "Hedging markers per 100 words (maybe, perhaps, etc.)"
+
+  # LanguageStyleDNA - Expressiveness
+  emoji_exclaim_profile:
+    container: "LanguageStyleDNA.EmojiExclamationUseDNA"
+    description: "Emoji and exclamation usage pattern"
+
+  rhetorical_question_rate:
+    container: "LanguageStyleDNA.RhetoricalQuestionDNA"
+    description: "Frequency of rhetorical questions"
+
+  discourse_marker_rate:
+    container: "LanguageStyleDNA.DiscourseMarkerDNA"
+    description: "Use of discourse markers (well, you know, etc.)"
+
+  metaphor_analogy_density:
+    container: "LanguageStyleDNA.MetaphorAnalogyUseDNA"
+    description: "Metaphor and analogy frequency"
+
+  directness_index:
+    container: "LanguageStyleDNA.DirectnessDNA"
+    description: "Directness vs. indirectness in communication"
+
+  # SocDNA - Interaction Style
+  backchannel_probability:
+    container: "SocDNA.InteractionStyleDNA.ListeningAcknowledgementDNA"
+    description: "Backchanneling (uh-huh, mm-hmm, yeah) probability"
+
+  turn_taking_latency_ms:
+    container: "SocDNA.InteractionStyleDNA.ConversationalDominanceDNA"
+    description: "Turn-taking latency in milliseconds"
+
+# Unmapped features (gaps in ontology)
+unmapped_features:
+  parallelism_pattern_score:
+    unmapped: true
+    description: "Parallel structure and anaphora/epistrophe patterns"
+    potential_parent: "LanguageStyleDNA"
+
+  parenthetical_usage_rate:
+    unmapped: true
+    description: "Use of parentheticals and asides"
+    potential_parent: "LanguageStyleDNA"
+
+  code_switching_register_score:
+    unmapped: true
+    description: "Code-switching between registers or dialects"
+    potential_parent: "LanguageStyleDNA"
+
+  irony_vs_sarcasm_classifier:
+    unmapped: true
+    description: "Irony vs. sarcasm detection and frequency"
+    potential_parent: "LanguageStyleDNA"
+
+  apology_vs_gratitude_ratio:
+    unmapped: true
+    description: "Ratio of apologies to expressions of gratitude"
+    potential_parent: "SocDNA.InteractionStyleDNA"
+
+  question_type_distribution:
+    unmapped: true
+    description: "Distribution of question types (clarifying, probing, rhetorical)"
+    potential_parent: "SocDNA.InteractionStyleDNA"
+
+  intensifier_frequency:
+    unmapped: true
+    description: "Use of intensifiers (very, really, extremely)"
+    potential_parent: "LanguageStyleDNA"
+
+  filler_word_profile:
+    unmapped: true
+    description: "Pattern of filler words (um, uh, like, you know)"
+    potential_parent: "LanguageStyleDNA"
+
+# Governance notes
+governance:
+  privacy_notes: "No raw text stored; only feature scores and hashes"
+  sensitive_features:
+    - code_switching_register_score  # May reveal dialect/accent
+  consent_requirements:
+    - code_switching_register_score  # Requires explicit consent for dialect analysis

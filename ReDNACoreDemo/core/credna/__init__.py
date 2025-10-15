@@ -10,7 +10,7 @@ Per-user, per-coach personality envelopes with:
 - Fast caching (TTL + bust logic)
 
 Usage:
-    from core.credna.persona_synthesis import build_envelope
+    from ReDNACoreDemo.core.credna.persona_synthesis import build_envelope
 
     envelope = build_envelope(
         user_id="TEST",

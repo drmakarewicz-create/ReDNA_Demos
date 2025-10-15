@@ -1,0 +1,15 @@
+{
+  "last_user_ts": "2025-10-15T04:01:40+00:00",
+  "last_user_text": "Hello",
+  "turns_observed": 3,
+  "dialog_history": [
+    "answer",
+    "answer",
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-15T15:41:48.688255+00:00",
+  "latency_history_ms": [
+    -41953983,
+    -41975928
+  ]
+}

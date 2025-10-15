@@ -1,0 +1,37 @@
+DNA Registry Linter Report
+==================================================
+
+Registry: ReDNACoreDemo/core/ontology/dna_registry.json
+Total containers: 2000
+
+✅ No errors found
+
+WARNINGS (25):
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.CompassionDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.PolitenessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.TrustDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.ConscientiousnessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.EmotionalStabilityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.ExtraversionDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.OpennessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.IndustriousnessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.OrderlinessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.SelfDisciplineDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.DarkTraitsDNA.MachiavellianismDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.DarkTraitsDNA.NarcissismDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.DarkTraitsDNA.PsychopathyDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.EmotionVolatilityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.SelfSoothingDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.StressToleranceDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.AssertivenessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.EnergySociabilityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.PositiveAffectivityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.HexacoAdditionsDNA.HonestyHumilityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.OpennessFacetsDNA.AestheticSensitivityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.OpennessFacetsDNA.ImaginationCreativityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.OpennessFacetsDNA.IntellectCuriosityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.TypeModelDNA.CognitivePreferenceDNA has depth 4 (>3)
+
+
+Linter exit code: 0

@@ -1,0 +1,75 @@
+{
+  "req_id": "fixture-eb1767f2",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "chat",
+          "ts": "2025-10-13T00:00:00Z"
+        }
+      ],
+      "ts": 1760468751.511765
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 1
+      },
+      "ts": 1760468751.5117671
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "chat",
+          "ts": "2025-10-13T00:00:00Z"
+        }
+      },
+      "ts": 1760468751.511768
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "ucn_prior": 0.25,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760468751.511771
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException(\"RR service error: HTTPConnectionPool(host='127.0.0.1', port=8011): Max retries exceeded with url: /ucn/score (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x102c31940>: Failed to establish a new connection: [Errno 1] Operation not permitted'))\")",
+      "ts": 1760468751.5165179
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 0.25
+      },
+      "ts": 1760468751.516521
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 3,
+        "rr_ok": false
+      },
+      "ts": 1760468751.51883
+    }
+  ],
+  "ts": 1760468751.511764
+}

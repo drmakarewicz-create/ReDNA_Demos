@@ -15,8 +15,8 @@ import logging
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-from core.rr_per_trait import PerTraitRRCalculator
-from core.storage import read_user_state
+from ReDNACoreDemo.core.rr_per_trait import PerTraitRRCalculator
+from ReDNACoreDemo.core.storage import read_user_state
 
 logger = logging.getLogger(__name__)
 

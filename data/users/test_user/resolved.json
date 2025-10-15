@@ -1,14 +1,15 @@
 {
   "PaDNA.EyeDNA.IrisColor": {
     "value": {
-      "enum": "brown"
+      "enum": "blue"
     },
-    "ucn": 0.25,
+    "ucn": 0.75,
     "sources": [
+      "test",
       "chat"
     ],
     "status": "resolved",
-    "last_updated": "2025-10-14T03:45:15+00:00"
+    "last_updated": "2025-10-15T04:09:01+00:00"
   },
   "BasicDNA.Age": {
     "value": {

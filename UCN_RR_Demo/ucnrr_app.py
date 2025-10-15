@@ -23,6 +23,8 @@ import yaml
 from fastapi import Body, FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
 
+from ReDNACoreDemo.core.logutil import stack_log
+
 DATA_DIR = Path(os.getenv("UCNRR_DATA_DIR", os.path.expanduser("~/Documents/ReDNA_Demos/UCN_RR_Demo/data")))
 USERS_DIR = DATA_DIR / "users"
 CORE_BASE = os.getenv("CORE_BASE", os.getenv("CORE_URL", "http://127.0.0.1:8015")).rstrip("/")
@@ -707,6 +709,17 @@ def health() -> Dict[str, Any]:
     return api_health()
 
 
+@app.get("/metrics")
+def get_metrics() -> Dict[str, Any]:
+    """
+    Get UCNRR service metrics.
+
+    Returns counters, latency percentiles, and selftest status.
+    """
+    from .metrics import METRICS
+    return METRICS.get_snapshot()
+
+
 class RescoreRequest(BaseModel):
     user_id: str
     traits: Optional[List[Dict[str, Any]]] = None
@@ -744,42 +757,67 @@ def ucn_score(body: UCNScoreRequest) -> List[Dict[str, Any]]:
             }
         ]
     """
-    user_id = body.user_id.strip()
-    if not user_id:
-        raise HTTPException(status_code=400, detail="user_id required")
+    from .metrics import METRICS
 
-    if not body.items:
-        raise HTTPException(status_code=400, detail="items list required")
+    start_time = time.time()
 
-    results = []
-    for item in body.items:
-        trait_id = item.get("trait_id")
-        if not trait_id:
-            continue
+    try:
+        user_id = body.user_id.strip()
+        if not user_id:
+            METRICS.increment("rr_requests_4xx")
+            raise HTTPException(status_code=400, detail="user_id required")
 
-        # Get ucn_prior (0..1 scale)
-        ucn_prior = float(item.get("ucn_prior", 0.5))
+        if not body.items:
+            METRICS.increment("rr_requests_4xx")
+            raise HTTPException(status_code=400, detail="items list required")
 
-        # Get source for reliability adjustment
-        source = item.get("source", "unknown")
+        results = []
+        for item in body.items:
+            trait_id = item.get("trait_id")
+            if not trait_id:
+                continue
 
-        # Apply source reliability multiplier
-        if source in ["photo_analysis", "document_verified"]:
-            ucn_multiplier = 1.1  # +10% boost for high-reliability sources
-        elif source in ["inference", "third_party"]:
-            ucn_multiplier = 0.7  # -30% for low-reliability sources
-        else:
-            ucn_multiplier = 1.0  # Neutral for user statements, chat
+            # Get ucn_prior (0..1 scale)
+            ucn_prior = float(item.get("ucn_prior", 0.5))
 
-        # Compute final UCN (scale to 0-1)
-        ucn_final = min(1.0, ucn_prior * ucn_multiplier)
+            # Get source for reliability adjustment
+            source = item.get("source", "unknown")
 
-        results.append({
-            "trait_id": trait_id,
-            "ucn": round(ucn_final, 4)
-        })
+            # Apply source reliability multiplier
+            if source in ["photo_analysis", "document_verified"]:
+                ucn_multiplier = 1.1  # +10% boost for high-reliability sources
+            elif source in ["inference", "third_party"]:
+                ucn_multiplier = 0.7  # -30% for low-reliability sources
+            else:
+                ucn_multiplier = 1.0  # Neutral for user statements, chat
 
-    return results
+            # Compute final UCN (scale to 0-1)
+            ucn_final = min(1.0, ucn_prior * ucn_multiplier)
+
+            results.append({
+                "trait_id": trait_id,
+                "ucn": round(ucn_final, 4)
+            })
+
+        # Track metrics
+        elapsed_ms = (time.time() - start_time) * 1000
+        METRICS.increment("rr_requests_total")
+        METRICS.increment("rr_requests_2xx")
+        METRICS.observe_latency("rr_score", elapsed_ms)
+
+        return results
+    except HTTPException:
+        raise
+    except Exception as e:
+        METRICS.increment("rr_requests_5xx")
+        stack_log(
+            "ucnrr",
+            "ERROR",
+            "ucn_score_fail",
+            "ucn_score encountered an unexpected error",
+            {"user_id": body.user_id, "error": str(e)},
+        )
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/ucnrr/selftest")
@@ -789,7 +827,10 @@ def ucnrr_selftest() -> Dict[str, Any]:
 
     Expected: UCN in range [0.80-0.90], indicating high confidence for direct observation.
     """
+    from .metrics import METRICS
+
     test_start = time.time()
+    stack_log("ucnrr", "INFO", "selftest_start", "UCNRR self-test started", {})
 
     # Canonical test case
     test_input = {
@@ -809,11 +850,21 @@ def ucnrr_selftest() -> Dict[str, Any]:
         result = ucn_score(UCNScoreRequest(**test_input))
 
         if not result or len(result) == 0:
-            return {
+            METRICS.increment("rr_selftest_fail")
+            result_data = {
                 "ok": False,
                 "error": "No results returned from ucn_score",
                 "test_case": "blue_eyes"
             }
+            METRICS.update_selftest(result_data)
+            stack_log(
+                "ucnrr",
+                "WARN",
+                "selftest_fail",
+                "UCNRR self-test returned no results",
+                result_data,
+            )
+            return result_data
 
         scored = result[0]
         ucn = scored.get("ucn", 0)
@@ -823,7 +874,7 @@ def ucnrr_selftest() -> Dict[str, Any]:
 
         elapsed_ms = int((time.time() - test_start) * 1000)
 
-        return {
+        result_data = {
             "ok": ucn_ok,
             "test_case": "blue_eyes",
             "trait_id": scored.get("trait_id"),
@@ -835,13 +886,48 @@ def ucnrr_selftest() -> Dict[str, Any]:
             "llm_configured": bool(LLM_PROVIDER and LLM_API_KEY)
         }
 
+        # Track metrics
+        if ucn_ok:
+            METRICS.increment("rr_selftest_ok")
+            stack_log(
+                "ucnrr",
+                "INFO",
+                "selftest_ok",
+                "UCNRR self-test passed",
+                result_data,
+            )
+        else:
+            METRICS.increment("rr_selftest_fail")
+            stack_log(
+                "ucnrr",
+                "WARN",
+                "selftest_fail",
+                "UCNRR self-test out of expected range",
+                result_data,
+            )
+
+        METRICS.observe_latency("rr_selftest", elapsed_ms)
+        METRICS.update_selftest(result_data)
+
+        return result_data
+
     except Exception as e:
-        return {
+        METRICS.increment("rr_selftest_fail")
+        result_data = {
             "ok": False,
             "error": str(e),
             "test_case": "blue_eyes",
             "elapsed_ms": int((time.time() - test_start) * 1000)
         }
+        METRICS.update_selftest(result_data)
+        stack_log(
+            "ucnrr",
+            "ERROR",
+            "selftest_fail",
+            "UCNRR self-test raised exception",
+            result_data,
+        )
+        return result_data
 
 
 @app.post("/api/rescore")

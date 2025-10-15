@@ -1,9 +1,12 @@
 # ReDNA Implementation Status
 
-**Last Updated**: 2025-10-15 05:40 UTC
+**Last Updated**: 2025-10-15 16:00 UTC
 **Phase**: 1 (Architectural Reliability) — **COMPLETE** ✅
 **Next Phase**: 2 (Operational Integrity) — **IN PROGRESS** 🚧
 **Bootstrap Status**: ✅ All services running with correct module paths (prints sys.executable)
+**CORS Status**: ✅ Configured for local dev origins (ports 3000, 3001, 4173, 3100-3102)
+**c32ecf0**: Stability Baseline v1 added (import canary, ingestion contracts, smoke script, CI gate).
+**Phase 3 (Resilience & Auto-Recovery)**: 🧪 In progress — supervised restarts, rolling readiness, and unified logging scaffolded.
 
 ---
 
@@ -187,6 +190,36 @@
 |  | - Fixed onboarding "problem connecting to coach" error | | | ✅ |
 |  | - Frontend can now detect chat availability | | | ✅ |
 |  | - Exposes HC_CHAT_PROVIDER env var (ollama/openai/anthropic) | | | ✅ |
+
+### 2025-10-15 (Evening)
+
+| Commit | Description | Files Changed | Lines | Status |
+|--------|-------------|---------------|-------|--------|
+| _pending_ | **CORS Configuration for Onboarding Fix** | 3 files | +100/-10 | ✅ Complete |
+|  | - Configured explicit CORS origins for local dev servers | `core/api.py` | | ✅ |
+|  | - Allow origins: 3000, 3001, 4173, 3100-3102 (localhost + 127.0.0.1) | | | ✅ |
+|  | - Fixed onboarding chat CORS block from Next.js frontend | | | ✅ |
+|  | - Added comprehensive CORS regression tests | `tests/test_cors_headers.py` | | ✅ |
+|  | - Tests preflight requests and credential handling | | | ✅ |
+|  | - Simplified HC prompt for Ollama (avoid prompt leakage) | `core/api.py` | | ✅ |
+|  | - Extended onboarding chat timeout to 90s for slow local LLMs | `web/src/app/page-client.tsx` | | ✅ |
+| _pending_ | **UCNRR Health Recovery** | 2 files | +80/- | ✅ Complete |
+|  | - Fixed UCNRR DEGRADED → HEALTHY status | | | ✅ |
+|  | - Restarted with correct module path (UCN_RR_Demo.ucnrr_app:app) | | | ✅ |
+|  | - Verified /health shows prompt_sha256, prompt_version, llm_configured | | | ✅ |
+|  | - Verified /ucnrr/selftest passes (ok:true, UCN 0.8 in range) | | | ✅ |
+|  | - Core /health shows rr_mode:"online" (connected to UCNRR) | | | ✅ |
+|  | - Added comprehensive health validation tests | `tests/test_ucnrr_health.py` | | ✅ |
+|  | - Tests health endpoint, selftest, prompt loading, timing | | | ✅ |
+| _pending_ | **Phase 2.2: Unified Metrics** | 3 files | +200/-10 | ✅ Complete |
+|  | - Added UCN_RR_Demo/metrics.py (counters, latency tracking) | | | ✅ |
+|  | - Added /metrics endpoint to UCNRR | `UCN_RR_Demo/ucnrr_app.py` | | ✅ |
+|  | - Instrumented /ucn/score with timing and counters | | | ✅ |
+|  | - Instrumented /ucnrr/selftest with metrics tracking | | | ✅ |
+|  | - Metrics include: rr_requests (total, 2xx, 4xx, 5xx) | | | ✅ |
+|  | - Metrics include: rr_selftest (ok, fail), latency p50/p95 | | | ✅ |
+|  | - Core /metrics already exists from Phase 1 (counters, gauges, timers) | | | ✅ |
+|  | - Logging infrastructure exists (.run/logs/*.jsonl from Phase 1) | | | ✅ |
 
 ---
 

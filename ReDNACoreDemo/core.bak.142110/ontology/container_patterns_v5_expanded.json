@@ -1,0 +1,445 @@
+{
+  "skill_dna": {
+    "programming_languages": [
+      "Python", "JavaScript", "TypeScript", "Java", "C", "C++", "C#", "Go", "Rust",
+      "Ruby", "PHP", "Swift", "Kotlin", "Scala", "R", "MATLAB", "Julia", "Perl",
+      "Haskell", "Elixir", "Clojure", "Dart", "Lua", "Shell", "PowerShell", "SQL",
+      "Solidity", "Assembly", "Fortran", "Cobol", "Lisp", "Prolog", "Erlang", "F#",
+      "Objective-C", "VB.NET", "Groovy", "Crystal", "Nim", "Zig", "V", "Carbon",
+      "OCaml", "Racket", "Scheme", "CommonLisp", "Ada", "D", "Idris", "Agda",
+      "Raku", "PureScript", "Elm", "ReasonML", "Ballerina", "Hack", "Vala", "Opa"
+    ],
+    "web_frameworks": [
+      "React", "Vue", "Angular", "Svelte", "Next.js", "Nuxt", "Gatsby", "Remix",
+      "Django", "Flask", "FastAPI", "Express", "NestJS", "Koa", "Hapi", "Fastify",
+      "Spring", "Rails", "Laravel", "Symfony", "ASP.NET", "Phoenix", "Gin", "Fiber",
+      "SvelteKit", "Astro", "Qwik", "Solid", "Preact", "Alpine.js", "HTMX",
+      "Ember", "Backbone", "Meteor", "Sails", "LoopBack", "Adonis", "Strapi",
+      "Redwood", "Blitz", "Pylon", "Fresh", "Aleph", "Ultra", "Vite", "Turbo"
+    ],
+    "databases": [
+      "PostgreSQL", "MySQL", "SQLite", "MongoDB", "Redis", "Elasticsearch", "Neo4j",
+      "Cassandra", "DynamoDB", "Firebase", "Supabase", "CockroachDB", "MariaDB",
+      "Oracle", "MSSQL", "CouchDB", "RethinkDB", "InfluxDB", "TimescaleDB",
+      "ArangoDB", "FaunaDB", "PlanetScale", "Neon", "Yugabyte", "Vitess",
+      "TiDB", "Percona", "Clickhouse", "Druid", "Presto", "Trino", "BigQuery",
+      "Snowflake", "Redshift", "Athena", "Databricks", "Dolt", "Materialize"
+    ],
+    "cloud_platforms": [
+      "AWS", "Azure", "GCP", "DigitalOcean", "Heroku", "Vercel", "Netlify", "Railway",
+      "Fly.io", "Render", "CloudFlare", "Oracle Cloud", "IBM Cloud", "Alibaba Cloud",
+      "Linode", "Vultr", "Hetzner", "OVH", "Scaleway", "Packet", "Equinix",
+      "Backblaze", "Wasabi", "Bunny", "Fastly", "Akamai", "Supabase", "PlanetScale"
+    ],
+    "devops_tools": [
+      "Docker", "Kubernetes", "Terraform", "Ansible", "Jenkins", "GitLab CI",
+      "GitHub Actions", "CircleCI", "TravisCI", "ArgoCD", "Helm", "Vagrant",
+      "Pulumi", "CloudFormation", "Chef", "Puppet", "SaltStack", "Nomad",
+      "Consul", "Vault", "Packer", "Envoy", "Istio", "Linkerd", "Prometheus",
+      "Grafana", "Datadog", "New Relic", "Splunk", "ELK Stack", "Fluentd"
+    ],
+    "ml_frameworks": [
+      "TensorFlow", "PyTorch", "Scikit-learn", "Keras", "JAX", "Hugging Face",
+      "LangChain", "LlamaIndex", "FastAI", "XGBoost", "LightGBM", "CatBoost",
+      "ONNX", "MLflow", "Kubeflow", "Ray", "Dask", "Spark MLlib", "H2O.ai",
+      "Auto-sklearn", "TPOT", "Optuna", "Weights & Biases", "Comet", "Neptune"
+    ],
+    "data_tools": [
+      "Pandas", "NumPy", "Matplotlib", "Seaborn", "Plotly", "D3.js", "Tableau",
+      "PowerBI", "Looker", "Metabase", "Superset", "Grafana", "Kibana",
+      "Apache Airflow", "Prefect", "Dagster", "dbt", "Great Expectations",
+      "Polars", "DuckDB", "Arrow", "Parquet", "Avro", "Protocol Buffers"
+    ],
+    "testing_tools": [
+      "Jest", "Pytest", "Mocha", "Chai", "Cypress", "Playwright", "Selenium",
+      "JUnit", "TestNG", "RSpec", "PHPUnit", "Vitest", "Testing Library",
+      "Cucumber", "Behave", "SpecFlow", "Postman", "Insomnia", "K6", "Locust",
+      "JMeter", "Gatling", "Artillery", "LoadRunner", "TestRail", "Allure"
+    ],
+    "mobile_frameworks": [
+      "React Native", "Flutter", "SwiftUI", "Jetpack Compose", "Ionic", "Xamarin",
+      "Cordova", "Capacitor", "NativeScript", "Expo", "Tauri", "Electron",
+      "NeutralinoJS", "Quasar", "Framework7", "Onsen UI", "Mobile Angular"
+    ],
+    "design_tools": [
+      "Figma", "Sketch", "Adobe XD", "Photoshop", "Illustrator", "InDesign",
+      "After Effects", "Premiere Pro", "Blender", "Maya", "Cinema 4D",
+      "Substance Painter", "ZBrush", "Procreate", "Affinity Designer",
+      "Canva", "Framer", "Principle", "ProtoPie", "InVision", "Marvel"
+    ],
+    "game_engines": [
+      "Unity", "Unreal Engine", "Godot", "GameMaker", "RPG Maker", "Construct",
+      "Phaser", "PixiJS", "Three.js", "Babylon.js", "PlayCanvas", "Defold",
+      "Cocos2d", "LibGDX", "MonoGame", "Love2D", "Panda3D", "CryEngine"
+    ],
+    "blockchain_platforms": [
+      "Ethereum", "Bitcoin", "Solana", "Polkadot", "Cardano", "Avalanche",
+      "Polygon", "Binance Smart Chain", "Cosmos", "Near", "Flow", "Tezos",
+      "Algorand", "Hedera", "Fantom", "Arbitrum", "Optimism", "zkSync"
+    ],
+    "ai_tools": [
+      "GPT-4", "Claude", "Gemini", "LLaMA", "Mistral", "Anthropic",
+      "OpenAI API", "Replicate", "Runway", "Midjourney", "Stable Diffusion",
+      "DALL-E", "Whisper", "ElevenLabs", "Synthesia", "Character.AI",
+      "Copilot", "Cursor", "Tabnine", "Codeium", "Phind", "Sourcegraph Cody"
+    ],
+    "cms_platforms": [
+      "WordPress", "Contentful", "Sanity", "Strapi", "Ghost", "Drupal",
+      "Joomla", "Prismic", "Dato CMS", "Hygraph", "Builder.io", "Storyblok",
+      "Agility CMS", "Cosmic", "ButterCMS", "Craft CMS", "Directus"
+    ],
+    "ecommerce_platforms": [
+      "Shopify", "WooCommerce", "Magento", "BigCommerce", "PrestaShop",
+      "OpenCart", "Wix eCommerce", "Squarespace Commerce", "Medusa",
+      "Saleor", "Vendure", "Spree", "Commerce.js", "Snipcart", "Ecwid"
+    ],
+    "analytics_tools": [
+      "Google Analytics", "Mixpanel", "Amplitude", "Segment", "PostHog",
+      "Plausible", "Fathom", "Heap", "Pendo", "FullStory", "LogRocket",
+      "Hotjar", "Crazy Egg", "Lucky Orange", "Clarity", "Matomo"
+    ],
+    "monitoring_tools": [
+      "Prometheus", "Grafana", "Datadog", "New Relic", "Dynatrace",
+      "AppDynamics", "Sentry", "Rollbar", "Bugsnag", "Airbrake",
+      "PagerDuty", "Opsgenie", "VictorOps", "Pingdom", "UptimeRobot",
+      "StatusPage", "Better Uptime", "Checkly", "Cronitor"
+    ],
+    "api_tools": [
+      "Postman", "Insomnia", "Swagger", "OpenAPI", "GraphQL", "Apollo",
+      "REST", "gRPC", "tRPC", "Hasura", "Prisma", "Supabase",
+      "Firebase", "Parse", "Backendless", "AWS Amplify", "Azure Functions"
+    ],
+    "version_control": [
+      "Git", "GitHub", "GitLab", "Bitbucket", "Azure DevOps", "Mercurial",
+      "SVN", "Perforce", "Plastic SCM", "Fossil", "Pijul", "Darcs"
+    ],
+    "ide_editors": [
+      "VS Code", "IntelliJ IDEA", "PyCharm", "WebStorm", "PhpStorm",
+      "Rider", "CLion", "DataGrip", "GoLand", "RubyMine", "Android Studio",
+      "Xcode", "Vim", "Neovim", "Emacs", "Sublime Text", "Atom",
+      "Brackets", "Nova", "Fleet", "Zed", "Cursor", "Windsurf"
+    ]
+  },
+  "behavior_dna": {
+    "communication": [
+      "ActiveListening", "AssertiveCommunication", "EmpathicResponse", "ConflictResolution",
+      "PublicSpeaking", "WrittenCommunication", "NonverbalCommunication", "Persuasion",
+      "Negotiation", "Storytelling", "TechnicalExplanation", "SimplificationSkill",
+      "FeedbackGiving", "FeedbackReceiving", "ActiveQuestioning", "Clarification",
+      "Summarization", "Paraphrasing", "OpenEndedQuestions", "ClosedQuestions",
+      "CrossCulturalCommunication", "EmotionalExpression", "ConflictDeescalation",
+      "DiplomaticLanguage", "DirectFeedback", "SandwichMethod", "Coaching",
+      "Mentoring", "PresentationSkills", "PitchingIdeas", "SalesCommunication",
+      "CustomerService", "CrisisComm unication", "TransparentCommunication",
+      "BoundarySetting", "AsynchronousCommunication", "VideoConferencing",
+      "EmailEtiquette", "SlackCommunication", "DocumentationWriting",
+      "TechnicalWriting", "CreativeWriting", "AcademicWriting", "BusinessWriting"
+    ],
+    "work_habits": [
+      "TimeBlocking", "DeepWork", "Multitasking", "TaskPrioritization", "Procrastination",
+      "EarlyBird", "NightOwl", "BatchProcessing", "ContextSwitching", "FocusSession",
+      "BreakTaking", "EnergyManagement", "DeadlineAdherence", "Perfectionism",
+      "Delegation", "Automation", "Documentation", "CodeReview", "PairProgramming",
+      "MobProgramming", "StandupParticipation", "MeetingEfficiency",
+      "PomodoroTechnique", "EisenhowerMatrix", "KanbanMethod", "GettingThingsDone",
+      "ZenToProductivity", "EatThatFrog", "TwoMinuteRule", "TimeBoxing",
+      "TaskChunking", "ProgressTracking", "HabitStacking", "RoutineBuilding",
+      "MorningRoutine", "EveningRoutine", "WeeklyReview", "MonthlyReview",
+      "GoalSetting", "OKRs", "SMARTGoals", "WeeklyPlanning", "DailyPlanning",
+      "Retrospectives", "PostMortems", "PreMortems", "StatusReporting"
+    ],
+    "learning": [
+      "ExperientialLearning", "TheoreticalLearning", "PracticalApplication",
+      "TutorialFollowing", "SelfDirectedLearning", "MentorshipSeeking",
+      "PeerLearning", "OnlineCourses", "BookReading", "VideoLearning",
+      "HandsOnPractice", "ProjectBasedLearning", "SpacedRepetition",
+      "ActiveRecall", "FeynmanTechnique", "NoteTaking", "KnowledgeSharing",
+      "CornellNotes", "MindMapping", "SketchNoting", "ZettelkastenMethod",
+      "SecondBrain", "PersonalKnowledgeManagement", "LearningInPublic",
+      "TeachToLearn", "LibraryMethod", "ImmersiveLearning", "LanguageLearning",
+      "SkillStacking", "T-ShapedLearning", "DeepLearning", "BroadLearning",
+      "JustInTimeLearning", "ContinuousLearning", "Unlearning", "Relearning"
+    ],
+    "collaboration": [
+      "TeamPlayer", "LeadershipStyle", "FollowershipStyle", "MentorRole",
+      "MenteeRole", "ConflictMediation", "ConsensusBuilding", "Brainstorming",
+      "IdeaSharing", "ConstructiveCriticism", "SupportiveEncouragement",
+      "KnowledgeTransfer", "CrossFunctionalWork", "RemoteCollaboration",
+      "AsynchronousCollaboration", "RealTimeCollaboration", "DocumentSharing",
+      "CodeSharing", "ScreenSharing", "WhiteboardingVirtual", "WhiteboardingPhysical",
+      "DesignThinking", "AgileMethodology", "ScrumPractices", "KanbanFlow",
+      "LeanThinking", "DevOpsCulture", "InnerSource", "OpenSource",
+      "CommunityBuilding", "NetworkEffect", "CrowdWisdom", "PeerReview"
+    ],
+    "leadership": [
+      "ServantLeadership", "TransformationalLeadership", "TransactionalLeadership",
+      "AuthenticLeadership", "SituationalLeadership", "DemocraticLeadership",
+      "AutocraticLeadership", "LaissezFaireLeadership", "CharismaticLeadership",
+      "VisionaryCommunication", "StrategicDirection", "TeamBuilding",
+      "TalentDevelopment", "PerformanceManagement", "ConflictResolution",
+      "DecisionMaking", "Accountability", "Empowerment", "Delegation",
+      "ChangeManagement", "OrganizationalDesign", "CultureBuilding"
+    ],
+    "problem_solving_behaviors": [
+      "StructuredApproach", "CreativeApproach", "IterativeApproach",
+      "SystematicDebugging", "TrialAndError", "HypothesisDriven",
+      "DataDriven", "IntuitionDriven", "CollaborativeProblemSolving",
+      "IndependentProblemSolving", "RootCauseInvestigation", "WorkaroundCreation",
+      "LongTermSolution", "QuickFix", "PreventativeThinking", "ReactiveResponse"
+    ],
+    "feedback_patterns": [
+      "ContinuousFeedback", "PeriodicFeedback", "RealTimeFeedback",
+      "DelayedFeedback", "PositiveReinforcement", "ConstructiveCriticism",
+      "RadicalCandor", "KindCandor", "FeedbackSandwich", "DirectFeedback",
+      "BehaviorFocusedFeedback", "OutcomeFocusedFeedback", "GrowthMindsetFeedback",
+      "FeedbackSeeking", "FeedbackIncorporation", "FeedbackResistance"
+    ]
+  },
+  "cognitive_dna": {
+    "problem_solving": [
+      "AnalyticalThinking", "CreativeProblemSolving", "SystemsThinking", "CriticalAnalysis",
+      "DeductiveReasoning", "InductiveReasoning", "AbductiveReasoning", "LateralThinking",
+      "FirstPrinciplesThinking", "DesignThinking", "RootCauseAnalysis", "HypothesisTesting",
+      "PatternRecognition", "AbstractThinking", "ConcreteThinking", "StrategicPlanning",
+      "TacticalExecution", "LongTermThinking", "ShortTermFocus",
+      "AlgorithmicThinking", "ComputationalThinking", "MathematicalThinking",
+      "StatisticalThinking", "ProbabilisticThinking", "DeterministicThinking",
+      "HolisticThinking", "ReductionistThinking", "NonLinearThinking",
+      "ParallelThinking", "SequentialThinking", "RecursiveThinking"
+    ],
+    "memory": [
+      "WorkingMemory", "LongTermRetention", "VisualMemory", "VerbalMemory", "SpatialMemory",
+      "ProceduralMemory", "EpisodicMemory", "SemanticMemory", "ShortTermRecall", "Mnemonics",
+      "ChunkingStrategy", "AssociativeMemory", "ContextualMemory", "FlashbulbMemory",
+      "MethodOfLoci", "PegSystem", "StoryMethod", "AcronymMethod", "RhymeMethod",
+      "VisualizationTechniques", "SpacedRepetitionSystem", "ActiveRecallPractice",
+      "Interleaving", "ElaborativeRehearsal", "MaintenanceRehearsal"
+    ],
+    "attention": [
+      "SustainedAttention", "SelectiveAttention", "DividedAttention", "AlternatingAttention",
+      "FocusDepth", "DistractionResistance", "FlowState", "Hyperfocus", "MindWandering",
+      "TaskSwitching", "AttentionRestoration", "ExecutiveAttention", "AlertingAttention",
+      "OrientingAttention", "BottomUpAttention", "TopDownAttention", "AutomaticAttention",
+      "ControlledAttention", "VigilanceAbility", "AttentionalBlink", "ChangeBlindness"
+    ],
+    "decision_making": [
+      "RationalDecision", "IntuitiveDecision", "DataDrivenDecision", "RiskAssessment",
+      "CostBenefitAnalysis", "DecisionSpeed", "DecisionQuality", "UncertaintyTolerance",
+      "AmbiguityComfort", "ReversibilityConsideration", "StakeholderAnalysis",
+      "DecisionFramework", "DecisionTree", "ProbabilityEstimation", "BayesianThinking",
+      "ExpectedValue", "OpportunityCost", "SunkCostAvoidance", "StatusQuoBias",
+      "ConfirmationBiasAwareness", "AvailabilityHeuristic", "RepresentativenessHeuristic",
+      "AnchoringAdjustment", "FramingEffect", "ProspectTheory", "SatisficingVsOptimizing"
+    ],
+    "metacognition": [
+      "SelfAwareness", "CognitiveMonitoring", "LearningStrategies", "ThinkingAboutThinking",
+      "KnowledgeOfCognition", "RegulationOfCognition", "PlanningSkills", "MonitoringSkills",
+      "EvaluationSkills", "ReflectivePractice", "CriticalSelfAssessment", "GrowthMindset",
+      "CognitiveFlexibility", "AdaptiveLearning", "MetaMemory", "MetaComprehension"
+    ],
+    "creativity": [
+      "DivergentThinking", "ConvergentThinking", "Ideation", "Brainstorming",
+      "LateralThinking", "Originality", "Fluency", "Flexibility", "Elaboration",
+      "RemotAsso ciation", "ConceptualCombination", "Insight", "Incubation",
+      "IlluminationMoment", "VerificationProcess", "CreativeConstraints",
+      "DesignPatterns", "MashupThinking", "Analogies", "Metaphors"
+    ]
+  },
+  "emotional_dna": {
+    "emotional_states": [
+      "Joy", "Sadness", "Anger", "Fear", "Surprise", "Disgust", "Contentment", "Excitement",
+      "Anxiety", "Calm", "Frustration", "Hope", "Pride", "Shame", "Guilt", "Gratitude",
+      "Love", "Jealousy", "Envy", "Curiosity", "Boredom", "Confusion", "Confidence",
+      "Insecurity", "Empowerment", "Helplessness", "Optimism", "Pessimism",
+      "Enthusiasm", "Apathy", "Nostalgia", "Anticipation", "Disappointment",
+      "Relief", "Regret", "Awe", "Admiration", "Contempt", "Resentment",
+      "Compassion", "Sympathy", "Empathy", "Schadenfreude", "Freudenfreude",
+      "Ambivalence", "Serenity", "Ecstasy", "Vigilance", "Rage", "Loathing", "Grief",
+      "Acceptance", "Trust", "Apprehension", "Distraction", "Pensiveness", "Annoyance"
+    ],
+    "regulation": [
+      "SelfSoothing", "EmotionIdentification", "TriggerAwareness", "CopingStrategies",
+      "EmotionalExpression", "EmotionalSuppression", "Reappraisal", "Distraction",
+      "Mindfulness", "BreathingTechniques", "GroundingExercises", "CognitiveReframing",
+      "AcceptanceCommitment", "EmotionalLabeling", "SafeSpaceCreation",
+      "ProgressiveMuscleRelaxation", "Visualization", "JournalingPractice",
+      "ExerciseForRegulation", "SocialSupport", "ProfessionalHelp", "MedicationManagement",
+      "SleepHygiene", "NutritionAwareness", "SubstanceAvoidance", "BoundaryEnforcement",
+      "TimeOut", "SelfCompassion", "LovingKindness", "BodyScanning", "EmotionalReleaseWork"
+    ],
+    "empathy": [
+      "CognitiveEmpathy", "EmotionalEmpathy", "CompassionateEmpathy", "PerspectiveTaking",
+      "EmotionalMirroring", "EmotionalContagion", "EmpathicListening", "ValidationSkill",
+      "EmpathicAccuracy", "EmpathicConcern", "PersonalDistress", "FantasyEmpathy",
+      "SomaticEmpathy", "AffectiveResonance", "TheoryOfMind", "EmotionalIntelligence"
+    ],
+    "motivation": [
+      "IntrinsicMotivation", "ExtrinsicMotivation", "AutonomousDrive", "CompetenceSeeking",
+      "RelatednessNeed", "MasteryOrientation", "PerformanceOrientation", "GrowthGoals",
+      "AchievementMotivation", "AffiliationMotivation", "PowerMotivation",
+      "SecurityMotivation", "StatusMotivation", "PurposeDriven", "PassionDriven",
+      "CuriosityDriven", "ImpactDriven", "LegacyBuilding", "SelfActualization"
+    ],
+    "resilience": [
+      "StressManagement", "AdversityResponse", "RecoverySpeed", "MentalToughness",
+      "EmotionalFlexibility", "OptimisticExplanations", "SelfEfficacy", "ControlLocus",
+      "ProblemFocusedCoping", "EmotionFocusedCoping", "SocialCoping", "MeaningMaking",
+      "PostTraumaticGrowth", "BounceBack", "AdaptiveCoping", "HardinessTraits",
+      "GritDetermination", "Perseverance", "FrustraTolerance", "UncertaintyTolerance"
+    ]
+  },
+  "professional_dna": {
+    "industries": [
+      "Technology", "Finance", "Healthcare", "Education", "Retail", "Manufacturing",
+      "Consulting", "Legal", "Marketing", "Sales", "RealEstate", "Construction",
+      "Entertainment", "Hospitality", "Transportation", "Energy", "Agriculture",
+      "Government", "NonProfit", "Media", "Telecommunications", "Automotive",
+      "Aerospace", "Defense", "Pharmaceutical", "Biotechnology", "Insurance",
+      "Banking", "Investment", "PrivateEquity", "VentureCapital", "Cryptocurrency",
+      "Gaming", "Sports", "Fashion", "FoodBeverage", "Travel", "Tourism",
+      "Publishing", "Advertising", "PublicRelations", "EventManagement",
+      "SupplyChain", "Logistics", "Warehousing", "Shipping", "Aviation",
+      "Maritime", "Mining", "Forestry", "Fishing", "Utilities", "WasteManagement",
+      "Environmental", "Renewable Energy", "Oil Gas", "Chemicals", "Plastics",
+      "Textiles", "Furniture", "Appliances", "Electronics", "Semiconductors"
+    ],
+    "roles": [
+      "SoftwareEngineer", "DataScientist", "ProductManager", "Designer", "Analyst",
+      "ProjectManager", "Consultant", "Researcher", "Writer", "Editor", "Teacher",
+      "Manager", "Executive", "Entrepreneur", "Freelancer", "TeamLead", "Architect",
+      "DevOpsEngineer", "SRE", "SecurityEngineer", "QAEngineer", "UIUXDesigner",
+      "FrontendDeveloper", "BackendDeveloper", "FullStackDeveloper", "MLEngineer",
+      "DataEngineer", "BusinessAnalyst", "ScrumMaster", "ProductOwner",
+      "TechnicalWriter", "DeveloperAdvocate", "SolutionsArchitect", "CloudArchitect",
+      "NetworkEngineer", "SystemsAdministrator", "DatabaseAdministrator",
+      "CTO", "CIO", "CEO", "CFO", "COO", "VP Engineering", "VP Product",
+      "Head of Design", "Head of Data", "Head of Security", "Head of DevOps",
+      "Principal Engineer", "Staff Engineer", "Senior Engineer", "Junior Engineer",
+      "Intern", "Contractor", "Consultant", "Advisor", "BoardMember", "Investor"
+    ],
+    "competencies": [
+      "Leadership", "Management", "Strategy", "Execution", "Communication",
+      "Collaboration", "Innovation", "ProblemSolving", "CriticalThinking",
+      "Creativity", "Adaptability", "Resilience", "EmotionalIntelligence",
+      "TimeManagement", "OrganizationalSkills", "NegotiationSkills",
+      "ConflictResolution", "DecisionMaking", "StrategicThinking",
+      "OperationalExcellence", "ProcessImprovement", "ChangeManagement",
+      "StakeholderManagement", "BudgetManagement", "ResourceAllocation",
+      "RiskManagement", "QualityAssurance", "ComplianceManagement",
+      "CustomerFocus", "MarketAwareness", "CompetitiveAnalysis",
+      "BusinessDevelopment", "PartnershipBuilding", "NetworkingAbility"
+    ],
+    "career_stages": [
+      "StudentIntern", "EntryLevel", "Junior", "Mid Level", "Senior", "Lead",
+      "Principal", "Staff", "Distinguished", "Fellow", "Manager", "Director",
+      "VP", "SVP", "CLevel", "Founder", "Cofounder", "Solopreneur",
+      "FreelanceConsultant", "PartTimeContractor", "FullTimeEmployee",
+      "RemoteWorker", "DigitalNomad", "RetiredConsultant", "AdvisorRole",
+      "BoardRole", "AngelInvestor", "VenturePartner", "MentorRole", "CoachRole"
+    ]
+  },
+  "preference_dna": {
+    "learning_styles": [
+      "VisualLearning", "AuditoryLearning", "KinestheticLearning", "ReadingWriting",
+      "SelfPaced", "StructuredLearning", "ExperientialLearning", "CollaborativeLearning",
+      "IndependentStudy", "GroupStudy", "HandsOnPractice", "TheoreticalStudy",
+      "VideoTutorials", "WrittenDocumentation", "InteractiveCourses",
+      "LiveWorkshops", "AsynchronousLearning", "SynchronousLearning",
+      "MicroLearning", "DeepDiveLearning", "BroadOverview", "DetailOriented",
+      "BigPicture", "StepByStepGuides", "DiscoveryLearning", "GuidedLearning"
+    ],
+    "communication_preferences": [
+      "EmailPreference", "PhonePreference", "VideoCallPreference", "InPersonPreference",
+      "TextMessaging", "AsynchronousCommunication", "SynchronousCommunication",
+      "FormalTone", "CasualTone", "DirectCommunication", "IndirectCommunication",
+      "VerbalCommunication", "WrittenCommunication", "VisualCommunication",
+      "SlackPreference", "TeamsPreference", "DiscordPreference", "ZoomPreference",
+      "MeetPreference", "WhatsAppPreference", "TelegramPreference",
+      "ShortMessages", "LongFormMessages", "BulletPoints", "Paragraphs",
+      "EmojiUsage", "GIFUsage", "ThreadedConversations", "DirectMessages"
+    ],
+    "work_environment": [
+      "RemoteWork", "OfficeWork", "HybridWork", "QuietEnvironment", "CollaborativeSpace",
+      "PrivateOffice", "OpenPlan", "FlexibleSchedule", "FixedSchedule",
+      "IndependentWork", "TeamWork", "StructuredEnvironment", "AutonomousEnvironment",
+      "CoffeeShopWork", "CoworkingSpace", "HomeOffice", "DedicatedWorkspace",
+      "MultipleLoc ations", "TravelRequired", "LocalOnly", "GlobalTeam",
+      "TimezoneFlexibility", "CoreHours", "FlexHours", "CompressedWorkweek",
+      "FourDayWeek", "UnlimitedPTO", "StructuredPTO", "WorkLifeBalance",
+      "WorkLifeIntegration", "ClearBoundaries", "AlwaysOn", "AsyncFirst"
+    ],
+    "tool_preferences": [
+      "IDEPreference", "TextEditorPreference", "CommandLinePreference", "GUIPreference",
+      "NotionUser", "ObsidianUser", "RoamUser", "EvernoteUser", "OneNoteUser",
+      "LinearUser", "JiraUser", "AsanaUser", "TrelloUser", "MondayUser",
+      "MacOS", "Windows", "Linux", "iOS", "Android", "CrossPlatform",
+      "KeyboardShortcuts", "MousePreference", "TouchpadPreference", "TouchScreen",
+      "DarkMode", "LightMode", "AutoTheme", "CustomTheme", "MinimalSetup",
+      "FullyCustomized", "DefaultSettings", "PowerUserConfig"
+    ]
+  },
+  "social_dna": {
+    "social_styles": [
+      "Extroversion", "Introversion", "Ambiversion", "Sociability", "Assertiveness",
+      "Cooperativeness", "Competitiveness", "TeamOrientation", "Independence",
+      "NetworkingSkill", "SmallTalkAbility", "DeepConversationPreference",
+      "SocialEnergy", "SocialAnxiety", "SocialConfidence", "GroupDynamics",
+      "OneonOnePreference", "SmallGroupPreference", "LargeGroupComfort",
+      "PublicPerformance", "SocialInitiation", "SocialResponse", "SocialMaintenance",
+      "SocialBoundaries", "IntimacyLevels", "VulnerabilitySharing",
+      "EmotionalOpenness", "PrivacyPreference", "TransparencyPreference"
+    ],
+    "relationship_patterns": [
+      "TrustBuilding", "BoundarySetting", "ConflictManagement", "Collaboration",
+      "Delegation", "Mentorship", "Networking", "IntimacyComfort", "VulnerabilitySharing",
+      "EmotionalAvailability", "AttachmentStyle", "CommunicationOpenness",
+      "SupportSeeking", "SupportGiving", "RelationshipMaintenance",
+      "RelationshipInitiation", "RelationshipDeepening", "RelationshipRepair",
+      "RelationshipEnding", "ConflictAvoidance", "ConflictEngagement",
+      "CompromiseAbility", "NegotiationSkills", "ReciprocityAwareness",
+      "GivingPattern", "ReceivingPattern", "Interdependence", "Codependence",
+      "HealthyIndependence", "Enmeshment", "Distancing", "PursuerWithdrawer"
+    ],
+    "influence_styles": [
+      "Persuasion", "Inspiration", "Collaboration", "Consultation", "Bargaining",
+      "Appeals", "Pressure", "Coalition", "Legitimating", "PersonalAppeals",
+      "IngratiatingSocial", "Exchange", "Rational Persuasion", "InspirationAppeal",
+      "ConsultativeSocial", "CoalitionBuilding", "Assertiveness", "Persistence",
+      "ExchangeTactics", "SocialProof", "Authority", "Scarcity", "Consistency",
+      "Liking", "Reciprocity", "UnityPrinciple"
+    ]
+  },
+  "meta_dna": {
+    "self_awareness": [
+      "EmotionalSelfAwareness", "StrengthsAwareness", "WeaknessesAwareness",
+      "ValuesClarity", "MotivationUnderstanding", "TriggerAwareness",
+      "PatternRecognition", "BlindSpotIdentification", "FeedbackIntegration",
+      "SelfReflection", "JournalingPractice", "MeditativePractice",
+      "PersonalityAssessment", "360FeedbackOpenness", "BiasAwareness",
+      "CognitiveDistortionRecognition", "DefenseMechanismAwareness",
+      "CopingStrategyInventory", "PersonalValuesAlignment", "IdentityClarity"
+    ],
+    "learning_to_learn": [
+      "MetaLearningSkills", "LearningStrategySelection", "StudyTechniqueOptimization",
+      "RetentionStrategies", "TransferOfLearning", "LearningStyleAdaptation",
+      "FeedbackLoops", "DeliberatePractice", "SpacedRepetition", "Interleaving",
+      "ElaborationStrategies", "DualCoding", "ConcreteExamples", "SelfExplanation",
+      "PracticeT esting", "DistributedPractice", "LearningFromFailure",
+      "ExperimentalMindset", "CuriosityDriven", "QuestionAsking"
+    ],
+    "adaptation_capacity": [
+      "ChangeReadiness", "FlexibilityMindset", "ResilienceBuilding", "GrowthOrientation",
+      "ComfortZoneExpansion", "NoveltyTolerance", "AmbiguityComfort",
+      "TransitionManagement", "PivotingAbility", "ReinventionCapacity",
+      "UnlearningSkill", "RelearningOpenness", "ParadigmShifting",
+      "ContextSwitching", "CultureAdaptation", "TechnologyAdoption"
+    ],
+    "productivity_systems": [
+      "GettingThingsDone", "BulletJournal", "ZettelkastenMethod", "PomodoroTechnique",
+      "TimeBlocking", "EnergyManagement", "EisenhowerMatrix", "KanbanPersonal",
+      "Agile Personal", "WeeklyReview", "DailyShutdown", "MorningPages",
+      "EveningReflection", "HabitTracking", "GoalTracking", "ProjectManagement",
+      "TaskManagement", "NoteManagement", "KnowledgeManagement", "DigitalMinimalism"
+    ]
+  }
+}

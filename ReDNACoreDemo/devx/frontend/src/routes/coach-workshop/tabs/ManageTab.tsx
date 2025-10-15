@@ -102,7 +102,7 @@ export default function ManageTab({ coachId, coachLabel, coachStatus, onRefresh 
         throw new Error(error.detail || 'Failed to execute rename')
       }
 
-      const result = await response.json()
+      await response.json()
       setMessage({ type: 'success', text: `Successfully renamed to '${newCoachId}'!` })
       setShowRenameModal(false)
       setTimeout(() => onRefresh(), 1000)

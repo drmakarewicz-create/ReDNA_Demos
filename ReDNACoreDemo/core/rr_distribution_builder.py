@@ -15,8 +15,8 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Set
 
-from core.rr_histogram import TraitDistributionHistogram, build_distribution_from_users
-from core.storage import list_users, read_user_state
+from ReDNACoreDemo.core.rr_histogram import TraitDistributionHistogram, build_distribution_from_users
+from ReDNACoreDemo.core.storage import list_users, read_user_state
 
 logger = logging.getLogger(__name__)
 

@@ -1,5 +1,3 @@
-import React from 'react'
-
 export interface ConflictRow {
   conflict_id: string
   user_id: string
@@ -62,4 +60,3 @@ export function ConflictTable({ conflicts, onSelect }: ConflictTableProps) {
     </div>
   )
 }
-

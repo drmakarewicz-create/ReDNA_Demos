@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface ConflictDetailProps {
   conflict?: Record<string, any> | null
 }
@@ -76,4 +74,3 @@ export function ConflictDetail({ conflict }: ConflictDetailProps) {
     </div>
   )
 }
-

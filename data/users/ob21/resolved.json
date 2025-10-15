@@ -1,0 +1,39 @@
+{
+  "profile": {
+    "label": "ob21",
+    "created_ts": "2025-10-15T14:37:21.802245+00:00"
+  },
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T14:47:02+00:00"
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "value": {
+      "enum": "higher_likelihood"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-15T14:47:02+00:00"
+  },
+  "PaDNA.HairDNA.DarknessPrior": {
+    "value": {
+      "enum": "slightly_lower"
+    },
+    "ucn": 0.15,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-15T14:47:02+00:00"
+  }
+}

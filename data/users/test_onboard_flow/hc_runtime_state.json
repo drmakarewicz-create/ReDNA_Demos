@@ -1,0 +1,9 @@
+{
+  "last_user_ts": "2025-10-16T07:33:20+00:00",
+  "last_user_text": "My name is TestUser. My age range is 25-34. My gender is Female. My orientation is Bisexual. My preferred language is English. My relationship status is Single. For the Would You Rather question, I chose: A cozy home dinner with deep conversation.",
+  "turns_observed": 1,
+  "dialog_history": [
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-15T15:48:50.490746+00:00"
+}

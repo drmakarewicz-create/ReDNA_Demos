@@ -1,0 +1,48 @@
+# Lightweight inference rules for trait system
+# Each rule: if we observe canonical evidence X=Y, propose inferred trait(s)
+#
+# ETHICAL GUARDRAILS:
+# - All inferences tagged with provenance: "inference:<rule_id>"
+# - Low initial UCN (0.15-0.25) to indicate uncertainty
+# - display_hint: "needs_confirmation" for user review
+# - ui_hidden: true for sensitive inferences (protected attributes)
+# - Never replace confirmed values with inferences
+
+- id: iris_blue_freckles_hint
+  when:
+    trait_id: "PaDNA.EyeDNA.IrisColor"
+    equals: "blue"
+  infer:
+    - trait_id: "PaDNA.SkinDNA.Freckles"
+      value: "higher_likelihood"
+      ucn_prior: 0.2
+      ui_hidden: false
+      display_hint: "needs_confirmation"
+  notes: "Correlative; low-confidence. Do not present as fact. Blue eyes correlate with fair skin which may have more freckles."
+
+- id: iris_blue_dark_hair_less_likely
+  when:
+    trait_id: "PaDNA.EyeDNA.IrisColor"
+    equals: "blue"
+  infer:
+    - trait_id: "PaDNA.HairDNA.DarknessPrior"
+      value: "slightly_lower"
+      ucn_prior: 0.15
+      ui_hidden: true
+      display_hint: "needs_confirmation"
+  notes: "Keep hidden by default to avoid overreach. Blue eyes less commonly paired with very dark hair naturally."
+
+- id: iris_brown_dark_hair_more_likely
+  when:
+    trait_id: "PaDNA.EyeDNA.IrisColor"
+    equals: "brown"
+  infer:
+    - trait_id: "PaDNA.HairDNA.DarknessPrior"
+      value: "slightly_higher"
+      ucn_prior: 0.15
+      ui_hidden: true
+      display_hint: "needs_confirmation"
+  notes: "Hidden. Brown eyes more commonly paired with darker hair naturally."
+
+# Future rules can be added here following same pattern
+# Always keep UCN low and allow user confirmation

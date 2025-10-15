@@ -66,7 +66,7 @@ const TASK_LABELS: Record<string, string> = {
   life_voice_summary: 'Voice Summary',
 }
 
-export default function AutonomyPanel({ userId, agencyLevel, readonly = false }: AutonomyPanelProps) {
+export default function AutonomyPanel({ userId, agencyLevel: _agencyLevel, readonly = false }: AutonomyPanelProps) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [policy, setPolicy] = useState<AutonomyPolicy | null>(null)

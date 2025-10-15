@@ -116,7 +116,7 @@ async def revoke_capability(cap_id: str, reason: str = "Coach-initiated revocati
 """
 # In a coach endpoint:
 
-from core.permission_coach.client import ensure_capability, PermissionDeniedError, PermissionPendingError
+from ReDNACoreDemo.core.permission_coach.client import ensure_capability, PermissionDeniedError, PermissionPendingError
 
 @app.post("/coach/career/generate-resume")
 async def generate_resume(user_id: str, request: Request):
