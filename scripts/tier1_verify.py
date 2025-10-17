@@ -45,7 +45,7 @@ TIER1_TRAITS = [
         "env_rr": "RR_PROMOTE_MIN_HAIR",
         "default_rr": 500,
         "test_phrase": "I have brown hair",
-        "expected_trait": "PaDNA.HairDNA.Color",
+        "expected_trait": "PaDNA.HairDNA.Color.Natural",
         "expected_value": "brown"
     },
     {
@@ -201,7 +201,8 @@ def run_test_case(trait_info: Dict) -> Tuple[bool, Optional[str]]:
 
         # Check snapshot
         snapshot_resp = requests.get(
-            f"{CORE_BASE}/users/{user_id}/snapshot",
+            f"{CORE_BASE}/ui/unabridged",
+            params={"user_id": user_id},
             timeout=5
         )
 
@@ -209,15 +210,16 @@ def run_test_case(trait_info: Dict) -> Tuple[bool, Optional[str]]:
             return False, "snapshot_not_found"
 
         snapshot = snapshot_resp.json()
-        traits = snapshot.get("traits", {})
+        traits_list = snapshot.get("traits", [])
 
         # Check if expected trait is present
         expected_trait = trait_info["expected_trait"]
-        if expected_trait in traits:
-            value = traits[expected_trait].get("value")
-            return True, str(value)
-        else:
-            return False, "trait_not_found"
+        for trait in traits_list:
+            if trait.get("trait_id") == expected_trait:
+                value = trait.get("value")
+                return True, str(value)
+
+        return False, "trait_not_found"
 
     except Exception as e:
         return False, f"error: {e}"
