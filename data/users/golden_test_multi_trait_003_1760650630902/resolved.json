@@ -1,0 +1,34 @@
+{
+  "Location.Workplace": {
+    "id": "Location.Workplace",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650630935",
+        "ts": "2025-10-16T21:37:10+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:37:13.914496Z",
+    "history": []
+  },
+  "Location.LocationType": {
+    "id": "Location.LocationType",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650630935",
+        "ts": "2025-10-16T21:37:10+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:37:13.914512Z",
+    "history": []
+  }
+}

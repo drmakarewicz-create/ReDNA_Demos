@@ -1,0 +1,50 @@
+{
+  "PaDNA.Human.DrinkCoffee": {
+    "id": "PaDNA.Human.DrinkCoffee",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642789644",
+        "ts": "2025-10-16T19:26:29+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:26:31.701552Z",
+    "history": []
+  },
+  "PaDNA.Human.DailyCaffeineIntake": {
+    "id": "PaDNA.Human.DailyCaffeineIntake",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642789644",
+        "ts": "2025-10-16T19:26:29+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:26:31.701562Z",
+    "history": []
+  },
+  "PaDNA.Human.TimeOfConsumption": {
+    "id": "PaDNA.Human.TimeOfConsumption",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642789644",
+        "ts": "2025-10-16T19:26:29+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:26:31.701565Z",
+    "history": []
+  }
+}

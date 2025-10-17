@@ -1,0 +1,50 @@
+{
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760659258678",
+        "ts": "2025-10-17T00:00:58+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-17T00:01:00.586605Z",
+    "history": []
+  },
+  "BehaviorDNA.Schedule.WorkHours": {
+    "id": "BehaviorDNA.Schedule.WorkHours",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760659258678",
+        "ts": "2025-10-17T00:00:58+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-17T00:01:00.586616Z",
+    "history": []
+  },
+  "BehaviorDNA.Leisure.Indoor": {
+    "id": "BehaviorDNA.Leisure.Indoor",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760659258678",
+        "ts": "2025-10-17T00:00:58+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-17T00:01:00.586620Z",
+    "history": []
+  }
+}

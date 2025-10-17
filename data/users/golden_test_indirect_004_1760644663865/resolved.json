@@ -1,0 +1,66 @@
+{
+  "PaDNA.Intent": {
+    "id": "PaDNA.Intent",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644663883",
+        "ts": "2025-10-16T19:57:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:45.941728Z",
+    "history": []
+  },
+  "PaDNA.Mood": {
+    "id": "PaDNA.Mood",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644663883",
+        "ts": "2025-10-16T19:57:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:45.941739Z",
+    "history": []
+  },
+  "PaDNA.ActivityLevel": {
+    "id": "PaDNA.ActivityLevel",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644663883",
+        "ts": "2025-10-16T19:57:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:45.941741Z",
+    "history": []
+  },
+  "PaDNA.PlanningStatus": {
+    "id": "PaDNA.PlanningStatus",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644663883",
+        "ts": "2025-10-16T19:57:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:45.941742Z",
+    "history": []
+  }
+}

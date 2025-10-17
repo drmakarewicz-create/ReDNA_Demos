@@ -1,0 +1,18 @@
+{
+  "BehaviorDNA.Communication.ResponseStyle": {
+    "id": "BehaviorDNA.Communication.ResponseStyle",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644637382",
+        "ts": "2025-10-16T19:57:17+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:18.203702Z",
+    "history": []
+  }
+}

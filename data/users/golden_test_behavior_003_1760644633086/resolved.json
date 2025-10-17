@@ -1,0 +1,50 @@
+{
+  "BehaviorDNA.Exercise.Outdoor": {
+    "id": "BehaviorDNA.Exercise.Outdoor",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644633107",
+        "ts": "2025-10-16T19:57:13+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:14.806286Z",
+    "history": []
+  },
+  "BasicDNA.Location.City": {
+    "id": "BasicDNA.Location.City",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644633107",
+        "ts": "2025-10-16T19:57:13+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:14.806297Z",
+    "history": []
+  },
+  "PaDNA.TimePeriod": {
+    "id": "PaDNA.TimePeriod",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644633107",
+        "ts": "2025-10-16T19:57:13+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:14.806299Z",
+    "history": []
+  }
+}

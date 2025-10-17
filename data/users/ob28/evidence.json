@@ -162,6 +162,75 @@
       },
       "source": "chat",
       "ts": "2025-10-15T19:51:10+00:00"
+    },
+    {
+      "trait_id": "FreeText",
+      "value": {
+        "text": "hi"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T23:20:59+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "conflict",
+        "reliability": 0.5,
+        "logged_at": "2025-10-15T23:20:59+00:00"
+      },
+      "_reliability": 0.5
+    },
+    {
+      "trait_id": "attributes.physical.height",
+      "confidence": 100,
+      "raw_text": "I am 6 feet tall",
+      "timestamp": "2025-10-15T23:21:50.732000+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.height: 6 feet tall",
+      "value": {
+        "text": "6 feet tall"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T23:21:55+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "high_signal",
+        "reliability": 0.5,
+        "logged_at": "2025-10-15T23:21:55+00:00"
+      },
+      "_reliability": 0.5
+    },
+    {
+      "trait_id": "BasicDNA.Age",
+      "value": {
+        "number": 6
+      },
+      "source": "chat",
+      "ts": "2025-10-15T23:21:55+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "conflict",
+        "reliability": 0.5,
+        "logged_at": "2025-10-15T23:21:55+00:00"
+      },
+      "_reliability": 0.5
+    },
+    {
+      "trait_id": "FreeText",
+      "value": {
+        "text": "I am 6 feet tall"
+      },
+      "source": "chat",
+      "ts": "2025-10-15T23:22:08+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "conflict,pending_resolution",
+        "reliability": 0.5,
+        "logged_at": "2025-10-15T23:22:08+00:00"
+      },
+      "_reliability": 0.5
     }
   ]
 }

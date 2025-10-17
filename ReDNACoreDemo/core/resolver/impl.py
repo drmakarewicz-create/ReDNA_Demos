@@ -17,6 +17,9 @@ from .debug import log_step
 from .resolved_io import read_resolved, write_resolved
 from ReDNACoreDemo.core.traits.ontology import get_trait_spec
 from ReDNACoreDemo.core.rr.client import score_ucn
+from ReDNACoreDemo.core.ingest.policy import apply_supersession
+from ReDNACoreDemo.core.logutil import stack_log, supersession_log
+from ReDNACoreDemo.core.metrics import METRICS, MetricNames
 
 
 class UCNRRRequiredError(Exception):
@@ -133,33 +136,97 @@ def resolve_roundtrip(
 
     # 4) Merge into resolved snapshot
     resolved: Resolved = read_resolved(user_id) or {}
+    previous_snapshot: Dict[str, Dict[str, Any]] = {}
+    if isinstance(resolved, dict):
+        for tid, payload in resolved.items():
+            if isinstance(payload, dict):
+                previous_snapshot[tid] = dict(payload)
+    else:
+        resolved = {}
 
     for tid, ev in chosen.items():
-        prev = resolved.get(tid, {})
+        prev = previous_snapshot.get(tid) or {}
         ucn = by_tid_ucn.get(tid, float(ev.get("ucn_prior", 0.2)))
         val = ev.get("value", {})
         ev_source = ev.get("source", source)
 
+        decision = apply_supersession(
+            tid,
+            prev if prev else None,
+            {
+                "value": val,
+                "source": ev_source,
+                "ts": ev.get("ts", _now()),
+                "ucn": ucn,
+                "policy": ev.get("policy", {}),
+                "_reliability": ev.get("_reliability"),
+            },
+        )
+
+        ucn = max(0.0, min(1.0, ucn * max(decision.ucn_multiplier, 0.0)))
+        last_confirmed_at = decision.last_confirmed_at
+        if last_confirmed_at is None:
+            last_confirmed_at = prev.get("last_confirmed_at")
+            if last_confirmed_at is None and decision.new_status == "stable":
+                last_confirmed_at = _now()
+
+        history: List[Dict[str, Any]] = []
+        prev_history = prev.get("history") if isinstance(prev, dict) else None
+        if isinstance(prev_history, list):
+            history = [dict(entry) for entry in prev_history]
+        if decision.history_entry:
+            history.append(decision.history_entry)
+
+        if isinstance(prev, dict):
+            existing_sources = prev.get("sources", [])
+        else:
+            existing_sources = []
+
         # Determine status
-        status = "resolved"
+        status = decision.new_status or "stable"
         provenance = ev.get("provenance", "")
-        if provenance.startswith("inference:") and not prev.get("value"):
-            status = "inferred"
+        if provenance.startswith("inference:") and not prev.get("value") and status == "stable":
+            status = "warming"
 
         # Merge sources
-        existing_sources = prev.get("sources", [])
         if isinstance(existing_sources, list):
             sources = list(set(existing_sources + [ev_source]))
         else:
             sources = [ev_source]
 
-        resolved[tid] = {
+        entry = {
             "value": val,
             "ucn": ucn,
             "sources": sources,
             "status": status,
-            "last_updated": _now()
+            "last_updated": _now(),
+            "last_confirmed_at": last_confirmed_at,
+            "history": history,
+            "policy": ev.get("policy", {}),
         }
+
+        resolved[tid] = entry
+
+        if decision.action in {"superseded", "contradiction", "reinforced"}:
+            log_payload = {
+                "ts": entry["last_updated"],
+                "user_id": user_id,
+                "trait_id": tid,
+                "action": decision.action,
+                "new_status": decision.new_status,
+                "old_status": decision.old_status,
+                "ucn_multiplier": decision.ucn_multiplier,
+                "old_value": prev.get("value") if isinstance(prev, dict) else None,
+                "new_value": val,
+                "context": decision.context,
+            }
+            supersession_log(log_payload)
+            level = "WARN" if decision.action == "contradiction" else "INFO"
+            stack_log("core", level, "supersession_event", f"{tid} {decision.action}", log_payload)
+            if decision.action == "superseded":
+                METRICS.increment(MetricNames.POLICY_SUPERSESSIONS)
+            elif decision.action == "contradiction":
+                METRICS.increment(MetricNames.POLICY_CONTRADICTIONS)
 
     # Persist
     write_resolved(user_id, resolved)

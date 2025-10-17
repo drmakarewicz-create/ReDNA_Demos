@@ -268,6 +268,15 @@ function App() {
               >
                 🔮 Adaptive Analytics
               </NavLink>
+              <a
+                href="http://localhost:3000/tools/llm-benchmarks"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-3 py-2 rounded-md transition-colors border border-green-500/40 text-green-600 hover:bg-green-50 hover:text-green-700 flex items-center gap-1"
+                title="Open LLM Benchmark Suite in new window"
+              >
+                📊 LLM Bench <span className="text-xs">↗</span>
+              </a>
             </nav>
           </div>
         </header>

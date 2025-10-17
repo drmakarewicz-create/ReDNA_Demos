@@ -1,0 +1,18 @@
+{
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651197334",
+        "ts": "2025-10-16T21:46:37+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:46:39.753145Z",
+    "history": []
+  }
+}

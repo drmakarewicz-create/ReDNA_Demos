@@ -1,0 +1,34 @@
+{
+  "BasicDNA.Location.City": {
+    "id": "BasicDNA.Location.City",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645389752",
+        "ts": "2025-10-16T20:09:49+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:09:51.438584Z",
+    "history": []
+  },
+  "PaDNA.GeographicLocation": {
+    "id": "PaDNA.GeographicLocation",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645389752",
+        "ts": "2025-10-16T20:09:49+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:09:51.438597Z",
+    "history": []
+  }
+}

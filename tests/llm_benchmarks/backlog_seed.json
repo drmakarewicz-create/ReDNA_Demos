@@ -1,0 +1,308 @@
+[
+  {
+    "id": "direct_fact_001",
+    "category": "direct_fact",
+    "user_message": "I am 6 feet tall",
+    "expected_trait_ids": ["PaDNA.BodyDNA.Height"],
+    "expected_values": ["6 feet"],
+    "notes": "Simple height statement",
+    "risk": "low"
+  },
+  {
+    "id": "direct_fact_004",
+    "category": "direct_fact",
+    "user_message": "I'm 30 years old",
+    "expected_trait_ids": ["BasicDNA.Age"],
+    "expected_values": ["30"],
+    "notes": "Age with number",
+    "risk": "low"
+  },
+  {
+    "id": "direct_fact_005",
+    "category": "direct_fact",
+    "user_message": "I'm a woman",
+    "expected_trait_ids": ["BasicDNA.Gender"],
+    "expected_values": ["female"],
+    "notes": "Gender identity",
+    "risk": "low"
+  },
+  {
+    "id": "direct_fact_006",
+    "category": "direct_fact",
+    "user_message": "I live in San Francisco",
+    "expected_trait_ids": ["BasicDNA.Location.City"],
+    "expected_values": ["San Francisco"],
+    "notes": "City location",
+    "risk": "low"
+  },
+  {
+    "id": "direct_fact_007",
+    "category": "direct_fact",
+    "user_message": "I work as a software engineer",
+    "expected_trait_ids": ["BasicDNA.Occupation"],
+    "expected_values": ["software engineer"],
+    "notes": "Job title",
+    "risk": "low"
+  },
+  {
+    "id": "direct_fact_008",
+    "category": "direct_fact",
+    "user_message": "I'm married",
+    "expected_trait_ids": ["BasicDNA.RelationshipStatus"],
+    "expected_values": ["married"],
+    "notes": "Relationship status",
+    "risk": "low"
+  },
+  {
+    "id": "direct_fact_002",
+    "category": "direct_fact",
+    "user_message": "I have blue eyes",
+    "expected_trait_ids": ["PaDNA.EyeDNA.IrisColor"],
+    "expected_values": ["blue"],
+    "notes": "Eye color",
+    "risk": "low"
+  },
+  {
+    "id": "direct_fact_003",
+    "category": "direct_fact",
+    "user_message": "My hair is brown",
+    "expected_trait_ids": ["PaDNA.HairDNA.Color.Natural"],
+    "expected_values": ["brown"],
+    "notes": "Hair color",
+    "risk": "low"
+  },
+  {
+    "id": "edge_case_001",
+    "category": "edge_case",
+    "user_message": "I'm 183 centimeters tall",
+    "expected_trait_ids": ["PaDNA.BodyDNA.Height"],
+    "expected_values": ["183cm"],
+    "notes": "Metric unit conversion",
+    "risk": "med"
+  },
+  {
+    "id": "edge_case_002",
+    "category": "edge_case",
+    "user_message": "I'm in my early 30s",
+    "expected_trait_ids": ["BasicDNA.Age"],
+    "expected_values": ["30-34"],
+    "notes": "Age range vs exact",
+    "risk": "med"
+  },
+  {
+    "id": "edge_case_003",
+    "category": "edge_case",
+    "user_message": "I don't eat meat",
+    "expected_trait_ids": ["BehaviorDNA.Health.Diet"],
+    "expected_values": ["vegetarian"],
+    "notes": "Implicit dietary restriction",
+    "risk": "med"
+  },
+  {
+    "id": "edge_case_004",
+    "category": "edge_case",
+    "user_message": "I'm usually up by 5:30 AM and in bed by 9 PM",
+    "expected_trait_ids": ["BehaviorDNA.Sleep.Chronotype", "BehaviorDNA.Sleep.Duration"],
+    "expected_values": ["morning", "8.5hrs"],
+    "notes": "Multi-trait from schedule",
+    "risk": "med"
+  },
+  {
+    "id": "behavior_001",
+    "category": "behavior",
+    "user_message": "I go hiking every weekend",
+    "expected_trait_ids": ["BehaviorDNA.Exercise.Outdoor", "BehaviorDNA.Exercise.Frequency"],
+    "expected_values": ["hiking", "weekly"],
+    "notes": "Exercise behavior pair",
+    "risk": "low"
+  },
+  {
+    "id": "behavior_002",
+    "category": "behavior",
+    "user_message": "I'm a morning person",
+    "expected_trait_ids": ["BehaviorDNA.Sleep.Chronotype"],
+    "expected_values": ["morning"],
+    "notes": "Chronotype self-report",
+    "risk": "low"
+  },
+  {
+    "id": "behavior_003",
+    "category": "behavior",
+    "user_message": "I usually stay in and read on weekends",
+    "expected_trait_ids": ["BehaviorDNA.Leisure.Indoor", "PreferenceDNA.Social.GroupSize"],
+    "expected_values": ["true", "small"],
+    "notes": "Indoor + social inference",
+    "risk": "med"
+  },
+  {
+    "id": "behavior_004",
+    "category": "behavior",
+    "user_message": "I start work at 6 AM and finish by 2 PM",
+    "expected_trait_ids": ["BehaviorDNA.Schedule.WorkHours", "BehaviorDNA.Sleep.Chronotype"],
+    "expected_values": ["6AM-2PM", "morning"],
+    "notes": "Work schedule → chronotype inference",
+    "risk": "med"
+  },
+  {
+    "id": "behavior_005",
+    "category": "behavior",
+    "user_message": "I meal prep every Sunday for the week",
+    "expected_trait_ids": ["BehaviorDNA.Organization.Level", "BehaviorDNA.Health.Diet"],
+    "expected_values": ["high", "planned"],
+    "notes": "Organization + diet behavior",
+    "risk": "med"
+  },
+  {
+    "id": "behavior_006",
+    "category": "behavior",
+    "user_message": "I always reply to texts within an hour",
+    "expected_trait_ids": ["BehaviorDNA.Communication.ResponseStyle"],
+    "expected_values": ["prompt"],
+    "notes": "Communication behavior",
+    "risk": "med"
+  },
+  {
+    "id": "behavior_007",
+    "category": "behavior",
+    "user_message": "I drink three cups of coffee every morning",
+    "expected_trait_ids": ["BehaviorDNA.Health.CaffeineIntake", "BehaviorDNA.Routine.Morning"],
+    "expected_values": ["high", "coffee"],
+    "notes": "Caffeine + morning routine",
+    "risk": "med"
+  },
+  {
+    "id": "behavior_008",
+    "category": "behavior",
+    "user_message": "I learn best by doing hands-on projects",
+    "expected_trait_ids": ["BehaviorDNA.Learning.Style"],
+    "expected_values": ["kinesthetic"],
+    "notes": "Learning preference",
+    "risk": "med"
+  },
+  {
+    "id": "indirect_001",
+    "category": "indirect_signal",
+    "user_message": "I take cold showers every morning",
+    "expected_trait_ids": ["BehaviorDNA.Wellness.ColdTherapy"],
+    "expected_values": ["daily"],
+    "notes": "Wellness behavior inference",
+    "risk": "med"
+  },
+  {
+    "id": "indirect_002",
+    "category": "indirect_signal",
+    "user_message": "I work from home most days",
+    "expected_trait_ids": ["BehaviorDNA.Work.Location"],
+    "expected_values": ["remote"],
+    "notes": "Work location inference",
+    "risk": "low"
+  },
+  {
+    "id": "indirect_003",
+    "category": "indirect_signal",
+    "user_message": "Ugh, it's raining again, I was hoping to go for a run",
+    "expected_trait_ids": ["BehaviorDNA.Exercise.Outdoor", "BehaviorDNA.Exercise.Type"],
+    "expected_values": ["outdoor", "running"],
+    "notes": "Indirect exercise preference from complaint",
+    "risk": "high"
+  },
+  {
+    "id": "indirect_004",
+    "category": "indirect_signal",
+    "user_message": "Looking forward to a quiet weekend with no plans",
+    "expected_trait_ids": ["BehaviorDNA.Social.Style", "PreferenceDNA.Social.GroupSize"],
+    "expected_values": ["introvert", "solitary"],
+    "notes": "Social style from weekend preference",
+    "risk": "high"
+  },
+  {
+    "id": "ambiguous_002",
+    "category": "ambiguous",
+    "user_message": "I'm pretty tall",
+    "expected_trait_ids": ["PaDNA.BodyDNA.Height"],
+    "expected_values": ["tall"],
+    "notes": "Vague descriptor - should extract with low confidence",
+    "risk": "med"
+  },
+  {
+    "id": "ambiguous_003",
+    "category": "ambiguous",
+    "user_message": "I'm in decent shape",
+    "expected_trait_ids": ["BehaviorDNA.Fitness.Level"],
+    "expected_values": ["moderate"],
+    "notes": "Vague fitness level",
+    "risk": "med"
+  },
+  {
+    "id": "ambiguous_004",
+    "category": "ambiguous",
+    "user_message": "I'm an introvert but I like going to parties sometimes",
+    "expected_trait_ids": ["BehaviorDNA.Social.Style"],
+    "expected_values": ["ambivert"],
+    "notes": "Conflicting signals requiring nuance",
+    "risk": "med"
+  },
+  {
+    "id": "preference_001",
+    "category": "preference",
+    "user_message": "I love pizza",
+    "expected_trait_ids": ["PreferenceDNA.Food.Pizza"],
+    "expected_values": ["true"],
+    "notes": "Simple food preference",
+    "risk": "low"
+  },
+  {
+    "id": "preference_004",
+    "category": "preference",
+    "user_message": "I prefer backpacking over luxury hotels",
+    "expected_trait_ids": ["PreferenceDNA.Travel.Style"],
+    "expected_values": ["budget_adventure"],
+    "notes": "Travel style from contrast",
+    "risk": "med"
+  },
+  {
+    "id": "multi_trait_001",
+    "category": "multi_trait",
+    "user_message": "I'm a 30-year-old woman with brown hair and green eyes",
+    "expected_trait_ids": ["BasicDNA.Age", "BasicDNA.Gender", "PaDNA.HairDNA.Color.Natural", "PaDNA.EyeDNA.IrisColor"],
+    "expected_values": ["30", "female", "brown", "green"],
+    "notes": "4 traits in one statement - validates system works!",
+    "risk": "low"
+  },
+  {
+    "id": "multi_trait_002",
+    "category": "multi_trait",
+    "user_message": "I have blue eyes, blonde hair, and I love hiking and pizza",
+    "expected_trait_ids": ["PaDNA.EyeDNA.IrisColor", "PaDNA.HairDNA.Color.Natural", "BehaviorDNA.Exercise.Outdoor", "PreferenceDNA.Food.Pizza"],
+    "expected_values": ["blue", "blonde", "hiking", "pizza"],
+    "notes": "Physical + behavioral mix - validates system works!",
+    "risk": "low"
+  },
+  {
+    "id": "conversational_001",
+    "category": "conversational",
+    "user_message": "How are you doing today?",
+    "expected_trait_ids": [],
+    "expected_values": [],
+    "notes": "Phatic greeting - NO extraction expected (negative test)",
+    "risk": "high"
+  },
+  {
+    "id": "conversational_004",
+    "category": "conversational",
+    "user_message": "Got it, thanks!",
+    "expected_trait_ids": [],
+    "expected_values": [],
+    "notes": "Acknowledgment - NO extraction expected (negative test)",
+    "risk": "high"
+  },
+  {
+    "id": "correction_001",
+    "category": "correction",
+    "user_message": "Actually, I have brown eyes, not blue",
+    "expected_trait_ids": ["PaDNA.EyeDNA.IrisColor"],
+    "expected_values": ["brown"],
+    "notes": "Correction/override signal",
+    "risk": "med"
+  }
+]

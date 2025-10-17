@@ -54,7 +54,7 @@ TIER1_TRAITS = [
         "env_rr": "RR_PROMOTE_MIN_AGE",
         "default_rr": 500,
         "test_phrase": "I am 28 years old",
-        "expected_trait": "GenDNA.AgeDNA.AgeYears",
+        "expected_trait": "BasicDNA.Age",
         "expected_value": 28
     },
     {
@@ -63,7 +63,7 @@ TIER1_TRAITS = [
         "env_rr": "RR_PROMOTE_MIN_REL",
         "default_rr": 500,
         "test_phrase": "I am in a long-term relationship",
-        "expected_trait": "ReDNA.RelationshipStatus",
+        "expected_trait": "BasicDNA.RelationshipStatus",
         "expected_value": "relationship"
     },
     {
@@ -72,7 +72,7 @@ TIER1_TRAITS = [
         "env_rr": "RR_PROMOTE_MIN_HEIGHT",
         "default_rr": 650,
         "test_phrase": "I am 5 feet 10 inches tall",
-        "expected_trait": "PaDNA.PhysDNA.Height",
+        "expected_trait": "PaDNA.BodyDNA.Height",
         "expected_value": None  # Height is numeric, varies
     }
 ]

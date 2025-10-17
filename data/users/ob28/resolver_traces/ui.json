@@ -7,22 +7,30 @@
         {
           "trait_id": "FreeText",
           "value": {
-            "text": "I used to have red hair but now I'm mostly bald"
+            "text": "I am 6 feet tall"
           },
           "source": "chat",
-          "ts": "2025-10-15T19:51:10+00:00",
+          "ts": "2025-10-15T23:22:08+00:00",
           "ucn_prior": 0.2,
-          "provenance": "direct"
+          "provenance": "direct",
+          "policy": {
+            "tier": "hot",
+            "ttl_days": 365,
+            "reason": "conflict,pending_resolution",
+            "reliability": 0.5,
+            "logged_at": "2025-10-15T23:22:08+00:00"
+          },
+          "_reliability": 0.5
         }
       ],
-      "ts": 1760557870.5711
+      "ts": 1760570528.367433
     },
     {
       "name": "grouped",
       "payload": {
         "FreeText": 1
       },
-      "ts": 1760557870.5711029
+      "ts": 1760570528.367435
     },
     {
       "name": "chosen",
@@ -30,15 +38,23 @@
         "FreeText": {
           "trait_id": "FreeText",
           "value": {
-            "text": "I used to have red hair but now I'm mostly bald"
+            "text": "I am 6 feet tall"
           },
           "source": "chat",
-          "ts": "2025-10-15T19:51:10+00:00",
+          "ts": "2025-10-15T23:22:08+00:00",
           "ucn_prior": 0.2,
-          "provenance": "direct"
+          "provenance": "direct",
+          "policy": {
+            "tier": "hot",
+            "ttl_days": 365,
+            "reason": "conflict,pending_resolution",
+            "reliability": 0.5,
+            "logged_at": "2025-10-15T23:22:08+00:00"
+          },
+          "_reliability": 0.5
         }
       },
-      "ts": 1760557870.5711071
+      "ts": 1760570528.3674371
     },
     {
       "name": "rr_input",
@@ -46,34 +62,34 @@
         {
           "trait_id": "FreeText",
           "value": {
-            "text": "I used to have red hair but now I'm mostly bald"
+            "text": "I am 6 feet tall"
           },
           "ucn_prior": 0.2,
           "source": "chat"
         }
       ],
-      "ts": 1760557870.571109
+      "ts": 1760570528.367438
     },
     {
       "name": "rr_error",
       "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
-      "ts": 1760557870.574917
+      "ts": 1760570528.3694878
     },
     {
       "name": "ucn_scores",
       "payload": {
         "FreeText": 0.2
       },
-      "ts": 1760557870.5751328
+      "ts": 1760570528.369542
     },
     {
       "name": "resolved_out",
       "payload": {
-        "trait_count": 12,
+        "trait_count": 13,
         "rr_ok": false
       },
-      "ts": 1760557870.5793312
+      "ts": 1760570528.372803
     }
   ],
-  "ts": 1760557870.571084
+  "ts": 1760570528.367424
 }

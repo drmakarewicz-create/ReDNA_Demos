@@ -1,0 +1,34 @@
+{
+  "PaDNA.Location": {
+    "id": "PaDNA.Location",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642577580",
+        "ts": "2025-10-16T19:22:57+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:22:58.670900Z",
+    "history": []
+  },
+  "PaDNA.DayOfWeek": {
+    "id": "PaDNA.DayOfWeek",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642577580",
+        "ts": "2025-10-16T19:22:57+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:22:58.670909Z",
+    "history": []
+  }
+}

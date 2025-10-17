@@ -1,0 +1,50 @@
+{
+  "Person.WakeUpTime": {
+    "id": "Person.WakeUpTime",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645869392",
+        "ts": "2025-10-16T20:17:49+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:51.842513Z",
+    "history": []
+  },
+  "Person.MeditationDuration": {
+    "id": "Person.MeditationDuration",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645869392",
+        "ts": "2025-10-16T20:17:49+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:51.842521Z",
+    "history": []
+  },
+  "Person.ActivityBeforeWork": {
+    "id": "Person.ActivityBeforeWork",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645869392",
+        "ts": "2025-10-16T20:17:49+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:51.842525Z",
+    "history": []
+  }
+}

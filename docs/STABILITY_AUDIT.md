@@ -73,6 +73,7 @@ Goal: capture the current state of the stability-critical path before adding gua
 - Ingestion pipeline executed end-to-end in-process (FastAPI `TestClient`), including inference side-effects and snapshot writeback.
 - Core `/health` currently reports `rr_mode="unavailable"` because UCNRR is not running on the expected port; once UCNRR is up, the new readiness endpoint can enforce alignment.
 - UCNRR self-test returns `ok=true` when invoked in-process, establishing the contract target for the forthcoming guardrail test.
+- Policy layer appends structured records to `~/.redna/logs/evidence.log` and `~/.redna/logs/supersession.log`; `stack.log` now includes `supersession_event` entries. These additions do not change readiness output because policy metrics simply extend the `/metrics` JSON.
 
 ---
 
@@ -80,3 +81,9 @@ Goal: capture the current state of the stability-critical path before adding gua
 - Core metrics now expose a five-minute rolling window (`errors_5xx_window_5m`, `requests_window_5m`, `latency_p95_ms_window_5m`). The readiness probe treats status as `warming` until the window has meaningful samples (≈ first 60s or first ingress).
 - `/devx/api/stack/ready` evaluates rolling error rate (<= 2%) and p95 latency (<= 750 ms), adds fail-condition codes, recovery suggestions, and `unready_since` tracking.
 - Supervisor restarts emit `restart_event` rows into `~/.redna/logs/stack.log` via `stack_log`. Core ingestion success/failure and UCNRR self-tests reuse the same unified log channel.
+- DevX readiness now resolves Core/UCNRR endpoints via `DEVX_CORE_BASE` and `DEVX_UCNRR_BASE` (defaults `http://127.0.0.1:8001` / `http://127.0.0.1:8011`) and logs the resolved URLs on startup.
+- Core API wraps every HTTP request in a lightweight timing middleware that calls `metrics.record_request`, keeping the five-minute window warm even in low-traffic CI runs.
+- When metrics are still warming past `READINESS_WARMUP_SEC` (default 30s), readiness falls back to cumulative counters; a one-time `readiness_warmup_fallback` event is emitted when this gate is used.
+- `scripts/smoke.sh` now starts DevX, polls the DevX readiness endpoint, seeds Core health traffic after 30 s of warming, and surfaces the failing readiness JSON plus the last 80 lines of `~/.redna/logs/stack.log` on failure.
+- Core health now returns `rr_mode: "degraded"` with `ucnrr_probe_timed_out: true` if UCNRR probe exceeds the configurable connect/read bounds and logs `health_degraded` at most once per minute.
+- Readiness differentiates timeout errors via `core_metrics_timeout` / `core_health_timeout`, retries once on read timeouts, and treats `rr_mode: "degraded"` as acceptable when UCNRR self-tests pass—only `rr_mode: "unavailable"` blocks green.

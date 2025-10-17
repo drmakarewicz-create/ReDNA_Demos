@@ -1,0 +1,34 @@
+{
+  "PaDNA.Color": {
+    "id": "PaDNA.Color",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642830392",
+        "ts": "2025-10-16T19:27:10+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:27:15.484013Z",
+    "history": []
+  },
+  "PaDNA.Shape": {
+    "id": "PaDNA.Shape",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642830392",
+        "ts": "2025-10-16T19:27:10+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:27:15.484025Z",
+    "history": []
+  }
+}

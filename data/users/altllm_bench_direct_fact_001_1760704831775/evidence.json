@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "trait_id": "attributes.PaDNA.BodyDNA.Height",
+      "confidence": 100,
+      "raw_text": "I am 6 feet tall",
+      "timestamp": "2025-10-17T12:40:31.775000+00:00",
+      "extraction_method": "llm",
+      "signal": "PaDNA.BodyDNA.Height: 6 feet",
+      "value": {
+        "text": "6 feet"
+      },
+      "source": "chat",
+      "ts": "2025-10-17T12:40:43+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "high_signal",
+        "reliability": 0.5,
+        "logged_at": "2025-10-17T12:40:43+00:00"
+      },
+      "_reliability": 0.5
+    },
+    {
+      "trait_id": "BasicDNA.Age",
+      "value": {
+        "number": 6
+      },
+      "source": "chat",
+      "ts": "2025-10-17T12:40:43+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "high_signal",
+        "reliability": 0.5,
+        "logged_at": "2025-10-17T12:40:43+00:00"
+      },
+      "_reliability": 0.5
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "PaDNA.Activity": {
+    "id": "PaDNA.Activity",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642205656",
+        "ts": "2025-10-16T19:16:45+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:16:47.074448Z",
+    "history": []
+  },
+  "PaDNA.Location": {
+    "id": "PaDNA.Location",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642205656",
+        "ts": "2025-10-16T19:16:45+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:16:47.074454Z",
+    "history": []
+  },
+  "PaDNA.TimePeriod": {
+    "id": "PaDNA.TimePeriod",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642205656",
+        "ts": "2025-10-16T19:16:45+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:16:47.074456Z",
+    "history": []
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "PaDNA.Human.Drink": {
+    "id": "PaDNA.Human.Drink",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642712612",
+        "ts": "2025-10-16T19:25:12+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:14.473355Z",
+    "history": []
+  },
+  "PaDNA.Human.Quantity": {
+    "id": "PaDNA.Human.Quantity",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642712612",
+        "ts": "2025-10-16T19:25:12+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:14.473365Z",
+    "history": []
+  },
+  "PaDNA.Human.Frequency": {
+    "id": "PaDNA.Human.Frequency",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642712612",
+        "ts": "2025-10-16T19:25:12+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:14.473367Z",
+    "history": []
+  }
+}

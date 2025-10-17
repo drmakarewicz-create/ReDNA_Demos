@@ -1931,6 +1931,59 @@ function normalizeObservationWindows(raw: any): Record<string, ObservationWindow
   return Object.keys(normalized).length ? normalized : undefined;
 }
 
+function toNumber(value: unknown): number | null {
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : null;
+  }
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
+}
+
+function roundTo(value: number, decimals = 2): number {
+  const factor = 10 ** decimals;
+  return Math.round(value * factor) / factor;
+}
+
+function normalizeScore(value: unknown, decimals = 2): number | null {
+  const numberValue = toNumber(value);
+  if (numberValue === null) return null;
+  return roundTo(numberValue, decimals);
+}
+
+function normalizeUcn(raw: number | null): number | null {
+  if (raw === null) return null;
+  let value = raw;
+  if (value <= 1) {
+    value = value * 100;
+  } else if (value > 100) {
+    value = value / 10;
+  }
+  return roundTo(value, 2);
+}
+
+function scaleUcnForRr(raw: number | null): number | null {
+  if (raw === null) return null;
+  if (raw <= 1) return raw * 1000;
+  if (raw > 1000) return 1000;
+  if (raw <= 100) return raw * 10;
+  return raw;
+}
+
+function estimateRr(rawUcn: number | null): number | null {
+  const scaled = scaleUcnForRr(rawUcn);
+  if (scaled === null) return null;
+  const ucnScore = clamp((scaled / 1000) * 100, 0, 100);
+  const baselineMean = 700;
+  const baselineStd = 150;
+  const baselineRr = clamp(50 + ((scaled - baselineMean) / baselineStd) * 10, 0, 100);
+  const estimate = (ucnScore + baselineRr) / 2;
+  return roundTo(clamp(estimate, 5, 100), 2);
+}
+
 export async function fetchUnabridged(userId: string): Promise<UnabridgedSnapshot> {
   const params = new URLSearchParams({ user_id: userId });
   const response = await ensureOk(
@@ -1943,15 +1996,30 @@ export async function fetchUnabridged(userId: string): Promise<UnabridgedSnapsho
   return {
     user_id: String(payload.user_id ?? userId),
     count: Number(payload.count ?? traits.length),
-    traits: traits.map((trait: any) => ({
-      trait_id: String(trait.trait_id ?? ''),
-      value: trait.value ?? trait.resolved_value ?? null,
-      ucn: trait.ucn ?? null,
-      reasons: Array.isArray(trait.reasons) ? trait.reasons.map(String) : [],
-      last_observed: trait.last_observed ?? null,
-      metadata: trait.metadata ?? {},
-      badges: Array.isArray(trait.badges) ? trait.badges.map(String) : []
-    }))
+    traits: traits.map((trait: any) => {
+      const traitId = String(trait.trait_id ?? '');
+      const traitValue = trait.value ?? trait.resolved_value ?? null;
+      const rawUcn = toNumber(trait.ucn ?? trait.ucn_score ?? trait.ucnScore);
+      const normalizedUcn = normalizeUcn(rawUcn);
+      const rrValue =
+        normalizeScore(trait.rr ?? trait.rr_score ?? trait.rrScore) ??
+        estimateRr(rawUcn);
+      const curiosityValue =
+        normalizeScore(trait.curiosity ?? trait.curiosity_score ?? trait.curiosityScore) ??
+        (rrValue === null ? null : roundTo(clamp(100 - rrValue, 0, 100), 2));
+
+      return {
+        trait_id: traitId,
+        value: traitValue,
+        ucn: normalizedUcn,
+        rr: rrValue,
+        curiosity: curiosityValue,
+        reasons: Array.isArray(trait.reasons) ? trait.reasons.map(String) : [],
+        last_observed: trait.last_observed ?? null,
+        metadata: trait.metadata ?? {},
+        badges: Array.isArray(trait.badges) ? trait.badges.map(String) : []
+      };
+    })
   };
 }
 

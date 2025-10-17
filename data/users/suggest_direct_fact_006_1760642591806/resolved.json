@@ -1,0 +1,34 @@
+{
+  "PaDNA.Location": {
+    "id": "PaDNA.Location",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642591808",
+        "ts": "2025-10-16T19:23:11+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:23:12.870725Z",
+    "history": []
+  },
+  "PaDNA.City": {
+    "id": "PaDNA.City",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642591808",
+        "ts": "2025-10-16T19:23:11+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:23:12.870731Z",
+    "history": []
+  }
+}

@@ -2109,6 +2109,15 @@ export default function HeadCoachPage() {
               >
                 {translate('nav.helpTour')}
               </button>
+              <button
+                type="button"
+                onClick={() => window.open('/tools/llm-benchmarks', '_blank')}
+                className="rounded-full border border-green-500/40 px-3 py-1 transition text-green-200 hover:bg-green-500/10 hover:text-green-100"
+                aria-label="Open LLM Benchmarks"
+                title="Open LLM Benchmark Suite in new window"
+              >
+                LLM Bench ↗
+              </button>
             </nav>
             <div className="flex w-full flex-wrap items-center justify-end gap-3 text-sm text-slate-300 sm:w-auto">
               <ClientOnly fallback={<div className="w-48 h-9 rounded-full border border-slate-700 bg-slate-900/60 animate-pulse" />}>

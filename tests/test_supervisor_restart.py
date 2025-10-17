@@ -28,7 +28,7 @@ def isolate_state(monkeypatch, tmp_path):
 def test_supervisor_restart_and_rate_limit(monkeypatch):
     started = {"core": 0, "ucnrr": 0}
 
-    def fake_start(service, state, reason):
+    def fake_start(service, state, stack_config, reason):
         started[service] += 1
         pid = started[service]
         meta = state["services"][service]

@@ -1,0 +1,1028 @@
+[
+  {
+    "id": "ambiguous_001",
+    "category": "ambiguous",
+    "description": "Ambiguous eye color (multiple options)",
+    "user_message": "My eyes are kind of blueish gray",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {
+          "enum": "blue-gray"
+        },
+        "confidence_llm_min": 0.3,
+        "confidence_llm_max": 0.6,
+        "ambiguity_flags": [
+          "multiple_interpretations"
+        ],
+        "requires_confirmation": true
+      }
+    ]
+  },
+  {
+    "id": "ambiguous_002",
+    "category": "ambiguous",
+    "description": "Vague height (relative term)",
+    "user_message": "I'm pretty tall",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {
+          "text": "tall"
+        },
+        "confidence_llm_min": 0.15,
+        "confidence_llm_max": 0.4,
+        "ambiguity_flags": [
+          "vague_measurement"
+        ],
+        "requires_confirmation": true
+      }
+    ]
+  },
+  {
+    "id": "ambiguous_003",
+    "category": "ambiguous",
+    "description": "Vague fitness level descriptor",
+    "user_message": "I'm in decent shape",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Fitness.Level",
+        "value": {
+          "text": "moderate"
+        },
+        "confidence_llm_min": 0.2,
+        "confidence_llm_max": 0.5,
+        "ambiguity_flags": [
+          "vague_descriptor"
+        ],
+        "requires_confirmation": true
+      }
+    ]
+  },
+  {
+    "id": "ambiguous_004",
+    "category": "ambiguous",
+    "description": "Conflicting social signals",
+    "user_message": "I'm an introvert but I like going to parties sometimes",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Social.Style",
+        "value": {
+          "enum": "ambivert"
+        },
+        "confidence_llm_min": 0.3,
+        "confidence_llm_max": 0.6,
+        "ambiguity_flags": [
+          "conflicting_signals"
+        ],
+        "requires_confirmation": true
+      }
+    ]
+  },
+  {
+    "id": "behavior_001",
+    "category": "behavior",
+    "description": "Exercise behavior (frequency + type)",
+    "user_message": "I go hiking every weekend",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Exercise.Outdoor",
+        "value": {
+          "text": "frequent"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.85
+      },
+      {
+        "trait_id": "BehaviorDNA.Exercise.Frequency",
+        "value": {
+          "text": "weekly"
+        },
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "behavior_002",
+    "category": "behavior",
+    "description": "Sleep chronotype",
+    "user_message": "I'm a morning person",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Sleep.Chronotype",
+        "value": {
+          "enum": "early"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "behavior_003",
+    "category": "behavior",
+    "description": "Social preference from weekend plans",
+    "user_message": "I usually stay in and read on weekends",
+    "expected_extractions": [
+      {
+        "trait_id": "PreferenceDNA.Social.GroupSize",
+        "value": {
+          "enum": "solitary"
+        },
+        "confidence_llm_min": 0.5,
+        "confidence_llm_max": 0.75
+      },
+      {
+        "trait_id": "BehaviorDNA.Leisure.Indoor",
+        "value": {
+          "text": "prefers"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "behavior_004",
+    "category": "behavior",
+    "description": "Work schedule pattern",
+    "user_message": "I start work at 6 AM and finish by 2 PM",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Schedule.WorkHours",
+        "value": {
+          "text": "early_shift"
+        },
+        "confidence_llm_min": 0.75,
+        "confidence_llm_max": 0.9
+      },
+      {
+        "trait_id": "BehaviorDNA.Sleep.Chronotype",
+        "value": {
+          "enum": "early"
+        },
+        "confidence_llm_min": 0.4,
+        "confidence_llm_max": 0.65
+      }
+    ]
+  },
+  {
+    "id": "behavior_005",
+    "category": "behavior",
+    "description": "Dietary habit behavior",
+    "user_message": "I meal prep every Sunday for the week",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Health.Diet",
+        "value": {
+          "text": "planned"
+        },
+        "confidence_llm_min": 0.65,
+        "confidence_llm_max": 0.85
+      },
+      {
+        "trait_id": "BehaviorDNA.Organization.Level",
+        "value": {
+          "text": "high"
+        },
+        "confidence_llm_min": 0.5,
+        "confidence_llm_max": 0.75
+      }
+    ]
+  },
+  {
+    "id": "behavior_006",
+    "category": "behavior",
+    "description": "Communication response pattern",
+    "user_message": "I always reply to texts within an hour",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Communication.ResponseStyle",
+        "value": {
+          "enum": "prompt"
+        },
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "behavior_007",
+    "category": "behavior",
+    "description": "Coffee consumption habit",
+    "user_message": "I drink three cups of coffee every morning",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Health.CaffeineIntake",
+        "value": {
+          "text": "high"
+        },
+        "confidence_llm_min": 0.65,
+        "confidence_llm_max": 0.85
+      },
+      {
+        "trait_id": "BehaviorDNA.Routine.Morning",
+        "value": {
+          "text": "includes_coffee"
+        },
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "behavior_008",
+    "category": "behavior",
+    "description": "Learning style from study habits",
+    "user_message": "I learn best by doing hands-on projects",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Learning.Style",
+        "value": {
+          "enum": "kinesthetic"
+        },
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "conversational_001",
+    "category": "conversational",
+    "description": "Greeting (no extraction expected)",
+    "user_message": "How are you doing today?",
+    "expected_extractions": []
+  },
+  {
+    "id": "conversational_002",
+    "category": "conversational",
+    "description": "Small talk (no extraction expected)",
+    "user_message": "Nice weather we're having!",
+    "expected_extractions": []
+  },
+  {
+    "id": "conversational_003",
+    "category": "conversational",
+    "description": "Humor with no trait signal",
+    "user_message": "Haha, that's hilarious!",
+    "expected_extractions": []
+  },
+  {
+    "id": "conversational_004",
+    "category": "conversational",
+    "description": "Acknowledgment without content",
+    "user_message": "Got it, thanks!",
+    "expected_extractions": []
+  },
+  {
+    "id": "correction_001",
+    "category": "correction",
+    "description": "User corrects previous statement",
+    "user_message": "Actually, I have brown eyes, not blue",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {
+          "enum": "brown"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95,
+        "correction": true,
+        "previous_value": "blue"
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_001",
+    "category": "direct_fact",
+    "description": "Simple height statement",
+    "user_message": "I am 6 feet tall",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {
+          "text": "6 feet tall"
+        },
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.95,
+        "extraction_context": "Direct self-report"
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_002",
+    "category": "direct_fact",
+    "description": "Eye color statement",
+    "user_message": "I have blue eyes",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {
+          "enum": "blue"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_003",
+    "category": "direct_fact",
+    "description": "Hair color statement",
+    "user_message": "My hair is brown",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.HairDNA.Color.Natural",
+        "value": {
+          "enum": "brown"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_004",
+    "category": "direct_fact",
+    "description": "Age statement",
+    "user_message": "I'm 30 years old",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Age",
+        "value": {
+          "number": 30
+        },
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_005",
+    "category": "direct_fact",
+    "description": "Gender statement",
+    "user_message": "I'm a woman",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Gender",
+        "value": {
+          "enum": "female"
+        },
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_006",
+    "category": "direct_fact",
+    "description": "Location statement",
+    "user_message": "I live in San Francisco",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Location.City",
+        "value": {
+          "text": "San Francisco"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_007",
+    "category": "direct_fact",
+    "description": "Occupation statement",
+    "user_message": "I work as a software engineer",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Occupation",
+        "value": {
+          "text": "software engineer"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_008",
+    "category": "direct_fact",
+    "description": "Relationship status statement",
+    "user_message": "I'm married",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.RelationshipStatus",
+        "value": {
+          "enum": "married"
+        },
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "edge_case_001",
+    "category": "edge_case",
+    "description": "Numeric height with unit conversion needed",
+    "user_message": "I'm 183 centimeters tall",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {
+          "number": 183,
+          "unit": "cm"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95,
+        "requires_unit_conversion": true
+      }
+    ]
+  },
+  {
+    "id": "edge_case_002",
+    "category": "edge_case",
+    "description": "Age range instead of exact age",
+    "user_message": "I'm in my early 30s",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Age",
+        "value": {
+          "range": {
+            "min": 30,
+            "max": 34
+          }
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "edge_case_003",
+    "category": "edge_case",
+    "description": "Implicit negation (dietary restriction)",
+    "user_message": "I don't eat meat",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Health.Diet",
+        "value": {
+          "enum": "vegetarian"
+        },
+        "confidence_llm_min": 0.65,
+        "confidence_llm_max": 0.85,
+        "extraction_context": "implicit_preference"
+      }
+    ]
+  },
+  {
+    "id": "edge_case_004",
+    "category": "edge_case",
+    "description": "Unusual time format for schedule",
+    "user_message": "I'm usually up by 5:30 AM and in bed by 9 PM",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Sleep.Chronotype",
+        "value": {
+          "enum": "early"
+        },
+        "confidence_llm_min": 0.75,
+        "confidence_llm_max": 0.9
+      },
+      {
+        "trait_id": "BehaviorDNA.Sleep.Duration",
+        "value": {
+          "text": "8.5_hours"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "indirect_001",
+    "category": "indirect_signal",
+    "description": "Wellness behavior (cold therapy)",
+    "user_message": "I take cold showers every morning",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Wellness.ColdTherapy",
+        "value": {
+          "text": "daily"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.85
+      }
+    ]
+  },
+  {
+    "id": "indirect_002",
+    "category": "indirect_signal",
+    "description": "Work location inference",
+    "user_message": "I work from home most days",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Work.Location",
+        "value": {
+          "enum": "remote"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "indirect_003",
+    "category": "indirect_signal",
+    "description": "Outdoor preference from weather complaint",
+    "user_message": "Ugh, it's raining again, I was hoping to go for a run",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Exercise.Outdoor",
+        "value": {
+          "text": "prefers"
+        },
+        "confidence_llm_min": 0.55,
+        "confidence_llm_max": 0.75
+      },
+      {
+        "trait_id": "BehaviorDNA.Exercise.Type",
+        "value": {
+          "enum": "running"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "indirect_004",
+    "category": "indirect_signal",
+    "description": "Social style from weekend mention",
+    "user_message": "Looking forward to a quiet weekend with no plans",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Social.Style",
+        "value": {
+          "enum": "introverted"
+        },
+        "confidence_llm_min": 0.4,
+        "confidence_llm_max": 0.65
+      },
+      {
+        "trait_id": "PreferenceDNA.Social.GroupSize",
+        "value": {
+          "enum": "solitary"
+        },
+        "confidence_llm_min": 0.45,
+        "confidence_llm_max": 0.7
+      }
+    ]
+  },
+  {
+    "id": "indirect_005",
+    "category": "indirect_signal",
+    "description": "Health consciousness from gym membership",
+    "user_message": "Just renewed my gym membership for another year",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Exercise.Frequency",
+        "value": {
+          "text": "regular"
+        },
+        "confidence_llm_min": 0.55,
+        "confidence_llm_max": 0.75
+      },
+      {
+        "trait_id": "BehaviorDNA.Health.Commitment",
+        "value": {
+          "text": "high"
+        },
+        "confidence_llm_min": 0.5,
+        "confidence_llm_max": 0.7
+      }
+    ]
+  },
+  {
+    "id": "meta_001",
+    "category": "meta_trait",
+    "description": "Unknown trait (high uncertainty signal)",
+    "user_message": "I don't know my exact height",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {
+          "text": "unknown"
+        },
+        "confidence_llm_min": 0.0,
+        "confidence_llm_max": 0.2,
+        "meta_signal": "uncertainty_high"
+      }
+    ]
+  },
+  {
+    "id": "meta_002",
+    "category": "meta_trait",
+    "description": "Communication openness (deflection)",
+    "user_message": "I'd rather not say",
+    "expected_extractions": [
+      {
+        "trait_id": "Communication.Openness",
+        "value": {
+          "enum": "low"
+        },
+        "confidence_llm_min": 0.2,
+        "confidence_llm_max": 0.5,
+        "meta_signal": "deflection"
+      }
+    ]
+  },
+  {
+    "id": "meta_003",
+    "category": "meta_trait",
+    "description": "Privacy boundary signal",
+    "user_message": "That's a bit too personal for me to share right now",
+    "expected_extractions": [
+      {
+        "trait_id": "Communication.Privacy.Boundary",
+        "value": {
+          "enum": "high"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.85,
+        "meta_signal": "privacy_boundary"
+      }
+    ]
+  },
+  {
+    "id": "meta_004",
+    "category": "meta_trait",
+    "description": "Communication style (verbose)",
+    "user_message": "Well, you know, it's kind of complicated because there are multiple factors involved, and I'm not entirely sure how to explain it, but basically...",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Communication.ResponseStyle",
+        "value": {
+          "enum": "verbose"
+        },
+        "confidence_llm_min": 0.5,
+        "confidence_llm_max": 0.75,
+        "meta_signal": "communication_pattern"
+      }
+    ]
+  },
+  {
+    "id": "multi_trait_001",
+    "category": "multi_trait",
+    "description": "Multiple traits in one statement",
+    "user_message": "I'm a 30-year-old woman with brown hair and green eyes",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Age",
+        "value": {
+          "number": 30
+        },
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "BasicDNA.Gender",
+        "value": {
+          "enum": "female"
+        },
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "PaDNA.HairDNA.Color.Natural",
+        "value": {
+          "enum": "brown"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {
+          "enum": "green"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "multi_trait_002",
+    "category": "multi_trait",
+    "description": "Physical traits + preferences",
+    "user_message": "I have blue eyes, blonde hair, and I love hiking and pizza",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {
+          "enum": "blue"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "PaDNA.HairDNA.Color.Natural",
+        "value": {
+          "enum": "blonde"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "BehaviorDNA.Exercise.Outdoor",
+        "value": {
+          "text": "likes"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.85
+      },
+      {
+        "trait_id": "PreferenceDNA.Food.Pizza",
+        "value": {
+          "text": "likes"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "multi_trait_003",
+    "category": "multi_trait",
+    "description": "Work location + schedule + preferences",
+    "user_message": "I work remotely as a designer, usually from coffee shops in the morning",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Work.Location",
+        "value": {
+          "enum": "remote"
+        },
+        "confidence_llm_min": 0.75,
+        "confidence_llm_max": 0.9
+      },
+      {
+        "trait_id": "BasicDNA.Occupation",
+        "value": {
+          "text": "designer"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "PreferenceDNA.Work.Environment",
+        "value": {
+          "enum": "coffee_shop"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      },
+      {
+        "trait_id": "BehaviorDNA.Sleep.Chronotype",
+        "value": {
+          "enum": "early"
+        },
+        "confidence_llm_min": 0.4,
+        "confidence_llm_max": 0.6
+      }
+    ]
+  },
+  {
+    "id": "multi_trait_004",
+    "category": "multi_trait",
+    "description": "Daily routine with multiple temporal signals",
+    "user_message": "I wake up at 5 AM, meditate for 20 minutes, then go for a run before work",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Sleep.Chronotype",
+        "value": {
+          "enum": "early"
+        },
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "BehaviorDNA.Wellness.Meditation",
+        "value": {
+          "text": "daily"
+        },
+        "confidence_llm_min": 0.75,
+        "confidence_llm_max": 0.9
+      },
+      {
+        "trait_id": "BehaviorDNA.Exercise.Type",
+        "value": {
+          "enum": "running"
+        },
+        "confidence_llm_min": 0.75,
+        "confidence_llm_max": 0.9
+      },
+      {
+        "trait_id": "BehaviorDNA.Routine.Morning",
+        "value": {
+          "text": "structured"
+        },
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.85
+      }
+    ]
+  },
+  {
+    "id": "preference_001",
+    "category": "preference",
+    "description": "Food preference",
+    "user_message": "I love pizza",
+    "expected_extractions": [
+      {
+        "trait_id": "PreferenceDNA.Food.Pizza",
+        "value": {
+          "text": "likes"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "preference_002",
+    "category": "preference",
+    "description": "Music preference",
+    "user_message": "I listen to jazz music",
+    "expected_extractions": [
+      {
+        "trait_id": "PreferenceDNA.Music.Genre",
+        "value": {
+          "enum": "jazz"
+        },
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "preference_003",
+    "category": "preference",
+    "description": "Entertainment preference from activity",
+    "user_message": "I binge-watched three series this month",
+    "expected_extractions": [
+      {
+        "trait_id": "PreferenceDNA.Entertainment.Type",
+        "value": {
+          "enum": "streaming_tv"
+        },
+        "confidence_llm_min": 0.65,
+        "confidence_llm_max": 0.85
+      },
+      {
+        "trait_id": "BehaviorDNA.Leisure.Indoor",
+        "value": {
+          "text": "frequent"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "preference_004",
+    "category": "preference",
+    "description": "Travel style preference",
+    "user_message": "I prefer backpacking over luxury hotels",
+    "expected_extractions": [
+      {
+        "trait_id": "PreferenceDNA.Travel.Style",
+        "value": {
+          "enum": "budget_adventure"
+        },
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "preference_005",
+    "category": "preference",
+    "description": "Climate preference from weather comment",
+    "user_message": "I love this warm sunny weather",
+    "expected_extractions": [
+      {
+        "trait_id": "PreferenceDNA.Climate.Temperature",
+        "value": {
+          "enum": "warm"
+        },
+        "confidence_llm_min": 0.5,
+        "confidence_llm_max": 0.75
+      },
+      {
+        "trait_id": "PreferenceDNA.Weather.Sunshine",
+        "value": {
+          "text": "likes"
+        },
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "qualified_fact_001",
+    "category": "qualified_fact",
+    "description": "Hedged height statement",
+    "user_message": "I think I'm about six feet tall",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {
+          "text": "about six feet tall"
+        },
+        "confidence_llm_min": 0.4,
+        "confidence_llm_max": 0.7,
+        "ambiguity_flags": [
+          "hedging_language"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qualified_fact_002",
+    "category": "qualified_fact",
+    "description": "Uncertain eye color",
+    "user_message": "I think my eyes are kind of blue",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {
+          "enum": "blue"
+        },
+        "confidence_llm_min": 0.4,
+        "confidence_llm_max": 0.7,
+        "ambiguity_flags": [
+          "hedging_language"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qualified_fact_003",
+    "category": "qualified_fact",
+    "description": "Approximate age statement",
+    "user_message": "I'm around 25 or so",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Age",
+        "value": {
+          "number": 25
+        },
+        "confidence_llm_min": 0.5,
+        "confidence_llm_max": 0.7,
+        "ambiguity_flags": [
+          "approximation"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qualified_fact_004",
+    "category": "qualified_fact",
+    "description": "Hedged location statement",
+    "user_message": "I live somewhere in the Bay Area",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Location.Region",
+        "value": {
+          "text": "Bay Area"
+        },
+        "confidence_llm_min": 0.5,
+        "confidence_llm_max": 0.75,
+        "ambiguity_flags": [
+          "vague_location"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qualified_fact_005",
+    "category": "qualified_fact",
+    "description": "Uncertain weight statement",
+    "user_message": "I weigh maybe 160 pounds or so",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Weight",
+        "value": {
+          "number": 160,
+          "unit": "lbs"
+        },
+        "confidence_llm_min": 0.4,
+        "confidence_llm_max": 0.65,
+        "ambiguity_flags": [
+          "hedging_language",
+          "approximation"
+        ]
+      }
+    ]
+  }
+]

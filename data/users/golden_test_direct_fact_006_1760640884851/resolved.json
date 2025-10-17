@@ -1,0 +1,50 @@
+{
+  "PaDNA.Location": {
+    "id": "PaDNA.Location",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760640884875",
+        "ts": "2025-10-16T18:54:44+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T18:54:46.412291Z",
+    "history": []
+  },
+  "PaDNA.City": {
+    "id": "PaDNA.City",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760640884875",
+        "ts": "2025-10-16T18:54:44+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T18:54:46.412298Z",
+    "history": []
+  },
+  "PaDNA.Geographic.Location": {
+    "id": "PaDNA.Geographic.Location",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760640884875",
+        "ts": "2025-10-16T18:54:44+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T18:54:46.412300Z",
+    "history": []
+  }
+}

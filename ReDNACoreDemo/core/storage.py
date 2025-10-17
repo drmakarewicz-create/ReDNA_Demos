@@ -13,6 +13,7 @@ from typing import Any, Dict, List, Optional, Tuple, Set, Iterable, Mapping
 from uuid import uuid4
 
 from . import curiosity_engine, governance
+from .ingest.policy import migrate_trait_record
 from .bundles import CURRENT_SCHEMA, CURRENT_VERSION, iso_now, migrate
 
 ROOT = Path(__file__).resolve().parents[1]  # ReDNACoreDemo/
@@ -150,6 +151,13 @@ def read_user_state(user_id: str) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[
     else:
         resolved = {}
 
+    if isinstance(resolved, dict):
+        for trait_id, trait_payload in list(resolved.items()):
+            if isinstance(trait_payload, dict):
+                migrate_trait_record(trait_payload)
+            else:
+                resolved.pop(trait_id)
+
     curiosity_engine.seed_resolved(resolved)
 
     evidence = load_json(paths["evidence"], default={"items": []})
@@ -185,6 +193,10 @@ def write_user_state(
             )
             governance.write_rollback_manifest(paths["rollback"], manifest)
 
+    if isinstance(resolved, dict):
+        for trait_payload in resolved.values():
+            if isinstance(trait_payload, dict):
+                migrate_trait_record(trait_payload)
     save_json(paths["resolved"], resolved)
     save_json(paths["evidence"], evidence)
     save_json(paths["observations"], observations)

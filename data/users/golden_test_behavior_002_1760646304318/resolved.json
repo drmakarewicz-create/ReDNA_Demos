@@ -1,0 +1,18 @@
+{
+  "PaDNA.PersonalityDNA.circadian_rhythm": {
+    "id": "PaDNA.PersonalityDNA.circadian_rhythm",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646304333",
+        "ts": "2025-10-16T20:25:04+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:05.393265Z",
+    "history": []
+  }
+}

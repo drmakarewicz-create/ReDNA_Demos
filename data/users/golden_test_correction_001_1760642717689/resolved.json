@@ -1,0 +1,18 @@
+{
+  "Eye.Color": {
+    "id": "Eye.Color",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642717706",
+        "ts": "2025-10-16T19:25:17+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:18.877493Z",
+    "history": []
+  }
+}

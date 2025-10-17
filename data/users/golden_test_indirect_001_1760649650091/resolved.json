@@ -1,0 +1,34 @@
+{
+  "PaDNA.Habit": {
+    "id": "PaDNA.Habit",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760649650113",
+        "ts": "2025-10-16T21:20:50+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:20:51.180364Z",
+    "history": []
+  },
+  "PaDNA.TimeOfDay": {
+    "id": "PaDNA.TimeOfDay",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760649650113",
+        "ts": "2025-10-16T21:20:50+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:20:51.180373Z",
+    "history": []
+  }
+}

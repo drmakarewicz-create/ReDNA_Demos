@@ -14,6 +14,7 @@ import json
 import os
 import signal
 import socket
+import shlex
 import subprocess
 import sys
 import time
@@ -21,7 +22,7 @@ from collections import deque
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Annotated, Any, Dict, Iterable, List, Literal, Optional, Sequence, Tuple, Union
+from typing import Annotated, Any, Dict, Iterable, List, Literal, Optional, Sequence, Tuple, Union, Mapping
 
 import httpx
 from fastapi import APIRouter, Body, HTTPException, Query, status
@@ -29,6 +30,8 @@ from pydantic import BaseModel, Field, field_validator
 
 from ReDNACoreDemo.core.logutil import stack_log
 from . import supervisor
+from .config import DEVX_CORE_BASE, DEVX_UCNRR_BASE, resolved_stack_config
+from .config_resolver import resolve_stack_config, StackConfig
 
 try:
     from cpplusplus.ports import find_free_port, who_listens
@@ -50,6 +53,46 @@ ENV_FILE = (REPO_ROOT / ".env").resolve()
 
 RUN_DIR.mkdir(parents=True, exist_ok=True)
 LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def _compose_base_url(base: str, path: str) -> str:
+    if not path.startswith("/"):
+        path = f"/{path}"
+    return base.rstrip("/") + path
+
+
+def _config_summary(config: Mapping[str, Any]) -> Dict[str, Any]:
+    summary: Dict[str, Any] = {
+        "core_base": config["core_base"],
+        "ucnrr_base": config["ucnrr_base"],
+        "devx_base": config["devx_base"],
+        "core_port": config["core_port"],
+        "ucnrr_port": config["ucnrr_port"],
+        "devx_port": config["devx_port"],
+    }
+    summary["warnings"] = list(config.get("warnings", []))
+    return summary
+
+
+def _env_float(key: str, default: float) -> float:
+    raw = os.getenv(key)
+    if not raw:
+        return float(default)
+    try:
+        return float(raw)
+    except (TypeError, ValueError):
+        return float(default)
+
+
+READINESS_WARMUP_SEC = _env_float("READINESS_WARMUP_SEC", 30.0)
+READINESS_ERROR_RATE_MAX = _env_float("READINESS_ERROR_RATE_MAX", 0.02)
+READINESS_P95_MAX_MS = _env_float("READINESS_P95_MAX_MS", 750.0)
+READINESS_SKIP_CORE_HEALTH = os.getenv("READINESS_SKIP_CORE_HEALTH", "false").lower() in ("true", "1", "yes")
+
+WARMUP_FALLBACK_LOGGED = False
+READINESS_HTTP_TIMEOUT = httpx.Timeout(connect=1.0, read=2.5, write=2.5, pool=2.5)
+READINESS_RETRY_BACKOFF = 0.2
+READINESS_OVERALL_DEADLINE = _env_float("READINESS_OVERALL_DEADLINE", 4.0)
 
 
 def _now_iso() -> str:
@@ -183,7 +226,9 @@ def _fallback_find_port(start: int, end: int) -> Optional[int]:
 class ServiceDefinition:
     key: Literal["core", "ucnrr", "devx"]
     display_name: str
-    env_var: str
+    port_env_var: str
+    config_port_key: str
+    config_base_key: str
     default_port: int
     uvicorn_app: str
     health_path: str = "/health"
@@ -207,7 +252,11 @@ class ServiceDefinition:
 
     @property
     def port(self) -> int:
-        return _current_port(self.env_var, self.default_port)
+        config = resolve_stack_config()
+        try:
+            return int(config.get(self.config_port_key, self.default_port))
+        except (TypeError, ValueError):
+            return self.default_port
 
     def build_command(self, port: int) -> List[str]:
         cmd = [
@@ -240,8 +289,10 @@ SERVICES: Dict[str, ServiceDefinition] = {
     "core": ServiceDefinition(
         key="core",
         display_name="Core API",
-        env_var="CORE_PORT",
-        default_port=8000,
+        port_env_var="CORE_PORT",
+        config_port_key="core_port",
+        config_base_key="core_base",
+        default_port=8001,
         uvicorn_app="ReDNACoreDemo.core.api:build_app",
         factory=True,
         extra_args=("--log-level", "info"),
@@ -249,7 +300,9 @@ SERVICES: Dict[str, ServiceDefinition] = {
     "ucnrr": ServiceDefinition(
         key="ucnrr",
         display_name="UCNRR Engine",
-        env_var="UCNRR_PORT",
+        port_env_var="UCNRR_PORT",
+        config_port_key="ucnrr_port",
+        config_base_key="ucnrr_base",
         default_port=8011,
         uvicorn_app="UCN_RR_Demo.ucnrr_app:app",
         cwd=REPO_ROOT / "UCN_RR_Demo",
@@ -257,7 +310,9 @@ SERVICES: Dict[str, ServiceDefinition] = {
     "devx": ServiceDefinition(
         key="devx",
         display_name="DevX Backend",
-        env_var="DEVX_BACKEND_PORT",
+        port_env_var="DEVX_BACKEND_PORT",
+        config_port_key="devx_port",
+        config_base_key="devx_base",
         default_port=8100,
         uvicorn_app="ReDNACoreDemo.devx.backend.api:app",
         extra_args=("--log-level", "info"),
@@ -361,6 +416,17 @@ class LogsResponse(BaseModel):
     lines: List[LogEntry]
 
 
+class StackConfigResponse(BaseModel):
+    core_base: str
+    ucnrr_base: str
+    devx_base: str
+    core_port: int
+    ucnrr_port: int
+    devx_port: int
+    warnings: List[str] = Field(default_factory=list)
+    source: Dict[str, str] = Field(default_factory=dict)
+
+
 class StackReadyResponse(BaseModel):
     ready: bool
     status: Literal["ready", "warming", "unready"]
@@ -374,6 +440,9 @@ class StackReadyResponse(BaseModel):
     p95_latency_ms_5m: Optional[float] = None
     failures_by_service: Dict[str, List[str]] = Field(default_factory=dict)
     rate_limit: Dict[str, Dict[str, Any]] = Field(default_factory=dict)
+    warmup_fallback_used: bool = False
+    action_required: List[Dict[str, Any]] = Field(default_factory=list)
+    debug: Optional[Dict[str, Any]] = None
 
 
 class RestartAction(BaseModel):
@@ -398,6 +467,7 @@ class SupervisorRestartResponse(BaseModel):
     skipped: List[RestartAction]
     rate_limited: List[RestartAction]
     history: List[Dict[str, Any]]
+    resolved_config: StackConfigResponse
 
 
 class RestartHistoryResponse(BaseModel):
@@ -426,40 +496,68 @@ READINESS_CACHE = ReadinessCache()
 
 
 async def _fetch_stack_inputs() -> Dict[str, Any]:
-    core_service = SERVICES["core"]
-    ucnrr_service = SERVICES["ucnrr"]
     outputs: Dict[str, Any] = {}
+    stack_config = resolved_stack_config()
 
-    async with httpx.AsyncClient(timeout=2.0) as client:
-        metrics_url = _compose_health_url(core_service.port, "/metrics")
-        health_url = _compose_health_url(core_service.port, "/health")
-        selftest_url = _compose_health_url(ucnrr_service.port, "/ucnrr/selftest")
+    async def _fetch_json(client: httpx.AsyncClient, url: str, timeout_code: str) -> Tuple[Optional[Dict[str, Any]], Optional[str]]:
+        last_error: Optional[str] = None
+        for attempt in range(2):
+            try:
+                response = await client.get(url)
+                response.raise_for_status()
+                payload = response.json()
+                if isinstance(payload, dict):
+                    return payload, None
+                return None, "invalid_payload"
+            except (httpx.ConnectTimeout, httpx.ReadTimeout):
+                last_error = timeout_code
+                if isinstance(last_error, str) and attempt == 0:
+                    await asyncio.sleep(READINESS_RETRY_BACKOFF)
+                    continue
+                return None, timeout_code
+            except Exception as exc:  # pragma: no cover - defensive
+                return None, _summarize_error(exc)
+        return None, last_error
 
-        try:
-            metrics_resp = await client.get(metrics_url)
-            metrics_resp.raise_for_status()
-            outputs["metrics"] = metrics_resp.json()
-        except Exception as exc:  # pragma: no cover - network dependent
-            outputs["metrics_error"] = _summarize_error(exc)
+    async with httpx.AsyncClient(timeout=READINESS_HTTP_TIMEOUT) as client:
+        metrics_url = _compose_base_url(stack_config["core_base"], "/metrics")
+        health_url = _compose_base_url(stack_config["core_base"], "/health")
+        selftest_url = _compose_base_url(stack_config["ucnrr_base"], "/ucnrr/selftest")
 
-        try:
-            health_resp = await client.get(health_url)
-            health_resp.raise_for_status()
-            outputs["health"] = health_resp.json()
-        except Exception as exc:  # pragma: no cover - network dependent
-            outputs["health_error"] = _summarize_error(exc)
+        if READINESS_SKIP_CORE_HEALTH:
+            # Fallback: Skip Core health/metrics probes due to async hang issue
+            outputs["metrics_error"] = "core_health_skipped"
+            outputs["health_error"] = "core_health_skipped"
+            stack_log(
+                service="devx",
+                level="INFO",
+                event="readiness_fallback",
+                msg="Skipping Core health/metrics probes (READINESS_SKIP_CORE_HEALTH=true)",
+            )
+        else:
+            metrics_payload, metrics_error = await _fetch_json(client, metrics_url, "core_metrics_timeout")
+            if metrics_payload is not None:
+                outputs["metrics"] = metrics_payload
+            elif metrics_error:
+                outputs["metrics_error"] = metrics_error
 
-        try:
-            selftest_resp = await client.get(selftest_url)
-            selftest_resp.raise_for_status()
-            outputs["ucnrr_selftest"] = selftest_resp.json()
-        except Exception as exc:  # pragma: no cover - network dependent
-            outputs["ucnrr_error"] = _summarize_error(exc)
+            health_payload, health_error = await _fetch_json(client, health_url, "core_health_timeout")
+            if health_payload is not None:
+                outputs["health"] = health_payload
+            elif health_error:
+                outputs["health_error"] = health_error
+
+        selftest_payload, selftest_error = await _fetch_json(client, selftest_url, "ucnrr_selftest_timeout")
+        if selftest_payload is not None:
+            outputs["ucnrr_selftest"] = selftest_payload
+        elif selftest_error:
+            outputs["ucnrr_error"] = selftest_error
 
     return outputs
 
 
 def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[RestartableService]]:
+    global WARMUP_FALLBACK_LOGGED
     rate_limit = supervisor.get_rate_limit_status()
     reasons: List[str] = []
     fail_conditions: List[str] = []
@@ -470,6 +568,8 @@ def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Res
     error_rate = None
     p95_latency = None
     warming = False
+    fallback_used = False
+    fallback_details: Optional[Dict[str, Any]] = None
 
     def add_failure(code: str, service: Optional[RestartableService], message: str) -> None:
         if code not in fail_conditions:
@@ -485,9 +585,15 @@ def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Res
     metrics_payload = inputs.get("metrics")
     metrics_error = inputs.get("metrics_error")
 
-    if metrics_error:
+    if metrics_error == "core_health_skipped":
+        # Fallback mode: Core health check skipped, treat as passing
+        pass
+    elif metrics_error == "core_metrics_timeout":
+        add_failure("core_metrics_timeout", "core", "Core metrics request timed out")
+    elif metrics_error:
         add_failure("core_metrics_unavailable", "core", f"Core metrics unavailable ({metrics_error})")
-    elif metrics_payload:
+
+    if metrics_payload:
         rolling = metrics_payload.get("rolling_window") or {}
         rolling_window_sec = int(rolling.get("window_seconds") or 300)
         requests = int(rolling.get("requests_window_5m") or 0)
@@ -507,21 +613,31 @@ def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Res
                     "core",
                     f"Core error rate over 5m is {error_rate:.2%}",
                 )
-            if p95_latency is not None and p95_latency > 750:
-                add_failure(
-                    "core_latency_high",
-                    "core",
-                    f"Core p95 latency over 5m is {float(p95_latency):.0f}ms",
-                )
-    else:
+            if p95_latency is not None:
+                if p95_latency > 750:
+                    add_failure(
+                        "core_latency_high",
+                        "core",
+                        f"Core p95 latency over 5m is {float(p95_latency):.0f}ms",
+                    )
+            else:
+                warming = True
+                add_failure("metrics_warming", "core", "Core metrics warming (no samples yet)")
+    elif metrics_error != "core_health_skipped":
         warming = True
         add_failure("metrics_warming", "core", "Core metrics warming (no samples yet)")
 
     health_payload = inputs.get("health")
     health_error = inputs.get("health_error")
-    if health_error:
+    if health_error == "core_health_skipped":
+        # Fallback mode: Core health check skipped, treat as passing
+        pass
+    elif health_error == "core_health_timeout":
+        add_failure("core_health_timeout", "core", "Core health request timed out")
+    elif health_error:
         add_failure("core_health_unreachable", "core", f"Core health unreachable ({health_error})")
-    elif health_payload:
+
+    if health_payload:
         declared_status = str(health_payload.get("status", "")).lower()
         if declared_status and declared_status not in {"healthy", "ok", "green"}:
             add_failure(
@@ -530,13 +646,13 @@ def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Res
                 f"Core health reported '{declared_status}'",
             )
         rr_mode = str(health_payload.get("rr_mode") or "").lower()
-        if rr_mode and rr_mode != "online":
+        if rr_mode and rr_mode not in {"online", "degraded"}:
             add_failure(
                 "core_rr_mode_fallback",
                 "core",
                 f"Core rr_mode is '{rr_mode}'",
             )
-    else:
+    elif health_error != "core_health_skipped":
         add_failure("core_health_unreachable", "core", "Core health payload missing")
 
     selftest_payload = inputs.get("ucnrr_selftest")
@@ -550,6 +666,36 @@ def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Res
     else:
         add_failure("ucnrr_selftest_unreachable", "ucnrr", "UCNRR self-test payload missing")
 
+    # Enhanced UCNRR diagnostics when Core reports rr_mode="degraded"
+    if health_payload:
+        rr_mode = str(health_payload.get("rr_mode") or "").lower()
+        ucnrr_enabled = bool(health_payload.get("features", {}).get("ucnrr_enabled"))
+
+        if rr_mode == "degraded" and ucnrr_enabled:
+            # Fetch detailed UCNRR status to provide precise reason codes
+            try:
+                from . import supervisor_ucnrr
+                ucnrr_status = supervisor_ucnrr.get_ucnrr_status()
+
+                if not ucnrr_status["alive"]:
+                    if ucnrr_status["reason"] in ("conn_refused", "timeout"):
+                        add_failure("ucnrr_unreachable", "ucnrr", f"UCNRR unreachable ({ucnrr_status['reason']})")
+                    else:
+                        add_failure("ucnrr_unhealthy", "ucnrr", f"UCNRR unhealthy ({ucnrr_status['reason']})")
+
+                if not ucnrr_status["llm_configured"]:
+                    add_failure("ucnrr_llm_disabled", "ucnrr", "UCNRR LLM not configured")
+
+                if ucnrr_status["restart_capped"]:
+                    add_failure("ucnrr_restart_capped", "ucnrr", "UCNRR restart rate limit exceeded")
+
+                if ucnrr_status["backoff_sec_remaining"] > 0:
+                    backoff_sec = ucnrr_status["backoff_sec_remaining"]
+                    add_failure("ucnrr_backoff_active", "ucnrr", f"UCNRR backoff active ({backoff_sec}s remaining)")
+            except Exception:
+                # If UCNRR supervisor not available, skip enhanced diagnostics
+                pass
+
     max_per_hour = supervisor.max_restarts_per_hour()
     for service, info in rate_limit.items():
         if info.get("rate_limited"):
@@ -558,6 +704,56 @@ def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Res
                 service if service in {"core", "ucnrr"} else None,
                 f"{service.upper()} restart rate limited (>{max_per_hour} per hour)",
             )
+
+    if (
+        fail_conditions
+        and all(code == "metrics_warming" for code in fail_conditions)
+        and metrics_payload
+    ):
+        uptime_seconds = float(metrics_payload.get("uptime_seconds") or 0.0)
+        if uptime_seconds >= READINESS_WARMUP_SEC:
+            counters = metrics_payload.get("counters") or {}
+            total_requests = int(counters.get("http.requests.total") or 0)
+            total_errors = int(counters.get("http.requests.errors") or 0)
+            cumulative_error_rate = (total_errors / max(1, total_requests)) if total_requests else 0.0
+
+            timer_stats = metrics_payload.get("timers") or {}
+            latency_stats = timer_stats.get("http.latency_ms") or {}
+            cumulative_p95 = latency_stats.get("p95")
+            if cumulative_p95 is None:
+                cumulative_p95 = latency_stats.get("p95_ms")
+            if cumulative_p95 is None:
+                cumulative_p95 = 0.0
+
+            if (
+                cumulative_error_rate <= READINESS_ERROR_RATE_MAX
+                and cumulative_p95 <= READINESS_P95_MAX_MS
+            ):
+                fallback_used = True
+                fallback_details = {
+                    "uptime_seconds": round(uptime_seconds, 2),
+                    "requests_total": total_requests,
+                    "errors_total": total_errors,
+                    "latency_p95_ms": float(cumulative_p95),
+                }
+                warming = False
+                error_rate = cumulative_error_rate
+                p95_latency = float(cumulative_p95)
+                fail_conditions.clear()
+                fail_map.clear()
+                reasons = [
+                    msg for msg in reasons if "warming" not in msg.lower()
+                ]
+                reasons.append("Stack ready (warmup fallback satisfied cumulative thresholds)")
+                if not WARMUP_FALLBACK_LOGGED:
+                    stack_log(
+                        "devx",
+                        "INFO",
+                        "readiness_warmup_fallback",
+                        "Warmup fallback satisfied cumulative thresholds",
+                        fallback_details,
+                    )
+                    WARMUP_FALLBACK_LOGGED = True
 
     failures_by_service = {svc: msgs for svc, msgs in fail_map.items() if msgs}
 
@@ -573,11 +769,50 @@ def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Res
     for svc, msgs in actionable_failures.items():
         if not msgs:
             continue
-        recovery_suggestions.append({
-            "service": svc,
-            "action": "restart",
-            "reason": msgs[0],
-        })
+
+        # Provide specific recovery actions for UCNRR failures
+        if svc == "ucnrr":
+            # Check for specific failure codes
+            if "ucnrr_unreachable" in fail_conditions or "ucnrr_unhealthy" in fail_conditions:
+                recovery_suggestions.append({
+                    "service": svc,
+                    "action": "ensure_ucnrr",
+                    "reason": msgs[0],
+                    "hint": "Call POST /devx/api/stack/ucnrr/ensure to start UCNRR",
+                })
+            elif "ucnrr_llm_disabled" in fail_conditions:
+                recovery_suggestions.append({
+                    "service": svc,
+                    "action": "start_ollama",
+                    "reason": msgs[0],
+                    "hint": "Run: ollama serve & && ollama pull phi3:mini",
+                })
+            elif "ucnrr_backoff_active" in fail_conditions:
+                recovery_suggestions.append({
+                    "service": svc,
+                    "action": "wait_backoff",
+                    "reason": msgs[0],
+                    "hint": "UCNRR will auto-restart after backoff delay",
+                })
+            elif "ucnrr_restart_capped" in fail_conditions:
+                recovery_suggestions.append({
+                    "service": svc,
+                    "action": "wait_cap_expiry",
+                    "reason": msgs[0],
+                    "hint": "Restart cap will expire in ~10 minutes. Check logs for persistent errors.",
+                })
+            else:
+                recovery_suggestions.append({
+                    "service": svc,
+                    "action": "restart",
+                    "reason": msgs[0],
+                })
+        else:
+            recovery_suggestions.append({
+                "service": svc,
+                "action": "restart",
+                "reason": msgs[0],
+            })
 
     if not reasons:
         reasons.append("Stack ready")
@@ -600,6 +835,7 @@ def _compute_readiness(inputs: Dict[str, Any]) -> Tuple[Dict[str, Any], List[Res
         "failures_by_service": failures_by_service,
         "rate_limit": rate_limit,
         "eligible_services": eligible_services,
+        "warmup_fallback_used": fallback_used,
     }
 
     return analysis, eligible_services
@@ -718,11 +954,43 @@ async def get_stack_status() -> StackStatusResponse:
     return StackStatusResponse(services=list(snapshots), timestamp=_now_iso())
 
 
+@router.get("/config", response_model=StackConfigResponse)
+async def get_stack_config_endpoint() -> StackConfigResponse:
+    config = resolve_stack_config()
+    return StackConfigResponse(
+        core_base=config["core_base"],
+        ucnrr_base=config["ucnrr_base"],
+        devx_base=config["devx_base"],
+        core_port=int(config["core_port"]),
+        ucnrr_port=int(config["ucnrr_port"]),
+        devx_port=int(config["devx_port"]),
+        warnings=list(config.get("warnings", [])),
+        source={key: str(value) for key, value in (config.get("source") or {}).items()},
+    )
+
+
 @router.get("/ready", response_model=StackReadyResponse)
 async def get_stack_ready() -> StackReadyResponse:
     analysis, _ = await _evaluate_stack_readiness(update_state=True, emit_log=True)
     analysis.pop("eligible_services", None)
     analysis.pop("_unready_since_ts", None)
+    config = resolve_stack_config()
+    conflicts = _detect_port_conflicts(config)
+    if conflicts:
+        fail_conditions = analysis.setdefault("fail_conditions", [])
+        if "port_conflict" not in fail_conditions:
+            fail_conditions.append("port_conflict")
+        reasons = analysis.setdefault("reasons", [])
+        if "Port conflict detected" not in reasons:
+            reasons.append("Port conflict detected")
+        analysis["ready"] = False
+        if analysis.get("status") == "ready":
+            analysis["status"] = "unready"
+    analysis["action_required"] = conflicts
+    debug_info = {"config": _config_summary(config)}
+    if conflicts:
+        debug_info["port_conflicts"] = conflicts
+    analysis["debug"] = debug_info
     return StackReadyResponse(**analysis)
 
 
@@ -751,6 +1019,97 @@ def _read_pid(service: ServiceDefinition) -> Optional[int]:
 def _last_log_entry(service: ServiceDefinition) -> Optional[Dict[str, Any]]:
     entries = _tail_json(service.resolve_log_path(), 1)
     return entries[0] if entries else None
+
+
+def _extract_port_from_cmdline(cmdline: str) -> Optional[int]:
+    try:
+        tokens = shlex.split(cmdline)
+    except ValueError:
+        return None
+    for index, token in enumerate(tokens):
+        if token.startswith("--port="):
+            try:
+                return int(token.split("=", 1)[1])
+            except ValueError:
+                continue
+        if token in {"--port", "-p"} and index + 1 < len(tokens):
+            try:
+                return int(tokens[index + 1])
+            except ValueError:
+                continue
+    return None
+
+
+def _enumerate_service_processes() -> Dict[str, List[Dict[str, Any]]]:
+    processes: Dict[str, List[Dict[str, Any]]] = {"core": [], "ucnrr": [], "devx": []}
+    try:
+        output = subprocess.run(
+            ["ps", "-eo", "pid=,command="],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout
+    except Exception:
+        return processes
+
+    for raw_line in output.splitlines():
+        line = raw_line.strip()
+        if not line:
+            continue
+        try:
+            pid_token, cmdline = line.split(None, 1)
+        except ValueError:
+            continue
+        try:
+            pid = int(pid_token)
+        except ValueError:
+            continue
+
+        service_key: Optional[str] = None
+        if "ReDNACoreDemo.core.api" in cmdline:
+            service_key = "core"
+        elif "UCN_RR_Demo.ucnrr_app" in cmdline:
+            service_key = "ucnrr"
+        elif "ReDNACoreDemo.devx.backend.api" in cmdline:
+            service_key = "devx"
+
+        if not service_key:
+            continue
+
+        port = _extract_port_from_cmdline(cmdline)
+        processes[service_key].append(
+            {
+                "pid": pid,
+                "port": port,
+                "cmd": cmdline,
+            }
+        )
+    return processes
+
+
+def _detect_port_conflicts(stack_config: Mapping[str, Any]) -> List[Dict[str, Any]]:
+    processes = _enumerate_service_processes()
+    conflicts: List[Dict[str, Any]] = []
+    for service_key in ("core", "ucnrr", "devx"):
+        resolved_port = int(stack_config[f"{service_key}_port"])
+        service_processes = processes.get(service_key, [])
+        if any(proc.get("port") == resolved_port for proc in service_processes if proc.get("port")):
+            continue
+        for proc in service_processes:
+            port = proc.get("port")
+            if port and port != resolved_port:
+                conflicts.append(
+                    {
+                        "service": service_key,
+                        "expected_port": resolved_port,
+                        "actual_port": port,
+                        "pid": proc["pid"],
+                        "cmd": proc["cmd"],
+                        "action": f"{service_key}_port_conflict",
+                    }
+                )
+                break
+    return conflicts
 
 
 @router.post("/diagnose", response_model=DiagnoseResponse)
@@ -794,13 +1153,21 @@ def _start_service_sync(service: ServiceDefinition, port: int) -> int:
     log_path.parent.mkdir(parents=True, exist_ok=True)
 
     env = os.environ.copy()
-    env[service.env_var] = str(port)
+    stack_config = resolve_stack_config()
+    env[service.port_env_var] = str(port)
+    env["CORE_PORT"] = str(stack_config["core_port"])
+    env["UCNRR_PORT"] = str(stack_config["ucnrr_port"])
+    env["DEVX_PORT"] = str(stack_config["devx_port"])
+    env["CORE_BASE"] = stack_config["core_base"]
+    env["UCNRR_BASE"] = stack_config["ucnrr_base"]
+    env["DEVX_BASE"] = stack_config["devx_base"]
+    env["DEVX_CORE_BASE"] = stack_config["core_base"]
+    env["DEVX_UCNRR_BASE"] = stack_config["ucnrr_base"]
     env["PYTHONPATH"] = _default_py_path(env.get("PYTHONPATH"))
 
     # Set UCNRR_BASE for Core service so it can check UCNRR health
     if service.key == "core":
-        ucnrr_port = SERVICES["ucnrr"].port
-        env["UCNRR_BASE"] = f"http://127.0.0.1:{ucnrr_port}"
+        env["UCNRR_BASE"] = stack_config["ucnrr_base"]
 
     cmd = service.build_command(port)
 
@@ -913,8 +1280,8 @@ async def post_change_port(request: ChangePortRequest) -> ChangePortResponse:
     if port is None:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="No free port found in expected range.")
 
-    _update_env_var(service.env_var, str(port))
-    os.environ[service.env_var] = str(port)
+    _update_env_var(service.port_env_var, str(port))
+    os.environ[service.port_env_var] = str(port)
 
     restart_result = await post_restart(RestartRequest(service=service.key, port=port))
     status_flag: Literal["restarted", "error"] = "restarted" if restart_result.status == "started" else "error"

@@ -10,9 +10,17 @@
             "enum": "higher_likelihood"
           },
           "source": "ui:inference",
-          "ts": "2025-10-15T21:07:02+00:00",
+          "ts": "2025-10-15T22:04:06+00:00",
           "ucn_prior": 0.2,
-          "provenance": "inference:iris_blue_freckles_hint"
+          "provenance": "inference:iris_blue_freckles_hint",
+          "policy": {
+            "tier": "cold",
+            "ttl_days": 60,
+            "reason": "high_signal,redundant",
+            "reliability": 0.4,
+            "logged_at": "2025-10-15T22:04:06+00:00"
+          },
+          "_reliability": 0.4
         },
         {
           "trait_id": "PaDNA.HairDNA.DarknessPrior",
@@ -20,12 +28,20 @@
             "enum": "slightly_lower"
           },
           "source": "ui:inference",
-          "ts": "2025-10-15T21:07:02+00:00",
+          "ts": "2025-10-15T22:04:06+00:00",
           "ucn_prior": 0.15,
-          "provenance": "inference:iris_blue_dark_hair_less_likely"
+          "provenance": "inference:iris_blue_dark_hair_less_likely",
+          "policy": {
+            "tier": "cold",
+            "ttl_days": 60,
+            "reason": "high_signal,redundant",
+            "reliability": 0.4,
+            "logged_at": "2025-10-15T22:04:06+00:00"
+          },
+          "_reliability": 0.4
         }
       ],
-      "ts": 1760562422.8163562
+      "ts": 1760565846.260695
     },
     {
       "name": "grouped",
@@ -33,7 +49,7 @@
         "PaDNA.SkinDNA.Freckles": 1,
         "PaDNA.HairDNA.DarknessPrior": 1
       },
-      "ts": 1760562422.8163579
+      "ts": 1760565846.2606971
     },
     {
       "name": "chosen",
@@ -44,9 +60,17 @@
             "enum": "higher_likelihood"
           },
           "source": "ui:inference",
-          "ts": "2025-10-15T21:07:02+00:00",
+          "ts": "2025-10-15T22:04:06+00:00",
           "ucn_prior": 0.2,
-          "provenance": "inference:iris_blue_freckles_hint"
+          "provenance": "inference:iris_blue_freckles_hint",
+          "policy": {
+            "tier": "cold",
+            "ttl_days": 60,
+            "reason": "high_signal,redundant",
+            "reliability": 0.4,
+            "logged_at": "2025-10-15T22:04:06+00:00"
+          },
+          "_reliability": 0.4
         },
         "PaDNA.HairDNA.DarknessPrior": {
           "trait_id": "PaDNA.HairDNA.DarknessPrior",
@@ -54,12 +78,20 @@
             "enum": "slightly_lower"
           },
           "source": "ui:inference",
-          "ts": "2025-10-15T21:07:02+00:00",
+          "ts": "2025-10-15T22:04:06+00:00",
           "ucn_prior": 0.15,
-          "provenance": "inference:iris_blue_dark_hair_less_likely"
+          "provenance": "inference:iris_blue_dark_hair_less_likely",
+          "policy": {
+            "tier": "cold",
+            "ttl_days": 60,
+            "reason": "high_signal,redundant",
+            "reliability": 0.4,
+            "logged_at": "2025-10-15T22:04:06+00:00"
+          },
+          "_reliability": 0.4
         }
       },
-      "ts": 1760562422.81636
+      "ts": 1760565846.260698
     },
     {
       "name": "rr_input",
@@ -81,12 +113,12 @@
           "source": "ui:inference"
         }
       ],
-      "ts": 1760562422.816362
+      "ts": 1760565846.2607
     },
     {
       "name": "rr_error",
       "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
-      "ts": 1760562422.817216
+      "ts": 1760565846.261662
     },
     {
       "name": "ucn_scores",
@@ -94,7 +126,7 @@
         "PaDNA.SkinDNA.Freckles": 0.2,
         "PaDNA.HairDNA.DarknessPrior": 0.15
       },
-      "ts": 1760562422.8172412
+      "ts": 1760565846.261685
     },
     {
       "name": "resolved_out",
@@ -102,8 +134,8 @@
         "trait_count": 3,
         "rr_ok": false
       },
-      "ts": 1760562422.817885
+      "ts": 1760565846.2626429
     }
   ],
-  "ts": 1760562422.81635
+  "ts": 1760565846.2606888
 }

@@ -18,10 +18,18 @@ _REDNA_ROOT = Path(os.getenv("REDNA_HOME", Path.home() / ".redna")).expanduser()
 _LOG_PATH = Path(
     os.getenv("REDNA_STACK_LOG", str((_REDNA_ROOT / "logs" / "stack.log").resolve()))
 )
+_EVIDENCE_LOG_PATH = Path(
+    os.getenv("REDNA_EVIDENCE_LOG", str((_REDNA_ROOT / "logs" / "evidence.log").resolve()))
+)
+_SUPERSESSION_LOG_PATH = Path(
+    os.getenv("REDNA_SUPERSESSION_LOG", str((_REDNA_ROOT / "logs" / "supersession.log").resolve()))
+)
 
 
 def _ensure_log_path() -> None:
     _LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    _EVIDENCE_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    _SUPERSESSION_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
 
 
 def _default(o: Any) -> Any:
@@ -69,4 +77,25 @@ def stack_log(
             handle.write(payload + "\n")
 
 
-__all__ = ["stack_log", "_LOG_PATH"]
+def _append_jsonl(path: Path, record: Dict[str, Any]) -> None:
+    _ensure_log_path()
+    serialised = json.dumps(record, default=_default, ensure_ascii=False)
+    with _LOG_LOCK:
+        with path.open("a", encoding="utf-8") as handle:
+            handle.write(serialised + "\n")
+
+
+def evidence_log(record: Dict[str, Any]) -> None:
+    _append_jsonl(_EVIDENCE_LOG_PATH, record)
+
+
+def supersession_log(record: Dict[str, Any]) -> None:
+    _append_jsonl(_SUPERSESSION_LOG_PATH, record)
+
+
+__all__ = [
+    "stack_log",
+    "evidence_log",
+    "supersession_log",
+    "_LOG_PATH",
+]

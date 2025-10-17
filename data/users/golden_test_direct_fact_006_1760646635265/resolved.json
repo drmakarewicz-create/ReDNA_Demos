@@ -1,0 +1,50 @@
+{
+  "Location.City": {
+    "id": "Location.City",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646635358",
+        "ts": "2025-10-16T20:30:35+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:30:36.327601Z",
+    "history": []
+  },
+  "Location.Country": {
+    "id": "Location.Country",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646635358",
+        "ts": "2025-10-16T20:30:35+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:30:36.327606Z",
+    "history": []
+  },
+  "Location.Region": {
+    "id": "Location.Region",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646635358",
+        "ts": "2025-10-16T20:30:35+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:30:36.327608Z",
+    "history": []
+  }
+}

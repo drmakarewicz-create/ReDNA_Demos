@@ -2,16 +2,14 @@
 DevX Configuration
 ==================
 
-Port safety and service isolation settings.
+Centralized configuration for DevX backend paths and ports.
 """
 
 import socket
 from pathlib import Path
+from typing import Any, Mapping
 
-# Base ports (auto-increment if unavailable)
-DEVX_BACKEND_PORT = 8100
-DEVX_FRONTEND_PORT = 3100
-DEVX_HOST = "127.0.0.1"
+from .config_resolver import resolve_stack_config, StackConfig
 
 # Paths
 DEVX_ROOT = Path(__file__).parent.parent
@@ -30,6 +28,20 @@ CR_DIR.mkdir(parents=True, exist_ok=True)
 # Logs
 LOG_DIR = DEVX_ROOT / "logs"
 LOG_DIR.mkdir(exist_ok=True)
+
+# Base ports (used for availability checks)
+DEVX_FRONTEND_PORT = 3100
+DEVX_HOST = "127.0.0.1"
+
+STACK_CONFIG = resolve_stack_config()
+DEVX_CORE_BASE: str = STACK_CONFIG["core_base"]
+DEVX_UCNRR_BASE: str = STACK_CONFIG["ucnrr_base"]
+DEVX_BASE: str = STACK_CONFIG["devx_base"]
+CORE_PORT: int = STACK_CONFIG["core_port"]
+UCNRR_PORT: int = STACK_CONFIG["ucnrr_port"]
+DEVX_BACKEND_PORT: int = STACK_CONFIG["devx_port"]
+STACK_CONFIG_SOURCES: Mapping[str, str] = STACK_CONFIG["source"]
+STACK_CONFIG_WARNINGS: list[str] = list(STACK_CONFIG.get("warnings", []))
 
 
 def find_available_port(start_port: int, max_attempts: int = 10) -> int:
@@ -70,3 +82,11 @@ def get_backend_port() -> int:
 def get_frontend_port() -> int:
     """Get available frontend port."""
     return find_available_port(DEVX_FRONTEND_PORT)
+
+
+def resolved_stack_config(overrides: Mapping[str, Any] | None = None) -> StackConfig:
+    """Return the latest resolved stack configuration (optionally with overrides)."""
+    if overrides:
+        # Caller expects current state only – no module-level cache update.
+        return resolve_stack_config(overrides)
+    return StackConfig(STACK_CONFIG)

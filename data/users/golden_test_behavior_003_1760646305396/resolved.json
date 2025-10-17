@@ -1,0 +1,34 @@
+{
+  "BehaviorDNA.Leisure.Indoor": {
+    "id": "BehaviorDNA.Leisure.Indoor",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646305419",
+        "ts": "2025-10-16T20:25:05+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:07.066961Z",
+    "history": []
+  },
+  "PaDNA.TimePeriod": {
+    "id": "PaDNA.TimePeriod",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646305419",
+        "ts": "2025-10-16T20:25:05+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:07.066970Z",
+    "history": []
+  }
+}

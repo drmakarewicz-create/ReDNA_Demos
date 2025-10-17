@@ -1,0 +1,34 @@
+{
+  "PaDNA.PreferencesDNA.backpacking": {
+    "id": "PaDNA.PreferencesDNA.backpacking",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650264857",
+        "ts": "2025-10-16T21:31:04+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:31:06.402936Z",
+    "history": []
+  },
+  "PaDNA.PreferencesDNA.luxury_hotels": {
+    "id": "PaDNA.PreferencesDNA.luxury_hotels",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650264857",
+        "ts": "2025-10-16T21:31:04+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:31:06.402942Z",
+    "history": []
+  }
+}

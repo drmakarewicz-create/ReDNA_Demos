@@ -1,0 +1,34 @@
+{
+  "PaDNA.Color": {
+    "id": "PaDNA.Color",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642759216",
+        "ts": "2025-10-16T19:25:59+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:26:00.387230Z",
+    "history": []
+  },
+  "PaDNA.EyeColor": {
+    "id": "PaDNA.EyeColor",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642759216",
+        "ts": "2025-10-16T19:25:59+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:26:00.387246Z",
+    "history": []
+  }
+}

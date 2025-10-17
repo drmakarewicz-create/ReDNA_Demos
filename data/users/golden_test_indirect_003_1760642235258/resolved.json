@@ -1,0 +1,18 @@
+{
+  "Location.Weather": {
+    "id": "Location.Weather",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642235275",
+        "ts": "2025-10-16T19:17:15+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:17:16.361186Z",
+    "history": []
+  }
+}

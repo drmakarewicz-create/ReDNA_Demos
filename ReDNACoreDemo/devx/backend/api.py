@@ -12,7 +12,13 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from datetime import datetime, timezone
 
-from .config import DEVX_BACKEND_PORT, DEVX_HOST
+from .config import (
+    DEVX_BACKEND_PORT,
+    DEVX_HOST,
+    DEVX_CORE_BASE,
+    DEVX_UCNRR_BASE,
+    resolved_stack_config,
+)
 from .routers import traits
 from . import (
     privacy_dashboard_api,
@@ -27,6 +33,8 @@ from . import (
     rsc_api,
     trigger_api,
     adaptive_analytics_api,
+    llm_bench_api,
+    stack_ucnrr_api,
 )
 
 logger = logging.getLogger(__name__)
@@ -35,7 +43,20 @@ logger = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup/shutdown."""
-    logger.info("DevX backend starting...")
+    stack_cfg = resolved_stack_config()
+    logger.info(
+        "DevX backend starting with stack_config=%s",
+        {
+            "core_base": stack_cfg["core_base"],
+            "ucnrr_base": stack_cfg["ucnrr_base"],
+            "devx_base": stack_cfg["devx_base"],
+            "core_port": stack_cfg["core_port"],
+            "ucnrr_port": stack_cfg["ucnrr_port"],
+            "devx_port": stack_cfg["devx_port"],
+            "warnings": stack_cfg.get("warnings", []),
+            "sources": stack_cfg.get("source"),
+        },
+    )
     yield
     logger.info("DevX backend shutting down...")
 
@@ -49,7 +70,7 @@ app = FastAPI(
 )
 
 # CORS middleware - allow frontend to connect
-frontend_ports = range(3100, 3111)
+frontend_ports = list(range(3000, 3011)) + list(range(3100, 3111))
 allow_origins = {
     f"http://localhost:{port}" for port in frontend_ports
 } | {
@@ -106,6 +127,8 @@ app.include_router(agent_api.capability_router, tags=["capability"])
 app.include_router(trigger_api.router, tags=["triggers"])
 app.include_router(adaptive_analytics_api.router, tags=["adaptive-analytics"])
 app.include_router(stack_api.router, prefix="/devx/api", tags=["stack"])
+app.include_router(llm_bench_api.router, prefix="/devx/api", tags=["llm-bench"])
+app.include_router(stack_ucnrr_api.router, prefix="/devx/api/stack", tags=["stack", "ucnrr"])
 
 
 @app.get("/devx/api/synthetic/traits")
@@ -179,7 +202,13 @@ if __name__ == "__main__":
     from .config import get_backend_port
 
     port = get_backend_port()
-    logger.info(f"Starting DevX backend on {DEVX_HOST}:{port}")
+    logger.info(
+        "Starting DevX backend on %s:%s (core_base=%s, ucnrr_base=%s)",
+        DEVX_HOST,
+        port,
+        DEVX_CORE_BASE,
+        DEVX_UCNRR_BASE,
+    )
 
     uvicorn.run(
         "ReDNACoreDemo.devx.backend.api:app",

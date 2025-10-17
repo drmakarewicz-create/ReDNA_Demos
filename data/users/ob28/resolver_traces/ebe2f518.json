@@ -1,0 +1,141 @@
+{
+  "req_id": "ebe2f518",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "attributes.physical.height",
+          "value": {
+            "text": "6 feet tall"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T23:21:55+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct",
+          "policy": {
+            "tier": "hot",
+            "ttl_days": 365,
+            "reason": "high_signal",
+            "reliability": 0.5,
+            "logged_at": "2025-10-15T23:21:55+00:00"
+          },
+          "_reliability": 0.5
+        },
+        {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "number": 6
+          },
+          "source": "chat",
+          "ts": "2025-10-15T23:21:55+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct",
+          "policy": {
+            "tier": "hot",
+            "ttl_days": 365,
+            "reason": "conflict",
+            "reliability": 0.5,
+            "logged_at": "2025-10-15T23:21:55+00:00"
+          },
+          "_reliability": 0.5
+        }
+      ],
+      "ts": 1760570515.603689
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "attributes.physical.height": 1,
+        "BasicDNA.Age": 1
+      },
+      "ts": 1760570515.603704
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "attributes.physical.height": {
+          "trait_id": "attributes.physical.height",
+          "value": {
+            "text": "6 feet tall"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T23:21:55+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct",
+          "policy": {
+            "tier": "hot",
+            "ttl_days": 365,
+            "reason": "high_signal",
+            "reliability": 0.5,
+            "logged_at": "2025-10-15T23:21:55+00:00"
+          },
+          "_reliability": 0.5
+        },
+        "BasicDNA.Age": {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "number": 6
+          },
+          "source": "chat",
+          "ts": "2025-10-15T23:21:55+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct",
+          "policy": {
+            "tier": "hot",
+            "ttl_days": 365,
+            "reason": "conflict",
+            "reliability": 0.5,
+            "logged_at": "2025-10-15T23:21:55+00:00"
+          },
+          "_reliability": 0.5
+        }
+      },
+      "ts": 1760570515.6037261
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "attributes.physical.height",
+          "value": {
+            "text": "6 feet tall"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "number": 6
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760570515.603738
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760570515.617422
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "attributes.physical.height": 0.2,
+        "BasicDNA.Age": 0.2
+      },
+      "ts": 1760570515.617505
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 13,
+        "rr_ok": false
+      },
+      "ts": 1760570515.6226828
+    }
+  ],
+  "ts": 1760570515.6036701
+}

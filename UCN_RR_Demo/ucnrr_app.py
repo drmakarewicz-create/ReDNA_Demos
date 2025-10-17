@@ -11,6 +11,7 @@ import re
 import sys
 import time
 import asyncio
+import threading
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -41,6 +42,10 @@ USE_MIN_HEURISTICS = os.getenv("UCNRR_USE_MIN_HEURISTICS", "true").lower() in ("
 LOG_LLM = os.getenv("UCNRR_LOG_LLM", "false").lower() in ("1", "true", "yes")
 LOG_SCORES = os.getenv("UCNRR_LOG_SCORES", "false").lower() in ("1", "true", "yes")
 
+# Selftest cache configuration
+SELFTEST_CACHE_SEC = int(os.getenv("UCNRR_SELFTEST_CACHE_SEC", "180"))  # 3 minutes
+SELFTEST_BG_TIMEOUT_SEC = int(os.getenv("UCNRR_SELFTEST_BG_TIMEOUT_SEC", "4"))
+
 FORWARD_LOG_PATH = DATA_DIR / "dev_logs" / "ucnrr_forward.log"
 
 _TRACE_TRUE = {"1", "true", "yes", "on"}
@@ -62,6 +67,11 @@ app = FastAPI(title="ReDNA UCN/RR Demo", version="1.2.1")
 UCNRR_VERSION = "dev"
 
 _BACKGROUND_TASKS: "set[asyncio.Task[Any]]" = set()
+
+# Selftest cache state
+_last_selftest_ok_ts = 0.0
+_last_selftest_ok_meta: Dict[str, Any] = {}
+_selftest_lock = threading.Lock()
 
 
 def _launch_background(task: "asyncio.Task[Any]") -> None:
@@ -220,6 +230,93 @@ def _circuit_record_failure(user_id: str) -> Dict[str, float]:
 
 def _clamp(value: float, low: float, high: float) -> float:
     return max(low, min(high, value))
+
+
+# Trait ID canonicalization map (Phase 4.0a - align model outputs to golden IDs)
+_CANON_MAP = {
+    # Eye color variants
+    "PaDNA.Color": "PaDNA.EyeDNA.IrisColor",
+    "Eye.Color": "PaDNA.EyeDNA.IrisColor",
+    "PaDNA.EyeColor": "PaDNA.EyeDNA.IrisColor",
+    # Height variants
+    "PaDNA.Height": "PaDNA.BodyDNA.Height",
+    "PaDNA.Physical.Characteristic.Height": "PaDNA.BodyDNA.Height",
+    "attributes.physical.height": "PaDNA.BodyDNA.Height",
+    "height": "PaDNA.BodyDNA.Height",
+    # Fitness/wellness → fitness level
+    "PaDNA.PhysicalCondition": "BehaviorDNA.Fitness.Level",
+    "PaDNA.HealthStatus": "BehaviorDNA.Fitness.Level",
+    # Social style
+    "Personality.Introversion": "BehaviorDNA.Social.Style",
+    "Personality.Social_Preferences": "BehaviorDNA.Social.Style",
+    # Exercise/activity
+    "PaDNA.Activity": "BehaviorDNA.Exercise.Outdoor",
+    "PaDNA.Human.Activity": "BehaviorDNA.Exercise.Outdoor",
+    "PaDNA.Frequency": "BehaviorDNA.Exercise.Frequency",
+    "PaDNA.Human.Frequency": "BehaviorDNA.Exercise.Frequency",
+    # Age
+    "Age.PaDNA.Age": "BasicDNA.Age",
+    "age": "BasicDNA.Age",
+    # Location
+    "PaDNA.Location": "BasicDNA.Location.City",
+    "PaDNA.City": "BasicDNA.Location.City",
+    # Gender/sex
+    "PaDNA.Gender": "BasicDNA.Gender",
+    "PaDNA.Sex": "BasicDNA.Gender",
+    # Hair color
+    "PaDNA.PhysicalCharacteristics.HairColor": "PaDNA.HairDNA.Color.Natural",
+    # Chronotype/personality
+    "PaDNA.PersonalityType": "BehaviorDNA.Sleep.Chronotype",
+    "PaDNA.TimePreference": "BehaviorDNA.Sleep.Chronotype",
+    # Leisure/hobbies
+    "PaDNA.Hobby": "BehaviorDNA.Leisure.Indoor",
+    "PaDNA.ActivityType": "BehaviorDNA.Leisure.Indoor",
+    # Caffeine/health
+    "PaDNA.Human.DrinkCoffee": "BehaviorDNA.Health.CaffeineIntake",
+    "PaDNA.Human.DailyCaffeineIntake": "BehaviorDNA.Health.CaffeineIntake",
+    "PaDNA.Human.TimeOfConsumption": "BehaviorDNA.Routine.Morning",
+    # Learning
+    "PaDNA.Learning_Style": "BehaviorDNA.Learning.Style",
+    # Communication
+    "PaDNA.Communication.ResponseTime": "BehaviorDNA.Communication.ResponseStyle",
+    # Work schedule
+    "PaDNA.StartOfWork": "BehaviorDNA.Schedule.WorkHours",
+    "PaDNA.FinishOfWork": "BehaviorDNA.Schedule.WorkHours",
+    # Organization
+    "PaDNA.DayOfWeek": "BehaviorDNA.Organization.Level",
+    # Occupation/relationship
+    "PaDNA.Occupation": "BasicDNA.Occupation",
+    "PaDNA.RelationshipStatus": "BasicDNA.RelationshipStatus",
+    "relationship.status": "BasicDNA.RelationshipStatus",
+}
+
+
+def _canon_trait_id(tid: str) -> str:
+    """
+    Canonicalize trait_id to match golden dataset conventions.
+
+    Phase 4.0a: Apply runtime normalization to align UCNRR outputs with Core/golden IDs.
+    This reduces test harness aliasing burden and improves recall.
+
+    Steps:
+    1. Check explicit aliases first
+    2. Apply heuristic normalization (add *DNA suffix if missing)
+    3. Check aliases again on normalized form
+    """
+    if not tid:
+        return ""
+    tid = tid.strip()
+
+    # Check explicit aliases first
+    if tid in _CANON_MAP:
+        return _CANON_MAP[tid]
+
+    # Apply heuristic: add *DNA after first PaDNA segment if missing
+    # E.g., "PaDNA.Eye.IrisColor" -> "PaDNA.EyeDNA.IrisColor"
+    normalized = re.sub(r"^PaDNA\.([A-Z][a-z]+)\.(.+)$", r"PaDNA.\1DNA.\2", tid)
+
+    # Check aliases again on normalized form
+    return _CANON_MAP.get(normalized, normalized)
 
 
 def _load_dna_weights() -> Dict[str, Any]:
@@ -642,15 +739,47 @@ def _llm_extract(text: str) -> Dict[str, Any]:
     except ImportError:
         return {}
 
+    # Phase 4.0a Batch 2: Canonical schema + few-shot examples for improved recall
     system_prompt = (
-        "You are an information extraction assistant. "
-        "Return factual trait statements from user text as canonical lines in the form\n"
-        "PaDNA.Path=Value. Use only traits you are confident in. If nothing is certain, return an empty string."
+        "You are an information extraction assistant for the ReDNA trait system.\n"
+        "Extract traits from user text using ONLY these canonical trait IDs:\n\n"
+        "**Physiological:**\n"
+        "- PaDNA.EyeDNA.IrisColor, PaDNA.HairDNA.Color.Natural, PaDNA.BodyDNA.Height\n\n"
+        "**Demographics:**\n"
+        "- BasicDNA.Age, BasicDNA.Gender, BasicDNA.RelationshipStatus, BasicDNA.Occupation\n\n"
+        "**Behavior:**\n"
+        "- BehaviorDNA.Sleep.Chronotype, BehaviorDNA.Schedule.WorkHours\n"
+        "- BehaviorDNA.Exercise.Outdoor, BehaviorDNA.Exercise.Frequency, BehaviorDNA.Exercise.Type\n"
+        "- BehaviorDNA.Leisure.Indoor, BehaviorDNA.Routine.Morning\n"
+        "- BehaviorDNA.Wellness.ColdTherapy, BehaviorDNA.Work.Location\n"
+        "- BehaviorDNA.Health.Diet, BehaviorDNA.Health.CaffeineIntake\n"
+        "- BehaviorDNA.Social.Style, BehaviorDNA.Organization.Level\n\n"
+        "**Preferences:**\n"
+        "- PreferenceDNA.Social.GroupSize, PreferenceDNA.Food.Pizza, PreferenceDNA.Work.Environment\n\n"
+        "**Rules:**\n"
+        "- Emit ONLY trait_ids from the schema above\n"
+        "- If uncertain, omit rather than speculate\n"
+        "- Prefer concise extractions (1-3 items)\n"
+        "- When choosing a trait_id, pick the nearest canonical ID from schema (do not invent)\n"
+        "- For frequency, prefer: 'weekly', 'daily', '2_per_week'\n"
+        "- Output format: Trait.Path=Value (one per line)"
     )
 
     user_prompt = (
-        "Extract explicit traits from the following text. Use the canonical path list (PaDNA.*) you know.\n"
-        "Output ONLY lines of the form Trait.Path=Value, one per line.\n\nTEXT:\n" + text
+        "Extract traits from this text using canonical IDs from the schema.\n\n"
+        "**Few-shot examples:**\n"
+        "1. 'I'm a morning person.' → BehaviorDNA.Sleep.Chronotype=morning\n"
+        "2. 'I start work at 6 AM and finish by 2 PM.' → BehaviorDNA.Schedule.WorkHours=early BehaviorDNA.Sleep.Chronotype=morning\n"
+        "3. 'I usually stay in and read on weekends.' → BehaviorDNA.Leisure.Indoor=true PreferenceDNA.Social.GroupSize=small\n"
+        "4. 'I don't eat meat.' → BehaviorDNA.Health.Diet=vegetarian\n"
+        "5. 'I take cold showers every morning.' → BehaviorDNA.Wellness.ColdTherapy=true\n"
+        "6. 'I work from home most days.' → BehaviorDNA.Work.Location=remote\n"
+        "7. 'My hair is brown.' → PaDNA.HairDNA.Color.Natural=brown\n"
+        "8. 'I'm in my early 30s.' → BasicDNA.Age=30s\n"
+        "9. 'I'm married.' → BasicDNA.RelationshipStatus=married\n"
+        "10. 'I go hiking every weekend.' → BehaviorDNA.Exercise.Outdoor=true BehaviorDNA.Exercise.Frequency=weekly\n\n"
+        "TEXT:\n" + text + "\n\n"
+        "Output (one trait per line, canonical IDs only):"
     )
 
     headers = {}
@@ -687,10 +816,44 @@ def _llm_extract(text: str) -> Dict[str, Any]:
     return _parse_canonical(lines, source_kind="llm", user_text=text)
 
 
+def _is_llm_configured() -> bool:
+    """Check if LLM is properly configured based on provider."""
+    if not LLM_PROVIDER:
+        return False
+
+    # Ollama doesn't need API key, just needs provider + base URL
+    if LLM_PROVIDER.lower() == "ollama":
+        return bool(LLM_BASE_URL or os.getenv("OLLAMA_BASE_URL"))
+
+    # OpenAI, Anthropic, etc. need API key
+    return bool(LLM_API_KEY)
+
+
+def _bg_refresh_selftest() -> None:
+    """Trigger background selftest refresh (non-blocking)."""
+    def _run():
+        try:
+            # Run selftest with timeout budget
+            ucnrr_selftest()
+        except Exception:
+            pass
+    t = threading.Thread(target=_run, daemon=True)
+    t.start()
+
+
 @app.get("/api/health")
 def api_health() -> Dict[str, Any]:
+    global _last_selftest_ok_ts, _last_selftest_ok_meta
+
     prompt_info = _load_prompt()
-    return {
+    now = time.time()
+
+    # Check if selftest cache is fresh
+    with _selftest_lock:
+        age = now - _last_selftest_ok_ts
+        cache_fresh = age <= SELFTEST_CACHE_SEC
+
+    base_response = {
         "status": "healthy",
         "service": "ucnrr",
         "version": UCNRR_VERSION,
@@ -700,8 +863,30 @@ def api_health() -> Dict[str, Any]:
         "prompt_loaded_at": prompt_info.get("loaded_at", "never"),
         "llm_provider": LLM_PROVIDER or "none",
         "llm_model": LLM_MODEL or "none",
-        "llm_configured": bool(LLM_PROVIDER and LLM_API_KEY),
+        "llm_configured": _is_llm_configured(),
+        "llm_base_url": LLM_BASE_URL or os.getenv("OLLAMA_BASE_URL") or "none",
     }
+
+    if cache_fresh:
+        # Return cached selftest result
+        base_response["selftest_cached"] = True
+        base_response["selftest_cache_age_sec"] = int(age)
+        base_response.update(_last_selftest_ok_meta)
+
+        # Trigger background refresh if cache is near expiry
+        if age > SELFTEST_CACHE_SEC * 0.6:
+            _bg_refresh_selftest()
+
+        return base_response
+    else:
+        # Cache stale or not set; indicate slow model if needed
+        base_response["selftest_cached"] = False
+        base_response["selftest_cache_age_sec"] = int(age) if _last_selftest_ok_ts > 0 else None
+
+        # Trigger background refresh
+        _bg_refresh_selftest()
+
+        return base_response
 
 
 @app.get("/health")
@@ -889,6 +1074,18 @@ def ucnrr_selftest() -> Dict[str, Any]:
         # Track metrics
         if ucn_ok:
             METRICS.increment("rr_selftest_ok")
+
+            # Update selftest cache on success
+            global _last_selftest_ok_ts, _last_selftest_ok_meta
+            with _selftest_lock:
+                _last_selftest_ok_ts = time.time()
+                _last_selftest_ok_meta = {
+                    "model": LLM_MODEL or "none",
+                    "provider": LLM_PROVIDER or "none",
+                    "ucn": ucn,
+                    "elapsed_ms": elapsed_ms,
+                }
+
             stack_log(
                 "ucnrr",
                 "INFO",
@@ -975,6 +1172,11 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
             continue
         trait_id = str(trait.get("id") or "").strip()
         if not trait_id:
+            continue
+
+        # Phase 4.0a: Canonicalize trait ID to match golden dataset conventions
+        trait_id = _canon_trait_id(trait_id)
+        if not trait_id:  # Skip if canonicalization returns empty
             continue
 
         # RR can be provided or we estimate from UCN

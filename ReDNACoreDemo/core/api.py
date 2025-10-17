@@ -39,6 +39,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, AsyncGenerator, Tuple, Mapping, Set, Annotated
 from uuid import uuid4
 
+import httpx
 import requests
 from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form, Body, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -105,9 +106,12 @@ from .events import capture
 from .security import allow
 from .priority import priority_score, trait_importance_for
 from .logutil import stack_log
-from .metrics import ROLLING_REQUESTS
+from .metrics import record_request
+from ReDNACoreDemo.devx.backend.config_resolver import resolve_stack_config
 
 TRACE_TRUE = {"1", "true", "yes", "on"}
+HEALTH_DEGRADED_LOG_INTERVAL = 60.0
+LAST_HEALTH_DEGRADED_LOG_TS: Optional[float] = None
 APP_VERSION = str(CURRENT_VERSION or "dev")
 TRACE_ENABLED = os.getenv("ROUNDTRIP_TRACING_ENABLED", "true").strip().lower() in TRACE_TRUE
 TRACE_PATH = Path(__file__).resolve().parents[1] / "data" / "dev_logs" / "trace_core.jsonl"
@@ -116,6 +120,20 @@ PROVIDER_LOG_MAX_BYTES = 512 * 1024
 TONE_CURVE_PATH = Path(__file__).resolve().parents[1] / "data" / "config" / "tone_curves.json"
 COHORT_STATS_PATH = Path(__file__).resolve().parents[1] / "data" / "_stats" / "cohort_rr.json"
 DEV_COHORTS_ENABLED = os.getenv("CORE_DEV_COHORTS_ENABLED", "").strip().lower() in TRACE_TRUE
+
+
+def _env_bool(name: str, default: bool = False) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in ("1", "true", "yes", "on")
+
+
+def _env_float(name: str, default: float) -> float:
+    try:
+        return float(os.getenv(name, default))
+    except Exception:
+        return default
 
 ASKS_DATA_ROOT = Path(__file__).resolve().parents[1] / "data" / "_asks"
 NUDGES_DATA_ROOT = Path(__file__).resolve().parents[1] / "data" / "_nudges"
@@ -202,6 +220,30 @@ def _trace_span(trace_id: Optional[str], span: str, phase: str, meta: Optional[D
             "phase": phase,
             "meta": meta or {},
         }
+    )
+
+
+def _health_timeout_env(name: str, default_ms: int) -> float:
+    raw = os.getenv(name)
+    try:
+        value = int(raw) if raw is not None else default_ms
+    except (TypeError, ValueError):
+        value = default_ms
+    return max(1, value) / 1000.0
+
+
+def _maybe_log_health_degraded(cause: str, base_url: Optional[str]) -> None:
+    global LAST_HEALTH_DEGRADED_LOG_TS
+    now = time.time()
+    if LAST_HEALTH_DEGRADED_LOG_TS is not None and now - LAST_HEALTH_DEGRADED_LOG_TS < HEALTH_DEGRADED_LOG_INTERVAL:
+        return
+    LAST_HEALTH_DEGRADED_LOG_TS = now
+    stack_log(
+        "core",
+        "WARN",
+        "health_degraded",
+        "UCNRR probe degraded",
+        {"cause": cause, "ucnrr_base": base_url},
     )
 
 
@@ -715,6 +757,23 @@ def build_app() -> FastAPI:
         allow_headers=["*"],
     )
     # --- end CORS block ---
+
+    @app.middleware("http")
+    async def record_http_metrics(request: Request, call_next):
+        start_time = time.perf_counter()
+        try:
+            response = await call_next(request)
+        except Exception:
+            duration_ms = (time.perf_counter() - start_time) * 1000
+            record_request(latency_ms=duration_ms, is_error=True, status_code=500)
+            raise
+        duration_ms = (time.perf_counter() - start_time) * 1000
+        record_request(
+            latency_ms=duration_ms,
+            is_error=response.status_code >= 500,
+            status_code=response.status_code,
+        )
+        return response
 
     CURIOSITY_ON = _curiosity_flag_on()
 
@@ -1738,20 +1797,34 @@ def build_app() -> FastAPI:
     @app.get("/health")
     def health() -> Dict[str, Any]:
         from .hc_prompt_loader import get_hc_prompt_sha256, get_hc_prompt_version
-        import requests
 
-        # Check RR mode by attempting health check
+        connect_timeout = _health_timeout_env("CORE_HEALTH_CONNECT_TIMEOUT_MS", 500)
+        read_timeout = _health_timeout_env("CORE_HEALTH_READ_TIMEOUT_MS", 1000)
+        timeout = httpx.Timeout(connect=connect_timeout, read=read_timeout, write=read_timeout, pool=read_timeout)
+        stack_cfg = resolve_stack_config()
+
         rr_mode = "unavailable"
+        ucnrr_probe_timed_out = False
         ucnrr_url = _ucnrr_base_url()
         if ucnrr_url:
             try:
-                resp = requests.get(f"{ucnrr_url}/health", timeout=1.0)
+                resp = httpx.get(f"{ucnrr_url}/health", timeout=timeout)
                 if resp.status_code == 200:
                     rr_mode = "online"
                 else:
                     rr_mode = "fallback"
+            except (httpx.ConnectTimeout, httpx.ReadTimeout):
+                rr_mode = "degraded"
+                ucnrr_probe_timed_out = True
+                _maybe_log_health_degraded("timeout", ucnrr_url)
+            except httpx.HTTPError:
+                rr_mode = "degraded"
+                ucnrr_probe_timed_out = True
+                _maybe_log_health_degraded("error", ucnrr_url)
             except Exception:
-                rr_mode = "fallback"
+                rr_mode = "degraded"
+                ucnrr_probe_timed_out = True
+                _maybe_log_health_degraded("exception", ucnrr_url)
 
         return {
             "status": "healthy",
@@ -1761,8 +1834,13 @@ def build_app() -> FastAPI:
             "hc_prompt_sha256": get_hc_prompt_sha256(),
             "hc_prompt_version": get_hc_prompt_version(),
             "rr_mode": rr_mode,
+            "ucnrr_probe_timed_out": ucnrr_probe_timed_out,
             "hc_chat_enabled": _hc_chat_enabled(),
             "hc_chat_provider": os.getenv("HC_CHAT_PROVIDER"),
+            "config_ports": {
+                "core": stack_cfg["core_port"],
+                "ucnrr": stack_cfg["ucnrr_port"],
+            },
             "features": {
                 "photo_import": PHOTO_COACH_AVAILABLE,
                 "ucnrr_enabled": bool(ucnrr_url),
@@ -5467,6 +5545,264 @@ def build_app() -> FastAPI:
             write_user_state(user_id_raw, resolved, evidence, obs)
             touch_user_last_used(user_id_raw, ts_iso=ts_iso)
 
+        # Phase 4.0a Batch 1.5: Category-aware promotion with per-trait rules
+        snapshot_traits = []
+        if rescore_result.get("ok"):
+            from ReDNACoreDemo.core.ingest.value_normalizer import normalize_value
+
+            # Phase 4.0a: Strict allowlist (eye + exercise pair only)
+            # Per-trait promotion rules: whitelist with category-specific thresholds
+            PROMOTE_RULES = {
+                # Tier 1: direct facts (explicit values required)
+                "PaDNA.EyeDNA.IrisColor": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_EYE", 500.0),
+                    "require_value": True,
+                },
+                "BasicDNA.Gender": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_GENDER", 500.0),
+                    "require_value": True,
+                },
+                "BasicDNA.Occupation": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_OCCUPATION", 500.0),
+                    "require_value": True,
+                },
+
+                # Tier 1.5: Exercise pair (frequency piggybacks on outdoor)
+                "BehaviorDNA.Exercise.Outdoor": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_BEHAV_OUTDOOR", 800.0),
+                    "require_value": True,
+                },
+                "BehaviorDNA.Exercise.Frequency": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_BEHAV_FREQ", 800.0),
+                    "require_value": True,
+                },
+
+                # Tier 2: behavioral traits (higher rr_min, no value required unless provided)
+                "BehaviorDNA.Sleep.Chronotype": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_CHRONO", 800.0),
+                    "require_value": True,
+                },
+                "BehaviorDNA.Sleep.Duration": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_SLEEP_DUR", 800.0),
+                    "require_value": False,
+                },
+                "BehaviorDNA.Health.Diet": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_DIET", 800.0),
+                    "require_value": True,
+                },
+                "BehaviorDNA.Wellness.ColdTherapy": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_COLDTHERAPY", 800.0),
+                    "require_value": True,
+                },
+                "BehaviorDNA.Fitness.Level": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_FITNESS", 800.0),
+                    "require_value": False,
+                },
+                "BehaviorDNA.Social.Style": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_SOCIAL", 800.0),
+                    "require_value": True,
+                },
+                "BehaviorDNA.Leisure.Indoor": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_LEISURE", 800.0),
+                    "require_value": True,
+                },
+                "BehaviorDNA.Schedule.WorkHours": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_WORKHOURS", 800.0),
+                    "require_value": False,
+                },
+                "BehaviorDNA.Organization.Level": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_ORGANIZATION", 800.0),
+                    "require_value": False,
+                },
+                "BehaviorDNA.Communication.ResponseStyle": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_COMMSTYLE", 800.0),
+                    "require_value": False,
+                },
+                "BehaviorDNA.Routine.Morning": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_ROUTINE", 800.0),
+                    "require_value": False,
+                },
+                "BehaviorDNA.Health.CaffeineIntake": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_CAFFEINE", 800.0),
+                    "require_value": False,
+                },
+                "BehaviorDNA.Learning.Style": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_LEARNING", 800.0),
+                    "require_value": True,
+                },
+                "BehaviorDNA.Work.Location": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_WORKLOC", 800.0),
+                    "require_value": False,
+                },
+                "BehaviorDNA.Exercise.Type": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_EXERCISE_TYPE", 800.0),
+                    "require_value": False,
+                },
+
+                # Tier 3: Preferences
+                "PreferenceDNA.Social.GroupSize": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_GROUPSIZE", 800.0),
+                    "require_value": True,
+                },
+                "PreferenceDNA.Food.Pizza": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_PIZZA", 800.0),
+                    "require_value": True,
+                },
+                "PreferenceDNA.Food.AsianCuisine": {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_ASIAN", 800.0),
+                    "require_value": True,
+                },
+            }
+
+            tier1_enabled: list[str] = []
+
+            # --- Tier-1 (Local) direct facts, env-gated ---
+            if _env_bool("PROMOTE_ENABLE_HAIR", False):
+                PROMOTE_RULES["PaDNA.HairDNA.Color.Natural"] = {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_HAIR", 500.0),
+                    "require_value": True,
+                }
+                tier1_enabled.append("PaDNA.HairDNA.Color.Natural")
+
+            if _env_bool("PROMOTE_ENABLE_AGE", False):
+                PROMOTE_RULES["BasicDNA.Age"] = {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_AGE", 500.0),
+                    "require_value": True,
+                }
+                tier1_enabled.append("BasicDNA.Age")
+
+            if _env_bool("PROMOTE_ENABLE_REL", False):
+                PROMOTE_RULES["BasicDNA.RelationshipStatus"] = {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_REL", 500.0),
+                    "require_value": True,
+                }
+                tier1_enabled.append("BasicDNA.RelationshipStatus")
+
+            if _env_bool("PROMOTE_ENABLE_HEIGHT", False):
+                PROMOTE_RULES["PaDNA.BodyDNA.Height"] = {
+                    "rr_min": _env_float("RR_PROMOTE_MIN_HEIGHT", 650.0),
+                    "require_value": True,
+                }
+                tier1_enabled.append("PaDNA.BodyDNA.Height")
+
+            if tier1_enabled:
+                logger.info("promotion_policy_loaded tier1=%s", tier1_enabled)
+
+            # --- Pair-aware promotion groups (safe multi-trait bundles) ---
+            PAIR_GROUPS = {
+                "BehaviorDNA.Exercise.Outdoor": ["BehaviorDNA.Exercise.Frequency"],
+            }
+
+            TOP_K_PROMOTE = int(os.getenv("RR_PROMOTE_TOP_K", "1"))  # Part 1: strict - only top trait per utterance
+
+            # Sort by score descending
+            rr_by_trait = rescore_result.get("rr_by_trait", {}) or {}
+            rr_items = sorted(rr_by_trait.items(), key=lambda kv: float(kv[1] or 0), reverse=True)
+
+            promoted = 0
+            promoted_keys: set[str] = set()
+            for trait_id, score in rr_items:
+                # Do not promote Frequency as a standalone primary trait; it must travel with Outdoor.
+                if trait_id == "BehaviorDNA.Exercise.Frequency":
+                    _promote_log("skip:freq_standalone", trait_id, score, None, note="must pair with Outdoor")
+                    continue
+
+                if trait_id in promoted_keys:
+                    _promote_log("skip:duplicate", trait_id, score, None, note="already promoted in pair")
+                    continue
+
+                policy = PROMOTE_RULES.get(trait_id)
+                if not policy:
+                    _promote_log("skip:unlisted", trait_id, score, None, note="not allowlisted")
+                    continue
+
+                try:
+                    score_float = float(score)
+                except Exception:
+                    score_float = 0.0
+
+                if score_float < float(policy["rr_min"]):
+                    _promote_log("skip:below_threshold", trait_id, score_float, None, policy=policy)
+                    continue
+
+                # Phase 4.0a: Enabled location promotion for baseline testing
+                # if trait_id == "BasicDNA.Location.City":
+                #     _promote_log("skip:denied_city", trait_id, score_float, None, policy=policy)
+                #     continue
+
+                value = normalize_value(trait_id, text)
+                if policy.get("require_value", False) and value is None:
+                    _promote_log("skip:need_value", trait_id, score_float, value, policy=policy)
+                    continue
+
+                if trait_id not in PROMOTE_RULES:
+                    _promote_log("skip:unlisted", trait_id, score_float, value, note="post-check")
+                    continue
+
+                record = {
+                    "trait_id": trait_id,
+                    "ucn": score_float,
+                    "value": value,
+                    "source": "ucnrr_rescore",
+                    "event_id": event_id,
+                }
+                snapshot_traits.append(record)
+                promoted_keys.add(trait_id)
+                promoted += 1
+                _promote_log("promote:final", trait_id, score_float, value, policy=policy)
+                stack_log(
+                    "core",
+                    "INFO",
+                    "promotion_event",
+                    f"Promoted {trait_id}",
+                    {"ucn": score_float, "value": value, "event_id": event_id},
+                )
+
+                # --- handle paired traits (Exercise Outdoor + Frequency) ---
+                for co_trait in PAIR_GROUPS.get(trait_id, []):
+                    if co_trait in promoted_keys:
+                        _promote_log("skip:pair_duplicate", co_trait, co_score_raw, None, note="already promoted")
+                        continue
+                    co_policy = PROMOTE_RULES.get(co_trait)
+                    co_score_raw = rr_by_trait.get(co_trait)
+                    if not co_policy or co_score_raw is None:
+                        _promote_log("skip:pair_unlisted", co_trait, co_score_raw, None, note="missing policy or score")
+                        continue
+                    try:
+                        co_score = float(co_score_raw)
+                    except Exception:
+                        co_score = 0.0
+                    if co_score < float(co_policy["rr_min"]):
+                        _promote_log("skip:pair_below_threshold", co_trait, co_score, None, policy=co_policy)
+                        continue
+                    co_value = normalize_value(co_trait, text)
+                    if co_policy.get("require_value", False) and co_value is None:
+                        _promote_log("skip:pair_need_value", co_trait, co_score, co_value, policy=co_policy)
+                        continue
+                    if co_trait not in PROMOTE_RULES:
+                        _promote_log("skip:pair_unlisted_post", co_trait, co_score, co_value, note="post-check")
+                        continue
+                    co_record = {
+                        "trait_id": co_trait,
+                        "ucn": co_score,
+                        "value": co_value,
+                        "source": "ucnrr_rescore",
+                        "event_id": event_id,
+                    }
+                    snapshot_traits.append(co_record)
+                    promoted_keys.add(co_trait)
+                    _promote_log("promote:pair", co_trait, co_score, co_value, policy=co_policy, note=f"paired_with={trait_id}")
+                    stack_log(
+                        "core",
+                        "INFO",
+                        "promotion_event",
+                        f"Promoted {co_trait}",
+                        {"ucn": co_score, "value": co_value, "event_id": event_id},
+                    )
+
+                if promoted >= TOP_K_PROMOTE:
+                    break
+
         # Return success even if UCNRR failed (provenance was logged)
         return {
             "ok": True if provenance_status == "accepted" else False,
@@ -5474,6 +5810,7 @@ def build_app() -> FastAPI:
             "event_written": str(event_path.name),
             "status": provenance_status,
             "rescore": rescore_result,
+            "snapshot": {"traits": snapshot_traits} if snapshot_traits else {}
         }
 
     @app.post("/core/api/ingest_text")
@@ -5497,7 +5834,8 @@ def build_app() -> FastAPI:
                     "success": True,
                     "event_id": result.get("event_written"),
                     "user_id": result.get("user_id"),
-                    "rescore": result.get("rescore", {})
+                    "rescore": result.get("rescore", {}),
+                    "snapshot": result.get("snapshot", {})  # Phase 4.0a: include snapshot.traits
                 }
             else:
                 return {
@@ -5630,11 +5968,6 @@ def build_app() -> FastAPI:
                 {"ok": False, "error": "INGEST_FAILURE", "message": str(exc)},
                 status_code=500
             )
-        finally:
-            duration_ms = (time.perf_counter() - start_time) * 1000
-            ROLLING_REQUESTS.record(duration_ms, status_code)
-
-
     @app.post("/ui/ingest/json")
     def ingest_json_endpoint(payload: Dict[str, Any]) -> Any:
         """
@@ -10624,8 +10957,51 @@ Intent: {intent}
             logger.error(f"Life OS update todo error for {user_id}/{todo_id}: {e}", exc_info=True)
             raise HTTPException(status_code=500, detail=str(e))
 
+    @app.get("/devx/api/stack/ready")
+    async def proxy_devx_ready() -> Any:
+        devx_base = (os.getenv("DEVX_BASE", "") or "").strip() or "http://127.0.0.1:8100"
+        devx_base = devx_base.rstrip("/")
+        url = f"{devx_base}/devx/api/stack/ready"
+        try:
+            response = await asyncio.to_thread(requests.get, url, timeout=3)
+            response.raise_for_status()
+        except Exception as exc:  # pragma: no cover - network dependent
+            raise HTTPException(status_code=503, detail=f"DevX readiness proxy failed: {exc}") from exc
+        return response.json()
+
     return app
 
 
 # Module-level app instance for uvicorn
 app = build_app()
+def _promote_log(stage: str, trait_id: str, score: Any, value: Any, policy: Optional[Dict[str, Any]] = None, note: Optional[str] = None) -> None:
+    """Emit structured diagnostics for promotion decisions."""
+    try:
+        score_val = float(score)
+    except Exception:
+        score_val = score
+
+    rr_min = None
+    require_value: Optional[bool] = None
+    if isinstance(policy, dict):
+        rr_raw = policy.get("rr_min")
+        try:
+            rr_min = float(rr_raw) if rr_raw is not None else None
+        except Exception:
+            rr_min = rr_raw
+        if "require_value" in policy:
+            try:
+                require_value = bool(policy.get("require_value"))
+            except Exception:
+                require_value = None
+
+    meta = {
+        "ucn": score_val,
+        "value": value,
+        "rr_min": rr_min,
+        "require_value": require_value,
+    }
+    if note:
+        meta["note"] = note
+
+    stack_log("core", "INFO", "promotion_decision", f"{stage}:{trait_id}", meta)

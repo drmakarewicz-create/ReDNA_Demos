@@ -24,6 +24,8 @@ jobs:
           pytest -q \
             tests/test_imports_canary.py \
             tests/test_ingestion_contract.py \
+            tests/test_ingest_policy.py \
+            tests/test_supersession_flow.py \
             tests/test_readiness_window.py \
             tests/test_supervisor_restart.py \
             tests/test_unified_logging.py

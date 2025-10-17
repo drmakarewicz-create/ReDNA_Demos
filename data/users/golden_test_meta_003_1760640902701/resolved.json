@@ -1,0 +1,34 @@
+{
+  "PaDNA.Personality": {
+    "id": "PaDNA.Personality",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760640902716",
+        "ts": "2025-10-16T18:55:02+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T18:55:03.813863Z",
+    "history": []
+  },
+  "PaDNA.Mood": {
+    "id": "PaDNA.Mood",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760640902716",
+        "ts": "2025-10-16T18:55:02+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T18:55:03.813872Z",
+    "history": []
+  }
+}

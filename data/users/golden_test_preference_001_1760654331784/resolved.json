@@ -1,0 +1,18 @@
+{
+  "PreferenceDNA.Food.Pizza": {
+    "id": "PreferenceDNA.Food.Pizza",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654331804",
+        "ts": "2025-10-16T22:38:51+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:52.505387Z",
+    "history": []
+  }
+}

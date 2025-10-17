@@ -1,0 +1,146 @@
+{
+  "PaDNA.BodyDNA.Height": {
+    "id": "PaDNA.BodyDNA.Height",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768406Z",
+    "history": []
+  },
+  "BasicDNA.Gender": {
+    "id": "BasicDNA.Gender",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768422Z",
+    "history": []
+  },
+  "PaDNA.Age": {
+    "id": "PaDNA.Age",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768425Z",
+    "history": []
+  },
+  "PaDNA.Weight": {
+    "id": "PaDNA.Weight",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768426Z",
+    "history": []
+  },
+  "PaDNA.EyeDNA.IrisColor": {
+    "id": "PaDNA.EyeDNA.IrisColor",
+    "rr": 830.0,
+    "curiosity": 0.1156,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768428Z",
+    "history": []
+  },
+  "PaDNA.HairColor": {
+    "id": "PaDNA.HairColor",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768430Z",
+    "history": []
+  },
+  "PaDNA.Nationality": {
+    "id": "PaDNA.Nationality",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768431Z",
+    "history": []
+  },
+  "BasicDNA.Occupation": {
+    "id": "BasicDNA.Occupation",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768433Z",
+    "history": []
+  },
+  "PaDNA.Personality": {
+    "id": "PaDNA.Personality",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644052635",
+        "ts": "2025-10-16T19:47:32+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:47:36.768434Z",
+    "history": []
+  }
+}
