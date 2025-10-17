@@ -8,11 +8,30 @@ import time
 
 logger = logging.getLogger(__name__)
 
+
+class HopTimer:
+    """Lightweight timer for measuring pipeline hop latencies."""
+    def __init__(self):
+        self.ts = {}
+
+    def mark(self, k: str):
+        """Record a timing mark."""
+        self.ts[k] = time.perf_counter()
+
+    def dt(self, a: str, b: str) -> float:
+        """Calculate milliseconds between two marks."""
+        if a not in self.ts or b not in self.ts:
+            return 0.0
+        return max(0, (self.ts[b] - self.ts[a]) * 1000.0)
+
+
 # Import canonical trait ID mapper and inference engine
 from ..traits.trait_id_mapper import normalize_evidence as id_normalize
 from ..traits.inference_engine import run_inference
 from .evidence_schema import validate_batch, EvidenceValidationError
+from .policy import should_persist_raw
 from ..metrics import METRICS, MetricNames
+from ..logutil import evidence_log
 
 
 def now_iso() -> str:
@@ -53,6 +72,10 @@ def ingest_evidence_roundtrip(
         Result dict with ok, req_id, snapshot, ingested count, inferred count
     """
     rid = req_id or str(uuid4())[:8]  # Short ID for logs
+
+    # Start hop timing
+    ht = HopTimer()
+    ht.mark("t0_recv")
 
     logger.info(f"ingest_start{{req_id={rid}, user={user_id}, source={source}, items_in={len(evidence)}}}")
 
@@ -130,11 +153,16 @@ def ingest_evidence_roundtrip(
 
         # STEP 4: Store evidence (for provenance)
         # This writes to evidence.json
-        _store_evidence(user_id, ev2, req_id=rid)
-        logger.info(f"  → Stored {len(ev2)} evidence records")
+        policy_records = _store_evidence(user_id, ev2, req_id=rid)
+        logger.info(f"  → Stored {len(policy_records.get('persisted', []))} evidence records")
+
+        # Mark end of preprocessing
+        ht.mark("t1_pre")
 
         # STEP 5: First resolve pass (direct evidence → traits with RR/UCN)
+        ht.mark("t2_ucnrr_send")
         direct_resolved = _resolve_direct(user_id, ev2, req_id=rid)
+        ht.mark("t3_ucnrr_done")
         logger.info(f"  → Resolved {direct_resolved} direct traits")
 
         # STEP 6: Inference pass
@@ -171,7 +199,9 @@ def ingest_evidence_roundtrip(
 
             if ev_merge:
                 logger.info(f"  → Accepting {len(ev_merge)} inferred traits (UCN < 0.3)")
-                _store_evidence(user_id, ev_merge, req_id=rid, tag="inference")
+                policy_records_inference = _store_evidence(user_id, ev_merge, req_id=rid, tag="inference")
+                policy_records["records"].extend(policy_records_inference["records"])
+                policy_records["persisted"].extend(policy_records_inference["persisted"])
 
                 # STEP 8: Second resolve pass (incorporate inferences)
                 inferred_count = _resolve_inferred(user_id, ev_merge, req_id=rid)
@@ -179,24 +209,50 @@ def ingest_evidence_roundtrip(
             else:
                 logger.info(f"  → No inferences accepted (all traits have UCN >= 0.3)")
 
+        # Mark end of resolve/promotion
+        ht.mark("t4_resolve")
+
         # STEP 9: Build snapshot for UI
         snap = _build_snapshot(user_id)
-        logger.info(f"ingest_done{{req_id={rid}, snapshot_traits={len(snap.get('traits', []))}, wrote_resolved=true}}")
+
+        # Mark end of roundtrip
+        ht.mark("t5_return")
+
+        # Calculate hop timings
+        hop_preprocess = ht.dt("t0_recv", "t1_pre")
+        hop_ucnrr = ht.dt("t2_ucnrr_send", "t3_ucnrr_done")
+        hop_resolve = ht.dt("t3_ucnrr_done", "t4_resolve")
+        hop_total = ht.dt("t0_recv", "t5_return")
+
+        # Emit metrics
+        METRICS.observe(MetricNames.HOP_MS_PREPROCESS, hop_preprocess)
+        METRICS.observe(MetricNames.HOP_MS_UCNRR, hop_ucnrr)
+        METRICS.observe(MetricNames.HOP_MS_RESOLVE, hop_resolve)
+        METRICS.observe(MetricNames.HOP_MS_TOTAL, hop_total)
+        METRICS.increment(MetricNames.INGEST_REQUESTS)
+
+        logger.info(
+            f"ingest_done{{req_id={rid}, snapshot_traits={len(snap.get('traits', []))}, "
+            f"wrote_resolved=true, hop_ms={{preprocess={hop_preprocess:.1f}, ucnrr={hop_ucnrr:.1f}, "
+            f"resolve={hop_resolve:.1f}, total={hop_total:.1f}}}}}"
+        )
 
         return {
             "ok": True,
             "req_id": rid,
             "snapshot": snap,
             "ingested": len(ev2),
-            "inferred": inferred_count
+            "inferred": inferred_count,
+            "policy": policy_records,
         }
 
     except Exception as e:
+        METRICS.increment(MetricNames.INGEST_ERRORS)
         logger.error(f"ingest_error{{req_id={rid}, error={str(e)}}}", exc_info=True)
         raise
 
 
-def _store_evidence(user_id: str, evidence: List[Dict[str, Any]], req_id: str, tag: Optional[str] = None) -> None:
+def _store_evidence(user_id: str, evidence: List[Dict[str, Any]], req_id: str, tag: Optional[str] = None) -> Dict[str, Any]:
     """
     Store evidence to evidence.json (for provenance).
 
@@ -217,14 +273,66 @@ def _store_evidence(user_id: str, evidence: List[Dict[str, Any]], req_id: str, t
     if "items" not in evidence_doc:
         evidence_doc["items"] = []
 
-    evidence_doc["items"].extend(evidence)
+    policy_records: List[Dict[str, Any]] = []
+    persisted: List[Dict[str, Any]] = []
+
+    now_ts = now_iso()
+
+    for item in evidence:
+        trait_id = item.get("trait_id")
+        existing_trait = resolved.get(trait_id) if isinstance(resolved, dict) else None
+        decision = should_persist_raw(item, existing=existing_trait)
+
+        tier = decision["tier"]
+        if tier == "hot":
+            METRICS.increment(MetricNames.POLICY_TIER_HOT)
+        elif tier == "warm":
+            METRICS.increment(MetricNames.POLICY_TIER_WARM)
+        elif tier == "cold":
+            METRICS.increment(MetricNames.POLICY_TIER_COLD)
+        else:
+            METRICS.increment(MetricNames.POLICY_TIER_DROP)
+
+        record = {
+            "ts": now_ts,
+            "req_id": req_id,
+            "user_id": user_id,
+            "trait_id": trait_id,
+            "source": item.get("source"),
+            "tag": tag or "direct",
+            "decision": decision,
+        }
+        evidence_log(record)
+        policy_records.append(record)
+
+        item.setdefault("policy", {}).update({
+            "tier": decision["tier"],
+            "ttl_days": decision["ttl_days"],
+            "reason": decision["reason"],
+            "reliability": decision["reliability"],
+        })
+        item["policy"]["logged_at"] = now_ts
+        item["_reliability"] = decision["reliability"]
+
+        if decision["tier"] == "drop":
+            continue
+
+        persisted.append(item)
+
+    if persisted:
+        evidence_doc["items"].extend(persisted)
 
     # Write back (only evidence is updated)
     write_user_state(user_id, resolved, evidence_doc, observations, enforce_governance=False)
 
     # Log evidence storage with file path for traceability
-    logger.info(f"chat_store{{req_id={req_id}, path=\"users/{user_id}/evidence.json\", count={len(evidence)}}}")
-    logger.info(f"stored_observations{{req_id={req_id}, count={len(evidence)}, tag={tag or 'direct'}}}")
+    logger.info(f"chat_store{{req_id={req_id}, path=\"users/{user_id}/evidence.json\", count={len(persisted)}}}")
+    logger.info(f"stored_observations{{req_id={req_id}, count={len(persisted)}, tag={tag or 'direct'}}}")
+
+    return {
+        "records": policy_records,
+        "persisted": persisted,
+    }
 
 
 def _resolve_direct(user_id: str, evidence: List[Dict[str, Any]], req_id: str) -> int:
@@ -257,7 +365,9 @@ def _resolve_direct(user_id: str, evidence: List[Dict[str, Any]], req_id: str) -
                 "source": e.get("source", "ingestion"),
                 "ts": e.get("ts", now_iso()),
                 "ucn_prior": float(e.get("ucn_prior", 0.2)),
-                "provenance": e.get("provenance", "direct")
+                "provenance": e.get("provenance", "direct"),
+                "policy": e.get("policy", {}),
+                "_reliability": e.get("_reliability"),
             })
 
         # Run resolver
@@ -308,7 +418,9 @@ def _resolve_inferred(user_id: str, evidence: List[Dict[str, Any]], req_id: str)
                 "source": e.get("source", "ingestion:inference"),
                 "ts": e.get("ts", now_iso()),
                 "ucn_prior": float(e.get("ucn_prior", 0.15)),  # Lower prior for inferences
-                "provenance": e.get("provenance", "inference:unknown")
+                "provenance": e.get("provenance", "inference:unknown"),
+                "policy": e.get("policy", {}),
+                "_reliability": e.get("_reliability"),
             })
 
         # Run resolver

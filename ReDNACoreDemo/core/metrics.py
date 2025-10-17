@@ -72,6 +72,16 @@ class MetricsCollector:
             if len(self._timers[metric]) > 1000:
                 self._timers[metric] = self._timers[metric][-1000:]
 
+    def observe(self, metric: str, value: float) -> None:
+        """
+        Record an observation (alias for record_time for semantic clarity).
+
+        Args:
+            metric: Metric name
+            value: Observed value (typically milliseconds for timing)
+        """
+        self.record_time(metric, value)
+
     def get_counter(self, metric: str) -> int:
         """Get current value of a counter."""
         with self._lock:
@@ -261,6 +271,14 @@ class MetricNames:
     INGESTS_ERRORS = "ingests.errors"
     INGESTS_EVIDENCE_COUNT = "ingests.evidence.count"
     INGESTS_INFERRED_COUNT = "ingests.inferred.count"
+    INGEST_REQUESTS = "ingest.requests"
+    INGEST_ERRORS = "ingest.errors"
+
+    # Hop timing metrics (pipeline performance)
+    HOP_MS_PREPROCESS = "hop_ms.preprocess"
+    HOP_MS_UCNRR = "hop_ms.ucnrr"
+    HOP_MS_RESOLVE = "hop_ms.resolve"
+    HOP_MS_TOTAL = "hop_ms.total"
 
     # HTTP error metrics
     ERRORS_4XX = "errors.4xx"
@@ -284,6 +302,30 @@ class MetricNames:
     CHAT_TURNS = "chat.turns"
     CHAT_DURATION_MS = "chat.duration_ms"
 
+    # Policy metrics
+    POLICY_SUPERSESSIONS = "policy.supersessions"
+    POLICY_CONTRADICTIONS = "policy.contradictions"
+    POLICY_TIER_HOT = "policy.tier.hot"
+    POLICY_TIER_WARM = "policy.tier.warm"
+    POLICY_TIER_COLD = "policy.tier.cold"
+    POLICY_TIER_DROP = "policy.tier.drop"
+
     # Prompt metrics
     PROMPT_RELOADS = "prompt.reloads"
     PROMPT_LOAD_ERRORS = "prompt.load_errors"
+
+    # HTTP server metrics
+    HTTP_REQUESTS_TOTAL = "http.requests.total"
+    HTTP_REQUESTS_ERRORS = "http.requests.errors"
+    HTTP_LATENCY_MS = "http.latency_ms"
+
+
+def record_request(*, latency_ms: float, is_error: bool, status_code: Optional[int] = None) -> None:
+    """Record an HTTP request for rolling and cumulative metrics."""
+    METRICS.increment(MetricNames.HTTP_REQUESTS_TOTAL)
+    if is_error:
+        METRICS.increment(MetricNames.HTTP_REQUESTS_ERRORS)
+    METRICS.record_time(MetricNames.HTTP_LATENCY_MS, latency_ms)
+
+    status_for_window = status_code if status_code is not None else (500 if is_error else 200)
+    ROLLING_REQUESTS.record(latency_ms, int(status_for_window))
