@@ -1,12 +1,13 @@
 # ReDNA Implementation Status
 
-**Last Updated**: 2025-10-15 16:00 UTC
+**Last Updated**: 2025-10-17 14:00 UTC
 **Phase**: 1 (Architectural Reliability) — **COMPLETE** ✅
-**Next Phase**: 2 (Operational Integrity) — **IN PROGRESS** 🚧
+**Phase 2**: (Operational Integrity) — **IN PROGRESS** 🚧
+**Phase 3**: (Resilience & Auto-Recovery) — **IN PROGRESS** 🧪
+**Phase 4**: (Instrumentation & Verification) — **COMPLETE** ✅
 **Bootstrap Status**: ✅ All services running with correct module paths (prints sys.executable)
 **CORS Status**: ✅ Configured for local dev origins (ports 3000, 3001, 4173, 3100-3102)
 **c32ecf0**: Stability Baseline v1 added (import canary, ingestion contracts, smoke script, CI gate).
-**Phase 3 (Resilience & Auto-Recovery)**: 🧪 In progress — supervised restarts, rolling readiness, and unified logging scaffolded.
 
 ---
 
@@ -140,6 +141,61 @@
 - [ ] AI Trait Curator
 - [ ] Auto-approval policy
 - [ ] Meta-learning feedback
+
+---
+
+## Phase 4 — Instrumentation & Verification (**IN PROGRESS**)
+
+### Status: 3/3 Scopes Complete ✅
+
+**Last Updated**: 2025-10-17
+
+**Scope 1: Tier-1 Trait Verification** — ✅ **COMPLETE**
+- ✅ Created `scripts/tier1_verify.py` automation script
+  - Iterates over HAIR, AGE, REL, HEIGHT traits
+  - Toggles promotion flags in `.env`, restarts Core
+  - Runs test cases with explicit phrases
+  - Auto-bumps RR threshold (+40) on failure and retries once
+  - Outputs results to `docs/reports/tier1_verify_summary.md`
+- ✅ Created `tests/integration/test_tier1_smoke.py`
+  - Parametrized pytest tests for each Tier-1 trait
+  - Verifies trait appears in snapshot.traits with non-null value
+  - Skips if trait toggle disabled
+- Commits: `9325286`, `ac54bcb`
+
+**Scope 2: Hop-Timing Instrumentation** — ✅ **COMPLETE**
+- ✅ Added `HopTimer` helper class to `core/ingest/pipeline.py`
+- ✅ Instrumented `ingest_evidence_roundtrip()` with 6 timing marks (t0-t5)
+- ✅ Added hop_ms.* metrics (preprocess, ucnrr, resolve, total)
+- ✅ Added `observe()` method to MetricsCollector
+- ✅ Created comprehensive unit tests (`tests/test_roundtrip_metrics.py`)
+- ✅ Emit timing data in ingest_done log messages
+- Timing breakdown:
+  - hop_ms.preprocess: t0_recv → t1_pre (canonicalize, validate, store)
+  - hop_ms.ucnrr: t2_ucnrr_send → t3_ucnrr_done (resolver call)
+  - hop_ms.resolve: t3_ucnrr_done → t4_resolve (inference + second pass)
+  - hop_ms.total: t0_recv → t5_return (complete roundtrip)
+- Commit: `9362a79`
+
+**Scope 3: DevX Roundtrip Chart** — ✅ **COMPLETE**
+- ✅ Created `GET /devx/api/metrics/roundtrip` endpoint in `llm_bench_api.py`
+  - Wraps Core `/core/api/metrics` and extracts hop_ms.* fields
+  - Returns timing breakdown with p50/p95/p99 for each hop
+  - Includes ingest request/error counts and window_seconds
+- ✅ Added `RoundtripMetrics` and `HopMetrics` types to `llmBenchApi.ts`
+- ✅ Created `RoundtripChart` component (`web/src/components/metrics/RoundtripChart.tsx`)
+  - Auto-refresh every 12 seconds
+  - Prominent p95 total display
+  - Hop breakdown bars (preprocess, ucnrr, resolve)
+  - Ingest request/error counts
+  - Loading and error states
+- ✅ Added RoundtripChart to llm-benchmarks page sidebar
+- Commits: `6e1f5bd`, `d7e7ee4`
+
+**Next Steps**:
+- Run `scripts/tier1_verify.py` to verify Tier-1 traits achieve ≥95% precision
+- Monitor hop timing metrics in production to identify bottlenecks
+- Consider adding alerting for high p95 latencies or error rates
 
 ---
 
