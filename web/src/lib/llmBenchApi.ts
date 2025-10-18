@@ -88,6 +88,7 @@ export interface RoundtripMetrics {
   ingest: {
     requests: number;
     errors: number;
+    error_rate_pct?: number;
   };
   hop_ms: {
     preprocess: HopMetrics | null;
@@ -96,6 +97,11 @@ export interface RoundtripMetrics {
     total: HopMetrics | null;
   };
   timestamp?: string;
+  alerts?: {
+    total_p95_high: boolean;
+    ucnrr_p95_high: boolean;
+    errors_rate_high: boolean;
+  };
 }
 
 // ============================================================================

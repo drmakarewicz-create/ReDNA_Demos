@@ -25,6 +25,51 @@ def _has(tokens: list[str], text: str) -> bool:
     return any(token in lowered for token in tokens)
 
 
+def _normalize_work_location(text: str):
+    s = text.lower()
+    s = s.replace("in-office", "in office")
+
+    remote_tokens = ["work from home", "remote", "wfh"]
+    onsite_tokens = ["onsite", "on-site", "in office"]
+    hybrid_tokens = ["hybrid", "split schedule", "mix of remote and office"]
+
+    has_remote = any(tok in s for tok in remote_tokens)
+    has_onsite = any(tok in s for tok in onsite_tokens)
+    has_hybrid_word = any(tok in s for tok in hybrid_tokens)
+
+    # hybrid if explicitly stated OR both remote and onsite indicators present
+    if has_hybrid_word or (has_remote and has_onsite):
+        return "hybrid"
+    if has_remote:
+        return "remote"
+    if has_onsite:
+        return "onsite"
+    return None
+
+
+def _normalize_chronotype(text: str):
+    s = text.lower()
+
+    # simple substring checks handle punctuation/commas robustly
+    if "morning person" in s or "early riser" in s or ("up before" in s and "sunrise" in s):
+        return "morning"
+    if (
+        "night owl" in s
+        or "stay up late" in s
+        or "up past midnight" in s
+        or "in bed after midnight" in s
+    ):
+        return "evening"
+
+    # regex fallbacks (time-based variants)
+    if re.search(r"\bup\s+(?:before|by)\s+(?:sunrise|[56](?::[0-5]\d)?)\b", s):
+        return "morning"
+    if re.search(r"\b(in bed after|up past)\s+(?:midnight|1[0-2])\b", s):
+        return "evening"
+
+    return None
+
+
 def normalize_value(trait_id: str, text: str) -> Optional[str | bool]:
     """
     Normalize extracted values for the precision-allowlisted traits.
@@ -199,29 +244,41 @@ def normalize_value(trait_id: str, text: str) -> Optional[str | bool]:
         return None
 
     if trait_id == "BehaviorDNA.Sleep.Chronotype":
-        if any(keyword in s for keyword in ["morning person", "early riser", "up at 5", "up by 5", "wake up early"]):
-            return "morning"
-        if any(keyword in s for keyword in ["night owl", "stay up late", "late nights"]):
-            return "evening"
-        return None
+        return _normalize_chronotype(text)
 
     if trait_id == "BehaviorDNA.Health.Diet":
-        if "don't eat meat" in s or "do not eat meat" in s:
+        if "don't eat meat" in s or "do not eat meat" in s or "avoid meat" in s:
             return "vegetarian"
-        if "plant-based" in s or "plant based" in s:
-            return "plant_based"
-        for value in ["vegan", "pescatarian", "keto", "gluten free", "gluten-free"]:
+        for value, normalized in [
+            ("vegan", "vegan"),
+            ("pescatarian", "pescatarian"),
+            ("keto", "keto"),
+            ("gluten free", "gluten_free"),
+            ("gluten-free", "gluten_free"),
+        ]:
             if value in s:
-                return value.replace(" ", "_")
+                return normalized
         return None
 
     if trait_id == "BehaviorDNA.Work.Location":
-        if any(keyword in s for keyword in ["work from home", "remote", "fully remote", "wfh"]):
-            return "remote"
-        if any(keyword in s for keyword in ["onsite", "on-site", "in office", "in-office"]):
-            return "onsite"
-        if "hybrid" in s:
-            return "hybrid"
+        return _normalize_work_location(text)
+
+    if trait_id == "PreferenceDNA.Social.GroupSize":
+        if any(keyword in s for keyword in ["quiet weekend", "stay in and read", "prefer small group", "small group"]):
+            return "small"
+        if any(keyword in s for keyword in ["love big parties", "large crowd", "prefer big groups"]):
+            return "large"
+        return None
+
+    if trait_id == "BehaviorDNA.Exercise.Type":
+        for token, normalized in [
+            ("run", "running"),
+            ("swim", "swimming"),
+            ("bike", "cycling"),
+            ("yoga", "yoga"),
+        ]:
+            if token in s:
+                return normalized
         return None
 
     # All other traits are intentionally unsupported in this precision pass.

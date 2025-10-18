@@ -74,7 +74,48 @@ export function RoundtripChart() {
     );
   }
 
-  const { hop_ms, ingest, window_seconds } = metrics;
+  const { hop_ms, ingest, window_seconds, alerts } = metrics;
+  const errorRate = ingest.error_rate_pct ?? (ingest.requests ? (ingest.errors / ingest.requests) * 100 : 0);
+
+  const statusChips: Array<{ key: string; label: string; tone: 'amber' | 'red' | 'purple'; tooltip: string }> = [];
+
+  if (alerts?.total_p95_high) {
+    statusChips.push({
+      key: 'total_p95_high',
+      label: 'High latency',
+      tone: 'amber',
+      tooltip: 'Total roundtrip p95 exceeded configured threshold',
+    });
+  }
+
+  if (alerts?.ucnrr_p95_high) {
+    statusChips.push({
+      key: 'ucnrr_p95_high',
+      label: 'UCNRR slow',
+      tone: 'purple',
+      tooltip: 'UCNRR hop p95 is above the safe threshold',
+    });
+  }
+
+  if (alerts?.errors_rate_high) {
+    statusChips.push({
+      key: 'errors_rate_high',
+      label: 'High error rate',
+      tone: 'red',
+      tooltip: 'Ingest error rate exceeded configured threshold',
+    });
+  }
+
+  const chipToneClass = (tone: 'amber' | 'red' | 'purple') => {
+    switch (tone) {
+      case 'red':
+        return 'bg-red-100 text-red-800 border border-red-200';
+      case 'purple':
+        return 'bg-purple-100 text-purple-800 border border-purple-200';
+      default:
+        return 'bg-amber-100 text-amber-800 border border-amber-200';
+    }
+  };
 
   // Build hop bars data
   const bars: HopBar[] = [];
@@ -125,6 +166,20 @@ export function RoundtripChart() {
         </div>
       </div>
 
+      {statusChips.length > 0 && (
+        <div className="mb-4 flex flex-wrap gap-2">
+          {statusChips.map((chip) => (
+            <span
+              key={chip.key}
+              className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${chipToneClass(chip.tone)}`}
+              title={chip.tooltip}
+            >
+              {chip.label}
+            </span>
+          ))}
+        </div>
+      )}
+
       {/* Total P95 prominently displayed */}
       <div className="mb-6">
         <div className="flex items-baseline gap-2">
@@ -170,15 +225,22 @@ export function RoundtripChart() {
       )}
 
       {/* Ingest stats footer */}
-      <div className="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between text-xs text-gray-600">
-        <div>
+      <div className="mt-6 pt-4 border-t border-gray-200 flex items-center justify-between text-xs">
+        <div className="text-gray-600">
           <span className="font-medium">{ingest.requests}</span> total requests
         </div>
-        {ingest.errors > 0 && (
-          <div className="text-red-600">
-            <span className="font-medium">{ingest.errors}</span> errors
-          </div>
-        )}
+        <div
+          className={
+            alerts?.errors_rate_high
+              ? 'text-red-600 font-semibold'
+              : ingest.errors > 0
+              ? 'text-amber-600'
+              : 'text-gray-500'
+          }
+          title="Error count and rolling window error rate"
+        >
+          <span className="font-medium">{ingest.errors}</span> errors ({errorRate.toFixed(2)}%)
+        </div>
       </div>
 
       {/* Auto-refresh indicator */}

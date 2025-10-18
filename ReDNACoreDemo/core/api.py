@@ -19,6 +19,7 @@ import shutil
 import threading
 import queue
 import traceback
+from collections import deque
 
 logger = logging.getLogger(__name__)
 
@@ -184,6 +185,10 @@ PROMOTION_ALIASES_NUM = {
 }
 
 
+WHY_CARD_PATH = Path.home() / ".redna" / "why_cards.jsonl"
+WHY_CARD_LOCK = threading.Lock()
+
+
 def _env_bool(name: str, default: bool = False) -> bool:
     value = os.environ.get(name)
     if value is None:
@@ -196,6 +201,127 @@ def _env_float(name: str, default: float) -> float:
         return float(os.environ.get(name, default))
     except Exception:
         return default
+
+
+def _append_why_card_record(record: Dict[str, Any]) -> None:
+    """Persist a single Why-Card line item."""
+    try:
+        WHY_CARD_PATH.parent.mkdir(parents=True, exist_ok=True)
+        line = json.dumps(record, ensure_ascii=True)
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.debug("whycard_serialize_failed: %s", exc)
+        return
+
+    try:
+        with WHY_CARD_LOCK:
+            with WHY_CARD_PATH.open("a", encoding="utf-8") as handle:
+                handle.write(line + "\n")
+    except Exception as exc:  # pragma: no cover - filesystem guard
+        logger.debug("whycard_write_failed: %s", exc)
+
+
+def _store_promotion_why_card(
+    user_id: str,
+    trait_id: str,
+    rr_value: float,
+    value: Optional[Any],
+    why: Optional[str],
+    *,
+    source: str,
+    event_id: Optional[str],
+    source_text: Optional[str],
+) -> Dict[str, Any]:
+    """Create and persist a Why-Card, returning the stored payload."""
+    reason = (why or "").strip()
+    if not reason:
+        snippet = (source_text or "").strip()
+        if snippet:
+            snippet = re.sub(r"\s+", " ", snippet)
+            if len(snippet) > 160:
+                snippet = snippet[:157] + "..."
+            reason = f"Promotion threshold met (rr={rr_value:.1f}) from text: {snippet}"
+        else:
+            reason = f"Promotion threshold met (rr={rr_value:.1f})"
+
+    value_payload: Optional[str]
+    if value is None:
+        value_payload = None
+    elif isinstance(value, str):
+        value_payload = value
+    else:
+        value_payload = json.dumps(value)
+
+    card = {
+        "user_id": user_id,
+        "trait_id": trait_id,
+        "value": value_payload,
+        "rr": float(rr_value),
+        "why": reason,
+        "ts": datetime.now(timezone.utc).isoformat(),
+        "source": source,
+    }
+    if event_id:
+        card["event_id"] = event_id
+
+    try:
+        stack_log(
+            service="core",
+            level="INFO",
+            event="promotion_whycard",
+            msg=f"Why-Card stored for {trait_id}",
+            meta=card,
+        )
+    except Exception:  # pragma: no cover - logging guard
+        pass
+
+    _append_why_card_record(card)
+    return card
+
+
+def _load_why_cards(
+    *,
+    trait_id: Optional[str] = None,
+    user_id: Optional[str] = None,
+    limit: Optional[int] = None,
+) -> List[Dict[str, Any]]:
+    """Return recent Why-Cards filtered by trait/user."""
+    if limit is not None:
+        if limit <= 0:
+            return []
+        maxlen = limit
+    else:
+        maxlen = None
+
+    if not WHY_CARD_PATH.exists():
+        return []
+
+    matches: deque[Dict[str, Any]] = deque(maxlen=maxlen)
+    try:
+        with WHY_CARD_PATH.open("r", encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if trait_id and record.get("trait_id") != trait_id:
+                    continue
+                if user_id and record.get("user_id") != user_id:
+                    continue
+                matches.append(record)
+    except FileNotFoundError:
+        return []
+
+    items = list(matches)
+    items.reverse()
+    return items
+
+
+def _latest_why_card(trait_id: str, user_id: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    cards = _load_why_cards(trait_id=trait_id, user_id=user_id, limit=1)
+    return cards[0] if cards else None
 
 
 def build_promote_rules_from_env() -> Dict[str, Dict[str, Any]]:
@@ -965,6 +1091,97 @@ async def debug_envvars():
     return {k: os.environ.get(k) for k in sorted(keys)}
 
 
+@debug_router.post("/core/api/debug/set_toggle")
+async def debug_set_toggle(payload: Dict[str, Any]):
+    if not isinstance(payload, dict):
+        raise HTTPException(status_code=400, detail="JSON body required.")
+
+    updated: Dict[str, str] = {}
+
+    if "key" in payload:
+        key = str(payload.get("key") or "").strip().upper()
+        if not key:
+            raise HTTPException(status_code=400, detail="key is required.")
+        if key.startswith("PROMOTE_ENABLE_"):
+            raw_value = payload.get("value")
+            if raw_value is None:
+                raise HTTPException(status_code=400, detail="value required for toggle keys.")
+            if isinstance(raw_value, bool):
+                bool_value = raw_value
+            else:
+                bool_value = str(raw_value).strip().lower() in TRACE_TRUE
+            str_value = "true" if bool_value else "false"
+            os.environ[key] = str_value
+            updated[key] = str_value
+        elif key.startswith("RR_PROMOTE_MIN_"):
+            raw_value = payload.get("value")
+            try:
+                num_value = float(raw_value)
+            except (TypeError, ValueError):
+                raise HTTPException(status_code=400, detail="value must be a number for RR_PROMOTE_MIN_ keys.")
+            os.environ[key] = str(num_value)
+            updated[key] = str(num_value)
+        else:
+            raise HTTPException(status_code=400, detail="Only PROMOTE_ENABLE_* or RR_PROMOTE_MIN_* keys are allowed.")
+    elif "trait" in payload:
+        trait_alias = str(payload.get("trait") or "").strip().upper()
+        if not trait_alias:
+            raise HTTPException(status_code=400, detail="trait is required.")
+
+        bool_key = PROMOTION_ALIASES_BOOL.get(trait_alias)
+        num_key = PROMOTION_ALIASES_NUM.get(trait_alias)
+        if not bool_key:
+            raise HTTPException(status_code=400, detail=f"Trait '{trait_alias}' is not allowlisted.")
+
+        raw_enable = payload.get("enable", True)
+        if isinstance(raw_enable, bool):
+            enable_value = raw_enable
+        else:
+            enable_value = str(raw_enable).strip().lower() in TRACE_TRUE
+        str_enable = "true" if enable_value else "false"
+        os.environ[bool_key] = str_enable
+        updated[bool_key] = str_enable
+
+        if "rr_min" in payload and payload["rr_min"] is not None:
+            if not num_key:
+                raise HTTPException(status_code=400, detail=f"No RR threshold key registered for trait '{trait_alias}'.")
+            try:
+                rr_value = float(payload["rr_min"])
+            except (TypeError, ValueError):
+                raise HTTPException(status_code=400, detail="rr_min must be numeric.")
+            os.environ[num_key] = str(rr_value)
+            updated[num_key] = str(rr_value)
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail="Pass either {'key','value'} or {'trait','enable','rr_min?'} payload.",
+        )
+
+    if updated:
+        _load_promotions_from_env_and_snapshot()
+        try:
+            stack_log(
+                service="core",
+                level="INFO",
+                event="promotion_toggle_set",
+                msg="Promotion toggles updated",
+                meta={"updated": updated, "enabled_traits": list(PROMOTE_RULES_ACTIVE.keys())},
+            )
+        except Exception:  # pragma: no cover - logging guard
+            pass
+
+    env_snapshot = {
+        key: os.environ.get(key)
+        for key in sorted(k for k in os.environ.keys() if k.startswith(("PROMOTE_ENABLE_", "RR_PROMOTE_MIN_")))
+    }
+
+    return {
+        "updated": updated,
+        "envvars": env_snapshot,
+        "enabled_policies": PROMOTE_RULES_ACTIVE,
+    }
+
+
 @debug_router.get("/core/api/debug/resolver")
 async def debug_resolver():
     """
@@ -1019,6 +1236,27 @@ def build_app() -> FastAPI:
         payload = {"user_id": user_id, "text": text, "source": data.get("source") or "legacy_ui"}
         return ingest_text_endpoint(payload)
     # --- end legacy ingestion alias ---
+
+    @app.get("/core/api/traits/{trait_id}/why")
+    def get_trait_whycard(trait_id: str, user_id: Optional[str] = Query(None), limit: int = Query(1, ge=1, le=100)):
+        cards = _load_why_cards(trait_id=trait_id, user_id=user_id, limit=limit)
+        if limit == 1:
+            if not cards:
+                raise HTTPException(
+                    status_code=404,
+                    detail={"error": "NOT_FOUND", "message": f"No Why-Cards for trait '{trait_id}'."},
+                )
+            return cards[0]
+        return {"trait_id": trait_id, "items": cards}
+
+    @app.get("/core/api/whycards")
+    def list_whycards(
+        user_id: Optional[str] = Query(None),
+        trait_id: Optional[str] = Query(None),
+        limit: int = Query(20, ge=1, le=200),
+    ):
+        cards = _load_why_cards(user_id=user_id, trait_id=trait_id, limit=limit)
+        return {"items": cards, "count": len(cards)}
 
 
     # --- CORS middleware for local UI/dev servers ---
@@ -5848,6 +6086,8 @@ def build_app() -> FastAPI:
             # Sort by score descending
             rr_by_trait = rescore_result.get("rr_by_trait", {}) or {}
             rr_items = sorted(rr_by_trait.items(), key=lambda kv: float(kv[1] or 0), reverse=True)
+            raw_why_map = rescore_result.get("why_by_trait")
+            why_by_trait = raw_why_map if isinstance(raw_why_map, dict) else {}
 
             promoted = 0
             promoted_keys: set[str] = set()
@@ -5932,6 +6172,17 @@ def build_app() -> FastAPI:
                     f"Promoted {trait_id}",
                     {"ucn": score_float, "value": value, "event_id": event_id},
                 )
+                why_card_reason = why_by_trait.get(trait_id) if isinstance(why_by_trait, dict) else None
+                _store_promotion_why_card(
+                    user_id=user_id_raw,
+                    trait_id=trait_id,
+                    rr_value=score_float,
+                    value=value,
+                    why=why_card_reason,
+                    source="ucnrr_rescore",
+                    event_id=event_id,
+                    source_text=source_text,
+                )
 
                 # --- handle paired traits (Exercise Outdoor + Frequency) ---
                 for co_trait in PAIR_GROUPS.get(trait_id, []):
@@ -5997,6 +6248,21 @@ def build_app() -> FastAPI:
                         "promotion_event",
                         f"Promoted {co_trait}",
                         {"ucn": co_score, "value": co_value, "event_id": event_id},
+                    )
+                    co_reason = None
+                    if isinstance(why_by_trait, dict):
+                        co_reason = why_by_trait.get(co_trait)
+                    if not co_reason:
+                        co_reason = f"Paired promotion with {trait_id}"
+                    _store_promotion_why_card(
+                        user_id=user_id_raw,
+                        trait_id=co_trait,
+                        rr_value=co_score,
+                        value=co_value,
+                        why=co_reason,
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                        source_text=source_text,
                     )
 
                 if promoted >= TOP_K_PROMOTE:

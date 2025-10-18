@@ -903,6 +903,12 @@ async def get_roundtrip_metrics():
 
     core_base = os.getenv("CORE_BASE", "http://127.0.0.1:8004")
 
+    def _env_float(name: str, default: float) -> float:
+        try:
+            return float(os.getenv(name, default))
+        except (TypeError, ValueError):
+            return default
+
     try:
         async with httpx.AsyncClient(timeout=5.0) as client:
             resp = await client.get(f"{core_base}/core/api/metrics")
@@ -932,10 +938,25 @@ async def get_roundtrip_metrics():
         # Extract ingest stats
         ingest_requests = counters.get("ingest.requests", 0)
         ingest_errors = counters.get("ingest.errors", 0)
+        error_rate_pct = 0.0
+        if ingest_requests:
+            error_rate_pct = round((ingest_errors / ingest_requests) * 100.0, 2)
 
         # Extract rolling window info if available
         rolling = core_metrics.get("rolling_window", {})
         window_seconds = rolling.get("window_seconds", 300)
+
+        total_stats = hop_ms.get("total") or {}
+        ucnrr_stats = hop_ms.get("ucnrr") or {}
+
+        total_p95 = total_stats.get("p95") if total_stats else 0.0
+        ucnrr_p95 = ucnrr_stats.get("p95") if ucnrr_stats else 0.0
+
+        alerts = {
+            "total_p95_high": bool(total_stats) and total_p95 > _env_float("ROUNDTRIP_P95_MAX_MS", 2000.0),
+            "ucnrr_p95_high": bool(ucnrr_stats) and ucnrr_p95 > _env_float("UCNRR_P95_MAX_MS", 1200.0),
+            "errors_rate_high": bool(ingest_requests) and (error_rate_pct > _env_float("ERROR_RATE_MAX_PCT", 3.0)),
+        }
 
         return {
             "ok": True,
@@ -943,9 +964,11 @@ async def get_roundtrip_metrics():
             "ingest": {
                 "requests": ingest_requests,
                 "errors": ingest_errors,
+                "error_rate_pct": error_rate_pct,
             },
             "hop_ms": hop_ms,
             "timestamp": core_metrics.get("timestamp"),
+            "alerts": alerts,
         }
 
     except httpx.HTTPError as e:

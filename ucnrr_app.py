@@ -1,6 +1,6 @@
 # ucnrr_app.py — UCN/RR Demo API (compat + storage init)
 from __future__ import annotations
-import os, json
+import os, json, re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
@@ -16,6 +16,8 @@ DATA_DIR = Path(os.getenv("UCNRR_DATA", str(ROOT / "data")))
 STORAGE = DATA_DIR / "storage"
 STORAGE.mkdir(parents=True, exist_ok=True)
 
+FORCE_INJECT_CHRONO = os.environ.get("FORCE_INJECT_CHRONO", "false").lower() in ("1", "true", "yes")
+
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -29,6 +31,58 @@ def ensure_user(uid: str) -> Path:
 
 def _write_json(path: Path, obj: Dict[str, Any]):
     path.write_text(json.dumps(obj, indent=2), encoding="utf-8")
+
+
+CHRONO_DETECT_PATTERNS: List[tuple[re.Pattern[str], str]] = [
+    (re.compile(r"\bmorning\s+person\b", re.IGNORECASE), "morning person"),
+    (re.compile(r"\bearly\s+riser\b", re.IGNORECASE), "early riser"),
+    (re.compile(r"\bup\s+before\s+sunrise\b", re.IGNORECASE), "before sunrise"),
+    (re.compile(r"\bup\s+by\s+sunrise\b", re.IGNORECASE), "by sunrise"),
+    (
+        re.compile(r"\bup\s+before\b[\s,\w]{0,40}\bsunrise\b", re.IGNORECASE),
+        "before sunrise",
+    ),
+]
+
+
+def _detect_chronotype(text: str) -> List[str]:
+    """Return matched chronotype phrases from free text."""
+    if not isinstance(text, str) or not text.strip():
+        return []
+
+    matches: List[str] = []
+    for pattern, label in CHRONO_DETECT_PATTERNS:
+        if pattern.search(text):
+            if label not in matches:
+                matches.append(label)
+    return matches
+
+
+def _maybe_inject_chronotype(
+    user_text: str,
+    rr_by_trait: Dict[str, float],
+    why_by_trait: Dict[str, str],
+    curiosity_by_trait: Optional[Dict[str, float]] = None,
+) -> None:
+    """Insert Chronotype promotion data when phrases or force toggle are present."""
+    trait_id = "BehaviorDNA.Sleep.Chronotype"
+    if trait_id in rr_by_trait:
+        return
+
+    matches = _detect_chronotype(user_text)
+    if not matches and not FORCE_INJECT_CHRONO:
+        return
+
+    rr_by_trait[trait_id] = 830.0
+    if curiosity_by_trait is not None:
+        curiosity_by_trait.setdefault(trait_id, 12.0)
+
+    if matches:
+        rationale = "Matched " + " and/or ".join(f"'{m}'" for m in matches)
+    else:
+        rationale = "Injected due to FORCE_INJECT_CHRONO toggle"
+
+    why_by_trait[trait_id] = rationale
 
 app = FastAPI(title="UCN/RR Demo API", version=APP_VERSION)
 app.add_middleware(
@@ -145,6 +199,7 @@ def api_rescore(body: IngestText):
     # ---- Extract traits (placeholder AI logic) ----
     rr_by_trait: Dict[str, float] = {}
     curiosity_by_trait: Dict[str, float] = {}
+    why_by_trait: Dict[str, str] = {}
 
     # Simple extraction: look for patterns like "I am 25 years old"
     text_lower = text.lower()
@@ -169,12 +224,15 @@ def api_rescore(body: IngestText):
         rr_by_trait["PersonalityDNA.WYRChoice"] = 90.0
         curiosity_by_trait["PersonalityDNA.WYRChoice"] = 10.0
 
+    _maybe_inject_chronotype(text, rr_by_trait, why_by_trait, curiosity_by_trait)
+
     # Return format expected by Core
     return {
         "ok": True,
         "user_id": uid,
         "rr_by_trait": rr_by_trait,
         "curiosity_by_trait": curiosity_by_trait,
+        "why_by_trait": why_by_trait,
         "traits_updated": len(rr_by_trait),
         "timestamp": now_iso()
     }

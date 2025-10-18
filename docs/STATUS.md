@@ -199,6 +199,17 @@
 
 ---
 
+## Phase 5 — Tier-2 Expansion Prep (Kickoff)
+
+- 🚧 **In Progress** — Tier-2 promotions gated behind env toggles; precision target ≥95%.
+- 🔗 Summary docs:
+  - [`docs/PHASE5_STATUS.md`](./PHASE5_STATUS.md) — live status + env toggles.
+  - [`docs/Phase5_Perf_Baseline.md`](./Phase5_Perf_Baseline.md) — capture + alert playbook.
+  - [`docs/Northstar_Phase5_Prep.md`](./Northstar_Phase5_Prep.md) — hooks for Claude/Northstar.
+- 💡 New automation: `scripts/tier2_verify.py`, `scripts/roundtrip_capture.py` (commit: _pending_).
+- 🎯 UI updates: Roundtrip alerts + ReDNA Pulse overlay ready for Northstar Phase 5.1.
+
+
 ## Commit History
 
 ### 2025-10-14

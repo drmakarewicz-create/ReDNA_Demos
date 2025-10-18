@@ -93,11 +93,17 @@ def _detect_chronotype(text: str) -> bool:
     return False
 
 
-def _maybe_inject_chronotype(user_text: str, rr_by_trait: Dict[str, float]) -> None:
+def _maybe_inject_chronotype(
+    user_text: str,
+    rr_by_trait: Dict[str, float],
+    why_by_trait: Optional[Dict[str, str]] = None,
+) -> None:
     if "BehaviorDNA.Sleep.Chronotype" in rr_by_trait:
         return
     if _detect_chronotype(user_text):
         rr_by_trait["BehaviorDNA.Sleep.Chronotype"] = 830.0
+        if why_by_trait is not None and "BehaviorDNA.Sleep.Chronotype" not in why_by_trait:
+            why_by_trait["BehaviorDNA.Sleep.Chronotype"] = "Chronotype inferred from detected morning/evening phrases."
 
 
 def _launch_background(task: "asyncio.Task[Any]") -> None:
@@ -629,6 +635,7 @@ def _parse_canonical(
     heuristic_hint: Optional[str] = None,
     llm_conf: Optional[float] = None,
     heuristic_strength: str = "medium",
+    why_hint: Optional[str] = None,
 ) -> Dict[str, Any]:
     out: Dict[str, Any] = {}
     for raw in lines:
@@ -671,6 +678,8 @@ def _parse_canonical(
             "reasons": [reason],
             "notes": notes,
         }
+        if why_hint:
+            out[key]["why"] = why_hint
         if LOG_SCORES:
             print(f"ucnrr: trait={key} source={source_kind} ucn={ucn:.1f}")
     return out
@@ -701,6 +710,44 @@ def _min_heuristics(text: str) -> Dict[str, Dict[str, Any]]:
                 heuristic_strength="medium",
             )
         )
+    # Chronotype heuristics
+    morning_phrases = [
+        "morning person",
+        "early riser",
+        "up before sunrise",
+        "up by sunrise",
+        "awake before dawn",
+    ]
+    evening_phrases = [
+        "night owl",
+        "stay up late",
+        "up past midnight",
+        "in bed after midnight",
+    ]
+    if any(phrase in low for phrase in morning_phrases):
+        why_hint = "Matched morning chronotype phrases in text."
+        if "before sunrise" in low:
+            why_hint = "Matched phrases 'morning person' and 'before sunrise'."
+        out.update(
+            _parse_canonical(
+                ["BehaviorDNA.Sleep.Chronotype=morning"],
+                source_kind="heuristic",
+                heuristic_hint="Chronotype heuristic: detected morning phrases.",
+                heuristic_strength="high",
+                why_hint=why_hint,
+            )
+        )
+    elif any(phrase in low for phrase in evening_phrases):
+        why_hint = "Detected night-owl phrasing indicating evening chronotype."
+        out.update(
+            _parse_canonical(
+                ["BehaviorDNA.Sleep.Chronotype=evening"],
+                source_kind="heuristic",
+                heuristic_hint="Chronotype heuristic: detected evening phrases.",
+                heuristic_strength="high",
+                why_hint=why_hint,
+            )
+        )
     return out
 
 
@@ -709,6 +756,7 @@ def _merge_normalize(source: Dict[str, Any], provenance: Dict[str, Any]) -> Dict
     default_prov = {"source": "ucnrr", "from": provenance.get("source", "explorer"), "ts": now_iso}
     merged: Dict[str, Dict[str, Any]] = {}
     for path, meta in (source or {}).items():
+        why_text: Optional[str] = None
         if isinstance(meta, dict):
             value = meta.get("resolved_value", meta.get("value"))
             ucn = meta.get("ucn", meta.get("confidence", 0) * 100 if isinstance(meta.get("confidence"), (int, float)) else 80)
@@ -717,6 +765,7 @@ def _merge_normalize(source: Dict[str, Any], provenance: Dict[str, Any]) -> Dict
             status = meta.get("status")
             prov = dict(meta.get("provenance", {})) or dict(default_prov)
             notes = meta.get("notes") if isinstance(meta.get("notes"), dict) else None
+            why_text = meta.get("why")
         else:
             value = meta
             ucn = 80
@@ -725,6 +774,7 @@ def _merge_normalize(source: Dict[str, Any], provenance: Dict[str, Any]) -> Dict
             status = None
             prov = dict(default_prov)
             notes = None
+            why_text = None
         if "source" not in prov:
             prov.setdefault("source", default_prov["source"])
         merged[path] = {
@@ -737,6 +787,8 @@ def _merge_normalize(source: Dict[str, Any], provenance: Dict[str, Any]) -> Dict
         }
         if notes:
             merged[path]["notes"] = notes
+        if why_text:
+            merged[path]["why"] = why_text
     return merged
 
 
@@ -1191,13 +1243,14 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
             explicit = _llm_extract(text)
         if not explicit and USE_MIN_HEURISTICS:
             explicit = _min_heuristics(text)
-        traits = [{"id": k, "value": v.get("resolved_value"), "rr": v.get("ucn", 500.0)}
+        traits = [{"id": k, "value": v.get("resolved_value"), "rr": v.get("ucn", 500.0), "why": v.get("why")}
                   for k, v in explicit.items()]
 
     if not traits:
         raise HTTPException(status_code=400, detail="No traits provided or extracted from text")
 
     rr_by_trait: Dict[str, float] = {}
+    why_by_trait: Dict[str, str] = {}
     curiosity_by_trait: Dict[str, float] = {}
     global_curiosity = 0.0
 
@@ -1225,6 +1278,9 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
         # Clamp RR to 0-1000
         rr = max(0.0, min(1000.0, rr))
         rr_by_trait[trait_id] = rr
+        trait_why = trait.get("why")
+        if trait_why:
+            why_by_trait[trait_id] = str(trait_why)
 
         # Get optional parameters from trait dict
         days_since_update = float(trait.get("days_since_update", 0.0))
@@ -1244,7 +1300,7 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
         global_curiosity = global_curiosity / len(curiosity_by_trait)
 
     if text:
-        _maybe_inject_chronotype(text, rr_by_trait)
+        _maybe_inject_chronotype(text, rr_by_trait, why_by_trait)
 
     return {
         "ok": True,
@@ -1252,6 +1308,7 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
         "rr_by_trait": rr_by_trait,
         "curiosity_by_trait": curiosity_by_trait,
         "global_curiosity": round(global_curiosity, 4),
+        "why_by_trait": why_by_trait,
     }
 
 
@@ -1869,7 +1926,7 @@ def ucnrr_debug_trace(text: str = Body(..., embed=True)) -> Dict[str, Any]:
     chrono_injected = False
     if _detect_chronotype(text):
         if "BehaviorDNA.Sleep.Chronotype" not in rr_by_trait:
-            _maybe_inject_chronotype(text, rr_by_trait)
+            _maybe_inject_chronotype(text, rr_by_trait, why_by_trait)
             chrono_injected = True
 
     result["scoring"] = {
