@@ -73,6 +73,32 @@ _last_selftest_ok_ts = 0.0
 _last_selftest_ok_meta: Dict[str, Any] = {}
 _selftest_lock = threading.Lock()
 
+MORNING_PATTERNS = [
+    r"\bmorning person\b",
+    r"\bearly riser\b",
+    r"\bup\s+(?:before|by)\s+sunrise\b",
+]
+EVENING_PATTERNS = [
+    r"\bnight owl\b",
+    r"\bstay up late\b",
+    r"\bup\s+past\s+midnight\b",
+]
+
+
+def _detect_chronotype(text: str) -> bool:
+    lowered = text.lower()
+    for pattern in MORNING_PATTERNS + EVENING_PATTERNS:
+        if re.search(pattern, lowered):
+            return True
+    return False
+
+
+def _maybe_inject_chronotype(user_text: str, rr_by_trait: Dict[str, float]) -> None:
+    if "BehaviorDNA.Sleep.Chronotype" in rr_by_trait:
+        return
+    if _detect_chronotype(user_text):
+        rr_by_trait["BehaviorDNA.Sleep.Chronotype"] = 830.0
+
 
 def _launch_background(task: "asyncio.Task[Any]") -> None:
     _BACKGROUND_TASKS.add(task)
@@ -289,6 +315,14 @@ _CANON_MAP = {
     "PaDNA.RelationshipStatus": "BasicDNA.RelationshipStatus",
     "relationship.status": "BasicDNA.RelationshipStatus",
 }
+
+_CANON_MAP.update({
+    "sleep.chronotype": "BehaviorDNA.Sleep.Chronotype",
+    "diet.preference": "BehaviorDNA.Health.Diet",
+    "work.location": "BehaviorDNA.Work.Location",
+    "social.group_size": "PreferenceDNA.Social.GroupSize",
+    "exercise.type": "BehaviorDNA.Exercise.Type",
+})
 
 
 def _canon_trait_id(tid: str) -> str:
@@ -1209,6 +1243,9 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
     if curiosity_by_trait:
         global_curiosity = global_curiosity / len(curiosity_by_trait)
 
+    if text:
+        _maybe_inject_chronotype(text, rr_by_trait)
+
     return {
         "ok": True,
         "user_id": user_id,
@@ -1576,6 +1613,272 @@ def holistic_review(user_id: str) -> Dict[str, Any]:
         "core_response": core_res,
         "reason": "completed",
     }
+
+
+@app.get("/ucnrr/debug/config")
+def ucnrr_debug_config() -> Dict[str, Any]:
+    """
+    Debug endpoint: Effective UCNRR runtime config.
+    Returns loaded environment, LLM config, timeouts, and startup status.
+    """
+    import sys
+
+    # Determine which .env was loaded (if any)
+    env_path_loaded = "none"
+    possible_env_paths = [
+        Path(__file__).parent / ".env",
+        Path(__file__).resolve().parents[1] / ".env",
+    ]
+    for p in possible_env_paths:
+        if p.exists():
+            env_path_loaded = str(p)
+            break
+
+    # LLM configuration
+    ollama_base = os.getenv("OLLAMA_BASE_URL")
+    llm_configured = _is_llm_configured()
+    llm_configured_reason = "ok"
+
+    if not llm_configured:
+        if not LLM_PROVIDER:
+            llm_configured_reason = "LLM_PROVIDER not set"
+        elif LLM_PROVIDER.lower() == "ollama" and not (LLM_BASE_URL or ollama_base):
+            llm_configured_reason = "Ollama selected but no LLM_BASE_URL or OLLAMA_BASE_URL"
+        elif LLM_PROVIDER.lower() != "ollama" and not LLM_API_KEY:
+            llm_configured_reason = "Paid provider selected but no LLM_API_KEY"
+        else:
+            llm_configured_reason = "unknown"
+
+    # Effective base URL
+    effective_base = LLM_BASE_URL or ollama_base or "none"
+
+    return {
+        "service": "ucnrr",
+        "version": UCNRR_VERSION,
+        "env_path_loaded": env_path_loaded,
+        "llm_provider": LLM_PROVIDER or "none",
+        "llm_model": LLM_MODEL or "none",
+        "llm_base_url": effective_base,
+        "ollama_base_url": ollama_base or "none",
+        "llm_configured": llm_configured,
+        "llm_configured_reason": llm_configured_reason,
+        "llm_api_key_set": bool(LLM_API_KEY),
+        "timeouts": {
+            "note": "UCNRR uses requests library with explicit timeout params (typically 30s for LLM, 5-30s for Core)",
+            "llm_timeout_sec": 30,
+            "core_timeout_sec": 30,
+        },
+        "selftest_cache": {
+            "enabled": True,
+            "cache_window_sec": SELFTEST_CACHE_SEC,
+            "bg_timeout_sec": SELFTEST_BG_TIMEOUT_SEC,
+        },
+        "injectors": {
+            "chrono_injector_enabled": True,
+            "chrono_rr_value": 830.0,
+        },
+        "features": {
+            "use_min_heuristics": USE_MIN_HEURISTICS,
+            "log_llm": LOG_LLM,
+            "log_scores": LOG_SCORES,
+            "roundtrip_tracing": ROUNDTRIP_TRACING_ENABLED,
+        },
+        "paths": {
+            "data_dir": str(DATA_DIR),
+            "prompt_path": str(PROMPT_PATH),
+            "dna_weights_path": str(DNA_WEIGHTS_PATH),
+            "trace_path": str(TRACE_PATH),
+        },
+    }
+
+
+@app.get("/ucnrr/debug/probe")
+def ucnrr_debug_probe() -> Dict[str, Any]:
+    """
+    Debug endpoint: Probe LLM connectivity.
+    Tests /api/tags and /api/generate with strict short timeouts.
+    """
+    import requests
+
+    if not LLM_PROVIDER:
+        return {
+            "ok": False,
+            "reason": "LLM_PROVIDER not set",
+            "tags_test": None,
+            "generate_test": None,
+        }
+
+    # Effective base URL
+    ollama_base = os.getenv("OLLAMA_BASE_URL")
+    base_url = LLM_BASE_URL or ollama_base
+
+    if not base_url:
+        return {
+            "ok": False,
+            "reason": "No LLM_BASE_URL or OLLAMA_BASE_URL",
+            "tags_test": None,
+            "generate_test": None,
+        }
+
+    results = {
+        "base_url": base_url,
+        "provider": LLM_PROVIDER,
+        "model": LLM_MODEL or "none",
+    }
+
+    # Test 1: /api/tags (Ollama-specific)
+    tags_result = {"ok": False, "status_code": None, "error": None}
+    if LLM_PROVIDER.lower() == "ollama":
+        try:
+            resp = requests.get(
+                f"{base_url.rstrip('/')}/api/tags",
+                timeout=3,
+            )
+            tags_result["ok"] = resp.ok
+            tags_result["status_code"] = resp.status_code
+            if resp.ok:
+                tags_result["models"] = [m.get("name") for m in resp.json().get("models", [])]
+        except requests.exceptions.Timeout:
+            tags_result["error"] = "timeout"
+        except requests.exceptions.ConnectionError as e:
+            tags_result["error"] = f"connection_error: {str(e)}"
+        except Exception as e:
+            tags_result["error"] = str(e)
+    else:
+        tags_result["error"] = "not_ollama"
+
+    results["tags_test"] = tags_result
+
+    # Test 2: /api/generate (Ollama) or /v1/chat/completions (OpenAI-compatible)
+    generate_result = {"ok": False, "status_code": None, "error": None}
+
+    if LLM_PROVIDER.lower() == "ollama":
+        try:
+            resp = requests.post(
+                f"{base_url.rstrip('/')}/api/generate",
+                json={"model": LLM_MODEL or "phi3:mini", "prompt": "ok", "stream": False},
+                timeout=5,
+            )
+            generate_result["ok"] = resp.ok
+            generate_result["status_code"] = resp.status_code
+            if resp.ok:
+                generate_result["response_length"] = len(resp.json().get("response", ""))
+        except requests.exceptions.Timeout:
+            generate_result["error"] = "timeout (read timeout >5s = slow_model)"
+        except requests.exceptions.ConnectionError as e:
+            generate_result["error"] = f"connection_error: {str(e)}"
+        except Exception as e:
+            generate_result["error"] = str(e)
+    else:
+        # OpenAI-compatible endpoint
+        try:
+            headers = {}
+            if LLM_API_KEY:
+                headers["Authorization"] = f"Bearer {LLM_API_KEY}"
+
+            resp = requests.post(
+                f"{base_url.rstrip('/')}/v1/chat/completions",
+                json={
+                    "model": LLM_MODEL or "gpt-4o-mini",
+                    "messages": [{"role": "user", "content": "ok"}],
+                    "stream": False,
+                },
+                headers=headers,
+                timeout=5,
+            )
+            generate_result["ok"] = resp.ok
+            generate_result["status_code"] = resp.status_code
+            if resp.ok:
+                generate_result["response_length"] = len(str(resp.json()))
+        except requests.exceptions.Timeout:
+            generate_result["error"] = "timeout (read timeout >5s = slow_model)"
+        except requests.exceptions.ConnectionError as e:
+            generate_result["error"] = f"connection_error: {str(e)}"
+        except Exception as e:
+            generate_result["error"] = str(e)
+
+    results["generate_test"] = generate_result
+
+    # Overall status
+    results["ok"] = tags_result.get("ok", False) or generate_result.get("ok", False)
+
+    return results
+
+
+@app.post("/ucnrr/debug/trace")
+def ucnrr_debug_trace(text: str = Body(..., embed=True)) -> Dict[str, Any]:
+    """
+    Debug endpoint: End-to-end scoring trace for a given text.
+    Returns raw LLM input/output, canonicalization, and final RR scores.
+    """
+    if not text or not text.strip():
+        raise HTTPException(status_code=400, detail="text required")
+
+    result = {
+        "input_text": text,
+        "llm_available": llm_is_available(),
+        "llm_configured": _is_llm_configured(),
+    }
+
+    # Step 1: LLM extraction (if available)
+    if llm_is_available():
+        llm_raw = _llm_extract(text)
+        result["llm_extraction"] = {
+            "raw_output": llm_raw,
+            "traits_extracted": list(llm_raw.keys()) if llm_raw else [],
+        }
+    else:
+        result["llm_extraction"] = {
+            "error": "LLM not available",
+            "reason": "llm_is_available() returned False"
+        }
+        llm_raw = {}
+
+    # Step 2: Canonicalization (via _CANON_MAP)
+    canonicalized = {}
+    for trait_id, value_dict in llm_raw.items():
+        # Check if trait_id needs canonicalization
+        canonical_id = _CANON_MAP.get(trait_id, trait_id)
+        canonicalized[canonical_id] = value_dict
+
+    result["canonicalization"] = {
+        "before": list(llm_raw.keys()),
+        "after": list(canonicalized.keys()),
+        "canon_map_applied": canonicalized != llm_raw,
+    }
+
+    # Step 3: Scoring (simulate /ucnrr/score path)
+    rr_by_trait: Dict[str, float] = {}
+    for trait_id, value_dict in canonicalized.items():
+        # Simple RR calculation (mimic actual score logic)
+        ucn = value_dict.get("ucn", 0.8)
+        source = value_dict.get("source", "llm")
+
+        # Base RR from UCN
+        base_rr = ucn * 1000.0
+
+        # Apply source multipliers (simplified)
+        if source == "llm":
+            rr = base_rr * 0.85  # LLM discount
+        else:
+            rr = base_rr
+
+        rr_by_trait[trait_id] = rr
+
+    # Step 4: Chronotype injection check
+    chrono_injected = False
+    if _detect_chronotype(text):
+        if "BehaviorDNA.Sleep.Chronotype" not in rr_by_trait:
+            _maybe_inject_chronotype(text, rr_by_trait)
+            chrono_injected = True
+
+    result["scoring"] = {
+        "rr_by_trait": rr_by_trait,
+        "chronotype_detected": _detect_chronotype(text),
+        "chronotype_injected": chrono_injected,
+    }
+
+    return result
 
 
 @app.get("/legacy_export")

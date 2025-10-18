@@ -41,9 +41,20 @@ from uuid import uuid4
 
 import httpx
 import requests
-from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form, Body, Request
+from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form, Body, Request, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
+
+try:
+    from dotenv import load_dotenv  # type: ignore
+
+    here = Path(__file__).resolve()
+    env_candidates = [p / ".env" for p in (here, *here.parents)]
+    env_file = next((candidate for candidate in env_candidates if candidate.is_file()), None)
+    if env_file:
+        load_dotenv(dotenv_path=env_file, override=False)
+except Exception:
+    pass
 
 from PIL import Image, UnidentifiedImageError
 
@@ -121,9 +132,60 @@ TONE_CURVE_PATH = Path(__file__).resolve().parents[1] / "data" / "config" / "ton
 COHORT_STATS_PATH = Path(__file__).resolve().parents[1] / "data" / "_stats" / "cohort_rr.json"
 DEV_COHORTS_ENABLED = os.getenv("CORE_DEV_COHORTS_ENABLED", "").strip().lower() in TRACE_TRUE
 
+PROMOTE_RULES: Dict[str, Dict[str, Any]] = {}
+PROMOTE_RULES_ACTIVE: Dict[str, Dict[str, Any]] = {}
+
+PROMOTION_BOOL_KEYS = {
+    "PROMOTE_ENABLE_HAIR",
+    "PROMOTE_ENABLE_AGE",
+    "PROMOTE_ENABLE_REL",
+    "PROMOTE_ENABLE_HEIGHT",
+    "PROMOTE_ENABLE_CHRONO",
+    "PROMOTE_ENABLE_DIET",
+    "PROMOTE_ENABLE_WORKLOC",
+    "PROMOTE_ENABLE_GROUPSIZE",
+    "PROMOTE_ENABLE_EXERCISE_TYPE",
+}
+
+PROMOTION_NUM_KEYS = {
+    "RR_PROMOTE_MIN_HAIR",
+    "RR_PROMOTE_MIN_AGE",
+    "RR_PROMOTE_MIN_REL",
+    "RR_PROMOTE_MIN_HEIGHT",
+    "RR_PROMOTE_MIN_CHRONO",
+    "RR_PROMOTE_MIN_DIET",
+    "RR_PROMOTE_MIN_WORKLOC",
+    "RR_PROMOTE_MIN_GROUPSIZE",
+    "RR_PROMOTE_MIN_EXERCISE_TYPE",
+}
+
+PROMOTION_ALIASES_BOOL = {
+    "HAIR": "PROMOTE_ENABLE_HAIR",
+    "AGE": "PROMOTE_ENABLE_AGE",
+    "REL": "PROMOTE_ENABLE_REL",
+    "HEIGHT": "PROMOTE_ENABLE_HEIGHT",
+    "CHRONO": "PROMOTE_ENABLE_CHRONO",
+    "DIET": "PROMOTE_ENABLE_DIET",
+    "WORKLOC": "PROMOTE_ENABLE_WORKLOC",
+    "GROUPSIZE": "PROMOTE_ENABLE_GROUPSIZE",
+    "EXERCISE_TYPE": "PROMOTE_ENABLE_EXERCISE_TYPE",
+}
+
+PROMOTION_ALIASES_NUM = {
+    "HAIR": "RR_PROMOTE_MIN_HAIR",
+    "AGE": "RR_PROMOTE_MIN_AGE",
+    "REL": "RR_PROMOTE_MIN_REL",
+    "HEIGHT": "RR_PROMOTE_MIN_HEIGHT",
+    "CHRONO": "RR_PROMOTE_MIN_CHRONO",
+    "DIET": "RR_PROMOTE_MIN_DIET",
+    "WORKLOC": "RR_PROMOTE_MIN_WORKLOC",
+    "GROUPSIZE": "RR_PROMOTE_MIN_GROUPSIZE",
+    "EXERCISE_TYPE": "RR_PROMOTE_MIN_EXERCISE_TYPE",
+}
+
 
 def _env_bool(name: str, default: bool = False) -> bool:
-    value = os.getenv(name)
+    value = os.environ.get(name)
     if value is None:
         return default
     return value.strip().lower() in ("1", "true", "yes", "on")
@@ -131,9 +193,170 @@ def _env_bool(name: str, default: bool = False) -> bool:
 
 def _env_float(name: str, default: float) -> float:
     try:
-        return float(os.getenv(name, default))
+        return float(os.environ.get(name, default))
     except Exception:
         return default
+
+
+def build_promote_rules_from_env() -> Dict[str, Dict[str, Any]]:
+    rules: Dict[str, Dict[str, Any]] = {
+        # Tier 1: direct facts (explicit values required)
+        "PaDNA.EyeDNA.IrisColor": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_EYE", 500.0),
+            "require_value": True,
+        },
+        "BasicDNA.Gender": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_GENDER", 500.0),
+            "require_value": True,
+        },
+        "BasicDNA.Occupation": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_OCCUPATION", 500.0),
+            "require_value": True,
+        },
+        # Tier 1.5: Exercise pair (frequency piggybacks on outdoor)
+        "BehaviorDNA.Exercise.Outdoor": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_BEHAV_OUTDOOR", 800.0),
+            "require_value": True,
+        },
+        "BehaviorDNA.Exercise.Frequency": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_BEHAV_FREQ", 800.0),
+            "require_value": True,
+        },
+        # Tier 2: behavioral traits
+        "BehaviorDNA.Sleep.Duration": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_SLEEP_DUR", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Wellness.ColdTherapy": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_COLDTHERAPY", 800.0),
+            "require_value": True,
+        },
+        "BehaviorDNA.Fitness.Level": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_FITNESS", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Social.Style": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_SOCIAL", 800.0),
+            "require_value": True,
+        },
+        "BehaviorDNA.Leisure.Indoor": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_LEISURE", 800.0),
+            "require_value": True,
+        },
+        "BehaviorDNA.Schedule.WorkHours": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_WORKHOURS", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Organization.Level": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_ORGANIZATION", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Communication.ResponseStyle": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_COMMSTYLE", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Routine.Morning": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_ROUTINE", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Health.CaffeineIntake": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_CAFFEINE", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Learning.Style": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_LEARNING", 800.0),
+            "require_value": True,
+        },
+        # Tier 3: Preferences
+        "PreferenceDNA.Food.Pizza": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_PIZZA", 800.0),
+            "require_value": True,
+        },
+        "PreferenceDNA.Food.AsianCuisine": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_ASIAN", 800.0),
+            "require_value": True,
+        },
+    }
+
+    # Tier-1 env-gated additions
+    if _env_bool("PROMOTE_ENABLE_HAIR", False):
+        rules["PaDNA.HairDNA.Color.Natural"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_HAIR", 500.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_AGE", False):
+        rules["BasicDNA.Age"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_AGE", 500.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_REL", False):
+        rules["BasicDNA.RelationshipStatus"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_REL", 540.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_HEIGHT", False):
+        rules["PaDNA.BodyDNA.Height"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_HEIGHT", 650.0),
+            "require_value": True,
+        }
+
+    # Tier-2 env-gated additions
+    if _env_bool("PROMOTE_ENABLE_CHRONO", False):
+        rules["BehaviorDNA.Sleep.Chronotype"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_CHRONO", 780.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_DIET", False):
+        rules["BehaviorDNA.Health.Diet"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_DIET", 780.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_WORKLOC", False):
+        rules["BehaviorDNA.Work.Location"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_WORKLOC", 800.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_GROUPSIZE", False):
+        rules["PreferenceDNA.Social.GroupSize"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_GROUPSIZE", 800.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_EXERCISE_TYPE", False):
+        rules["BehaviorDNA.Exercise.Type"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_EXERCISE_TYPE", 800.0),
+            "require_value": True,
+        }
+
+    return rules
+
+
+def _snapshot_active_rules(rules: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    return {
+        key: {
+            "require_value": bool(policy.get("require_value")),
+            "rr_min": float(policy.get("rr_min", 0.0)),
+        }
+        for key, policy in rules.items()
+    }
+
+
+def _load_promotions_from_env_and_snapshot() -> None:
+    global PROMOTE_RULES, PROMOTE_RULES_ACTIVE
+    PROMOTE_RULES = build_promote_rules_from_env()
+    PROMOTE_RULES_ACTIVE = _snapshot_active_rules(PROMOTE_RULES)
+    try:
+        stack_log(
+            service="core",
+            level="INFO",
+            event="promotion_policy_loaded",
+            msg="Active promotions",
+            meta={"count": len(PROMOTE_RULES_ACTIVE), "traits": list(PROMOTE_RULES_ACTIVE.keys())},
+        )
+    except Exception as exc:  # pragma: no cover - logging fallback
+        logger.debug("promotion_policy_loaded log failed: %s", exc)
+
+
+_load_promotions_from_env_and_snapshot()
 
 ASKS_DATA_ROOT = Path(__file__).resolve().parents[1] / "data" / "_asks"
 NUDGES_DATA_ROOT = Path(__file__).resolve().parents[1] / "data" / "_nudges"
@@ -715,8 +938,68 @@ def _curiosity_flag_on() -> bool:
     value = os.getenv("CORE_CURIOSITY_ENABLED", "").strip().lower()
     return value in _TRUTHY
 
+
+debug_router = APIRouter()
+
+
+@debug_router.get("/core/api/debug/promotion_state")
+async def debug_promotion_state():
+    out: Dict[str, Dict[str, Any]] = {}
+    for key, policy in PROMOTE_RULES_ACTIVE.items():
+        out[key] = {
+            "require_value": bool(policy.get("require_value")),
+            "rr_min": float(policy.get("rr_min", 0.0)),
+        }
+    return {"enabled_policies": out}
+
+
+@debug_router.post("/core/api/debug/reload_promotions")
+async def debug_reload_promotions():
+    _load_promotions_from_env_and_snapshot()
+    return {"reloaded": True, "enabled_policies": PROMOTE_RULES_ACTIVE}
+
+
+@debug_router.get("/core/api/debug/envvars")
+async def debug_envvars():
+    keys = [k for k in os.environ.keys() if k.startswith(("PROMOTE_ENABLE_", "RR_PROMOTE_MIN_"))]
+    return {k: os.environ.get(k) for k in sorted(keys)}
+
+
+@debug_router.get("/core/api/debug/resolver")
+async def debug_resolver():
+    """
+    Debug endpoint: Shows effective UCNRR resolver configuration.
+    Returns the UCNRR base URL and whether UCNRR is enabled.
+    """
+    ucnrr_base = os.getenv("UCNRR_BASE", "http://127.0.0.1:8011").rstrip("/")
+    ucnrr_base_url = os.getenv("UCNRR_BASE_URL", ucnrr_base).rstrip("/")
+
+    # Check if UCNRR is reachable
+    ucnrr_reachable = False
+    ucnrr_status = {}
+    try:
+        import requests
+        resp = requests.get(f"{ucnrr_base}/health", timeout=2)
+        if resp.ok:
+            ucnrr_reachable = True
+            ucnrr_status = resp.json()
+    except Exception as e:
+        ucnrr_status = {"error": str(e)}
+
+    return {
+        "ucnrr_base": ucnrr_base,
+        "ucnrr_base_url": ucnrr_base_url,
+        "env_vars": {
+            "UCNRR_BASE": os.getenv("UCNRR_BASE"),
+            "UCNRR_BASE_URL": os.getenv("UCNRR_BASE_URL"),
+        },
+        "ucnrr_reachable": ucnrr_reachable,
+        "ucnrr_status": ucnrr_status,
+    }
+
 def build_app() -> FastAPI:
     app = FastAPI(title="ReDNA Core Demo", version="2.0")
+    app.include_router(debug_router)
 
     # --- legacy ingestion alias for backward compatibility ---
     @app.post("/ingest_text")
@@ -5465,6 +5748,8 @@ def build_app() -> FastAPI:
                 content={"error": "BAD_REQUEST", "message": "user_id and text are required."},
             )
 
+        _load_promotions_from_env_and_snapshot()
+
         # Store the note as a provenance event
         dirs = ensure_dirs_for_user(user_id_raw)
         events_dir = dirs["events"]
@@ -5550,143 +5835,8 @@ def build_app() -> FastAPI:
         if rescore_result.get("ok"):
             from ReDNACoreDemo.core.ingest.value_normalizer import normalize_value
 
-            # Phase 4.0a: Strict allowlist (eye + exercise pair only)
-            # Per-trait promotion rules: whitelist with category-specific thresholds
-            PROMOTE_RULES = {
-                # Tier 1: direct facts (explicit values required)
-                "PaDNA.EyeDNA.IrisColor": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_EYE", 500.0),
-                    "require_value": True,
-                },
-                "BasicDNA.Gender": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_GENDER", 500.0),
-                    "require_value": True,
-                },
-                "BasicDNA.Occupation": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_OCCUPATION", 500.0),
-                    "require_value": True,
-                },
-
-                # Tier 1.5: Exercise pair (frequency piggybacks on outdoor)
-                "BehaviorDNA.Exercise.Outdoor": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_BEHAV_OUTDOOR", 800.0),
-                    "require_value": True,
-                },
-                "BehaviorDNA.Exercise.Frequency": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_BEHAV_FREQ", 800.0),
-                    "require_value": True,
-                },
-
-                # Tier 2: behavioral traits (higher rr_min, no value required unless provided)
-                "BehaviorDNA.Sleep.Chronotype": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_CHRONO", 800.0),
-                    "require_value": True,
-                },
-                "BehaviorDNA.Sleep.Duration": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_SLEEP_DUR", 800.0),
-                    "require_value": False,
-                },
-                "BehaviorDNA.Health.Diet": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_DIET", 800.0),
-                    "require_value": True,
-                },
-                "BehaviorDNA.Wellness.ColdTherapy": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_COLDTHERAPY", 800.0),
-                    "require_value": True,
-                },
-                "BehaviorDNA.Fitness.Level": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_FITNESS", 800.0),
-                    "require_value": False,
-                },
-                "BehaviorDNA.Social.Style": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_SOCIAL", 800.0),
-                    "require_value": True,
-                },
-                "BehaviorDNA.Leisure.Indoor": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_LEISURE", 800.0),
-                    "require_value": True,
-                },
-                "BehaviorDNA.Schedule.WorkHours": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_WORKHOURS", 800.0),
-                    "require_value": False,
-                },
-                "BehaviorDNA.Organization.Level": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_ORGANIZATION", 800.0),
-                    "require_value": False,
-                },
-                "BehaviorDNA.Communication.ResponseStyle": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_COMMSTYLE", 800.0),
-                    "require_value": False,
-                },
-                "BehaviorDNA.Routine.Morning": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_ROUTINE", 800.0),
-                    "require_value": False,
-                },
-                "BehaviorDNA.Health.CaffeineIntake": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_CAFFEINE", 800.0),
-                    "require_value": False,
-                },
-                "BehaviorDNA.Learning.Style": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_LEARNING", 800.0),
-                    "require_value": True,
-                },
-                "BehaviorDNA.Work.Location": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_WORKLOC", 800.0),
-                    "require_value": False,
-                },
-                "BehaviorDNA.Exercise.Type": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_EXERCISE_TYPE", 800.0),
-                    "require_value": False,
-                },
-
-                # Tier 3: Preferences
-                "PreferenceDNA.Social.GroupSize": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_GROUPSIZE", 800.0),
-                    "require_value": True,
-                },
-                "PreferenceDNA.Food.Pizza": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_PIZZA", 800.0),
-                    "require_value": True,
-                },
-                "PreferenceDNA.Food.AsianCuisine": {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_ASIAN", 800.0),
-                    "require_value": True,
-                },
-            }
-
-            tier1_enabled: list[str] = []
-
-            # --- Tier-1 (Local) direct facts, env-gated ---
-            if _env_bool("PROMOTE_ENABLE_HAIR", False):
-                PROMOTE_RULES["PaDNA.HairDNA.Color.Natural"] = {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_HAIR", 500.0),
-                    "require_value": True,
-                }
-                tier1_enabled.append("PaDNA.HairDNA.Color.Natural")
-
-            if _env_bool("PROMOTE_ENABLE_AGE", False):
-                PROMOTE_RULES["BasicDNA.Age"] = {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_AGE", 500.0),
-                    "require_value": True,
-                }
-                tier1_enabled.append("BasicDNA.Age")
-
-            if _env_bool("PROMOTE_ENABLE_REL", False):
-                PROMOTE_RULES["BasicDNA.RelationshipStatus"] = {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_REL", 500.0),
-                    "require_value": True,
-                }
-                tier1_enabled.append("BasicDNA.RelationshipStatus")
-
-            if _env_bool("PROMOTE_ENABLE_HEIGHT", False):
-                PROMOTE_RULES["PaDNA.BodyDNA.Height"] = {
-                    "rr_min": _env_float("RR_PROMOTE_MIN_HEIGHT", 650.0),
-                    "require_value": True,
-                }
-                tier1_enabled.append("PaDNA.BodyDNA.Height")
-
-            if tier1_enabled:
-                logger.info("promotion_policy_loaded tier1=%s", tier1_enabled)
+            _load_promotions_from_env_and_snapshot()
+            rules = PROMOTE_RULES
 
             # --- Pair-aware promotion groups (safe multi-trait bundles) ---
             PAIR_GROUPS = {
@@ -5711,7 +5861,7 @@ def build_app() -> FastAPI:
                     _promote_log("skip:duplicate", trait_id, score, None, note="already promoted in pair")
                     continue
 
-                policy = PROMOTE_RULES.get(trait_id)
+                policy = rules.get(trait_id)
                 if not policy:
                     _promote_log("skip:unlisted", trait_id, score, None, note="not allowlisted")
                     continue
@@ -5730,12 +5880,37 @@ def build_app() -> FastAPI:
                 #     _promote_log("skip:denied_city", trait_id, score_float, None, policy=policy)
                 #     continue
 
-                value = normalize_value(trait_id, text)
+                source_text = text if isinstance(text, str) else ""
+                require_value_flag = bool(policy.get("require_value"))
+
+                stack_log(
+                    service="core",
+                    level="INFO",
+                    event="promotion_eval",
+                    msg=f"evaluating {trait_id}",
+                    meta={
+                        "rr": score_float,
+                        "require_value": require_value_flag,
+                        "top_k": TOP_K_PROMOTE,
+                        "text_sample": (source_text or "")[:120],
+                    },
+                )
+
+                value = normalize_value(trait_id, source_text or "")
+
+                stack_log(
+                    service="core",
+                    level="INFO",
+                    event="promotion_value",
+                    msg=f"value for {trait_id}",
+                    meta={"value": value},
+                )
+
                 if policy.get("require_value", False) and value is None:
                     _promote_log("skip:need_value", trait_id, score_float, value, policy=policy)
                     continue
 
-                if trait_id not in PROMOTE_RULES:
+                if trait_id not in rules:
                     _promote_log("skip:unlisted", trait_id, score_float, value, note="post-check")
                     continue
 
@@ -5763,7 +5938,7 @@ def build_app() -> FastAPI:
                     if co_trait in promoted_keys:
                         _promote_log("skip:pair_duplicate", co_trait, co_score_raw, None, note="already promoted")
                         continue
-                    co_policy = PROMOTE_RULES.get(co_trait)
+                    co_policy = rules.get(co_trait)
                     co_score_raw = rr_by_trait.get(co_trait)
                     if not co_policy or co_score_raw is None:
                         _promote_log("skip:pair_unlisted", co_trait, co_score_raw, None, note="missing policy or score")
@@ -5775,11 +5950,35 @@ def build_app() -> FastAPI:
                     if co_score < float(co_policy["rr_min"]):
                         _promote_log("skip:pair_below_threshold", co_trait, co_score, None, policy=co_policy)
                         continue
-                    co_value = normalize_value(co_trait, text)
+
+                    stack_log(
+                        service="core",
+                        level="INFO",
+                        event="promotion_eval",
+                        msg=f"evaluating {co_trait}",
+                        meta={
+                            "rr": co_score,
+                            "require_value": bool(co_policy.get("require_value")),
+                            "top_k": TOP_K_PROMOTE,
+                            "text_sample": (source_text or "")[:120],
+                            "paired_with": trait_id,
+                        },
+                    )
+
+                    co_value = normalize_value(co_trait, source_text or "")
+
+                    stack_log(
+                        service="core",
+                        level="INFO",
+                        event="promotion_value",
+                        msg=f"value for {co_trait}",
+                        meta={"value": co_value, "paired_with": trait_id},
+                    )
+
                     if co_policy.get("require_value", False) and co_value is None:
                         _promote_log("skip:pair_need_value", co_trait, co_score, co_value, policy=co_policy)
                         continue
-                    if co_trait not in PROMOTE_RULES:
+                    if co_trait not in rules:
                         _promote_log("skip:pair_unlisted_post", co_trait, co_score, co_value, note="post-check")
                         continue
                     co_record = {

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { BacklogTable } from '../../../components/llm-bench/BacklogTable';
 import { ReportsPanel } from '../../../components/llm-bench/ReportsPanel';
 import { ModelStatusCard } from '../../../components/llm-bench/ModelStatusCard';
@@ -8,15 +8,59 @@ import { CostsPanel } from '../../../components/llm-bench/CostsPanel';
 import { RunPaidPanel } from '../../../components/llm-bench/RunPaidPanel';
 import { UCNRRConnectivityCard } from '../../../components/llm-bench/UCNRRConnectivityCard';
 import { RoundtripChart } from '../../../components/metrics/RoundtripChart';
+import { GlobalMetricsContext } from '../../../components/metrics/GlobalMetricsContext';
 import {
   fetchMonthlyCosts,
   formatCost,
-  getMeterColor,
+  fetchRoundtripMetrics,
   type MonthlyCosts,
+  type RoundtripMetrics,
 } from '../../../lib/llmBenchApi';
+
+type UcnrrStatusLite = {
+  alive?: boolean;
+  llm_configured?: boolean;
+  reason?: string;
+  last_check?: string | null;
+};
+
+const DEVX_BASE = process.env.NEXT_PUBLIC_DEVX_BASE ?? 'http://127.0.0.1:8012';
+
+async function fetchUcnrrStatusLite(): Promise<UcnrrStatusLite | null> {
+  try {
+    const response = await fetch(`${DEVX_BASE}/devx/api/stack/ucnrr/status`);
+    if (!response.ok) {
+      return null;
+    }
+    return response.json();
+  } catch {
+    return null;
+  }
+}
+
+export function PulseOverlay({ totalP95 }: { totalP95?: number | null }) {
+  const fast = typeof totalP95 === 'number' && totalP95 > 0 && totalP95 < 1000;
+  const pulseClass = fast
+    ? 'bg-emerald-400 opacity-90 shadow-lg shadow-emerald-400/40'
+    : 'bg-gray-300 opacity-50 shadow-md shadow-gray-300/50';
+
+  return (
+    <div className="pointer-events-none fixed bottom-6 right-6 flex flex-col items-center gap-1">
+      <div
+        className={`h-10 w-10 animate-pulse rounded-full transition-all duration-500 ${pulseClass}`}
+        title={fast ? 'Roundtrip p95 < 1s' : 'Roundtrip p95 ≥ 1s'}
+      />
+      <span className={`text-[11px] font-medium ${fast ? 'text-emerald-600' : 'text-gray-500'}`}>
+        ReDNA Pulse
+      </span>
+    </div>
+  );
+}
 
 export default function LLMBenchmarksPageClient() {
   const [costs, setCosts] = useState<MonthlyCosts | null>(null);
+  const [roundtripMetrics, setRoundtripMetrics] = useState<RoundtripMetrics | null>(null);
+  const [ucnrrStatus, setUcnrrStatus] = useState<UcnrrStatusLite | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
 
   useEffect(() => {
@@ -31,6 +75,35 @@ export default function LLMBenchmarksPageClient() {
 
     loadCosts();
   }, [refreshKey]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadMetrics() {
+      try {
+        const [rtMetrics, status] = await Promise.all([
+          fetchRoundtripMetrics().catch(() => null),
+          fetchUcnrrStatusLite(),
+        ]);
+        if (!cancelled) {
+          setRoundtripMetrics(rtMetrics);
+          setUcnrrStatus(status);
+        }
+      } catch {
+        if (!cancelled) {
+          setRoundtripMetrics(null);
+        }
+      }
+    }
+
+    loadMetrics();
+    const interval = setInterval(loadMetrics, 15000);
+
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, []);
 
   const handleRunComplete = () => {
     setRefreshKey((prev) => prev + 1);
@@ -47,13 +120,25 @@ export default function LLMBenchmarksPageClient() {
     return '#22c55e';
   };
 
+  const globalMetricsValue = useMemo(
+    () => ({
+      data: {
+        roundtrip: roundtripMetrics,
+        ucnrrStatus,
+      },
+      refresh: () => setRefreshKey((prev) => prev + 1),
+    }),
+    [roundtripMetrics, ucnrrStatus],
+  );
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white border-b border-gray-200">
-        <div className="mx-auto max-w-7xl px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">LLM Benchmark Suite</h1>
+    <GlobalMetricsContext.Provider value={globalMetricsValue}>
+      <div className="min-h-screen bg-gray-50">
+        <div className="bg-white border-b border-gray-200">
+          <div className="mx-auto max-w-7xl px-6 py-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl font-bold text-gray-900">LLM Benchmark Suite</h1>
               <p className="mt-1 text-sm text-gray-500">
                 Track and compare LLM extraction quality across models
               </p>
@@ -77,11 +162,11 @@ export default function LLMBenchmarksPageClient() {
               </span>
             </div>
           </div>
+          </div>
         </div>
-      </div>
 
-      <div className="mx-auto max-w-7xl px-6 py-8">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <div className="mx-auto max-w-7xl px-6 py-8">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           <div className="space-y-6 lg:col-span-2">
             <div>
               <h2 className="mb-4 text-lg font-semibold text-gray-900">Test Case Backlog</h2>
@@ -121,7 +206,9 @@ export default function LLMBenchmarksPageClient() {
             </div>
           </div>
         </div>
+        </div>
 
+        <div className="mx-auto max-w-7xl px-6 py-8">
         <div className="mt-8 rounded-lg border border-orange-200 bg-orange-50 p-4">
           <div className="flex">
             <div className="flex-shrink-0">
@@ -162,8 +249,10 @@ export default function LLMBenchmarksPageClient() {
             </div>
           </div>
         </div>
+        </div>
       </div>
-    </div>
+      {/* Northstar Phase 5.1: wire this PulseOverlay and metrics context into Northstar UI to show ReDNA Pulse. */}
+      <PulseOverlay totalP95={roundtripMetrics?.hop_ms.total?.p95 ?? null} />
+    </GlobalMetricsContext.Provider>
   );
 }
-
