@@ -1,0 +1,18 @@
+{
+  "BehaviorDNA.Organization.Level": {
+    "id": "BehaviorDNA.Organization.Level",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760652241531",
+        "ts": "2025-10-16T22:04:01+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:04:05.568904Z",
+    "history": []
+  }
+}

@@ -1,0 +1,378 @@
+[
+  {
+    "id": "direct_fact_001",
+    "category": "direct_fact",
+    "description": "Simple height statement",
+    "user_message": "I am 6 feet tall",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {"text": "6 feet tall"},
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.95,
+        "extraction_context": "Direct self-report"
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_002",
+    "category": "direct_fact",
+    "description": "Eye color statement",
+    "user_message": "I have blue eyes",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {"enum": "blue"},
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_003",
+    "category": "direct_fact",
+    "description": "Hair color statement",
+    "user_message": "My hair is brown",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.HairDNA.Color.Natural",
+        "value": {"enum": "brown"},
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_004",
+    "category": "direct_fact",
+    "description": "Age statement",
+    "user_message": "I'm 30 years old",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Age",
+        "value": {"number": 30},
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "direct_fact_005",
+    "category": "direct_fact",
+    "description": "Gender statement",
+    "user_message": "I'm a woman",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Gender",
+        "value": {"enum": "female"},
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "qualified_fact_001",
+    "category": "qualified_fact",
+    "description": "Hedged height statement",
+    "user_message": "I think I'm about six feet tall",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {"text": "about six feet tall"},
+        "confidence_llm_min": 0.4,
+        "confidence_llm_max": 0.7,
+        "ambiguity_flags": ["hedging_language"]
+      }
+    ]
+  },
+  {
+    "id": "qualified_fact_002",
+    "category": "qualified_fact",
+    "description": "Uncertain eye color",
+    "user_message": "I think my eyes are kind of blue",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {"enum": "blue"},
+        "confidence_llm_min": 0.4,
+        "confidence_llm_max": 0.7,
+        "ambiguity_flags": ["hedging_language"]
+      }
+    ]
+  },
+  {
+    "id": "ambiguous_001",
+    "category": "ambiguous",
+    "description": "Ambiguous eye color (multiple options)",
+    "user_message": "My eyes are kind of blueish gray",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {"enum": "blue-gray"},
+        "confidence_llm_min": 0.3,
+        "confidence_llm_max": 0.6,
+        "ambiguity_flags": ["multiple_interpretations"],
+        "requires_confirmation": true
+      }
+    ]
+  },
+  {
+    "id": "ambiguous_002",
+    "category": "ambiguous",
+    "description": "Vague height (relative term)",
+    "user_message": "I'm pretty tall",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {"text": "tall"},
+        "confidence_llm_min": 0.15,
+        "confidence_llm_max": 0.4,
+        "ambiguity_flags": ["vague_measurement"],
+        "requires_confirmation": true
+      }
+    ]
+  },
+  {
+    "id": "preference_001",
+    "category": "preference",
+    "description": "Food preference",
+    "user_message": "I love pizza",
+    "expected_extractions": [
+      {
+        "trait_id": "PreferenceDNA.Food.Pizza",
+        "value": {"text": "likes"},
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "preference_002",
+    "category": "preference",
+    "description": "Music preference",
+    "user_message": "I listen to jazz music",
+    "expected_extractions": [
+      {
+        "trait_id": "PreferenceDNA.Music.Genre",
+        "value": {"enum": "jazz"},
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "behavior_001",
+    "category": "behavior",
+    "description": "Exercise behavior (frequency + type)",
+    "user_message": "I go hiking every weekend",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Exercise.Outdoor",
+        "value": {"text": "frequent"},
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.85
+      },
+      {
+        "trait_id": "BehaviorDNA.Exercise.Frequency",
+        "value": {"text": "weekly"},
+        "confidence_llm_min": 0.7,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "behavior_002",
+    "category": "behavior",
+    "description": "Sleep chronotype",
+    "user_message": "I'm a morning person",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Sleep.Chronotype",
+        "value": {"enum": "early"},
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "indirect_001",
+    "category": "indirect_signal",
+    "description": "Wellness behavior (cold therapy)",
+    "user_message": "I take cold showers every morning",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Wellness.ColdTherapy",
+        "value": {"text": "daily"},
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.85
+      }
+    ]
+  },
+  {
+    "id": "indirect_002",
+    "category": "indirect_signal",
+    "description": "Work location inference",
+    "user_message": "I work from home most days",
+    "expected_extractions": [
+      {
+        "trait_id": "BehaviorDNA.Work.Location",
+        "value": {"enum": "remote"},
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  },
+  {
+    "id": "multi_trait_001",
+    "category": "multi_trait",
+    "description": "Multiple traits in one statement",
+    "user_message": "I'm a 30-year-old woman with brown hair and green eyes",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Age",
+        "value": {"number": 30},
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "BasicDNA.Gender",
+        "value": {"enum": "female"},
+        "confidence_llm_min": 0.85,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "PaDNA.HairDNA.Color.Natural",
+        "value": {"enum": "brown"},
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {"enum": "green"},
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      }
+    ]
+  },
+  {
+    "id": "multi_trait_002",
+    "category": "multi_trait",
+    "description": "Physical traits + preferences",
+    "user_message": "I have blue eyes, blonde hair, and I love hiking and pizza",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {"enum": "blue"},
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "PaDNA.HairDNA.Color.Natural",
+        "value": {"enum": "blonde"},
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95
+      },
+      {
+        "trait_id": "BehaviorDNA.Exercise.Outdoor",
+        "value": {"text": "likes"},
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.85
+      },
+      {
+        "trait_id": "PreferenceDNA.Food.Pizza",
+        "value": {"text": "likes"},
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.9
+      }
+    ]
+  },
+  {
+    "id": "conversational_001",
+    "category": "conversational",
+    "description": "Greeting (no extraction expected)",
+    "user_message": "How are you doing today?",
+    "expected_extractions": []
+  },
+  {
+    "id": "conversational_002",
+    "category": "conversational",
+    "description": "Small talk (no extraction expected)",
+    "user_message": "Nice weather we're having!",
+    "expected_extractions": []
+  },
+  {
+    "id": "meta_001",
+    "category": "meta_trait",
+    "description": "Unknown trait (high uncertainty signal)",
+    "user_message": "I don't know my exact height",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {"text": "unknown"},
+        "confidence_llm_min": 0.0,
+        "confidence_llm_max": 0.2,
+        "meta_signal": "uncertainty_high"
+      }
+    ]
+  },
+  {
+    "id": "meta_002",
+    "category": "meta_trait",
+    "description": "Communication openness (deflection)",
+    "user_message": "I'd rather not say",
+    "expected_extractions": [
+      {
+        "trait_id": "Communication.Openness",
+        "value": {"enum": "low"},
+        "confidence_llm_min": 0.2,
+        "confidence_llm_max": 0.5,
+        "meta_signal": "deflection"
+      }
+    ]
+  },
+  {
+    "id": "correction_001",
+    "category": "correction",
+    "description": "User corrects previous statement",
+    "user_message": "Actually, I have brown eyes, not blue",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.EyeDNA.IrisColor",
+        "value": {"enum": "brown"},
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95,
+        "correction": true,
+        "previous_value": "blue"
+      }
+    ]
+  },
+  {
+    "id": "edge_case_001",
+    "category": "edge_case",
+    "description": "Numeric height with unit conversion needed",
+    "user_message": "I'm 183 centimeters tall",
+    "expected_extractions": [
+      {
+        "trait_id": "PaDNA.BodyDNA.Height",
+        "value": {"number": 183, "unit": "cm"},
+        "confidence_llm_min": 0.8,
+        "confidence_llm_max": 0.95,
+        "requires_unit_conversion": true
+      }
+    ]
+  },
+  {
+    "id": "edge_case_002",
+    "category": "edge_case",
+    "description": "Age range instead of exact age",
+    "user_message": "I'm in my early 30s",
+    "expected_extractions": [
+      {
+        "trait_id": "BasicDNA.Age",
+        "value": {"range": {"min": 30, "max": 34}},
+        "confidence_llm_min": 0.6,
+        "confidence_llm_max": 0.8
+      }
+    ]
+  }
+]

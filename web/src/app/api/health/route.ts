@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const CORE_FALLBACK_BASE = 'http://127.0.0.1:8015';
+const CORE_FALLBACK_BASE = 'http://127.0.0.1:8004';
 
 export async function GET() {
   const base = (process.env.NEXT_PUBLIC_CORE_API_BASE ?? CORE_FALLBACK_BASE).trim() || CORE_FALLBACK_BASE;

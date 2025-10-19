@@ -1,0 +1,34 @@
+{
+  "BehaviorDNA.Health.Diet": {
+    "id": "BehaviorDNA.Health.Diet",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760658983595",
+        "ts": "2025-10-16T23:56:23+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:56:27.317236Z",
+    "history": []
+  },
+  "BehaviorDNA.Health.CaffeineIntake": {
+    "id": "BehaviorDNA.Health.CaffeineIntake",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760658983595",
+        "ts": "2025-10-16T23:56:23+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:56:27.317245Z",
+    "history": []
+  }
+}

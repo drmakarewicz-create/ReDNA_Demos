@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "trait_id": "attributes.physical.eye_color",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-14T02:46:40+00:00",
+        "raw_input": "I have blue eyes",
+        "signal": "physical.eye_color: blue",
+        "fact_value": "blue"
+      },
+      "timestamp": "2025-10-14T02:46:40+00:00"
+    }
+  ]
+}

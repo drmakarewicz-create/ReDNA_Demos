@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Is there a career coach?",
+  "assistant_text": "Let's focus on the career coach since you brought it up. What specific aspects of your career are you looking to improve or explore? \n\n(Note: If you'd like, I can connect you with our Career Coach for personalized guidance.)",
+  "client_message_id": "47937b05-d5cb-41da-b74e-72d4e7d37a8e",
+  "assistant_message_id": "chat-d6bdf305f7a04f6cb9a79cb47df224ae",
+  "server_ts": "2025-10-07T01:24:17.387+00:00",
+  "server_ts_ms": 1759800257387,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,61 @@
+{
+  "profile": {
+    "label": "OB10",
+    "created_ts": "2025-10-14T18:19:31.330057+00:00"
+  },
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T18:46:53+00:00"
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "value": {
+      "enum": "higher_likelihood"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-14T18:46:53+00:00"
+  },
+  "PaDNA.HairDNA.DarknessPrior": {
+    "value": {
+      "enum": "slightly_lower"
+    },
+    "ucn": 0.15,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-14T18:46:53+00:00"
+  },
+  "attributes.physical.height": {
+    "value": {
+      "text": "6 feet tall"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T20:41:42+00:00"
+  },
+  "PaDNA.HairDNA.Bald": {
+    "value": {
+      "enum": "true"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T20:41:42+00:00"
+  }
+}

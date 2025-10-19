@@ -1,0 +1,50 @@
+{
+  "BehaviorDNA.Exercise.Outdoor": {
+    "id": "BehaviorDNA.Exercise.Outdoor",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651083531",
+        "ts": "2025-10-16T21:44:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:44:45.110854Z",
+    "history": []
+  },
+  "BehaviorDNA.Exercise.Frequency": {
+    "id": "BehaviorDNA.Exercise.Frequency",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651083531",
+        "ts": "2025-10-16T21:44:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:44:45.110860Z",
+    "history": []
+  },
+  "BehaviorDNA.Exercise.Type": {
+    "id": "BehaviorDNA.Exercise.Type",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651083531",
+        "ts": "2025-10-16T21:44:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:44:45.110861Z",
+    "history": []
+  }
+}

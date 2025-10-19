@@ -1,0 +1,77 @@
+{
+  "user_id": "TEST",
+  "generated_at": "2025-10-10T01:31:39.894455+00:00",
+  "items": [
+    {
+      "target": "BehDNA",
+      "priority": 0.8,
+      "reason": "High data gap; not recently explored",
+      "suggested_coach": "personality_test_coach",
+      "suggested_prompt": "Tell me more about this area.",
+      "evidence_refs": []
+    },
+    {
+      "target": "BehDNA.AdaptiveRoutineIterationDNA",
+      "priority": 0.8,
+      "reason": "High data gap; not recently explored",
+      "suggested_coach": "personality_test_coach",
+      "suggested_prompt": "Tell me more about this area.",
+      "evidence_refs": []
+    },
+    {
+      "target": "BehDNA.AddictivePatternDNA",
+      "priority": 0.8,
+      "reason": "High data gap; not recently explored",
+      "suggested_coach": "personality_test_coach",
+      "suggested_prompt": "Tell me more about this area.",
+      "evidence_refs": []
+    },
+    {
+      "target": "BehDNA.DailyRhythmChronoDNA",
+      "priority": 0.8,
+      "reason": "High data gap; not recently explored",
+      "suggested_coach": "personality_test_coach",
+      "suggested_prompt": "Tell me more about this area.",
+      "evidence_refs": []
+    },
+    {
+      "target": "BehDNA.DailyRhythmChronoDNA.AfternoonSlump10DNA",
+      "priority": 0.8,
+      "reason": "High data gap; not recently explored",
+      "suggested_coach": "personality_test_coach",
+      "suggested_prompt": "Tell me more about this area.",
+      "evidence_refs": []
+    }
+  ],
+  "total_candidates": 2000,
+  "above_threshold": 2000,
+  "debug": {
+    "analysis_report_found": true,
+    "ontology_found": true,
+    "min_priority": 0.3,
+    "weights_summary": {
+      "gap": 0.5,
+      "impact": 0.3,
+      "recency": 0.1,
+      "cost": 0.1
+    },
+    "total_candidates_scored": 2000,
+    "below_threshold_count": 0,
+    "namespaces_found": [
+      "HealthDNA",
+      "CogDNA",
+      "RoDNA",
+      "MetaDNA",
+      "SkillDNA",
+      "EnvDNA",
+      "PaDNA",
+      "PsyDNA",
+      "BehDNA",
+      "PrefDNA",
+      "HistDNA",
+      "ProfDNA",
+      "SocDNA",
+      "EmDNA"
+    ]
+  }
+}

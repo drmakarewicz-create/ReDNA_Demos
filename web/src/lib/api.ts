@@ -1,6 +1,6 @@
 import { writeCache } from './offline-cache';
 
-export const CORE_API_BASE = process.env.NEXT_PUBLIC_CORE_API_BASE ?? 'http://127.0.0.1:8015';
+export const CORE_API_BASE = process.env.NEXT_PUBLIC_CORE_API_BASE ?? 'http://127.0.0.1:8004';
 
 export interface PersonaRosterEntry {
   key: string;
@@ -335,6 +335,8 @@ export interface UnabridgedTrait {
   last_observed?: string | null;
   metadata?: Record<string, unknown>;
   badges: string[];
+  status?: 'resolved' | 'inferred' | 'unknown' | 'conflict';
+  ui_hidden?: boolean;
 }
 
 export interface UnabridgedSnapshot {
@@ -1350,10 +1352,20 @@ export interface OnboardingWizardSubmitResponse {
   checkpoint_event?: string | null;
 }
 
+/**
+ * @deprecated NORTHSTAR PHASE 2: Use unified Core ingestion instead
+ * This function bypasses the Core → UCN/RR roundtrip pipeline.
+ * Use: formatOnboardingPayload() + ingestAndRefresh() from hcIngestor.ts
+ */
 export async function submitOnboardingWizardData(
   userId: string,
   data: OnboardingWizardData
 ): Promise<OnboardingWizardSubmitResponse> {
+  // NORTHSTAR PHASE 2: Log bypass attempt
+  if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_CORE_BYPASS_ALLOWED === 'false') {
+    console.warn('[Northstar] Direct trait writes are disabled (No-Bypass Rule). Use hcIngestor.ts instead.');
+  }
+
   const trimmedUser = userId.trim();
   if (!trimmedUser) {
     throw new ApiError('user_id is required for onboarding submission.', 400);
@@ -1919,6 +1931,59 @@ function normalizeObservationWindows(raw: any): Record<string, ObservationWindow
   return Object.keys(normalized).length ? normalized : undefined;
 }
 
+function toNumber(value: unknown): number | null {
+  if (typeof value === 'number') {
+    return Number.isFinite(value) ? value : null;
+  }
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value));
+}
+
+function roundTo(value: number, decimals = 2): number {
+  const factor = 10 ** decimals;
+  return Math.round(value * factor) / factor;
+}
+
+function normalizeScore(value: unknown, decimals = 2): number | null {
+  const numberValue = toNumber(value);
+  if (numberValue === null) return null;
+  return roundTo(numberValue, decimals);
+}
+
+function normalizeUcn(raw: number | null): number | null {
+  if (raw === null) return null;
+  let value = raw;
+  if (value <= 1) {
+    value = value * 100;
+  } else if (value > 100) {
+    value = value / 10;
+  }
+  return roundTo(value, 2);
+}
+
+function scaleUcnForRr(raw: number | null): number | null {
+  if (raw === null) return null;
+  if (raw <= 1) return raw * 1000;
+  if (raw > 1000) return 1000;
+  if (raw <= 100) return raw * 10;
+  return raw;
+}
+
+function estimateRr(rawUcn: number | null): number | null {
+  const scaled = scaleUcnForRr(rawUcn);
+  if (scaled === null) return null;
+  const ucnScore = clamp((scaled / 1000) * 100, 0, 100);
+  const baselineMean = 700;
+  const baselineStd = 150;
+  const baselineRr = clamp(50 + ((scaled - baselineMean) / baselineStd) * 10, 0, 100);
+  const estimate = (ucnScore + baselineRr) / 2;
+  return roundTo(clamp(estimate, 5, 100), 2);
+}
+
 export async function fetchUnabridged(userId: string): Promise<UnabridgedSnapshot> {
   const params = new URLSearchParams({ user_id: userId });
   const response = await ensureOk(
@@ -1931,15 +1996,30 @@ export async function fetchUnabridged(userId: string): Promise<UnabridgedSnapsho
   return {
     user_id: String(payload.user_id ?? userId),
     count: Number(payload.count ?? traits.length),
-    traits: traits.map((trait: any) => ({
-      trait_id: String(trait.trait_id ?? ''),
-      value: trait.value ?? trait.resolved_value ?? null,
-      ucn: trait.ucn ?? null,
-      reasons: Array.isArray(trait.reasons) ? trait.reasons.map(String) : [],
-      last_observed: trait.last_observed ?? null,
-      metadata: trait.metadata ?? {},
-      badges: Array.isArray(trait.badges) ? trait.badges.map(String) : []
-    }))
+    traits: traits.map((trait: any) => {
+      const traitId = String(trait.trait_id ?? '');
+      const traitValue = trait.value ?? trait.resolved_value ?? null;
+      const rawUcn = toNumber(trait.ucn ?? trait.ucn_score ?? trait.ucnScore);
+      const normalizedUcn = normalizeUcn(rawUcn);
+      const rrValue =
+        normalizeScore(trait.rr ?? trait.rr_score ?? trait.rrScore) ??
+        estimateRr(rawUcn);
+      const curiosityValue =
+        normalizeScore(trait.curiosity ?? trait.curiosity_score ?? trait.curiosityScore) ??
+        (rrValue === null ? null : roundTo(clamp(100 - rrValue, 0, 100), 2));
+
+      return {
+        trait_id: traitId,
+        value: traitValue,
+        ucn: normalizedUcn,
+        rr: rrValue,
+        curiosity: curiosityValue,
+        reasons: Array.isArray(trait.reasons) ? trait.reasons.map(String) : [],
+        last_observed: trait.last_observed ?? null,
+        metadata: trait.metadata ?? {},
+        badges: Array.isArray(trait.badges) ? trait.badges.map(String) : []
+      };
+    })
   };
 }
 
@@ -2469,7 +2549,17 @@ function normalizeProviderSettings(value: any): ChatProviderSettings | undefined
   return Object.keys(normalized).length ? normalized : undefined;
 }
 
-const CANONICAL_ORDER = ['head_coach', 'relationship_coach', 'padna', 'photo'] as const;
+const CANONICAL_ORDER = [
+  'head_coach',
+  'relationship_coach',
+  'career_coach',
+  'personality_test_coach',
+  'chatdna_coach',
+  'beliefdna_coach',
+  'padna',
+  'photo',
+  'permission_coach'
+] as const;
 type CanonicalKey = (typeof CANONICAL_ORDER)[number];
 
 const CANONICAL_DEFAULTS: Record<CanonicalKey, PersonaRosterEntry> = {
@@ -2487,6 +2577,34 @@ const CANONICAL_DEFAULTS: Record<CanonicalKey, PersonaRosterEntry> = {
     enabled: true,
     accent_color: null
   },
+  career_coach: {
+    key: 'career_coach',
+    label: 'Career Coach',
+    icon: '💼',
+    enabled: true,
+    accent_color: null
+  },
+  personality_test_coach: {
+    key: 'personality_test_coach',
+    label: 'Personality Test Coach',
+    icon: '🧠',
+    enabled: true,
+    accent_color: null
+  },
+  chatdna_coach: {
+    key: 'chatdna_coach',
+    label: 'ChatDNA Coach',
+    icon: '💬',
+    enabled: true,
+    accent_color: null
+  },
+  beliefdna_coach: {
+    key: 'beliefdna_coach',
+    label: 'BeliefDNA Coach',
+    icon: '🔮',
+    enabled: true,
+    accent_color: null
+  },
   padna: {
     key: 'padna',
     label: 'PaDNA Coach',
@@ -2500,6 +2618,13 @@ const CANONICAL_DEFAULTS: Record<CanonicalKey, PersonaRosterEntry> = {
     icon: '📸',
     enabled: true,
     accent_color: null
+  },
+  permission_coach: {
+    key: 'permission_coach',
+    label: 'Permission Coach',
+    icon: '🔐',
+    enabled: true,
+    accent_color: null
   }
 };
 
@@ -2507,15 +2632,36 @@ const PERSONA_ALIASES: Record<string, CanonicalKey> = {
   head_coach: 'head_coach',
   'head coach': 'head_coach',
   headcoach: 'head_coach',
+  hc: 'head_coach',
   relationship_coach: 'relationship_coach',
   'relationship coach': 'relationship_coach',
   rc: 'relationship_coach',
+  relationship: 'relationship_coach',
+  career_coach: 'career_coach',
+  'career coach': 'career_coach',
+  career: 'career_coach',
+  personality_test_coach: 'personality_test_coach',
+  'personality test coach': 'personality_test_coach',
+  'personality coach': 'personality_test_coach',
+  ptc: 'personality_test_coach',
+  chatdna_coach: 'chatdna_coach',
+  'chatdna coach': 'chatdna_coach',
+  chatdna: 'chatdna_coach',
+  beliefdna_coach: 'beliefdna_coach',
+  'beliefdna coach': 'beliefdna_coach',
+  beliefdna: 'beliefdna_coach',
   padna: 'padna',
   padna_coach: 'padna',
   'padna coach': 'padna',
+  rendering: 'padna',
+  'rendering coach': 'padna',
+  avatar: 'padna',
   photo: 'photo',
   photo_coach: 'photo',
-  'photo coach': 'photo'
+  'photo coach': 'photo',
+  permission_coach: 'permission_coach',
+  'permission coach': 'permission_coach',
+  permissions: 'permission_coach'
 };
 
 type RawPersonaEntry = {
@@ -2641,6 +2787,69 @@ export async function rescoreNow(params: {
     ok: Boolean(body?.ok),
     updated_traits: Array.isArray(body?.updated_traits) ? body.updated_traits : [],
     event_ref: body?.event_ref ?? null,
+  };
+}
+
+export interface IngestTextResponse {
+  success: boolean;
+  event_id?: string;
+  user_id: string;
+  rescore?: {
+    ok: boolean;
+    user_id: string;
+    rr_by_trait?: Record<string, number>;
+    curiosity_by_trait?: Record<string, number>;
+    traits_updated?: number;
+    timestamp?: string;
+  };
+}
+
+/**
+ * Ingest text programmatically into Core for a user.
+ * This is for silent ingestion (e.g., onboarding data, Life OS entries, photo metadata)
+ * that should be processed immediately without showing in the chat transcript.
+ *
+ * Core will automatically extract traits and rescore the user.
+ */
+export async function ingestText(params: {
+  userId: string;
+  text: string;
+  source?: string;
+}): Promise<IngestTextResponse> {
+  const trimmedUser = params.userId.trim();
+  const trimmedText = params.text.trim();
+  if (!trimmedUser || !trimmedText) {
+    throw new ApiError('user_id and text are required for ingestion.', 400);
+  }
+
+  const evidenceEntry: Record<string, unknown> = {
+    trait_id: 'FreeText',
+    value: { text: trimmedText },
+    source: params.source || 'web_ui_programmatic',
+  };
+  const payload: Record<string, unknown> = {
+    user_id: trimmedUser,
+    source: params.source || 'web_ui_programmatic',
+    evidence: [evidenceEntry],
+  };
+
+  const response = await ensureOk(
+    await fetch(`${CORE_API_BASE}/core/api/ingest_evidence`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+  );
+
+  const body = await response.json();
+  return {
+    success: Boolean(body?.success ?? body?.ok),
+    event_id: body?.event_id,
+    user_id: body?.user_id || trimmedUser,
+    rescore: body?.rescore,
   };
 }
 

@@ -1,0 +1,144 @@
+{
+  "user_id": "USER1",
+  "agent_id": "hc_USER1",
+  "status": "idle",
+  "last_run": "2025-10-10T23:27:46.615121Z",
+  "next_run": "2025-10-10T23:32:46.615123Z",
+  "pending_jobs": [
+    {
+      "job_id": "test-inbox-1",
+      "kind": "nudge",
+      "payload": {
+        "trait_id": "SkillDNA/coachability"
+      },
+      "source": "inbox",
+      "required_autonomy": "semi",
+      "metadata": {},
+      "status": "completed",
+      "queued_at": "2025-10-10T23:27:46.592969Z",
+      "result": {
+        "status": "ok",
+        "message": "nudge executed",
+        "source": "inbox",
+        "scope": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "trait_id": "SkillDNA/coachability"
+      },
+      "completed_at": "2025-10-10T23:27:46.614836Z"
+    },
+    {
+      "job_id": "curiosity-USER1-0",
+      "kind": "nudge",
+      "payload": {
+        "trait_id": "BehDNA",
+        "target": "BehDNA",
+        "priority": 0.8,
+        "reason": "High data gap; not recently explored",
+        "suggested_prompt": "Tell me more about this area.",
+        "suggested_coach": "personality_test_coach"
+      },
+      "source": "curiosity",
+      "required_autonomy": "semi",
+      "metadata": {},
+      "status": "completed",
+      "queued_at": "2025-10-10T23:27:46.612999Z",
+      "result": {
+        "status": "ok",
+        "message": "nudge executed",
+        "source": "curiosity",
+        "scope": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "trait_id": "BehDNA",
+        "target": "BehDNA",
+        "priority": 0.8,
+        "reason": "High data gap; not recently explored",
+        "suggested_prompt": "Tell me more about this area.",
+        "suggested_coach": "personality_test_coach"
+      },
+      "completed_at": "2025-10-10T23:27:46.614918Z"
+    },
+    {
+      "job_id": "curiosity-USER1-1",
+      "kind": "nudge",
+      "payload": {
+        "trait_id": "BehDNA.AdaptiveRoutineIterationDNA",
+        "target": "BehDNA.AdaptiveRoutineIterationDNA",
+        "priority": 0.8,
+        "reason": "High data gap; not recently explored",
+        "suggested_prompt": "Tell me more about this area.",
+        "suggested_coach": "personality_test_coach"
+      },
+      "source": "curiosity",
+      "required_autonomy": "semi",
+      "metadata": {},
+      "status": "completed",
+      "queued_at": "2025-10-10T23:27:46.613077Z",
+      "result": {
+        "status": "ok",
+        "message": "nudge executed",
+        "source": "curiosity",
+        "scope": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "trait_id": "BehDNA.AdaptiveRoutineIterationDNA",
+        "target": "BehDNA.AdaptiveRoutineIterationDNA",
+        "priority": 0.8,
+        "reason": "High data gap; not recently explored",
+        "suggested_prompt": "Tell me more about this area.",
+        "suggested_coach": "personality_test_coach"
+      },
+      "completed_at": "2025-10-10T23:27:46.614982Z"
+    },
+    {
+      "job_id": "curiosity-USER1-2",
+      "kind": "nudge",
+      "payload": {
+        "trait_id": "BehDNA.AddictivePatternDNA",
+        "target": "BehDNA.AddictivePatternDNA",
+        "priority": 0.8,
+        "reason": "High data gap; not recently explored",
+        "suggested_prompt": "Tell me more about this area.",
+        "suggested_coach": "personality_test_coach"
+      },
+      "source": "curiosity",
+      "required_autonomy": "semi",
+      "metadata": {},
+      "status": "completed",
+      "queued_at": "2025-10-10T23:27:46.613114Z",
+      "result": {
+        "status": "ok",
+        "message": "nudge executed",
+        "source": "curiosity",
+        "scope": [
+          "SkillDNA",
+          "Career",
+          "Core"
+        ],
+        "trait_id": "BehDNA.AddictivePatternDNA",
+        "target": "BehDNA.AddictivePatternDNA",
+        "priority": 0.8,
+        "reason": "High data gap; not recently explored",
+        "suggested_prompt": "Tell me more about this area.",
+        "suggested_coach": "personality_test_coach"
+      },
+      "completed_at": "2025-10-10T23:27:46.615044Z"
+    }
+  ],
+  "errors": [],
+  "inbox_cursor": 1,
+  "outbox_cursor": 11,
+  "run_count": 6,
+  "job_counts": {
+    "day_20251010": 11,
+    "nudge": 11
+  },
+  "updated_at": "2025-10-10T23:27:46.615155Z"
+}

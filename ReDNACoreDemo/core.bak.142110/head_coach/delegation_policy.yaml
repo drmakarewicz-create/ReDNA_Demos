@@ -1,0 +1,75 @@
+# Head Coach Delegation Policy
+# ============================
+#
+# Defines routing rules, confidence thresholds, and fallback behavior
+# for delegating user messages to specialist coaches.
+
+routing_rules:
+  career:
+    coach: career_coach
+    confidence_boost: 0.1  # Boost if user has active career goals
+    cooldown_check: true
+    delegation_threshold: 0.6
+
+  personality:
+    coach: personality_test_coach
+    confidence_boost: 0.0
+    cooldown_check: true
+    delegation_threshold: 0.6
+
+  relationship:
+    coach: relationship_coach
+    confidence_boost: 0.0
+    cooldown_check: true
+    delegation_threshold: 0.6
+
+  belief:
+    coach: beliefdna_coach
+    confidence_boost: 0.0
+    cooldown_check: true
+    delegation_threshold: 0.6
+
+  photo:
+    coach: photo_coach
+    confidence_boost: 0.0
+    cooldown_check: true
+    delegation_threshold: 0.7  # Higher threshold for photo requests
+
+  system:
+    coach: head_coach
+    confidence_boost: 0.2
+    cooldown_check: false
+    delegation_threshold: 0.0  # Always handle system queries
+
+escalation_thresholds:
+  low_confidence: 0.4  # Below this, HC will clarify
+  high_ambiguity: 0.5  # Above this, HC will disambiguate
+
+cooldown_settings:
+  # Prevent rapid switching between same coach pairs
+  enabled: true
+  duration_minutes: 5
+  exceptions:
+    - head_coach  # HC can always be delegated to
+
+fallback:
+  route: head_coach
+  reason: "Head Coach will handle unclear or complex requests"
+
+# Intent-specific overrides
+intent_overrides:
+  # Always retain feedback in current coach
+  feedback:
+    force_retain: true
+    reason: "Feedback should be handled by active coach"
+
+  # System queries always go to HC
+  system_query:
+    force_coach: head_coach
+    reason: "HC handles all system-level questions"
+
+# Collaborative delegation settings
+collaborative:
+  enabled: false  # Future feature
+  confidence_range: [0.5, 0.7]
+  requires_hc_oversight: true

@@ -1,0 +1,34 @@
+{
+  "Location.Weather": {
+    "id": "Location.Weather",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650617386",
+        "ts": "2025-10-16T21:36:57+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:36:58.824324Z",
+    "history": []
+  },
+  "Person.Intent": {
+    "id": "Person.Intent",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650617386",
+        "ts": "2025-10-16T21:36:57+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:36:58.824331Z",
+    "history": []
+  }
+}

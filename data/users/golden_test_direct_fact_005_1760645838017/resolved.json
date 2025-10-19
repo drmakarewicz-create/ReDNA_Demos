@@ -1,0 +1,18 @@
+{
+  "BasicDNA.Gender": {
+    "id": "BasicDNA.Gender",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645838032",
+        "ts": "2025-10-16T20:17:18+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:19.167796Z",
+    "history": []
+  }
+}

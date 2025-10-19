@@ -1,0 +1,34 @@
+{
+  "BehaviorDNA.Wellness.ColdTherapy": {
+    "id": "BehaviorDNA.Wellness.ColdTherapy",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654286399",
+        "ts": "2025-10-16T22:38:06+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:07.973563Z",
+    "history": []
+  },
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654286399",
+        "ts": "2025-10-16T22:38:06+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:07.973571Z",
+    "history": []
+  }
+}

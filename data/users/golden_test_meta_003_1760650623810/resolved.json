@@ -1,0 +1,34 @@
+{
+  "PaDNA.Intent": {
+    "id": "PaDNA.Intent",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650623826",
+        "ts": "2025-10-16T21:37:03+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:37:04.829738Z",
+    "history": []
+  },
+  "PaDNA.Tone": {
+    "id": "PaDNA.Tone",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650623826",
+        "ts": "2025-10-16T21:37:03+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:37:04.829747Z",
+    "history": []
+  }
+}

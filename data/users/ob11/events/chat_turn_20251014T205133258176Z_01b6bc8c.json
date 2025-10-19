@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob11",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have blue eyes",
+  "assistant_text": "That's a cool fact about your eye color! Are you an avid reader or just caught that from a TV show?",
+  "client_message_id": "a5924a4a-2f45-41c9-b036-b99b6bbf536c",
+  "assistant_message_id": "chat-3e905d75d379460ead34c077aae0f0b3",
+  "server_ts": "2025-10-14T20:51:33.258+00:00",
+  "server_ts_ms": 1760475093258,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

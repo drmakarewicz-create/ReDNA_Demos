@@ -1,0 +1,35 @@
+{
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "test"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T16:33:50+00:00"
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "value": {
+      "enum": "higher_likelihood"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "test:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-14T16:33:50+00:00"
+  },
+  "PaDNA.HairDNA.DarknessPrior": {
+    "value": {
+      "enum": "slightly_lower"
+    },
+    "ucn": 0.15,
+    "sources": [
+      "test:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-14T16:33:50+00:00"
+  }
+}

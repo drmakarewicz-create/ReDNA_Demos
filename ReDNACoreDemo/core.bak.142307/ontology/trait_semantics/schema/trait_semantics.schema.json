@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TraitSemantics",
+  "type": "object",
+  "required": [
+    "definition",
+    "version"
+  ],
+  "properties": {
+    "definition": {
+      "type": "string"
+    },
+    "scope_notes": {
+      "type": "string"
+    },
+    "inclusion_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exclusion_criteria": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "operationalization": {
+      "type": "object",
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "temporal": {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "trait",
+                "state",
+                "hybrid"
+              ]
+            },
+            "aggregation": {
+              "type": "string"
+            },
+            "window": {
+              "type": "string"
+            }
+          }
+        },
+        "context_model": {
+          "type": "object",
+          "properties": {
+            "required_fields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "counterexamples": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "version": {
+      "type": "string"
+    },
+    "last_reviewed": {
+      "type": "string"
+    },
+    "reviewers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

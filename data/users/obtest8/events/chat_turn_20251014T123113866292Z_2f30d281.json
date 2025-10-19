@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest8",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have blue eyes",
+  "assistant_text": "That's a unique characteristic of yours, OB8! You've got an interesting feature going on there.\n\nDo you find that people often comment on your eye color, and if so, how do you feel about it?",
+  "client_message_id": "58dc4a8e-f5a6-4e0a-8a48-0e66ba3dfc59",
+  "assistant_message_id": "chat-16eae5e517ef49abb8800c8976554378",
+  "server_ts": "2025-10-14T12:31:13.866+00:00",
+  "server_ts_ms": 1760445073866,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

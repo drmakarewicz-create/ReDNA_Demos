@@ -13,6 +13,7 @@ from typing import Any, Dict, List, Optional, Tuple, Set, Iterable, Mapping
 from uuid import uuid4
 
 from . import curiosity_engine, governance
+from .ingest.policy import migrate_trait_record
 from .bundles import CURRENT_SCHEMA, CURRENT_VERSION, iso_now, migrate
 
 ROOT = Path(__file__).resolve().parents[1]  # ReDNACoreDemo/
@@ -20,6 +21,8 @@ PROJECT_ROOT = ROOT.parent
 
 WORKSPACE_ROOT = Path(os.getenv("WORKSPACE_ROOT", str(PROJECT_ROOT))).expanduser().resolve()
 CUSTOM_DATA_ROOT = os.getenv("REDNA_CORE_DATA") or os.getenv("CORE_DATA_DIR")
+REDNA_HOME = Path(os.getenv("REDNA_HOME", Path.home() / ".redna")).expanduser()
+WHY_CARDS_GLOBAL_PATH = Path(os.getenv("REDNA_WHY_CARDS_LOG", str(REDNA_HOME / "why_cards.jsonl"))).expanduser()
 
 if CUSTOM_DATA_ROOT:
     CORE_DATA_ROOT = Path(CUSTOM_DATA_ROOT).expanduser().resolve()
@@ -53,6 +56,8 @@ SNAPSHOT_PATTERN = "bundle-"
 RENDERS_DIR_NAME = "renders"
 RENDER_JOB_FILENAME = "job.json"
 DRAFTS_DIR_NAME = "drafts"
+WHY_CARDS_FILENAME = "why_cards.json"
+CURIOSITY_QUEUE_FILENAME = "curiosity_queue.json"
 
 
 @dataclass
@@ -95,6 +100,8 @@ def ensure_dirs_for_user(user_id: str) -> Dict[str, Path]:
         "events": user_checkpoint / "events",
         "rollback": user_checkpoint / governance.ROLLBACK_FILENAME,
         "media": udir / MEDIA_DIR_NAME,
+        "why_cards": udir / WHY_CARDS_FILENAME,
+        "curiosity": udir / CURIOSITY_QUEUE_FILENAME,
     }
 
 def load_json(path: Path, default: Any) -> Any:
@@ -134,6 +141,52 @@ def save_user_info(user_id: str, info: Dict[str, Any]) -> None:
     payload.setdefault("created_ts", iso_now())
     save_json(info_path, payload)
 
+
+def load_why_cards(user_id: str, limit: Optional[int] = None) -> List[Dict[str, Any]]:
+    path = ensure_dirs_for_user(user_id)["why_cards"]
+    cards = load_json(path, default=[])
+    if not isinstance(cards, list):
+        cards = []
+    cards = [c for c in cards if isinstance(c, dict)]
+    if limit is not None and limit >= 0:
+        return cards[-limit:]
+    return cards
+
+
+def append_why_card(user_id: str, card: Dict[str, Any], *, max_items: int = 200) -> None:
+    path = ensure_dirs_for_user(user_id)["why_cards"]
+    cards = load_why_cards(user_id)
+    cards.append(card)
+    if len(cards) > max_items:
+        cards = cards[-max_items:]
+    save_json(path, cards)
+    try:
+        WHY_CARDS_GLOBAL_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with WHY_CARDS_GLOBAL_PATH.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(card, ensure_ascii=False) + "\n")
+    except Exception:
+        pass
+
+
+def load_curiosity_queue(user_id: str, limit: Optional[int] = None) -> List[Dict[str, Any]]:
+    path = ensure_dirs_for_user(user_id)["curiosity"]
+    items = load_json(path, default=[])
+    if not isinstance(items, list):
+        items = []
+    items = [item for item in items if isinstance(item, dict)]
+    if limit is not None and limit >= 0:
+        return items[-limit:]
+    return items
+
+
+def enqueue_curiosity(user_id: str, item: Dict[str, Any], *, max_items: int = 200) -> None:
+    path = ensure_dirs_for_user(user_id)["curiosity"]
+    queue = load_curiosity_queue(user_id)
+    queue.append(item)
+    if len(queue) > max_items:
+        queue = queue[-max_items:]
+    save_json(path, queue)
+
 def event_checkpoint(user_id: str, name: str, payload: Dict[str, Any]) -> Path:
     # Save an event under checkpoints to help with regressions
     epath = ensure_dirs_for_user(user_id)["events"] / f"{name}.json"
@@ -149,6 +202,13 @@ def read_user_state(user_id: str) -> Tuple[Dict[str, Any], Dict[str, Any], Dict[
         resolved = raw_resolved
     else:
         resolved = {}
+
+    if isinstance(resolved, dict):
+        for trait_id, trait_payload in list(resolved.items()):
+            if isinstance(trait_payload, dict):
+                migrate_trait_record(trait_payload)
+            else:
+                resolved.pop(trait_id)
 
     curiosity_engine.seed_resolved(resolved)
 
@@ -185,6 +245,10 @@ def write_user_state(
             )
             governance.write_rollback_manifest(paths["rollback"], manifest)
 
+    if isinstance(resolved, dict):
+        for trait_payload in resolved.values():
+            if isinstance(trait_payload, dict):
+                migrate_trait_record(trait_payload)
     save_json(paths["resolved"], resolved)
     save_json(paths["evidence"], evidence)
     save_json(paths["observations"], observations)

@@ -1,0 +1,34 @@
+{
+  "BehaviorDNA.Leisure.Indoor": {
+    "id": "BehaviorDNA.Leisure.Indoor",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760659059970",
+        "ts": "2025-10-16T23:57:39+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:57:41.744699Z",
+    "history": []
+  },
+  "PreferenceDNA.Social.GroupSize": {
+    "id": "PreferenceDNA.Social.GroupSize",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760659059970",
+        "ts": "2025-10-16T23:57:39+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:57:41.744741Z",
+    "history": []
+  }
+}

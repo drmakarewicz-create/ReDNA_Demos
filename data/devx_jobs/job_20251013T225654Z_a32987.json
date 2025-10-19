@@ -1,0 +1,21 @@
+{
+  "action": "delete",
+  "created_at": "2025-10-13T22:56:54.550745+00:00",
+  "grace_days": 7,
+  "job_id": "job_20251013T225654Z_a32987",
+  "reason": "",
+  "users": {
+    "onboardingtest": {
+      "capabilities_revoked": null,
+      "errors": [],
+      "quarantine_path": "/Users/davidmakarewicz/Documents/ReDNA_Demos/data/quarantine/20251013T225654Z/onboardingtest",
+      "requested_at": "2025-10-13T22:56:54.550745+00:00",
+      "review_until": "2025-10-20T22:56:54.550745+00:00",
+      "status": "quarantine",
+      "ticket_path": "/Users/davidmakarewicz/Documents/ReDNA_Demos/data/purge_requests/onboardingtest/ticket_20251013T225654Z.json",
+      "warnings": [
+        "[Errno 61] Connection refused"
+      ]
+    }
+  }
+}

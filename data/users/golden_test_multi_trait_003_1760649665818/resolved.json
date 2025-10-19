@@ -1,0 +1,50 @@
+{
+  "PaDNA.LocationOfWork": {
+    "id": "PaDNA.LocationOfWork",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760649665863",
+        "ts": "2025-10-16T21:21:05+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:21:08.066991Z",
+    "history": []
+  },
+  "PaDNA.WorkSchedule": {
+    "id": "PaDNA.WorkSchedule",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760649665863",
+        "ts": "2025-10-16T21:21:05+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:21:08.067000Z",
+    "history": []
+  },
+  "PaDNA.RemoteWork": {
+    "id": "PaDNA.RemoteWork",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760649665863",
+        "ts": "2025-10-16T21:21:05+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:21:08.067003Z",
+    "history": []
+  }
+}

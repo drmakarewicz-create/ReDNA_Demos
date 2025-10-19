@@ -1,0 +1,50 @@
+{
+  "BehaviorDNA.Organization.Level": {
+    "id": "BehaviorDNA.Organization.Level",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646308547",
+        "ts": "2025-10-16T20:25:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:10.129567Z",
+    "history": []
+  },
+  "BehaviorDNA.Exercise.Frequency": {
+    "id": "BehaviorDNA.Exercise.Frequency",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646308547",
+        "ts": "2025-10-16T20:25:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:10.129576Z",
+    "history": []
+  },
+  "BehaviorDNA.Leisure.Indoor": {
+    "id": "BehaviorDNA.Leisure.Indoor",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646308547",
+        "ts": "2025-10-16T20:25:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:10.129578Z",
+    "history": []
+  }
+}

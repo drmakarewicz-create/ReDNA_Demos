@@ -1,0 +1,34 @@
+{
+  "date": "2025-10-07",
+  "timestamp": "2025-10-07T23:04:10.467150Z",
+  "proposal_count": 1,
+  "proposals": [
+    {
+      "id": "LanguageStyleDNA.ParallelismPatternScoreDNA.v1",
+      "parent": "LanguageStyleDNA",
+      "status": "prototype",
+      "ai_upgradable": true,
+      "description": "Parallel structure and anaphora/epistrophe patterns",
+      "scoring_plan": {
+        "extractor_feature": "parallelism_pattern_score",
+        "method": "pattern detector + statistical analysis",
+        "expected_value": "low|medium|high",
+        "ucn_seed": 800
+      },
+      "evidence_summary": {
+        "daily_count": 25,
+        "avg_impact": 0.08,
+        "top_intents": [
+          "formal",
+          "casual"
+        ],
+        "sample_users": 1
+      },
+      "governance": {
+        "sensitive": false,
+        "consent_required": false,
+        "notes": ""
+      }
+    }
+  ]
+}

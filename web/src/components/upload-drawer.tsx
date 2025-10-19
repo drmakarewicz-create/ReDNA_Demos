@@ -79,7 +79,7 @@ function UploadDrawer({ onClose }: { onClose: () => void }) {
         formData.append('files', file);
       });
 
-      const response = await fetch(`/api/hc/photo/ingest?userId=${userId}`, {
+      const response = await fetchWithRetry(`/api/hc/photo/ingest?userId=${userId}`, {
         method: 'POST',
         body: formData,
       });

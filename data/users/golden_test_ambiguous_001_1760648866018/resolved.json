@@ -1,0 +1,34 @@
+{
+  "PaDNA.EyeDNA.IrisColor": {
+    "id": "PaDNA.EyeDNA.IrisColor",
+    "rr": 830.0,
+    "curiosity": 0.1156,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648866053",
+        "ts": "2025-10-16T21:07:46+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:07:51.402062Z",
+    "history": []
+  },
+  "PaDNA.Shape": {
+    "id": "PaDNA.Shape",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648866053",
+        "ts": "2025-10-16T21:07:46+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:07:51.402079Z",
+    "history": []
+  }
+}

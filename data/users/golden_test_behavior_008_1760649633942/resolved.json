@@ -1,0 +1,18 @@
+{
+  "BehaviorDNA.Learning.Style": {
+    "id": "BehaviorDNA.Learning.Style",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760649633970",
+        "ts": "2025-10-16T21:20:33+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:20:34.687826Z",
+    "history": []
+  }
+}

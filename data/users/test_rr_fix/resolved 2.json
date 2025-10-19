@@ -1,0 +1,17 @@
+{
+  "PaDNA.EyeDNA.Color": {
+    "resolved_value": "Blue",
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:test"
+    ],
+    "sensitivity": "medium",
+    "container_id": null,
+    "curiosity_weight": 1.0,
+    "curiosity_rr": 0.8,
+    "last_updated": "2025-10-06T14:40:05+00:00Z",
+    "curiosity_source": "RR",
+    "curiosity": 0.782,
+    "rr": 80.0
+  }
+}

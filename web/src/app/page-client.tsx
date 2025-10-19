@@ -463,6 +463,19 @@ export default function HeadCoachPage() {
     [actOnAsk]
   );
 
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const scoped = window as typeof window & { __northstar_push_notice__?: typeof pushNotice };
+    scoped.__northstar_push_notice__ = pushNotice;
+    return () => {
+      if (scoped.__northstar_push_notice__ === pushNotice) {
+        delete scoped.__northstar_push_notice__;
+      }
+    };
+  }, [pushNotice]);
+
   const { milestones, clearMilestone, clearAllMilestones } = useCelebrationsAgent({
     activeUserId: activeUser,
     asks,
@@ -1095,6 +1108,8 @@ export default function HeadCoachPage() {
     []
   );
 
+  // NORTHSTAR PHASE 2: Unabridged auto-refreshes when Core snapshot updates
+  // After ingestion → Core stores traits → refreshSnapshot() → refreshAllPanels() → loadUnabridged()
   const loadUnabridged = useCallback(
     async (userId: string, options?: { reset?: boolean }) => {
       const target = userId.trim();
@@ -1128,6 +1143,21 @@ export default function HeadCoachPage() {
     []
   );
 
+  // Auto-refresh unabridged panel every 5 seconds to pick up chat ingestion updates
+  useEffect(() => {
+    if (!activeUser.trim()) {
+      return;
+    }
+
+    const intervalId = window.setInterval(() => {
+      loadUnabridged(activeUser);
+    }, 5000); // Refresh every 5 seconds
+
+    return () => {
+      window.clearInterval(intervalId);
+    };
+  }, [activeUser, loadUnabridged]);
+
   useEffect(() => {
     if (typeof window === 'undefined' || initialHydratedRef.current) {
       return;
@@ -1144,8 +1174,12 @@ export default function HeadCoachPage() {
       setActiveUserLabel((current) => (current ? current : initialUser));
     }
     const personaFromUrl = normalizePersonaParam(url.searchParams.get('persona'));
-    if (personaFromUrl && personaFromUrl !== activePersona) {
-      setActivePersona(personaFromUrl);
+    if (personaFromUrl) {
+      // Normalize persona ID for consistency (photo_coach -> photo, padna_coach -> padna)
+      const normalizedPersona = normalizePersonaKey(personaFromUrl);
+      if (normalizedPersona !== activePersona) {
+        setActivePersona(normalizedPersona);
+      }
     }
     const centerFromUrl = normalizeCenterParam(url.searchParams.get('center'));
     if (centerFromUrl && centerFromUrl !== centerView) {
@@ -1310,6 +1344,21 @@ export default function HeadCoachPage() {
   const personaSendKey = personaSendKeyFromRosterKey(activePersonaMeta?.key ?? 'head_coach');
   const firstWidgetType = 'TranscriptPanel';
   const composerRendered = true;
+
+  // NORTHSTAR FIX: Robust persona change handler that updates both URL and state
+  const handlePersonaChange = useCallback((newPersona: string) => {
+    // Normalize the persona ID (e.g., photo_coach -> photo, padna_coach -> padna)
+    const normalizedPersona = normalizePersonaKey(newPersona);
+
+    // Update URL with normalized persona
+    const url = new URL(window.location.href);
+    url.searchParams.set('persona', normalizedPersona);
+    const href = (url.pathname + url.search + url.hash) as Route;
+    router.push(href, { scroll: false });
+
+    // Update state with normalized persona for consistent resetKeys
+    setActivePersona(normalizedPersona);
+  }, [router]);
   const personaDensity = preferences.compactDensity ? 'compact' : 'comfortable';
   const offlineBannerActive = asksCached || nudgesCached || snapshotsCached;
   const retryAsks = useCallback(() => {
@@ -1521,6 +1570,7 @@ export default function HeadCoachPage() {
   const personaContext = useMemo<PersonaCenterContext>(
     () => ({
       activeUser,
+      activePersona,
       aggregates,
       aggregatesLoading,
       aggregatesError,
@@ -1569,6 +1619,7 @@ export default function HeadCoachPage() {
     }),
     [
       activeUser,
+      activePersona,
       aggregates,
       aggregatesLoading,
       aggregatesError,
@@ -1702,25 +1753,102 @@ export default function HeadCoachPage() {
           throw new Error('No userId provided in onboarding data');
         }
 
-        // Switch to the newly created user
+        // Close wizard first
+        setOnboardingWizardOpen(false);
+
+        // Switch to the newly created user immediately (this triggers panel loading)
         queueActiveUserChange(targetUserId, data.displayName || targetUserId, { immediate: true, suppressNotice: true });
 
-        // Submit onboarding data
-        const response = await submitOnboardingWizardData(targetUserId, data);
-        if (response.ok) {
-          setOnboardingWizardOpen(false);
-          pushNotice(`Welcome, ${data.displayName || targetUserId}! Your Head Coach is ready.`, 'success');
-          refreshAllPanels();
-        } else {
-          pushNotice('Failed to save onboarding data. Please try again.', 'error');
+        // Wait a moment for user switch to complete before ingesting data
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // NORTHSTAR PHASE 2: Send onboarding data as a chat message
+        // This allows the Head Coach to respond naturally and welcome the user
+        // Traits will be extracted from the conversation automatically
+
+        // Format onboarding data as natural text for Head Coach
+        const onboardingParts = [];
+        if (data.displayName) onboardingParts.push(`My name is ${data.displayName}`);
+
+        // Age range (the wizard collects 'age_range', not 'age')
+        if (data.basic_setup?.age_range) {
+          onboardingParts.push(`My age range is ${data.basic_setup.age_range}`);
+        } else if (data.basic_setup?.age) {
+          onboardingParts.push(`I am ${data.basic_setup.age} years old`);
         }
+
+        // Gender, orientation, language, relationship status
+        if (data.basic_setup?.gender) onboardingParts.push(`My gender is ${data.basic_setup.gender}`);
+        if (data.basic_setup?.orientation) onboardingParts.push(`My orientation is ${data.basic_setup.orientation}`);
+        if (data.basic_setup?.preferred_language) onboardingParts.push(`My preferred language is ${data.basic_setup.preferred_language}`);
+        if (data.basic_setup?.relationship_status) onboardingParts.push(`My relationship status is ${data.basic_setup.relationship_status}`);
+
+        // WYR choice
+        if (data.wyr_answer?.selected_text) onboardingParts.push(`For the 'Would You Rather' question, I chose: ${data.wyr_answer.selected_text}`);
+
+        const onboardingMessage = onboardingParts.join('. ') + '.';
+
+        // Send as chat message so Head Coach can respond naturally
+        let runtimeCoreApiBase: string | undefined;
+
+        try {
+          const { sendChat, CORE_API_BASE } = await import('../lib/api');
+          runtimeCoreApiBase = CORE_API_BASE;
+
+          // Send onboarding data as a user message to Head Coach
+          // Use longer timeout for Ollama (can take 60+ seconds for long onboarding messages)
+          const abortController = new AbortController();
+          const timeoutId = setTimeout(() => abortController.abort(), 90000); // 90 second timeout
+
+          const result = await sendChat({
+            userId: targetUserId,
+            persona: 'head_coach',
+            text: onboardingMessage,
+            clientTs: Date.now()
+          }, {
+            signal: abortController.signal
+          });
+
+          clearTimeout(timeoutId);
+          console.log('[Onboarding] Chat message sent, HC responded:', result);
+
+          // Refresh panels to show updated traits and HC response
+          refreshAllPanels();
+
+          // Also refresh after a delay to ensure everything is loaded
+          setTimeout(() => {
+            console.log('[Onboarding] Delayed panel refresh');
+            refreshAllPanels();
+          }, 500);
+
+        } catch (chatError) {
+          console.error('[Onboarding] Failed to send onboarding chat:', chatError);
+          console.error('[Onboarding] CORE_API_BASE (runtime):', runtimeCoreApiBase);
+          console.error('[Onboarding] Error details:', {
+            type: typeof chatError,
+            name: chatError instanceof Error ? chatError.name : 'unknown',
+            message: chatError instanceof Error ? chatError.message : String(chatError),
+            stack: chatError instanceof Error ? chatError.stack : undefined,
+            onboardingMessage: onboardingMessage
+          });
+
+          // Non-fatal - user is created, just show warning
+          // This usually means Ollama is taking too long to respond (>90s)
+          const isTimeout = chatError instanceof Error && chatError.name === 'AbortError';
+          const message = isTimeout
+            ? `Welcome, ${data.displayName || targetUserId}! (Your coach is taking longer than usual to respond - check back in a moment)`
+            : `Welcome, ${data.displayName || targetUserId}! (There was an issue connecting to your coach)`;
+          pushNotice(message, 'warning');
+          refreshAllPanels();
+        }
+
       } catch (err) {
         console.error('Onboarding submission error:', err);
         const message = isApiError(err) ? err.message : 'Failed to save onboarding.';
         pushNotice(message, 'error');
       }
     },
-    [pushNotice, refreshAllPanels, queueActiveUserChange]
+    [pushNotice, refreshAllPanels, queueActiveUserChange, isApiError]
   );
 
 
@@ -1931,9 +2059,13 @@ export default function HeadCoachPage() {
               className="flex flex-wrap items-center gap-2 text-sm font-medium text-slate-300"
               aria-label={translate('nav.quickLinks')}
             >
-              <Link href="/" className="hover:text-slate-50">
+              <button
+                type="button"
+                onClick={() => handlePersonaChange('head_coach')}
+                className="hover:text-slate-50 cursor-pointer"
+              >
                 {translate('nav.home')}
-              </Link>
+              </button>
               <button
                 type="button"
                 onClick={() => handleJump('unabridged')}
@@ -1976,6 +2108,15 @@ export default function HeadCoachPage() {
                 aria-label={translate('nav.helpTourAria')}
               >
                 {translate('nav.helpTour')}
+              </button>
+              <button
+                type="button"
+                onClick={() => window.open('/tools/llm-benchmarks', '_blank')}
+                className="rounded-full border border-green-500/40 px-3 py-1 transition text-green-200 hover:bg-green-500/10 hover:text-green-100"
+                aria-label="Open LLM Benchmarks"
+                title="Open LLM Benchmark Suite in new window"
+              >
+                LLM Bench ↗
               </button>
             </nav>
             <div className="flex w-full flex-wrap items-center justify-end gap-3 text-sm text-slate-300 sm:w-auto">
@@ -2150,7 +2291,7 @@ export default function HeadCoachPage() {
           id="tour-persona-rail"
           personas={personas}
           activePersona={activePersona}
-          onPersonaChange={setActivePersona}
+          onPersonaChange={handlePersonaChange}
         />
         <PanelBoundary resetKeys={[activeUser]} onRetry={retryUnabridged}>
           <UnabridgedPanel
@@ -2176,7 +2317,7 @@ export default function HeadCoachPage() {
           activeUserId={activeUser}
           disabled={!activeUser.trim()}
           onProviderConfigError={handleProviderConfigError}
-          onPersonaChange={setActivePersona}
+          onPersonaChange={handlePersonaChange}
           streamingPreference={preferences.streaming}
           enterToSendPreference={preferences.enterToSend}
           providerModel={preferences.providerModel}
@@ -2219,8 +2360,8 @@ export default function HeadCoachPage() {
           isOpen={coachCatalogOpen}
           onClose={() => setCoachCatalogOpen(false)}
           onSelectCoach={(coachId) => {
-            // Switch to the selected coach/persona
-            setActivePersona(coachId);
+            // Use unified persona change handler
+            handlePersonaChange(coachId);
             pushNotice(`Switched to ${coachId}`, 'success');
           }}
           currentCoach={activePersonaMeta?.key}
@@ -2442,6 +2583,7 @@ function PerfHud({ enabled, fps, commitDuration, commitCount, virtualizers }: Pe
 
 interface PersonaCenterContext {
   activeUser: string;
+  activePersona: string;
   aggregates: ObservationAggregates | null;
   aggregatesLoading: boolean;
   aggregatesError: string | null;
@@ -2500,34 +2642,38 @@ function renderPersonaTools(
 ): ReactNode {
   const normalized = normalizePersonaKey(personaKey);
 
+  // Coach Catalog Button - appears for ALL coaches
+  const catalogButton = onOpenCoachCatalog ? (
+    <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-4">
+      <button
+        type="button"
+        onClick={onOpenCoachCatalog}
+        className="w-full rounded-lg bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/30 px-4 py-3 text-left transition hover:from-cyan-500/20 hover:to-violet-500/20"
+      >
+        <div className="flex items-center gap-3">
+          <div className="text-2xl">👥</div>
+          <div>
+            <div className="font-semibold text-cyan-200">Coach Catalog</div>
+            <div className="text-xs text-slate-400">Browse and switch coaches</div>
+          </div>
+        </div>
+      </button>
+    </div>
+  ) : null;
+
+  // Coach-specific tools
+  let specificTools: ReactNode = null;
+
   switch (normalized) {
     case 'head_coach':
-      return (
-        <>
-          {/* Coach Catalog Button */}
-          <div className="rounded-xl border border-slate-700 bg-slate-900/60 p-4">
-            <button
-              type="button"
-              onClick={onOpenCoachCatalog}
-              className="w-full rounded-lg bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-cyan-500/30 px-4 py-3 text-left transition hover:from-cyan-500/20 hover:to-violet-500/20"
-            >
-              <div className="flex items-center gap-3">
-                <div className="text-2xl">👥</div>
-                <div>
-                  <div className="font-semibold text-cyan-200">Coach Catalog</div>
-                  <div className="text-xs text-slate-400">Browse and switch coaches</div>
-                </div>
-              </div>
-            </button>
-          </div>
-          {/* Life OS Panel */}
-          <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
-            <LifeOSChatPanel userId={context.activeUser} variant="full" />
-          </PanelBoundary>
-        </>
+      specificTools = (
+        <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
+          <LifeOSChatPanel userId={context.activeUser} variant="full" />
+        </PanelBoundary>
       );
-    case 'rendering':
-      return (
+      break;
+    case 'padna':
+      specificTools = (
         <>
           <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
             <AvatarRenderPanel userId={context.activeUser} />
@@ -2537,16 +2683,34 @@ function renderPersonaTools(
           </PanelBoundary>
         </>
       );
+      break;
     case 'photo':
-      return (
+      specificTools = (
         <PanelBoundary resetKeys={[personaKey, context.activeUser]}>
           <PhotoPanel userId={context.activeUser} />
         </PanelBoundary>
       );
+      break;
+    case 'relationship_coach':
+    case 'career_coach':
+    case 'personality_test_coach':
+    case 'chatdna_coach':
+    case 'beliefdna_coach':
+    case 'permission_coach':
+      // These coaches have no specialized tools beyond the catalog
+      specificTools = null;
+      break;
     default:
-      // RC and other personas: no specialized tools, just support panels
-      return null;
+      specificTools = null;
   }
+
+  // Return catalog button + coach-specific tools
+  return (
+    <>
+      {catalogButton}
+      {specificTools}
+    </>
+  );
 }
 
 /**
@@ -2602,7 +2766,8 @@ function renderPersonaCenter(
         />
       </div>
       <div className={context.fillHeightMode ? "flex-1 min-h-0" : ""}>
-        <PanelBoundary resetKeys={[context.activeUser]} onRetry={context.retryTranscript}>
+        {/* NORTHSTAR PHASE 2: Force remount when persona changes by including activePersona in resetKeys */}
+        <PanelBoundary resetKeys={[context.activePersona, context.activeUser]} onRetry={context.retryTranscript}>
           <TranscriptPanel
             ref={context.transcriptRef}
             aggregates={context.aggregates}
@@ -2624,24 +2789,51 @@ function renderPersonaCenter(
   );
 }
 
-function normalizePersonaKey(key: string): 'head_coach' | 'photo' | 'rc' | 'rendering' {
+function normalizePersonaKey(key: string): 'head_coach' | 'relationship_coach' | 'career_coach' | 'personality_test_coach' | 'chatdna_coach' | 'beliefdna_coach' | 'padna' | 'photo' | 'permission_coach' {
   const normalized = key.trim().toLowerCase();
   switch (normalized) {
+    case 'head_coach':
+    case 'head coach':
+    case 'hc':
+    case 'headcoach':
+      return 'head_coach';
+    case 'relationship_coach':
+    case 'relationship coach':
+    case 'rc':
+    case 'relationship':
+      return 'relationship_coach';
+    case 'career_coach':
+    case 'career coach':
+    case 'career':
+      return 'career_coach';
+    case 'personality_test_coach':
+    case 'personality test coach':
+    case 'personality coach':
+    case 'ptc':
+      return 'personality_test_coach';
+    case 'chatdna_coach':
+    case 'chatdna coach':
+    case 'chatdna':
+      return 'chatdna_coach';
+    case 'beliefdna_coach':
+    case 'beliefdna coach':
+    case 'beliefdna':
+      return 'beliefdna_coach';
     case 'padna':
+    case 'padna_coach':
     case 'padna coach':
     case 'rendering':
     case 'rendering coach':
     case 'avatar':
-    case 'renderer':
-      return 'rendering';
+      return 'padna';
     case 'photo':
     case 'photo_coach':
     case 'photo coach':
       return 'photo';
-    case 'rc':
-    case 'relationship':
-    case 'relationship_coach':
-      return 'rc';
+    case 'permission_coach':
+    case 'permission coach':
+    case 'permissions':
+      return 'permission_coach';
     default:
       return 'head_coach';
   }

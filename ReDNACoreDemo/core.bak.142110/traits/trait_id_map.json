@@ -1,0 +1,11 @@
+{
+  "attributes.physical.eye_color": "PaDNA.EyeDNA.IrisColor",
+  "attributes.physical.hair_color": "PaDNA.HairDNA.Color.Natural",
+  "attributes.identity.orientation": "BasicDNA.Identity.SexualOrientation",
+  "attributes.age": "BasicDNA.Age",
+  "attributes.gender": "BasicDNA.Gender",
+  "attributes.orientation": "BasicDNA.Orientation",
+  "attributes.relationship_status": "BasicDNA.RelationshipStatus",
+  "preferences.lifestyle.cozy_home_dinner_with_deep_conversation": "PersonalityDNA.WYRChoice",
+  "social.relationship_status": "BasicDNA.RelationshipStatus"
+}

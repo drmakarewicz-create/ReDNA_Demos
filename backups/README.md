@@ -1,0 +1,1 @@
+The contents of this folder are environment-specific backup archives. They remain on disk but are ignored by Git to avoid bloating the repository and to prevent accidental exposure of sensitive data. Keep only lightweight documentation or manifest files committed here.

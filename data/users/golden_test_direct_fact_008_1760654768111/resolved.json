@@ -1,0 +1,18 @@
+{
+  "BasicDNA.RelationshipStatus": {
+    "id": "BasicDNA.RelationshipStatus",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654768137",
+        "ts": "2025-10-16T22:46:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:46:08.859889Z",
+    "history": []
+  }
+}

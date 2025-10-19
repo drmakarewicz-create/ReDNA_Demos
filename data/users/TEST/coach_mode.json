@@ -1,0 +1,304 @@
+{
+  "mode_history": [
+    {
+      "from_mode": "head_coach",
+      "to_mode": "career_coach",
+      "timestamp": "2025-10-07T01:50:05.849562+00:00",
+      "context": {
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "career_coach",
+      "to_mode": "photo_coach",
+      "timestamp": "2025-10-07T02:09:11.191925+00:00",
+      "context": {
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "photo_coach",
+      "to_mode": "career_coach",
+      "timestamp": "2025-10-07T02:24:35.055404+00:00",
+      "context": {
+        "source": "test",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "career_coach",
+      "to_mode": "relationship_coach",
+      "timestamp": "2025-10-07T02:24:41.178634+00:00",
+      "context": {
+        "source": "test",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "relationship_coach",
+      "to_mode": "padna",
+      "timestamp": "2025-10-07T02:27:33.993216+00:00",
+      "context": {
+        "source": "test",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "padna",
+      "to_mode": "photo",
+      "timestamp": "2025-10-07T02:27:37.821641+00:00",
+      "context": {
+        "source": "test",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "photo",
+      "to_mode": "photo_coach",
+      "timestamp": "2025-10-07T02:27:51.516966+00:00",
+      "context": {
+        "source": "test",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "photo_coach",
+      "to_mode": "padna_coach",
+      "timestamp": "2025-10-07T02:27:54.753805+00:00",
+      "context": {
+        "source": "test",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "padna_coach",
+      "to_mode": "career_coach",
+      "timestamp": "2025-10-07T19:21:15.860241+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T19:21:15.846Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "career_coach",
+      "to_mode": "personality_test_coach",
+      "timestamp": "2025-10-07T21:24:31.329585+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T21:24:31.323Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "personality_test_coach",
+      "to_mode": "career_coach",
+      "timestamp": "2025-10-07T21:53:40.255381+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T21:53:40.248Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "career_coach",
+      "to_mode": "chatdna_coach",
+      "timestamp": "2025-10-07T23:11:45.765161+00:00",
+      "context": {
+        "source": "test",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "chatdna_coach",
+      "to_mode": "padna_coach",
+      "timestamp": "2025-10-07T23:27:46.952760+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:27:46.950Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "padna_coach",
+      "to_mode": "photo_coach",
+      "timestamp": "2025-10-07T23:27:59.957606+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:27:59.953Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "photo_coach",
+      "to_mode": "career_coach",
+      "timestamp": "2025-10-07T23:28:10.111106+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:28:10.108Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "career_coach",
+      "to_mode": "photo_coach",
+      "timestamp": "2025-10-07T23:43:54.986240+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:43:54.979Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "photo_coach",
+      "to_mode": "career_coach",
+      "timestamp": "2025-10-07T23:43:59.673243+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:43:59.670Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "career_coach",
+      "to_mode": "chatdna_coach",
+      "timestamp": "2025-10-07T23:44:02.221462+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:44:02.219Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "chatdna_coach",
+      "to_mode": "photo_coach",
+      "timestamp": "2025-10-07T23:49:58.081363+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:49:58.077Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "photo_coach",
+      "to_mode": "career_coach",
+      "timestamp": "2025-10-07T23:50:00.824977+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:50:00.821Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "career_coach",
+      "to_mode": "chatdna_coach",
+      "timestamp": "2025-10-07T23:50:04.845867+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-07T23:50:04.843Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "chatdna_coach",
+      "to_mode": "beliefdna_coach",
+      "timestamp": "2025-10-08T00:26:52.835224+00:00",
+      "context": {
+        "source": "test",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "beliefdna_coach",
+      "to_mode": "photo_coach",
+      "timestamp": "2025-10-08T00:29:45.575313+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T00:29:45.571Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "photo_coach",
+      "to_mode": "career_coach",
+      "timestamp": "2025-10-08T00:29:49.639549+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T00:29:49.635Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "career_coach",
+      "to_mode": "chatdna_coach",
+      "timestamp": "2025-10-08T00:29:55.128049+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T00:29:55.125Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "chatdna_coach",
+      "to_mode": "beliefdna_coach",
+      "timestamp": "2025-10-08T00:30:01.724603+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T00:30:01.720Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "beliefdna_coach",
+      "to_mode": "chatdna_coach",
+      "timestamp": "2025-10-08T00:42:26.296508+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T00:42:26.286Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "chatdna_coach",
+      "to_mode": "beliefdna_coach",
+      "timestamp": "2025-10-08T00:42:38.064679+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T00:42:38.061Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "beliefdna_coach",
+      "to_mode": "photo_coach",
+      "timestamp": "2025-10-11T20:31:49.053061+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-11T20:31:49.046Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "photo_coach",
+      "to_mode": "beliefdna_coach",
+      "timestamp": "2025-10-11T20:31:59.300654+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-11T20:31:59.296Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "beliefdna_coach",
+      "to_mode": "padna_coach",
+      "timestamp": "2025-10-11T20:32:19.776428+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-11T20:32:19.773Z",
+        "reason": "manual_switch"
+      }
+    }
+  ],
+  "active_mode": "padna_coach",
+  "updated_at": "2025-10-11T20:32:19.776436+00:00"
+}

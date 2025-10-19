@@ -1,0 +1,34 @@
+{
+  "PaDNA.LocationOfWork": {
+    "id": "PaDNA.LocationOfWork",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642871637",
+        "ts": "2025-10-16T19:27:51+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:27:52.703533Z",
+    "history": []
+  },
+  "PaDNA.WorkFromHome": {
+    "id": "PaDNA.WorkFromHome",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642871637",
+        "ts": "2025-10-16T19:27:51+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:27:52.703541Z",
+    "history": []
+  }
+}

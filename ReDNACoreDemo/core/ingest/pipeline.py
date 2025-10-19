@@ -1,0 +1,501 @@
+from __future__ import annotations
+from typing import List, Dict, Any, Optional
+from uuid import uuid4
+from datetime import datetime, timezone
+import logging
+import os
+import time
+
+logger = logging.getLogger(__name__)
+
+
+class HopTimer:
+    """Lightweight timer for measuring pipeline hop latencies."""
+    def __init__(self):
+        self.ts = {}
+
+    def mark(self, k: str):
+        """Record a timing mark."""
+        self.ts[k] = time.perf_counter()
+
+    def dt(self, a: str, b: str) -> float:
+        """Calculate milliseconds between two marks."""
+        if a not in self.ts or b not in self.ts:
+            return 0.0
+        return max(0, (self.ts[b] - self.ts[a]) * 1000.0)
+
+
+# Import canonical trait ID mapper and inference engine
+from ..traits.trait_id_mapper import normalize_evidence as id_normalize
+from ..traits.inference_engine import run_inference
+from .evidence_schema import validate_batch, EvidenceValidationError
+from .policy import should_persist_raw
+from ..metrics import METRICS, MetricNames
+from ..logutil import evidence_log
+
+
+def now_iso() -> str:
+    """Return current timestamp in ISO format."""
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+
+
+def ingest_evidence_roundtrip(
+    user_id: str,
+    source: str,
+    evidence: List[Dict[str, Any]],
+    req_id: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    Unified evidence ingestion pipeline used by all entry points.
+
+    This is the SINGLE SOURCE OF TRUTH for evidence processing.
+    Both /core/api/ingest_text and /ui/chat/send call this function.
+
+    Pipeline steps:
+    1. Canonicalize trait IDs (attributes.* → PaDNA.*, BasicDNA.*)
+    2. Validate and normalize evidence schema
+    3. Stamp source/timestamp
+    4. Store evidence (persisted for provenance)
+    5. First resolve pass (direct evidence → traits)
+    6. Inference pass (declarative rules)
+    7. Merge inferred traits (only if existing UCN < 0.3)
+    8. Second resolve pass (incorporate inferences)
+    9. Build snapshot for UI
+
+    Args:
+        user_id: User identifier
+        source: Evidence source ("chat", "onboarding", "goal", etc.)
+        evidence: List of evidence records
+        req_id: Optional request ID for tracing (generated if not provided)
+
+    Returns:
+        Result dict with ok, req_id, snapshot, ingested count, inferred count
+    """
+    rid = req_id or str(uuid4())[:8]  # Short ID for logs
+
+    # Start hop timing
+    ht = HopTimer()
+    ht.mark("t0_recv")
+
+    logger.info(f"ingest_start{{req_id={rid}, user={user_id}, source={source}, items_in={len(evidence)}}}")
+
+    # Check strict mode
+    strict_mode = os.getenv("EVIDENCE_STRICT", "false").lower() in ("1", "true", "yes")
+
+    try:
+        # STEP 1: Canonicalize trait IDs
+        # Maps attributes.physical.eye_color → PaDNA.EyeDNA.IrisColor
+        ev1 = id_normalize(evidence)
+        logger.info(f"  → Canonicalized {len(ev1)} trait IDs")
+
+        # STEP 1b: In strict mode, reject evidence without trait IDs
+        # In permissive mode, drop them silently (legacy behavior)
+        filtered: List[Dict[str, Any]] = []
+        dropped: List[Dict[str, Any]] = []
+        for item in ev1:
+            if item.get("trait_id") or item.get("trait") or (
+                item.get("trait_category") and item.get("fact_category")
+            ):
+                filtered.append(item)
+            else:
+                dropped.append(item)
+
+        if dropped:
+            if strict_mode:
+                # In strict mode, raise validation error
+                raise EvidenceValidationError(
+                    error_code="NO_CANONICAL_TRAIT_ID",
+                    message=f"Could not map {len(dropped)} evidence item(s) to canonical trait_id after canonicalization",
+                    evidence_sample=dropped[0] if dropped else {},
+                    suggestions=[
+                        {"hint": "Use canonical trait ID", "example": "PaDNA.EyeDNA.IrisColor"},
+                        {"hint": "Or mappable attribute path", "example": "attributes.physical.eye_color"}
+                    ]
+                )
+            else:
+                # Permissive mode: just warn and drop
+                logger.warning(
+                    "  → Dropping %d evidence items missing trait identifiers (keys: %s)",
+                    len(dropped),
+                    [sorted(x.keys())[:3] for x in dropped],
+                )
+
+        if not filtered:
+            msg = "No evidence with trait identifiers after filtering"
+            if strict_mode:
+                raise EvidenceValidationError(
+                    error_code="NO_VALID_EVIDENCE",
+                    message=msg,
+                    evidence_sample=evidence[0] if evidence else {},
+                    suggestions=[{"hint": "Ensure evidence includes trait_id or mappable attribute"}]
+                )
+            logger.warning(f"  → {msg}; skipping ingestion")
+            snapshot = _build_snapshot(user_id)
+            return {
+                "ok": True,
+                "req_id": rid,
+                "snapshot": snapshot,
+                "ingested": 0,
+                "inferred": 0,
+            }
+
+        # STEP 2: Enforce evidence schema
+        # Converts fact_value → value, normalizes value shape
+        # This will raise EvidenceValidationError in strict mode if validation fails
+        ev2 = validate_batch(filtered)
+        logger.info(f"  → Validated schema for {len(ev2)} evidence records")
+
+        # STEP 3: Stamp source/timestamp if missing
+        ts = now_iso()
+        for e in ev2:
+            e.setdefault("source", source)
+            e.setdefault("ts", ts)
+
+        # STEP 4: Store evidence (for provenance)
+        # This writes to evidence.json
+        policy_records = _store_evidence(user_id, ev2, req_id=rid)
+        logger.info(f"  → Stored {len(policy_records.get('persisted', []))} evidence records")
+
+        # Mark end of preprocessing
+        ht.mark("t1_pre")
+
+        # STEP 5: First resolve pass (direct evidence → traits with RR/UCN)
+        ht.mark("t2_ucnrr_send")
+        direct_resolved = _resolve_direct(user_id, ev2, req_id=rid)
+        ht.mark("t3_ucnrr_done")
+        logger.info(f"  → Resolved {direct_resolved} direct traits")
+
+        # STEP 6: Inference pass
+        # Run declarative rules on canonical evidence
+        ev_inf_raw = run_inference(ev2)
+
+        inferred_count = 0
+        if ev_inf_raw:
+            logger.info(f"  → Inference generated {len(ev_inf_raw)} proposals")
+
+            # Convert inference output to canonical evidence format
+            ev_inf = []
+            for inf in ev_inf_raw:
+                ev_inf.append({
+                    "trait_id": inf["trait_id"],
+                    "fact_value": inf.get("fact_value") or inf.get("value"),
+                    "ucn_prior": inf.get("ucn_prior", 0.2),
+                    "provenance": inf.get("provenance", "inference:unknown"),
+                    "display_hint": inf.get("display_hint", "needs_confirmation"),
+                    "ui_hidden": inf.get("ui_hidden", False)
+                })
+
+            # Validate and normalize inferred evidence
+            ev_inf_canonical = id_normalize(ev_inf)
+            ev_inf_validated = validate_batch(ev_inf_canonical)
+
+            # Stamp as inference source
+            for e in ev_inf_validated:
+                e.setdefault("source", f"{source}:inference")
+                e.setdefault("ts", ts)
+
+            # STEP 7: Merge inferred traits (only if existing UCN < 0.3)
+            ev_merge = _filter_inferences_by_ucn_threshold(user_id, ev_inf_validated, threshold=0.3)
+
+            if ev_merge:
+                logger.info(f"  → Accepting {len(ev_merge)} inferred traits (UCN < 0.3)")
+                policy_records_inference = _store_evidence(user_id, ev_merge, req_id=rid, tag="inference")
+                policy_records["records"].extend(policy_records_inference["records"])
+                policy_records["persisted"].extend(policy_records_inference["persisted"])
+
+                # STEP 8: Second resolve pass (incorporate inferences)
+                inferred_count = _resolve_inferred(user_id, ev_merge, req_id=rid)
+                logger.info(f"  → Re-resolved with {inferred_count} inferred traits")
+            else:
+                logger.info(f"  → No inferences accepted (all traits have UCN >= 0.3)")
+
+        # Mark end of resolve/promotion
+        ht.mark("t4_resolve")
+
+        # STEP 9: Build snapshot for UI
+        snap = _build_snapshot(user_id)
+
+        # Mark end of roundtrip
+        ht.mark("t5_return")
+
+        # Calculate hop timings
+        hop_preprocess = ht.dt("t0_recv", "t1_pre")
+        hop_ucnrr = ht.dt("t2_ucnrr_send", "t3_ucnrr_done")
+        hop_resolve = ht.dt("t3_ucnrr_done", "t4_resolve")
+        hop_total = ht.dt("t0_recv", "t5_return")
+
+        # Emit metrics
+        METRICS.observe(MetricNames.HOP_MS_PREPROCESS, hop_preprocess)
+        METRICS.observe(MetricNames.HOP_MS_UCNRR, hop_ucnrr)
+        METRICS.observe(MetricNames.HOP_MS_RESOLVE, hop_resolve)
+        METRICS.observe(MetricNames.HOP_MS_TOTAL, hop_total)
+        METRICS.increment(MetricNames.INGEST_REQUESTS)
+
+        logger.info(
+            f"ingest_done{{req_id={rid}, snapshot_traits={len(snap.get('traits', []))}, "
+            f"wrote_resolved=true, hop_ms={{preprocess={hop_preprocess:.1f}, ucnrr={hop_ucnrr:.1f}, "
+            f"resolve={hop_resolve:.1f}, total={hop_total:.1f}}}}}"
+        )
+
+        return {
+            "ok": True,
+            "req_id": rid,
+            "snapshot": snap,
+            "ingested": len(ev2),
+            "inferred": inferred_count,
+            "policy": policy_records,
+        }
+
+    except Exception as e:
+        METRICS.increment(MetricNames.INGEST_ERRORS)
+        logger.error(f"ingest_error{{req_id={rid}, error={str(e)}}}", exc_info=True)
+        raise
+
+
+def _store_evidence(user_id: str, evidence: List[Dict[str, Any]], req_id: str, tag: Optional[str] = None) -> Dict[str, Any]:
+    """
+    Store evidence to evidence.json (for provenance).
+
+    Args:
+        user_id: User identifier
+        evidence: List of canonical evidence records
+        req_id: Request ID for tracing
+        tag: Optional tag (e.g., "inference")
+    """
+    from ..storage import read_user_state, write_user_state
+
+    # Read current state
+    resolved, evidence_doc, observations = read_user_state(user_id)
+
+    # Append new evidence items
+    if not isinstance(evidence_doc, dict):
+        evidence_doc = {"items": []}
+    if "items" not in evidence_doc:
+        evidence_doc["items"] = []
+
+    policy_records: List[Dict[str, Any]] = []
+    persisted: List[Dict[str, Any]] = []
+
+    now_ts = now_iso()
+
+    for item in evidence:
+        trait_id = item.get("trait_id")
+        existing_trait = resolved.get(trait_id) if isinstance(resolved, dict) else None
+        decision = should_persist_raw(item, existing=existing_trait)
+
+        tier = decision["tier"]
+        if tier == "hot":
+            METRICS.increment(MetricNames.POLICY_TIER_HOT)
+        elif tier == "warm":
+            METRICS.increment(MetricNames.POLICY_TIER_WARM)
+        elif tier == "cold":
+            METRICS.increment(MetricNames.POLICY_TIER_COLD)
+        else:
+            METRICS.increment(MetricNames.POLICY_TIER_DROP)
+
+        record = {
+            "ts": now_ts,
+            "req_id": req_id,
+            "user_id": user_id,
+            "trait_id": trait_id,
+            "source": item.get("source"),
+            "tag": tag or "direct",
+            "decision": decision,
+        }
+        evidence_log(record)
+        policy_records.append(record)
+
+        item.setdefault("policy", {}).update({
+            "tier": decision["tier"],
+            "ttl_days": decision["ttl_days"],
+            "reason": decision["reason"],
+            "reliability": decision["reliability"],
+        })
+        item["policy"]["logged_at"] = now_ts
+        item["_reliability"] = decision["reliability"]
+
+        if decision["tier"] == "drop":
+            continue
+
+        persisted.append(item)
+
+    if persisted:
+        evidence_doc["items"].extend(persisted)
+
+    # Write back (only evidence is updated)
+    write_user_state(user_id, resolved, evidence_doc, observations, enforce_governance=False)
+
+    # Log evidence storage with file path for traceability
+    logger.info(f"chat_store{{req_id={req_id}, path=\"users/{user_id}/evidence.json\", count={len(persisted)}}}")
+    logger.info(f"stored_observations{{req_id={req_id}, count={len(persisted)}, tag={tag or 'direct'}}}")
+
+    return {
+        "records": policy_records,
+        "persisted": persisted,
+    }
+
+
+def _resolve_direct(user_id: str, evidence: List[Dict[str, Any]], req_id: str) -> int:
+    """
+    First resolve pass: direct evidence → traits with RR/UCN scores.
+
+    Args:
+        user_id: User identifier
+        evidence: List of canonical evidence records
+        req_id: Request ID for tracing
+
+    Returns:
+        Number of traits resolved
+    """
+    from ..resolver.impl import resolve_roundtrip
+    from ..resolver.debug import new_trace, write_trace
+    from ..resolver.resolved_io import get_resolver_trace_dir
+
+    try:
+        # Create trace for debugging
+        trace = new_trace(req_id)
+
+        # Convert evidence to canonical Evidence schema
+        # Evidence should already have: trait_id, value, source, ts
+        canonical_evidence = []
+        for e in evidence:
+            canonical_evidence.append({
+                "trait_id": e.get("trait_id"),
+                "value": e.get("value", {}),
+                "source": e.get("source", "ingestion"),
+                "ts": e.get("ts", now_iso()),
+                "ucn_prior": float(e.get("ucn_prior", 0.2)),
+                "provenance": e.get("provenance", "direct"),
+                "policy": e.get("policy", {}),
+                "_reliability": e.get("_reliability"),
+            })
+
+        # Run resolver
+        result = resolve_roundtrip(user_id, canonical_evidence, source="ingestion", trace=trace)
+
+        # Write trace for debugging
+        trace_dir = get_resolver_trace_dir(user_id)
+        write_trace(trace_dir, trace)
+
+        resolved = result["resolved"]
+        rr_ok = result["rr_ok"]
+
+        logger.info(f"ingest_resolve{{req_id={req_id}, direct_items={len(evidence)}, resolved={len(resolved)}, rr_ok={rr_ok}}}")
+
+        return len(resolved)
+
+    except Exception as e:
+        logger.error(f"resolve_direct_error{{req_id={req_id}, error={str(e)}}}", exc_info=True)
+        return 0
+
+
+def _resolve_inferred(user_id: str, evidence: List[Dict[str, Any]], req_id: str) -> int:
+    """
+    Second resolve pass: inferred evidence → update traits with inferred priors.
+
+    Args:
+        user_id: User identifier
+        evidence: List of inferred evidence records
+        req_id: Request ID for tracing
+
+    Returns:
+        Number of inferred traits resolved
+    """
+    from ..resolver.impl import resolve_roundtrip
+    from ..resolver.debug import new_trace, write_trace
+    from ..resolver.resolved_io import get_resolver_trace_dir
+
+    try:
+        # Create trace for debugging
+        trace = new_trace(f"{req_id}-inferred")
+
+        # Convert evidence to canonical Evidence schema
+        canonical_evidence = []
+        for e in evidence:
+            canonical_evidence.append({
+                "trait_id": e.get("trait_id"),
+                "value": e.get("value", {}),
+                "source": e.get("source", "ingestion:inference"),
+                "ts": e.get("ts", now_iso()),
+                "ucn_prior": float(e.get("ucn_prior", 0.15)),  # Lower prior for inferences
+                "provenance": e.get("provenance", "inference:unknown"),
+                "policy": e.get("policy", {}),
+                "_reliability": e.get("_reliability"),
+            })
+
+        # Run resolver
+        result = resolve_roundtrip(user_id, canonical_evidence, source="inference", trace=trace)
+
+        # Write trace for debugging
+        trace_dir = get_resolver_trace_dir(user_id)
+        write_trace(trace_dir, trace)
+
+        resolved = result["resolved"]
+        rr_ok = result["rr_ok"]
+
+        logger.info(f"ingest_resolve{{req_id={req_id}, inferred_items={len(evidence)}, resolved={len(resolved)}, rr_ok={rr_ok}}}")
+
+        return len(evidence)
+
+    except Exception as e:
+        logger.error(f"resolve_inferred_error{{req_id={req_id}, error={str(e)}}}", exc_info=True)
+        return 0
+
+
+def _filter_inferences_by_ucn_threshold(user_id: str, ev: List[Dict[str, Any]], threshold: float) -> List[Dict[str, Any]]:
+    """
+    Filter inferred traits to only include those where existing UCN < threshold.
+
+    Never overwrites confirmed traits with inferences.
+
+    Args:
+        user_id: User identifier
+        ev: List of inferred evidence records
+        threshold: UCN threshold (default 0.3)
+
+    Returns:
+        Filtered list of inferences to accept
+    """
+    from ..storage import read_user_state
+
+    try:
+        resolved, _, _ = read_user_state(user_id)
+        allow: List[Dict[str, Any]] = []
+
+        for e in ev:
+            tid = e.get("trait_id")
+            if not tid:
+                continue
+
+            existing = resolved.get(tid, {})
+            ucn = float(existing.get("ucn", 0)) if isinstance(existing, dict) else 0
+
+            if ucn < threshold:
+                allow.append(e)
+                logger.info(f"  → Accepting inference: {tid} (existing UCN={ucn:.2f})")
+            else:
+                logger.info(f"  → Skipping inference: {tid} (existing UCN={ucn:.2f} >= {threshold})")
+
+        return allow
+
+    except Exception as e:
+        logger.error(f"filter_inferences_error: {e}", exc_info=True)
+        return []
+
+
+def _build_snapshot(user_id: str) -> Dict[str, Any]:
+    """
+    Build UI snapshot with current trait state.
+
+    Args:
+        user_id: User identifier
+
+    Returns:
+        Snapshot dict with traits array
+    """
+    try:
+        from .. import ui_readonly
+        return ui_readonly.unabridged_snapshot(user_id)
+    except Exception as e:
+        logger.error(f"build_snapshot_error: {e}", exc_info=True)
+        return {"traits": []}

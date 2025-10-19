@@ -1,0 +1,82 @@
+{
+  "BasicDNA.Location.City": {
+    "id": "BasicDNA.Location.City",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648911444",
+        "ts": "2025-10-16T21:08:31+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:33.409593Z",
+    "history": []
+  },
+  "PaDNA.Intent": {
+    "id": "PaDNA.Intent",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648911444",
+        "ts": "2025-10-16T21:08:31+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:33.409609Z",
+    "history": []
+  },
+  "BehaviorDNA.Exercise.Outdoor": {
+    "id": "BehaviorDNA.Exercise.Outdoor",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648911444",
+        "ts": "2025-10-16T21:08:31+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:33.409614Z",
+    "history": []
+  },
+  "PaDNA.Date": {
+    "id": "PaDNA.Date",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648911444",
+        "ts": "2025-10-16T21:08:31+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:33.409617Z",
+    "history": []
+  },
+  "PaDNA.Time": {
+    "id": "PaDNA.Time",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648911444",
+        "ts": "2025-10-16T21:08:31+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:33.409620Z",
+    "history": []
+  }
+}

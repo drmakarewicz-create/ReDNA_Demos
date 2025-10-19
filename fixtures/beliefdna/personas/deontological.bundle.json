@@ -1,0 +1,280 @@
+{
+  "user_id": "persona_deontological",
+  "profile": {
+    "label": "Deontological Ethicist",
+    "source": "Philosophical analysis of Kantian ethics (Kant, Korsgaard, O'Neill)",
+    "note": "Duty-based, categorical imperative, rights and obligations, rule-following",
+    "embedding_model": "text-embedding-ada-002"
+  },
+  "paths": {
+    "BeliefValueDNA.MoralFoundationDNA.CareFairnessDNA": {
+      "resolved_value": 90,
+      "ucn": 920,
+      "rr": 92,
+      "curiosity": 8,
+      "reasons": [
+        "Fairness as treating persons as ends in themselves",
+        "Equal moral worth of all rational beings",
+        "Justice derived from categorical imperative"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": [
+          "Kant: Groundwork of the Metaphysics of Morals",
+          "Kant: Formula of Humanity"
+        ],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.LibertyOppressionDNA": {
+      "resolved_value": 85,
+      "ucn": 880,
+      "rr": 88,
+      "curiosity": 12,
+      "reasons": [
+        "Autonomy as foundational to moral agency",
+        "Freedom as capacity for self-legislation",
+        "Rights protect individual autonomy"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Kant: autonomy and freedom of the will"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.AuthorityRespectDNA": {
+      "resolved_value": 70,
+      "ucn": 750,
+      "rr": 75,
+      "curiosity": 25,
+      "reasons": [
+        "Respect for moral law (not arbitrary authority)",
+        "Authority legitimate only if respects rational autonomy",
+        "Moderate - values legitimate authority structures"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Kant: respect for moral law"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.SanctityPurityDNA": {
+      "resolved_value": 40,
+      "ucn": 700,
+      "rr": 70,
+      "curiosity": 30,
+      "reasons": [
+        "Dignity of rational nature is sacred",
+        "But not religious purity",
+        "Moderate - rational nature has special status"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Kant: dignity vs. price"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.LoyaltyInGroupDNA": {
+      "resolved_value": 45,
+      "ucn": 650,
+      "rr": 65,
+      "curiosity": 35,
+      "reasons": [
+        "Universal moral duties transcend group loyalties",
+        "Impartial application of moral law",
+        "Low partiality - categorical imperative applies universally"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Kant: Formula of Universal Law"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "CogDNA.CognitiveStyleDNA.NeedForClosureDNA": {
+      "resolved_value": 75,
+      "ucn": 820,
+      "rr": 82,
+      "curiosity": 18,
+      "reasons": [
+        "High - moral law is categorical and absolute",
+        "Clear principles and duties",
+        "Discomfort with moral ambiguity"
+      ],
+      "provenance": {
+        "source": "cognitive_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Kantian emphasis on universal, exceptionless rules"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "CogDNA.CognitiveStyleDNA.AnalyticalVsIntuitiveDNA": {
+      "resolved_value": 90,
+      "ucn": 900,
+      "rr": 90,
+      "curiosity": 10,
+      "reasons": [
+        "Highly analytical - rigorous logical deduction",
+        "Reason over sentiment",
+        "Systematic derivation of duties from categorical imperative"
+      ],
+      "provenance": {
+        "source": "cognitive_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Kant's architectonic system of ethics"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.ConscientiousnessDNA": {
+      "resolved_value": 95,
+      "ucn": 950,
+      "rr": 95,
+      "curiosity": 5,
+      "reasons": [
+        "Duty-bound, rule-following",
+        "High self-discipline",
+        "Strict adherence to moral principles"
+      ],
+      "provenance": {
+        "source": "personality_inference",
+        "method": "philosophical_profile",
+        "evidence_refs": ["Deontological emphasis on duty and obligation"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.OpennessDNA": {
+      "resolved_value": 65,
+      "ucn": 700,
+      "rr": 70,
+      "curiosity": 30,
+      "reasons": [
+        "Moderate - open to abstract reasoning",
+        "But committed to certain core principles",
+        "Values intellectual rigor"
+      ],
+      "provenance": {
+        "source": "personality_inference",
+        "method": "philosophical_profile",
+        "evidence_refs": ["Kantian system-building"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA": {
+      "resolved_value": 55,
+      "ucn": 620,
+      "rr": 62,
+      "curiosity": 38,
+      "reasons": [
+        "Moderate - values respect more than warmth",
+        "Principled rather than accommodating",
+        "Stern but fair"
+      ],
+      "provenance": {
+        "source": "personality_inference",
+        "method": "philosophical_profile",
+        "evidence_refs": ["Kant's austere moral philosophy"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "EmDNA.EmpathyCompassionDNA": {
+      "resolved_value": 60,
+      "ucn": 680,
+      "rr": 68,
+      "curiosity": 32,
+      "reasons": [
+        "Moderate - compassion valued but not morally foundational",
+        "Duty independent of feeling",
+        "Respects others as rational beings"
+      ],
+      "provenance": {
+        "source": "empathy_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Kant: acting from duty vs. acting from inclination"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "MotivationDNA.CoreValueDNA.MoralIntegrityDNA": {
+      "resolved_value": 95,
+      "ucn": 950,
+      "rr": 95,
+      "curiosity": 5,
+      "reasons": [
+        "Unwavering commitment to moral principles",
+        "Never treat persons merely as means",
+        "Integrity as moral consistency"
+      ],
+      "provenance": {
+        "source": "value_system_analysis",
+        "method": "doctrine_extraction",
+        "evidence_refs": ["Kant: good will as only unqualified good"],
+        "timestamp": "2025-10-07T23:30:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    }
+  },
+  "corpus_samples": [
+    {
+      "text": "Act only according to that maxim whereby you can at the same time will that it should become a universal law.",
+      "embedding": [0.051, -0.028, 0.074],
+      "metadata": {
+        "source_work": "Kant: Groundwork of the Metaphysics of Morals",
+        "genre": "philosophy"
+      }
+    },
+    {
+      "text": "Act in such a way that you treat humanity, whether in your own person or in the person of any other, never merely as a means but always as an end.",
+      "embedding": [0.055, -0.024, 0.078],
+      "metadata": {
+        "source_work": "Kant: Groundwork (Formula of Humanity)",
+        "genre": "philosophy"
+      }
+    },
+    {
+      "text": "A good will is good not because of what it effects or accomplishes, but simply by virtue of being a good will.",
+      "embedding": [0.048, -0.031, 0.071],
+      "metadata": {
+        "source_work": "Kant: Groundwork",
+        "genre": "philosophy"
+      }
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+{
+  "version": "1.0",
+  "last_updated": "2025-10-06",
+  "description": "Adaptive personality assessment items for PersonalityDNA profiling",
+  "items": [
+    {
+      "id": "ocean_openness_1",
+      "trait_target": "PsyDNA.PersonalityDNA.OCEAN.Openness",
+      "question": "How often do you seek out new experiences or unconventional ideas?",
+      "type": "scale",
+      "scale": {
+        "min": 1,
+        "max": 7,
+        "labels": {
+          "1": "Rarely/Never",
+          "4": "Sometimes",
+          "7": "Very Often"
+        }
+      },
+      "difficulty": "easy",
+      "evidence_weight": 0.7
+    },
+    {
+      "id": "ocean_conscientiousness_1",
+      "trait_target": "PsyDNA.PersonalityDNA.OCEAN.Conscientiousness",
+      "question": "How would you describe your approach to planning and organization?",
+      "type": "scale",
+      "scale": {
+        "min": 1,
+        "max": 7,
+        "labels": {
+          "1": "Very spontaneous/flexible",
+          "4": "Balanced",
+          "7": "Very structured/planned"
+        }
+      },
+      "difficulty": "easy",
+      "evidence_weight": 0.7
+    },
+    {
+      "id": "ocean_extraversion_1",
+      "trait_target": "PsyDNA.PersonalityDNA.OCEAN.Extraversion",
+      "question": "In social situations, how do you typically feel?",
+      "type": "scale",
+      "scale": {
+        "min": 1,
+        "max": 7,
+        "labels": {
+          "1": "Drained/prefer solitude",
+          "4": "Neutral",
+          "7": "Energized/seek interaction"
+        }
+      },
+      "difficulty": "easy",
+      "evidence_weight": 0.7
+    },
+    {
+      "id": "ocean_agreeableness_1",
+      "trait_target": "PsyDNA.PersonalityDNA.OCEAN.Agreeableness",
+      "question": "When faced with conflict, what's your typical response?",
+      "type": "scale",
+      "scale": {
+        "min": 1,
+        "max": 7,
+        "labels": {
+          "1": "Assert my position firmly",
+          "4": "Depends on context",
+          "7": "Seek compromise/harmony"
+        }
+      },
+      "difficulty": "easy",
+      "evidence_weight": 0.7
+    },
+    {
+      "id": "ocean_neuroticism_1",
+      "trait_target": "PsyDNA.PersonalityDNA.OCEAN.Neuroticism",
+      "question": "How often do you experience stress or worry about daily events?",
+      "type": "scale",
+      "scale": {
+        "min": 1,
+        "max": 7,
+        "labels": {
+          "1": "Rarely/Very stable",
+          "4": "Occasionally",
+          "7": "Frequently/Intense"
+        }
+      },
+      "difficulty": "easy",
+      "evidence_weight": 0.7
+    },
+    {
+      "id": "motivation_intrinsic_1",
+      "trait_target": "PsyDNA.MotivationDNA.IntrinsicMotivation",
+      "question": "What primarily drives you to pursue goals or activities?",
+      "type": "choice",
+      "choices": [
+        {
+          "value": "internal_satisfaction",
+          "label": "Personal growth and internal satisfaction",
+          "ucn_boost": 200
+        },
+        {
+          "value": "external_rewards",
+          "label": "External rewards (money, recognition, status)",
+          "ucn_boost": -200
+        },
+        {
+          "value": "balanced",
+          "label": "A balance of both",
+          "ucn_boost": 0
+        }
+      ],
+      "difficulty": "medium",
+      "evidence_weight": 0.8
+    },
+    {
+      "id": "values_core_1",
+      "trait_target": "PsyDNA.BeliefValueDNA.CoreValues",
+      "question": "Which value resonates most strongly with you?",
+      "type": "choice",
+      "choices": [
+        {
+          "value": "authenticity",
+          "label": "Authenticity and honesty"
+        },
+        {
+          "value": "achievement",
+          "label": "Achievement and success"
+        },
+        {
+          "value": "connection",
+          "label": "Connection and relationships"
+        },
+        {
+          "value": "growth",
+          "label": "Personal growth and learning"
+        },
+        {
+          "value": "security",
+          "label": "Security and stability"
+        }
+      ],
+      "difficulty": "medium",
+      "evidence_weight": 0.8
+    },
+    {
+      "id": "personality_assertiveness_1",
+      "trait_target": "PsyDNA.PersonalityDNA.Assertiveness",
+      "question": "How comfortable are you expressing your opinions in group settings?",
+      "type": "scale",
+      "scale": {
+        "min": 1,
+        "max": 7,
+        "labels": {
+          "1": "Very uncomfortable/rarely speak up",
+          "4": "Moderately comfortable",
+          "7": "Very comfortable/naturally lead"
+        }
+      },
+      "difficulty": "easy",
+      "evidence_weight": 0.7
+    },
+    {
+      "id": "motivation_achievement_1",
+      "trait_target": "PsyDNA.MotivationDNA.AchievementOrientation",
+      "question": "How important is it for you to set and achieve challenging goals?",
+      "type": "scale",
+      "scale": {
+        "min": 1,
+        "max": 7,
+        "labels": {
+          "1": "Not important/prefer present moment",
+          "4": "Moderately important",
+          "7": "Extremely important/core driver"
+        }
+      },
+      "difficulty": "easy",
+      "evidence_weight": 0.7
+    },
+    {
+      "id": "values_autonomy_1",
+      "trait_target": "PsyDNA.BeliefValueDNA.Autonomy",
+      "question": "How much do you value independence and self-direction in your life?",
+      "type": "scale",
+      "scale": {
+        "min": 1,
+        "max": 7,
+        "labels": {
+          "1": "Prefer guidance/structure",
+          "4": "Balanced",
+          "7": "Highly value independence"
+        }
+      },
+      "difficulty": "easy",
+      "evidence_weight": 0.7
+    }
+  ]
+}

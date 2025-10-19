@@ -1,0 +1,444 @@
+{
+  "fixture_name": "assessment_mode",
+  "description": "User actively completing OCEAN personality assessment with partial data",
+  "intent": "assessment_mode",
+  "user_context": {
+    "assessment_stage": "in_progress",
+    "questions_answered": 23,
+    "total_questions": 50,
+    "completion_percentage": 46.0,
+    "estimated_time_remaining": "8 minutes"
+  },
+  "ocean_profile_data": {
+    "traits": [
+      {
+        "trait": "Openness",
+        "code": "O",
+        "score": 72.0,
+        "rr": 65.0,
+        "curiosity": 35.0,
+        "confidence": 0.78,
+        "facets": [
+          {
+            "name": "Imagination",
+            "score": 78.0,
+            "rr": 70.0
+          },
+          {
+            "name": "Artistic Interests",
+            "score": 68.0,
+            "rr": 62.0
+          },
+          {
+            "name": "Emotionality",
+            "score": 71.0,
+            "rr": 64.0
+          },
+          {
+            "name": "Adventurousness",
+            "score": 65.0,
+            "rr": 58.0
+          },
+          {
+            "name": "Intellect",
+            "score": 80.0,
+            "rr": 75.0
+          },
+          {
+            "name": "Liberalism",
+            "score": 70.0,
+            "rr": 45.0,
+            "curiosity": 55.0
+          }
+        ]
+      },
+      {
+        "trait": "Conscientiousness",
+        "code": "C",
+        "score": 58.0,
+        "rr": 48.0,
+        "curiosity": 52.0,
+        "confidence": 0.65,
+        "facets": [
+          {
+            "name": "Self-Efficacy",
+            "score": 65.0,
+            "rr": 55.0
+          },
+          {
+            "name": "Orderliness",
+            "score": 42.0,
+            "rr": 38.0,
+            "curiosity": 62.0
+          },
+          {
+            "name": "Dutifulness",
+            "score": 68.0,
+            "rr": 60.0
+          },
+          {
+            "name": "Achievement-Striving",
+            "score": 72.0,
+            "rr": 65.0
+          },
+          {
+            "name": "Self-Discipline",
+            "score": 48.0,
+            "rr": 40.0,
+            "curiosity": 60.0
+          },
+          {
+            "name": "Cautiousness",
+            "score": 52.0,
+            "rr": 30.0,
+            "curiosity": 70.0
+          }
+        ]
+      },
+      {
+        "trait": "Extraversion",
+        "code": "E",
+        "score": 45.0,
+        "rr": 55.0,
+        "curiosity": 45.0,
+        "confidence": 0.70,
+        "facets": [
+          {
+            "name": "Friendliness",
+            "score": 52.0,
+            "rr": 58.0
+          },
+          {
+            "name": "Gregariousness",
+            "score": 38.0,
+            "rr": 45.0
+          },
+          {
+            "name": "Assertiveness",
+            "score": 48.0,
+            "rr": 62.0
+          },
+          {
+            "name": "Activity Level",
+            "score": 55.0,
+            "rr": 60.0
+          },
+          {
+            "name": "Excitement-Seeking",
+            "score": 42.0,
+            "rr": 50.0
+          },
+          {
+            "name": "Cheerfulness",
+            "score": 46.0,
+            "rr": 55.0
+          }
+        ]
+      },
+      {
+        "trait": "Agreeableness",
+        "code": "A",
+        "score": 68.0,
+        "rr": 35.0,
+        "curiosity": 65.0,
+        "confidence": 0.58,
+        "facets": [
+          {
+            "name": "Trust",
+            "score": 62.0,
+            "rr": 40.0,
+            "curiosity": 60.0
+          },
+          {
+            "name": "Morality",
+            "score": 75.0,
+            "rr": 65.0
+          },
+          {
+            "name": "Altruism",
+            "score": 70.0,
+            "rr": 42.0,
+            "curiosity": 58.0
+          },
+          {
+            "name": "Cooperation",
+            "score": 68.0,
+            "rr": 28.0,
+            "curiosity": 72.0
+          },
+          {
+            "name": "Modesty",
+            "score": 65.0,
+            "rr": 30.0,
+            "curiosity": 70.0
+          },
+          {
+            "name": "Sympathy",
+            "score": 72.0,
+            "rr": 45.0,
+            "curiosity": 55.0
+          }
+        ]
+      },
+      {
+        "trait": "Neuroticism",
+        "code": "N",
+        "score": 52.0,
+        "rr": 25.0,
+        "curiosity": 75.0,
+        "confidence": 0.50,
+        "facets": [
+          {
+            "name": "Anxiety",
+            "score": 58.0,
+            "rr": 30.0,
+            "curiosity": 70.0
+          },
+          {
+            "name": "Anger",
+            "score": 45.0,
+            "rr": 22.0,
+            "curiosity": 78.0
+          },
+          {
+            "name": "Depression",
+            "score": 48.0,
+            "rr": 18.0,
+            "curiosity": 82.0
+          },
+          {
+            "name": "Self-Consciousness",
+            "score": 55.0,
+            "rr": 28.0,
+            "curiosity": 72.0
+          },
+          {
+            "name": "Immoderation",
+            "score": 52.0,
+            "rr": 25.0,
+            "curiosity": 75.0
+          },
+          {
+            "name": "Vulnerability",
+            "score": 50.0,
+            "rr": 20.0,
+            "curiosity": 80.0
+          }
+        ]
+      }
+    ],
+    "population_comparison": {
+      "percentile_rank": {
+        "O": 75,
+        "C": 52,
+        "E": 38,
+        "A": 68,
+        "N": 55
+      }
+    }
+  },
+  "next_questions_data": {
+    "questions": [
+      {
+        "id": "q24",
+        "text": "When facing a difficult decision, I prefer to:",
+        "trait_target": "Conscientiousness.Cautiousness",
+        "options": [
+          {
+            "id": "a",
+            "text": "Take my time and carefully weigh all options",
+            "score_impact": 4
+          },
+          {
+            "id": "b",
+            "text": "Trust my gut and decide quickly",
+            "score_impact": 1
+          },
+          {
+            "id": "c",
+            "text": "Seek advice from others before deciding",
+            "score_impact": 2
+          },
+          {
+            "id": "d",
+            "text": "Analyze data and make a logical choice",
+            "score_impact": 3
+          }
+        ]
+      },
+      {
+        "id": "q25",
+        "text": "In social situations, I typically:",
+        "trait_target": "Extraversion.Gregariousness",
+        "options": [
+          {
+            "id": "a",
+            "text": "Seek out conversation with new people",
+            "score_impact": 5
+          },
+          {
+            "id": "b",
+            "text": "Stick with people I already know",
+            "score_impact": 2
+          },
+          {
+            "id": "c",
+            "text": "Prefer to observe and listen",
+            "score_impact": 1
+          },
+          {
+            "id": "d",
+            "text": "Engage when approached, but don't initiate",
+            "score_impact": 3
+          }
+        ]
+      },
+      {
+        "id": "q26",
+        "text": "When someone wrongs me, I:",
+        "trait_target": "Agreeableness.Cooperation",
+        "options": [
+          {
+            "id": "a",
+            "text": "Confront them directly about it",
+            "score_impact": 2
+          },
+          {
+            "id": "b",
+            "text": "Let it go and move on",
+            "score_impact": 5
+          },
+          {
+            "id": "c",
+            "text": "Hold a grudge but don't say anything",
+            "score_impact": 1
+          },
+          {
+            "id": "d",
+            "text": "Try to understand their perspective",
+            "score_impact": 4
+          }
+        ]
+      },
+      {
+        "id": "q27",
+        "text": "When I feel anxious, I usually:",
+        "trait_target": "Neuroticism.Anxiety",
+        "options": [
+          {
+            "id": "a",
+            "text": "Talk to someone about it",
+            "score_impact": 3
+          },
+          {
+            "id": "b",
+            "text": "Try to distract myself",
+            "score_impact": 4
+          },
+          {
+            "id": "c",
+            "text": "Face the source of anxiety head-on",
+            "score_impact": 2
+          },
+          {
+            "id": "d",
+            "text": "Wait for the feeling to pass",
+            "score_impact": 5
+          }
+        ]
+      },
+      {
+        "id": "q28",
+        "text": "My workspace is usually:",
+        "trait_target": "Conscientiousness.Orderliness",
+        "options": [
+          {
+            "id": "a",
+            "text": "Highly organized with everything in its place",
+            "score_impact": 5
+          },
+          {
+            "id": "b",
+            "text": "Organized chaos - I know where things are",
+            "score_impact": 2
+          },
+          {
+            "id": "c",
+            "text": "Minimalist with very few items",
+            "score_impact": 4
+          },
+          {
+            "id": "d",
+            "text": "Cluttered and disorganized",
+            "score_impact": 1
+          }
+        ]
+      }
+    ],
+    "progress": {
+      "current": 23,
+      "total": 50,
+      "percentage": 46.0
+    },
+    "adaptive_branching": {
+      "triggered": true,
+      "reason": "High curiosity in Neuroticism domain - adding targeted questions",
+      "added_questions": 5
+    }
+  },
+  "motivational_drivers_data": {
+    "intrinsic": [
+      {
+        "driver": "Autonomy",
+        "score": 78.0,
+        "rr": 72.0,
+        "description": "Strong desire for independence and self-direction"
+      },
+      {
+        "driver": "Mastery",
+        "score": 85.0,
+        "rr": 80.0,
+        "description": "High motivation to develop expertise and competence"
+      },
+      {
+        "driver": "Purpose",
+        "score": 72.0,
+        "rr": 55.0,
+        "curiosity": 45.0,
+        "description": "Seeking meaning and contribution beyond self"
+      }
+    ],
+    "extrinsic": [
+      {
+        "driver": "Recognition",
+        "score": 52.0,
+        "rr": 42.0,
+        "curiosity": 58.0,
+        "description": "Moderate need for external validation"
+      },
+      {
+        "driver": "Security",
+        "score": 65.0,
+        "rr": 60.0,
+        "description": "Values stability and predictability"
+      },
+      {
+        "driver": "Reward",
+        "score": 48.0,
+        "rr": 38.0,
+        "curiosity": 62.0,
+        "description": "Moderate focus on tangible benefits"
+      }
+    ]
+  },
+  "rr_data": {
+    "PsyDNA.PersonalityDNA": 45.6,
+    "PsyDNA.MotivationDNA": 62.3,
+    "PsyDNA.BeliefValueDNA": 38.5
+  },
+  "curiosity_data": {
+    "PsyDNA.PersonalityDNA": 54.4,
+    "PsyDNA.MotivationDNA": 37.7,
+    "PsyDNA.BeliefValueDNA": 61.5
+  }
+}

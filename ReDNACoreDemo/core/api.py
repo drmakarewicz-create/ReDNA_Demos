@@ -18,8 +18,21 @@ import zipfile
 import shutil
 import threading
 import queue
+import traceback
+from collections import deque
 
 logger = logging.getLogger(__name__)
+
+# Configure robust logging for debugging chat ingestion pipeline
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('/tmp/core_pipeline.log'),
+        logging.StreamHandler()
+    ]
+)
+
 from functools import lru_cache
 import unicodedata
 from datetime import datetime, timezone, timedelta
@@ -27,14 +40,27 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Optional, AsyncGenerator, Tuple, Mapping, Set, Annotated
 from uuid import uuid4
 
+import httpx
 import requests
-from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form, Body, Request
+from fastapi import FastAPI, HTTPException, Query, UploadFile, File, Form, Body, Request, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
+from pydantic import ValidationError
+
+try:
+    from dotenv import load_dotenv  # type: ignore
+
+    here = Path(__file__).resolve()
+    env_candidates = [p / ".env" for p in (here, *here.parents)]
+    env_file = next((candidate for candidate in env_candidates if candidate.is_file()), None)
+    if env_file:
+        load_dotenv(dotenv_path=env_file, override=False)
+except Exception:
+    pass
 
 from PIL import Image, UnidentifiedImageError
 
-from . import curiosity_engine, hierarchy, ui_readonly, planner, nudges, trait_timeline, decay, conversation_analyzer, hc_trait_bridge, preference_extractor, trait_container_discovery, hc_life
+from . import curiosity_engine, hierarchy, ui_readonly, planner, nudges, trait_timeline, decay, conversation_analyzer, hc_trait_bridge, preference_extractor, trait_container_discovery, hc_life, hc_human_intel
 from .bundles import CURRENT_VERSION, iso_now
 from .storage import (
     OBS_FILENAME,
@@ -92,8 +118,15 @@ from .redna_core import build_observations, resolve_traits
 from .events import capture
 from .security import allow
 from .priority import priority_score, trait_importance_for
+from .logutil import stack_log
+from .metrics import record_request
+from .curiosity.models import CuriosityItem
+from .curiosity import store as curiosity_store
+from ReDNACoreDemo.devx.backend.config_resolver import resolve_stack_config
 
 TRACE_TRUE = {"1", "true", "yes", "on"}
+HEALTH_DEGRADED_LOG_INTERVAL = 60.0
+LAST_HEALTH_DEGRADED_LOG_TS: Optional[float] = None
 APP_VERSION = str(CURRENT_VERSION or "dev")
 TRACE_ENABLED = os.getenv("ROUNDTRIP_TRACING_ENABLED", "true").strip().lower() in TRACE_TRUE
 TRACE_PATH = Path(__file__).resolve().parents[1] / "data" / "dev_logs" / "trace_core.jsonl"
@@ -102,6 +135,967 @@ PROVIDER_LOG_MAX_BYTES = 512 * 1024
 TONE_CURVE_PATH = Path(__file__).resolve().parents[1] / "data" / "config" / "tone_curves.json"
 COHORT_STATS_PATH = Path(__file__).resolve().parents[1] / "data" / "_stats" / "cohort_rr.json"
 DEV_COHORTS_ENABLED = os.getenv("CORE_DEV_COHORTS_ENABLED", "").strip().lower() in TRACE_TRUE
+
+_CORS_ALLOWED = os.getenv("CORS_ALLOWED_ORIGINS", "*").strip()
+if not _CORS_ALLOWED or _CORS_ALLOWED == "*":
+    ALLOWED_ORIGINS = ["*"]
+else:
+    ALLOWED_ORIGINS = [origin.strip() for origin in _CORS_ALLOWED.split(",") if origin.strip()]
+
+REDNA_HOME = Path(os.environ.get("REDNA_HOME", str(Path.home() / ".redna"))).expanduser()
+REDNA_LOG_DIR = REDNA_HOME / "logs"
+
+PROMOTE_RULES: Dict[str, Dict[str, Any]] = {}
+PROMOTE_RULES_ACTIVE: Dict[str, Dict[str, Any]] = {}
+
+PROMOTION_BOOL_KEYS = {
+    "PROMOTE_ENABLE_HAIR",
+    "PROMOTE_ENABLE_AGE",
+    "PROMOTE_ENABLE_REL",
+    "PROMOTE_ENABLE_HEIGHT",
+    "PROMOTE_ENABLE_CHRONO",
+    "PROMOTE_ENABLE_DIET",
+    "PROMOTE_ENABLE_WORKLOC",
+    "PROMOTE_ENABLE_GROUPSIZE",
+    "PROMOTE_ENABLE_EXERCISE_TYPE",
+}
+
+PROMOTION_NUM_KEYS = {
+    "RR_PROMOTE_MIN_HAIR",
+    "RR_PROMOTE_MIN_AGE",
+    "RR_PROMOTE_MIN_REL",
+    "RR_PROMOTE_MIN_HEIGHT",
+    "RR_PROMOTE_MIN_CHRONO",
+    "RR_PROMOTE_MIN_DIET",
+    "RR_PROMOTE_MIN_WORKLOC",
+    "RR_PROMOTE_MIN_GROUPSIZE",
+    "RR_PROMOTE_MIN_EXERCISE_TYPE",
+}
+
+PROMOTION_ALIASES_BOOL = {
+    "HAIR": "PROMOTE_ENABLE_HAIR",
+    "AGE": "PROMOTE_ENABLE_AGE",
+    "REL": "PROMOTE_ENABLE_REL",
+    "HEIGHT": "PROMOTE_ENABLE_HEIGHT",
+    "CHRONO": "PROMOTE_ENABLE_CHRONO",
+    "DIET": "PROMOTE_ENABLE_DIET",
+    "WORKLOC": "PROMOTE_ENABLE_WORKLOC",
+    "GROUPSIZE": "PROMOTE_ENABLE_GROUPSIZE",
+    "EXERCISE_TYPE": "PROMOTE_ENABLE_EXERCISE_TYPE",
+}
+
+PROMOTION_ALIASES_NUM = {
+    "HAIR": "RR_PROMOTE_MIN_HAIR",
+    "AGE": "RR_PROMOTE_MIN_AGE",
+    "REL": "RR_PROMOTE_MIN_REL",
+    "HEIGHT": "RR_PROMOTE_MIN_HEIGHT",
+    "CHRONO": "RR_PROMOTE_MIN_CHRONO",
+    "DIET": "RR_PROMOTE_MIN_DIET",
+    "WORKLOC": "RR_PROMOTE_MIN_WORKLOC",
+    "GROUPSIZE": "RR_PROMOTE_MIN_GROUPSIZE",
+    "EXERCISE_TYPE": "RR_PROMOTE_MIN_EXERCISE_TYPE",
+}
+
+WHY_CARD_PATH = REDNA_HOME / "why_cards.jsonl"
+WHY_CARD_LOCK = threading.Lock()
+
+POLICY_DIR = REDNA_HOME / "policy"
+POLICY_HISTORY_PATH = POLICY_DIR / "promotion_history.jsonl"
+POLICY_LEARNED_PATH = POLICY_DIR / "learned_thresholds.json"
+POLICY_LOG_PATH = REDNA_LOG_DIR / "policy.log"
+POLICY_HISTORY_LOCK = threading.Lock()
+POLICY_LEARN_LOCK = threading.Lock()
+POLICY_LEARNER_ENABLED = os.getenv("POLICY_LEARNER_ENABLED", "true").strip().lower() in TRACE_TRUE
+try:
+    POLICY_LEARNER_WINDOW = int(os.getenv("POLICY_LEARNER_WINDOW", "100") or "100")
+except ValueError:
+    POLICY_LEARNER_WINDOW = 100
+
+LEARNED_THRESHOLDS: Dict[str, Dict[str, Any]] = {}
+
+ENABLE_CURIOSITY_LOOP = os.getenv("ENABLE_CURIOSITY_LOOP", "true").strip().lower() in TRACE_TRUE
+CURIOSITY_DEFAULT_TTL_DAYS = int(os.getenv("CURIOSITY_DEFAULT_TTL_DAYS", "30") or "30")
+CURIOSITY_COOLDOWN_SEC = int(os.getenv("CURIOSITY_COOLDOWN_SEC", str(7 * 24 * 3600)) or str(7 * 24 * 3600))
+CURIOSITY_MAX_OPEN_PER_USER = int(os.getenv("CURIOSITY_MAX_OPEN_PER_USER", "20") or "20")
+CURIOSITY_MAX_OPEN_PER_TRAIT = int(os.getenv("CURIOSITY_MAX_OPEN_PER_TRAIT", "2") or "2")
+CURIOSITY_NEAR_THRESHOLD_DELTA = float(os.getenv("CURIOSITY_NEAR_THRESHOLD_DELTA", "20") or "20")
+
+CURIOSITY_TRAIT_WEIGHTS: Dict[str, float] = {
+    "BasicDNA.Age": 0.9,
+    "BasicDNA.Gender": 0.9,
+    "BasicDNA.RelationshipStatus": 0.8,
+    "BehaviorDNA.Sleep.Chronotype": 0.75,
+    "BehaviorDNA.Exercise.Frequency": 0.7,
+    "BehaviorDNA.Work.Location": 0.7,
+    "PreferenceDNA.Social.GroupSize": 0.6,
+    "PreferenceDNA.Food.Cuisine": 0.5,
+    "PreferenceDNA.Food.Pizza": 0.3,
+    "PaDNA.EyeDNA.IrisColor": 0.4,
+    "_default": 0.5,
+}
+
+_curiosity_store = curiosity_store
+
+
+def _env_bool(name: str, default: bool = False) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() in ("1", "true", "yes", "on")
+
+
+def _env_float(name: str, default: float) -> float:
+    try:
+        return float(os.environ.get(name, default))
+    except Exception:
+        return default
+
+
+def _append_why_card_record(record: Dict[str, Any]) -> None:
+    """Persist a single Why-Card line item."""
+    try:
+        WHY_CARD_PATH.parent.mkdir(parents=True, exist_ok=True)
+        line = json.dumps(record, ensure_ascii=True)
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.debug("whycard_serialize_failed: %s", exc)
+        return
+
+    try:
+        with WHY_CARD_LOCK:
+            with WHY_CARD_PATH.open("a", encoding="utf-8") as handle:
+                handle.write(line + "\n")
+    except Exception as exc:  # pragma: no cover - filesystem guard
+        logger.debug("whycard_write_failed: %s", exc)
+
+
+def _store_promotion_why_card(
+    user_id: str,
+    trait_id: str,
+    rr_value: float,
+    value: Optional[Any],
+    why: Optional[str],
+    *,
+    source: str,
+    event_id: Optional[str],
+    source_text: Optional[str],
+) -> Dict[str, Any]:
+    """Create and persist a Why-Card, returning the stored payload."""
+    reason = (why or "").strip()
+    if not reason:
+        snippet = (source_text or "").strip()
+        if snippet:
+            snippet = re.sub(r"\s+", " ", snippet)
+            if len(snippet) > 160:
+                snippet = snippet[:157] + "..."
+            reason = f"Promotion threshold met (rr={rr_value:.1f}) from text: {snippet}"
+        else:
+            reason = f"Promotion threshold met (rr={rr_value:.1f})"
+
+    value_payload: Optional[str]
+    if value is None:
+        value_payload = None
+    elif isinstance(value, str):
+        value_payload = value
+    else:
+        value_payload = json.dumps(value)
+
+    card = {
+        "user_id": user_id,
+        "trait_id": trait_id,
+        "value": value_payload,
+        "rr": float(rr_value),
+        "why": reason,
+        "ts": datetime.now(timezone.utc).isoformat(),
+        "source": source,
+    }
+    if event_id:
+        card["event_id"] = event_id
+
+    try:
+        stack_log(
+            service="core",
+            level="INFO",
+            event="promotion_whycard",
+            msg=f"Why-Card stored for {trait_id}",
+            meta=card,
+        )
+    except Exception:  # pragma: no cover - logging guard
+        pass
+
+    _append_why_card_record(card)
+    return card
+
+
+def _load_why_cards(
+    *,
+    trait_id: Optional[str] = None,
+    user_id: Optional[str] = None,
+    limit: Optional[int] = None,
+) -> List[Dict[str, Any]]:
+    """Return recent Why-Cards filtered by trait/user."""
+    if limit is not None:
+        if limit <= 0:
+            return []
+        maxlen = limit
+    else:
+        maxlen = None
+
+    if not WHY_CARD_PATH.exists():
+        return []
+
+    matches: deque[Dict[str, Any]] = deque(maxlen=maxlen)
+    try:
+        with WHY_CARD_PATH.open("r", encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if trait_id and record.get("trait_id") != trait_id:
+                    continue
+                if user_id and record.get("user_id") != user_id:
+                    continue
+                matches.append(record)
+    except FileNotFoundError:
+        return []
+
+    items = list(matches)
+    items.reverse()
+    return items
+
+
+def _latest_why_card(trait_id: str, user_id: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    cards = _load_why_cards(trait_id=trait_id, user_id=user_id, limit=1)
+    return cards[0] if cards else None
+
+
+CURIOSITY_REASON_MULTIPLIERS = {
+    "contradiction": 1.5,
+    "novel_signal": 1.3,
+    "policy_borderline": 1.2,
+    "low_confidence": 1.0,
+    "value_missing": 0.9,
+    "schema_repair_low_conf": 0.8,
+}
+
+CURIOSITY_REASON_PRIORITY = [
+    "contradiction",
+    "value_missing",
+    "schema_repair_low_conf",
+    "policy_borderline",
+    "low_confidence",
+    "novel_signal",
+]
+
+
+def _curiosity_trait_weight(trait_id: str) -> float:
+    return float(CURIOSITY_TRAIT_WEIGHTS.get(trait_id, CURIOSITY_TRAIT_WEIGHTS.get("_default", 0.5)))
+
+
+def _curiosity_probability(rr_score: float) -> float:
+    try:
+        value = float(rr_score) / 1000.0
+    except (TypeError, ValueError):
+        value = 0.5
+    return max(0.0, min(1.0, value))
+
+
+def _curiosity_expected_information_gain(
+    rr_score: float,
+    learned_rr: Optional[float],
+    probability: Optional[float],
+    trait_id: str,
+    reason_code: str,
+) -> float:
+    uncertainty = 0.5
+    if probability is not None:
+        uncertainty = 1.0 - abs(probability - 0.5) * 2.0
+    elif learned_rr is not None:
+        try:
+            uncertainty = 1.0 - min(1.0, abs(rr_score - float(learned_rr)) / 100.0)
+        except (TypeError, ValueError):
+            uncertainty = 0.5
+
+    impact_weight = _curiosity_trait_weight(trait_id)
+    reason_mult = CURIOSITY_REASON_MULTIPLIERS.get(reason_code, 1.0)
+    ig = uncertainty * impact_weight * reason_mult
+    return max(0.0, min(1.0, ig))
+
+
+def _curiosity_question_for_trait(trait_id: str, reason_code: str) -> str:
+    simple_name = trait_id.split(".")[-1]
+    simple_name = simple_name.replace("_", " " ).replace("-", " " )
+    if reason_code == "contradiction":
+        return f"Quick clarification—what’s the right value for {simple_name}?"
+    if reason_code == "value_missing":
+        return f"Could you share more detail about your {simple_name}?"
+    if reason_code == "policy_borderline":
+        return f"You're close on {simple_name}. Could you tell us a bit more?"
+    if reason_code == "novel_signal":
+        return f"We spotted something new about {simple_name}. Want to confirm?"
+    return f"Quick check—could you clarify your {simple_name}?"
+
+
+def _curiosity_inputs_payload(
+    *,
+    rr_score: float,
+    base_rr: Optional[float],
+    learned_rr: Optional[float],
+    probability: Optional[float],
+    curiosity_score: Optional[float],
+    impact_weight: float,
+) -> Dict[str, Optional[float]]:
+    return {
+        "rr": rr_score,
+        "base_rr": base_rr,
+        "learned_rr": learned_rr,
+        "p": probability,
+        "curiosity": curiosity_score,
+        "impact_weight": impact_weight,
+    }
+
+
+def _curiosity_build_item_from_minimal(payload: Dict[str, Any]) -> CuriosityItem:
+    user_id = str(payload.get("user_id") or "").strip()
+    trait_id = str(payload.get("trait_id") or "").strip()
+    reason_code = str(payload.get("reason_code") or "").strip()
+    inputs_raw = payload.get("inputs")
+
+    if not user_id or not trait_id or not reason_code or not isinstance(inputs_raw, dict):
+        raise ValidationError(
+            [
+                {
+                    "loc": ("inputs",),
+                    "msg": "user_id, trait_id, reason_code, and inputs are required",
+                    "type": "value_error",
+                }
+            ],
+            CuriosityItem,
+        )
+
+    def _extract(key: str, *fallbacks: str) -> Optional[float]:
+        for candidate in (key, *fallbacks):
+            if candidate in inputs_raw:
+                value = inputs_raw[candidate]
+                if value is None:
+                    return None
+                try:
+                    return float(value)
+                except (TypeError, ValueError):
+                    return None
+        return None
+
+    rr_value = _extract("rr", "rr_score") or 0.0
+    base_rr = _extract("base_rr", "base_threshold")
+    learned_rr = _extract("learned_rr", "adjusted_threshold")
+    probability = _extract("p", "probability")
+    curiosity_score = _extract("curiosity", "curiosity_score")
+    impact_weight = _extract("impact_weight")
+    if impact_weight is None:
+        impact_weight = _curiosity_trait_weight(trait_id)
+
+    if probability is None:
+        probability = _curiosity_probability(rr_value)
+
+    expected_ig = payload.get("expected_information_gain")
+    if expected_ig is None:
+        expected_ig = _curiosity_expected_information_gain(
+            rr_value,
+            learned_rr,
+            probability,
+            trait_id,
+            reason_code,
+        )
+
+    created_at = payload.get("created_at")
+    if isinstance(created_at, str):
+        try:
+            created_at_dt = datetime.fromisoformat(created_at.replace("Z", "+00:00"))
+        except Exception:
+            created_at_dt = datetime.now(timezone.utc)
+    elif isinstance(created_at, datetime):
+        created_at_dt = created_at
+    else:
+        created_at_dt = datetime.now(timezone.utc)
+
+    expires_at = payload.get("expires_at")
+    if isinstance(expires_at, str):
+        try:
+            expires_at_dt = datetime.fromisoformat(expires_at.replace("Z", "+00:00"))
+        except Exception:
+            expires_at_dt = created_at_dt + timedelta(days=CURIOSITY_DEFAULT_TTL_DAYS)
+    elif isinstance(expires_at, datetime):
+        expires_at_dt = expires_at
+    else:
+        expires_at_dt = created_at_dt + timedelta(days=CURIOSITY_DEFAULT_TTL_DAYS)
+
+    inputs_struct = _curiosity_inputs_payload(
+        rr_score=rr_value,
+        base_rr=base_rr,
+        learned_rr=learned_rr,
+        probability=probability,
+        curiosity_score=curiosity_score,
+        impact_weight=impact_weight,
+    )
+
+    item_data = {
+        "id": payload.get("id") or f"curio_{uuid4().hex}",
+        "user_id": user_id,
+        "trait_id": trait_id,
+        "created_at": created_at_dt,
+        "expires_at": expires_at_dt,
+        "reason_code": reason_code,
+        "inputs": inputs_struct,
+        "suggested_question": payload.get("suggested_question")
+        or _curiosity_question_for_trait(trait_id, reason_code),
+        "expected_information_gain": float(expected_ig),
+        "cooldown_key": payload.get("cooldown_key") or f"{trait_id}/{reason_code}/v1",
+        "links": payload.get("links") or payload.get("related_traits"),
+        "status": payload.get("status") or "queued",
+        "asked_at": payload.get("asked_at"),
+        "answered_at": payload.get("answered_at"),
+        "answer_text": payload.get("answer_text"),
+        "dismissed_at": payload.get("dismissed_at"),
+        "dismiss_reason": payload.get("dismiss_reason"),
+    }
+
+    return CuriosityItem.model_validate(item_data)
+
+
+
+def _curiosity_consider_enqueue(
+    *,
+    user_id: str,
+    trait_id: str,
+    score_float: float,
+    base_rr: Optional[float],
+    effective_rr: Optional[float],
+    value: Optional[Any],
+    require_value: bool,
+    source_text: Optional[str],
+    event_id: Optional[str],
+    curiosity_value: Optional[float],
+    resolved: Dict[str, Any],
+    reason_hints: Optional[Dict[str, Any]] = None,
+) -> None:
+    if not ENABLE_CURIOSITY_LOOP:
+        return
+
+    reason_hints = reason_hints or {}
+    existing_value = None
+    existing_entry = resolved.get(trait_id)
+    if isinstance(existing_entry, dict):
+        existing_value = existing_entry.get("value") or existing_entry.get("resolved_value")
+
+    probability = _curiosity_probability(score_float)
+    flags: Dict[str, bool] = {}
+
+    if existing_value is not None and value is not None and existing_value != value:
+        flags["contradiction"] = True
+    if require_value and value is None:
+        flags["value_missing"] = True
+    if reason_hints.get("schema_repair_used") and probability < 0.7:
+        flags["schema_repair_low_conf"] = True
+    if effective_rr is not None and abs(score_float - effective_rr) <= CURIOSITY_NEAR_THRESHOLD_DELTA:
+        flags["policy_borderline"] = True
+    if 0.4 <= probability <= 0.6:
+        flags["low_confidence"] = True
+    if reason_hints.get("novel_signal") or (trait_id not in resolved and value is not None):
+        flags["novel_signal"] = True
+
+    reason_code: Optional[str] = None
+    for candidate in CURIOSITY_REASON_PRIORITY:
+        if flags.get(candidate):
+            reason_code = candidate
+            break
+
+    if reason_code is None:
+        return
+
+    curiosity_norm = _policy_curiosity_norm(curiosity_value)
+    impact_weight = _curiosity_trait_weight(trait_id)
+    expected_information_gain = _curiosity_expected_information_gain(
+        score_float,
+        effective_rr,
+        probability,
+        trait_id,
+        reason_code,
+    )
+
+    inputs = _curiosity_inputs_payload(
+        rr_score=score_float,
+        base_rr=base_rr,
+        learned_rr=effective_rr,
+        probability=probability,
+        curiosity_score=curiosity_norm,
+        impact_weight=impact_weight,
+    )
+
+    now = datetime.now(timezone.utc)
+    item = CuriosityItem(
+        id=f"curio_{uuid4().hex}",
+        user_id=user_id,
+        trait_id=trait_id,
+        created_at=now,
+        expires_at=now + timedelta(days=CURIOSITY_DEFAULT_TTL_DAYS),
+        reason_code=reason_code,  # type: ignore[arg-type]
+        inputs=inputs,
+        suggested_question=_curiosity_question_for_trait(trait_id, reason_code),
+        expected_information_gain=expected_information_gain,
+        cooldown_key=f"{trait_id}/{reason_code}/v1",
+        links=reason_hints.get("related_traits"),
+    )
+
+    stored = _curiosity_store.enqueue(
+        item,
+        max_open_per_user=CURIOSITY_MAX_OPEN_PER_USER,
+        max_open_per_trait=CURIOSITY_MAX_OPEN_PER_TRAIT,
+        cooldown_sec=CURIOSITY_COOLDOWN_SEC,
+    )
+    if stored:
+        try:
+            stack_log(
+                service="core",
+                level="INFO",
+                event="curiosity_enqueue",
+                msg=f"Enqueued curiosity for {trait_id}",
+                meta={"user_id": user_id, "trait_id": trait_id, "reason_code": reason_code, "id": stored.id},
+            )
+        except Exception:
+            pass
+
+def _ensure_parent(path: Path) -> None:
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+    except Exception:
+        pass
+
+
+def _append_jsonl(path: Path, record: Dict[str, Any], lock: threading.Lock) -> None:
+    try:
+        line = json.dumps(record, ensure_ascii=True)
+    except Exception as exc:  # pragma: no cover - defensive
+        logger.debug("policy_jsonl_serialize_failed: %s", exc)
+        return
+
+    _ensure_parent(path)
+
+    try:
+        with lock:
+            with path.open("a", encoding="utf-8") as handle:
+                handle.write(line + "\n")
+    except Exception as exc:  # pragma: no cover
+        logger.debug("policy_jsonl_append_failed: %s", exc)
+
+
+def _append_policy_log(message: str) -> None:
+    _ensure_parent(POLICY_LOG_PATH)
+    try:
+        with POLICY_HISTORY_LOCK:
+            with POLICY_LOG_PATH.open("a", encoding="utf-8") as handle:
+                handle.write(message + "\n")
+    except Exception as exc:  # pragma: no cover
+        logger.debug("policy_log_write_failed: %s", exc)
+
+
+def _round_to_nearest(value: float, step: float = 5.0) -> float:
+    if step <= 0:
+        return value
+    return round(value / step) * step
+
+
+def _policy_curiosity_norm(curiosity: Optional[float]) -> float:
+    if curiosity is None:
+        return 0.0
+    try:
+        value = float(curiosity)
+    except (TypeError, ValueError):
+        return 0.0
+    if value > 1.0:
+        value = value / 100.0
+    return max(0.0, min(1.0, value))
+
+
+def _record_policy_decision(
+    *,
+    trait_id: str,
+    user_id: str,
+    decision: str,
+    rr: Optional[float],
+    base_rr: Optional[float],
+    effective_rr: Optional[float],
+    curiosity: Optional[float],
+    value: Optional[Any],
+    why: Optional[str],
+    reason: Optional[str],
+    source: str,
+    event_id: Optional[str],
+) -> None:
+    ts_iso = iso_now()
+    try:
+        value_payload = value if isinstance(value, (str, type(None))) else json.dumps(value)
+    except Exception:
+        value_payload = str(value)
+
+    record = {
+        "ts": ts_iso,
+        "user_id": user_id,
+        "trait_id": trait_id,
+        "decision": decision,
+        "rr": rr,
+        "base_rr": base_rr,
+        "effective_rr": effective_rr,
+        "curiosity": curiosity,
+        "value": value_payload,
+        "why": why,
+        "reason": reason,
+        "source": source,
+        "event_id": event_id,
+    }
+    _append_jsonl(POLICY_HISTORY_PATH, record, POLICY_HISTORY_LOCK)
+
+    try:
+        rr_text = f"{rr:.1f}" if isinstance(rr, (int, float)) else "?"
+    except Exception:
+        rr_text = "?"
+    base_text = f"{base_rr:.1f}" if isinstance(base_rr, (int, float)) else "?"
+    eff_text = f"{effective_rr:.1f}" if isinstance(effective_rr, (int, float)) else base_text
+    curiosity_norm = _policy_curiosity_norm(curiosity)
+    log_line = (
+        f"policy_decision trait={trait_id} rr={rr_text} base={base_text} "
+        f"effective={eff_text} curiosity={curiosity_norm:.2f} decision={decision}"
+    )
+    if reason:
+        log_line += f" reason={reason}"
+    _append_policy_log(log_line)
+
+
+def _load_learned_thresholds_from_disk() -> None:
+    global LEARNED_THRESHOLDS
+    if not POLICY_LEARNED_PATH.exists():
+        LEARNED_THRESHOLDS = {}
+        return
+    try:
+        payload = json.loads(POLICY_LEARNED_PATH.read_text(encoding="utf-8"))
+        if isinstance(payload, dict):
+            LEARNED_THRESHOLDS = payload
+        else:
+            LEARNED_THRESHOLDS = {}
+    except Exception:
+        LEARNED_THRESHOLDS = {}
+
+
+def _save_learned_thresholds_to_disk() -> None:
+    payload = LEARNED_THRESHOLDS
+    try:
+        _ensure_parent(POLICY_LEARNED_PATH)
+        tmp_path = POLICY_LEARNED_PATH.with_suffix(".tmp")
+        tmp_path.write_text(json.dumps(payload, indent=2, ensure_ascii=True), encoding="utf-8")
+        tmp_path.replace(POLICY_LEARNED_PATH)
+    except Exception as exc:  # pragma: no cover
+        logger.debug("policy_learned_save_failed: %s", exc)
+
+
+def _effective_rr_threshold(trait_id: str, base_rr: Optional[float]) -> Optional[float]:
+    """
+    Calculate effective RR threshold as max(base_rr, learned_rr).
+
+    Phase 7: Ensures learned thresholds can only RAISE the bar, not lower it.
+    This prevents learned values from accidentally allowing low-quality promotions.
+
+    Returns:
+        max(base_rr, learned_rr) if both exist
+        learned_rr if no base
+        base_rr if no learned or learner disabled
+    """
+    if not POLICY_LEARNER_ENABLED:
+        return base_rr
+
+    entry = LEARNED_THRESHOLDS.get(trait_id)
+    if not isinstance(entry, dict):
+        return base_rr
+
+    learned_rr = entry.get("learned_rr")
+    try:
+        learned_rr_val = float(learned_rr)
+    except (TypeError, ValueError):
+        return base_rr
+
+    # Phase 7: effective_rr = max(base_rr, learned_rr)
+    if base_rr is None:
+        return learned_rr_val
+
+    return max(base_rr, learned_rr_val)
+
+
+def _policy_run_learner(max_samples: int) -> Dict[str, Dict[str, Any]]:
+    history: Dict[str, List[Dict[str, Any]]] = {}
+    if POLICY_HISTORY_PATH.exists():
+        try:
+            with POLICY_HISTORY_PATH.open("r", encoding="utf-8") as handle:
+                for line in handle:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        record = json.loads(line)
+                    except json.JSONDecodeError:
+                        continue
+                    trait = record.get("trait_id")
+                    if not isinstance(trait, str):
+                        continue
+                    bucket = history.setdefault(trait, [])
+                    bucket.append(record)
+                    if len(bucket) > max_samples:
+                        del bucket[0]
+        except Exception as exc:  # pragma: no cover
+            logger.debug("policy_history_read_failed: %s", exc)
+
+    base_rules = build_promote_rules_from_env()
+    base_thresholds = {
+        trait: float(policy.get("rr_min", 0.0))
+        for trait, policy in base_rules.items()
+        if isinstance(policy, dict)
+    }
+
+    updates: Dict[str, Dict[str, Any]] = {}
+    for trait_id, records in history.items():
+        if trait_id not in base_thresholds:
+            continue
+        base_rr = base_thresholds[trait_id]
+        learned_rr = float(base_rr)
+        samples = 0
+        last_ts = None
+        last_alpha = None
+        for record in records:
+            decision = (record.get("decision") or "").lower()
+            try:
+                rr_observed = float(record.get("rr", learned_rr))
+            except (TypeError, ValueError):
+                rr_observed = learned_rr
+            curiosity_norm = _policy_curiosity_norm(record.get("curiosity"))
+
+            alpha = 0.05 + 0.10 * curiosity_norm
+            alpha = max(0.02, min(0.15, alpha))
+
+            if decision == "promote":
+                learned_rr = (1 - alpha) * learned_rr + alpha * rr_observed
+            elif decision == "skip":
+                if rr_observed >= base_rr:
+                    learned_rr = min(base_rr + 100.0, learned_rr + alpha * 0.5 * (rr_observed - base_rr))
+            samples += 1
+            last_ts = record.get("ts") or last_ts
+            last_alpha = alpha
+
+        lower_bound = base_rr - 100.0
+        upper_bound = base_rr + 100.0
+        learned_rr = max(lower_bound, min(upper_bound, learned_rr))
+        learned_rr = _round_to_nearest(learned_rr, 5.0)
+        updates[trait_id] = {
+            "trait_id": trait_id,
+            "base_rr": base_rr,
+            "learned_rr": learned_rr,
+            "sample_size": samples,
+            "last_update": last_ts,
+            "last_alpha": last_alpha,
+        }
+
+    return updates
+
+
+def _policy_skip_decision(
+    *,
+    trait_id: str,
+    user_id: str,
+    rr: Optional[float],
+    base_rr: Optional[float],
+    effective_rr: Optional[float],
+    curiosity: Optional[float],
+    value: Optional[Any],
+    why: Optional[str],
+    reason: Optional[str],
+    source: str,
+    event_id: Optional[str],
+) -> None:
+    _record_policy_decision(
+        trait_id=trait_id,
+        user_id=user_id,
+        decision="skip",
+        rr=rr,
+        base_rr=base_rr,
+        effective_rr=effective_rr,
+        curiosity=curiosity,
+        value=value,
+        why=why,
+        reason=reason,
+        source=source,
+        event_id=event_id,
+    )
+
+
+def build_promote_rules_from_env() -> Dict[str, Dict[str, Any]]:
+    rules: Dict[str, Dict[str, Any]] = {
+        # Tier 1: direct facts (explicit values required)
+        "PaDNA.EyeDNA.IrisColor": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_EYE", 500.0),
+            "require_value": True,
+        },
+        "BasicDNA.Gender": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_GENDER", 500.0),
+            "require_value": True,
+        },
+        "BasicDNA.Occupation": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_OCCUPATION", 500.0),
+            "require_value": True,
+        },
+        # Tier 1.5: Exercise pair (frequency piggybacks on outdoor)
+        "BehaviorDNA.Exercise.Outdoor": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_BEHAV_OUTDOOR", 800.0),
+            "require_value": True,
+        },
+        "BehaviorDNA.Exercise.Frequency": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_BEHAV_FREQ", 800.0),
+            "require_value": True,
+        },
+        # Tier 2: behavioral traits
+        "BehaviorDNA.Sleep.Duration": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_SLEEP_DUR", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Wellness.ColdTherapy": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_COLDTHERAPY", 800.0),
+            "require_value": True,
+        },
+        "BehaviorDNA.Fitness.Level": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_FITNESS", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Social.Style": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_SOCIAL", 800.0),
+            "require_value": True,
+        },
+        "BehaviorDNA.Leisure.Indoor": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_LEISURE", 800.0),
+            "require_value": True,
+        },
+        "BehaviorDNA.Schedule.WorkHours": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_WORKHOURS", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Organization.Level": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_ORGANIZATION", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Communication.ResponseStyle": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_COMMSTYLE", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Routine.Morning": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_ROUTINE", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Health.CaffeineIntake": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_CAFFEINE", 800.0),
+            "require_value": False,
+        },
+        "BehaviorDNA.Learning.Style": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_LEARNING", 800.0),
+            "require_value": True,
+        },
+        # Tier 3: Preferences
+        "PreferenceDNA.Food.Pizza": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_PIZZA", 800.0),
+            "require_value": True,
+        },
+        "PreferenceDNA.Food.AsianCuisine": {
+            "rr_min": _env_float("RR_PROMOTE_MIN_ASIAN", 800.0),
+            "require_value": True,
+        },
+    }
+
+    # Tier-1 env-gated additions
+    if _env_bool("PROMOTE_ENABLE_HAIR", False):
+        rules["PaDNA.HairDNA.Color.Natural"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_HAIR", 500.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_AGE", False):
+        rules["BasicDNA.Age"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_AGE", 500.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_REL", False):
+        rules["BasicDNA.RelationshipStatus"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_REL", 540.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_HEIGHT", False):
+        rules["PaDNA.BodyDNA.Height"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_HEIGHT", 650.0),
+            "require_value": True,
+        }
+
+    # Tier-2 env-gated additions
+    if _env_bool("PROMOTE_ENABLE_CHRONO", False):
+        rules["BehaviorDNA.Sleep.Chronotype"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_CHRONO", 780.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_DIET", False):
+        rules["BehaviorDNA.Health.Diet"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_DIET", 780.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_WORKLOC", False):
+        rules["BehaviorDNA.Work.Location"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_WORKLOC", 800.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_GROUPSIZE", False):
+        rules["PreferenceDNA.Social.GroupSize"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_GROUPSIZE", 800.0),
+            "require_value": True,
+        }
+    if _env_bool("PROMOTE_ENABLE_EXERCISE_TYPE", False):
+        rules["BehaviorDNA.Exercise.Type"] = {
+            "rr_min": _env_float("RR_PROMOTE_MIN_EXERCISE_TYPE", 800.0),
+            "require_value": True,
+        }
+
+    return rules
+
+
+def _snapshot_active_rules(rules: Dict[str, Dict[str, Any]]) -> Dict[str, Dict[str, Any]]:
+    return {
+        key: {
+            "require_value": bool(policy.get("require_value")),
+            "rr_min": float(policy.get("rr_min", 0.0)),
+        }
+        for key, policy in rules.items()
+    }
+
+
+def _load_promotions_from_env_and_snapshot() -> None:
+    global PROMOTE_RULES, PROMOTE_RULES_ACTIVE
+    PROMOTE_RULES = build_promote_rules_from_env()
+    PROMOTE_RULES_ACTIVE = _snapshot_active_rules(PROMOTE_RULES)
+    try:
+        stack_log(
+            service="core",
+            level="INFO",
+            event="promotion_policy_loaded",
+            msg="Active promotions",
+            meta={"count": len(PROMOTE_RULES_ACTIVE), "traits": list(PROMOTE_RULES_ACTIVE.keys())},
+        )
+    except Exception as exc:  # pragma: no cover - logging fallback
+        logger.debug("promotion_policy_loaded log failed: %s", exc)
+
+
+_load_promotions_from_env_and_snapshot()
+_load_learned_thresholds_from_disk()
 
 ASKS_DATA_ROOT = Path(__file__).resolve().parents[1] / "data" / "_asks"
 NUDGES_DATA_ROOT = Path(__file__).resolve().parents[1] / "data" / "_nudges"
@@ -188,6 +1182,30 @@ def _trace_span(trace_id: Optional[str], span: str, phase: str, meta: Optional[D
             "phase": phase,
             "meta": meta or {},
         }
+    )
+
+
+def _health_timeout_env(name: str, default_ms: int) -> float:
+    raw = os.getenv(name)
+    try:
+        value = int(raw) if raw is not None else default_ms
+    except (TypeError, ValueError):
+        value = default_ms
+    return max(1, value) / 1000.0
+
+
+def _maybe_log_health_degraded(cause: str, base_url: Optional[str]) -> None:
+    global LAST_HEALTH_DEGRADED_LOG_TS
+    now = time.time()
+    if LAST_HEALTH_DEGRADED_LOG_TS is not None and now - LAST_HEALTH_DEGRADED_LOG_TS < HEALTH_DEGRADED_LOG_INTERVAL:
+        return
+    LAST_HEALTH_DEGRADED_LOG_TS = now
+    stack_log(
+        "core",
+        "WARN",
+        "health_degraded",
+        "UCNRR probe degraded",
+        {"cause": cause, "ucnrr_base": base_url},
     )
 
 
@@ -659,103 +1677,705 @@ def _curiosity_flag_on() -> bool:
     value = os.getenv("CORE_CURIOSITY_ENABLED", "").strip().lower()
     return value in _TRUTHY
 
+
+debug_router = APIRouter()
+
+
+@debug_router.get("/core/api/debug/promotion_state")
+async def debug_promotion_state():
+    out: Dict[str, Dict[str, Any]] = {}
+    for key, policy in PROMOTE_RULES_ACTIVE.items():
+        out[key] = {
+            "require_value": bool(policy.get("require_value")),
+            "rr_min": float(policy.get("rr_min", 0.0)),
+        }
+    return {"enabled_policies": out}
+
+
+@debug_router.post("/core/api/debug/reload_promotions")
+async def debug_reload_promotions():
+    _load_promotions_from_env_and_snapshot()
+    return {"reloaded": True, "enabled_policies": PROMOTE_RULES_ACTIVE}
+
+
+@debug_router.get("/core/api/debug/envvars")
+async def debug_envvars():
+    keys = [k for k in os.environ.keys() if k.startswith(("PROMOTE_ENABLE_", "RR_PROMOTE_MIN_"))]
+    return {k: os.environ.get(k) for k in sorted(keys)}
+
+
+@debug_router.post("/core/api/debug/set_toggle")
+async def debug_set_toggle(payload: Dict[str, Any]):
+    if not isinstance(payload, dict):
+        raise HTTPException(status_code=400, detail="JSON body required.")
+
+    updated: Dict[str, str] = {}
+
+    if "key" in payload:
+        key = str(payload.get("key") or "").strip().upper()
+        if not key:
+            raise HTTPException(status_code=400, detail="key is required.")
+        if key.startswith("PROMOTE_ENABLE_"):
+            raw_value = payload.get("value")
+            if raw_value is None:
+                raise HTTPException(status_code=400, detail="value required for toggle keys.")
+            if isinstance(raw_value, bool):
+                bool_value = raw_value
+            else:
+                bool_value = str(raw_value).strip().lower() in TRACE_TRUE
+            str_value = "true" if bool_value else "false"
+            os.environ[key] = str_value
+            updated[key] = str_value
+        elif key.startswith("RR_PROMOTE_MIN_"):
+            raw_value = payload.get("value")
+            try:
+                num_value = float(raw_value)
+            except (TypeError, ValueError):
+                raise HTTPException(status_code=400, detail="value must be a number for RR_PROMOTE_MIN_ keys.")
+            os.environ[key] = str(num_value)
+            updated[key] = str(num_value)
+        else:
+            raise HTTPException(status_code=400, detail="Only PROMOTE_ENABLE_* or RR_PROMOTE_MIN_* keys are allowed.")
+    elif "trait" in payload:
+        trait_alias = str(payload.get("trait") or "").strip().upper()
+        if not trait_alias:
+            raise HTTPException(status_code=400, detail="trait is required.")
+
+        bool_key = PROMOTION_ALIASES_BOOL.get(trait_alias)
+        num_key = PROMOTION_ALIASES_NUM.get(trait_alias)
+        if not bool_key:
+            raise HTTPException(status_code=400, detail=f"Trait '{trait_alias}' is not allowlisted.")
+
+        raw_enable = payload.get("enable", True)
+        if isinstance(raw_enable, bool):
+            enable_value = raw_enable
+        else:
+            enable_value = str(raw_enable).strip().lower() in TRACE_TRUE
+        str_enable = "true" if enable_value else "false"
+        os.environ[bool_key] = str_enable
+        updated[bool_key] = str_enable
+
+        if "rr_min" in payload and payload["rr_min"] is not None:
+            if not num_key:
+                raise HTTPException(status_code=400, detail=f"No RR threshold key registered for trait '{trait_alias}'.")
+            try:
+                rr_value = float(payload["rr_min"])
+            except (TypeError, ValueError):
+                raise HTTPException(status_code=400, detail="rr_min must be numeric.")
+            os.environ[num_key] = str(rr_value)
+            updated[num_key] = str(rr_value)
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail="Pass either {'key','value'} or {'trait','enable','rr_min?'} payload.",
+        )
+
+    if updated:
+        _load_promotions_from_env_and_snapshot()
+        try:
+            stack_log(
+                service="core",
+                level="INFO",
+                event="promotion_toggle_set",
+                msg="Promotion toggles updated",
+                meta={"updated": updated, "enabled_traits": list(PROMOTE_RULES_ACTIVE.keys())},
+            )
+        except Exception:  # pragma: no cover - logging guard
+            pass
+
+    env_snapshot = {
+        key: os.environ.get(key)
+        for key in sorted(k for k in os.environ.keys() if k.startswith(("PROMOTE_ENABLE_", "RR_PROMOTE_MIN_")))
+    }
+
+    return {
+        "updated": updated,
+        "envvars": env_snapshot,
+        "enabled_policies": PROMOTE_RULES_ACTIVE,
+    }
+
+
+@debug_router.get("/core/api/debug/resolver")
+async def debug_resolver():
+    """
+    Debug endpoint: Shows effective UCNRR resolver configuration.
+    Returns the UCNRR base URL and whether UCNRR is enabled.
+    """
+    ucnrr_base = os.getenv("UCNRR_BASE", "http://127.0.0.1:8011").rstrip("/")
+    ucnrr_base_url = os.getenv("UCNRR_BASE_URL", ucnrr_base).rstrip("/")
+
+    # Check if UCNRR is reachable
+    ucnrr_reachable = False
+    ucnrr_status = {}
+    try:
+        import requests
+        resp = requests.get(f"{ucnrr_base}/health", timeout=2)
+        if resp.ok:
+            ucnrr_reachable = True
+            ucnrr_status = resp.json()
+    except Exception as e:
+        ucnrr_status = {"error": str(e)}
+
+    return {
+        "ucnrr_base": ucnrr_base,
+        "ucnrr_base_url": ucnrr_base_url,
+        "env_vars": {
+            "UCNRR_BASE": os.getenv("UCNRR_BASE"),
+            "UCNRR_BASE_URL": os.getenv("UCNRR_BASE_URL"),
+        },
+        "ucnrr_reachable": ucnrr_reachable,
+        "ucnrr_status": ucnrr_status,
+    }
+
+
+@debug_router.get("/core/api/debug/thresholds")
+async def debug_thresholds():
+    with POLICY_LEARN_LOCK:
+        snapshot = json.loads(json.dumps(LEARNED_THRESHOLDS))
+    return {
+        "enabled": POLICY_LEARNER_ENABLED,
+        "learned": snapshot,
+    }
+
 def build_app() -> FastAPI:
     app = FastAPI(title="ReDNA Core Demo", version="2.0")
+    app.include_router(debug_router)
+
+    # --- legacy ingestion alias for backward compatibility ---
+    @app.post("/ingest_text")
+    async def ingest_text_compat(request: Request):
+        """Legacy alias for /core/api/ingest_evidence. Allows older clients still calling /ingest_text to work."""
+        try:
+            data = await request.json()
+        except Exception:
+            return JSONResponse({"error": "Invalid JSON"}, status_code=400)
+
+        user_id = data.get("user_id")
+        text = data.get("text") or data.get("message")
+
+        if not user_id or not text:
+            return JSONResponse({"error": "Missing user_id or text"}, status_code=400)
+
+        payload = {"user_id": user_id, "text": text, "source": data.get("source") or "legacy_ui"}
+        return ingest_text_endpoint(payload)
+    # --- end legacy ingestion alias ---
+
+    def _resolve_why_cards(trait_id: str, user_id: Optional[str], limit: int) -> Any:
+        cards = _load_why_cards(trait_id=trait_id, user_id=user_id, limit=limit)
+        if not cards:
+            raise HTTPException(status_code=404, detail="WHY_CARD_NOT_FOUND")
+        if limit == 1:
+            return cards[0]
+        return {"trait_id": trait_id, "items": cards}
+
+    @app.get("/core/api/traits/{trait_id}/why")
+    def get_trait_whycard(
+        trait_id: str,
+        user_id: Optional[str] = Query(None, description="Filter by user id for the requested Why-Card."),
+        limit: int = Query(1, ge=1, le=100),
+    ):
+        return _resolve_why_cards(trait_id, user_id, limit)
+
+    @app.get("/why-cards/{user_id}/{trait_id}")
+    def get_trait_whycard_alias(user_id: str, trait_id: str, limit: int = Query(1, ge=1, le=100)):
+        return _resolve_why_cards(trait_id, user_id, limit)
+
+    @app.get("/core/api/whycards")
+    def list_whycards(
+        user_id: Optional[str] = Query(None),
+        trait_id: Optional[str] = Query(None),
+        limit: int = Query(20, ge=1, le=200),
+    ):
+        cards = _load_why_cards(user_id=user_id, trait_id=trait_id, limit=limit)
+        return {"items": cards, "count": len(cards)}
+
+    @app.get("/core/api/policies")
+    def get_policies():
+        base_map = {
+            trait_id: float(policy.get("rr_min", 0.0))
+            for trait_id, policy in PROMOTE_RULES_ACTIVE.items()
+            if isinstance(policy, dict)
+        }
+        with POLICY_LEARN_LOCK:
+            learned_snapshot = json.loads(json.dumps(LEARNED_THRESHOLDS))
+
+        traits = set(base_map) | set(learned_snapshot)
+        response: Dict[str, Dict[str, Any]] = {}
+        for trait in sorted(traits):
+            entry = learned_snapshot.get(trait) or {}
+            base_rr = base_map.get(trait) or entry.get("base_rr")
+            try:
+                base_rr_val = float(base_rr) if base_rr is not None else None
+            except (TypeError, ValueError):
+                base_rr_val = None
+
+            learned_rr = entry.get("learned_rr")
+            try:
+                learned_rr_val = float(learned_rr) if learned_rr is not None else None
+            except (TypeError, ValueError):
+                learned_rr_val = None
+
+            response[trait] = {
+                "base_rr": base_rr_val,
+                "learned_rr": learned_rr_val,
+                "sample_size": entry.get("sample_size"),
+                "last_update": entry.get("last_update"),
+                "last_alpha": entry.get("last_alpha"),
+            }
+
+        return {
+            "policies": response,
+            "learner_enabled": POLICY_LEARNER_ENABLED,
+            "window": POLICY_LEARNER_WINDOW,
+        }
+
+    @app.get("/core/api/debug/normalize")
+    def debug_normalize(trait_id: str, text: str):
+        """
+        Debug endpoint to test normalize_value function.
+        Returns the normalized value for a given trait_id and text.
+        """
+        from ReDNACoreDemo.core.ingest.value_normalizer import normalize_value
+
+        try:
+            value = normalize_value(trait_id, text)
+            return {
+                "trait_id": trait_id,
+                "text_length": len(text),
+                "text_sample": text[:100] if len(text) > 100 else text,
+                "normalized_value": value,
+                "value_type": type(value).__name__ if value is not None else "NoneType"
+            }
+        except Exception as e:
+            return {
+                "trait_id": trait_id,
+                "text_length": len(text),
+                "error": str(e),
+                "error_type": type(e).__name__
+            }
+
+    @app.post("/core/api/learn_thresholds")
+    def learn_thresholds():
+        updates = _policy_run_learner(POLICY_LEARNER_WINDOW)
+        applied: Dict[str, Dict[str, Any]] = {}
+        with POLICY_LEARN_LOCK:
+            for trait_id, data in updates.items():
+                previous = LEARNED_THRESHOLDS.get(trait_id, {})
+                old_value = previous.get("learned_rr")
+                LEARNED_THRESHOLDS[trait_id] = data
+                applied[trait_id] = {
+                    "old": old_value,
+                    "new": data.get("learned_rr"),
+                    "sample_size": data.get("sample_size"),
+                    "base_rr": data.get("base_rr"),
+                    "last_alpha": data.get("last_alpha"),
+                    "last_update": data.get("last_update"),
+                }
+                try:
+                    stack_log(
+                        service="core",
+                        level="INFO",
+                        event="policy_learn_update",
+                        msg=f"threshold update for {trait_id}",
+                        meta={
+                            "trait_id": trait_id,
+                            "old": old_value,
+                            "new": data.get("learned_rr"),
+                            "last_alpha": data.get("last_alpha"),
+                            "samples": data.get("sample_size"),
+                        },
+                    )
+                except Exception:  # pragma: no cover
+                    pass
+            _save_learned_thresholds_to_disk()
+
+        return {
+            "learner_enabled": POLICY_LEARNER_ENABLED,
+            "window": POLICY_LEARNER_WINDOW,
+            "updated": applied,
+        }
+
+    @app.get("/core/api/policies/learned")
+    def get_learned_thresholds(trait_id: Optional[str] = None):
+        """
+        Get learned thresholds for all traits or a specific trait.
+        Returns the current learned threshold state.
+        """
+        with POLICY_LEARN_LOCK:
+            learned_snapshot = json.loads(json.dumps(LEARNED_THRESHOLDS))
+
+        if trait_id:
+            entry = learned_snapshot.get(trait_id)
+            if not entry:
+                return JSONResponse(
+                    status_code=404,
+                    content={"error": "NOT_FOUND", "message": f"No learned threshold for {trait_id}"}
+                )
+            return {
+                "trait_id": trait_id,
+                "learned_rr": entry.get("learned_rr"),
+                "base_rr": entry.get("base_rr"),
+                "sample_size": entry.get("sample_size"),
+                "last_update": entry.get("last_update"),
+                "last_alpha": entry.get("last_alpha"),
+            }
+
+        return {
+            "learned_thresholds": learned_snapshot,
+            "count": len(learned_snapshot)
+        }
+
+    @app.post("/core/api/policies/learned")
+    def set_learned_threshold(payload: Dict[str, Any]):
+        """
+        Set or update learned threshold for a specific trait.
+        Payload: { "trait_id": str, "learned_rr": float, optional: "base_rr", "sample_size", "last_alpha" }
+        """
+        trait_id = payload.get("trait_id")
+        learned_rr = payload.get("learned_rr")
+
+        if not trait_id or learned_rr is None:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "BAD_REQUEST", "message": "trait_id and learned_rr are required"}
+            )
+
+        try:
+            learned_rr_val = float(learned_rr)
+        except (TypeError, ValueError):
+            return JSONResponse(
+                status_code=400,
+                content={"error": "BAD_REQUEST", "message": "learned_rr must be a number"}
+            )
+
+        with POLICY_LEARN_LOCK:
+            previous = LEARNED_THRESHOLDS.get(trait_id, {})
+            old_learned_rr = previous.get("learned_rr")
+
+            LEARNED_THRESHOLDS[trait_id] = {
+                "learned_rr": learned_rr_val,
+                "base_rr": payload.get("base_rr", previous.get("base_rr")),
+                "sample_size": payload.get("sample_size", previous.get("sample_size", 0)),
+                "last_alpha": payload.get("last_alpha", previous.get("last_alpha")),
+                "last_update": datetime.now(timezone.utc).isoformat(),
+            }
+            _save_learned_thresholds_to_disk()
+
+        stack_log(
+            service="core",
+            level="INFO",
+            event="policy_manual_update",
+            msg=f"Manual threshold update for {trait_id}",
+            meta={
+                "trait_id": trait_id,
+                "old": old_learned_rr,
+                "new": learned_rr_val,
+            },
+        )
+
+        return {
+            "trait_id": trait_id,
+            "old_learned_rr": old_learned_rr,
+            "new_learned_rr": learned_rr_val,
+            "updated_at": LEARNED_THRESHOLDS[trait_id]["last_update"]
+        }
+
+    @app.delete("/core/api/policies/learned")
+    def delete_learned_threshold(trait_id: Optional[str] = None):
+        """
+        Clear learned threshold(s).
+        If trait_id provided, clears that specific trait.
+        If no trait_id, clears all learned thresholds.
+        """
+        with POLICY_LEARN_LOCK:
+            if trait_id:
+                if trait_id not in LEARNED_THRESHOLDS:
+                    return JSONResponse(
+                        status_code=404,
+                        content={"error": "NOT_FOUND", "message": f"No learned threshold for {trait_id}"}
+                    )
+                old_entry = LEARNED_THRESHOLDS.pop(trait_id)
+                _save_learned_thresholds_to_disk()
+
+                stack_log(
+                    service="core",
+                    level="INFO",
+                    event="policy_clear",
+                    msg=f"Cleared learned threshold for {trait_id}",
+                    meta={"trait_id": trait_id, "old_learned_rr": old_entry.get("learned_rr")},
+                )
+
+                return {
+                    "cleared": trait_id,
+                    "old_learned_rr": old_entry.get("learned_rr")
+                }
+            else:
+                count = len(LEARNED_THRESHOLDS)
+                LEARNED_THRESHOLDS.clear()
+                _save_learned_thresholds_to_disk()
+
+                stack_log(
+                    service="core",
+                    level="INFO",
+                    event="policy_clear_all",
+                    msg="Cleared all learned thresholds",
+                    meta={"count": count},
+                )
+
+                return {
+                    "cleared": "all",
+                    "count": count
+                }
+
+    @app.post("/core/api/policies/learner")
+    def configure_learner(payload: Dict[str, Any]):
+        """
+        Configure the policy learner.
+        Payload: { "enabled": bool, "window": int }
+        """
+        global POLICY_LEARNER_ENABLED, POLICY_LEARNER_WINDOW
+
+        enabled = payload.get("enabled")
+        window = payload.get("window")
+
+        if enabled is not None:
+            POLICY_LEARNER_ENABLED = bool(enabled)
+
+        if window is not None:
+            try:
+                POLICY_LEARNER_WINDOW = int(window)
+            except (TypeError, ValueError):
+                return JSONResponse(
+                    status_code=400,
+                    content={"error": "BAD_REQUEST", "message": "window must be an integer"}
+                )
+
+        stack_log(
+            service="core",
+            level="INFO",
+            event="policy_learner_config",
+            msg="Policy learner configuration updated",
+            meta={
+                "enabled": POLICY_LEARNER_ENABLED,
+                "window": POLICY_LEARNER_WINDOW,
+            },
+        )
+
+        return {
+            "learner_enabled": POLICY_LEARNER_ENABLED,
+            "window": POLICY_LEARNER_WINDOW,
+        }
+
+    @app.post("/core/api/curiosity/enqueue")
+    def curiosity_enqueue(payload: Dict[str, Any]) -> Any:
+        if not ENABLE_CURIOSITY_LOOP:
+            return JSONResponse(
+                status_code=503,
+                content={"error": "CURIOSITY_DISABLED", "message": "Curiosity loop is disabled"},
+            )
+
+        if not isinstance(payload, dict):
+            return JSONResponse(
+                status_code=400,
+                content={"error": "BAD_REQUEST", "message": "Payload must be a JSON object."},
+            )
+
+        if "id" in payload and "inputs" in payload:
+            try:
+                item = CuriosityItem.model_validate(payload)
+            except ValidationError as err:
+                return JSONResponse(status_code=400, content={"error": "VALIDATION_ERROR", "detail": err.errors()})
+        else:
+            try:
+                item = _curiosity_build_item_from_minimal(payload)
+            except ValidationError as err:
+                return JSONResponse(status_code=400, content={"error": "VALIDATION_ERROR", "detail": err.errors()})
+
+        cooldown_override = None
+        context = payload.get("context") if isinstance(payload.get("context"), dict) else {}
+        if context:
+            cooldown_override = context.get("cooldown_sec")
+            if isinstance(cooldown_override, str) and cooldown_override.isdigit():
+                cooldown_override = int(cooldown_override)
+
+        stored = _curiosity_store.enqueue(
+            item,
+            max_open_per_user=CURIOSITY_MAX_OPEN_PER_USER,
+            max_open_per_trait=CURIOSITY_MAX_OPEN_PER_TRAIT,
+            cooldown_sec=CURIOSITY_COOLDOWN_SEC if cooldown_override is None else int(cooldown_override),
+        )
+        if stored is None:
+            return JSONResponse(
+                status_code=409,
+                content={"error": "CURIOSITY_DEDUPED", "message": "Curiosity item skipped due to cooldown or capacity."},
+            )
+        try:
+            stack_log(
+                service="core",
+                level="INFO",
+                event="curiosity_enqueue",
+                msg=f"Enqueued curiosity for {stored.trait_id}",
+                meta=stored.model_dump(mode="json"),
+            )
+        except Exception:
+            pass
+        return JSONResponse(status_code=200, content=stored.model_dump(mode="json"))
+
+    @app.get("/core/api/curiosity")
+    def curiosity_list(
+        user_id: str = Query(...),
+        status: Optional[str] = Query("queued"),
+        limit: int = Query(20, ge=1, le=100),
+        min_information_gain: float = Query(0.0, ge=0.0, le=1.0),
+    ) -> Any:
+        items = _curiosity_store.list_items(
+            user_id,
+            status=status,
+            limit=limit,
+            min_information_gain=min_information_gain,
+        )
+        return JSONResponse(
+            status_code=200,
+            content={
+                "user_id": user_id,
+                "items": [item.model_dump(mode="json") for item in items],
+                "count": len(items),
+            },
+        )
+
+    @app.post("/core/api/curiosity/{item_id}/ack")
+    def curiosity_ack(item_id: str) -> Any:
+        item = _curiosity_store.ack(item_id)
+        if item is None:
+            return JSONResponse(status_code=404, content={"ok": False})
+        try:
+            stack_log(
+                service="core",
+                level="INFO",
+                event="curiosity_ack",
+                msg="Curiosity acknowledged",
+                meta={"user_id": item.user_id, "trait_id": item.trait_id, "id": item_id},
+            )
+        except Exception:
+            pass
+        return JSONResponse(status_code=200, content={"ok": True})
+
+    @app.post("/core/api/curiosity/{item_id}/answer")
+    def curiosity_answer(item_id: str, payload: Dict[str, Any]) -> Any:
+        if not isinstance(payload, dict):
+            return JSONResponse(
+                status_code=400,
+                content={"error": "BAD_REQUEST", "message": "Payload must be a JSON object."},
+            )
+        answer_text = str(payload.get("answer_text") or "").strip()
+        if not answer_text:
+            return JSONResponse(
+                status_code=400,
+                content={"error": "BAD_REQUEST", "message": "answer_text is required."},
+            )
+        follow_up_event_id = payload.get("follow_up_event_id")
+        item = _curiosity_store.answer(item_id, answer_text, follow_up_event_id=follow_up_event_id)
+        if item is None:
+            return JSONResponse(status_code=404, content={"ok": False})
+
+        try:
+            ingest_text_endpoint({"user_id": item.user_id, "text": answer_text, "source": "curiosity_answer"})
+        except Exception:
+            pass
+
+        try:
+            stack_log(
+                service="core",
+                level="INFO",
+                event="curiosity_answer",
+                msg="Curiosity answered",
+                meta={"user_id": item.user_id, "trait_id": item.trait_id, "id": item_id},
+            )
+        except Exception:
+            pass
+        return JSONResponse(status_code=200, content={"ok": True})
+
+    @app.post("/core/api/curiosity/{item_id}/dismiss")
+    def curiosity_dismiss(item_id: str, payload: Optional[Dict[str, Any]] = None) -> Any:
+        reason = None
+        if isinstance(payload, dict):
+            reason_raw = payload.get("dismiss_reason") or payload.get("reason")
+            if reason_raw is not None:
+                reason = str(reason_raw).strip() or None
+        item = _curiosity_store.dismiss(item_id, reason)
+        if item is None:
+            return JSONResponse(status_code=404, content={"ok": False})
+        try:
+            stack_log(
+                service="core",
+                level="INFO",
+                event="curiosity_dismiss",
+                msg="Curiosity dismissed",
+                meta={"user_id": item.user_id, "trait_id": item.trait_id, "id": item_id, "reason": reason},
+            )
+        except Exception:
+            pass
+        return JSONResponse(status_code=200, content={"ok": True})
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["*"],
+        allow_origins=ALLOWED_ORIGINS,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
     )
+    # --- end CORS block ---
+
+    @app.middleware("http")
+    async def record_http_metrics(request: Request, call_next):
+        start_time = time.perf_counter()
+        try:
+            response = await call_next(request)
+        except Exception:
+            duration_ms = (time.perf_counter() - start_time) * 1000
+            record_request(latency_ms=duration_ms, is_error=True, status_code=500)
+            raise
+        duration_ms = (time.perf_counter() - start_time) * 1000
+        record_request(
+            latency_ms=duration_ms,
+            is_error=response.status_code >= 500,
+            status_code=response.status_code,
+        )
+        return response
 
     CURIOSITY_ON = _curiosity_flag_on()
 
     RUNTIME_STATE_FILENAME = "hc_runtime_state.json"
-    SYSTEM_PROMPT = (
-        "⚠️ CRITICAL CONSTRAINT: You are a TEXT-ONLY chatbot. You CANNOT send messages, make introductions, or execute actions. "
-        "When users ask to switch coaches, you can ONLY give them UI directions like: 'Click the Coach Catalog (📚) in the sidebar.'\n\n"
 
-        "You are the Head Coach - a lifelong companion helping someone become their best self. "
-        "Your role is to listen, guide, and connect them with the right tools when needed. "
-        "Speak like a close friend texting - warm, direct, not wordy. "
-        "Keep responses short (1-2 sentences max). Listen carefully to what they say. Ask ONE question to go deeper. "
+    # Load HC system prompt dynamically from markdown file
+    # For Ollama/local models, use minimal prompt to avoid confusion
+    # For cloud models, use full sophisticated prompt
+    _hc_chat_provider = (os.getenv("HC_CHAT_PROVIDER", "") or "").strip().lower()
+    _use_simple_prompt = _hc_chat_provider in ["ollama", "local"]
 
-        "BOUNDARIES: If someone says 'not now', 'later', 'not interested' about a topic, DON'T bring it up again proactively. "
-        "However, if they DIRECTLY ASK about that topic later, answer their question normally - 'not now' means 'not now', not 'never'. "
-        "Example: If they said 'not interested in photos now' but later ask 'what coaches are available?', list ALL coaches including Photo Coach. "
-        "The boundary is about YOU pushing topics, not about preventing them from asking questions. "
-        "Let users talk about whatever they want—TV shows, sports, hobbies. Casual chat builds trust. "
+    if _use_simple_prompt:
+        # Ultra-minimal prompt for Ollama - avoid any instructions that confuse the model
+        SYSTEM_PROMPT = ""
+    else:
+        # Load full prompt for capable cloud models
+        from .hc_prompt_loader import get_hc_prompt_text
+        _hc_prompt_raw = get_hc_prompt_text()
 
-        "AVAILABLE COACHES: You work with specialized coaches who help in different areas:\n"
-        "• Relationship Coach 💞 - dating, relationships, emotions, psychology\n"
-        "• Photo Coach 📸 - physical appearance, style, visual presence\n"
-        "• Personality Test Coach 🧠 - personality profiling, motivations, values\n"
-        "• Career Coach 💼 - career planning, skills, professional development\n"
-        "\n"
-        "⚠️ CRITICAL - COACH SWITCHING PROTOCOL:\n"
-        "When a user asks to switch coaches (e.g., 'talk to career coach', 'switch to relationship coach'):\n"
-        "\n"
-        "✅ CORRECT RESPONSE:\n"
-        "'Perfect! Click the Coach Catalog button (📚) in the left sidebar, then select [Coach Name] from the list.'\n"
-        "\n"
-        "❌ FORBIDDEN RESPONSES (NEVER SAY THESE):\n"
-        "- 'I'll send an introduction'\n"
-        "- 'I'll connect you'\n"
-        "- 'They'll reach out to you'\n"
-        "- 'I've notified them'\n"
-        "\n"
-        "WHY: You are a text interface. You CANNOT execute actions or send messages to other coaches.\n"
-        "You can ONLY guide users to click UI buttons. Be EXTREMELY clear about this.\n"
-        "\n"
-        "TEMPLATE: 'Great! To switch to [Coach Name], click the Coach Catalog (📚) in the sidebar, then select [Coach Name].'\n"
-        "\n"
-        "You can suggest ONE coach per conversation if highly relevant, but don't be pushy. "
-        "If they say 'not interested' or 'later', don't mention it again in this conversation. "
-
-        "CASUAL TOPICS: When someone asks about TV shows, books, food, weather, sports—answer naturally and stay on that topic. "
-        "DO NOT pivot to self-improvement, goals, or life changes. Do NOT ask 'what would you like to change in your life?' "
-        "Just have a normal conversation about the thing they asked about. Being helpful with small things builds trust. "
-
-        "FUTURE VALUE: Show long-term value when appropriate, but don't force every conversation toward big life goals. "
-        "Sometimes people just want to chat, and that's valuable too."
-    )
+        # If prompt load failed, fall back to minimal prompt
+        if "Error loading" in _hc_prompt_raw or not _hc_prompt_raw:
+            SYSTEM_PROMPT = (
+                "You are the Head Coach - a lifelong companion helping someone become their best self. "
+                "Listen carefully, extract facts from user statements, and guide with warmth and empathy."
+            )
+        else:
+            SYSTEM_PROMPT = _hc_prompt_raw
     PERSONA_PROMPTS = {
         "head coach": (
-            "⚠️ YOU ARE A CHATBOT - NOT A SECRETARY. You CANNOT send messages or make introductions. "
-            "When asked to switch coaches, give UI directions ONLY.\n\n"
-
-            "You're the Head Coach - their closest ally for life. "
-
-            "BOUNDARIES: If someone says 'not now', 'later', or 'not interested' about a topic, DON'T proactively bring it up again. "
-            "But if they DIRECTLY ASK about it later, answer normally. 'Not now' ≠ 'never'. "
-            "The boundary is about YOU not pushing, not about blocking their questions. "
-            "Example: They said 'no coaches now', but later ask 'what coaches exist?' → Answer the question fully. "
-            "If they change the subject, follow their lead immediately. "
-
-            "AVAILABLE COACHES:\n"
-            "• Relationship Coach 💞 - relationships, emotions, psychology\n"
-            "• Photo Coach 📸 - appearance, style, visual presence\n"
-            "• Personality Test Coach 🧠 - personality, motivations, values\n"
-            "• Career Coach 💼 - career, skills, professional development\n"
-            "\n"
-            "⚠️ SWITCHING COACHES - CRITICAL RULE:\n"
-            "When user asks to switch: Give them UI DIRECTIONS ONLY.\n"
-            "✅ SAY: 'Perfect! Click Coach Catalog (📚) in sidebar → select [Coach Name]'\n"
-            "❌ NEVER SAY: 'I'll connect you' / 'I'll send introduction' / 'They'll contact you'\n"
-            "You are TEXT ONLY. You cannot execute switches. ONLY guide to UI.\n"
-            "\n"
-            "You can suggest ONE coach per conversation if highly relevant (e.g., 'Dating is tough. Want to chat with our Relationship Coach?')\n"
-            "If they say no or 'later', never mention that coach again in this conversation. "
-
-            "CASUAL CONVERSATIONS: If they ask about TV shows, restaurants, hobbies, books, weather, sports—have a normal conversation. "
-            "Stay on their topic. DO NOT redirect to self-improvement, goals, life changes, or meaningful decisions. "
-            "DO NOT ask 'what would you like to change' or 'are you looking to improve'. Just chat about the thing they asked about. "
-            "Example: If they ask about TV shows, talk about TV shows. Don't ask about their life goals. "
-
-            "TONE: Be casual and helpful, not salesy. Avoid therapy-speak, business jargon, and phrases like 'Next step:' or 'Let's explore.' "
-            "Sound like a real person texting a friend."
+            "You are the Head Coach, a friendly life coach. "
+            "Chat casually and show genuine interest in the user. "
+            "Keep responses short (2-3 sentences). "
+            "Ask follow-up questions to learn about them. "
+            "Be warm, supportive, and encouraging."
         ),
         "rc": (
             "Persona: Relationship Coach. Offer empathetic, practical relationship guidance with a collaborative tone."
@@ -1744,17 +3364,118 @@ def build_app() -> FastAPI:
 
     @app.get("/health")
     def health() -> Dict[str, Any]:
+        from .hc_prompt_loader import get_hc_prompt_sha256, get_hc_prompt_version
+
+        connect_timeout = _health_timeout_env("CORE_HEALTH_CONNECT_TIMEOUT_MS", 500)
+        read_timeout = _health_timeout_env("CORE_HEALTH_READ_TIMEOUT_MS", 1000)
+        timeout = httpx.Timeout(connect=connect_timeout, read=read_timeout, write=read_timeout, pool=read_timeout)
+        stack_cfg = resolve_stack_config()
+
+        rr_mode = "unavailable"
+        ucnrr_probe_timed_out = False
+        ucnrr_url = _ucnrr_base_url()
+        if ucnrr_url:
+            try:
+                resp = httpx.get(f"{ucnrr_url}/health", timeout=timeout)
+                if resp.status_code == 200:
+                    rr_mode = "online"
+                else:
+                    rr_mode = "fallback"
+            except (httpx.ConnectTimeout, httpx.ReadTimeout):
+                rr_mode = "degraded"
+                ucnrr_probe_timed_out = True
+                _maybe_log_health_degraded("timeout", ucnrr_url)
+            except httpx.HTTPError:
+                rr_mode = "degraded"
+                ucnrr_probe_timed_out = True
+                _maybe_log_health_degraded("error", ucnrr_url)
+            except Exception:
+                rr_mode = "degraded"
+                ucnrr_probe_timed_out = True
+                _maybe_log_health_degraded("exception", ucnrr_url)
+
         return {
             "status": "healthy",
             "service": "core",
             "version": APP_VERSION,
             "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "hc_prompt_sha256": get_hc_prompt_sha256(),
+            "hc_prompt_version": get_hc_prompt_version(),
+            "rr_mode": rr_mode,
+            "ucnrr_probe_timed_out": ucnrr_probe_timed_out,
+            "hc_chat_enabled": _hc_chat_enabled(),
+            "hc_chat_provider": os.getenv("HC_CHAT_PROVIDER"),
+            "config_ports": {
+                "core": stack_cfg["core_port"],
+                "ucnrr": stack_cfg["ucnrr_port"],
+            },
             "features": {
                 "photo_import": PHOTO_COACH_AVAILABLE,
-                "ucnrr_enabled": bool(_ucnrr_base_url()),
+                "ucnrr_enabled": bool(ucnrr_url),
                 "curiosity_enabled": curiosity_engine.is_enabled(),
+                "hc_chat_enabled": _hc_chat_enabled(),
             }
         }
+
+    @app.post("/core/admin/reload_prompt")
+    def reload_hc_prompt(authorization: Optional[str] = None) -> Dict[str, Any]:
+        """
+        Dev-only endpoint to reload HC prompt without restart.
+        Requires ADMIN_TOKEN env var to be set for security.
+        """
+        import os
+
+        admin_token = os.getenv("ADMIN_TOKEN")
+        if not admin_token:
+            raise HTTPException(
+                status_code=403,
+                detail="ADMIN_TOKEN not configured. Set ADMIN_TOKEN env var to enable this endpoint."
+            )
+
+        # Check authorization header
+        if not authorization or not authorization.startswith("Bearer "):
+            raise HTTPException(
+                status_code=401,
+                detail="Missing or invalid Authorization header. Use: Authorization: Bearer <token>"
+            )
+
+        provided_token = authorization.split("Bearer ", 1)[1].strip()
+        if provided_token != admin_token:
+            raise HTTPException(
+                status_code=403,
+                detail="Invalid admin token"
+            )
+
+        # Reload prompt
+        from .hc_prompt_loader import reload_hc_prompt as do_reload
+        from .metrics import METRICS, MetricNames
+        prompt_info = do_reload()
+
+        METRICS.increment(MetricNames.PROMPT_RELOADS)
+
+        return {
+            "ok": True,
+            "reloaded": True,
+            "new_sha256": prompt_info.get("sha256"),
+            "new_version": prompt_info.get("version"),
+            "loaded_at": prompt_info.get("loaded_at"),
+            "message": "HC prompt reloaded successfully"
+        }
+
+    @app.get("/metrics")
+    def get_metrics() -> Dict[str, Any]:
+        """
+        Get service metrics (counters, gauges, timers).
+
+        Returns metrics for monitoring system health and performance:
+        - Ingestion counts and success rates
+        - Error counts (4xx, 5xx)
+        - RR/UCNRR call statistics
+        - Resolution performance
+        - Timing statistics
+        """
+        from .metrics import METRICS
+        return METRICS.get_all_metrics()
 
     def _seed_curiosity(user_id: str, resolved: Dict[str, Any], evidence: Dict[str, Any], obs: Dict[str, Any]) -> bool:
         if not curiosity_engine.is_enabled():
@@ -2106,6 +3827,49 @@ def build_app() -> FastAPI:
 
         clean_user = user_id.strip()
         return ui_readonly.unabridged_snapshot(clean_user)
+
+    @app.get("/core/api/user/{user_id}/provenance/{trait_id}")
+    def get_provenance(user_id: str, trait_id: str) -> Dict[str, Any]:
+        """
+        Return complete provenance for a specific trait.
+
+        Includes:
+        - Current resolved value and UCN
+        - Evidence timeline (all observations)
+        - Inference items (rule-based derivations)
+        - Resolver trace references
+        - RR scoring status
+
+        Used by Northstar "Why?" panel for trait explainability.
+        """
+        from ReDNACoreDemo.core.provenance.service import build_provenance
+
+        try:
+            clean_user = user_id.strip()
+            clean_trait = trait_id.strip()
+
+            if not clean_user or not clean_trait:
+                return JSONResponse(
+                    status_code=400,
+                    content={"error": "BAD_REQUEST", "message": "user_id and trait_id are required"}
+                )
+
+            prov = build_provenance(clean_user, clean_trait)
+
+            if not prov:
+                return JSONResponse(
+                    status_code=404,
+                    content={"error": "NOT_FOUND", "message": f"No provenance found for trait {clean_trait}"}
+                )
+
+            return prov
+
+        except Exception as e:
+            logger.error(f"Provenance error for user {user_id}, trait {trait_id}: {e}", exc_info=True)
+            return JSONResponse(
+                status_code=500,
+                content={"error": "INTERNAL_ERROR", "message": f"provenance_error: {str(e)}"}
+            )
 
     @app.get("/ui/nudges")
     def list_nudges(
@@ -2786,6 +4550,10 @@ def build_app() -> FastAPI:
 
         user_ts_iso = _ms_to_iso(client_ts_ms) if client_ts_ms is not None else server_ts_iso
 
+        # Create request ID for tracing
+        from uuid import uuid4
+        req_id = str(uuid4())[:8]
+
         # Extract observations from conversation (hungry data ingestion)
         # Phase 1: Keyword-based extraction
         keyword_observations = conversation_analyzer.analyze_message(user_id, text, user_ts_iso)
@@ -2808,19 +4576,121 @@ def build_app() -> FastAPI:
         # Combine both extraction methods
         all_observations = keyword_observations + llm_observations
 
+        # Log extraction results
+        sample_item = all_observations[0] if all_observations else None
+        logger.info(f"chat_extract{{req_id={req_id}, user={user_id}, items={len(all_observations)}, sample={sample_item}}}")
+
+        # FALLBACK: If zero evidence extracted, use lexical fallback for critical traits
+        fallback_items: List[Dict[str, Any]] = []
+        try:
+            from .ingest.fallback_lex import fallback_extract, format_fallback_summary
+        except Exception as e:
+            logger.error(f"Failed to load fallback extractor: {e}", exc_info=True)
+        else:
+            try:
+                fallback_items = fallback_extract(text)
+            except Exception as e:
+                logger.error(f"Fallback extraction failed: {e}", exc_info=True)
+                fallback_items = []
+
+        if not all_observations:
+            logger.warning(f"Zero evidence extracted for user {user_id}, attempting fallback lexical extraction")
+            if fallback_items:
+                trait_ids = format_fallback_summary(fallback_items)
+                logger.info(f"chat_fallback{{req_id={req_id}, items={len(fallback_items)}, types={trait_ids}}}")
+                all_observations = fallback_items
+            else:
+                logger.warning(f"Fallback extractor also found zero evidence for: '{text[:50]}...'")
+        elif fallback_items:
+            existing_ids = {
+                obs.get("trait_id")
+                for obs in all_observations
+                if obs.get("trait_id")
+            }
+            supplemental: List[Dict[str, Any]] = []
+            for item in fallback_items:
+                tid = item.get("trait_id")
+                if not tid or tid in existing_ids:
+                    continue
+                supplemental.append(item)
+                existing_ids.add(tid)
+
+            if supplemental:
+                logger.info(
+                    f"chat_fallback_merge{{req_id={req_id}, added={len(supplemental)}, types={format_fallback_summary(supplemental)}}}"
+                )
+                all_observations.extend(supplemental)
+
         if all_observations:
             logger.info(f"Total extracted {len(all_observations)} observations from message for user {user_id}")
-            # Store observations as evidence in trait system
+            logger.info(f"chat_extract{{req_id={req_id}, user={user_id}, items={len(all_observations)}}}")
+
+            # Log sample evidence for debugging
+            for i, obs in enumerate(all_observations[:3]):
+                trait_id = obs.get('trait_id', obs.get('fact_category', 'UNKNOWN'))
+                value = obs.get('fact_value', obs.get('value', 'UNKNOWN'))
+                logger.info(f"  Evidence[{i}]: trait_id={trait_id}, value={value}, keys={list(obs.keys())}")
+
+            # NORTHSTAR PHASE 2: Unified ingestion pipeline
+            # Single source of truth for evidence processing (chat, onboarding, etc.)
             try:
-                items_stored = hc_trait_bridge.store_observations(
+                from .ingest import ingest_evidence_roundtrip
+                from .ingest.evidence_schema import EvidenceValidationError
+                from .resolver.impl import UCNRRRequiredError
+
+                logger.info(f"Calling ingest_evidence_roundtrip for user={user_id}, req_id={req_id}")
+
+                # Call unified pipeline with chat evidence
+                # This handles: canonicalization, validation, resolve, inference, snapshot
+                result = ingest_evidence_roundtrip(
                     user_id=user_id,
-                    observations=all_observations,
-                    timestamp=user_ts_iso,
-                    message_text=text
+                    source="chat",
+                    evidence=all_observations,
+                    req_id=req_id  # Pass through for tracing
                 )
-                logger.info(f"Stored {items_stored} observations as evidence for user {user_id}")
+
+                logger.info(f"ingest_evidence_roundtrip returned: {result.keys()}")
+
+                # Log resolution success
+                resolved_path = f"users/{user_id}/resolved.json"
+                logger.info(f"chat_resolve{{req_id={req_id}, wrote_resolved=true, resolved_path=\"{resolved_path}\"}}")
+                logger.info(f"Chat ingestion complete: {result.get('ingested', 0)} direct + {result.get('inferred', 0)} inferred traits")
+
+            except EvidenceValidationError as e:
+                # Strict validation failed - return 400 with actionable error
+                logger.warning(f"Evidence validation failed in strict mode: {e.error_code} - {e.message}")
+                raise HTTPException(
+                    status_code=400,
+                    detail={
+                        "error": e.error_code,
+                        "message": e.message,
+                        "evidence_sample": e.evidence_sample,
+                        "suggestions": e.suggestions,
+                        "req_id": req_id,
+                        "strict_mode": True
+                    }
+                )
+
+            except UCNRRRequiredError as e:
+                # UCNRR required but unavailable - return 503
+                logger.error(f"UCNRR required but unavailable: {e.message}")
+                raise HTTPException(
+                    status_code=503,
+                    detail={
+                        "error": "UCNRR_REQUIRED",
+                        "message": e.message,
+                        "rr_error": str(e.rr_error) if e.rr_error else None,
+                        "req_id": req_id,
+                        "ucnrr_required_mode": True,
+                        "action": "Ensure UCNRR service is running at configured URL, or disable UCNRR_REQUIRED mode"
+                    }
+                )
+
             except Exception as e:
-                logger.error(f"Failed to store observations as evidence: {e}", exc_info=True)
+                logger.exception(f"CRITICAL: Failed to process chat evidence through unified pipeline for user {user_id}, req_id={req_id}")
+                logger.error(f"Evidence that failed: {all_observations[:2] if len(all_observations) > 2 else all_observations}")
+        else:
+            logger.warning(f"No observations extracted (primary or fallback) for user {user_id}, message: '{text[:100]}...'")
 
         observation_result = capture_turn_observation(
             user_id=user_id,
@@ -5163,6 +7033,8 @@ def build_app() -> FastAPI:
                 content={"error": "BAD_REQUEST", "message": "user_id and text are required."},
             )
 
+        _load_promotions_from_env_and_snapshot()
+
         # Store the note as a provenance event
         dirs = ensure_dirs_for_user(user_id_raw)
         events_dir = dirs["events"]
@@ -5221,15 +7093,550 @@ def build_app() -> FastAPI:
             rr_by_trait = rescore_result.get("rr_by_trait", {})
             curiosity_by_trait = rescore_result.get("curiosity_by_trait", {})
 
+            # Northstar Phase 2: CREATE traits if they don't exist
             for trait_id, rr_value in rr_by_trait.items():
                 if trait_id in resolved:
                     resolved[trait_id]["rr"] = rr_value
+                else:
+                    # Create new trait from ingestion
+                    resolved[trait_id] = {
+                        "id": trait_id,
+                        "rr": rr_value,
+                        "curiosity": curiosity_by_trait.get(trait_id, 50.0),
+                        "value": None,  # Will be extracted later
+                        "provenance": [{"source": "text_ingest", "event_id": event_id, "ts": ts_iso}]
+                    }
+
+            # Update curiosity for existing traits
             for trait_id, curiosity_value in curiosity_by_trait.items():
                 if trait_id in resolved:
                     resolved[trait_id]["curiosity"] = curiosity_value
 
             write_user_state(user_id_raw, resolved, evidence, obs)
             touch_user_last_used(user_id_raw, ts_iso=ts_iso)
+
+        # Phase 4.0a Batch 1.5: Category-aware promotion with per-trait rules
+        snapshot_traits = []
+        if rescore_result.get("ok"):
+            from ReDNACoreDemo.core.ingest.value_normalizer import normalize_value
+
+            _load_promotions_from_env_and_snapshot()
+            rules = PROMOTE_RULES_ACTIVE
+
+            # --- Pair-aware promotion groups (safe multi-trait bundles) ---
+            PAIR_GROUPS = {
+                "BehaviorDNA.Exercise.Outdoor": ["BehaviorDNA.Exercise.Frequency"],
+            }
+
+            TOP_K_PROMOTE = int(os.getenv("RR_PROMOTE_TOP_K", "1"))  # Part 1: strict - only top trait per utterance
+
+            # Sort by score descending
+            rr_by_trait = rescore_result.get("rr_by_trait", {}) or {}
+            rr_items = sorted(rr_by_trait.items(), key=lambda kv: float(kv[1] or 0), reverse=True)
+            raw_why_map = rescore_result.get("why_by_trait")
+            why_by_trait = raw_why_map if isinstance(raw_why_map, dict) else {}
+
+            promoted = 0
+            promoted_keys: set[str] = set()
+            for trait_id, score in rr_items:
+                try:
+                    score_float = float(score)
+                except Exception:
+                    score_float = 0.0
+
+                curiosity_raw = curiosity_by_trait.get(trait_id)
+                curiosity_value = None
+                try:
+                    curiosity_value = float(curiosity_raw)
+                except (TypeError, ValueError):
+                    curiosity_value = None
+                why_hint = why_by_trait.get(trait_id) if isinstance(why_by_trait, dict) else None
+
+                if trait_id == "BehaviorDNA.Exercise.Frequency":
+                    _promote_log("skip:freq_standalone", trait_id, score_float, None, note="must pair with Outdoor")
+                    _policy_skip_decision(
+                        trait_id=trait_id,
+                        user_id=user_id_raw,
+                        rr=score_float,
+                        base_rr=None,
+                        effective_rr=None,
+                        curiosity=curiosity_value,
+                        value=None,
+                        why=why_hint,
+                        reason="requires_pair",
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                    )
+                    continue
+
+                if trait_id in promoted_keys:
+                    _promote_log("skip:duplicate", trait_id, score_float, None, note="already promoted in pair")
+                    _policy_skip_decision(
+                        trait_id=trait_id,
+                        user_id=user_id_raw,
+                        rr=score_float,
+                        base_rr=None,
+                        effective_rr=None,
+                        curiosity=curiosity_value,
+                        value=None,
+                        why=why_hint,
+                        reason="duplicate",
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                    )
+                    continue
+
+                policy = rules.get(trait_id)
+                if not policy:
+                    _promote_log("skip:unlisted", trait_id, score_float, None, note="not allowlisted")
+                    _policy_skip_decision(
+                        trait_id=trait_id,
+                        user_id=user_id_raw,
+                        rr=score_float,
+                        base_rr=None,
+                        effective_rr=None,
+                        curiosity=curiosity_value,
+                        value=None,
+                        why=why_hint,
+                        reason="not_allowlisted",
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                    )
+                    continue
+
+                source_text = text if isinstance(text, str) else ""
+                if (not source_text) and why_hint:
+                    # Allow UCNRR rationale to serve as context for normalization when raw text isn't present
+                    source_text = str(why_hint)
+
+                # Debug: Log context before any decision
+                stack_log(
+                    "core",
+                    "INFO",
+                    "promotion_debug_ctx",
+                    f"{trait_id}",
+                    {
+                        "has_text": bool(source_text),
+                        "text_len": len(source_text) if isinstance(source_text, str) else None,
+                        "why_hint": (why_hint[:60] if isinstance(why_hint, str) else None)
+                    }
+                )
+
+                try:
+                    base_rr = float(policy.get("rr_min", 0.0))
+                except Exception:
+                    base_rr = None
+                effective_rr = _effective_rr_threshold(trait_id, base_rr)
+                policy_snapshot = dict(policy)
+                policy_snapshot["effective_rr"] = effective_rr
+                require_value_flag = bool(policy_snapshot.get("require_value"))
+
+                stack_log(
+                    service="core",
+                    level="INFO",
+                    event="promotion_eval",
+                    msg=f"evaluating {trait_id}",
+                    meta={
+                        "rr": score_float,
+                        "require_value": require_value_flag,
+                        "top_k": TOP_K_PROMOTE,
+                        "text_sample": (source_text or "")[:120],
+                        "effective_rr": effective_rr,
+                    },
+                )
+
+                value = normalize_value(trait_id, source_text)
+
+                stack_log(
+                    service="core",
+                    level="INFO",
+                    event="promotion_value",
+                    msg=f"value for {trait_id}",
+                    meta={"value": value},
+                )
+
+                # Debug: Log value before decision for Chronotype
+                if "Chronotype" in trait_id:
+                    stack_log(
+                        "core",
+                        "INFO",
+                        "promotion_debug_value",
+                        f"{trait_id} before need_value check",
+                        {
+                            "value": value,
+                            "require_value_flag": require_value_flag,
+                            "source_text_sample": (source_text or "")[:100]
+                        }
+                    )
+
+                if require_value_flag and value is None:
+                    _promote_log("skip:need_value", trait_id, score_float, value, policy=policy_snapshot)
+                    _policy_skip_decision(
+                        trait_id=trait_id,
+                        user_id=user_id_raw,
+                        rr=score_float,
+                        base_rr=None,
+                        effective_rr=None,
+                        curiosity=curiosity_value,
+                        value=value,
+                        why=why_hint,
+                        reason="need_value",
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                    )
+                    continue
+
+                # Debug: Log value before threshold decision for Chronotype
+                if "Chronotype" in trait_id:
+                    stack_log(
+                        "core",
+                        "INFO",
+                        "promotion_debug_value",
+                        f"{trait_id} before threshold check",
+                        {
+                            "value": value,
+                            "score_float": score_float,
+                            "effective_rr": effective_rr,
+                            "will_skip": (effective_rr is not None and score_float < effective_rr)
+                        }
+                    )
+
+                if effective_rr is not None and score_float < effective_rr:
+                    _promote_log("skip:below_threshold", trait_id, score_float, value, policy=policy_snapshot)
+                    _policy_skip_decision(
+                        trait_id=trait_id,
+                        user_id=user_id_raw,
+                        rr=score_float,
+                        base_rr=base_rr,
+                        effective_rr=effective_rr,
+                        curiosity=curiosity_value,
+                        value=value,
+                        why=why_hint,
+                        reason="below_threshold",
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                    )
+                    continue
+
+                _curiosity_consider_enqueue(
+                    user_id=user_id_raw,
+                    trait_id=trait_id,
+                    score_float=score_float,
+                    base_rr=base_rr,
+                    effective_rr=effective_rr,
+                    value=value,
+                    require_value=require_value_flag,
+                    source_text=source_text,
+                    event_id=event_id,
+                    curiosity_value=curiosity_value,
+                    resolved=resolved,
+                )
+
+                if trait_id not in rules:
+                    _promote_log("skip:unlisted", trait_id, score_float, value, note="post-check")
+                    _policy_skip_decision(
+                        trait_id=trait_id,
+                        user_id=user_id_raw,
+                        rr=score_float,
+                        base_rr=base_rr,
+                        effective_rr=effective_rr,
+                        curiosity=curiosity_value,
+                        value=value,
+                        why=why_hint,
+                        reason="post_unlisted",
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                    )
+                    continue
+
+                record = {
+                    "trait_id": trait_id,
+                    "ucn": score_float,
+                    "value": value,
+                    "source": "ucnrr_rescore",
+                    "event_id": event_id,
+                }
+                snapshot_traits.append(record)
+                promoted_keys.add(trait_id)
+                promoted += 1
+                _promote_log("promote:final", trait_id, score_float, value, policy=policy_snapshot)
+                stack_log(
+                    "core",
+                    "INFO",
+                    "promotion_event",
+                    f"Promoted {trait_id}",
+                    {"ucn": score_float, "value": value, "event_id": event_id},
+                )
+                why_card_reason = why_by_trait.get(trait_id) if isinstance(why_by_trait, dict) else None
+                if not why_card_reason:
+                    why_card_reason = why_hint
+                _store_promotion_why_card(
+                    user_id=user_id_raw,
+                    trait_id=trait_id,
+                    rr_value=score_float,
+                    value=value,
+                    why=why_card_reason,
+                    source="ucnrr_rescore",
+                    event_id=event_id,
+                    source_text=source_text,
+                )
+                _record_policy_decision(
+                    trait_id=trait_id,
+                    user_id=user_id_raw,
+                    decision="promote",
+                    rr=score_float,
+                    base_rr=base_rr,
+                    effective_rr=effective_rr,
+                    curiosity=curiosity_value,
+                    value=value,
+                    why=why_card_reason,
+                    reason="promotion",
+                    source="ucnrr_rescore",
+                    event_id=event_id,
+                )
+
+                for co_trait in PAIR_GROUPS.get(trait_id, []):
+                    co_curiosity_raw = curiosity_by_trait.get(co_trait)
+                    try:
+                        co_curiosity_value = float(co_curiosity_raw)
+                    except (TypeError, ValueError):
+                        co_curiosity_value = None
+                    if co_trait in promoted_keys:
+                        _promote_log("skip:pair_duplicate", co_trait, score_float, None, note="already promoted")
+                        _policy_skip_decision(
+                            trait_id=co_trait,
+                            user_id=user_id_raw,
+                            rr=rr_by_trait.get(co_trait),
+                            base_rr=None,
+                            effective_rr=None,
+                            curiosity=co_curiosity_value,
+                            value=None,
+                            why=why_by_trait.get(co_trait),
+                            reason="pair_duplicate",
+                            source="ucnrr_rescore",
+                            event_id=event_id,
+                        )
+                        continue
+                    co_policy = rules.get(co_trait)
+                    co_score_raw = rr_by_trait.get(co_trait)
+                    if not co_policy or co_score_raw is None:
+                        _promote_log("skip:pair_unlisted", co_trait, co_score_raw, None, note="missing policy or score")
+                        _policy_skip_decision(
+                            trait_id=co_trait,
+                            user_id=user_id_raw,
+                            rr=co_score_raw,
+                            base_rr=None,
+                            effective_rr=None,
+                            curiosity=co_curiosity_value,
+                            value=None,
+                            why=why_by_trait.get(co_trait),
+                            reason="pair_unlisted",
+                            source="ucnrr_rescore",
+                            event_id=event_id,
+                        )
+                        continue
+                    try:
+                        co_score = float(co_score_raw)
+                    except Exception:
+                        co_score = 0.0
+
+                    try:
+                        co_base_rr = float(co_policy.get("rr_min", 0.0))
+                    except Exception:
+                        co_base_rr = None
+                    co_effective_rr = _effective_rr_threshold(co_trait, co_base_rr)
+                    co_policy_snapshot = dict(co_policy)
+                    co_policy_snapshot["effective_rr"] = co_effective_rr
+                    co_require_value = bool(co_policy_snapshot.get("require_value"))
+
+                    stack_log(
+                        service="core",
+                        level="INFO",
+                        event="promotion_eval",
+                        msg=f"evaluating {co_trait}",
+                        meta={
+                            "rr": co_score,
+                            "require_value": co_require_value,
+                            "top_k": TOP_K_PROMOTE,
+                            "text_sample": (source_text or "")[:120],
+                            "paired_with": trait_id,
+                            "effective_rr": co_effective_rr,
+                        },
+                    )
+
+                    # ensure a non-empty context for normalization
+                    co_source_text = source_text if isinstance(source_text, str) else ""
+                    if (not co_source_text) and why_by_trait.get(co_trait):
+                        co_source_text = str(why_by_trait.get(co_trait))
+
+                    # Debug: Log context before any decision (paired)
+                    co_why_hint = why_by_trait.get(co_trait)
+                    stack_log(
+                        "core",
+                        "INFO",
+                        "promotion_debug_ctx",
+                        f"{co_trait}",
+                        {
+                            "has_text": bool(co_source_text),
+                            "text_len": len(co_source_text) if isinstance(co_source_text, str) else None,
+                            "why_hint": (co_why_hint[:60] if isinstance(co_why_hint, str) else None),
+                            "paired_with": trait_id
+                        }
+                    )
+
+                    co_value = normalize_value(co_trait, co_source_text)
+
+                    stack_log(
+                        service="core",
+                        level="INFO",
+                        event="promotion_value",
+                        msg=f"value for {co_trait}",
+                        meta={"value": co_value, "paired_with": trait_id},
+                    )
+
+                    # Debug: Log value before decision for Chronotype (paired)
+                    if "Chronotype" in co_trait:
+                        stack_log(
+                            "core",
+                            "INFO",
+                            "promotion_debug_value",
+                            f"{co_trait} before need_value check (paired)",
+                            {
+                                "value": co_value,
+                                "require_value_flag": co_require_value,
+                                "source_text_sample": (co_source_text or "")[:100],
+                                "paired_with": trait_id
+                            }
+                        )
+
+                    if co_require_value and co_value is None:
+                        _promote_log("skip:pair_need_value", co_trait, co_score, co_value, policy=co_policy_snapshot)
+                        _policy_skip_decision(
+                            trait_id=co_trait,
+                            user_id=user_id_raw,
+                            rr=co_score,
+                            base_rr=co_base_rr,
+                            effective_rr=co_effective_rr,
+                            curiosity=co_curiosity_value,
+                            value=co_value,
+                            why=why_by_trait.get(co_trait),
+                            reason="pair_need_value",
+                            source="ucnrr_rescore",
+                            event_id=event_id,
+                        )
+                        continue
+
+                    # Debug: Log value before threshold decision for Chronotype (paired)
+                    if "Chronotype" in co_trait:
+                        stack_log(
+                            "core",
+                            "INFO",
+                            "promotion_debug_value",
+                            f"{co_trait} before threshold check (paired)",
+                            {
+                                "value": co_value,
+                                "score_float": co_score,
+                                "effective_rr": co_effective_rr,
+                                "will_skip": (co_effective_rr is not None and co_score < co_effective_rr),
+                                "paired_with": trait_id
+                            }
+                        )
+
+                    if co_effective_rr is not None and co_score < co_effective_rr:
+                        _promote_log("skip:pair_below_threshold", co_trait, co_score, co_value, policy=co_policy_snapshot)
+                        _policy_skip_decision(
+                            trait_id=co_trait,
+                            user_id=user_id_raw,
+                            rr=co_score,
+                            base_rr=co_base_rr,
+                            effective_rr=co_effective_rr,
+                            curiosity=co_curiosity_value,
+                            value=co_value,
+                            why=why_by_trait.get(co_trait),
+                            reason="pair_below_threshold",
+                            source="ucnrr_rescore",
+                            event_id=event_id,
+                        )
+                        continue
+
+                    if co_trait not in rules:
+                        _promote_log("skip:pair_unlisted_post", co_trait, co_score, co_value, note="post-check")
+                        _policy_skip_decision(
+                            trait_id=co_trait,
+                            user_id=user_id_raw,
+                            rr=co_score,
+                            base_rr=co_base_rr,
+                            effective_rr=co_effective_rr,
+                            curiosity=co_curiosity_value,
+                            value=co_value,
+                            why=why_by_trait.get(co_trait),
+                            reason="pair_unlisted_post",
+                            source="ucnrr_rescore",
+                            event_id=event_id,
+                        )
+                        continue
+
+                    _curiosity_consider_enqueue(
+                        user_id=user_id_raw,
+                        trait_id=co_trait,
+                        score_float=co_score,
+                        base_rr=co_base_rr,
+                        effective_rr=co_effective_rr,
+                        value=co_value,
+                        require_value=bool(co_policy_snapshot.get("require_value")),
+                        source_text=source_text,
+                        event_id=event_id,
+                        curiosity_value=co_curiosity_value,
+                        resolved=resolved,
+                    )
+
+                    co_record = {
+                        "trait_id": co_trait,
+                        "ucn": co_score,
+                        "value": co_value,
+                        "source": "ucnrr_rescore",
+                        "event_id": event_id,
+                    }
+                    snapshot_traits.append(co_record)
+                    promoted_keys.add(co_trait)
+                    _promote_log("promote:pair", co_trait, co_score, co_value, policy=co_policy_snapshot, note=f"paired_with={trait_id}")
+                    stack_log(
+                        "core",
+                        "INFO",
+                        "promotion_event",
+                        f"Promoted {co_trait}",
+                        {"ucn": co_score, "value": co_value, "event_id": event_id},
+                    )
+                    co_reason = why_by_trait.get(co_trait) if isinstance(why_by_trait, dict) else None
+                    if not co_reason:
+                        co_reason = f"Paired promotion with {trait_id}"
+                    _store_promotion_why_card(
+                        user_id=user_id_raw,
+                        trait_id=co_trait,
+                        rr_value=co_score,
+                        value=co_value,
+                        why=co_reason,
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                        source_text=source_text,
+                    )
+                    _record_policy_decision(
+                        trait_id=co_trait,
+                        user_id=user_id_raw,
+                        decision="promote",
+                        rr=co_score,
+                        base_rr=co_base_rr,
+                        effective_rr=co_effective_rr,
+                        curiosity=co_curiosity_value,
+                        value=co_value,
+                        why=co_reason,
+                        reason=f"paired_with:{trait_id}",
+                        source="ucnrr_rescore",
+                        event_id=event_id,
+                    )
+
+                if promoted >= TOP_K_PROMOTE:
+                    break
 
         # Return success even if UCNRR failed (provenance was logged)
         return {
@@ -5238,8 +7645,164 @@ def build_app() -> FastAPI:
             "event_written": str(event_path.name),
             "status": provenance_status,
             "rescore": rescore_result,
+            "snapshot": {"traits": snapshot_traits} if snapshot_traits else {}
         }
 
+    @app.post("/core/api/ingest_text")
+    def core_api_ingest_text(payload: Dict[str, Any]) -> Any:
+        """
+        Northstar Phase 2: Core ingestion endpoint for unified text ingestion.
+        Alias to /ui/ingest/text with standardized response format.
+
+        POST /core/api/ingest_text
+        Body: { user_id: str, text: str, source: str, metadata?: dict }
+        Returns: { success: bool, error?: str, event_id?: str }
+        """
+        # Call the existing ingest_text_endpoint
+        result = ingest_text_endpoint(payload)
+
+        # Transform to Northstar expected format
+        if isinstance(result, dict):
+            # Success case
+            if result.get("ok"):
+                return {
+                    "success": True,
+                    "event_id": result.get("event_written"),
+                    "user_id": result.get("user_id"),
+                    "rescore": result.get("rescore", {}),
+                    "snapshot": result.get("snapshot", {})  # Phase 4.0a: include snapshot.traits
+                }
+            else:
+                return {
+                    "success": False,
+                    "error": result.get("status", "unknown_error")
+                }
+
+        # Handle JSONResponse objects from error cases
+        if hasattr(result, 'status_code'):
+            return {
+                "success": False,
+                "error": getattr(result, 'body', b'').decode('utf-8') if hasattr(result, 'body') else "request_failed"
+            }
+
+        # Fallback
+        return {"success": False, "error": "unexpected_response"}
+
+    log = logging.getLogger("ingest_evidence")
+
+    def _validate_evidence_item(ev: dict) -> tuple[bool, str | None]:
+        """Check evidence structure before entering the pipeline."""
+        if not isinstance(ev, dict) or "trait_id" not in ev:
+            return False, "NO_CANONICAL_TRAIT_ID"
+
+        val = ev.get("value")
+        if not isinstance(val, dict) or not any(key in val for key in ("enum", "number", "text")):
+            return False, "INVALID_VALUE_SHAPE"
+
+        return True, None
+
+    @app.post("/core/api/ingest_evidence")
+    async def ingest_evidence_route(payload: dict):
+        start_time = time.perf_counter()
+        status_code = 200
+        try:
+            user_id = payload.get("user_id")
+            source = payload.get("source") or "ui"
+            req_id = payload.get("req_id") or "ui"
+
+            raw_items = payload.get("evidence")
+            items = raw_items if isinstance(raw_items, list) else []
+
+            if isinstance(payload.get("text"), str) and not items:
+                items = [{
+                    "trait_id": "FreeText",
+                    "value": {"text": payload["text"]},
+                    "source": source
+                }]
+
+            if not user_id or not isinstance(user_id, str):
+                raise HTTPException(
+                    status_code=400,
+                    detail={"error": "BAD_REQUEST", "message": "user_id and evidence[] required"}
+                )
+
+            if not items:
+                raise HTTPException(
+                    status_code=400,
+                    detail={"error": "BAD_REQUEST", "message": "user_id and evidence[] required"}
+                )
+
+            bad: list[dict[str, Any]] = []
+            for idx, ev in enumerate(items):
+                ok, code = _validate_evidence_item(ev)
+                if not ok:
+                    bad.append({"index": idx, "error": code})
+
+            if bad:
+                raise HTTPException(
+                    status_code=400,
+                    detail={
+                        "error": "EVIDENCE_VALIDATION_FAILED",
+                        "bad": bad,
+                        "message": "One or more evidence items are not canonical (missing trait_id or typed value)."
+                    }
+                )
+
+            from ReDNACoreDemo.core.ingest.pipeline import ingest_evidence_roundtrip
+
+            res = ingest_evidence_roundtrip(user_id, source, items, req_id)
+            response = {"ok": True, **res}
+            stack_log(
+                "core",
+                "INFO",
+                "ingest_ok",
+                "ingest_evidence succeeded",
+                {
+                    "user_id": user_id,
+                    "source": source,
+                    "req_id": req_id,
+                    "ingested": res.get("ingested"),
+                    "inferred": res.get("inferred"),
+                },
+            )
+            return JSONResponse(response, status_code=200)
+
+        except HTTPException as exc:
+            status_code = exc.status_code
+            detail = exc.detail if isinstance(exc.detail, dict) else {"error": exc.detail}
+            log.error("ingest_400{%s}: %s", payload.get("user_id"), detail)
+            stack_log(
+                "core",
+                "WARN",
+                "ingest_fail",
+                "ingest_evidence rejected",
+                {
+                    "user_id": payload.get("user_id"),
+                    "status_code": status_code,
+                    "detail": detail,
+                },
+            )
+            return JSONResponse({"ok": False, **detail}, status_code=status_code)
+
+        except Exception as exc:  # noqa: BLE001 - propagate structured 500s
+            status_code = 500
+            tb = traceback.format_exc()
+            log.error("ingest_500{%s}: %s\n%s", payload.get("user_id"), str(exc), tb)
+            stack_log(
+                "core",
+                "ERROR",
+                "ingest_fail",
+                "ingest_evidence raised exception",
+                {
+                    "user_id": payload.get("user_id"),
+                    "status_code": status_code,
+                    "error": str(exc),
+                },
+            )
+            return JSONResponse(
+                {"ok": False, "error": "INGEST_FAILURE", "message": str(exc)},
+                status_code=500
+            )
     @app.post("/ui/ingest/json")
     def ingest_json_endpoint(payload: Dict[str, Any]) -> Any:
         """
@@ -6924,7 +9487,7 @@ def build_app() -> FastAPI:
                         # Get delegation recommendations
                         delegation_recommendations = []
                         try:
-                            from core.coach_delegation import DelegationManager
+                            from ReDNACoreDemo.core.coach_delegation import DelegationManager
 
                             manager = DelegationManager(data_dir=CORE_DATA_ROOT)
 
@@ -7589,7 +10152,7 @@ def build_app() -> FastAPI:
                 "blending_applied": false
             }
         """
-        from core.rr_per_trait import PerTraitRRCalculator
+        from ReDNACoreDemo.core.rr_per_trait import PerTraitRRCalculator
 
         try:
             distribution_dir = Path(config.core_data_dir) / "population_distributions"
@@ -7647,7 +10210,7 @@ def build_app() -> FastAPI:
                 "traits": [...]
             }
         """
-        from core.rr_aggregation import ContainerRRAggregator
+        from ReDNACoreDemo.core.rr_aggregation import ContainerRRAggregator
 
         try:
             distribution_dir = Path(config.core_data_dir) / "population_distributions"
@@ -7697,7 +10260,7 @@ def build_app() -> FastAPI:
                 "containers": [...]
             }
         """
-        from core.rr_aggregation import calculate_user_rr_summary
+        from ReDNACoreDemo.core.rr_aggregation import calculate_user_rr_summary
 
         try:
             distribution_dir = Path(config.core_data_dir) / "population_distributions"
@@ -7744,7 +10307,7 @@ def build_app() -> FastAPI:
                 "traits": {...}
             }
         """
-        from core.rr_distribution_builder import build_all_distributions
+        from ReDNACoreDemo.core.rr_distribution_builder import build_all_distributions
 
         try:
             distribution_dir = Path(config.core_data_dir) / "population_distributions"
@@ -7884,7 +10447,7 @@ def build_app() -> FastAPI:
     ):
         """Get curiosity-driven agenda for a user."""
         try:
-            from core.curiosity.curiosity_engine import CuriosityEngine
+            from ReDNACoreDemo.core.curiosity.curiosity_engine import CuriosityEngine
 
             engine = CuriosityEngine(data_dir=Path("data"))
 
@@ -7909,7 +10472,7 @@ def build_app() -> FastAPI:
     def get_curiosity_map(user_id: str):
         """Get complete curiosity map for visualization."""
         try:
-            from core.curiosity.curiosity_engine import CuriosityEngine
+            from ReDNACoreDemo.core.curiosity.curiosity_engine import CuriosityEngine
 
             engine = CuriosityEngine(data_dir=Path("data"))
 
@@ -7944,8 +10507,8 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
-            from core.curiosity.curiosity_engine import CuriosityEngine
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.curiosity.curiosity_engine import CuriosityEngine
 
             user_id = payload.get("user_id")
             if not user_id:
@@ -8042,7 +10605,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
 
             user_id = payload.get("user_id")
             coach_id = payload.get("coach_id")
@@ -8106,7 +10669,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
 
             manager = DelegationManager(data_dir=CORE_DATA_ROOT)
             status = manager.check_delegation_status(delegation_id, user_id)
@@ -8146,7 +10709,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
 
             manager = DelegationManager(data_dir=CORE_DATA_ROOT)
             active = manager.get_active_delegations(user_id)
@@ -8203,8 +10766,8 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_delegation import DelegationManager
-            from core.coach_mode_manager import switch_mode_with_handoff
+            from ReDNACoreDemo.core.coach_delegation import DelegationManager
+            from ReDNACoreDemo.core.coach_mode_manager import switch_mode_with_handoff
 
             traits_collected = payload.get("traits_collected", [])
             curiosity_before = payload.get("curiosity_before", {})
@@ -8287,7 +10850,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_mode_manager import CoachModeManager
+            from ReDNACoreDemo.core.coach_mode_manager import CoachModeManager
 
             manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
             active_mode = manager.get_active_mode(user_id)
@@ -8325,7 +10888,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_mode_manager import switch_mode_with_handoff
+            from ReDNACoreDemo.core.coach_mode_manager import switch_mode_with_handoff
 
             target_mode = payload.get("target_mode")
             if not target_mode:
@@ -8381,7 +10944,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_mode_manager import CoachModeManager
+            from ReDNACoreDemo.core.coach_mode_manager import CoachModeManager
 
             manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
             history = manager.get_mode_history(user_id, limit=limit)
@@ -8413,7 +10976,7 @@ def build_app() -> FastAPI:
             }
         """
         try:
-            from core.coach_mode_manager import CoachModeManager
+            from ReDNACoreDemo.core.coach_mode_manager import CoachModeManager
 
             manager = CoachModeManager(data_dir=CORE_DATA_ROOT)
             stats = manager.get_mode_stats(user_id)
@@ -10136,6 +12699,18 @@ Intent: {intent}
             logger.error(f"Life OS summary error for {user_id}: {e}", exc_info=True)
             raise HTTPException(status_code=500, detail=str(e))
 
+    @app.get("/ui/hc/life/{user_id}/human_intel")
+    async def get_life_human_intel(user_id: str, days: int = Query(7, ge=1, le=30)):
+        """Expose empathy + curiosity telemetry for DevX Life OS surfaces."""
+        start = time.perf_counter()
+        try:
+            snapshot = hc_human_intel.build_human_intel_snapshot(user_id, window_days=days)
+            duration_ms = round((time.perf_counter() - start) * 1000.0, 3)
+            return {"ok": True, "snapshot": snapshot, "duration_ms": duration_ms}
+        except Exception as e:
+            logger.error(f"Life OS human intel error for {user_id}: {e}", exc_info=True)
+            raise HTTPException(status_code=500, detail=str(e))
+
     @app.post("/ui/hc/life/{user_id}/capture")
     async def quick_capture(user_id: str, request: Request):
         """Quick capture text into a todo."""
@@ -10217,8 +12792,51 @@ Intent: {intent}
             logger.error(f"Life OS update todo error for {user_id}/{todo_id}: {e}", exc_info=True)
             raise HTTPException(status_code=500, detail=str(e))
 
+    @app.get("/devx/api/stack/ready")
+    async def proxy_devx_ready() -> Any:
+        devx_base = (os.getenv("DEVX_BASE", "") or "").strip() or "http://127.0.0.1:8100"
+        devx_base = devx_base.rstrip("/")
+        url = f"{devx_base}/devx/api/stack/ready"
+        try:
+            response = await asyncio.to_thread(requests.get, url, timeout=3)
+            response.raise_for_status()
+        except Exception as exc:  # pragma: no cover - network dependent
+            raise HTTPException(status_code=503, detail=f"DevX readiness proxy failed: {exc}") from exc
+        return response.json()
+
     return app
 
 
 # Module-level app instance for uvicorn
 app = build_app()
+def _promote_log(stage: str, trait_id: str, score: Any, value: Any, policy: Optional[Dict[str, Any]] = None, note: Optional[str] = None) -> None:
+    """Emit structured diagnostics for promotion decisions."""
+    try:
+        score_val = float(score)
+    except Exception:
+        score_val = score
+
+    rr_min = None
+    require_value: Optional[bool] = None
+    if isinstance(policy, dict):
+        rr_raw = policy.get("rr_min")
+        try:
+            rr_min = float(rr_raw) if rr_raw is not None else None
+        except Exception:
+            rr_min = rr_raw
+        if "require_value" in policy:
+            try:
+                require_value = bool(policy.get("require_value"))
+            except Exception:
+                require_value = None
+
+    meta = {
+        "ucn": score_val,
+        "value": value,
+        "rr_min": rr_min,
+        "require_value": require_value,
+    }
+    if note:
+        meta["note"] = note
+
+    stack_log("core", "INFO", "promotion_decision", f"{stage}:{trait_id}", meta)

@@ -1,0 +1,34 @@
+{
+  "Eye.Color": {
+    "id": "Eye.Color",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642746684",
+        "ts": "2025-10-16T19:25:46+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:48.333005Z",
+    "history": []
+  },
+  "Hair.Color": {
+    "id": "Hair.Color",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642746684",
+        "ts": "2025-10-16T19:25:46+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:48.333019Z",
+    "history": []
+  }
+}

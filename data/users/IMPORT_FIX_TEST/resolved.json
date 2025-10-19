@@ -1,0 +1,13 @@
+{
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "green"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T18:46:09+00:00"
+  }
+}

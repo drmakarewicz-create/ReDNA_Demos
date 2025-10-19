@@ -1,0 +1,71 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Coach Telemetry Entry",
+  "description": "Telemetry data logged for each coach session",
+  "type": "object",
+  "required": ["ts", "user_id", "coach_id", "kind", "data"],
+  "properties": {
+    "ts": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "User identifier"
+    },
+    "coach_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$",
+      "description": "Coach identifier"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["telemetry"],
+      "description": "Entry type (must be telemetry)"
+    },
+    "prompt_hash": {
+      "type": "string",
+      "description": "Hash of prompt file for tracking changes"
+    },
+    "data": {
+      "type": "object",
+      "required": ["features", "hints", "outcome"],
+      "properties": {
+        "features": {
+          "type": "object",
+          "description": "Raw feature values from user state",
+          "additionalProperties": true
+        },
+        "hints": {
+          "type": "object",
+          "description": "Normalized behavior hints derived from features",
+          "additionalProperties": true
+        },
+        "outcome": {
+          "type": "object",
+          "description": "Session outcome metrics",
+          "properties": {
+            "length": {
+              "type": "integer",
+              "description": "Response length in characters"
+            },
+            "sentiment": {
+              "type": "string",
+              "enum": ["positive", "neutral", "negative"],
+              "description": "Sentiment analysis result"
+            },
+            "duration_ms": {
+              "type": "number",
+              "description": "Session duration in milliseconds"
+            },
+            "tokens_used": {
+              "type": "integer",
+              "description": "LLM tokens consumed"
+            }
+          }
+        }
+      }
+    }
+  }
+}

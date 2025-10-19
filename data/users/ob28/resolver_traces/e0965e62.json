@@ -1,0 +1,139 @@
+{
+  "req_id": "e0965e62",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "PaDNA.HairDNA.Color.Natural",
+          "value": {
+            "enum": "red"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:50:58+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "attributes.physical.attributes",
+          "value": {
+            "text": "mostly bald"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:50:58+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "PaDNA.HairDNA.Bald",
+          "value": {
+            "enum": "true"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:50:58+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      ],
+      "ts": 1760557858.418911
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "PaDNA.HairDNA.Color.Natural": 1,
+        "attributes.physical.attributes": 1,
+        "PaDNA.HairDNA.Bald": 1
+      },
+      "ts": 1760557858.4189382
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "PaDNA.HairDNA.Color.Natural": {
+          "trait_id": "PaDNA.HairDNA.Color.Natural",
+          "value": {
+            "enum": "red"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:50:58+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "attributes.physical.attributes": {
+          "trait_id": "attributes.physical.attributes",
+          "value": {
+            "text": "mostly bald"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:50:58+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "PaDNA.HairDNA.Bald": {
+          "trait_id": "PaDNA.HairDNA.Bald",
+          "value": {
+            "enum": "true"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:50:58+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      },
+      "ts": 1760557858.418955
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "PaDNA.HairDNA.Color.Natural",
+          "value": {
+            "enum": "red"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "attributes.physical.attributes",
+          "value": {
+            "text": "mostly bald"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "PaDNA.HairDNA.Bald",
+          "value": {
+            "enum": "true"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760557858.4189591
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760557858.4237728
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "PaDNA.HairDNA.Color.Natural": 0.2,
+        "attributes.physical.attributes": 0.2,
+        "PaDNA.HairDNA.Bald": 0.2
+      },
+      "ts": 1760557858.42382
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 12,
+        "rr_ok": false
+      },
+      "ts": 1760557858.42825
+    }
+  ],
+  "ts": 1760557858.418872
+}

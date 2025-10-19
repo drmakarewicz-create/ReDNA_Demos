@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob27",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have blue eyes",
+  "assistant_text": "You've shared your preference for having a cozy home dinner with deep conversations. It sounds like meaningful connections and relationships are important to you. What do you value most about these types of interactions - is it the sense of connection, the opportunity for personal growth, or something else?",
+  "client_message_id": "9de877f4-ebc4-4a8d-9eec-0e19a3675457",
+  "assistant_message_id": "chat-e3e3db8ad57544a98212efccdd55ad0a",
+  "server_ts": "2025-10-15T18:42:09.770+00:00",
+  "server_ts_ms": 1760553729770,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

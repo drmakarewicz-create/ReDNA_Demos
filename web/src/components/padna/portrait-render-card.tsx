@@ -37,7 +37,7 @@ export function PortraitRenderCard({ userId, className = '' }: PortraitRenderCar
     }
 
     // Check if portrait already exists
-    fetch(`/api/padna/portrait?userId=${encodeURIComponent(userId)}`)
+    fetchWithRetry(`/api/padna/portrait?userId=${encodeURIComponent(userId)}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.ok && data.exists) {

@@ -1,0 +1,18 @@
+{
+  "Mood": {
+    "id": "Mood",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645831484",
+        "ts": "2025-10-16T20:17:11+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:12.188129Z",
+    "history": []
+  }
+}

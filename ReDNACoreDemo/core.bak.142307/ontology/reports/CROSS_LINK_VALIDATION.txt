@@ -1,0 +1,16 @@
+Cross-Link Network Validation Report
+============================================================
+
+Registry: dna_registry.json
+Cross-links: cross_links.yaml
+Total edges: 200
+
+STATISTICS:
+  Edge types:
+    correlates_with: 110 (55.0%)
+    derived_from: 80 (40.0%)
+    influences: 10 (5.0%)
+  Confidence range: 0.65 - 0.86
+  Average confidence: 0.75
+
+✅ Validation passed (0 errors)

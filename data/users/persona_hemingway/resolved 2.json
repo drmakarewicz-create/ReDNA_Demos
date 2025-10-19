@@ -1,0 +1,226 @@
+{
+  "LanguageStyleDNA": {
+    "LanguageStyleDNA.SentenceLengthDNA": {
+      "resolved_value": "short",
+      "ucn": 850,
+      "rr": 85,
+      "curiosity": 15,
+      "reasons": [
+        "Avg sentence length: 12-15 words",
+        "Frequent use of simple declarative sentences"
+      ],
+      "provenance": {
+        "source": "corpus_analysis",
+        "method": "nlp_sentence_parsing",
+        "evidence_refs": [
+          "The Sun Also Rises, Ch. 1-5",
+          "A Farewell to Arms prose analysis"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501920"
+    },
+    "LanguageStyleDNA.CadenceDNA": {
+      "resolved_value": "fast",
+      "ucn": 820,
+      "rr": 82,
+      "curiosity": 18,
+      "reasons": [
+        "Minimal clause nesting",
+        "Rapid scene progression",
+        "Terse dialogue"
+      ],
+      "provenance": {
+        "source": "corpus_analysis",
+        "method": "prosody_analysis",
+        "evidence_refs": [
+          "Hemingway's iceberg theory application"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501933"
+    },
+    "LanguageStyleDNA.VocabularyDensityDNA": {
+      "resolved_value": "low",
+      "ucn": 870,
+      "rr": 87,
+      "curiosity": 13,
+      "reasons": [
+        "Simple, common words",
+        "Low lexical diversity ratio",
+        "Concrete nouns preferred"
+      ],
+      "provenance": {
+        "source": "corpus_analysis",
+        "method": "lexical_analysis",
+        "evidence_refs": [
+          "Type-token ratio: 0.42"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501935"
+    },
+    "LanguageStyleDNA.FormalityDNA": {
+      "resolved_value": "informal",
+      "ucn": 800,
+      "rr": 80,
+      "curiosity": 20,
+      "reasons": [
+        "Conversational tone",
+        "Colloquial dialogue",
+        "Minimal jargon"
+      ],
+      "provenance": {
+        "source": "expert_annotation",
+        "method": "formality_scoring",
+        "evidence_refs": [
+          "Hemingway's journalistic background"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501937"
+    },
+    "LanguageStyleDNA.HedgingPatternDNA": {
+      "resolved_value": "minimal",
+      "ucn": 900,
+      "rr": 90,
+      "curiosity": 10,
+      "reasons": [
+        "Rare use of 'maybe', 'perhaps', 'sort of'",
+        "Declarative assertions",
+        "No epistemic qualifiers"
+      ],
+      "provenance": {
+        "source": "corpus_analysis",
+        "method": "hedging_marker_count",
+        "evidence_refs": [
+          "Hedging marker frequency: 0.02 per 100 words"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501938"
+    },
+    "LanguageStyleDNA.MetaphorDensityDNA": {
+      "resolved_value": "low",
+      "ucn": 780,
+      "rr": 78,
+      "curiosity": 22,
+      "reasons": [
+        "Literal descriptions",
+        "Minimal figurative language",
+        "Iceberg principle (implicit meaning)"
+      ],
+      "provenance": {
+        "source": "literary_analysis",
+        "method": "metaphor_extraction",
+        "evidence_refs": [
+          "Metaphor count: 1.2 per 1000 words"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501939"
+    }
+  },
+  "PsyDNA": {
+    "PsyDNA.PersonalityDNA.BigFiveDNA.OpennessDNA": {
+      "resolved_value": 65,
+      "ucn": 600,
+      "rr": 60,
+      "curiosity": 40,
+      "reasons": [
+        "Experimental style innovations",
+        "Modernist sensibility"
+      ],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": [
+          "Literary criticism: Hemingway's innovations"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501941"
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA": {
+      "resolved_value": 45,
+      "ucn": 550,
+      "rr": 55,
+      "curiosity": 45,
+      "reasons": [
+        "Direct, sometimes blunt prose",
+        "Stoic emotional tone"
+      ],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": [
+          "Character interactions in fiction"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501942"
+    }
+  },
+  "SocDNA": {
+    "SocDNA.InteractionStyleDNA.DirectnessDNA": {
+      "resolved_value": "very_direct",
+      "ucn": 880,
+      "rr": 88,
+      "curiosity": 12,
+      "reasons": [
+        "Minimal preamble",
+        "Get-to-the-point dialogue",
+        "No social niceties padding"
+      ],
+      "provenance": {
+        "source": "dialogue_analysis",
+        "method": "directness_scoring",
+        "evidence_refs": [
+          "Dialogue in 'Hills Like White Elephants'"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501943"
+    },
+    "SocDNA.InteractionStyleDNA.EmpathyToneDNA": {
+      "resolved_value": "restrained",
+      "ucn": 750,
+      "rr": 75,
+      "curiosity": 25,
+      "reasons": [
+        "Understated emotion",
+        "Show-don't-tell approach",
+        "Minimal explicit empathy markers"
+      ],
+      "provenance": {
+        "source": "literary_analysis",
+        "method": "empathy_marker_analysis",
+        "evidence_refs": [
+          "Critics note 'emotional restraint'"
+        ],
+        "timestamp": "2025-10-07T22:00:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:47:10.501944"
+    }
+  }
+}

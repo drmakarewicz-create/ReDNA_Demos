@@ -1,0 +1,18 @@
+{
+  "Person.mood": {
+    "id": "Person.mood",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760649634701",
+        "ts": "2025-10-16T21:20:34+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:20:35.544496Z",
+    "history": []
+  }
+}

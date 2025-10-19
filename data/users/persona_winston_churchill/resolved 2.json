@@ -1,0 +1,288 @@
+{
+  "LanguageStyleDNA": {
+    "LanguageStyleDNA.SentenceLengthDNA": {
+      "resolved_value": "long",
+      "ucn": 860,
+      "rr": 86,
+      "curiosity": 14,
+      "reasons": [
+        "Avg sentence length: 25-35 words",
+        "Complex periodic sentences",
+        "Subordinate clauses for emphasis"
+      ],
+      "provenance": {
+        "source": "corpus_analysis",
+        "method": "nlp_sentence_parsing",
+        "evidence_refs": [
+          "'We Shall Fight on the Beaches' structural analysis",
+          "War speeches sentence patterns"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913067"
+    },
+    "LanguageStyleDNA.CadenceDNA": {
+      "resolved_value": "oratorical",
+      "ucn": 920,
+      "rr": 92,
+      "curiosity": 8,
+      "reasons": [
+        "Strong rhythmic patterns",
+        "Rhetorical repetition",
+        "Climactic build-up",
+        "Triadic structure"
+      ],
+      "provenance": {
+        "source": "speech_analysis",
+        "method": "prosody_analysis",
+        "evidence_refs": [
+          "'We shall fight on the beaches, we shall fight on the landing grounds' pattern analysis",
+          "Classical oratorical structure"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913082"
+    },
+    "LanguageStyleDNA.VocabularyDensityDNA": {
+      "resolved_value": "very_high",
+      "ucn": 890,
+      "rr": 89,
+      "curiosity": 11,
+      "reasons": [
+        "Elevated diction",
+        "Classical references",
+        "Archaic and formal terms",
+        "Rich historical vocabulary"
+      ],
+      "provenance": {
+        "source": "lexical_analysis",
+        "method": "vocabulary_scoring",
+        "evidence_refs": [
+          "Type-token ratio: 0.76",
+          "Latinate vocabulary frequency"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913084"
+    },
+    "LanguageStyleDNA.FormalityDNA": {
+      "resolved_value": "very_formal",
+      "ucn": 910,
+      "rr": 91,
+      "curiosity": 9,
+      "reasons": [
+        "Ceremonial register",
+        "Parliamentary style",
+        "Elevated tone",
+        "No colloquialisms"
+      ],
+      "provenance": {
+        "source": "formality_scoring",
+        "method": "register_analysis",
+        "evidence_refs": [
+          "Comparison with contemporary political speeches",
+          "Classical rhetoric influence"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913086"
+    },
+    "LanguageStyleDNA.HedgingPatternDNA": {
+      "resolved_value": "minimal",
+      "ucn": 880,
+      "rr": 88,
+      "curiosity": 12,
+      "reasons": [
+        "Declarative assertions",
+        "Confident pronouncements",
+        "Rare epistemic qualifiers",
+        "Certainty in wartime rhetoric"
+      ],
+      "provenance": {
+        "source": "hedging_analysis",
+        "method": "marker_frequency",
+        "evidence_refs": [
+          "Hedging frequency: 0.015 per 100 words"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913087"
+    },
+    "LanguageStyleDNA.MetaphorDensityDNA": {
+      "resolved_value": "moderate",
+      "ucn": 750,
+      "rr": 75,
+      "curiosity": 25,
+      "reasons": [
+        "Historical and military metaphors",
+        "Strategic use of imagery",
+        "Classical allusions"
+      ],
+      "provenance": {
+        "source": "literary_analysis",
+        "method": "metaphor_extraction",
+        "evidence_refs": [
+          "Metaphor count: 2.8 per 1000 words",
+          "'Iron Curtain' metaphor analysis"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913088"
+    },
+    "LanguageStyleDNA.ParallelStructureDNA": {
+      "resolved_value": "frequent",
+      "ucn": 940,
+      "rr": 94,
+      "curiosity": 6,
+      "reasons": [
+        "Anaphora (repeated opening phrases)",
+        "Epistrophe (repeated endings)",
+        "Tricolon (three-part lists)",
+        "Classical rhetorical devices"
+      ],
+      "provenance": {
+        "source": "rhetorical_analysis",
+        "method": "parallel_structure_detection",
+        "evidence_refs": [
+          "'We shall fight' anaphora pattern",
+          "'Never...never...never' repetition"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913090"
+    },
+    "LanguageStyleDNA.RhetoricalQuestionDNA": {
+      "resolved_value": "moderate",
+      "ucn": 720,
+      "rr": 72,
+      "curiosity": 28,
+      "reasons": [
+        "Strategic use for emphasis",
+        "Parliamentary tradition",
+        "Audience engagement"
+      ],
+      "provenance": {
+        "source": "rhetorical_analysis",
+        "method": "question_pattern_detection",
+        "evidence_refs": [
+          "Rhetorical questions: 1.5 per speech"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913091"
+    }
+  },
+  "PsyDNA": {
+    "PsyDNA.PersonalityDNA.BigFiveDNA.ExtraversionDNA": {
+      "resolved_value": 80,
+      "ucn": 680,
+      "rr": 68,
+      "curiosity": 32,
+      "reasons": [
+        "Public oratory",
+        "Commanding presence",
+        "Leadership projection"
+      ],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": [
+          "Historical accounts of public speaking",
+          "Leadership style analysis"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913092"
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.ConscientiousnessDNA": {
+      "resolved_value": 85,
+      "ucn": 700,
+      "rr": 70,
+      "curiosity": 30,
+      "reasons": [
+        "Meticulous speech preparation",
+        "Historical scholarship",
+        "Disciplined work ethic"
+      ],
+      "provenance": {
+        "source": "biographical_analysis",
+        "method": "personality_inference",
+        "evidence_refs": [
+          "Writing habits documented in biographies",
+          "Multi-volume historical works"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913093"
+    }
+  },
+  "SocDNA": {
+    "SocDNA.InteractionStyleDNA.DirectnessDNA": {
+      "resolved_value": "direct",
+      "ucn": 830,
+      "rr": 83,
+      "curiosity": 17,
+      "reasons": [
+        "Blunt assessments",
+        "Unvarnished truth",
+        "Wartime clarity",
+        "'Blood, toil, tears and sweat'"
+      ],
+      "provenance": {
+        "source": "discourse_analysis",
+        "method": "directness_scoring",
+        "evidence_refs": [
+          "'I have nothing to offer but blood, toil, tears and sweat' directness"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913094"
+    },
+    "SocDNA.InteractionStyleDNA.EmpathyToneDNA": {
+      "resolved_value": "rallying",
+      "ucn": 810,
+      "rr": 81,
+      "curiosity": 19,
+      "reasons": [
+        "Collective spirit",
+        "Shared sacrifice appeal",
+        "National unity emphasis",
+        "'We shall' inclusive language"
+      ],
+      "provenance": {
+        "source": "empathy_analysis",
+        "method": "tone_scoring",
+        "evidence_refs": [
+          "'We/our' pronoun ratio: very high",
+          "Solidarity rhetoric analysis"
+        ],
+        "timestamp": "2025-10-07T22:45:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "last_updated": "2025-10-07T18:52:37.913095"
+    }
+  }
+}

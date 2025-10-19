@@ -1,0 +1,106 @@
+{
+  "mode_history": [
+    {
+      "from_mode": "head_coach",
+      "to_mode": "chatdna_coach",
+      "timestamp": "2025-10-08T01:29:05.904699+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T01:29:05.895Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "chatdna_coach",
+      "to_mode": "head_coach",
+      "timestamp": "2025-10-08T13:29:33.808883+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T13:29:33.798Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "head_coach",
+      "to_mode": "chatdna_coach",
+      "timestamp": "2025-10-08T13:29:46.685699+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-08T13:29:46.682Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "chatdna_coach",
+      "to_mode": "permission_coach",
+      "timestamp": "2025-10-09T13:46:18.888619+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-09T13:46:18.754Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "permission_coach",
+      "to_mode": "padna_coach",
+      "timestamp": "2025-10-09T13:46:22.344811+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-09T13:46:22.341Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "padna_coach",
+      "to_mode": "beliefdna_coach",
+      "timestamp": "2025-10-09T13:47:40.970445+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-09T13:47:40.964Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "beliefdna_coach",
+      "to_mode": "permission_coach",
+      "timestamp": "2025-10-09T13:47:44.782699+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-09T13:47:44.779Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "permission_coach",
+      "to_mode": "chatdna_coach",
+      "timestamp": "2025-10-09T13:52:54.100481+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-09T13:52:54.095Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "chatdna_coach",
+      "to_mode": "permission_coach",
+      "timestamp": "2025-10-09T13:52:57.715835+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-09T13:52:57.712Z",
+        "reason": "manual_switch"
+      }
+    },
+    {
+      "from_mode": "permission_coach",
+      "to_mode": "padna_coach",
+      "timestamp": "2025-10-10T12:51:00.641998+00:00",
+      "context": {
+        "source": "coach_catalog",
+        "timestamp": "2025-10-10T12:51:00.630Z",
+        "reason": "manual_switch"
+      }
+    }
+  ],
+  "active_mode": "padna_coach",
+  "updated_at": "2025-10-10T12:51:00.642018+00:00"
+}

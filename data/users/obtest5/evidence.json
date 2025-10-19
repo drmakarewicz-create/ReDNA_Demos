@@ -1,0 +1,104 @@
+{
+  "items": [
+    {
+      "trait_id": "social.relationship_status",
+      "value": 70,
+      "confidence": 70,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "keyword_extraction",
+        "timestamp": "2025-10-14T01:39:31.510000+00:00",
+        "raw_input": "My name is OB5. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+        "signal": "mentioned romantic relationships",
+        "keywords_matched": [
+          "married",
+          "relationship"
+        ]
+      },
+      "timestamp": "2025-10-14T01:39:31.510000+00:00"
+    },
+    {
+      "trait_id": "preferences.lifestyle.cozy_home_dinner_with_deep_conversation",
+      "value": 100,
+      "confidence": 80,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-14T01:39:31.510000+00:00",
+        "raw_input": "My name is OB5. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+        "signal": "loves cozy home dinner with deep conversation"
+      },
+      "timestamp": "2025-10-14T01:39:31.510000+00:00"
+    },
+    {
+      "trait_id": "attributes.age",
+      "value": 90,
+      "confidence": 90,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-14T01:39:31.510000+00:00",
+        "raw_input": "My name is OB5. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+        "signal": "age: 45-54",
+        "fact_value": "45-54"
+      },
+      "timestamp": "2025-10-14T01:39:31.510000+00:00"
+    },
+    {
+      "trait_id": "attributes.gender",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-14T01:39:31.510000+00:00",
+        "raw_input": "My name is OB5. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+        "signal": "gender: Male",
+        "fact_value": "Male"
+      },
+      "timestamp": "2025-10-14T01:39:31.510000+00:00"
+    },
+    {
+      "trait_id": "attributes.orientation",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-14T01:39:31.510000+00:00",
+        "raw_input": "My name is OB5. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+        "signal": "orientation: Straight",
+        "fact_value": "Straight"
+      },
+      "timestamp": "2025-10-14T01:39:31.510000+00:00"
+    },
+    {
+      "trait_id": "attributes.relationship_status",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-14T01:39:31.510000+00:00",
+        "raw_input": "My name is OB5. My age range is 45-54. My gender is Male. My orientation is Straight. My preferred language is English. My relationship status is Married. For the 'Would You Rather' question, I chose: A cozy home dinner with deep conversation?.",
+        "signal": "relationship_status: Married",
+        "fact_value": "Married"
+      },
+      "timestamp": "2025-10-14T01:39:31.510000+00:00"
+    },
+    {
+      "trait_id": "attributes.physical.eye_color",
+      "value": 90,
+      "confidence": 100,
+      "provenance": {
+        "source": "head_coach_conversation",
+        "method": "llm_extraction",
+        "timestamp": "2025-10-14T01:47:48.262000+00:00",
+        "raw_input": "I have blue eyes",
+        "signal": "physical.eye_color: blue",
+        "fact_value": "blue"
+      },
+      "timestamp": "2025-10-14T01:47:48.262000+00:00"
+    }
+  ]
+}

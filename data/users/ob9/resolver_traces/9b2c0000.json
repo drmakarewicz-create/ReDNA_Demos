@@ -1,0 +1,79 @@
+{
+  "req_id": "9b2c0000",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "30 years old"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T18:03:03+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      ],
+      "ts": 1760464983.034328
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "BasicDNA.Age": 1
+      },
+      "ts": 1760464983.0343301
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "BasicDNA.Age": {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "30 years old"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T18:03:03+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      },
+      "ts": 1760464983.0343318
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "30 years old"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760464983.034333
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760464983.037144
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "BasicDNA.Age": 0.2
+      },
+      "ts": 1760464983.037169
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 7,
+        "rr_ok": false
+      },
+      "ts": 1760464983.0385768
+    }
+  ],
+  "ts": 1760464983.034316
+}

@@ -1,0 +1,18 @@
+{
+  "PaDNA.Age": {
+    "id": "PaDNA.Age",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642903298",
+        "ts": "2025-10-16T19:28:23+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:28:26.687033Z",
+    "history": []
+  }
+}

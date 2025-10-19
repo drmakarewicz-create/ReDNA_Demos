@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="1200" height="720" fill="#FFFFFF" />
+<text x="600.0" y="40.0" fill="#0B1B34" font-size="32" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Inference V3 Architecture</text>
+<text x="600.0" y="80.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Predictive modeling pipeline</text>
+<rect x="40.0" y="180.0" width="220.0" height="150.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="150.0" y="200.0" fill="#FF7F0E" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Historical Trait Data</text>
+<text x="150.0" y="230.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">30/60/90 day windows<tspan x="150.0" dy="20.8">normalized feature sets</tspan></text>
+<rect x="250.0" y="180.0" width="220.0" height="150.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="360.0" y="200.0" fill="#FF7F0E" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Time-Series Analyzer</text>
+<text x="360.0" y="230.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Trend detection •<tspan x="360.0" dy="20.8">seasonality</tspan><tspan x="360.0" dy="20.8">anomaly tagging</tspan></text>
+<rect x="460.0" y="180.0" width="220.0" height="150.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="570.0" y="200.0" fill="#FF7F0E" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Bayesian Belief Network</text>
+<text x="570.0" y="230.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Trait dependency graph •<tspan x="570.0" dy="20.8">temporal priors</tspan></text>
+<rect x="670.0" y="180.0" width="220.0" height="150.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="780.0" y="200.0" fill="#FF7F0E" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Prediction Engine</text>
+<text x="780.0" y="230.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Bayesian updates with<tspan x="780.0" dy="20.8">decay</tspan><tspan x="780.0" dy="20.8">scenario-ready outputs</tspan></text>
+<rect x="880.0" y="180.0" width="220.0" height="150.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="990.0" y="200.0" fill="#FF7F0E" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Delivery Tier</text>
+<text x="990.0" y="230.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Confidence calibrator<tspan x="990.0" dy="20.8">(90% CI)</tspan><tspan x="990.0" dy="20.8">Scenario modeler • Goal</tspan><tspan x="990.0" dy="20.8">success API</tspan></text>
+<line x1="260.0" y1="255.0" x2="250.0" y2="255.0" stroke="#FF7F0E" stroke-width="3.0" />
+<polygon points="250.0,255.0 260.4,249.0 260.4,261.0" fill="#FF7F0E" />
+<line x1="470.0" y1="255.0" x2="460.0" y2="255.0" stroke="#FF7F0E" stroke-width="3.0" />
+<polygon points="460.0,255.0 470.4,249.0 470.4,261.0" fill="#FF7F0E" />
+<line x1="680.0" y1="255.0" x2="670.0" y2="255.0" stroke="#FF7F0E" stroke-width="3.0" />
+<polygon points="670.0,255.0 680.4,249.0 680.4,261.0" fill="#FF7F0E" />
+<line x1="890.0" y1="255.0" x2="880.0" y2="255.0" stroke="#FF7F0E" stroke-width="3.0" />
+<polygon points="880.0,255.0 890.4,249.0 890.4,261.0" fill="#FF7F0E" />
+<text x="600.0" y="430.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Outputs feed Life OS goals, coach scenarios, and platform APIs in &lt;200ms p95.</text>
+</svg>

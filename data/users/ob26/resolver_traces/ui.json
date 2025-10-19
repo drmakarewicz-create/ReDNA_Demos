@@ -1,0 +1,84 @@
+{
+  "req_id": "ui",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "FreeText",
+          "value": {
+            "text": "Hello"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T18:31:02+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      ],
+      "ts": 1760553062.4821188
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "FreeText": 1
+      },
+      "ts": 1760553062.48212
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "FreeText": {
+          "trait_id": "FreeText",
+          "value": {
+            "text": "Hello"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T18:31:02+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      },
+      "ts": 1760553062.482122
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "FreeText",
+          "value": {
+            "text": "Hello"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760553062.482123
+    },
+    {
+      "name": "rr_success",
+      "payload": [
+        {
+          "trait_id": "FreeText",
+          "ucn": 0.2
+        }
+      ],
+      "ts": 1760553062.4834409
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "FreeText": 0.2
+      },
+      "ts": 1760553062.4834418
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 1,
+        "rr_ok": true
+      },
+      "ts": 1760553062.488797
+    }
+  ],
+  "ts": 1760553062.4821131
+}

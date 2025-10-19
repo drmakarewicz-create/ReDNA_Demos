@@ -1,0 +1,18 @@
+{
+  "PaDNA.Hygiene": {
+    "id": "PaDNA.Hygiene",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644657936",
+        "ts": "2025-10-16T19:57:37+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:57:39.741623Z",
+    "history": []
+  }
+}

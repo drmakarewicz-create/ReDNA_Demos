@@ -1,0 +1,48 @@
+{
+  "playbook_id": "explain_change",
+  "name": "Explain Sudden Change",
+  "description": "If RR/UCN shifts suddenly, generate 'what moved and why' card",
+  "version": "1.0",
+  "trigger": {
+    "condition": "ucn_or_rr_shift > 100",
+    "check_frequency": "on_ucnrr_rescore"
+  },
+  "steps": [
+    {
+      "step_id": "detect_shifts",
+      "action": "find_significant_shifts",
+      "params": {
+        "min_ucn_delta": 100,
+        "min_rr_delta": 100,
+        "lookback_hours": 24
+      }
+    },
+    {
+      "step_id": "generate_explanation",
+      "action": "explain_shift",
+      "params": {
+        "message_template": "**{{trait_name}}** just shifted by {{delta}}. Here's why:",
+        "include_provenance": true,
+        "include_evidence_summary": true
+      }
+    },
+    {
+      "step_id": "create_card",
+      "action": "create_explanation_card",
+      "params": {
+        "title": "What moved and why",
+        "content": "{{explanation_text}}",
+        "show_in_panel": true,
+        "expires_after_hours": 48
+      }
+    }
+  ],
+  "success_criteria": {
+    "explanation_generated": true,
+    "user_acknowledged": true
+  },
+  "follow_up": {
+    "if_acknowledged": "dismiss_card",
+    "if_ignored_24h": "gentle_reminder"
+  }
+}

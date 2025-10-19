@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="1200" height="720" fill="#FFFFFF" />
+<text x="600.0" y="40.0" fill="#0B1B34" font-size="32" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Life OS Hub Architecture</text>
+<text x="600.0" y="80.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Unified productivity + intelligence hub</text>
+<circle cx="600.0" cy="320.0" r="80.0" fill="#FFFFFF" stroke="#FF7F0E" stroke-width="4.0" />
+<text x="600.0" y="290.0" fill="#FF7F0E" font-size="22" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Life OS Core</text>
+<text x="600.0" y="320.0" fill="#0B1B34" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Goals • Projects •<tspan x="600.0" dy="23.4">Tasks • Todos</tspan></text>
+<rect x="150.0" y="120.0" width="260.0" height="140.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="280.0" y="150.0" fill="#1F77B4" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Analytics Integration Panel</text>
+<text x="280.0" y="184.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Inference V3 predictions<tspan x="280.0" dy="20.8">risk &amp; opportunity surfacing</tspan></text>
+<line x1="520.0" y1="320.0" x2="410.0" y2="180.0" stroke="#1F77B4" stroke-width="3.0" />
+<polygon points="410.0,180.0 421.1,184.5 411.7,191.9" fill="#1F77B4" />
+<rect x="790.0" y="120.0" width="260.0" height="140.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#2CA02C" stroke-width="2.0" />
+<text x="920.0" y="150.0" fill="#2CA02C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Cross-Coach Insights Feed</text>
+<text x="920.0" y="184.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Career stress ↔ Head Coach<tspan x="920.0" dy="20.8">rest suggestions</tspan><tspan x="920.0" dy="20.8">Persona-aware nudges</tspan></text>
+<line x1="680.0" y1="320.0" x2="790.0" y2="180.0" stroke="#2CA02C" stroke-width="3.0" />
+<polygon points="790.0,180.0 788.3,191.9 778.9,184.5" fill="#2CA02C" />
+<rect x="150.0" y="400.0" width="260.0" height="140.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#9467BD" stroke-width="2.0" />
+<text x="280.0" y="430.0" fill="#9467BD" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Contextual Recommendations</text>
+<text x="280.0" y="464.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">ML-driven timing • priority<tspan x="280.0" dy="20.8">ordering</tspan><tspan x="280.0" dy="20.8">Explainable prompts</tspan></text>
+<line x1="520.0" y1="320.0" x2="410.0" y2="460.0" stroke="#9467BD" stroke-width="3.0" />
+<polygon points="410.0,460.0 411.7,448.1 421.1,455.5" fill="#9467BD" />
+<rect x="790.0" y="400.0" width="260.0" height="140.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#FF7F0E" stroke-width="2.0" />
+<text x="920.0" y="430.0" fill="#FF7F0E" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Unified Dashboard UI</text>
+<text x="920.0" y="464.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Single pane view • filters •<tspan x="920.0" dy="20.8">quick actions</tspan><tspan x="920.0" dy="20.8">Life OS + coach states</tspan></text>
+<line x1="680.0" y1="320.0" x2="790.0" y2="460.0" stroke="#FF7F0E" stroke-width="3.0" />
+<polygon points="790.0,460.0 778.9,455.5 788.3,448.1" fill="#FF7F0E" />
+<text x="600.0" y="600.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Life OS evolves from standalone tracker to intelligence hub orchestrating cross-coach actions.</text>
+</svg>

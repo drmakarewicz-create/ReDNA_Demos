@@ -1,0 +1,13 @@
+{
+  "last_user_ts": "2025-10-15T17:22:48.693000+00:00",
+  "last_user_text": "What should we do today?",
+  "turns_observed": 2,
+  "dialog_history": [
+    "answer",
+    "question"
+  ],
+  "last_assistant_ts": "2025-10-15T17:22:48.696368+00:00",
+  "latency_history_ms": [
+    26267
+  ]
+}

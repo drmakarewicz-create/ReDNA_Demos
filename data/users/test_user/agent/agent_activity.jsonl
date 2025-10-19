@@ -1,0 +1,4 @@
+{"timestamp": "2025-10-11T17:07:22.514922Z", "event_type": "consent_checked", "user_id": "TEST_USER", "namespace": "test", "required_scopes": ["read:PsyDNA"], "granted": false, "reason": "no_token_provided", "cap_id": null}
+{"timestamp": "2025-10-11T17:07:22.540782Z", "event_type": "consent_checked", "user_id": "TEST_USER", "namespace": "test", "required_scopes": ["read:PsyDNA"], "granted": false, "reason": "invalid_token: Signature has expired", "cap_id": null}
+{"timestamp": "2025-10-11T17:07:22.556902Z", "event_type": "consent_checked", "user_id": "TEST_USER", "namespace": "test", "required_scopes": ["read:PsyDNA"], "granted": false, "reason": "error: '>=' not supported between instances of 'int' and 'dict'", "cap_id": null}
+{"timestamp": "2025-10-11T17:07:22.558942Z", "event_type": "consent_checked", "user_id": "TEST_USER", "namespace": "test", "required_scopes": ["read:PsyDNA"], "granted": false, "reason": "error: Signature has expired", "cap_id": null}

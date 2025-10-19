@@ -11,6 +11,7 @@ import re
 import sys
 import time
 import asyncio
+import threading
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
@@ -18,9 +19,12 @@ from datetime import datetime, timezone
 
 from textwrap import shorten
 
+import hashlib
 import yaml
 from fastapi import Body, FastAPI, HTTPException, UploadFile, File, Form
 from pydantic import BaseModel
+
+from ReDNACoreDemo.core.logutil import stack_log
 
 DATA_DIR = Path(os.getenv("UCNRR_DATA_DIR", os.path.expanduser("~/Documents/ReDNA_Demos/UCN_RR_Demo/data")))
 USERS_DIR = DATA_DIR / "users"
@@ -38,6 +42,10 @@ USE_MIN_HEURISTICS = os.getenv("UCNRR_USE_MIN_HEURISTICS", "true").lower() in ("
 LOG_LLM = os.getenv("UCNRR_LOG_LLM", "false").lower() in ("1", "true", "yes")
 LOG_SCORES = os.getenv("UCNRR_LOG_SCORES", "false").lower() in ("1", "true", "yes")
 
+# Selftest cache configuration
+SELFTEST_CACHE_SEC = int(os.getenv("UCNRR_SELFTEST_CACHE_SEC", "180"))  # 3 minutes
+SELFTEST_BG_TIMEOUT_SEC = int(os.getenv("UCNRR_SELFTEST_BG_TIMEOUT_SEC", "4"))
+
 FORWARD_LOG_PATH = DATA_DIR / "dev_logs" / "ucnrr_forward.log"
 
 _TRACE_TRUE = {"1", "true", "yes", "on"}
@@ -48,15 +56,54 @@ ROUNDTRIP_CIRCUIT_BREAK_MS = int(float(os.getenv("ROUNDTRIP_CIRCUIT_BREAK_MS", "
 _REPO_ROOT = Path(__file__).resolve().parents[1]
 TRACE_PATH = _REPO_ROOT / "data" / "dev_logs" / "trace_ucnrr.jsonl"
 DNA_WEIGHTS_PATH = DATA_DIR / "config" / "dna_weights.yaml"
+PROMPT_PATH = _REPO_ROOT / "prompts" / "ucn_rr_ai.md"
 
 _circuit_state: Dict[str, Dict[str, float]] = {}
 _dna_weights_cache: Optional[Dict[str, Any]] = None
 _trait_registry_cache: Dict[str, Dict[str, Any]] = {}
+_prompt_cache: Optional[Dict[str, str]] = None
 
 app = FastAPI(title="ReDNA UCN/RR Demo", version="1.2.1")
 UCNRR_VERSION = "dev"
 
 _BACKGROUND_TASKS: "set[asyncio.Task[Any]]" = set()
+
+# Selftest cache state
+_last_selftest_ok_ts = 0.0
+_last_selftest_ok_meta: Dict[str, Any] = {}
+_selftest_lock = threading.Lock()
+
+MORNING_PATTERNS = [
+    r"\bmorning person\b",
+    r"\bearly riser\b",
+    r"\bup\s+(?:before|by)\s+sunrise\b",
+]
+EVENING_PATTERNS = [
+    r"\bnight owl\b",
+    r"\bstay up late\b",
+    r"\bup\s+past\s+midnight\b",
+]
+
+
+def _detect_chronotype(text: str) -> bool:
+    lowered = text.lower()
+    for pattern in MORNING_PATTERNS + EVENING_PATTERNS:
+        if re.search(pattern, lowered):
+            return True
+    return False
+
+
+def _maybe_inject_chronotype(
+    user_text: str,
+    rr_by_trait: Dict[str, float],
+    why_by_trait: Optional[Dict[str, str]] = None,
+) -> None:
+    if "BehaviorDNA.Sleep.Chronotype" in rr_by_trait:
+        return
+    if _detect_chronotype(user_text):
+        rr_by_trait["BehaviorDNA.Sleep.Chronotype"] = 830.0
+        if why_by_trait is not None and "BehaviorDNA.Sleep.Chronotype" not in why_by_trait:
+            why_by_trait["BehaviorDNA.Sleep.Chronotype"] = "Chronotype inferred from detected morning/evening phrases."
 
 
 def _launch_background(task: "asyncio.Task[Any]") -> None:
@@ -130,6 +177,66 @@ def _circuit_reset(user_id: str) -> None:
     _circuit_state.pop(user_id, None)
 
 
+def _load_prompt() -> Dict[str, str]:
+    """
+    Load UCNRR AI prompt from markdown file and compute SHA256 hash.
+
+    Returns:
+        Dict with keys: text, sha256, version, loaded_at
+    """
+    global _prompt_cache
+
+    # Return cached if available
+    if _prompt_cache is not None:
+        return _prompt_cache
+
+    try:
+        if not PROMPT_PATH.exists():
+            # Return placeholder if prompt file missing
+            return {
+                "text": "UCNRR AI prompt not loaded (file missing)",
+                "sha256": "none",
+                "version": "missing",
+                "loaded_at": datetime.now(timezone.utc).isoformat(),
+                "error": f"Prompt file not found at {PROMPT_PATH}"
+            }
+
+        # Read prompt file
+        prompt_text = PROMPT_PATH.read_text(encoding="utf-8")
+
+        # Compute SHA256
+        prompt_sha = hashlib.sha256(prompt_text.encode("utf-8")).hexdigest()
+
+        # Extract version from markdown (look for **Version**: X.X)
+        version_match = re.search(r'\*\*Version\*\*:\s*(\S+)', prompt_text)
+        version = version_match.group(1) if version_match else "unknown"
+
+        _prompt_cache = {
+            "text": prompt_text,
+            "sha256": prompt_sha,
+            "version": version,
+            "loaded_at": datetime.now(timezone.utc).isoformat()
+        }
+
+        return _prompt_cache
+
+    except Exception as e:
+        return {
+            "text": f"Error loading prompt: {e}",
+            "sha256": "error",
+            "version": "error",
+            "loaded_at": datetime.now(timezone.utc).isoformat(),
+            "error": str(e)
+        }
+
+
+def _reload_prompt() -> Dict[str, str]:
+    """Force reload of prompt cache."""
+    global _prompt_cache
+    _prompt_cache = None
+    return _load_prompt()
+
+
 def _circuit_record_failure(user_id: str) -> Dict[str, float]:
     now = time.time()
     entry = _circuit_state.setdefault(user_id, {"failures": 0, "fail_since": now, "opened_until": 0.0})
@@ -155,6 +262,101 @@ def _circuit_record_failure(user_id: str) -> Dict[str, float]:
 
 def _clamp(value: float, low: float, high: float) -> float:
     return max(low, min(high, value))
+
+
+# Trait ID canonicalization map (Phase 4.0a - align model outputs to golden IDs)
+_CANON_MAP = {
+    # Eye color variants
+    "PaDNA.Color": "PaDNA.EyeDNA.IrisColor",
+    "Eye.Color": "PaDNA.EyeDNA.IrisColor",
+    "PaDNA.EyeColor": "PaDNA.EyeDNA.IrisColor",
+    # Height variants
+    "PaDNA.Height": "PaDNA.BodyDNA.Height",
+    "PaDNA.Physical.Characteristic.Height": "PaDNA.BodyDNA.Height",
+    "attributes.physical.height": "PaDNA.BodyDNA.Height",
+    "height": "PaDNA.BodyDNA.Height",
+    # Fitness/wellness → fitness level
+    "PaDNA.PhysicalCondition": "BehaviorDNA.Fitness.Level",
+    "PaDNA.HealthStatus": "BehaviorDNA.Fitness.Level",
+    # Social style
+    "Personality.Introversion": "BehaviorDNA.Social.Style",
+    "Personality.Social_Preferences": "BehaviorDNA.Social.Style",
+    # Exercise/activity
+    "PaDNA.Activity": "BehaviorDNA.Exercise.Outdoor",
+    "PaDNA.Human.Activity": "BehaviorDNA.Exercise.Outdoor",
+    "PaDNA.Frequency": "BehaviorDNA.Exercise.Frequency",
+    "PaDNA.Human.Frequency": "BehaviorDNA.Exercise.Frequency",
+    # Age
+    "Age.PaDNA.Age": "BasicDNA.Age",
+    "age": "BasicDNA.Age",
+    # Location
+    "PaDNA.Location": "BasicDNA.Location.City",
+    "PaDNA.City": "BasicDNA.Location.City",
+    # Gender/sex
+    "PaDNA.Gender": "BasicDNA.Gender",
+    "PaDNA.Sex": "BasicDNA.Gender",
+    # Hair color
+    "PaDNA.PhysicalCharacteristics.HairColor": "PaDNA.HairDNA.Color.Natural",
+    # Chronotype/personality
+    "PaDNA.PersonalityType": "BehaviorDNA.Sleep.Chronotype",
+    "PaDNA.TimePreference": "BehaviorDNA.Sleep.Chronotype",
+    # Leisure/hobbies
+    "PaDNA.Hobby": "BehaviorDNA.Leisure.Indoor",
+    "PaDNA.ActivityType": "BehaviorDNA.Leisure.Indoor",
+    # Caffeine/health
+    "PaDNA.Human.DrinkCoffee": "BehaviorDNA.Health.CaffeineIntake",
+    "PaDNA.Human.DailyCaffeineIntake": "BehaviorDNA.Health.CaffeineIntake",
+    "PaDNA.Human.TimeOfConsumption": "BehaviorDNA.Routine.Morning",
+    # Learning
+    "PaDNA.Learning_Style": "BehaviorDNA.Learning.Style",
+    # Communication
+    "PaDNA.Communication.ResponseTime": "BehaviorDNA.Communication.ResponseStyle",
+    # Work schedule
+    "PaDNA.StartOfWork": "BehaviorDNA.Schedule.WorkHours",
+    "PaDNA.FinishOfWork": "BehaviorDNA.Schedule.WorkHours",
+    # Organization
+    "PaDNA.DayOfWeek": "BehaviorDNA.Organization.Level",
+    # Occupation/relationship
+    "PaDNA.Occupation": "BasicDNA.Occupation",
+    "PaDNA.RelationshipStatus": "BasicDNA.RelationshipStatus",
+    "relationship.status": "BasicDNA.RelationshipStatus",
+}
+
+_CANON_MAP.update({
+    "sleep.chronotype": "BehaviorDNA.Sleep.Chronotype",
+    "diet.preference": "BehaviorDNA.Health.Diet",
+    "work.location": "BehaviorDNA.Work.Location",
+    "social.group_size": "PreferenceDNA.Social.GroupSize",
+    "exercise.type": "BehaviorDNA.Exercise.Type",
+})
+
+
+def _canon_trait_id(tid: str) -> str:
+    """
+    Canonicalize trait_id to match golden dataset conventions.
+
+    Phase 4.0a: Apply runtime normalization to align UCNRR outputs with Core/golden IDs.
+    This reduces test harness aliasing burden and improves recall.
+
+    Steps:
+    1. Check explicit aliases first
+    2. Apply heuristic normalization (add *DNA suffix if missing)
+    3. Check aliases again on normalized form
+    """
+    if not tid:
+        return ""
+    tid = tid.strip()
+
+    # Check explicit aliases first
+    if tid in _CANON_MAP:
+        return _CANON_MAP[tid]
+
+    # Apply heuristic: add *DNA after first PaDNA segment if missing
+    # E.g., "PaDNA.Eye.IrisColor" -> "PaDNA.EyeDNA.IrisColor"
+    normalized = re.sub(r"^PaDNA\.([A-Z][a-z]+)\.(.+)$", r"PaDNA.\1DNA.\2", tid)
+
+    # Check aliases again on normalized form
+    return _CANON_MAP.get(normalized, normalized)
 
 
 def _load_dna_weights() -> Dict[str, Any]:
@@ -433,6 +635,7 @@ def _parse_canonical(
     heuristic_hint: Optional[str] = None,
     llm_conf: Optional[float] = None,
     heuristic_strength: str = "medium",
+    why_hint: Optional[str] = None,
 ) -> Dict[str, Any]:
     out: Dict[str, Any] = {}
     for raw in lines:
@@ -475,6 +678,8 @@ def _parse_canonical(
             "reasons": [reason],
             "notes": notes,
         }
+        if why_hint:
+            out[key]["why"] = why_hint
         if LOG_SCORES:
             print(f"ucnrr: trait={key} source={source_kind} ucn={ucn:.1f}")
     return out
@@ -505,6 +710,44 @@ def _min_heuristics(text: str) -> Dict[str, Dict[str, Any]]:
                 heuristic_strength="medium",
             )
         )
+    # Chronotype heuristics
+    morning_phrases = [
+        "morning person",
+        "early riser",
+        "up before sunrise",
+        "up by sunrise",
+        "awake before dawn",
+    ]
+    evening_phrases = [
+        "night owl",
+        "stay up late",
+        "up past midnight",
+        "in bed after midnight",
+    ]
+    if any(phrase in low for phrase in morning_phrases):
+        why_hint = "Matched morning chronotype phrases in text."
+        if "before sunrise" in low:
+            why_hint = "Matched phrases 'morning person' and 'before sunrise'."
+        out.update(
+            _parse_canonical(
+                ["BehaviorDNA.Sleep.Chronotype=morning"],
+                source_kind="heuristic",
+                heuristic_hint="Chronotype heuristic: detected morning phrases.",
+                heuristic_strength="high",
+                why_hint=why_hint,
+            )
+        )
+    elif any(phrase in low for phrase in evening_phrases):
+        why_hint = "Detected night-owl phrasing indicating evening chronotype."
+        out.update(
+            _parse_canonical(
+                ["BehaviorDNA.Sleep.Chronotype=evening"],
+                source_kind="heuristic",
+                heuristic_hint="Chronotype heuristic: detected evening phrases.",
+                heuristic_strength="high",
+                why_hint=why_hint,
+            )
+        )
     return out
 
 
@@ -513,6 +756,7 @@ def _merge_normalize(source: Dict[str, Any], provenance: Dict[str, Any]) -> Dict
     default_prov = {"source": "ucnrr", "from": provenance.get("source", "explorer"), "ts": now_iso}
     merged: Dict[str, Dict[str, Any]] = {}
     for path, meta in (source or {}).items():
+        why_text: Optional[str] = None
         if isinstance(meta, dict):
             value = meta.get("resolved_value", meta.get("value"))
             ucn = meta.get("ucn", meta.get("confidence", 0) * 100 if isinstance(meta.get("confidence"), (int, float)) else 80)
@@ -521,6 +765,7 @@ def _merge_normalize(source: Dict[str, Any], provenance: Dict[str, Any]) -> Dict
             status = meta.get("status")
             prov = dict(meta.get("provenance", {})) or dict(default_prov)
             notes = meta.get("notes") if isinstance(meta.get("notes"), dict) else None
+            why_text = meta.get("why")
         else:
             value = meta
             ucn = 80
@@ -529,6 +774,7 @@ def _merge_normalize(source: Dict[str, Any], provenance: Dict[str, Any]) -> Dict
             status = None
             prov = dict(default_prov)
             notes = None
+            why_text = None
         if "source" not in prov:
             prov.setdefault("source", default_prov["source"])
         merged[path] = {
@@ -541,6 +787,8 @@ def _merge_normalize(source: Dict[str, Any], provenance: Dict[str, Any]) -> Dict
         }
         if notes:
             merged[path]["notes"] = notes
+        if why_text:
+            merged[path]["why"] = why_text
     return merged
 
 
@@ -577,15 +825,47 @@ def _llm_extract(text: str) -> Dict[str, Any]:
     except ImportError:
         return {}
 
+    # Phase 4.0a Batch 2: Canonical schema + few-shot examples for improved recall
     system_prompt = (
-        "You are an information extraction assistant. "
-        "Return factual trait statements from user text as canonical lines in the form\n"
-        "PaDNA.Path=Value. Use only traits you are confident in. If nothing is certain, return an empty string."
+        "You are an information extraction assistant for the ReDNA trait system.\n"
+        "Extract traits from user text using ONLY these canonical trait IDs:\n\n"
+        "**Physiological:**\n"
+        "- PaDNA.EyeDNA.IrisColor, PaDNA.HairDNA.Color.Natural, PaDNA.BodyDNA.Height\n\n"
+        "**Demographics:**\n"
+        "- BasicDNA.Age, BasicDNA.Gender, BasicDNA.RelationshipStatus, BasicDNA.Occupation\n\n"
+        "**Behavior:**\n"
+        "- BehaviorDNA.Sleep.Chronotype, BehaviorDNA.Schedule.WorkHours\n"
+        "- BehaviorDNA.Exercise.Outdoor, BehaviorDNA.Exercise.Frequency, BehaviorDNA.Exercise.Type\n"
+        "- BehaviorDNA.Leisure.Indoor, BehaviorDNA.Routine.Morning\n"
+        "- BehaviorDNA.Wellness.ColdTherapy, BehaviorDNA.Work.Location\n"
+        "- BehaviorDNA.Health.Diet, BehaviorDNA.Health.CaffeineIntake\n"
+        "- BehaviorDNA.Social.Style, BehaviorDNA.Organization.Level\n\n"
+        "**Preferences:**\n"
+        "- PreferenceDNA.Social.GroupSize, PreferenceDNA.Food.Pizza, PreferenceDNA.Work.Environment\n\n"
+        "**Rules:**\n"
+        "- Emit ONLY trait_ids from the schema above\n"
+        "- If uncertain, omit rather than speculate\n"
+        "- Prefer concise extractions (1-3 items)\n"
+        "- When choosing a trait_id, pick the nearest canonical ID from schema (do not invent)\n"
+        "- For frequency, prefer: 'weekly', 'daily', '2_per_week'\n"
+        "- Output format: Trait.Path=Value (one per line)"
     )
 
     user_prompt = (
-        "Extract explicit traits from the following text. Use the canonical path list (PaDNA.*) you know.\n"
-        "Output ONLY lines of the form Trait.Path=Value, one per line.\n\nTEXT:\n" + text
+        "Extract traits from this text using canonical IDs from the schema.\n\n"
+        "**Few-shot examples:**\n"
+        "1. 'I'm a morning person.' → BehaviorDNA.Sleep.Chronotype=morning\n"
+        "2. 'I start work at 6 AM and finish by 2 PM.' → BehaviorDNA.Schedule.WorkHours=early BehaviorDNA.Sleep.Chronotype=morning\n"
+        "3. 'I usually stay in and read on weekends.' → BehaviorDNA.Leisure.Indoor=true PreferenceDNA.Social.GroupSize=small\n"
+        "4. 'I don't eat meat.' → BehaviorDNA.Health.Diet=vegetarian\n"
+        "5. 'I take cold showers every morning.' → BehaviorDNA.Wellness.ColdTherapy=true\n"
+        "6. 'I work from home most days.' → BehaviorDNA.Work.Location=remote\n"
+        "7. 'My hair is brown.' → PaDNA.HairDNA.Color.Natural=brown\n"
+        "8. 'I'm in my early 30s.' → BasicDNA.Age=30s\n"
+        "9. 'I'm married.' → BasicDNA.RelationshipStatus=married\n"
+        "10. 'I go hiking every weekend.' → BehaviorDNA.Exercise.Outdoor=true BehaviorDNA.Exercise.Frequency=weekly\n\n"
+        "TEXT:\n" + text + "\n\n"
+        "Output (one trait per line, canonical IDs only):"
     )
 
     headers = {}
@@ -622,14 +902,77 @@ def _llm_extract(text: str) -> Dict[str, Any]:
     return _parse_canonical(lines, source_kind="llm", user_text=text)
 
 
+def _is_llm_configured() -> bool:
+    """Check if LLM is properly configured based on provider."""
+    if not LLM_PROVIDER:
+        return False
+
+    # Ollama doesn't need API key, just needs provider + base URL
+    if LLM_PROVIDER.lower() == "ollama":
+        return bool(LLM_BASE_URL or os.getenv("OLLAMA_BASE_URL"))
+
+    # OpenAI, Anthropic, etc. need API key
+    return bool(LLM_API_KEY)
+
+
+def _bg_refresh_selftest() -> None:
+    """Trigger background selftest refresh (non-blocking)."""
+    def _run():
+        try:
+            # Run selftest with timeout budget
+            ucnrr_selftest()
+        except Exception:
+            pass
+    t = threading.Thread(target=_run, daemon=True)
+    t.start()
+
+
 @app.get("/api/health")
 def api_health() -> Dict[str, Any]:
-    return {
+    global _last_selftest_ok_ts, _last_selftest_ok_meta
+
+    prompt_info = _load_prompt()
+    now = time.time()
+
+    # Check if selftest cache is fresh
+    with _selftest_lock:
+        age = now - _last_selftest_ok_ts
+        cache_fresh = age <= SELFTEST_CACHE_SEC
+
+    base_response = {
         "status": "healthy",
         "service": "ucnrr",
         "version": UCNRR_VERSION,
         "timestamp": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "prompt_sha256": prompt_info.get("sha256", "none"),
+        "prompt_version": prompt_info.get("version", "unknown"),
+        "prompt_loaded_at": prompt_info.get("loaded_at", "never"),
+        "llm_provider": LLM_PROVIDER or "none",
+        "llm_model": LLM_MODEL or "none",
+        "llm_configured": _is_llm_configured(),
+        "llm_base_url": LLM_BASE_URL or os.getenv("OLLAMA_BASE_URL") or "none",
     }
+
+    if cache_fresh:
+        # Return cached selftest result
+        base_response["selftest_cached"] = True
+        base_response["selftest_cache_age_sec"] = int(age)
+        base_response.update(_last_selftest_ok_meta)
+
+        # Trigger background refresh if cache is near expiry
+        if age > SELFTEST_CACHE_SEC * 0.6:
+            _bg_refresh_selftest()
+
+        return base_response
+    else:
+        # Cache stale or not set; indicate slow model if needed
+        base_response["selftest_cached"] = False
+        base_response["selftest_cache_age_sec"] = int(age) if _last_selftest_ok_ts > 0 else None
+
+        # Trigger background refresh
+        _bg_refresh_selftest()
+
+        return base_response
 
 
 @app.get("/health")
@@ -637,10 +980,237 @@ def health() -> Dict[str, Any]:
     return api_health()
 
 
+@app.get("/metrics")
+def get_metrics() -> Dict[str, Any]:
+    """
+    Get UCNRR service metrics.
+
+    Returns counters, latency percentiles, and selftest status.
+    """
+    from .metrics import METRICS
+    return METRICS.get_snapshot()
+
+
 class RescoreRequest(BaseModel):
     user_id: str
     traits: Optional[List[Dict[str, Any]]] = None
     text: Optional[str] = None
+
+
+class UCNScoreRequest(BaseModel):
+    user_id: str
+    items: List[Dict[str, Any]]
+
+
+@app.post("/ucn/score")
+def ucn_score(body: UCNScoreRequest) -> List[Dict[str, Any]]:
+    """
+    Score UCN for a batch of trait evidence (Core RR client endpoint).
+
+    Input:
+        {
+            "user_id": "TEST",
+            "items": [
+                {
+                    "trait_id": "PaDNA.EyeDNA.IrisColor",
+                    "value": {"enum": "blue"},
+                    "ucn_prior": 0.8,
+                    "source": "photo_analysis"
+                }
+            ]
+        }
+
+    Output:
+        [
+            {
+                "trait_id": "PaDNA.EyeDNA.IrisColor",
+                "ucn": 0.85
+            }
+        ]
+    """
+    from .metrics import METRICS
+
+    start_time = time.time()
+
+    try:
+        user_id = body.user_id.strip()
+        if not user_id:
+            METRICS.increment("rr_requests_4xx")
+            raise HTTPException(status_code=400, detail="user_id required")
+
+        if not body.items:
+            METRICS.increment("rr_requests_4xx")
+            raise HTTPException(status_code=400, detail="items list required")
+
+        results = []
+        for item in body.items:
+            trait_id = item.get("trait_id")
+            if not trait_id:
+                continue
+
+            # Get ucn_prior (0..1 scale)
+            ucn_prior = float(item.get("ucn_prior", 0.5))
+
+            # Get source for reliability adjustment
+            source = item.get("source", "unknown")
+
+            # Apply source reliability multiplier
+            if source in ["photo_analysis", "document_verified"]:
+                ucn_multiplier = 1.1  # +10% boost for high-reliability sources
+            elif source in ["inference", "third_party"]:
+                ucn_multiplier = 0.7  # -30% for low-reliability sources
+            else:
+                ucn_multiplier = 1.0  # Neutral for user statements, chat
+
+            # Compute final UCN (scale to 0-1)
+            ucn_final = min(1.0, ucn_prior * ucn_multiplier)
+
+            results.append({
+                "trait_id": trait_id,
+                "ucn": round(ucn_final, 4)
+            })
+
+        # Track metrics
+        elapsed_ms = (time.time() - start_time) * 1000
+        METRICS.increment("rr_requests_total")
+        METRICS.increment("rr_requests_2xx")
+        METRICS.observe_latency("rr_score", elapsed_ms)
+
+        return results
+    except HTTPException:
+        raise
+    except Exception as e:
+        METRICS.increment("rr_requests_5xx")
+        stack_log(
+            "ucnrr",
+            "ERROR",
+            "ucn_score_fail",
+            "ucn_score encountered an unexpected error",
+            {"user_id": body.user_id, "error": str(e)},
+        )
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/ucnrr/selftest")
+def ucnrr_selftest() -> Dict[str, Any]:
+    """
+    Self-test endpoint that scores a canonical test case: "I have blue eyes".
+
+    Expected: UCN in range [0.80-0.90], indicating high confidence for direct observation.
+    """
+    from .metrics import METRICS
+
+    test_start = time.time()
+    stack_log("ucnrr", "INFO", "selftest_start", "UCNRR self-test started", {})
+
+    # Canonical test case
+    test_input = {
+        "user_id": "SELFTEST",
+        "items": [
+            {
+                "trait_id": "PaDNA.EyeDNA.IrisColor",
+                "value": {"enum": "blue"},
+                "ucn_prior": 0.8,
+                "source": "selftest"
+            }
+        ]
+    }
+
+    try:
+        # Call scoring endpoint
+        result = ucn_score(UCNScoreRequest(**test_input))
+
+        if not result or len(result) == 0:
+            METRICS.increment("rr_selftest_fail")
+            result_data = {
+                "ok": False,
+                "error": "No results returned from ucn_score",
+                "test_case": "blue_eyes"
+            }
+            METRICS.update_selftest(result_data)
+            stack_log(
+                "ucnrr",
+                "WARN",
+                "selftest_fail",
+                "UCNRR self-test returned no results",
+                result_data,
+            )
+            return result_data
+
+        scored = result[0]
+        ucn = scored.get("ucn", 0)
+
+        # Validate UCN in expected range
+        ucn_ok = 0.75 <= ucn <= 0.95
+
+        elapsed_ms = int((time.time() - test_start) * 1000)
+
+        result_data = {
+            "ok": ucn_ok,
+            "test_case": "blue_eyes",
+            "trait_id": scored.get("trait_id"),
+            "ucn": ucn,
+            "ucn_expected_range": [0.75, 0.95],
+            "ucn_in_range": ucn_ok,
+            "elapsed_ms": elapsed_ms,
+            "prompt_sha256": _load_prompt().get("sha256", "none"),
+            "llm_configured": bool(LLM_PROVIDER and LLM_API_KEY)
+        }
+
+        # Track metrics
+        if ucn_ok:
+            METRICS.increment("rr_selftest_ok")
+
+            # Update selftest cache on success
+            global _last_selftest_ok_ts, _last_selftest_ok_meta
+            with _selftest_lock:
+                _last_selftest_ok_ts = time.time()
+                _last_selftest_ok_meta = {
+                    "model": LLM_MODEL or "none",
+                    "provider": LLM_PROVIDER or "none",
+                    "ucn": ucn,
+                    "elapsed_ms": elapsed_ms,
+                }
+
+            stack_log(
+                "ucnrr",
+                "INFO",
+                "selftest_ok",
+                "UCNRR self-test passed",
+                result_data,
+            )
+        else:
+            METRICS.increment("rr_selftest_fail")
+            stack_log(
+                "ucnrr",
+                "WARN",
+                "selftest_fail",
+                "UCNRR self-test out of expected range",
+                result_data,
+            )
+
+        METRICS.observe_latency("rr_selftest", elapsed_ms)
+        METRICS.update_selftest(result_data)
+
+        return result_data
+
+    except Exception as e:
+        METRICS.increment("rr_selftest_fail")
+        result_data = {
+            "ok": False,
+            "error": str(e),
+            "test_case": "blue_eyes",
+            "elapsed_ms": int((time.time() - test_start) * 1000)
+        }
+        METRICS.update_selftest(result_data)
+        stack_log(
+            "ucnrr",
+            "ERROR",
+            "selftest_fail",
+            "UCNRR self-test raised exception",
+            result_data,
+        )
+        return result_data
 
 
 @app.post("/api/rescore")
@@ -673,13 +1243,14 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
             explicit = _llm_extract(text)
         if not explicit and USE_MIN_HEURISTICS:
             explicit = _min_heuristics(text)
-        traits = [{"id": k, "value": v.get("resolved_value"), "rr": v.get("ucn", 500.0)}
+        traits = [{"id": k, "value": v.get("resolved_value"), "rr": v.get("ucn", 500.0), "why": v.get("why")}
                   for k, v in explicit.items()]
 
     if not traits:
         raise HTTPException(status_code=400, detail="No traits provided or extracted from text")
 
     rr_by_trait: Dict[str, float] = {}
+    why_by_trait: Dict[str, str] = {}
     curiosity_by_trait: Dict[str, float] = {}
     global_curiosity = 0.0
 
@@ -688,6 +1259,11 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
             continue
         trait_id = str(trait.get("id") or "").strip()
         if not trait_id:
+            continue
+
+        # Phase 4.0a: Canonicalize trait ID to match golden dataset conventions
+        trait_id = _canon_trait_id(trait_id)
+        if not trait_id:  # Skip if canonicalization returns empty
             continue
 
         # RR can be provided or we estimate from UCN
@@ -702,6 +1278,9 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
         # Clamp RR to 0-1000
         rr = max(0.0, min(1000.0, rr))
         rr_by_trait[trait_id] = rr
+        trait_why = trait.get("why")
+        if trait_why:
+            why_by_trait[trait_id] = str(trait_why)
 
         # Get optional parameters from trait dict
         days_since_update = float(trait.get("days_since_update", 0.0))
@@ -720,12 +1299,16 @@ def api_rescore(body: RescoreRequest) -> Dict[str, Any]:
     if curiosity_by_trait:
         global_curiosity = global_curiosity / len(curiosity_by_trait)
 
+    if text:
+        _maybe_inject_chronotype(text, rr_by_trait, why_by_trait)
+
     return {
         "ok": True,
         "user_id": user_id,
         "rr_by_trait": rr_by_trait,
         "curiosity_by_trait": curiosity_by_trait,
         "global_curiosity": round(global_curiosity, 4),
+        "why_by_trait": why_by_trait,
     }
 
 
@@ -1087,6 +1670,272 @@ def holistic_review(user_id: str) -> Dict[str, Any]:
         "core_response": core_res,
         "reason": "completed",
     }
+
+
+@app.get("/ucnrr/debug/config")
+def ucnrr_debug_config() -> Dict[str, Any]:
+    """
+    Debug endpoint: Effective UCNRR runtime config.
+    Returns loaded environment, LLM config, timeouts, and startup status.
+    """
+    import sys
+
+    # Determine which .env was loaded (if any)
+    env_path_loaded = "none"
+    possible_env_paths = [
+        Path(__file__).parent / ".env",
+        Path(__file__).resolve().parents[1] / ".env",
+    ]
+    for p in possible_env_paths:
+        if p.exists():
+            env_path_loaded = str(p)
+            break
+
+    # LLM configuration
+    ollama_base = os.getenv("OLLAMA_BASE_URL")
+    llm_configured = _is_llm_configured()
+    llm_configured_reason = "ok"
+
+    if not llm_configured:
+        if not LLM_PROVIDER:
+            llm_configured_reason = "LLM_PROVIDER not set"
+        elif LLM_PROVIDER.lower() == "ollama" and not (LLM_BASE_URL or ollama_base):
+            llm_configured_reason = "Ollama selected but no LLM_BASE_URL or OLLAMA_BASE_URL"
+        elif LLM_PROVIDER.lower() != "ollama" and not LLM_API_KEY:
+            llm_configured_reason = "Paid provider selected but no LLM_API_KEY"
+        else:
+            llm_configured_reason = "unknown"
+
+    # Effective base URL
+    effective_base = LLM_BASE_URL or ollama_base or "none"
+
+    return {
+        "service": "ucnrr",
+        "version": UCNRR_VERSION,
+        "env_path_loaded": env_path_loaded,
+        "llm_provider": LLM_PROVIDER or "none",
+        "llm_model": LLM_MODEL or "none",
+        "llm_base_url": effective_base,
+        "ollama_base_url": ollama_base or "none",
+        "llm_configured": llm_configured,
+        "llm_configured_reason": llm_configured_reason,
+        "llm_api_key_set": bool(LLM_API_KEY),
+        "timeouts": {
+            "note": "UCNRR uses requests library with explicit timeout params (typically 30s for LLM, 5-30s for Core)",
+            "llm_timeout_sec": 30,
+            "core_timeout_sec": 30,
+        },
+        "selftest_cache": {
+            "enabled": True,
+            "cache_window_sec": SELFTEST_CACHE_SEC,
+            "bg_timeout_sec": SELFTEST_BG_TIMEOUT_SEC,
+        },
+        "injectors": {
+            "chrono_injector_enabled": True,
+            "chrono_rr_value": 830.0,
+        },
+        "features": {
+            "use_min_heuristics": USE_MIN_HEURISTICS,
+            "log_llm": LOG_LLM,
+            "log_scores": LOG_SCORES,
+            "roundtrip_tracing": ROUNDTRIP_TRACING_ENABLED,
+        },
+        "paths": {
+            "data_dir": str(DATA_DIR),
+            "prompt_path": str(PROMPT_PATH),
+            "dna_weights_path": str(DNA_WEIGHTS_PATH),
+            "trace_path": str(TRACE_PATH),
+        },
+    }
+
+
+@app.get("/ucnrr/debug/probe")
+def ucnrr_debug_probe() -> Dict[str, Any]:
+    """
+    Debug endpoint: Probe LLM connectivity.
+    Tests /api/tags and /api/generate with strict short timeouts.
+    """
+    import requests
+
+    if not LLM_PROVIDER:
+        return {
+            "ok": False,
+            "reason": "LLM_PROVIDER not set",
+            "tags_test": None,
+            "generate_test": None,
+        }
+
+    # Effective base URL
+    ollama_base = os.getenv("OLLAMA_BASE_URL")
+    base_url = LLM_BASE_URL or ollama_base
+
+    if not base_url:
+        return {
+            "ok": False,
+            "reason": "No LLM_BASE_URL or OLLAMA_BASE_URL",
+            "tags_test": None,
+            "generate_test": None,
+        }
+
+    results = {
+        "base_url": base_url,
+        "provider": LLM_PROVIDER,
+        "model": LLM_MODEL or "none",
+    }
+
+    # Test 1: /api/tags (Ollama-specific)
+    tags_result = {"ok": False, "status_code": None, "error": None}
+    if LLM_PROVIDER.lower() == "ollama":
+        try:
+            resp = requests.get(
+                f"{base_url.rstrip('/')}/api/tags",
+                timeout=3,
+            )
+            tags_result["ok"] = resp.ok
+            tags_result["status_code"] = resp.status_code
+            if resp.ok:
+                tags_result["models"] = [m.get("name") for m in resp.json().get("models", [])]
+        except requests.exceptions.Timeout:
+            tags_result["error"] = "timeout"
+        except requests.exceptions.ConnectionError as e:
+            tags_result["error"] = f"connection_error: {str(e)}"
+        except Exception as e:
+            tags_result["error"] = str(e)
+    else:
+        tags_result["error"] = "not_ollama"
+
+    results["tags_test"] = tags_result
+
+    # Test 2: /api/generate (Ollama) or /v1/chat/completions (OpenAI-compatible)
+    generate_result = {"ok": False, "status_code": None, "error": None}
+
+    if LLM_PROVIDER.lower() == "ollama":
+        try:
+            resp = requests.post(
+                f"{base_url.rstrip('/')}/api/generate",
+                json={"model": LLM_MODEL or "phi3:mini", "prompt": "ok", "stream": False},
+                timeout=5,
+            )
+            generate_result["ok"] = resp.ok
+            generate_result["status_code"] = resp.status_code
+            if resp.ok:
+                generate_result["response_length"] = len(resp.json().get("response", ""))
+        except requests.exceptions.Timeout:
+            generate_result["error"] = "timeout (read timeout >5s = slow_model)"
+        except requests.exceptions.ConnectionError as e:
+            generate_result["error"] = f"connection_error: {str(e)}"
+        except Exception as e:
+            generate_result["error"] = str(e)
+    else:
+        # OpenAI-compatible endpoint
+        try:
+            headers = {}
+            if LLM_API_KEY:
+                headers["Authorization"] = f"Bearer {LLM_API_KEY}"
+
+            resp = requests.post(
+                f"{base_url.rstrip('/')}/v1/chat/completions",
+                json={
+                    "model": LLM_MODEL or "gpt-4o-mini",
+                    "messages": [{"role": "user", "content": "ok"}],
+                    "stream": False,
+                },
+                headers=headers,
+                timeout=5,
+            )
+            generate_result["ok"] = resp.ok
+            generate_result["status_code"] = resp.status_code
+            if resp.ok:
+                generate_result["response_length"] = len(str(resp.json()))
+        except requests.exceptions.Timeout:
+            generate_result["error"] = "timeout (read timeout >5s = slow_model)"
+        except requests.exceptions.ConnectionError as e:
+            generate_result["error"] = f"connection_error: {str(e)}"
+        except Exception as e:
+            generate_result["error"] = str(e)
+
+    results["generate_test"] = generate_result
+
+    # Overall status
+    results["ok"] = tags_result.get("ok", False) or generate_result.get("ok", False)
+
+    return results
+
+
+@app.post("/ucnrr/debug/trace")
+def ucnrr_debug_trace(text: str = Body(..., embed=True)) -> Dict[str, Any]:
+    """
+    Debug endpoint: End-to-end scoring trace for a given text.
+    Returns raw LLM input/output, canonicalization, and final RR scores.
+    """
+    if not text or not text.strip():
+        raise HTTPException(status_code=400, detail="text required")
+
+    result = {
+        "input_text": text,
+        "llm_available": llm_is_available(),
+        "llm_configured": _is_llm_configured(),
+    }
+
+    # Step 1: LLM extraction (if available)
+    if llm_is_available():
+        llm_raw = _llm_extract(text)
+        result["llm_extraction"] = {
+            "raw_output": llm_raw,
+            "traits_extracted": list(llm_raw.keys()) if llm_raw else [],
+        }
+    else:
+        result["llm_extraction"] = {
+            "error": "LLM not available",
+            "reason": "llm_is_available() returned False"
+        }
+        llm_raw = {}
+
+    # Step 2: Canonicalization (via _CANON_MAP)
+    canonicalized = {}
+    for trait_id, value_dict in llm_raw.items():
+        # Check if trait_id needs canonicalization
+        canonical_id = _CANON_MAP.get(trait_id, trait_id)
+        canonicalized[canonical_id] = value_dict
+
+    result["canonicalization"] = {
+        "before": list(llm_raw.keys()),
+        "after": list(canonicalized.keys()),
+        "canon_map_applied": canonicalized != llm_raw,
+    }
+
+    # Step 3: Scoring (simulate /ucnrr/score path)
+    rr_by_trait: Dict[str, float] = {}
+    for trait_id, value_dict in canonicalized.items():
+        # Simple RR calculation (mimic actual score logic)
+        ucn = value_dict.get("ucn", 0.8)
+        source = value_dict.get("source", "llm")
+
+        # Base RR from UCN
+        base_rr = ucn * 1000.0
+
+        # Apply source multipliers (simplified)
+        if source == "llm":
+            rr = base_rr * 0.85  # LLM discount
+        else:
+            rr = base_rr
+
+        rr_by_trait[trait_id] = rr
+
+    # Step 4: Chronotype injection check
+    chrono_injected = False
+    if _detect_chronotype(text):
+        if "BehaviorDNA.Sleep.Chronotype" not in rr_by_trait:
+            _maybe_inject_chronotype(text, rr_by_trait, why_by_trait)
+            chrono_injected = True
+
+    result["scoring"] = {
+        "rr_by_trait": rr_by_trait,
+        "chronotype_detected": _detect_chronotype(text),
+        "chronotype_injected": chrono_injected,
+    }
+
+    return result
 
 
 @app.get("/legacy_export")

@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob27",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "Hi",
+  "assistant_text": "Hello again ob27! It's great to reconnect. You mentioned earlier that you'd prefer a cozy home dinner with deep conversations - what is it about those types of interactions that really matters to you? If you feel like sharing, I'm all ears!",
+  "client_message_id": "08c465ea-d898-4811-8f34-b133a0be5ad6",
+  "assistant_message_id": "chat-70b79c92684941218ca3e5d6f81dc5ed",
+  "server_ts": "2025-10-15T18:41:16.882+00:00",
+  "server_ts_ms": 1760553676882,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

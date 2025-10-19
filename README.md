@@ -9,7 +9,7 @@ This repository hosts the demo control panels and supporting services for the Re
 
 - **Root `.venv`** — used by Core, UCN/RR, and shared tooling.
   - Create: `python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`
-  - CP++ runs Core with: `<ABSOLUTE_REPO>/.venv/bin/python -m uvicorn ReDNACoreDemo.core.api:build_app --factory --port 8015`
+  - CP++ runs Core with: `<ABSOLUTE_REPO>/.venv/bin/python -m uvicorn ReDNACoreDemo.core.api:build_app --factory --port 8004`
 - **`PhotoRefinementCoach/.venv`** — create only if the photo coach requires conflicting dependencies.
   - `cd PhotoRefinementCoach && python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt`
 
@@ -30,8 +30,8 @@ This guarantees Streamlit runs under `<repo>/.venv`.
 
 CP++ provides full UCN/RR service management with:
 
-- **Default Port:** 8011
-- **Health Endpoint:** `http://127.0.0.1:8011/health`
+- **Default Port:** 8017
+- **Health Endpoint:** `http://127.0.0.1:8017/health`
 - **Start Command:** Uses root `.venv/bin/python -m uvicorn ucnrr_app:app --host 0.0.0.0 --port {port} --reload`
 - **Working Directory:** Repository root (where `ucnrr_app.py` lives)
 
@@ -45,6 +45,13 @@ CP++ provides full UCN/RR service management with:
 3. React / Streamlit
 
 CP++ will automatically adopt already-running UCN/RR processes if they're healthy, or prompt you to resolve port conflicts before starting.
+
+### AI Readiness & Unified Launch
+
+- **Sidebar pulse:** CP++ polls `/devx/api/ingestion/ai_ready` every 10 seconds and shows a traffic-light pill. Clicking it opens React at `/tools/llm-benchmarks?tab=ai-readiness`.
+- **Unified Launch All (open UI):** Starts UCN/RR → Core → React in order, waits for `llm_configured` and `rr_mode` health checks, then opens the LLM Benchmarks UI.
+- **Stop / Restart All:** Gracefully stops managed processes _and_ clears ports 8017/8004/3000 before restarting the stack.
+- **AI Config panel:** The Environment & Ports tab now surfaces the active AI env (LLM provider, model, Ollama base, UCNRR base/score path) with an “Apply & Restart” button to relaunch services with those settings.
 
 ## Holistic Review
 
@@ -60,7 +67,7 @@ The Holistic Review feature recalculates RR (Refinement Rating) and Curiosity va
 **API Endpoint:**
 
 ```bash
-curl -X POST http://127.0.0.1:8015/ui/holistic/review \
+curl -X POST http://127.0.0.1:8004/ui/holistic/review \
   -H "Content-Type: application/json" \
   -d '{"user_id": "TEST"}'
 ```
@@ -92,7 +99,7 @@ Query any persona (head_coach, rc, photo, rendering) with conversational text. T
 **Usage:**
 
 ```bash
-curl -X POST http://127.0.0.1:8015/ui/coach/query \
+curl -X POST http://127.0.0.1:8004/ui/coach/query \
   -H "Content-Type: application/json" \
   -d '{
     "user_id": "TEST",
@@ -118,7 +125,7 @@ Ingest freeform text, trigger UCN/RR rescore, and return updated traits with pro
 **Usage:**
 
 ```bash
-curl -X POST http://127.0.0.1:8015/ui/coach/rescore_now \
+curl -X POST http://127.0.0.1:8004/ui/coach/rescore_now \
   -H "Content-Type: application/json" \
   -d '{
     "user_id": "TEST",
@@ -184,7 +191,7 @@ Traits display inline badges in the Unabridged panel:
 ### Undo Last Rescore
 
 ```bash
-curl -X POST http://127.0.0.1:8015/ui/trait/revert_last \
+curl -X POST http://127.0.0.1:8004/ui/trait/revert_last \
   -H "Content-Type: application/json" \
   -d '{"user_id": "TEST"}'
 ```
@@ -329,7 +336,7 @@ Apply a photo fix by creating a trait override and triggering automatic rescore.
 **Usage:**
 
 ```bash
-curl -X POST http://127.0.0.1:8015/ui/photo/apply_fix \
+curl -X POST http://127.0.0.1:8004/ui/photo/apply_fix \
   -H "Content-Type: application/json" \
   -d '{
     "user_id": "TEST",
@@ -376,7 +383,7 @@ List all avatar rendering jobs for a user, sorted by creation time (newest first
 **Usage:**
 
 ```bash
-curl http://127.0.0.1:8015/ui/render/jobs/TEST
+curl http://127.0.0.1:8004/ui/render/jobs/TEST
 ```
 
 **Response:**
@@ -501,7 +508,7 @@ ReDNA Smoke Check
 ==========================================
 
 == Core Health Check ==
-✓ Core is UP at http://127.0.0.1:8015/health
+✓ Core is UP at http://127.0.0.1:8004/health
 {
   "service": "core",
   "version": "1.0.0",
@@ -509,7 +516,7 @@ ReDNA Smoke Check
 }
 
 == UCNRR Health Check ==
-✓ UCNRR is UP at http://127.0.0.1:8011/api/health
+✓ UCNRR is UP at http://127.0.0.1:8017/api/health
 {
   "status": "healthy",
   "service": "ucnrr",
@@ -520,7 +527,7 @@ ReDNA Smoke Check
 ✓ Core can reach UCNRR
 {
   "reachable": true,
-  "base_url": "http://127.0.0.1:8011",
+  "base_url": "http://127.0.0.1:8017",
   ...
 }
 

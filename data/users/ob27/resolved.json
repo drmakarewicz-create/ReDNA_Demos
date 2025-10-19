@@ -1,0 +1,94 @@
+{
+  "profile": {
+    "label": "ob27",
+    "created_ts": "2025-10-15T18:39:57.970758+00:00"
+  },
+  "BasicDNA.Age": {
+    "value": {
+      "text": "45-54"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T18:40:36+00:00"
+  },
+  "BasicDNA.Gender": {
+    "value": {
+      "enum": "male"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T18:40:36+00:00"
+  },
+  "BasicDNA.Orientation": {
+    "value": {
+      "enum": "heterosexual"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T18:40:36+00:00"
+  },
+  "BasicDNA.RelationshipStatus": {
+    "value": {
+      "enum": "married"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T18:40:36+00:00"
+  },
+  "FreeText": {
+    "value": {
+      "text": "I have blue eyes"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T18:42:09+00:00"
+  },
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T18:41:57+00:00"
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "value": {
+      "enum": "higher_likelihood"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-15T18:41:57+00:00"
+  },
+  "PaDNA.HairDNA.DarknessPrior": {
+    "value": {
+      "enum": "slightly_lower"
+    },
+    "ucn": 0.15,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-15T18:41:57+00:00"
+  }
+}

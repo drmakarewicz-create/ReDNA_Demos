@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob10",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I am 6 feet tall and pretty bald",
+  "assistant_text": "You're quite the tall and confident gentleman! Does your height or lack of hair affect how you feel about yourself in social situations? \n\nAlso, since we were discussing relationships earlier, would you like to chat with our Relationship Coach about building stronger connections with others? Click the Coach Catalog (\ud83d\udcda) in sidebar \u2192 select Relationship Coach.",
+  "client_message_id": "174ca6a4-73a9-4c8a-a379-d4f1e98dbdf1",
+  "assistant_message_id": "chat-7ce578b0f022400683ecca046525d3b6",
+  "server_ts": "2025-10-14T20:23:02.857+00:00",
+  "server_ts_ms": 1760473382857,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

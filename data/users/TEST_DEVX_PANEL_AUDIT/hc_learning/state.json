@@ -1,0 +1,19 @@
+{
+  "nudge_frequency_multiplier": 1.3,
+  "nudge_timing_preference": "adaptive",
+  "tone_bias": 0.5,
+  "formality_bias": 0.0,
+  "creativity_bias": 0.4,
+  "focus_weights": {},
+  "last_update": "2025-10-11T04:39:16.063700+00:00Z",
+  "update_count": 4,
+  "baseline_metrics": {
+    "completion_rate": 0.0,
+    "current_streak": 0,
+    "nudge_acceptance": 0.0,
+    "projects_at_risk_count": 0,
+    "goals_at_risk_count": 0
+  },
+  "version": "1.0",
+  "computed_at": "2025-10-11T04:39:16.063700+00:00Z"
+}

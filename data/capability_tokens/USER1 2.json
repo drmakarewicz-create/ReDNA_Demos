@@ -1,0 +1,282 @@
+[
+  {
+    "capability_id": "9b03b3d1be314e0f949ddb2cf69a1e5c",
+    "scope": "core.agent.run",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMFQyMTo0NTo1NC4xMTc3NjBaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMFQyMTowMDo1NC4xMTc3NjBaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6IjliMDNiM2QxYmUzMTRlMGY5NDlkZGIyY2Y2OWExZTVjIiwiaXNzdWVkX2J5IjoicHJlc2V0X2xldmVsXzIiLCJwcmVzZXRfbGV2ZWwiOjIsInByZXNldF9uYW1lIjoiQXV0b25vbW91cyJ9LCJzY29wZSI6ImNvcmUuYWdlbnQucnVuIiwidXNlcl9pZCI6IlVTRVIxIn0.6mDRzJUy1lTl6kEIVpPnbyd-7l5IhLlii6UtL1XoVu4",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.run",
+      "exp": "2025-10-10T21:45:54.117760Z",
+      "issued_at": "2025-10-10T21:00:54.117760Z",
+      "user_id": "USER1",
+      "metadata": {
+        "preset_level": 2,
+        "preset_name": "Autonomous",
+        "issued_by": "preset_level_2",
+        "capability_id": "9b03b3d1be314e0f949ddb2cf69a1e5c"
+      }
+    },
+    "issued_at": "2025-10-10T21:00:54.117760Z",
+    "expires_at": "2025-10-10T21:45:54.117760Z",
+    "status": "revoked",
+    "ttl_minutes": 45,
+    "metadata": {
+      "preset_level": 2,
+      "preset_name": "Autonomous",
+      "issued_by": "preset_level_2",
+      "capability_id": "9b03b3d1be314e0f949ddb2cf69a1e5c"
+    },
+    "revoked_at": "2025-10-10T21:01:05.680424Z",
+    "revoke_reason": "agency_level_2_to_0"
+  },
+  {
+    "capability_id": "3110e903e3ef4bba8d409e0cd6c691d6",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMFQyMTo0NTo1NC4xMTg3MTRaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMFQyMTowMDo1NC4xMTg3MTRaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6IjMxMTBlOTAzZTNlZjRiYmE4ZDQwOWUwY2Q2YzY5MWQ2IiwiaXNzdWVkX2J5IjoicHJlc2V0X2xldmVsXzIiLCJwcmVzZXRfbGV2ZWwiOjIsInByZXNldF9uYW1lIjoiQXV0b25vbW91cyJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IlVTRVIxIn0.S5K3sVI1vbgnM1NPGSatUL_vyyacWk7bZmgT9ELa2Lw",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.config",
+      "exp": "2025-10-10T21:45:54.118714Z",
+      "issued_at": "2025-10-10T21:00:54.118714Z",
+      "user_id": "USER1",
+      "metadata": {
+        "preset_level": 2,
+        "preset_name": "Autonomous",
+        "issued_by": "preset_level_2",
+        "capability_id": "3110e903e3ef4bba8d409e0cd6c691d6"
+      }
+    },
+    "issued_at": "2025-10-10T21:00:54.118714Z",
+    "expires_at": "2025-10-10T21:45:54.118714Z",
+    "status": "revoked",
+    "ttl_minutes": 45,
+    "metadata": {
+      "preset_level": 2,
+      "preset_name": "Autonomous",
+      "issued_by": "preset_level_2",
+      "capability_id": "3110e903e3ef4bba8d409e0cd6c691d6"
+    },
+    "revoked_at": "2025-10-10T21:01:05.680424Z",
+    "revoke_reason": "agency_level_2_to_0"
+  },
+  {
+    "capability_id": "298f8c5f903d4154b2891db1014cddfa",
+    "scope": "core.agent.run",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMFQyMTo1NToyNi4wNTQ5MzVaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMFQyMToxMDoyNi4wNTQ5MzVaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6IjI5OGY4YzVmOTAzZDQxNTRiMjg5MWRiMTAxNGNkZGZhIiwiaXNzdWVkX2J5IjoicHJlc2V0X2xldmVsXzIiLCJwcmVzZXRfbGV2ZWwiOjIsInByZXNldF9uYW1lIjoiQXV0b25vbW91cyJ9LCJzY29wZSI6ImNvcmUuYWdlbnQucnVuIiwidXNlcl9pZCI6IlVTRVIxIn0.ALFrigLRLpfv6RTppAP3RV4KeRsSsHY1i8Z9PZEvF68",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.run",
+      "exp": "2025-10-10T21:55:26.054935Z",
+      "issued_at": "2025-10-10T21:10:26.054935Z",
+      "user_id": "USER1",
+      "metadata": {
+        "preset_level": 2,
+        "preset_name": "Autonomous",
+        "issued_by": "preset_level_2",
+        "capability_id": "298f8c5f903d4154b2891db1014cddfa"
+      }
+    },
+    "issued_at": "2025-10-10T21:10:26.054935Z",
+    "expires_at": "2025-10-10T21:55:26.054935Z",
+    "status": "revoked",
+    "ttl_minutes": 45,
+    "metadata": {
+      "preset_level": 2,
+      "preset_name": "Autonomous",
+      "issued_by": "preset_level_2",
+      "capability_id": "298f8c5f903d4154b2891db1014cddfa"
+    },
+    "revoked_at": "2025-10-10T23:26:40.048317Z",
+    "revoke_reason": "agency_level_2_to_2"
+  },
+  {
+    "capability_id": "5a459ab4e36d46cc82143770a6710b39",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMFQyMTo1NToyNi4wNTU5MTdaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMFQyMToxMDoyNi4wNTU5MTdaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6IjVhNDU5YWI0ZTM2ZDQ2Y2M4MjE0Mzc3MGE2NzEwYjM5IiwiaXNzdWVkX2J5IjoicHJlc2V0X2xldmVsXzIiLCJwcmVzZXRfbGV2ZWwiOjIsInByZXNldF9uYW1lIjoiQXV0b25vbW91cyJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IlVTRVIxIn0.8nqSliiYaSncqLS8wngFLROSjgzgkvzuCHhbiv3x5Mc",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.config",
+      "exp": "2025-10-10T21:55:26.055917Z",
+      "issued_at": "2025-10-10T21:10:26.055917Z",
+      "user_id": "USER1",
+      "metadata": {
+        "preset_level": 2,
+        "preset_name": "Autonomous",
+        "issued_by": "preset_level_2",
+        "capability_id": "5a459ab4e36d46cc82143770a6710b39"
+      }
+    },
+    "issued_at": "2025-10-10T21:10:26.055917Z",
+    "expires_at": "2025-10-10T21:55:26.055917Z",
+    "status": "revoked",
+    "ttl_minutes": 45,
+    "metadata": {
+      "preset_level": 2,
+      "preset_name": "Autonomous",
+      "issued_by": "preset_level_2",
+      "capability_id": "5a459ab4e36d46cc82143770a6710b39"
+    },
+    "revoked_at": "2025-10-10T23:26:40.048317Z",
+    "revoke_reason": "agency_level_2_to_2"
+  },
+  {
+    "capability_id": "1bbea7a27e3244dea54e6de413bcaba9",
+    "scope": "core.agent.run",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMVQwMDoxMTo0MC4wNTA3OTRaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMFQyMzoyNjo0MC4wNTA3OTRaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6IjFiYmVhN2EyN2UzMjQ0ZGVhNTRlNmRlNDEzYmNhYmE5IiwiaXNzdWVkX2J5IjoicHJlc2V0X2xldmVsXzIiLCJwcmVzZXRfbGV2ZWwiOjIsInByZXNldF9uYW1lIjoiQXV0b25vbW91cyJ9LCJzY29wZSI6ImNvcmUuYWdlbnQucnVuIiwidXNlcl9pZCI6IlVTRVIxIn0.auwGHEVvt2h4ijJ21SaXvX0Vh3nYfVHkKS323d4EYRM",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.run",
+      "exp": "2025-10-11T00:11:40.050794Z",
+      "issued_at": "2025-10-10T23:26:40.050794Z",
+      "user_id": "USER1",
+      "metadata": {
+        "preset_level": 2,
+        "preset_name": "Autonomous",
+        "issued_by": "preset_level_2",
+        "capability_id": "1bbea7a27e3244dea54e6de413bcaba9"
+      }
+    },
+    "issued_at": "2025-10-10T23:26:40.050794Z",
+    "expires_at": "2025-10-11T00:11:40.050794Z",
+    "status": "active",
+    "ttl_minutes": 45,
+    "metadata": {
+      "preset_level": 2,
+      "preset_name": "Autonomous",
+      "issued_by": "preset_level_2",
+      "capability_id": "1bbea7a27e3244dea54e6de413bcaba9"
+    }
+  },
+  {
+    "capability_id": "18a5053e41974c119ddc016a6200f95b",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMVQwMDoxMTo0MC4wNTgzNzBaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMFQyMzoyNjo0MC4wNTgzNzBaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6IjE4YTUwNTNlNDE5NzRjMTE5ZGRjMDE2YTYyMDBmOTViIiwiaXNzdWVkX2J5IjoicHJlc2V0X2xldmVsXzIiLCJwcmVzZXRfbGV2ZWwiOjIsInByZXNldF9uYW1lIjoiQXV0b25vbW91cyJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IlVTRVIxIn0.2w6hXSNqNzgSNvvEmLGwc_5s3dB6_y01EGt-TbJRCjM",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.config",
+      "exp": "2025-10-11T00:11:40.058370Z",
+      "issued_at": "2025-10-10T23:26:40.058370Z",
+      "user_id": "USER1",
+      "metadata": {
+        "preset_level": 2,
+        "preset_name": "Autonomous",
+        "issued_by": "preset_level_2",
+        "capability_id": "18a5053e41974c119ddc016a6200f95b"
+      }
+    },
+    "issued_at": "2025-10-10T23:26:40.058370Z",
+    "expires_at": "2025-10-11T00:11:40.058370Z",
+    "status": "active",
+    "ttl_minutes": 45,
+    "metadata": {
+      "preset_level": 2,
+      "preset_name": "Autonomous",
+      "issued_by": "preset_level_2",
+      "capability_id": "18a5053e41974c119ddc016a6200f95b"
+    }
+  },
+  {
+    "capability_id": "3be2cd626ae9494eaf4dc25a0d496457",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMVQwMDozNjowNS41ODg2NjlaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMVQwMDozMTowNS41ODg2NjlaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6IjNiZTJjZDYyNmFlOTQ5NGVhZjRkYzI1YTBkNDk2NDU3IiwiaXNzdWVkX2J5IjoiZGV2eF9hcGkiLCJyZXF1ZXN0ZWRfYnkiOiJkZXZ4X2FwaSJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IlVTRVIxIn0.FR60d7FvNddBz36zKFCbA2T-gNBvCO1RFgUlHAHREj4",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.config",
+      "exp": "2025-10-11T00:36:05.588669Z",
+      "issued_at": "2025-10-11T00:31:05.588669Z",
+      "user_id": "USER1",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "3be2cd626ae9494eaf4dc25a0d496457"
+      }
+    },
+    "issued_at": "2025-10-11T00:31:05.588669Z",
+    "expires_at": "2025-10-11T00:36:05.588669Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "3be2cd626ae9494eaf4dc25a0d496457"
+    }
+  },
+  {
+    "capability_id": "7edf56078d2640658ff6070bfbe172ff",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMVQwMDozNjowNS41OTk0OTZaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMVQwMDozMTowNS41OTk0OTZaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6IjdlZGY1NjA3OGQyNjQwNjU4ZmY2MDcwYmZiZTE3MmZmIiwiaXNzdWVkX2J5IjoiZGV2eF9hcGkiLCJyZXF1ZXN0ZWRfYnkiOiJkZXZ4X2FwaSJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IlVTRVIxIn0.zpCIEh5vehXKrUIKpNXwQmeJHWUzA_tqBFOPOUatL5E",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.config",
+      "exp": "2025-10-11T00:36:05.599496Z",
+      "issued_at": "2025-10-11T00:31:05.599496Z",
+      "user_id": "USER1",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "7edf56078d2640658ff6070bfbe172ff"
+      }
+    },
+    "issued_at": "2025-10-11T00:31:05.599496Z",
+    "expires_at": "2025-10-11T00:36:05.599496Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "7edf56078d2640658ff6070bfbe172ff"
+    }
+  },
+  {
+    "capability_id": "8777e92b5c6c45ccbf86d26d2241605d",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMVQwMDozNjowNS42MDA1NzZaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMVQwMDozMTowNS42MDA1NzZaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6Ijg3NzdlOTJiNWM2YzQ1Y2NiZjg2ZDI2ZDIyNDE2MDVkIiwiaXNzdWVkX2J5IjoiZGV2eF9hcGkiLCJyZXF1ZXN0ZWRfYnkiOiJkZXZ4X2FwaSJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IlVTRVIxIn0.JySA0TESJSpq8PfggHgCWCa5iTnzJNdjzBr8ZC4P8ms",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.config",
+      "exp": "2025-10-11T00:36:05.600576Z",
+      "issued_at": "2025-10-11T00:31:05.600576Z",
+      "user_id": "USER1",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "8777e92b5c6c45ccbf86d26d2241605d"
+      }
+    },
+    "issued_at": "2025-10-11T00:31:05.600576Z",
+    "expires_at": "2025-10-11T00:36:05.600576Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "8777e92b5c6c45ccbf86d26d2241605d"
+    }
+  },
+  {
+    "capability_id": "fdc8a65de65342de920ac9cb169d76d1",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjX1VTRVIxIiwiZXhwIjoiMjAyNS0xMC0xMVQwMDozNjowNS42MDE0MzVaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xMVQwMDozMTowNS42MDE0MzVaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6ImZkYzhhNjVkZTY1MzQyZGU5MjBhYzljYjE2OWQ3NmQxIiwiaXNzdWVkX2J5IjoiZGV2eF9hcGkiLCJyZXF1ZXN0ZWRfYnkiOiJkZXZ4X2FwaSJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IlVTRVIxIn0.rM6Cb7mwEykC_7fOgKcvYfgx-xWvF8QRSpBWurWoMC8",
+    "payload": {
+      "agent": "hc_USER1",
+      "scope": "core.agent.config",
+      "exp": "2025-10-11T00:36:05.601435Z",
+      "issued_at": "2025-10-11T00:31:05.601435Z",
+      "user_id": "USER1",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "fdc8a65de65342de920ac9cb169d76d1"
+      }
+    },
+    "issued_at": "2025-10-11T00:31:05.601435Z",
+    "expires_at": "2025-10-11T00:36:05.601435Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "fdc8a65de65342de920ac9cb169d76d1"
+    }
+  }
+]

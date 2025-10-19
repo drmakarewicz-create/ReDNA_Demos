@@ -1,0 +1,50 @@
+{
+  "BasicDNA.Gender": {
+    "id": "BasicDNA.Gender",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760658222120",
+        "ts": "2025-10-16T23:43:42+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:43:46.060101Z",
+    "history": []
+  },
+  "PaDNA.BodyDNA.Height": {
+    "id": "PaDNA.BodyDNA.Height",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760658222120",
+        "ts": "2025-10-16T23:43:42+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:43:46.060110Z",
+    "history": []
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760658222120",
+        "ts": "2025-10-16T23:43:42+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:43:46.060113Z",
+    "history": []
+  }
+}

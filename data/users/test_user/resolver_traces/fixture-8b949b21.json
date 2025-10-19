@@ -1,0 +1,83 @@
+{
+  "req_id": "fixture-8b949b21",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T00:00:00Z"
+        },
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "brown"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T00:01:00Z"
+        }
+      ],
+      "ts": 1760413509.805795
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 2
+      },
+      "ts": 1760413509.8057961
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "brown"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T00:01:00Z"
+        }
+      },
+      "ts": 1760413509.8057978
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "brown"
+          },
+          "ucn_prior": 0.25,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760413509.805799
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760413509.8064692
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 0.25
+      },
+      "ts": 1760413509.806488
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 3,
+        "rr_ok": false
+      },
+      "ts": 1760413509.807244
+    }
+  ],
+  "ts": 1760413509.805794
+}

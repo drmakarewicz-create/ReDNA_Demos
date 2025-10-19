@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "obtest4",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "hi",
+  "assistant_text": "Hey! What's new with you?",
+  "client_message_id": "d867d2f4-2349-4020-a81f-5bbd75ff0d34",
+  "assistant_message_id": "chat-2b8b686cee9142b5b7bf1de7a9f7b841",
+  "server_ts": "2025-10-14T01:17:36.589+00:00",
+  "server_ts_ms": 1760404656589,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

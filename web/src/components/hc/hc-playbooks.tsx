@@ -15,6 +15,7 @@
  */
 
 import { useState } from 'react';
+import { fetchWithRetry } from '../../lib/utils';
 
 interface HCPlaybooksProps {
   userId: string;
@@ -36,7 +37,7 @@ export function HCPlaybooks({ userId, className = '', onPlaybookRun }: HCPlayboo
     setResult(null);
 
     try {
-      const response = await fetch(`/api/hc/playbooks/run?userId=${encodeURIComponent(userId)}`, {
+      const response = await fetchWithRetry(`/api/hc/playbooks/run?userId=${encodeURIComponent(userId)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,0 +1,146 @@
+{
+  "user_id": "TEST",
+  "snapshot": {
+    "language_rr": 58,
+    "personality_rr": 65,
+    "social_rr": 61,
+    "top_curiosity": [
+      "LanguageStyleDNA.CadenceDNA",
+      "LanguageStyleDNA.HumorStyleDNA",
+      "SocDNA.InteractionStyleDNA.EmpathyToneDNA"
+    ],
+    "active_intent": "casual"
+  },
+  "templates": {
+    "cards": [
+      {
+        "id": "intro_casual",
+        "title": "Casual intro",
+        "prompt": "Hey, just checking in...",
+        "category": "casual"
+      },
+      {
+        "id": "email_formal",
+        "title": "Formal email",
+        "prompt": "Dear team, following up on...",
+        "category": "formal"
+      },
+      {
+        "id": "persuade",
+        "title": "Persuasive note",
+        "prompt": "I believe we should consider...",
+        "category": "persuasive"
+      },
+      {
+        "id": "late_message",
+        "title": "Running late",
+        "prompt": "Write two sentences saying I'm running 10 minutes late.",
+        "category": "casual"
+      },
+      {
+        "id": "technical_explanation",
+        "title": "Technical explanation",
+        "prompt": "Explain how to configure the database connection.",
+        "category": "technical"
+      }
+    ]
+  },
+  "console_state": {
+    "last_prompt": "",
+    "last_output": ""
+  },
+  "style_profile": {
+    "rows": [
+      {
+        "trait": "Cadence",
+        "value": "medium-fast",
+        "confidence": 0.73,
+        "source": "LanguageStyleDNA"
+      },
+      {
+        "trait": "VocabularyDensity",
+        "value": "high",
+        "confidence": 0.69,
+        "source": "LanguageStyleDNA"
+      },
+      {
+        "trait": "Formality",
+        "value": "semi-formal",
+        "confidence": 0.61,
+        "source": "LanguageStyleDNA"
+      },
+      {
+        "trait": "HedgingPattern",
+        "value": "light",
+        "confidence": 0.58,
+        "source": "LanguageStyleDNA"
+      },
+      {
+        "trait": "Agreeableness (tone)",
+        "value": "high",
+        "confidence": 0.71,
+        "source": "PsyDNA.PersonalityDNA"
+      },
+      {
+        "trait": "Extraversion (tone)",
+        "value": "medium",
+        "confidence": 0.64,
+        "source": "PsyDNA.PersonalityDNA"
+      }
+    ]
+  },
+  "similarity": {
+    "cards": [
+      {
+        "title": "Linguistic similarity",
+        "score": 0.72,
+        "note": "Cosine similarity vs writing samples",
+        "rr_delta": 4
+      },
+      {
+        "title": "Tone alignment",
+        "score": 0.66,
+        "note": "Sentiment + hedging pattern match",
+        "curiosity_delta": -6
+      },
+      {
+        "title": "Social style match",
+        "score": 0.58,
+        "note": "Interaction pattern alignment",
+        "rr_delta": 2
+      }
+    ]
+  },
+  "evidence_links": {
+    "items": [
+      {
+        "path": "LanguageStyleDNA.CadenceDNA",
+        "rr": 73
+      },
+      {
+        "path": "LanguageStyleDNA.VocabularyDensityDNA",
+        "rr": 69
+      },
+      {
+        "path": "PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA",
+        "rr": 71
+      },
+      {
+        "path": "PsyDNA.PersonalityDNA.BigFiveDNA.ExtraversionDNA",
+        "rr": 64
+      },
+      {
+        "path": "LanguageStyleDNA.FormalityDNA",
+        "rr": 61
+      },
+      {
+        "path": "LanguageStyleDNA.HedgingPatternDNA",
+        "rr": 58
+      },
+      {
+        "path": "SocDNA.InteractionStyleDNA.StorytellingHumorDNA",
+        "rr": 47
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "PaDNA.Preference": {
+    "id": "PaDNA.Preference",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644123894",
+        "ts": "2025-10-16T19:48:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:48:44.868313Z",
+    "history": []
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "PaDNA.HairDNA.Color.Natural": {
+    "id": "PaDNA.HairDNA.Color.Natural",
+    "rr": 830.0,
+    "curiosity": 0.1228,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760657648576",
+        "ts": "2025-10-16T23:34:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:34:12.540377Z",
+    "history": []
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760657648576",
+        "ts": "2025-10-16T23:34:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:34:12.540385Z",
+    "history": []
+  },
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760657648576",
+        "ts": "2025-10-16T23:34:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:34:12.540403Z",
+    "history": []
+  },
+  "BehaviorDNA.Schedule.WorkHours": {
+    "id": "BehaviorDNA.Schedule.WorkHours",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760657648576",
+        "ts": "2025-10-16T23:34:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:34:12.540405Z",
+    "history": []
+  },
+  "BehaviorDNA.Health.Diet": {
+    "id": "BehaviorDNA.Health.Diet",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760657648576",
+        "ts": "2025-10-16T23:34:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:34:12.540406Z",
+    "history": []
+  },
+  "BehaviorDNA.Wellness.ColdTherapy": {
+    "id": "BehaviorDNA.Wellness.ColdTherapy",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760657648576",
+        "ts": "2025-10-16T23:34:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:34:12.540407Z",
+    "history": []
+  }
+}

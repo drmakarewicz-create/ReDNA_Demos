@@ -1,0 +1,81 @@
+{
+  "snapshot": {
+    "belief_rr": 65,
+    "cog_rr": 59,
+    "motivation_rr": 70,
+    "top_curiosity": [
+      "MoralFoundationDNA.CareFairnessDNA",
+      "CognitiveStyleDNA.NeedForClosureDNA"
+    ],
+    "dominant_moral_foundations": [
+      "Care/Fairness",
+      "Liberty/Oppression"
+    ],
+    "active_intent": "moral"
+  },
+  "templates": {
+    "cards": [
+      {
+        "id": "existential_1",
+        "prompt": "Is there such a thing as fate?"
+      },
+      {
+        "id": "moral_1",
+        "prompt": "Is lying ever morally acceptable?"
+      },
+      {
+        "id": "political_1",
+        "prompt": "Should the government regulate speech?"
+      },
+      {
+        "id": "social_1",
+        "prompt": "Are humans inherently cooperative or competitive?"
+      },
+      {
+        "id": "psychological_1",
+        "prompt": "What makes a person truly happy?"
+      }
+    ]
+  },
+  "console_state": {
+    "last_prompt": "",
+    "last_output": ""
+  },
+  "reason_map": {
+    "rows": [
+      {
+        "trait": "MoralFoundationDNA.CareFairnessDNA",
+        "influence": "+",
+        "direction": "supports empathy reasoning",
+        "confidence": 0.81
+      },
+      {
+        "trait": "CognitiveStyleDNA.NeedForClosureDNA",
+        "influence": "-",
+        "direction": "limits openness",
+        "confidence": 0.64
+      }
+    ]
+  },
+  "contradictions": {
+    "cards": [
+      {
+        "title": "Empathy vs Pragmatism",
+        "note": "High Care/Fairness but low Agreeableness; results may conflict on moral tradeoffs.",
+        "rr_delta": -5
+      }
+    ]
+  },
+  "evidence_links": {
+    "items": [
+      {
+        "path": "BeliefValueDNA.MoralFoundationDNA.CareFairnessDNA",
+        "rr": 67
+      },
+      {
+        "path": "CogDNA.CognitiveStyleDNA.NeedForClosureDNA",
+        "rr": 55
+      }
+    ]
+  }
+}

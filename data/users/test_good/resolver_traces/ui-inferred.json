@@ -1,0 +1,118 @@
+{
+  "req_id": "ui-inferred",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "PaDNA.SkinDNA.Freckles",
+          "value": {
+            "enum": "higher_likelihood"
+          },
+          "source": "ui:inference",
+          "ts": "2025-10-15T18:33:47+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "inference:iris_blue_freckles_hint"
+        },
+        {
+          "trait_id": "PaDNA.HairDNA.DarknessPrior",
+          "value": {
+            "enum": "slightly_lower"
+          },
+          "source": "ui:inference",
+          "ts": "2025-10-15T18:33:47+00:00",
+          "ucn_prior": 0.15,
+          "provenance": "inference:iris_blue_dark_hair_less_likely"
+        }
+      ],
+      "ts": 1760553227.903133
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "PaDNA.SkinDNA.Freckles": 1,
+        "PaDNA.HairDNA.DarknessPrior": 1
+      },
+      "ts": 1760553227.903135
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "PaDNA.SkinDNA.Freckles": {
+          "trait_id": "PaDNA.SkinDNA.Freckles",
+          "value": {
+            "enum": "higher_likelihood"
+          },
+          "source": "ui:inference",
+          "ts": "2025-10-15T18:33:47+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "inference:iris_blue_freckles_hint"
+        },
+        "PaDNA.HairDNA.DarknessPrior": {
+          "trait_id": "PaDNA.HairDNA.DarknessPrior",
+          "value": {
+            "enum": "slightly_lower"
+          },
+          "source": "ui:inference",
+          "ts": "2025-10-15T18:33:47+00:00",
+          "ucn_prior": 0.15,
+          "provenance": "inference:iris_blue_dark_hair_less_likely"
+        }
+      },
+      "ts": 1760553227.903137
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "PaDNA.SkinDNA.Freckles",
+          "value": {
+            "enum": "higher_likelihood"
+          },
+          "ucn_prior": 0.2,
+          "source": "ui:inference"
+        },
+        {
+          "trait_id": "PaDNA.HairDNA.DarknessPrior",
+          "value": {
+            "enum": "slightly_lower"
+          },
+          "ucn_prior": 0.15,
+          "source": "ui:inference"
+        }
+      ],
+      "ts": 1760553227.903139
+    },
+    {
+      "name": "rr_success",
+      "payload": [
+        {
+          "trait_id": "PaDNA.SkinDNA.Freckles",
+          "ucn": 0.2
+        },
+        {
+          "trait_id": "PaDNA.HairDNA.DarknessPrior",
+          "ucn": 0.15
+        }
+      ],
+      "ts": 1760553227.904432
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "PaDNA.SkinDNA.Freckles": 0.2,
+        "PaDNA.HairDNA.DarknessPrior": 0.15
+      },
+      "ts": 1760553227.904433
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 3,
+        "rr_ok": true
+      },
+      "ts": 1760553227.905272
+    }
+  ],
+  "ts": 1760553227.9031281
+}

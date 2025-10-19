@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What coaches are available?",
+  "assistant_text": "Let's start fresh! We've got a clean slate. Want to talk more about football or explore some new team to support? \n\n(Note: I'm suggesting we keep the conversation on topic, but not mentioning any coaches this time.)",
+  "client_message_id": "36c184a5-6b5f-4623-a9e4-b0782a31c3c3",
+  "assistant_message_id": "chat-c35416656fbf42eaadbb035c26c5389b",
+  "server_ts": "2025-10-07T01:17:16.811+00:00",
+  "server_ts_ms": 1759799836811,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -1,0 +1,189 @@
+{
+  "req_id": "1a1895e1",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "45-54"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Gender",
+          "value": {
+            "enum": "male"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Orientation",
+          "value": {
+            "enum": "straight"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.RelationshipStatus",
+          "value": {
+            "enum": "married"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Orientation",
+          "value": {
+            "enum": "heterosexual"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Gender",
+          "value": {
+            "enum": "male"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      ],
+      "ts": 1760556213.3578858
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "BasicDNA.Age": 1,
+        "BasicDNA.Gender": 2,
+        "BasicDNA.Orientation": 2,
+        "BasicDNA.RelationshipStatus": 1
+      },
+      "ts": 1760556213.357891
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "BasicDNA.Age": {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "45-54"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "BasicDNA.Gender": {
+          "trait_id": "BasicDNA.Gender",
+          "value": {
+            "enum": "male"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "BasicDNA.Orientation": {
+          "trait_id": "BasicDNA.Orientation",
+          "value": {
+            "enum": "heterosexual"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "BasicDNA.RelationshipStatus": {
+          "trait_id": "BasicDNA.RelationshipStatus",
+          "value": {
+            "enum": "married"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T19:23:33+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      },
+      "ts": 1760556213.357894
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "45-54"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "BasicDNA.Gender",
+          "value": {
+            "enum": "male"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "BasicDNA.Orientation",
+          "value": {
+            "enum": "heterosexual"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "BasicDNA.RelationshipStatus",
+          "value": {
+            "enum": "married"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760556213.357898
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760556213.360178
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "BasicDNA.Age": 0.2,
+        "BasicDNA.Gender": 0.2,
+        "BasicDNA.Orientation": 0.2,
+        "BasicDNA.RelationshipStatus": 0.2
+      },
+      "ts": 1760556213.36021
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 5,
+        "rr_ok": false
+      },
+      "ts": 1760556213.3610198
+    }
+  ],
+  "ts": 1760556213.357871
+}

@@ -1,0 +1,219 @@
+{
+  "req_id": "aa7ca506",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "25-34"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Gender",
+          "value": {
+            "enum": "female"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Orientation",
+          "value": {
+            "enum": "bisexual"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.RelationshipStatus",
+          "value": {
+            "enum": "single"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Orientation",
+          "value": {
+            "enum": "bisexual"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Gender",
+          "value": {
+            "enum": "female"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        {
+          "trait_id": "BasicDNA.Name",
+          "value": {
+            "text": "Testuser"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      ],
+      "ts": 1760543346.151506
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "BasicDNA.Age": 1,
+        "BasicDNA.Gender": 2,
+        "BasicDNA.Orientation": 2,
+        "BasicDNA.RelationshipStatus": 1,
+        "BasicDNA.Name": 1
+      },
+      "ts": 1760543346.151517
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "BasicDNA.Age": {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "25-34"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "BasicDNA.Gender": {
+          "trait_id": "BasicDNA.Gender",
+          "value": {
+            "enum": "female"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "BasicDNA.Orientation": {
+          "trait_id": "BasicDNA.Orientation",
+          "value": {
+            "enum": "bisexual"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "BasicDNA.RelationshipStatus": {
+          "trait_id": "BasicDNA.RelationshipStatus",
+          "value": {
+            "enum": "single"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        },
+        "BasicDNA.Name": {
+          "trait_id": "BasicDNA.Name",
+          "value": {
+            "text": "Testuser"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T15:49:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      },
+      "ts": 1760543346.151525
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "BasicDNA.Age",
+          "value": {
+            "text": "25-34"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "BasicDNA.Gender",
+          "value": {
+            "enum": "female"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "BasicDNA.Orientation",
+          "value": {
+            "enum": "bisexual"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "BasicDNA.RelationshipStatus",
+          "value": {
+            "enum": "single"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        },
+        {
+          "trait_id": "BasicDNA.Name",
+          "value": {
+            "text": "Testuser"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760543346.151544
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760543346.159859
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "BasicDNA.Age": 0.2,
+        "BasicDNA.Gender": 0.2,
+        "BasicDNA.Orientation": 0.2,
+        "BasicDNA.RelationshipStatus": 0.2,
+        "BasicDNA.Name": 0.2
+      },
+      "ts": 1760543346.15995
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 5,
+        "rr_ok": false
+      },
+      "ts": 1760543346.1623611
+    }
+  ],
+  "ts": 1760543346.1514292
+}

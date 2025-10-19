@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob9",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have red hair",
+  "assistant_text": "Nice correction on the age! So, you've gone from being in the 45-54 range to actually being 30... How's that change making you feel about your life? \n\n(By the way, if you're interested, our Career Coach can help with navigating your career goals and aspirations)",
+  "client_message_id": "258281c1-6dea-4d8b-a3ed-da19a68a8bf4",
+  "assistant_message_id": "chat-3755e0967c884e23a13851d928813e2b",
+  "server_ts": "2025-10-14T18:07:38.169+00:00",
+  "server_ts_ms": 1760465258169,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

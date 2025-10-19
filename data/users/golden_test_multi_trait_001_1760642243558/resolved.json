@@ -1,0 +1,34 @@
+{
+  "Age.PaDNA.Age": {
+    "id": "Age.PaDNA.Age",
+    "rr": 830.0,
+    "curiosity": 0.1084,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642243573",
+        "ts": "2025-10-16T19:17:23+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:17:26.672278Z",
+    "history": []
+  },
+  "Gender.PaDNA.Gender": {
+    "id": "Gender.PaDNA.Gender",
+    "rr": 830.0,
+    "curiosity": 0.1084,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642243573",
+        "ts": "2025-10-16T19:17:23+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:17:26.672285Z",
+    "history": []
+  }
+}

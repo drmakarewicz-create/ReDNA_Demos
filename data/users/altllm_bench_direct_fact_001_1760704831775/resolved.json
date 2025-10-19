@@ -1,0 +1,42 @@
+{
+  "attributes.PaDNA.BodyDNA.Height": {
+    "value": {
+      "text": "6 feet"
+    },
+    "ucn": 0.17,
+    "sources": [
+      "chat"
+    ],
+    "status": "warming",
+    "last_updated": "2025-10-17T12:40:43+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "hot",
+      "ttl_days": 365,
+      "reason": "high_signal",
+      "reliability": 0.5,
+      "logged_at": "2025-10-17T12:40:43+00:00"
+    }
+  },
+  "BasicDNA.Age": {
+    "value": {
+      "number": 6
+    },
+    "ucn": 0.17,
+    "sources": [
+      "chat"
+    ],
+    "status": "warming",
+    "last_updated": "2025-10-17T12:40:43+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "hot",
+      "ttl_days": 365,
+      "reason": "high_signal",
+      "reliability": 0.5,
+      "logged_at": "2025-10-17T12:40:43+00:00"
+    }
+  }
+}

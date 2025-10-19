@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "showInUI": true,
+  "panes": [
+    {
+      "title": "Delegation Status",
+      "type": "switch",
+      "path": "delegation_enabled"
+    }
+  ]
+}

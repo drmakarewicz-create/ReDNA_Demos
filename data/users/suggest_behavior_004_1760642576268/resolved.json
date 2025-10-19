@@ -1,0 +1,34 @@
+{
+  "PaDNA.StartOfWork": {
+    "id": "PaDNA.StartOfWork",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642576272",
+        "ts": "2025-10-16T19:22:56+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:22:57.571654Z",
+    "history": []
+  },
+  "PaDNA.FinishOfWork": {
+    "id": "PaDNA.FinishOfWork",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642576272",
+        "ts": "2025-10-16T19:22:56+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:22:57.571660Z",
+    "history": []
+  }
+}

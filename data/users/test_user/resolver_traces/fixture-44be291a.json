@@ -1,0 +1,75 @@
+{
+  "req_id": "fixture-44be291a",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "PaDNA.HairDNA.Color",
+          "value": {
+            "enum": "brown"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T00:00:00Z"
+        }
+      ],
+      "ts": 1760413509.807602
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "PaDNA.HairDNA.Color": 1
+      },
+      "ts": 1760413509.807603
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "PaDNA.HairDNA.Color": {
+          "trait_id": "PaDNA.HairDNA.Color",
+          "value": {
+            "enum": "brown"
+          },
+          "source": "chat",
+          "ts": "2025-10-14T00:00:00Z"
+        }
+      },
+      "ts": 1760413509.807605
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "PaDNA.HairDNA.Color",
+          "value": {
+            "enum": "brown"
+          },
+          "ucn_prior": 0.25,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760413509.807606
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760413509.80831
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "PaDNA.HairDNA.Color": 0.25
+      },
+      "ts": 1760413509.808328
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 3,
+        "rr_ok": false
+      },
+      "ts": 1760413509.809717
+    }
+  ],
+  "ts": 1760413509.807602
+}

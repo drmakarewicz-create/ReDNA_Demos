@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob28",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "hi",
+  "assistant_text": "It sounds like we picked up right where we left off, ob28! You mentioned your life changes, and I'm here to listen without judgment. What would you like to talk about next - the physical aspect of these changes, or something else entirely?",
+  "client_message_id": "ac1a7d78-352f-4825-9821-8e443ea62610",
+  "assistant_message_id": "chat-019d167c64ab4ce9828585f12a2f2613",
+  "server_ts": "2025-10-15T23:20:58.962+00:00",
+  "server_ts_ms": 1760570458962,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

@@ -22,9 +22,13 @@ interface DnaContainer {
 }
 
 const DNA_CONTAINERS = [
+  // NORTHSTAR: BasicDNA container for onboarding traits
+  { key: 'BasicDNA', name: 'Basic Info', icon: '🪪', sensitive: false },
   { key: 'Identity', name: 'Identity', icon: '🪪', sensitive: false },
   { key: 'PaDNA', name: 'Physical Appearance', icon: '👤', sensitive: false },
   { key: 'Writing', name: 'Communication Style', icon: '✍️', sensitive: false },
+  // NORTHSTAR: PersonalityDNA (used by Core) + Personality (legacy)
+  { key: 'PersonalityDNA', name: 'Personality', icon: '🎭', sensitive: false },
   { key: 'Personality', name: 'Personality', icon: '🎭', sensitive: false },
   { key: 'Emotion', name: 'Emotion & Affect', icon: '💭', sensitive: false },
   { key: 'Social', name: 'Social', icon: '👥', sensitive: false },

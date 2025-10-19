@@ -1,0 +1,18 @@
+{
+  "BasicDNA.Location.City": {
+    "id": "BasicDNA.Location.City",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760644688527",
+        "ts": "2025-10-16T19:58:08+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:58:09.193287Z",
+    "history": []
+  }
+}

@@ -1,0 +1,353 @@
+DNA Registry Linter Report
+==================================================
+
+Registry: ReDNACoreDemo/core/ontology/dna_registry_stage2.json
+Total containers: 590
+
+✅ No errors found
+
+WARNINGS (341):
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.CompassionDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.PolitenessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.TrustDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.ConscientiousnessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.EmotionalStabilityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.ExtraversionDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.BigFiveDNA.OpennessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.IndustriousnessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.OrderlinessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.SelfDisciplineDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.DarkTraitsDNA.MachiavellianismDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.DarkTraitsDNA.NarcissismDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.DarkTraitsDNA.PsychopathyDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.EmotionVolatilityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.SelfSoothingDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.StressToleranceDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.AssertivenessDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.EnergySociabilityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.PositiveAffectivityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.HexacoAdditionsDNA.HonestyHumilityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.OpennessFacetsDNA.AestheticSensitivityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.OpennessFacetsDNA.ImaginationCreativityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.OpennessFacetsDNA.IntellectCuriosityDNA has depth 4 (>3)
+  ⚠️  Depth advisory: PsyDNA.PersonalityDNA.TypeModelDNA.CognitivePreferenceDNA has depth 4 (>3)
+  ⚠️  Sensitive without consent: EmDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.AffectBaselineDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.AngerGuiltShameDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.AttachmentStyleDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.AttachmentStyleDNA.AnxiousAttachmentDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.AttachmentStyleDNA.AvoidantAttachmentDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.AttachmentStyleDNA.DisorganizedAttachmentDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.AttachmentStyleDNA.SecureAttachmentDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.ConflictEmotionalStyleDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.EmotionRegulationAtWorkDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.EmotionRegulationDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.EmpathyCompassionDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.GratitudeForgivenessDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.ImpulsivityDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.ImpulsivityDNA.PerseveranceDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.ImpulsivityDNA.PremeditationDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.ImpulsivityDNA.SensationSeekingDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.ImpulsivityDNA.UrgencyDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.ReactivityArousalDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.StressResilienceDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.StressResilienceDNA.RecoveryCapacityDNA.v1
+  ⚠️  Sensitive without consent: EmDNA.StressResilienceDNA.TriggerSensitivityDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.ClimateLightNoiseContextDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.DigitalFootprintContextDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.DigitalWorkContextDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.DigitalWorkContextDNA.CommunicationStackDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.DigitalWorkContextDNA.PrimaryToolchainDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.HomeLivingContextDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.MeetingLoadContextDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.MobilityCommuteContextDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.TimezoneWorkWindowDNA.v1
+  ⚠️  Sensitive without consent: EnvDNA.TimezoneWorkWindowDNA.CoreHoursDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.CareerTrajectoryDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.CareerTrajectoryDNA.ProjectPortfolioHistoryDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.CareerTrajectoryDNA.RoleHistoryDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.CertificationCredentialDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.CertificationCredentialDNA.ProfessionalCertsDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.CertificationCredentialDNA.TrainingCoursesDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.CriticalLifeEventsDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.CriticalLifeEventsDNA.IdentityShiftMomentsDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.DemographicRootDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.DemographicRootDNA.BirthplaceNationalityDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.DemographicRootDNA.CulturalHeritageDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.EducationTrajectoryDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.FamilyStructureHistoryDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.FormativeExperiencePatternDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.FormativeExperiencePatternDNA.CaretakingRolesHistoryDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.FormativeExperiencePatternDNA.LeadershipRolesHistoryDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.LanguageUseHistoryDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.LifeEventsMilestonesDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.LifeEventsMilestonesDNA.TraumaAdversityResilienceDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.SocioeconomicContextDNA.v1
+  ⚠️  Sensitive without consent: HistDNA.TravelExposureBreadthDNA.v1
+  ⚠️  Sensitive without consent: MetaDNA.AssessmentValidityDNA.v1
+  ⚠️  Sensitive without consent: MetaDNA.AssessmentValidityDNA.ConstructValidityDNA.v1
+  ⚠️  Sensitive without consent: MetaDNA.AssessmentValidityDNA.ContentValidityDNA.v1
+  ⚠️  Sensitive without consent: MetaDNA.AssessmentValidityDNA.ReliabilityConsistencyDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.BeliefValueDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.BeliefValueDNA.MoralFoundationDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.BeliefValueDNA.PhilosophicalStanceDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.BeliefValueDNA.ReligiousSpiritualOrientationDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.BeliefValueDNA.SociopoliticalOrientationDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.GritPersistenceDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.MotivationDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.MotivationDNA.ControlSpontaneityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.MotivationDNA.GoalOrientationDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.MotivationDNA.NoveltyPersistenceDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.MotivationDNA.PurposeAlignmentDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.NeuroticismDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.NeuroticismDNA.AngryHostilityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.NeuroticismDNA.AnxietyDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.NeuroticismDNA.DepressionDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.AgreeablenessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.CompassionDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.PolitenessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.AgreeablenessFacetsDNA.TrustDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.BigFiveDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.BigFiveDNA.ConscientiousnessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.BigFiveDNA.EmotionalStabilityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.BigFiveDNA.ExtraversionDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.BigFiveDNA.OpennessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ConscientiousnessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.IndustriousnessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.OrderlinessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ConscientiousnessFacetsDNA.SelfDisciplineDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.EmotionalStabilityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.EmotionVolatilityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.SelfSoothingDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.EmotionalStabilityFacetsDNA.StressToleranceDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ExtraversionDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.AssertivenessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.EnergySociabilityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.ExtraversionFacetsDNA.PositiveAffectivityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.FactorModelDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.HexacoAdditionsDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.HexacoAdditionsDNA.HonestyHumilityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.OpennessDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.OpennessFacetsDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.OpennessFacetsDNA.AestheticSensitivityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.OpennessFacetsDNA.ImaginationCreativityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.OpennessFacetsDNA.IntellectCuriosityDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.TemperamentDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.TypeModelDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.PersonalityDNA.TypeModelDNA.CognitivePreferenceDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.RiskToleranceDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.SelfConceptSchemaDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.SelfConceptSchemaDNA.IdentityNarrativeDNA.v1
+  ⚠️  Sensitive without consent: PsyDNA.SelfConceptSchemaDNA.SelfEsteemSelfEfficacyDNA.v1
+  ⚠️  Sensitive without consent: RoDNA.v1
+  ⚠️  Sensitive without consent: RoDNA.AttachmentDyadicDNA.v1
+  ⚠️  Sensitive without consent: RoDNA.AttractionVectorDNA.v1
+  ⚠️  Sensitive without consent: RoDNA.BoundaryComfortDNA.v1
+  ⚠️  Sensitive without consent: RoDNA.FamilyBondDynamicDNA.v1
+  ⚠️  Sensitive without consent: RoDNA.LoveLanguageExpressionDNA.v1
+  ⚠️  Sensitive without consent: RoDNA.PartneringStyleDNA.v1
+  ⚠️  Sensitive without consent: RoDNA.SexualExpressionDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.BoundarySettingDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.EmpathyPerspectiveDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.EmpathyPerspectiveDNA.AffectiveEmpathyDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.EmpathyPerspectiveDNA.CognitiveEmpathyDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.GroupAlignmentIdentityDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.InfluenceCollaborationDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.InfluenceCollaborationDNA.AssertivenessDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.InfluenceCollaborationDNA.DiplomacyDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.InteractionStyleDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.InteractionStyleDNA.ConversationalDominanceListeningDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.InteractionStyleDNA.StorytellingHumorInGroupsDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.LeadershipFollowershipDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.NegotiationInfluenceDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.RolePreferenceDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.RolePreferenceDNA.CaregiverSupportDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.RolePreferenceDNA.LeadershipFollowershipDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.SocialAdaptabilityNetworkingDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.SocialEnergyAssertivenessDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.StakeholderManagementDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.StakeholderManagementDNA.DiplomacyDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.StakeholderManagementDNA.ExpectationSettingDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.TeamCommunicationDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.TeamCommunicationDNA.FeedbackExchangeDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.TeamCommunicationDNA.StatusUpdatesDNA.v1
+  ⚠️  Sensitive without consent: SocDNA.TrustBoundaryReciprocityDNA.v1
+  ⚠️  V1 without prototype status: BehDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.AddictivePatternDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.DailyRhythmChronoDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.HabitRoutinesDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.HabitRoutinesDNA.EatingNutritionHabitDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.HabitRoutinesDNA.ExerciseActivityHabitDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.HabitRoutinesDNA.SleepHabitDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.MicroBehaviorTicksDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.ProcrastinationStyleDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.ProductivityWorkflowDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: BehDNA.RiskTakingSafetyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.AttentionControlDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.AttentionControlDNA.SustainedSelectiveShiftDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.CreativityDivergenceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.LanguageCognitionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.LearningStyleStrategyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.MemorySystemsDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.MemorySystemsDNA.WorkingEpisodicSemanticDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.MetacognitionInsightDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.ProcessingDynamicsDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.ProcessingDynamicsDNA.SpeedLoadFlexibilityDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.ReasoningProblemSolvingDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: CogDNA.ReasoningProblemSolvingDNA.LogicalAbstractPatternDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.AffectBaselineDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.AngerGuiltShameDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.AttachmentStyleDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.ConflictEmotionalStyleDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.EmotionRegulationDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.EmpathyCompassionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.GratitudeForgivenessDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EmDNA.ReactivityArousalDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EnvDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EnvDNA.ClimateLightNoiseContextDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EnvDNA.DigitalFootprintContextDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EnvDNA.HomeLivingContextDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: EnvDNA.MobilityCommuteContextDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HealthDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HealthDNA.ConditionsDiagnosisDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HealthDNA.MedicationAllergyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HealthDNA.MobilityPainFatigueDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HealthDNA.NutritionBiomarkerDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HealthDNA.SleepPhysiologyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HealthDNA.VitalsPhysiologyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.CareerTrajectoryDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.DemographicRootDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.DemographicRootDNA.BirthplaceNationalityDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.DemographicRootDNA.CulturalHeritageDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.EducationTrajectoryDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.FamilyStructureHistoryDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.LanguageUseHistoryDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.LifeEventsMilestonesDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.LifeEventsMilestonesDNA.TraumaAdversityResilienceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.SocioeconomicContextDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: HistDNA.TravelExposureBreadthDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.EngagementPatternDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.ExplanationPreferenceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.FeedbackStyleDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.GuidanceOpennessAutonomyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.MetaCuriosityDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.SystemTrustSkepticismDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.TrainingWillingnessDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: MetaDNA.TransparencyComfortPrivacyPrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.BodyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.BodyDNA.GaitLocomotionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.BodyDNA.HandsFeetExtremitiesDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.BodyDNA.PostureSpineDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.BodyDNA.SkeletalProportionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.BodyDNA.SoftTissueMorphologyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.EyeDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.EyeDNA.IrisDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.EyeDNA.PupilIrisDynamicsDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.EyeDNA.ScleraPeriocularDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.CheekMalarDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.ChinMentalDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.DentitionOralDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.EyeRegionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.FacialHairDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.FacialSymmetryDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.ForeheadDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.JawlineMandibleDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.LipsMouthDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.FaceDNA.NoseDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.HairDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.HairDNA.BodyHairDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.HairDNA.HairlineCrownDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.HairDNA.ScalpHairDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.SkinDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.SkinDNA.ConditionsDermDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.SkinDNA.MarkingsScarsDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.SkinDNA.SurfaceTextureDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.SkinDNA.TonePigmentDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.VoiceOlfactionMotionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.VoiceOlfactionMotionDNA.GestureKinesicsDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.VoiceOlfactionMotionDNA.OlfactionScentDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PaDNA.VoiceOlfactionMotionDNA.VoiceTimbreProsodyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.AestheticPalettePrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.CollectingAcquisitionPrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.EntertainmentPrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.FashionStylePrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.FoodTasteDietPrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.HobbyInterestPrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.LifestyleSettingPrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.RelationshipPreferenceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.TechToolPrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PrefDNA.WorkEnvironmentPrefDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: ProfDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: ProfDNA.CareerAspirationsMobilityDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: ProfDNA.CollaborationCadenceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: ProfDNA.ComplianceRiskGovernanceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: ProfDNA.DomainKnowledgeMapDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: ProfDNA.OccupationRoleDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: ProfDNA.SeniorityTenureDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: ProfDNA.WorkStyleDecisionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.BeliefValueDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.BeliefValueDNA.MoralFoundationDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.BeliefValueDNA.PhilosophicalStanceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.BeliefValueDNA.ReligiousSpiritualOrientationDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.BeliefValueDNA.SociopoliticalOrientationDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.MotivationDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.MotivationDNA.ControlSpontaneityDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.MotivationDNA.GoalOrientationDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.MotivationDNA.NoveltyPersistenceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.PersonalityDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.PersonalityDNA.FactorModelDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.PersonalityDNA.TemperamentDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.PersonalityDNA.TypeModelDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.SelfConceptSchemaDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.SelfConceptSchemaDNA.IdentityNarrativeDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: PsyDNA.SelfConceptSchemaDNA.SelfEsteemSelfEfficacyDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: RoDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: RoDNA.AttachmentDyadicDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: RoDNA.AttractionVectorDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: RoDNA.BoundaryComfortDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: RoDNA.FamilyBondDynamicDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: RoDNA.LoveLanguageExpressionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: RoDNA.PartneringStyleDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: RoDNA.SexualExpressionDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.ArtisticCreativeSkillDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.AthleticPhysicalSkillDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.DomainSpecificSkillDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.InnovationProblemMakingDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.InterpersonalSkillDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.LinguisticSkillDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.ManagerialOrganizationalSkillDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SkillDNA.TechnicalComputationalSkillDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.GroupAlignmentIdentityDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.InteractionStyleDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.InteractionStyleDNA.ConversationalDominanceListeningDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.InteractionStyleDNA.StorytellingHumorInGroupsDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.NegotiationInfluenceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.RolePreferenceDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.RolePreferenceDNA.CaregiverSupportDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.RolePreferenceDNA.LeadershipFollowershipDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.SocialAdaptabilityNetworkingDNA.v1 (status=stable)
+  ⚠️  V1 without prototype status: SocDNA.TrustBoundaryReciprocityDNA.v1 (status=stable)
+
+
+Linter exit code: 0

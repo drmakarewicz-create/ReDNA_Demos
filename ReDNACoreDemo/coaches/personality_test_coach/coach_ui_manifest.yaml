@@ -1,0 +1,46 @@
+# Personality Test Coach UI Manifest
+# Defines right-pane widgets for adaptive personality assessment and reflection
+
+schema_version: "1.0"
+coach_id: "personality_test_coach"
+manifest_version: "0.1.0"
+renderer_version: "1.0"
+
+metadata:
+  author: "ReDNA Core Team"
+  updated_at: "2025-10-07T21:15:00Z"
+  description: "PTC right-pane widgets for BigFive assessment, motivation analysis, and reflection"
+
+# Layout Mode: zones for structured organization
+layout_mode: zones
+
+# Widget Definitions (2 implemented, 4 future)
+widgets:
+  - id: personality_snapshot_card
+    type: display
+    component: PersonalitySnapshotCard
+    title: "Personality Overview"
+    zone: header
+    zone_priority: 0
+    default_visible: true
+    
+  - id: personality_map_visualization
+    type: visualization
+    component: PersonalityMapVisualization
+    title: "Personality Map"
+    zone: primary
+    zone_priority: 0
+    default_visible: true
+
+# Intent-Specific Layouts
+intent_layouts:
+  discover_self:
+    show:
+      - personality_snapshot_card
+      - personality_map_visualization
+
+# Performance Targets
+performance:
+  compose_target_ms: 200
+  fcp_target_ms: 300
+  max_api_calls: 1

@@ -1,0 +1,34 @@
+{
+  "Personality.Introversion": {
+    "id": "Personality.Introversion",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642701685",
+        "ts": "2025-10-16T19:25:01+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:03.465202Z",
+    "history": []
+  },
+  "Personality.Social_Preferences": {
+    "id": "Personality.Social_Preferences",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642701685",
+        "ts": "2025-10-16T19:25:01+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:03.465207Z",
+    "history": []
+  }
+}

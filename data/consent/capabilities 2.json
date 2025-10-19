@@ -1,0 +1,25 @@
+{
+  "capabilities": [
+    {
+      "cap_id": "0bce735b-3d2c-4b77-9d6a-77e3bc8f2ba2",
+      "user_id": "TEST",
+      "grantee_id": "career_coach",
+      "purpose": "resume_builder",
+      "scopes": [
+        "read:SkillDNA"
+      ],
+      "ttl": "PT1H",
+      "reuse_limit": null,
+      "data_policy": {
+        "export": false,
+        "aggregate_only": false,
+        "remote_access": false
+      },
+      "issued_at": 1759973180,
+      "exp": 1759976780,
+      "audit_id": "7dc3a019-f0fa-48c8-bf75-bb5f44063744",
+      "use_count": 0,
+      "revoked": false
+    }
+  ]
+}

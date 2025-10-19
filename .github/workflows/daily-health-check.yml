@@ -1,0 +1,70 @@
+name: Daily Health Check
+
+on:
+  schedule:
+    # Run every day at 9 AM UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for git operations
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+          pip install pytest pytest-asyncio
+
+      - name: Run Health Check
+        run: |
+          bash scripts/autonomous/daily_health_check.sh
+
+      - name: Run Import Verification
+        run: |
+          python3 scripts/autonomous/verify_imports.py
+
+      - name: Upload Health Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: health-report-${{ github.run_number }}
+          path: docs/ops/DAILY_HEALTH_REPORT.md
+          retention-days: 30
+
+      - name: Comment on Issues if Failures
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.readFileSync('docs/ops/DAILY_HEALTH_REPORT.md', 'utf8');
+
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `⚠️ Daily Health Check Failed - ${new Date().toISOString().split('T')[0]}`,
+              body: `## Automated Health Check Failure\n\n${report}\n\n**Run**: ${context.runId}\n**Workflow**: ${context.workflow}`,
+              labels: ['automated', 'health-check', 'needs-attention']
+            });
+
+      - name: Archive Health Reports
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: health-archive
+          path: docs/ops/health_archive/
+          retention-days: 90

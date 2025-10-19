@@ -15,6 +15,8 @@
 
 import { useEffect, useState, useRef } from 'react';
 
+import { fetchWithRetry } from '../../lib/utils';
+
 interface ConversationMessage {
   ts: string;
   role: 'user' | 'assistant';
@@ -52,7 +54,9 @@ export function HCConversation({ userId, className = '' }: HCConversationProps) 
   async function fetchHistory() {
     setLoading(true);
     try {
-      const response = await fetch(`/api/hc/conversation/history?userId=${encodeURIComponent(userId)}&limit=30`);
+      const response = await fetchWithRetry(
+        `/api/hc/conversation/history?userId=${encodeURIComponent(userId)}&limit=30`,
+      );
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
@@ -74,7 +78,7 @@ export function HCConversation({ userId, className = '' }: HCConversationProps) 
     setSending(true);
 
     try {
-      const response = await fetch(`/api/hc/say?userId=${encodeURIComponent(userId)}`, {
+      const response = await fetchWithRetry(`/api/hc/say?userId=${encodeURIComponent(userId)}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+<rect x="0" y="0" width="1200" height="720" fill="#FFFFFF" />
+<text x="600.0" y="40.0" fill="#0B1B34" font-size="32" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Ontology V6 Architecture</text>
+<text x="600.0" y="80.0" fill="#53627C" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">High-throughput knowledge graph pipeline</text>
+<rect x="10.0" y="160.0" width="220.0" height="160.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="120.0" y="176.0" fill="#1F77B4" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Expansion Engine V6</text>
+<text x="120.0" y="206.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Generates container<tspan x="120.0" dy="20.8">candidates</tspan><tspan x="120.0" dy="20.8">with namespace signals</tspan></text>
+<line x1="230.0" y1="240.0" x2="230.0" y2="240.0" stroke="#1F77B4" stroke-width="3.0" />
+<polygon points="230.0,240.0 219.6,246.0 219.6,234.0" fill="#1F77B4" />
+<rect x="230.0" y="160.0" width="220.0" height="160.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="340.0" y="176.0" fill="#1F77B4" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Registry V6</text>
+<text x="340.0" y="206.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">8K containers •<tspan x="340.0" dy="20.8">namespace indexed</tspan><tspan x="340.0" dy="20.8">versioned schemas</tspan></text>
+<line x1="450.0" y1="240.0" x2="450.0" y2="240.0" stroke="#1F77B4" stroke-width="3.0" />
+<polygon points="450.0,240.0 439.6,246.0 439.6,234.0" fill="#1F77B4" />
+<rect x="450.0" y="160.0" width="220.0" height="160.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="560.0" y="176.0" fill="#1F77B4" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Correlation Engine</text>
+<text x="560.0" y="206.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Cross-domain correlation<tspan x="560.0" dy="20.8">scoring</tspan><tspan x="560.0" dy="20.8">trait relationship</tspan><tspan x="560.0" dy="20.8">weighting</tspan></text>
+<line x1="670.0" y1="240.0" x2="670.0" y2="240.0" stroke="#1F77B4" stroke-width="3.0" />
+<polygon points="670.0,240.0 659.6,246.0 659.6,234.0" fill="#1F77B4" />
+<rect x="670.0" y="160.0" width="220.0" height="160.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="780.0" y="176.0" fill="#1F77B4" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Edge Storage</text>
+<text x="780.0" y="206.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">120K-150K edges<tspan x="780.0" dy="20.8">semantic, hierarchy,</tspan><tspan x="780.0" dy="20.8">cross-domain</tspan></text>
+<line x1="890.0" y1="240.0" x2="890.0" y2="240.0" stroke="#1F77B4" stroke-width="3.0" />
+<polygon points="890.0,240.0 879.6,246.0 879.6,234.0" fill="#1F77B4" />
+<rect x="890.0" y="160.0" width="220.0" height="160.0" rx="14.0" ry="14.0" fill="#F2F4F7" fill-opacity="1.00" stroke="#1F77B4" stroke-width="2.0" />
+<text x="1000.0" y="176.0" fill="#1F77B4" font-size="20" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Semantic Search &amp; API</text>
+<text x="1000.0" y="206.0" fill="#0B1B34" font-size="16" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">&lt;50ms p95 queries<tspan x="1000.0" dy="20.8">pattern detector + 4</tspan><tspan x="1000.0" dy="20.8">endpoints</tspan></text>
+<text x="600.0" y="420.0" fill="#53627C" font-size="18" font-family="Arial, Helvetica, sans-serif" text-anchor="middle">Pipeline: Expansion → Registry → Correlation → Edge Storage → Search/Patterns/API</text>
+</svg>

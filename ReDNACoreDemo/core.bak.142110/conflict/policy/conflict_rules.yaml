@@ -1,0 +1,15 @@
+thresholds:
+  numeric_ucn_delta: 50
+  categorical_mismatch: true
+
+flips:
+  sensitive_paths:
+    - "BeliefValueDNA.*"
+    - "HealthDNA.*"
+  min_distinct_sources: 2
+  min_signals: 5
+
+routing:
+  auto_merge_max_severity: "low"
+  hierarchical_min_severity: "medium"
+  escalate_if_sensitive_and_uncorroborated: true

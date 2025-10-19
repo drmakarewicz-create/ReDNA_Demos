@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob28",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I have blue eyes",
+  "assistant_text": "You mentioned having blue eyes, ob28 - it sounds like you appreciate the little details of life! Can you tell me more about what brings you here today and what you hope to achieve through our conversation? \n\nNext step: feel free to share as much or as little as you'd like about your goals and challenges.",
+  "client_message_id": "b0d450f1-b7a3-41e1-bf90-2351793723ee",
+  "assistant_message_id": "chat-1e46e211bf9a46439f6247810abda765",
+  "server_ts": "2025-10-15T19:24:23.109+00:00",
+  "server_ts_ms": 1760556263109,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

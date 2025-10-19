@@ -1,0 +1,34 @@
+{
+  "BehaviorDNA.Social.Style": {
+    "id": "BehaviorDNA.Social.Style",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760659312269",
+        "ts": "2025-10-17T00:01:52+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-17T00:01:53.581141Z",
+    "history": []
+  },
+  "PreferenceDNA.Work.Environment": {
+    "id": "PreferenceDNA.Work.Environment",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760659312269",
+        "ts": "2025-10-17T00:01:52+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-17T00:01:53.581148Z",
+    "history": []
+  }
+}

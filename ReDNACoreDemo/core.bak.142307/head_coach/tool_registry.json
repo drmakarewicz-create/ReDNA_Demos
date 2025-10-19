@@ -1,0 +1,120 @@
+{
+  "tool_registry_version": "1.0",
+  "tools": [
+    {
+      "tool_id": "financial_planner",
+      "name": "Financial Planner",
+      "category": "life_management",
+      "description": "Budget tracking, savings goals, and financial insights",
+      "status": "active",
+      "capabilities": [
+        "budget_tracking",
+        "expense_categorization",
+        "savings_goal_monitoring",
+        "financial_insights",
+        "spending_pattern_analysis"
+      ],
+      "data_requirements": [
+        "income_data",
+        "expense_data",
+        "financial_goals"
+      ],
+      "user_permissions_required": [
+        "financial_data_access"
+      ],
+      "integration_points": {
+        "hc_orchestrator": "financial_advice",
+        "ontology": "FinancialDNA.*",
+        "curiosity": "financial_behavior_exploration"
+      },
+      "module": "ReDNACoreDemo.core.head_coach.tools.financial_planner",
+      "class": "FinancialPlanner"
+    },
+    {
+      "tool_id": "mood_tracker",
+      "name": "Mood Tracker & Analyzer",
+      "category": "wellness",
+      "description": "Track mood patterns, identify triggers, and provide insights",
+      "status": "active",
+      "capabilities": [
+        "mood_logging",
+        "pattern_detection",
+        "trigger_identification",
+        "correlation_analysis",
+        "wellness_recommendations"
+      ],
+      "data_requirements": [
+        "mood_entries",
+        "contextual_data",
+        "behavioral_patterns"
+      ],
+      "user_permissions_required": [
+        "wellness_data_access"
+      ],
+      "integration_points": {
+        "hc_orchestrator": "emotional_support",
+        "ontology": "EmotionalDNA.*",
+        "curiosity": "mood_pattern_exploration"
+      },
+      "module": "ReDNACoreDemo.core.head_coach.tools.mood_tracker",
+      "class": "MoodTracker"
+    },
+    {
+      "tool_id": "goal_engine",
+      "name": "Goal Engine",
+      "category": "life_management",
+      "description": "SMART goal creation, milestone generation, and progress tracking",
+      "status": "active",
+      "capabilities": [
+        "goal_creation",
+        "milestone_generation",
+        "progress_tracking",
+        "weekly_reviews",
+        "motivation_prompts"
+      ],
+      "data_requirements": [
+        "goal_statements",
+        "progress_updates"
+      ],
+      "user_permissions_required": [
+        "life_data_access"
+      ],
+      "integration_points": {
+        "hc_orchestrator": "goal_support",
+        "ontology": "GoalDNA.*",
+        "curiosity": "goal_gap_analysis"
+      },
+      "module": "ReDNACoreDemo.core.head_coach.tools.goal_engine",
+      "class": "GoalEngine"
+    },
+    {
+      "tool_id": "habit_loop_designer",
+      "name": "Habit Loop Designer",
+      "category": "behavior_change",
+      "description": "Cue-routine-reward design with streak tracking and daily prompts",
+      "status": "active",
+      "capabilities": [
+        "habit_design",
+        "cue_analysis",
+        "reward_mapping",
+        "streak_tracking",
+        "daily_prompts"
+      ],
+      "data_requirements": [
+        "habit_entries",
+        "trigger_context",
+        "reward_feedback"
+      ],
+      "user_permissions_required": [
+        "behavior_data_access"
+      ],
+      "integration_points": {
+        "hc_orchestrator": "habit_support",
+        "ontology": "BehaviorDNA.*",
+        "curiosity": "habit_gap_analysis"
+      },
+      "module": "ReDNACoreDemo.core.head_coach.tools.habit_loop_designer",
+      "class": "HabitLoopDesigner"
+    }
+  ]
+}

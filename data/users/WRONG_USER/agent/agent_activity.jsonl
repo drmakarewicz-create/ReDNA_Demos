@@ -1,0 +1,1 @@
+{"timestamp": "2025-10-11T17:07:22.559354Z", "event_type": "consent_checked", "user_id": "WRONG_USER", "namespace": "test", "required_scopes": ["read:PsyDNA"], "granted": false, "reason": "error: '>=' not supported between instances of 'int' and 'dict'", "cap_id": null}

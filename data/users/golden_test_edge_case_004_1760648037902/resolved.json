@@ -1,0 +1,34 @@
+{
+  "WakeTime": {
+    "id": "WakeTime",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648037915",
+        "ts": "2025-10-16T20:53:57+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:53:59.507199Z",
+    "history": []
+  },
+  "SleepTime": {
+    "id": "SleepTime",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648037915",
+        "ts": "2025-10-16T20:53:57+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:53:59.507206Z",
+    "history": []
+  }
+}

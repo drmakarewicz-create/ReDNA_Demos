@@ -1,0 +1,34 @@
+{
+  "BehaviorDNA.Health.CaffeineIntake": {
+    "id": "BehaviorDNA.Health.CaffeineIntake",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646624416",
+        "ts": "2025-10-16T20:30:24+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:30:26.663394Z",
+    "history": []
+  },
+  "BehaviorDNA.Routine.Morning": {
+    "id": "BehaviorDNA.Routine.Morning",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646624416",
+        "ts": "2025-10-16T20:30:24+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:30:26.663405Z",
+    "history": []
+  }
+}

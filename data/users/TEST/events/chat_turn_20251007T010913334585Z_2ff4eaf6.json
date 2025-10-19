@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "TEST",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What coaches are available?",
+  "assistant_text": "I remember we had a boundary set earlier, and let's respect that. To move forward, what teams do you follow in the NFL?",
+  "client_message_id": "a5956db7-b4fc-4a99-87bb-b15f4030ee7c",
+  "assistant_message_id": "chat-dec389644419491bb8f0ed808a3c17b5",
+  "server_ts": "2025-10-07T01:09:13.334+00:00",
+  "server_ts_ms": 1759799353334,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

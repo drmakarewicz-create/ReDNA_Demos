@@ -1,0 +1,50 @@
+{
+  "PaDNA.Action": {
+    "id": "PaDNA.Action",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645853911",
+        "ts": "2025-10-16T20:17:33+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:35.616441Z",
+    "history": []
+  },
+  "PaDNA.Subject": {
+    "id": "PaDNA.Subject",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645853911",
+        "ts": "2025-10-16T20:17:33+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:35.616451Z",
+    "history": []
+  },
+  "PaDNA.Timeframe": {
+    "id": "PaDNA.Timeframe",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645853911",
+        "ts": "2025-10-16T20:17:33+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:35.616453Z",
+    "history": []
+  }
+}

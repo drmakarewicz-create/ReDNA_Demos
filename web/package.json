@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "npm run typecheck",
+    "predev": "echo 'Skipping typecheck for dev'",
     "dev": "next dev",
+    "prebuild": "npm run typecheck",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -16,6 +17,7 @@
   "dependencies": {
     "@tanstack/react-table": "^8.13.0",
     "@tanstack/react-virtual": "^3.0.0",
+    "axios": "^1.12.2",
     "clsx": "^2.1.1",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.545.0",

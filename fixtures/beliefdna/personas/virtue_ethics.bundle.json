@@ -1,0 +1,280 @@
+{
+  "user_id": "persona_virtue_ethics",
+  "profile": {
+    "label": "Virtue Ethicist",
+    "source": "Philosophical analysis of Aristotelian virtue ethics (Aristotle, MacIntyre, Foot)",
+    "note": "Character-focused, emphasis on virtues, eudaimonia (flourishing), practical wisdom",
+    "embedding_model": "text-embedding-ada-002"
+  },
+  "paths": {
+    "BeliefValueDNA.MoralFoundationDNA.CareFairnessDNA": {
+      "resolved_value": 75,
+      "ucn": 800,
+      "rr": 80,
+      "curiosity": 20,
+      "reasons": [
+        "Compassion as core virtue",
+        "Justice as cardinal virtue",
+        "Balance between care and fairness"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": [
+          "Aristotle: Nicomachean Ethics, Book V (Justice)",
+          "Foot: Natural Goodness"
+        ],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.AuthorityRespectDNA": {
+      "resolved_value": 65,
+      "ucn": 750,
+      "rr": 75,
+      "curiosity": 25,
+      "reasons": [
+        "Respect for wisdom and expertise",
+        "Tradition valued as repository of practical wisdom",
+        "Moderate deference to authority when virtuous"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["MacIntyre: After Virtue - role of tradition"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.LoyaltyInGroupDNA": {
+      "resolved_value": 70,
+      "ucn": 770,
+      "rr": 77,
+      "curiosity": 23,
+      "reasons": [
+        "Community and friendship as essential to flourishing",
+        "Partial duties to those in special relationships",
+        "Philia (friendship) as central virtue"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Aristotle: Nicomachean Ethics, Books VIII-IX (Friendship)"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.SanctityPurityDNA": {
+      "resolved_value": 55,
+      "ucn": 650,
+      "rr": 65,
+      "curiosity": 35,
+      "reasons": [
+        "Moderate emphasis on noble vs base",
+        "Reverence for excellence (arete)",
+        "Not religious purity but character integrity"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Aristotelian distinction between noble and base actions"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "BeliefValueDNA.MoralFoundationDNA.LibertyOppressionDNA": {
+      "resolved_value": 60,
+      "ucn": 700,
+      "rr": 70,
+      "curiosity": 30,
+      "reasons": [
+        "Freedom as condition for virtue development",
+        "Autonomy valued but within community context",
+        "Not absolute liberty - bounded by virtue requirements"
+      ],
+      "provenance": {
+        "source": "philosophical_corpus",
+        "method": "doctrine_analysis",
+        "evidence_refs": ["Aristotle on voluntary action and moral responsibility"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "CogDNA.CognitiveStyleDNA.NeedForClosureDNA": {
+      "resolved_value": 55,
+      "ucn": 680,
+      "rr": 68,
+      "curiosity": 32,
+      "reasons": [
+        "Moderate - practical wisdom (phronesis) requires context sensitivity",
+        "Some uncertainty accepted in moral judgment",
+        "Balances principles with situational awareness"
+      ],
+      "provenance": {
+        "source": "cognitive_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Aristotle's doctrine of the mean - context-dependent"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "CogDNA.CognitiveStyleDNA.AnalyticalVsIntuitiveDNA": {
+      "resolved_value": 50,
+      "ucn": 650,
+      "rr": 65,
+      "curiosity": 35,
+      "reasons": [
+        "Balanced - values both rational reflection and moral intuition",
+        "Phronesis combines analysis with practical perception",
+        "Not pure calculation or pure feeling"
+      ],
+      "provenance": {
+        "source": "cognitive_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Aristotle: practical wisdom requires both nous and deliberation"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.ConscientiousnessDNA": {
+      "resolved_value": 80,
+      "ucn": 850,
+      "rr": 85,
+      "curiosity": 15,
+      "reasons": [
+        "Virtue requires habitual practice and discipline",
+        "Character formation through repeated action",
+        "High value on self-regulation"
+      ],
+      "provenance": {
+        "source": "personality_inference",
+        "method": "philosophical_profile",
+        "evidence_refs": ["Aristotle: we become virtuous by practicing virtuous acts"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "PsyDNA.PersonalityDNA.BigFiveDNA.AgreeablenessDNA": {
+      "resolved_value": 75,
+      "ucn": 780,
+      "rr": 78,
+      "curiosity": 22,
+      "reasons": [
+        "Friendship and social harmony central to ethics",
+        "Warmth and kindness as virtues",
+        "High interpersonal orientation"
+      ],
+      "provenance": {
+        "source": "personality_inference",
+        "method": "philosophical_profile",
+        "evidence_refs": ["Aristotelian emphasis on friendship in good life"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": false
+    },
+    "EmDNA.EmpathyCompassionDNA": {
+      "resolved_value": 75,
+      "ucn": 800,
+      "rr": 80,
+      "curiosity": 20,
+      "reasons": [
+        "Compassion as virtue",
+        "Empathic understanding of others' situations",
+        "Balanced with practical wisdom"
+      ],
+      "provenance": {
+        "source": "empathy_profile_inference",
+        "method": "philosophical_stance_analysis",
+        "evidence_refs": ["Aristotle: virtue involves right feeling, not just right action"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "MotivationDNA.CoreValueDNA.PersonalGrowthDNA": {
+      "resolved_value": 90,
+      "ucn": 900,
+      "rr": 90,
+      "curiosity": 10,
+      "reasons": [
+        "Eudaimonia (flourishing) as ultimate goal",
+        "Character development central to ethics",
+        "Lifelong cultivation of virtues"
+      ],
+      "provenance": {
+        "source": "value_system_analysis",
+        "method": "doctrine_extraction",
+        "evidence_refs": ["Aristotle: happiness as activity in accordance with virtue"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    },
+    "MotivationDNA.CoreValueDNA.CommunityBelongingDNA": {
+      "resolved_value": 85,
+      "ucn": 850,
+      "rr": 85,
+      "curiosity": 15,
+      "reasons": [
+        "Humans as social/political animals",
+        "Community essential to virtue development",
+        "Polis as context for good life"
+      ],
+      "provenance": {
+        "source": "value_system_analysis",
+        "method": "doctrine_extraction",
+        "evidence_refs": ["Aristotle: Politics - man is by nature a political animal"],
+        "timestamp": "2025-10-07T23:15:00Z"
+      },
+      "version": ".v1",
+      "status": "prototype",
+      "ai_upgradable": true
+    }
+  },
+  "corpus_samples": [
+    {
+      "text": "We become just by doing just acts, temperate by doing temperate acts, brave by doing brave acts.",
+      "embedding": [0.038, -0.041, 0.055],
+      "metadata": {
+        "source_work": "Aristotle: Nicomachean Ethics",
+        "genre": "philosophy"
+      }
+    },
+    {
+      "text": "Virtue is a disposition concerned with choice, lying in a mean relative to us.",
+      "embedding": [0.042, -0.037, 0.059],
+      "metadata": {
+        "source_work": "Aristotle: Nicomachean Ethics",
+        "genre": "philosophy"
+      }
+    },
+    {
+      "text": "The good life for humans is an activity of the soul in accordance with virtue.",
+      "embedding": [0.045, -0.033, 0.062],
+      "metadata": {
+        "source_work": "Aristotle: Nicomachean Ethics",
+        "genre": "philosophy"
+      }
+    }
+  ]
+}

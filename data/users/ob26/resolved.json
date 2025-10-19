@@ -1,0 +1,13 @@
+{
+  "FreeText": {
+    "value": {
+      "text": "Hello"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T18:31:02+00:00"
+  }
+}

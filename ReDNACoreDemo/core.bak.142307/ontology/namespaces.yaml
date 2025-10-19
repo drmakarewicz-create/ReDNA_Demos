@@ -1,0 +1,419 @@
+# DNA Namespaces - Top-level umbrellas for the Container Explosion Architecture
+# Version: 2.0 (Ontology v1 Baseline)
+# Last updated: 2025-10-06
+# Purpose: Defines the 14 canonical DNA umbrellas for 1k→10k→100k→1M container expansion
+
+namespaces:
+  # ═══════════════════════════════════════════════════════════════════
+  # Physical & Observable Traits
+  # ═══════════════════════════════════════════════════════════════════
+
+  PaDNA:
+    full_name: "Physical Appearance DNA"
+    description: "Observable physical characteristics including facial features, body morphology, hair, skin, voice, and sensory presentation"
+    sensitive: false
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^PaDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Always 100 for new traits; user-modifiable"
+    rr_policy: "null until trait has values; computed from population distributions"
+    top_families:
+      - FaceDNA
+      - HairDNA
+      - EyeDNA
+      - SkinDNA
+      - BodyDNA
+      - VoiceOlfactionMotionDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Psychological & Internal Traits
+  # ═══════════════════════════════════════════════════════════════════
+
+  PsyDNA:
+    full_name: "Psychological DNA"
+    description: "Core personality traits, motivational drivers, belief systems, self-concept, and stable psychological patterns"
+    sensitive: true
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^PsyDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; inherently high-curiosity domain"
+    rr_policy: "null until trait values exist; RR computed from user population"
+    top_families:
+      - PersonalityDNA
+      - MotivationDNA
+      - BeliefValueDNA
+      - SelfConceptSchemaDNA
+
+  EmDNA:
+    full_name: "Emotional DNA"
+    description: "Emotional baselines, regulation patterns, empathy, attachment styles, and affective dynamics"
+    sensitive: true
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^EmDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; emotional exploration encouraged"
+    rr_policy: "null until populated; RR based on distribution fit"
+    top_families:
+      - AffectBaselineDNA
+      - EmotionRegulationDNA
+      - ReactivityArousalDNA
+      - EmpathyCompassionDNA
+      - AttachmentStyleDNA
+      - AngerGuiltShameDNA
+      - GratitudeForgivenessDNA
+      - ConflictEmotionalStyleDNA
+
+  CogDNA:
+    full_name: "Cognitive DNA"
+    description: "Memory systems, reasoning patterns, creativity, attention, learning styles, and cognitive processing dynamics"
+    sensitive: false
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^CogDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; self-knowledge domain"
+    rr_policy: "null until traits exist; RR from population benchmarks"
+    top_families:
+      - MemorySystemsDNA
+      - ProcessingDynamicsDNA
+      - ReasoningProblemSolvingDNA
+      - CreativityDivergenceDNA
+      - AttentionControlDNA
+      - MetacognitionInsightDNA
+      - LearningStyleStrategyDNA
+      - LanguageCognitionDNA
+
+  SocDNA:
+    full_name: "Social/Relational Style DNA"
+    description: "Social interaction patterns, role preferences, trust dynamics, influence styles, and group behavior"
+    sensitive: true
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^SocDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; social self-awareness encouraged"
+    rr_policy: "null until populated; RR computed from user distributions"
+    top_families:
+      - InteractionStyleDNA
+      - RolePreferenceDNA
+      - TrustBoundaryReciprocityDNA
+      - NegotiationInfluenceDNA
+      - SocialAdaptabilityNetworkingDNA
+      - GroupAlignmentIdentityDNA
+
+  BehDNA:
+    full_name: "Behavioral DNA"
+    description: "Habits, routines, daily rhythms, risk-taking patterns, addictive tendencies, and micro-behavioral tics"
+    sensitive: false
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^BehDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; behavior change domain"
+    rr_policy: "null until traits have values; RR from population fit"
+    top_families:
+      - HabitRoutinesDNA
+      - ProductivityWorkflowDNA
+      - RiskTakingSafetyDNA
+      - AddictivePatternDNA
+      - DailyRhythmChronoDNA
+      - MicroBehaviorTicksDNA
+      - ProcrastinationStyleDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Contextual & Historical Traits
+  # ═══════════════════════════════════════════════════════════════════
+
+  HistDNA:
+    full_name: "Historical/Contextual DNA"
+    description: "Life history, demographics, education, career trajectory, family structure, milestones, trauma, and breadth of experience"
+    sensitive: true
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^HistDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; life story domain"
+    rr_policy: "null until populated; RR based on population distributions"
+    top_families:
+      - DemographicRootDNA
+      - LanguageUseHistoryDNA
+      - EducationTrajectoryDNA
+      - CareerTrajectoryDNA
+      - SocioeconomicContextDNA
+      - FamilyStructureHistoryDNA
+      - LifeEventsMilestonesDNA
+      - TravelExposureBreadthDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Preference & Taste Traits
+  # ═══════════════════════════════════════════════════════════════════
+
+  PrefDNA:
+    full_name: "Preferences & Taste DNA"
+    description: "Preferences across food, entertainment, lifestyle, fashion, aesthetics, relationships, work, hobbies, and technology"
+    sensitive: false
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^PrefDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; taste exploration encouraged"
+    rr_policy: "null until traits exist; RR from population benchmarks"
+    top_families:
+      - FoodTasteDietPrefDNA
+      - EntertainmentPrefDNA
+      - LifestyleSettingPrefDNA
+      - FashionStylePrefDNA
+      - AestheticPalettePrefDNA
+      - RelationshipPreferenceDNA
+      - WorkEnvironmentPrefDNA
+      - HobbyInterestPrefDNA
+      - CollectingAcquisitionPrefDNA
+      - TechToolPrefDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Skills & Competencies
+  # ═══════════════════════════════════════════════════════════════════
+
+  SkillDNA:
+    full_name: "Skills & Competencies DNA"
+    description: "Technical, artistic, athletic, interpersonal, linguistic, managerial, innovation, and domain-specific skills"
+    sensitive: false
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^SkillDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; skill development domain"
+    rr_policy: "null until populated; RR from user distributions"
+    top_families:
+      - TechnicalComputationalSkillDNA
+      - ArtisticCreativeSkillDNA
+      - AthleticPhysicalSkillDNA
+      - InterpersonalSkillDNA
+      - LinguisticSkillDNA
+      - ManagerialOrganizationalSkillDNA
+      - InnovationProblemMakingDNA
+      - DomainSpecificSkillDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # System Interaction & Meta Traits
+  # ═══════════════════════════════════════════════════════════════════
+
+  MetaDNA:
+    full_name: "Meta/System Interaction DNA"
+    description: "How users interact with the ReDNA system: trust, openness, transparency comfort, explanation preferences, feedback style"
+    sensitive: false
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^MetaDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; meta-awareness encouraged"
+    rr_policy: "null until traits exist; RR computed from user behavior patterns"
+    top_families:
+      - SystemTrustSkepticismDNA
+      - GuidanceOpennessAutonomyDNA
+      - TransparencyComfortPrivacyPrefDNA
+      - ExplanationPreferenceDNA
+      - FeedbackStyleDNA
+      - TrainingWillingnessDNA
+      - EngagementPatternDNA
+      - MetaCuriosityDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Health & Biological Traits (CONSENT-GATED)
+  # ═══════════════════════════════════════════════════════════════════
+
+  HealthDNA:
+    full_name: "Health/Bio/Physiology DNA"
+    description: "Physical health, vitals, conditions, medications, sleep physiology, nutrition biomarkers, mobility, pain, fatigue. All traits require explicit consent."
+    sensitive: true
+    camouflage: false
+    consent_required: true
+    max_depth: 3
+    naming_pattern: "^HealthDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100 but consent-gated; exploration only with permission"
+    rr_policy: "null until populated; RR from consented population data only"
+    top_families:
+      - VitalsPhysiologyDNA
+      - ConditionsDiagnosisDNA
+      - MedicationAllergyDNA
+      - SleepPhysiologyDNA
+      - NutritionBiomarkerDNA
+      - MobilityPainFatigueDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Relational/Intimacy Traits (CAMOUFLAGE-AWARE)
+  # ═══════════════════════════════════════════════════════════════════
+
+  RoDNA:
+    full_name: "Relational/Intimacy DNA"
+    description: "Romantic partnering styles, attraction vectors, boundaries, dyadic attachment, love languages, sexual expression, family bonds. Camouflaging protocols protect confidences in cross-user scenarios (RSC)."
+    sensitive: true
+    camouflage: true
+    consent_required: false
+    max_depth: 3
+    naming_pattern: "^RoDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; intimate self-knowledge domain with privacy safeguards"
+    rr_policy: "null until populated; RR computed with camouflaging-aware aggregation"
+    top_families:
+      - PartneringStyleDNA
+      - AttractionVectorDNA
+      - BoundaryComfortDNA
+      - AttachmentDyadicDNA
+      - LoveLanguageExpressionDNA
+      - SexualExpressionDNA
+      - FamilyBondDynamicDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Professional/Work Traits
+  # ═══════════════════════════════════════════════════════════════════
+
+  ProfDNA:
+    full_name: "Professional/Work DNA"
+    description: "Occupation, seniority, work style, decision-making, compliance, collaboration cadence, domain knowledge, career aspirations"
+    sensitive: false
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^ProfDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; career development domain"
+    rr_policy: "null until traits exist; RR from professional population distributions"
+    top_families:
+      - OccupationRoleDNA
+      - SeniorityTenureDNA
+      - WorkStyleDecisionDNA
+      - ComplianceRiskGovernanceDNA
+      - CollaborationCadenceDNA
+      - DomainKnowledgeMapDNA
+      - CareerAspirationsMobilityDNA
+
+  # ═══════════════════════════════════════════════════════════════════
+  # Environmental & Context Traits
+  # ═══════════════════════════════════════════════════════════════════
+
+  EnvDNA:
+    full_name: "Environment & Context DNA"
+    description: "Living context, digital footprint, mobility patterns, climate/light/noise exposure, and environmental influences"
+    sensitive: true
+    camouflage: false
+    max_depth: 3
+    naming_pattern: "^EnvDNA(\\.[A-Z][a-zA-Z0-9]+DNA)*$"
+    curiosity_policy: "Default 100; context awareness domain"
+    rr_policy: "null until populated; RR from population distributions"
+    top_families:
+      - HomeLivingContextDNA
+      - DigitalFootprintContextDNA
+      - MobilityCommuteContextDNA
+      - ClimateLightNoiseContextDNA
+
+# ═══════════════════════════════════════════════════════════════════
+# Naming Rules (enforced by linter)
+# ═══════════════════════════════════════════════════════════════════
+
+naming_rules:
+  container_name:
+    pattern: "^[A-Z][a-zA-Z0-9]+DNA$"
+    description: "Must start with capital, end with 'DNA', PascalCase only"
+    examples:
+      - "HairDNA"
+      - "ColorDNA"
+      - "EyebrowShapeDNA"
+
+  path:
+    separator: "."
+    min_depth: 1
+    max_depth: 3
+    description: "Hierarchical path: Umbrella.SubDNA.SubSubDNA (max 3 levels)"
+    examples:
+      - "PaDNA"
+      - "PaDNA.FaceDNA"
+      - "PaDNA.FaceDNA.NoseDNA"
+
+  version:
+    pattern: "^v\\d+$"
+    description: "Version suffix for versioned containers"
+    examples:
+      - "v1"
+      - "v2"
+
+# ═══════════════════════════════════════════════════════════════════
+# Edge Type Rules
+# ═══════════════════════════════════════════════════════════════════
+
+edge_types:
+  is_a:
+    description: "Taxonomic hierarchy (child is a type of parent)"
+    transitive: true
+    allow_cycles: false
+    examples:
+      - "PaDNA.HairDNA.ScalpHairDNA is_a PaDNA.HairDNA"
+
+  part_of:
+    description: "Compositional hierarchy (child is part of parent)"
+    transitive: true
+    allow_cycles: false
+    examples:
+      - "PaDNA.FaceDNA.NoseDNA part_of PaDNA.FaceDNA"
+
+  derived_from:
+    description: "Computational dependency (child computed from parent)"
+    transitive: false
+    allow_cycles: false
+    examples:
+      - "PsyDNA.SelfConceptSchemaDNA derived_from PsyDNA.PersonalityDNA"
+
+  correlates_with:
+    description: "Statistical correlation (bidirectional, stubbed for now)"
+    transitive: false
+    allow_cycles: true
+    min_evidence: 0.25
+    max_evidence: 1.0
+    examples:
+      - "PaDNA.HairDNA.ColorDNA correlates_with PaDNA.SkinDNA.ToneDNA (0.68)"
+
+  contradicts:
+    description: "Logical contradiction (mutually exclusive)"
+    transitive: false
+    allow_cycles: true
+    examples:
+      - "PaDNA.HairDNA.BaldDNA contradicts PaDNA.HairDNA.LongHairDNA"
+
+# ═══════════════════════════════════════════════════════════════════
+# Privacy & Sensitivity Rules
+# ═══════════════════════════════════════════════════════════════════
+
+privacy_rules:
+  sensitive_namespaces:
+    - PsyDNA
+    - EmDNA
+    - SocDNA
+    - HistDNA
+    - HealthDNA
+    - RoDNA
+    - EnvDNA
+
+  camouflage_required:
+    - RoDNA.*
+
+  consent_required:
+    - HealthDNA.*
+
+  k_anonymity:
+    min_k: 5
+    description: "Minimum users required for distribution creation"
+
+# ═══════════════════════════════════════════════════════════════════
+# Status Lifecycle
+# ═══════════════════════════════════════════════════════════════════
+
+status_transitions:
+  prototype:
+    next: ["candidate", "deprecated"]
+    description: "Initial creation, experimental"
+    requires_approval: false
+
+  candidate:
+    next: ["stable", "deprecated"]
+    description: "Validated, ready for production"
+    requires_approval: true
+
+  stable:
+    next: ["deprecated"]
+    description: "Production-ready, widely used"
+    requires_approval: true
+
+  deprecated:
+    next: []
+    description: "No longer recommended, archived"
+    requires_approval: true

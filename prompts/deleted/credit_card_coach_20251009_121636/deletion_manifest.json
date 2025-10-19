@@ -1,0 +1,9 @@
+{
+  "coach_id": "credit_card_coach",
+  "label": "Credit Card Coach",
+  "purged_at": "2025-10-09T12:16:36.208818",
+  "reason": "Testing purge workflow",
+  "original_path": "prompts/credit_card_coach_ai.md",
+  "references_found": 1,
+  "forced": true
+}

@@ -1,0 +1,50 @@
+{
+  "Location.Workplace": {
+    "id": "Location.Workplace",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646351526",
+        "ts": "2025-10-16T20:25:51+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:53.242203Z",
+    "history": []
+  },
+  "Location.Working_Hours": {
+    "id": "Location.Working_Hours",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646351526",
+        "ts": "2025-10-16T20:25:51+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:53.242211Z",
+    "history": []
+  },
+  "Occupation.Designation": {
+    "id": "Occupation.Designation",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646351526",
+        "ts": "2025-10-16T20:25:51+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:25:53.242213Z",
+    "history": []
+  }
+}

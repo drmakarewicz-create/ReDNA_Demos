@@ -1,0 +1,95 @@
+{
+  "req_id": "ui",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "test",
+          "ts": "2025-10-15T22:04:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct",
+          "policy": {
+            "tier": "cold",
+            "ttl_days": 60,
+            "reason": "high_signal,redundant",
+            "reliability": 0.4,
+            "logged_at": "2025-10-15T22:04:06+00:00"
+          },
+          "_reliability": 0.4
+        }
+      ],
+      "ts": 1760565846.253657
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 1
+      },
+      "ts": 1760565846.2536588
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "test",
+          "ts": "2025-10-15T22:04:06+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct",
+          "policy": {
+            "tier": "cold",
+            "ttl_days": 60,
+            "reason": "high_signal,redundant",
+            "reliability": 0.4,
+            "logged_at": "2025-10-15T22:04:06+00:00"
+          },
+          "_reliability": 0.4
+        }
+      },
+      "ts": 1760565846.25366
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "ucn_prior": 0.2,
+          "source": "test"
+        }
+      ],
+      "ts": 1760565846.253661
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760565846.2579882
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 0.2
+      },
+      "ts": 1760565846.258017
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 3,
+        "rr_ok": false
+      },
+      "ts": 1760565846.259417
+    }
+  ],
+  "ts": 1760565846.2536461
+}

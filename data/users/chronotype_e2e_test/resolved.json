@@ -1,0 +1,18 @@
+{
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 720.0,
+    "curiosity": 0.1575,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760818933259",
+        "ts": "2025-10-18T20:22:13+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-18T20:22:13.274290Z",
+    "history": []
+  }
+}

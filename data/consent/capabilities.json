@@ -1,0 +1,88 @@
+{
+  "capabilities": [
+    {
+      "cap_id": "0bce735b-3d2c-4b77-9d6a-77e3bc8f2ba2",
+      "user_id": "TEST",
+      "grantee_id": "career_coach",
+      "purpose": "resume_builder",
+      "scopes": [
+        "read:SkillDNA"
+      ],
+      "ttl": "PT1H",
+      "reuse_limit": null,
+      "data_policy": {
+        "export": false,
+        "aggregate_only": false,
+        "remote_access": false
+      },
+      "issued_at": 1759973180,
+      "exp": 1759976780,
+      "audit_id": "7dc3a019-f0fa-48c8-bf75-bb5f44063744",
+      "use_count": 0,
+      "revoked": false
+    },
+    {
+      "cap_id": "test-cap-456",
+      "user_id": "TEST",
+      "grantee_id": "career_coach",
+      "purpose": "test_purpose",
+      "scopes": [
+        "read:SkillDNA"
+      ],
+      "ttl": "PT24H",
+      "reuse_limit": null,
+      "data_policy": {
+        "export": false,
+        "aggregate_only": false,
+        "remote_access": false
+      },
+      "issued_at": 1760202921,
+      "exp": 1760289321,
+      "audit_id": "audit-123",
+      "use_count": 0,
+      "revoked": false
+    },
+    {
+      "cap_id": "cap-1",
+      "user_id": "USER1",
+      "grantee_id": "career_coach",
+      "purpose": "test",
+      "scopes": [
+        "read:SkillDNA"
+      ],
+      "ttl": "PT24H",
+      "reuse_limit": null,
+      "data_policy": {
+        "export": false,
+        "aggregate_only": false,
+        "remote_access": false
+      },
+      "issued_at": 1760202921,
+      "exp": 1760289321,
+      "audit_id": "audit-1",
+      "use_count": 0,
+      "revoked": false
+    },
+    {
+      "cap_id": "cap-2",
+      "user_id": "USER2",
+      "grantee_id": "ptc",
+      "purpose": "test",
+      "scopes": [
+        "read:PsyDNA"
+      ],
+      "ttl": "PT24H",
+      "reuse_limit": null,
+      "data_policy": {
+        "export": false,
+        "aggregate_only": false,
+        "remote_access": false
+      },
+      "issued_at": 1760202921,
+      "exp": 1760289321,
+      "audit_id": "audit-2",
+      "use_count": 0,
+      "revoked": false
+    }
+  ]
+}

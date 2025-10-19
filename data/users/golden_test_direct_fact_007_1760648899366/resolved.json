@@ -1,0 +1,18 @@
+{
+  "Occupation.OccupationType": {
+    "id": "Occupation.OccupationType",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648899379",
+        "ts": "2025-10-16T21:08:19+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:20.372567Z",
+    "history": []
+  }
+}

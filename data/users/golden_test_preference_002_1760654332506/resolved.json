@@ -1,0 +1,18 @@
+{
+  "BehaviorDNA.Leisure.Indoor": {
+    "id": "BehaviorDNA.Leisure.Indoor",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654332524",
+        "ts": "2025-10-16T22:38:52+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:56.391467Z",
+    "history": []
+  }
+}

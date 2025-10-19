@@ -1,0 +1,14 @@
+{
+  "user_id": "LLTEST",
+  "agent_id": "hc_LLTEST",
+  "status": "idle",
+  "last_run": null,
+  "next_run": null,
+  "pending_jobs": [],
+  "errors": [],
+  "inbox_cursor": 0,
+  "outbox_cursor": 0,
+  "run_count": 0,
+  "job_counts": {},
+  "updated_at": "2025-10-13T20:42:25.010690Z"
+}

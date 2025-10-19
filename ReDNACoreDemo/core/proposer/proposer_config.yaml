@@ -1,0 +1,62 @@
+# ChatDNA Container Proposer Configuration
+# Controls thresholds and scoring for nightly container proposals
+
+schema_version: "1.0"
+
+# Thresholds for proposal generation
+thresholds:
+  min_count: 25                  # Minimum daily occurrences to propose
+  min_impact: 0.05               # Minimum average impact score
+  min_users: 1                   # Minimum unique users affected
+
+# Scoring weights for proposal ranking
+weights:
+  freq_weight: 0.6               # Weight for frequency score
+  impact_weight: 0.4             # Weight for impact score
+
+# Limits
+max_proposals_per_night: 10      # Maximum proposals to generate per run
+
+# Parent mapping for proposals
+parents:
+  LanguageStyleDNA:
+    - "LanguageStyleDNA"
+  SocDNA:
+    - "SocDNA.InteractionStyleDNA"
+  PsyDNA:
+    - "PsyDNA.PersonalityDNA"
+
+# Namespace defaults
+namespaces:
+  default_status: "prototype"
+  default_version: 1
+  default_ai_upgradable: true
+
+# Governance defaults
+governance:
+  default_sensitive: false
+  default_consent_required: false
+
+  # Features that automatically trigger sensitivity flags
+  sensitive_keywords:
+    - "dialect"
+    - "accent"
+    - "code_switching"
+    - "ethnicity"
+    - "race"
+
+  # Features that automatically require consent
+  consent_keywords:
+    - "code_switching"
+    - "dialect"
+
+# Impact estimation
+impact:
+  high_threshold: 0.10           # Impact > 0.10 is high priority
+  medium_threshold: 0.05         # Impact 0.05-0.10 is medium
+  # Impact < 0.05 is low (filtered out by min_impact)
+
+# Log retention
+log_retention:
+  days_to_keep: 7                # Keep JSONL logs for 7 days
+  compress_old: true             # gzip logs older than 1 day

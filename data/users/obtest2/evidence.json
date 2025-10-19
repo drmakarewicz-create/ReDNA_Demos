@@ -1,0 +1,59 @@
+{
+  "items": [
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "confidence": 100,
+      "raw_text": "I have blue eyes",
+      "timestamp": "2025-10-14T16:21:58.549000+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.eye_color: blue",
+      "value": {
+        "enum": "blue"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T16:22:08+00:00"
+    },
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "value": {
+        "enum": "blue"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T16:22:08+00:00"
+    },
+    {
+      "trait_id": "PaDNA.HairDNA.Color.Natural",
+      "confidence": 100,
+      "raw_text": "I have red hair",
+      "timestamp": "2025-10-14T16:29:50.393000+00:00",
+      "extraction_method": "llm",
+      "signal": "physical.hair_color: red",
+      "value": {
+        "enum": "red"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T16:29:59+00:00"
+    },
+    {
+      "trait_id": "PaDNA.HairDNA.Color.Natural",
+      "value": {
+        "enum": "red"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T16:29:59+00:00"
+    },
+    {
+      "trait_id": "BasicDNA.Age",
+      "confidence": 100,
+      "raw_text": "I am 50 years old",
+      "timestamp": "2025-10-14T16:40:17.599000+00:00",
+      "extraction_method": "llm",
+      "signal": "age: 50 years old",
+      "value": {
+        "text": "50 years old"
+      },
+      "source": "chat",
+      "ts": "2025-10-14T16:40:23+00:00"
+    }
+  ]
+}

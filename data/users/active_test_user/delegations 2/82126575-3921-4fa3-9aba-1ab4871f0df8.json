@@ -1,0 +1,12 @@
+{
+  "delegation_id": "82126575-3921-4fa3-9aba-1ab4871f0df8",
+  "coach": "photo_coach",
+  "user_id": "active_test_user",
+  "curiosity_targets": [
+    "PaDNA.EyeDNA.Color"
+  ],
+  "context": {},
+  "status": "pending",
+  "created_at": "2025-10-06T20:03:56.930291+00:00",
+  "updated_at": "2025-10-06T20:03:56.930291+00:00"
+}

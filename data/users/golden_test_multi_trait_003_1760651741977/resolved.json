@@ -1,0 +1,50 @@
+{
+  "BehaviorDNA.Work.Location": {
+    "id": "BehaviorDNA.Work.Location",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651742010",
+        "ts": "2025-10-16T21:55:42+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:55:44.086385Z",
+    "history": []
+  },
+  "BasicDNA.Occupation": {
+    "id": "BasicDNA.Occupation",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651742010",
+        "ts": "2025-10-16T21:55:42+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:55:44.086390Z",
+    "history": []
+  },
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651742010",
+        "ts": "2025-10-16T21:55:42+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:55:44.086392Z",
+    "history": []
+  }
+}

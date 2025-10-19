@@ -1,0 +1,14 @@
+{
+  "min_nudge_priority": 0.65,
+  "idle_seconds": 90,
+  "learning_influence": {
+    "tone_weight": 0.3,
+    "creativity_weight": 0.2
+  },
+  "respect_consent": true,
+  "max_nudges_per_turn": 1,
+  "sensitive_namespaces": [
+    "PaDNA",
+    "Photo"
+  ]
+}

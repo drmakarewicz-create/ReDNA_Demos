@@ -1,0 +1,18 @@
+{
+  "PaDNA.Diet": {
+    "id": "PaDNA.Diet",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648903948",
+        "ts": "2025-10-16T21:08:23+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:24.695590Z",
+    "history": []
+  }
+}

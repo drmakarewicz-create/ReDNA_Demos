@@ -1,0 +1,26 @@
+{
+  "proposal_id": "a1b2c3d4-e5f6-4789-a1b2-c3d4e5f6g7h8",
+  "scope": "frontend",
+  "file": "devx/frontend/src/routes/self-improvement/SelfImprovementPanel.tsx",
+  "intent": "Improve clarity: address confusion about panel purpose",
+  "suggested_change": {
+    "type": "text_replace",
+    "before": "Self-Improvement Panel",
+    "after": "Adaptive Learning Dashboard"
+  },
+  "confidence": 0.90,
+  "source": "head_coach",
+  "status": "pending",
+  "created_at": "2025-10-10T03:15:30.123456+00:00",
+  "checksum_before": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "patch_file": "prompts/insights/patches/a1b2c3d4_20251010_031530.patch",
+  "metadata": {
+    "trigger_type": "analysis_driven",
+    "analysis_context": {
+      "confused_modules": ["DevX Self-Improvement"],
+      "confused_text": ["panel", "configuration"]
+    },
+    "heuristic_applied": "self_improvement_to_adaptive_learning",
+    "fallback_confidence": 0.88
+  }
+}

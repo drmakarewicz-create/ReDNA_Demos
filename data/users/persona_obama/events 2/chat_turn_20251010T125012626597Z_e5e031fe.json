@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "persona_obama",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "hi",
+  "assistant_text": "It seems like you're trying to get started with our conversation! I've logged your \"hi\" in my notes for the Head Coach board. What's on your mind today?",
+  "client_message_id": "2d403892-458c-4018-aac8-7ff1c9618f55",
+  "assistant_message_id": "chat-cdccaa2d786444599422e5869e8a7a45",
+  "server_ts": "2025-10-10T12:50:12.626+00:00",
+  "server_ts_ms": 1760100612626,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

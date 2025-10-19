@@ -1,0 +1,34 @@
+{
+  "PaDNA.MediaConsumption.HoursWatchedThisMonth": {
+    "id": "PaDNA.MediaConsumption.HoursWatchedThisMonth",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646666757",
+        "ts": "2025-10-16T20:31:06+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:31:08.654924Z",
+    "history": []
+  },
+  "PaDNA.MediaConsumption.NumberOfSeriesWatchedThisMonth": {
+    "id": "PaDNA.MediaConsumption.NumberOfSeriesWatchedThisMonth",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646666757",
+        "ts": "2025-10-16T20:31:06+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:31:08.654934Z",
+    "history": []
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "user_id": "persona_joan_didion",
+  "profile": {
+    "label": "Joan Didion",
+    "source": "Published essays and journalism analysis (Slouching Towards Bethlehem, The White Album)",
+    "note": "Characterized by precise vocabulary, cool detachment, high metaphor density, fragmented sentences with controlled rhythm",
+    "embedding_model": "text-embedding-ada-002"
+  },
+  "created_at": "2025-10-07T18:52:34.844109",
+  "source": "style_bundle_ingestion",
+  "bundle_path": "/Users/davidmakarewicz/Documents/ReDNA_Demos/fixtures/chatdna/personas/joan_didion.bundle.json"
+}

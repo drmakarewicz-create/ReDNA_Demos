@@ -18,6 +18,7 @@
  */
 
 import { useEffect, useState } from 'react';
+import { fetchWithRetry } from '../../lib/utils';
 
 export interface HCTask {
   id: string;
@@ -69,7 +70,7 @@ export function HCTasks({ userId, className = '' }: HCTasksProps) {
 
   async function fetchTasks() {
     try {
-      const response = await fetch(`/api/hc/tasks/list?userId=${encodeURIComponent(userId)}`);
+      const response = await fetchWithRetry(`/api/hc/tasks/list?userId=${encodeURIComponent(userId)}`);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
@@ -85,7 +86,7 @@ export function HCTasks({ userId, className = '' }: HCTasksProps) {
 
   async function fetchReminders() {
     try {
-      const response = await fetch(`/api/hc/reminders/list?userId=${encodeURIComponent(userId)}`);
+      const response = await fetchWithRetry(`/api/hc/reminders/list?userId=${encodeURIComponent(userId)}`);
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
@@ -99,7 +100,7 @@ export function HCTasks({ userId, className = '' }: HCTasksProps) {
   async function handleTick() {
     setTicking(true);
     try {
-      const response = await fetch(`/api/hc/tasks/tick?userId=${encodeURIComponent(userId)}`, {
+      const response = await fetchWithRetry(`/api/hc/tasks/tick?userId=${encodeURIComponent(userId)}`, {
         method: 'POST',
       });
       if (!response.ok) {

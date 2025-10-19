@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob9",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I am 6 feet tall",
+  "assistant_text": "You mentioned being 6 feet tall. How does that affect your daily life or interactions with others?",
+  "client_message_id": "50865551-f2f9-4140-b5ee-43f1b14b038d",
+  "assistant_message_id": "chat-33bd047624bd48df8349029e1767bc4c",
+  "server_ts": "2025-10-14T17:24:54.724+00:00",
+  "server_ts_ms": 1760462694724,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

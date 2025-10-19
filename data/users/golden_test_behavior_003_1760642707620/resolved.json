@@ -1,0 +1,50 @@
+{
+  "PaDNA.Hobby": {
+    "id": "PaDNA.Hobby",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642707637",
+        "ts": "2025-10-16T19:25:07+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:09.239835Z",
+    "history": []
+  },
+  "PaDNA.ActivityType": {
+    "id": "PaDNA.ActivityType",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642707637",
+        "ts": "2025-10-16T19:25:07+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:09.239840Z",
+    "history": []
+  },
+  "PaDNA.TimePreference": {
+    "id": "PaDNA.TimePreference",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642707637",
+        "ts": "2025-10-16T19:25:07+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:09.239842Z",
+    "history": []
+  }
+}

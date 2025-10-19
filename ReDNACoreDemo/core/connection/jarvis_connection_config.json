@@ -1,0 +1,27 @@
+{
+  "ema_alpha": 0.5,
+  "default_tone": "professional",
+  "tone_map": {
+    "casual": [0.0, 0.3],
+    "empathetic": [0.3, 0.7],
+    "professional": [0.6, 0.9],
+    "direct": [0.8, 1.0]
+  },
+  "empathy_keywords": [
+    "sorry",
+    "understand",
+    "frustrated",
+    "overwhelmed",
+    "tough",
+    "appreciate",
+    "worried",
+    "anxious",
+    "stressed",
+    "confused",
+    "lost",
+    "help",
+    "struggling"
+  ],
+  "max_delta_per_turn": 0.25,
+  "developer_trace": true
+}

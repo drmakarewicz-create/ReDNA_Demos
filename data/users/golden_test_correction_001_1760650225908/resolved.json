@@ -1,0 +1,18 @@
+{
+  "PaDNA.EyeDNA.IrisColor": {
+    "id": "PaDNA.EyeDNA.IrisColor",
+    "rr": 800.0,
+    "curiosity": 0.136,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650225926",
+        "ts": "2025-10-16T21:30:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:30:27.101408Z",
+    "history": []
+  }
+}

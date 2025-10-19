@@ -1,0 +1,14 @@
+{
+  "user_id": "USER2",
+  "agent_id": "hc_USER2",
+  "status": "idle",
+  "last_run": null,
+  "next_run": null,
+  "pending_jobs": [],
+  "errors": [],
+  "inbox_cursor": 0,
+  "outbox_cursor": 0,
+  "run_count": 0,
+  "job_counts": {},
+  "updated_at": "2025-10-11T00:13:43.247465Z"
+}

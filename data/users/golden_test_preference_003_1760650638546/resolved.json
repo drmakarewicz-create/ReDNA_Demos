@@ -1,0 +1,50 @@
+{
+  "PaDNA.MediaConsumption.WatchMethod": {
+    "id": "PaDNA.MediaConsumption.WatchMethod",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650638569",
+        "ts": "2025-10-16T21:37:18+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:37:20.931685Z",
+    "history": []
+  },
+  "PaDNA.MediaConsumption.NumberOfItemsWatched": {
+    "id": "PaDNA.MediaConsumption.NumberOfItemsWatched",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650638569",
+        "ts": "2025-10-16T21:37:18+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:37:20.931694Z",
+    "history": []
+  },
+  "PaDNA.TimePeriod.Type": {
+    "id": "PaDNA.TimePeriod.Type",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760650638569",
+        "ts": "2025-10-16T21:37:18+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:37:20.931697Z",
+    "history": []
+  }
+}

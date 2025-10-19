@@ -1,0 +1,34 @@
+{
+  "PaDNA.Interests": {
+    "id": "PaDNA.Interests",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645424033",
+        "ts": "2025-10-16T20:10:24+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:10:25.323206Z",
+    "history": []
+  },
+  "PaDNA.MusicalPreference": {
+    "id": "PaDNA.MusicalPreference",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645424033",
+        "ts": "2025-10-16T20:10:24+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:10:25.323264Z",
+    "history": []
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "PaDNA.BodyWeight": {
+    "id": "PaDNA.BodyWeight",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760646371792",
+        "ts": "2025-10-16T20:26:11+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:26:12.616673Z",
+    "history": []
+  }
+}

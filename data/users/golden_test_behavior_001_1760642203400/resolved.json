@@ -1,0 +1,34 @@
+{
+  "PaDNA.Human.Activity": {
+    "id": "PaDNA.Human.Activity",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642203415",
+        "ts": "2025-10-16T19:16:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:16:44.730794Z",
+    "history": []
+  },
+  "PaDNA.Human.Frequency": {
+    "id": "PaDNA.Human.Frequency",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642203415",
+        "ts": "2025-10-16T19:16:43+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:16:44.730800Z",
+    "history": []
+  }
+}

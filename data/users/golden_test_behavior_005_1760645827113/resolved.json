@@ -1,0 +1,34 @@
+{
+  "BasicDNA.Location.City": {
+    "id": "BasicDNA.Location.City",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645827126",
+        "ts": "2025-10-16T20:17:07+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:08.185135Z",
+    "history": []
+  },
+  "BehaviorDNA.Organization.Level": {
+    "id": "BehaviorDNA.Organization.Level",
+    "rr": 830.0,
+    "curiosity": 0.0956,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760645827126",
+        "ts": "2025-10-16T20:17:07+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T20:17:08.185142Z",
+    "history": []
+  }
+}

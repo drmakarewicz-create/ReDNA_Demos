@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob26",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "What should we do today?",
+  "assistant_text": "Let's take it one step at a time. You seem open to exploring what's on your mind, but unsure about how to start. Can you tell me what sparked your interest in reaching out for support today?",
+  "client_message_id": "bd7968b8-3346-434a-90cb-7627014e0ebb",
+  "assistant_message_id": "chat-a567a5de1bfc40fa8be43032e72d9805",
+  "server_ts": "2025-10-15T17:23:01.504+00:00",
+  "server_ts_ms": 1760548981504,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

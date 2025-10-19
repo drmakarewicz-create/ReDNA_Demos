@@ -1,0 +1,106 @@
+[
+  {
+    "capability_id": "b04699bc126a412e982b1e26678b3c96",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjXzEwMTN0ZXN0IiwiZXhwIjoiMjAyNS0xMC0xM1QyMjoyMzowNi4zMzc0ODNaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xM1QyMjoxODowNi4zMzc0ODNaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6ImIwNDY5OWJjMTI2YTQxMmU5ODJiMWUyNjY3OGIzYzk2IiwiaXNzdWVkX2J5IjoiZGV2eF9hcGkiLCJyZXF1ZXN0ZWRfYnkiOiJkZXZ4X2FwaSJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IjEwMTN0ZXN0In0.a3PUGYFNdWwqBDQcnLeDUppjcJkzpFHRn5GqSf3mybA",
+    "payload": {
+      "agent": "hc_1013test",
+      "scope": "core.agent.config",
+      "exp": "2025-10-13T22:23:06.337483Z",
+      "issued_at": "2025-10-13T22:18:06.337483Z",
+      "user_id": "1013test",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "b04699bc126a412e982b1e26678b3c96"
+      }
+    },
+    "issued_at": "2025-10-13T22:18:06.337483Z",
+    "expires_at": "2025-10-13T22:23:06.337483Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "b04699bc126a412e982b1e26678b3c96"
+    }
+  },
+  {
+    "capability_id": "d32f1cb4ae2f430fa503286633773be0",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjXzEwMTN0ZXN0IiwiZXhwIjoiMjAyNS0xMC0xM1QyMjoyMzowNi4zNDI2MzBaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xM1QyMjoxODowNi4zNDI2MzBaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6ImQzMmYxY2I0YWUyZjQzMGZhNTAzMjg2NjMzNzczYmUwIiwiaXNzdWVkX2J5IjoiZGV2eF9hcGkiLCJyZXF1ZXN0ZWRfYnkiOiJkZXZ4X2FwaSJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IjEwMTN0ZXN0In0.-A3AL6z3R-FIZUZk9vYWMGPwxf9Sebn82QCe8WbeVYo",
+    "payload": {
+      "agent": "hc_1013test",
+      "scope": "core.agent.config",
+      "exp": "2025-10-13T22:23:06.342630Z",
+      "issued_at": "2025-10-13T22:18:06.342630Z",
+      "user_id": "1013test",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "d32f1cb4ae2f430fa503286633773be0"
+      }
+    },
+    "issued_at": "2025-10-13T22:18:06.342630Z",
+    "expires_at": "2025-10-13T22:23:06.342630Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "d32f1cb4ae2f430fa503286633773be0"
+    }
+  },
+  {
+    "capability_id": "f51de71d377541dba612aa4927ff28ab",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjXzEwMTN0ZXN0IiwiZXhwIjoiMjAyNS0xMC0xM1QyMjoyMzowNi4zNDQyMjlaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xM1QyMjoxODowNi4zNDQyMjlaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6ImY1MWRlNzFkMzc3NTQxZGJhNjEyYWE0OTI3ZmYyOGFiIiwiaXNzdWVkX2J5IjoiZGV2eF9hcGkiLCJyZXF1ZXN0ZWRfYnkiOiJkZXZ4X2FwaSJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IjEwMTN0ZXN0In0.0Wd8NsAD_GOJhm_HVTRiCylrxqBXEykY0lBoXhGaHE8",
+    "payload": {
+      "agent": "hc_1013test",
+      "scope": "core.agent.config",
+      "exp": "2025-10-13T22:23:06.344229Z",
+      "issued_at": "2025-10-13T22:18:06.344229Z",
+      "user_id": "1013test",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "f51de71d377541dba612aa4927ff28ab"
+      }
+    },
+    "issued_at": "2025-10-13T22:18:06.344229Z",
+    "expires_at": "2025-10-13T22:23:06.344229Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "f51de71d377541dba612aa4927ff28ab"
+    }
+  },
+  {
+    "capability_id": "e204d09953b64d0c9f9542647e07e73c",
+    "scope": "core.agent.config",
+    "token": "eyJhZ2VudCI6ImhjXzEwMTN0ZXN0IiwiZXhwIjoiMjAyNS0xMC0xM1QyMjoyMzowNi4zNDU5MjlaIiwiaXNzdWVkX2F0IjoiMjAyNS0xMC0xM1QyMjoxODowNi4zNDU5MjlaIiwibWV0YWRhdGEiOnsiY2FwYWJpbGl0eV9pZCI6ImUyMDRkMDk5NTNiNjRkMGM5Zjk1NDI2NDdlMDdlNzNjIiwiaXNzdWVkX2J5IjoiZGV2eF9hcGkiLCJyZXF1ZXN0ZWRfYnkiOiJkZXZ4X2FwaSJ9LCJzY29wZSI6ImNvcmUuYWdlbnQuY29uZmlnIiwidXNlcl9pZCI6IjEwMTN0ZXN0In0.CbngZbyecTlDFDUoBGsuy0gKpUGtOwm0XhFIUpQzJ-U",
+    "payload": {
+      "agent": "hc_1013test",
+      "scope": "core.agent.config",
+      "exp": "2025-10-13T22:23:06.345929Z",
+      "issued_at": "2025-10-13T22:18:06.345929Z",
+      "user_id": "1013test",
+      "metadata": {
+        "requested_by": "devx_api",
+        "issued_by": "devx_api",
+        "capability_id": "e204d09953b64d0c9f9542647e07e73c"
+      }
+    },
+    "issued_at": "2025-10-13T22:18:06.345929Z",
+    "expires_at": "2025-10-13T22:23:06.345929Z",
+    "status": "active",
+    "ttl_minutes": 5,
+    "metadata": {
+      "requested_by": "devx_api",
+      "issued_by": "devx_api",
+      "capability_id": "e204d09953b64d0c9f9542647e07e73c"
+    }
+  }
+]

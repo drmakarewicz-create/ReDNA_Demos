@@ -1,0 +1,336 @@
+# Career Coach UI Manifest
+# Defines right-pane widgets for career optimization and professional development
+
+schema_version: "1.0"
+coach_id: "career_coach"
+manifest_version: "0.2.0"
+renderer_version: "1.0"
+
+metadata:
+  author: "ReDNA Core Team"
+  updated_at: "2025-10-07T01:00:00Z"
+  description: "Career Coach right-pane widgets for skill development and professional growth"
+  changelog:
+    - version: "0.2.0"
+      date: "2025-10-07"
+      changes:
+        - "Added zone-based layout support"
+        - "Implemented CareerSnapshotCard and SkillCuriosityMap widgets"
+        - "Added zone and zone_priority to widgets"
+    - version: "0.1.0"
+      date: "2025-10-07"
+      changes:
+        - "Initial manifest with 6 core widgets"
+        - "Skill curiosity map with visual heatmap"
+        - "Career transition planner with AI suggestions"
+        - "Learning path generator"
+
+# Layout Mode: "list" (flat position-based) or "zones" (zone-based rendering)
+layout_mode: zones
+
+# Zone Configuration (only used when layout_mode=zones)
+zones:
+  header:
+    max_widgets: 1
+    collapsible: false
+  actions:
+    max_widgets: 2
+    layout: horizontal
+  primary:
+    max_widgets: 3
+  secondary:
+    max_widgets: 10
+    collapsible: true
+
+# Widget Definitions
+widgets:
+  # 1. Skill Curiosity Map - Visual heatmap of skill RR/curiosity
+  - id: skill_curiosity_map
+    type: visualization
+    component: SkillCuriosityMap
+    title: "Skill Curiosity Map"
+    description: "Visual breakdown of skill gaps and high-curiosity areas"
+    position: 0
+    zone: primary
+    zone_priority: 0
+    default_visible: true
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/career_coach/skill-map
+      method: GET
+      params:
+        min_curiosity: 50.0
+      cache_ttl: 120
+    conditions:
+      - type: data_available
+        data_available:
+          path: "resolved.SkillDNA"
+          min_count: 1
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - skill_clicked
+        - curiosity_threshold_changed
+    props:
+      colorScheme: "curiosity"  # Options: curiosity, rr, ucn
+      showLabels: true
+      interactive: true
+
+  # 2. Career Dashboard - Overview of professional stats
+  - id: career_dashboard
+    type: display
+    component: CareerDashboard
+    title: "Career Overview"
+    description: "Professional satisfaction, skill distribution, and career health metrics"
+    position: 1
+    zone: header
+    zone_priority: 0
+    default_visible: true
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/career_coach/dashboard
+      method: GET
+      cache_ttl: 180
+    conditions:
+      - type: data_available
+        data_available:
+          path: "resolved.ProfDNA"
+          min_count: 1
+    telemetry:
+      track_renders: true
+      track_interactions: true
+    props:
+      showSatisfactionScore: true
+      showSkillBreakdown: true
+      compactMode: false
+
+  # 3. Transition Planner - AI-powered career change planning
+  - id: transition_planner
+    type: interactive
+    component: TransitionPlanner
+    title: "Career Transition Planner"
+    description: "Explore career paths, skill gaps, and transition strategies"
+    position: 2
+    zone: primary
+    zone_priority: 1
+    default_visible: false  # Only show when relevant
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/career_coach/transitions
+      method: POST
+      cache_ttl: 60
+    conditions:
+      - type: intent
+        intent: ["career_change", "career_transition"]
+      - type: curiosity_threshold
+        curiosity_threshold:
+          domain: "ProfDNA"
+          operator: ">="
+          value: 65.0
+    ai_suggestions:
+      enabled: true
+      policy_gate: career_suggestions
+      model: claude-3-5-sonnet
+      max_suggestions: 5
+      shadow_mode: false
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - transition_path_selected
+        - gap_analysis_run
+        - timeline_generated
+    props:
+      showTimeline: true
+      showGapAnalysis: true
+      enableAIRecommendations: true
+
+  # 4. Learning Path Generator - Skill development roadmap
+  - id: learning_path_generator
+    type: interactive
+    component: LearningPathGenerator
+    title: "Learning Path"
+    description: "Generate personalized skill development plans"
+    position: 3
+    zone: primary
+    zone_priority: 2
+    default_visible: false
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/career_coach/learning-paths
+      method: GET
+      cache_ttl: 300
+    conditions:
+      - type: intent
+        intent: ["skill_development", "learning", "upskilling"]
+      - type: curiosity_threshold
+        curiosity_threshold:
+          domain: "SkillDNA"
+          operator: ">="
+          value: 60.0
+    ai_suggestions:
+      enabled: true
+      policy_gate: career_suggestions
+      model: claude-3-5-sonnet
+      max_suggestions: 3
+      shadow_mode: false
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - path_generated
+        - milestone_clicked
+        - resource_opened
+    props:
+      showTimeEstimates: true
+      showPrerequisites: true
+      includeResources: true
+
+  # 5. Work Style Analyzer - Productivity and workflow insights
+  - id: work_style_analyzer
+    type: diagnostic
+    component: WorkStyleAnalyzer
+    title: "Work Style Analysis"
+    description: "Understand your productivity patterns and work preferences"
+    position: 4
+    zone: secondary
+    zone_priority: 0
+    default_visible: false
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/career_coach/work-style
+      method: GET
+      cache_ttl: 600
+    conditions:
+      - type: data_available
+        data_available:
+          path: "resolved.BehDNA.ProductivityWorkflowDNA"
+          min_count: 3
+      - type: rr_threshold
+        rr_threshold:
+          domain: "BehDNA.ProductivityWorkflowDNA"
+          operator: ">="
+          value: 40.0
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - style_quiz_completed
+        - insight_viewed
+    props:
+      showVisualization: true
+      includeRecommendations: true
+
+  # 6. Skill Gap Analyzer - Identify missing/weak skills
+  - id: skill_gap_analyzer
+    type: diagnostic
+    component: SkillGapAnalyzer
+    title: "Skill Gap Analysis"
+    description: "Identify critical skill gaps for your career goals"
+    position: 5
+    zone: secondary
+    zone_priority: 1
+    default_visible: false
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/career_coach/skill-gaps
+      method: POST
+      cache_ttl: 180
+    conditions:
+      - type: intent
+        intent: ["career_change", "skill_assessment", "career_planning"]
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - gap_category_expanded
+        - priority_changed
+        - action_plan_generated
+    props:
+      priorityMode: "impact"  # Options: impact, urgency, feasibility
+      showActionPlans: true
+      includeMarketData: false  # Future: integrate job market data
+
+# Intent-Specific Layouts
+intent_layouts:
+  career_change:
+    priority_boost:
+      - transition_planner
+      - skill_gap_analyzer
+      - learning_path_generator
+    show:
+      - skill_curiosity_map
+      - transition_planner
+      - skill_gap_analyzer
+
+  skill_development:
+    priority_boost:
+      - learning_path_generator
+      - skill_curiosity_map
+    show:
+      - skill_curiosity_map
+      - learning_path_generator
+
+  current_role_growth:
+    priority_boost:
+      - career_dashboard
+      - work_style_analyzer
+    show:
+      - career_dashboard
+      - work_style_analyzer
+      - skill_curiosity_map
+
+  career_planning:
+    priority_boost:
+      - career_dashboard
+      - transition_planner
+      - skill_gap_analyzer
+    show:
+      - career_dashboard
+      - skill_curiosity_map
+      - transition_planner
+
+# Default Layout Configuration
+default_layout:
+  max_visible_widgets: 4
+  auto_collapse_below: 3
+  spacing: normal
+
+# Performance Targets
+performance:
+  compose_target_ms: 200
+  fcp_target_ms: 300
+  max_api_calls: 3
+
+# Workshop Testing Fixtures
+workshop_fixtures:
+  default_fixture: career_change
+  fixtures:
+    - name: career_change
+      description: "User considering major career transition"
+      intents: ["career_change"]
+
+    - name: skill_development
+      description: "User focused on learning new skills"
+      intents: ["skill_development", "upskilling"]
+
+    - name: current_role_optimization
+      description: "User optimizing performance in current role"
+      intents: ["current_role_growth"]
+
+    - name: career_planning
+      description: "User planning long-term career trajectory"
+      intents: ["career_planning"]

@@ -1,0 +1,856 @@
+{
+  "PaDNA.HairDNA.Color": {
+    "resolved_value": "Auburn-Brown With Golden Highlights",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 85.78,
+    "curiosity": 14.219741208416806,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881411",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.HairDNA.Length": {
+    "resolved_value": "Long",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 83.89,
+    "curiosity": 16.113391434656933,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881420",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.HairDNA.Texture": {
+    "resolved_value": "Wavy",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 87.4,
+    "curiosity": 12.6000598797755,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881427",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.HairDNA.Parting": {
+    "resolved_value": "Side Part, Often Left",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881456",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.HairDNA.Volume": {
+    "resolved_value": "Thick",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 89.58,
+    "curiosity": 10.419506922134673,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881463",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.EyeDNA.Color": {
+    "resolved_value": "Light Green With Hazel Flecks",
+    "ucn": 940.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 85.86,
+    "curiosity": 14.144197767562702,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881470",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.EyeDNA.Shape": {
+    "resolved_value": "Almond",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 87.5,
+    "curiosity": 12.497127202489338,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881476",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.EyeDNA.Lashes": {
+    "resolved_value": "Medium Length, Full",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881497",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.SkinDNA.Tone": {
+    "resolved_value": "Fair With Warm Undertones",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 93.83,
+    "curiosity": 6.174224262541898,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881502",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "resolved_value": "Present, Across Face/Shoulders",
+    "ucn": 970.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 89.92,
+    "curiosity": 10.077774868818821,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881509",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.SkinDNA.SunSensitivity": {
+    "resolved_value": "High",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881528",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.BodyDNA.HeightEstimateCM": {
+    "resolved_value": 165,
+    "ucn": 750.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881552",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.BodyDNA.Build": {
+    "resolved_value": "Slim/Athletic",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 89.49,
+    "curiosity": 10.50842554800046,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.881557",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.BodyDNA.WaistHipRatio": {
+    "resolved_value": "Moderate Hourglass",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881578",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.BodyDNA.Bust": {
+    "resolved_value": "Full",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881594",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.BodyDNA.Shoulders": {
+    "resolved_value": "Moderately Broad",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881611",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.BodyDNA.Arms": {
+    "resolved_value": "Slim",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881628",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.BodyDNA.Legs": {
+    "resolved_value": "Long, Toned",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881644",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.BodyDNA.Navel": {
+    "resolved_value": "Pierced",
+    "ucn": 990.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881661",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.SmileDNA.Teeth": {
+    "resolved_value": "Straight, White",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881677",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.SmileDNA.SmileShape": {
+    "resolved_value": "Broad Smile",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881693",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.SmileDNA.Dimples": {
+    "resolved_value": "Absent",
+    "ucn": 700.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881709",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ApparelDNA.FrequentTops": {
+    "resolved_value": [
+      "Tank tops",
+      "Bikinis",
+      "Casual fitted T-shirts",
+      "Crop tops",
+      "Mini dresses"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881725",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ApparelDNA.StyleThemes": {
+    "resolved_value": [
+      "Casual sexy",
+      "Playful",
+      "Colorful prints",
+      "Beachwear"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881790",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ApparelDNA.Jewelry.Necklace": {
+    "resolved_value": "Often Layered Pendants",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881813",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ApparelDNA.Jewelry.Earrings": {
+    "resolved_value": "Studs Or Small Hoops",
+    "ucn": 810.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881829",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ApparelDNA.Jewelry.Piercings": {
+    "resolved_value": [
+      "Navel piercing"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881889",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ExpressionDNA.TypicalExpression": {
+    "resolved_value": "Smiling Warmly Or Playful Smirk",
+    "ucn": 910.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881906",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ExpressionDNA.MoodVariance": {
+    "resolved_value": [
+      "Confident",
+      "Relaxed",
+      "Playful"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881961",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ExpressionDNA.EyeContact": {
+    "resolved_value": "Direct And Engaging",
+    "ucn": 920.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.881977",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.FitnessDNA.Indicators": {
+    "resolved_value": [
+      "Flat abdomen",
+      "Defined waist",
+      "Toned legs",
+      "Visible muscle tone"
+    ],
+    "ucn": 80.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882029",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.FitnessDNA.LifestyleInference": {
+    "resolved_value": "Active/Fitness-Conscious",
+    "ucn": 770.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882046",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.FaceDNA.FaceShape": {
+    "resolved_value": "Heart-Shaped To Oval",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882063",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.FaceDNA.Cheekbones": {
+    "resolved_value": "Prominent, High",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882079",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.FaceDNA.Jawline": {
+    "resolved_value": "Soft, Rounded",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882095",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.FaceDNA.Chin": {
+    "resolved_value": "Slightly Pointed",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882111",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.FaceDNA.FaceWidth": {
+    "resolved_value": "Medium-Narrow",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882162",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.EyebrowDNA.Shape": {
+    "resolved_value": "Arched With Soft Angle",
+    "ucn": 900.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882179",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.EyebrowDNA.Thickness": {
+    "resolved_value": "Medium-Thin To Medium",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882198",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.EyebrowDNA.Color": {
+    "resolved_value": "Light To Medium Brown",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882219",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.NoseDNA.Size": {
+    "resolved_value": "Small To Medium",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882237",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.NoseDNA.Bridge": {
+    "resolved_value": "Straight, Refined",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882252",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.NoseDNA.Tip": {
+    "resolved_value": "Slightly Rounded",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882268",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.NoseDNA.Nostrils": {
+    "resolved_value": "Petite",
+    "ucn": 820.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882318",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.LipDNA.Fullness": {
+    "resolved_value": "Medium-Full, Balanced Proportions",
+    "ucn": 880.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882334",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.LipDNA.Shape": {
+    "resolved_value": "Defined Cupid's Bow",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882350",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.LipDNA.Color": {
+    "resolved_value": "Natural Pink",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882366",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.NeckDNA.Length": {
+    "resolved_value": "Medium-Long",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882381",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.NeckDNA.Width": {
+    "resolved_value": "Slender",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882397",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.FaceDNA.LowerFaceShape": {
+    "resolved_value": "Gently Tapered",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882452",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ForeheadDNA.Height": {
+    "resolved_value": "Medium",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882500",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.ForeheadDNA.Shape": {
+    "resolved_value": "Gently Rounded",
+    "ucn": 830.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882550",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.EyeDNA.Size": {
+    "resolved_value": "Medium-Large",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 89.39,
+    "curiosity": 10.613697604315846,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.882558",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.EyeDNA.Spacing": {
+    "resolved_value": "Medium-Wide Set",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882575",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.HairDNA.CurlPattern": {
+    "resolved_value": "Wavy-2b",
+    "ucn": 890.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882627",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.HairDNA.WaveDefinition": {
+    "resolved_value": "Defined",
+    "ucn": 870.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882682",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.EyebrowDNA.ArchPosition": {
+    "resolved_value": "2/3 Outward From Inner Corner",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882737",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.NoseDNA.BridgeWidth": {
+    "resolved_value": "Narrow To Medium",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882788",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.LipDNA.Texture": {
+    "resolved_value": "Smooth With Natural Gloss",
+    "ucn": 850.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882834",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.SkinDNA.Texture": {
+    "resolved_value": "Natural, Visible Pores",
+    "ucn": 840.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": 88.95,
+    "curiosity": 11.05347682725025,
+    "provenance": {
+      "rr_migrated": "2025-10-06T18:19:46.882842",
+      "rr_method": "histogram_with_prior_blending"
+    }
+  },
+  "PaDNA.SkinDNA.FrecklesDensity": {
+    "resolved_value": "Medium-Heavy",
+    "ucn": 950.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882897",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.SkinDNA.FrecklesCoverage": {
+    "resolved_value": "Cheeks-Nose",
+    "ucn": 940.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.882950",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.SkinDNA.FrecklesContrast": {
+    "resolved_value": "Prominent",
+    "ucn": 930.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.883001",
+      "rr_migration_status": "no_distribution"
+    }
+  },
+  "PaDNA.SmileDNA.MouthWidth": {
+    "resolved_value": "Medium-Wide Relative To Face",
+    "ucn": 860.0,
+    "reasons": [
+      "photo_import:photo-import-ui"
+    ],
+    "rr": null,
+    "curiosity": 100.0,
+    "provenance": {
+      "rr_migration_attempted": "2025-10-06T18:19:46.883019",
+      "rr_migration_status": "no_distribution"
+    }
+  }
+}

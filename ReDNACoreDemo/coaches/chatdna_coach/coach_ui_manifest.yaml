@@ -1,0 +1,380 @@
+# ChatDNA Coach UI Manifest
+# Conversational simulator that speaks in the User's style
+
+schema_version: "1.0"
+coach_id: "chatdna_coach"
+manifest_version: "0.1.0"
+renderer_version: "1.0"
+
+metadata:
+  author: "ReDNA Core Team"
+  updated_at: "2025-10-07T22:30:00Z"
+  description: >
+    ChatDNA Coach simulates how the User would speak and reason. Uses LanguageStyleDNA,
+    PsyDNA, SocDNA, and MetaDNA to shape tone, cadence, humor, empathy, and stance.
+    Collects similarity ratings to refine RR.
+
+# Layout Mode: zones for structured organization
+layout_mode: zones
+
+# Zone Configuration
+zones:
+  header:
+    max_widgets: 1
+    collapsible: false
+  actions:
+    max_widgets: 2
+    layout: horizontal
+  primary:
+    max_widgets: 2
+  secondary:
+    max_widgets: 3
+    collapsible: true
+
+# Widget Definitions
+widgets:
+  # 1. ChatDNA Overview Card - Conversational snapshot
+  - id: chatdna_overview_card
+    type: display
+    component: ChatDNAOverviewCard
+    title: "Conversational Snapshot"
+    description: "Overview of language style, personality, and social interaction RR scores"
+    position: 0
+    zone: header
+    zone_priority: 0
+    default_visible: true
+    pinnable: true
+    collapsible: false
+    data_source:
+      type: api
+      endpoint: /api/coach/chatdna_coach/panel
+      method: GET
+      cache_ttl: 60
+    conditions:
+      - type: data_available
+        data_available:
+          path: "snapshot"
+          min_count: 1
+    telemetry:
+      track_renders: true
+      track_interactions: true
+    props:
+      show_rr: ["LanguageStyleDNA", "PersonalityDNA", "InteractionStyleDNA"]
+      show_top_curiosity: 3
+
+  # 2. Template Bank - Starter prompts
+  - id: template_bank
+    type: interactive
+    component: TemplateBank
+    title: "Starter Prompts"
+    description: "Pre-built templates for common conversational scenarios"
+    position: 0
+    zone: actions
+    zone_priority: 0
+    default_visible: true
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/chatdna_coach/panel
+      method: GET
+      cache_ttl: 300
+    conditions:
+      - type: data_available
+        data_available:
+          path: "templates"
+          min_count: 1
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - template_selected
+        - template_used
+    props:
+      categories: [casual, formal, persuasive, reflective, technical]
+
+  # 3. ChatDNA Console - Main interaction area
+  - id: chatdna_console
+    type: interactive
+    component: ChatDNAConsole
+    title: "Speak As Me"
+    description: "Generate responses in your conversational style"
+    position: 0
+    zone: primary
+    zone_priority: 0
+    default_visible: true
+    pinnable: true
+    collapsible: false
+    data_source:
+      type: api
+      endpoint: /api/coach/chatdna_coach/panel
+      method: GET
+      cache_ttl: 0
+    conditions:
+      - type: data_available
+        data_available:
+          path: "console_state"
+          min_count: 1
+    ai_suggestions:
+      enabled: true
+      policy_gate: chatdna_generation
+      model: claude-3-5-sonnet
+      shadow_mode: false
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - render_requested
+        - feedback_submitted
+        - prompt_edited
+    props:
+      show_system_trace: false
+      show_tokens: false
+      max_prompt_length: 500
+
+  # 4. Style Profile - Style traits used
+  - id: style_profile
+    type: visualization
+    component: StyleProfile
+    title: "Style Profile Used"
+    description: "Breakdown of style traits applied to generate responses"
+    position: 1
+    zone: primary
+    zone_priority: 1
+    default_visible: true
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/chatdna_coach/panel
+      method: GET
+      cache_ttl: 60
+    conditions:
+      - type: data_available
+        data_available:
+          path: "style_profile.rows"
+          min_count: 1
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - trait_clicked
+        - source_viewed
+    props:
+      columns: [trait, value, confidence, source]
+      show_confidence_bars: true
+      highlight_low_confidence: true
+
+  # 5. Similarity Monitor - Similarity & alignment scores
+  - id: similarity_monitor
+    type: diagnostic
+    component: SimilarityMonitor
+    title: "Similarity & Alignment"
+    description: "How closely generated text matches your actual style"
+    position: 0
+    zone: secondary
+    zone_priority: 0
+    default_visible: true
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/chatdna_coach/panel
+      method: GET
+      cache_ttl: 60
+    conditions:
+      - type: data_available
+        data_available:
+          path: "similarity.cards"
+          min_count: 1
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - similarity_detail_viewed
+        - rr_delta_inspected
+    props:
+      show_rr_delta: true
+      show_curiosity_delta: true
+      max_cards: 6
+
+  # 6. Evidence Links - Container paths that drove style
+  - id: evidence_links
+    type: display
+    component: EvidenceLinks
+    title: "Evidence Applied"
+    description: "DNA containers that influenced the generated style"
+    position: 1
+    zone: secondary
+    zone_priority: 1
+    default_visible: true
+    pinnable: true
+    collapsible: true
+    data_source:
+      type: api
+      endpoint: /api/coach/chatdna_coach/panel
+      method: GET
+      cache_ttl: 60
+    conditions:
+      - type: data_available
+        data_available:
+          path: "evidence_links.items"
+          min_count: 1
+    telemetry:
+      track_renders: true
+      track_interactions: true
+      custom_events:
+        - evidence_container_clicked
+        - rr_viewed
+    props:
+      show_container_paths: true
+      show_rr_values: true
+      max_items: 10
+
+# Intent-Specific Layouts
+intent_layouts:
+  casual:
+    priority_boost:
+      - chatdna_console
+      - template_bank
+    show:
+      - chatdna_overview_card
+      - template_bank
+      - chatdna_console
+      - style_profile
+      - similarity_monitor
+
+  formal:
+    priority_boost:
+      - chatdna_console
+      - style_profile
+    show:
+      - chatdna_overview_card
+      - template_bank
+      - chatdna_console
+      - style_profile
+      - evidence_links
+
+  persuasive:
+    priority_boost:
+      - chatdna_console
+      - similarity_monitor
+    show:
+      - chatdna_overview_card
+      - template_bank
+      - chatdna_console
+      - style_profile
+      - similarity_monitor
+
+  reflective:
+    priority_boost:
+      - chatdna_console
+      - evidence_links
+    show:
+      - chatdna_overview_card
+      - chatdna_console
+      - style_profile
+      - evidence_links
+
+  technical:
+    priority_boost:
+      - chatdna_console
+      - style_profile
+    show:
+      - chatdna_overview_card
+      - template_bank
+      - chatdna_console
+      - style_profile
+      - evidence_links
+
+# Default Layout Configuration
+default_layout:
+  max_visible_widgets: 6
+  auto_collapse_below: 3
+  spacing: normal
+
+# Performance Targets
+performance:
+  compose_target_ms: 200
+  fcp_target_ms: 300
+  max_api_calls: 1  # Unified panel endpoint
+
+# Personalization
+personalization:
+  allow_reorder: true
+  allow_hide: true
+  pinned_defaults:
+    - chatdna_overview_card
+    - chatdna_console
+
+# Feature Flags
+feature_flags:
+  enable_ai_suggestions: shadow
+  renderer_version: 1
+  enable_system_trace: false  # Only in dev mode
+
+# Data Bindings
+data_bindings:
+  panel_endpoint: /api/coach/chatdna_coach/panel
+  render_endpoint: /api/coach/chatdna_coach/render
+  feedback_endpoint: /api/coach/chatdna_coach/feedback
+  expects:
+    snapshot:
+      - language_rr
+      - personality_rr
+      - social_rr
+      - top_curiosity
+    templates:
+      - cards
+    console_state:
+      - last_prompt
+      - last_output
+    style_profile:
+      - rows
+    similarity:
+      - cards
+    evidence_links:
+      - items
+
+# Intents
+intents:
+  options:
+    - casual
+    - formal
+    - persuasive
+    - reflective
+    - technical
+  default: casual
+
+# RR Rules
+rr_rules:
+  defaults:
+    rr_elevate_threshold: 60
+    rr_critical_threshold: 40
+  cooldown_hours: 24
+  curiosity_floor: 10
+
+# Audit
+audit:
+  record:
+    manifest_version: true
+    renderer_version: true
+    policy_decisions: true
+    user_feedback: true
+    similarity_scores: true
+
+# Workshop Testing Fixtures
+workshop_fixtures:
+  default_fixture: casual
+  fixtures:
+    - name: casual
+      description: "Casual conversational style with medium formality"
+      intents: ["casual"]
+
+    - name: formal
+      description: "Formal business communication style"
+      intents: ["formal"]
+
+    - name: persuasive
+      description: "Persuasive writing with clear argumentation"
+      intents: ["persuasive"]

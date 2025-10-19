@@ -1,0 +1,215 @@
+{
+  "profile": {
+    "label": "ob28",
+    "created_ts": "2025-10-15T19:23:03.054766+00:00",
+    "status": "stable",
+    "last_confirmed_at": "2025-10-15T23:20:46.962607Z",
+    "history": []
+  },
+  "BasicDNA.Age": {
+    "value": {
+      "number": 6
+    },
+    "ucn": 0.12,
+    "sources": [
+      "chat"
+    ],
+    "status": "contradicted",
+    "last_updated": "2025-10-15T23:21:55+00:00",
+    "last_confirmed_at": null,
+    "history": [
+      {
+        "value": {
+          "text": "45-54"
+        },
+        "status": "superseded",
+        "timestamp": "2025-10-15T23:21:55.618514Z",
+        "previous_status": "resolved",
+        "action": "contradiction"
+      }
+    ],
+    "policy": {
+      "tier": "hot",
+      "ttl_days": 365,
+      "reason": "conflict",
+      "reliability": 0.5,
+      "logged_at": "2025-10-15T23:21:55+00:00"
+    }
+  },
+  "BasicDNA.Gender": {
+    "value": {
+      "enum": "male"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T19:23:33+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "BasicDNA.Orientation": {
+    "value": {
+      "enum": "heterosexual"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T19:23:33+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "BasicDNA.RelationshipStatus": {
+    "value": {
+      "enum": "married"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T19:23:33+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T19:24:10+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "value": {
+      "enum": "higher_likelihood"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-15T19:24:10+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "PaDNA.HairDNA.DarknessPrior": {
+    "value": {
+      "enum": "slightly_lower"
+    },
+    "ucn": 0.15,
+    "sources": [
+      "chat:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-15T19:24:10+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "FreeText": {
+    "value": {
+      "text": "I am 6 feet tall"
+    },
+    "ucn": 0.12,
+    "sources": [
+      "chat"
+    ],
+    "status": "contradicted",
+    "last_updated": "2025-10-15T23:22:08+00:00",
+    "last_confirmed_at": null,
+    "history": [
+      {
+        "value": {
+          "text": "I used to have red hair but now I'm mostly bald"
+        },
+        "status": "superseded",
+        "timestamp": "2025-10-15T23:20:59.014910Z",
+        "previous_status": "resolved",
+        "action": "contradiction"
+      },
+      {
+        "value": {
+          "text": "hi"
+        },
+        "status": "superseded",
+        "timestamp": "2025-10-15T23:22:08.370312Z",
+        "previous_status": "contradicted",
+        "action": "contradiction"
+      }
+    ],
+    "policy": {
+      "tier": "hot",
+      "ttl_days": 365,
+      "reason": "conflict,pending_resolution",
+      "reliability": 0.5,
+      "logged_at": "2025-10-15T23:22:08+00:00"
+    }
+  },
+  "PaDNA.HairDNA.Color.Natural": {
+    "value": {
+      "enum": "red"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T19:50:58+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "attributes.physical.attributes": {
+    "value": {
+      "text": "mostly bald"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T19:50:58+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "PaDNA.HairDNA.Bald": {
+    "value": {
+      "enum": "true"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T19:50:58+00:00",
+    "last_confirmed_at": null,
+    "history": []
+  },
+  "attributes.physical.height": {
+    "value": {
+      "text": "6 feet tall"
+    },
+    "ucn": 0.17,
+    "sources": [
+      "chat"
+    ],
+    "status": "warming",
+    "last_updated": "2025-10-15T23:21:55+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "hot",
+      "ttl_days": 365,
+      "reason": "high_signal",
+      "reliability": 0.5,
+      "logged_at": "2025-10-15T23:21:55+00:00"
+    }
+  }
+}

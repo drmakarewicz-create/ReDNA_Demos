@@ -1,0 +1,114 @@
+{
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760656825424",
+        "ts": "2025-10-16T23:20:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:20:29.866028Z",
+    "history": []
+  },
+  "BehaviorDNA.Schedule.WorkHours": {
+    "id": "BehaviorDNA.Schedule.WorkHours",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760656825424",
+        "ts": "2025-10-16T23:20:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:20:29.866053Z",
+    "history": []
+  },
+  "PaDNA.HairDNA.Color.Natural": {
+    "id": "PaDNA.HairDNA.Color.Natural",
+    "rr": 830.0,
+    "curiosity": 0.1228,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760656825424",
+        "ts": "2025-10-16T23:20:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:20:29.866055Z",
+    "history": []
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760656825424",
+        "ts": "2025-10-16T23:20:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:20:29.866057Z",
+    "history": []
+  },
+  "BasicDNA.RelationshipStatus": {
+    "id": "BasicDNA.RelationshipStatus",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760656825424",
+        "ts": "2025-10-16T23:20:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:20:29.866058Z",
+    "history": []
+  },
+  "BehaviorDNA.Exercise.Outdoor": {
+    "id": "BehaviorDNA.Exercise.Outdoor",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760656825424",
+        "ts": "2025-10-16T23:20:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:20:29.866059Z",
+    "history": []
+  },
+  "BehaviorDNA.Health.Diet": {
+    "id": "BehaviorDNA.Health.Diet",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760656825424",
+        "ts": "2025-10-16T23:20:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T23:20:29.866060Z",
+    "history": []
+  }
+}

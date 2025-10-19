@@ -1,0 +1,178 @@
+{
+  "PaDNA.HairDNA.Color.Natural": {
+    "id": "PaDNA.HairDNA.Color.Natural",
+    "rr": 830.0,
+    "curiosity": 0.1228,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052714Z",
+    "history": []
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052729Z",
+    "history": []
+  },
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052760Z",
+    "history": []
+  },
+  "BehaviorDNA.Schedule.WorkHours": {
+    "id": "BehaviorDNA.Schedule.WorkHours",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052767Z",
+    "history": []
+  },
+  "BehaviorDNA.Exercise.Outdoor": {
+    "id": "BehaviorDNA.Exercise.Outdoor",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052770Z",
+    "history": []
+  },
+  "BehaviorDNA.Leisure.Indoor": {
+    "id": "BehaviorDNA.Leisure.Indoor",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052773Z",
+    "history": []
+  },
+  "BehaviorDNA.Routine.Morning": {
+    "id": "BehaviorDNA.Routine.Morning",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052775Z",
+    "history": []
+  },
+  "BehaviorDNA.Wellness.ColdTherapy": {
+    "id": "BehaviorDNA.Wellness.ColdTherapy",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052788Z",
+    "history": []
+  },
+  "BehaviorDNA.Health.Diet": {
+    "id": "BehaviorDNA.Health.Diet",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052791Z",
+    "history": []
+  },
+  "BehaviorDNA.Social.Style": {
+    "id": "BehaviorDNA.Social.Style",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052794Z",
+    "history": []
+  },
+  "PreferenceDNA.Social.GroupSize": {
+    "id": "PreferenceDNA.Social.GroupSize",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760654301459",
+        "ts": "2025-10-16T22:38:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T22:38:28.052796Z",
+    "history": []
+  }
+}

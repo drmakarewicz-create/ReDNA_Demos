@@ -1,0 +1,33 @@
+{
+  "total_containers": 590,
+  "by_namespace": {
+    "BehDNA": 60,
+    "CogDNA": 60,
+    "EmDNA": 26,
+    "EnvDNA": 11,
+    "HealthDNA": 8,
+    "HistDNA": 50,
+    "MetaDNA": 40,
+    "PaDNA": 35,
+    "PrefDNA": 60,
+    "ProfDNA": 24,
+    "PsyDNA": 78,
+    "RoDNA": 8,
+    "SkillDNA": 70,
+    "SocDNA": 60
+  },
+  "by_status": {
+    "prototype": 590
+  },
+  "sensitive_count": 198,
+  "consent_required_count": 198,
+  "ai_upgradable_count": 590,
+  "depth_distribution": {
+    "1": 14,
+    "2": 174,
+    "3": 377,
+    "4": 25
+  },
+  "edges_count": 0,
+  "version": "1.0.0_remediated"
+}

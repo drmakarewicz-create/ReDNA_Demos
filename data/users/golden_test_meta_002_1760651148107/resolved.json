@@ -1,0 +1,50 @@
+{
+  "BehaviorDNA.Work.Location": {
+    "id": "BehaviorDNA.Work.Location",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651148131",
+        "ts": "2025-10-16T21:45:48+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:45:54.859582Z",
+    "history": []
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651148131",
+        "ts": "2025-10-16T21:45:48+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:45:54.859593Z",
+    "history": []
+  },
+  "BasicDNA.RelationshipStatus": {
+    "id": "BasicDNA.RelationshipStatus",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760651148131",
+        "ts": "2025-10-16T21:45:48+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:45:54.859595Z",
+    "history": []
+  }
+}

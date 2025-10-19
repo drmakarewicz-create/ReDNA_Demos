@@ -1,0 +1,23 @@
+{
+  "user_id": "TEST_USER",
+  "evidence": [
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "value": {"enum": "blue"},
+      "source": "chat",
+      "ts": "2025-10-14T00:00:00Z"
+    },
+    {
+      "trait_id": "PaDNA.EyeDNA.IrisColor",
+      "value": {"enum": "brown"},
+      "source": "chat",
+      "ts": "2025-10-14T00:01:00Z"
+    }
+  ],
+  "expect_resolved": {
+    "PaDNA.EyeDNA.IrisColor": {
+      "value": {"enum": "brown"},
+      "ucn_min": 0.1
+    }
+  }
+}

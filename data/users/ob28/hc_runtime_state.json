@@ -1,0 +1,19 @@
+{
+  "last_user_ts": "2025-10-15T23:21:50.732000+00:00",
+  "last_user_text": "I am 6 feet tall",
+  "turns_observed": 5,
+  "dialog_history": [
+    "question",
+    "answer",
+    "answer",
+    "answer",
+    "answer"
+  ],
+  "last_assistant_ts": "2025-10-15T23:21:50.735538+00:00",
+  "latency_history_ms": [
+    50407,
+    1600237,
+    12589577,
+    75002
+  ]
+}

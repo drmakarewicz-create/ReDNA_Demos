@@ -1,0 +1,13 @@
+{
+  "nudge_frequency_multiplier": 1.0,
+  "nudge_timing_preference": "adaptive",
+  "tone_bias": 0.0,
+  "formality_bias": 0.0,
+  "creativity_bias": 0.5,
+  "focus_weights": {},
+  "last_update": "2025-10-11T04:19:01.817426+00:00Z",
+  "update_count": 1,
+  "baseline_metrics": {},
+  "version": "1.0",
+  "computed_at": ""
+}

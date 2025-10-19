@@ -1,0 +1,14 @@
+{
+  "type": "chat_turn",
+  "user_id": "ob28",
+  "persona": "head coach",
+  "persona_label": "Head Coach (Orchestrator)",
+  "user_text": "I am 6 feet tall",
+  "assistant_text": "You're a tall guy, ob28! That's definitely an interesting physical aspect of your life that we could explore further. What do you think is the most noticeable change for you since going from having red hair to being mostly bald?",
+  "client_message_id": "e99edee3-26ed-4d30-9bf6-9949dd10ff2f",
+  "assistant_message_id": "chat-2097272a9d794487a7acaec871fcaae2",
+  "server_ts": "2025-10-15T23:22:08.358+00:00",
+  "server_ts_ms": 1760570528358,
+  "provider": "ollama",
+  "source": "ui_chat_turn"
+}

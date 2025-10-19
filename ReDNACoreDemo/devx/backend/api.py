@@ -1,0 +1,307 @@
+"""
+DevX API Server
+===============
+
+FastAPI application for DevX backend services.
+"""
+
+import logging
+from contextlib import asynccontextmanager
+from typing import Optional
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from datetime import datetime, timezone
+
+from .config import (
+    DEVX_BACKEND_PORT,
+    DEVX_HOST,
+    DEVX_CORE_BASE,
+    DEVX_UCNRR_BASE,
+    resolved_stack_config,
+)
+from .routers import traits
+from . import (
+    privacy_dashboard_api,
+    conflict_api,
+    semantics_api,
+    batch_ops_api,
+    health_api,
+    stack_api,
+    holistic_api,
+    coach_api,
+    agent_api,
+    rsc_api,
+    trigger_api,
+    adaptive_analytics_api,
+    llm_bench_api,
+    stack_ucnrr_api,
+)
+from .ai_ready import (
+    run_ai_readiness_probe,
+    AiReadyResponse,
+    LayerDiagnosticResponse,
+    diagnose_devx_layer,
+    diagnose_ucnrr_layer,
+    diagnose_core_layer,
+    diagnose_core_e2e_layer,
+)
+
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Lifespan context manager for startup/shutdown."""
+    stack_cfg = resolved_stack_config()
+    logger.info(
+        "DevX backend starting with stack_config=%s",
+        {
+            "core_base": stack_cfg["core_base"],
+            "ucnrr_base": stack_cfg["ucnrr_base"],
+            "devx_base": stack_cfg["devx_base"],
+            "core_port": stack_cfg["core_port"],
+            "ucnrr_port": stack_cfg["ucnrr_port"],
+            "devx_port": stack_cfg["devx_port"],
+            "warnings": stack_cfg.get("warnings", []),
+            "sources": stack_cfg.get("source"),
+        },
+    )
+    yield
+    logger.info("DevX backend shutting down...")
+
+
+# Create FastAPI app
+app = FastAPI(
+    title="DevX API",
+    description="Developer Experience API for ReDNA",
+    version="1.0.0",
+    lifespan=lifespan
+)
+
+# CORS middleware - allow frontend to connect
+frontend_ports = list(range(3000, 3011)) + list(range(3100, 3111))
+allow_origins = {
+    f"http://localhost:{port}" for port in frontend_ports
+} | {
+    f"http://127.0.0.1:{port}" for port in frontend_ports
+} | {
+    f"http://{DEVX_HOST}:{port}" for port in frontend_ports
+}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=sorted(allow_origins),
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+# Health check
+@app.get("/health")
+async def health_check():
+    """Health check endpoint."""
+    return {
+        "status": "healthy",
+        "service": "devx-backend",
+        "version": "1.0.0"
+    }
+
+
+@app.get("/devx/api/health")
+async def devx_health_alias():
+    """Alias for DevX readiness probes expecting /devx/api/health."""
+    return {
+        "status": "healthy",
+        "service": "devx-backend",
+        "version": "1.0.0"
+    }
+
+
+# Root endpoint
+@app.get("/")
+async def root():
+    """Root endpoint."""
+    return {
+        "service": "DevX API",
+        "version": "1.0.0",
+        "docs": "/docs",
+        "health": "/health"
+    }
+
+
+# Include routers
+app.include_router(traits.router, prefix="/devx/api/traits", tags=["traits"])
+app.include_router(privacy_dashboard_api.router, prefix="/devx/api", tags=["privacy"])
+app.include_router(conflict_api.router, prefix="/devx/api", tags=["conflicts"])
+app.include_router(semantics_api.router, prefix="/devx/api/semantics", tags=["semantics"])
+app.include_router(batch_ops_api.router, prefix="/devx/api", tags=["batch-ops"])
+app.include_router(health_api.router, prefix="/devx/api", tags=["health"])
+app.include_router(holistic_api.router, prefix="/devx/api/holistic", tags=["holistic"])
+app.include_router(coach_api.router, tags=["coach-workshop"])
+app.include_router(agent_api.router, tags=["agents"])
+app.include_router(agent_api.user_router, tags=["agents"])
+app.include_router(rsc_api.router, tags=["rsc"])
+app.include_router(agent_api.capability_router, tags=["capability"])
+app.include_router(trigger_api.router, tags=["triggers"])
+app.include_router(adaptive_analytics_api.router, tags=["adaptive-analytics"])
+app.include_router(stack_api.router, prefix="/devx/api", tags=["stack"])
+app.include_router(llm_bench_api.router, prefix="/devx/api", tags=["llm-bench"])
+app.include_router(stack_ucnrr_api.router, prefix="/devx/api/stack", tags=["stack", "ucnrr"])
+
+
+@app.get("/devx/api/ingestion/ai_ready", tags=["ai-readiness"])
+async def get_ai_readiness(
+    layer: Optional[str] = None,
+    verbose: int = 0,
+    no_write: int = 0
+):
+    """
+    AI Readiness Probe - Traffic Light Status for All Ingestion Layers
+
+    Checks if the three AI ingestion layers are operational:
+    1. HC/DevX Backend (Northstar intake)
+    2. UCNRR Processing (LLM configured & responding)
+    3. Core Processing (resolver online, promotion + Why-Card)
+
+    **Query Parameters:**
+    - `layer`: Optional layer-specific diagnostic ("devx", "ucnrr", "core", "core_e2e")
+    - `verbose`: Enable verbose mode (1=true, 0=false)
+    - `no_write`: Skip E2E writes (1=true, 0=false)
+
+    **Response Schema (Summary Mode):**
+    - `hc_devx`: DevX backend health
+    - `ucnrr`: UCNRR LLM configuration status
+    - `core`: Core resolver status + E2E promotion test
+    - `result`: "ALL-GOOD" if all green, "NEEDS-FIX" otherwise
+
+    **Response Schema (Layer Mode):**
+    - `layer`: Layer name
+    - `status`: "green" | "red"
+    - `details`: Layer-specific details
+    - `reason`: Failure reason (if red)
+    - `suggestions`: Remediation steps
+    - `verbose_data`: Additional diagnostic data (if verbose=1)
+
+    **Configuration:**
+    - `AI_READY_PROBE_USER`: User ID for E2E test (default: "ai_ready_probe")
+    - `AI_READY_PROBE_TEXT`: Test phrase (default: "I am a morning person...")
+    - `AI_READY_TIMEOUT_MS`: HTTP timeout (default: 1500ms)
+    - `AI_READY_ENABLE_E2E`: Enable E2E test (default: true)
+    - `AI_READY_NO_WRITE`: Skip E2E writes (default: false)
+
+    **Examples:**
+    - Summary: `GET /devx/api/ingestion/ai_ready`
+    - Layer diagnostic: `GET /devx/api/ingestion/ai_ready?layer=ucnrr&verbose=1`
+    - No-write E2E: `GET /devx/api/ingestion/ai_ready?no_write=1`
+    """
+    from typing import Optional, Union
+
+    verbose_bool = bool(verbose)
+    no_write_bool = bool(no_write)
+
+    # Layer-specific diagnostic
+    if layer:
+        if layer == "devx":
+            return await diagnose_devx_layer(verbose=verbose_bool)
+        elif layer == "ucnrr":
+            return await diagnose_ucnrr_layer(verbose=verbose_bool)
+        elif layer == "core":
+            return await diagnose_core_layer(verbose=verbose_bool)
+        elif layer == "core_e2e":
+            return await diagnose_core_e2e_layer(verbose=verbose_bool, no_write=no_write_bool)
+        else:
+            from fastapi import HTTPException
+            raise HTTPException(status_code=400, detail=f"Invalid layer: {layer}. Must be one of: devx, ucnrr, core, core_e2e")
+
+    # Summary mode
+    return await run_ai_readiness_probe()
+
+
+@app.get("/devx/api/synthetic/traits")
+async def get_synthetic_traits(shape: str = "skill_profile"):
+    """
+    Provide synthetic trait data for DevX demos.
+
+    This allows the DevX UI to render realistic data when capabilities
+    are unavailable. Data is non-identifying and safe for demos.
+    """
+    now_iso = datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+    if shape == "skill_profile":
+        return {
+            "user_id": "SYNTH",
+            "generated_at": now_iso,
+            "containers": [
+                {
+                    "path": "SkillDNA/software_engineering",
+                    "label": "Software Engineering",
+                    "rr": 82,
+                    "curiosity": 46,
+                    "ucn": 712,
+                    "last_evidence": "2024-09-12T18:22:00Z",
+                },
+                {
+                    "path": "SkillDNA/product_thinking",
+                    "label": "Product Thinking",
+                    "rr": 74,
+                    "curiosity": 58,
+                    "ucn": 655,
+                    "last_evidence": "2024-08-30T15:10:00Z",
+                },
+                {
+                    "path": "SkillDNA/data_storytelling",
+                    "label": "Data Storytelling",
+                    "rr": 68,
+                    "curiosity": 62,
+                    "ucn": 601,
+                    "last_evidence": "2024-07-05T09:40:00Z",
+                },
+                {
+                    "path": "ProfDNA/collaboration_style",
+                    "label": "Collaboration Style",
+                    "rr": 79,
+                    "curiosity": 35,
+                    "ucn": 688,
+                    "last_evidence": "2024-09-01T12:05:00Z",
+                },
+            ],
+            "metadata": {
+                "source": "synthetic",
+                "notes": "Masked demo data generated for DevX UI previews.",
+            },
+        }
+
+    return {
+        "user_id": "SYNTH",
+        "generated_at": now_iso,
+        "containers": [],
+        "metadata": {
+            "source": "synthetic",
+            "notes": f"No synthetic shape registered for '{shape}'.",
+        },
+    }
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    from .config import get_backend_port
+
+    port = get_backend_port()
+    logger.info(
+        "Starting DevX backend on %s:%s (core_base=%s, ucnrr_base=%s)",
+        DEVX_HOST,
+        port,
+        DEVX_CORE_BASE,
+        DEVX_UCNRR_BASE,
+    )
+
+    uvicorn.run(
+        "ReDNACoreDemo.devx.backend.api:app",
+        host=DEVX_HOST,
+        port=port,
+        reload=True,
+        log_level="info"
+    )

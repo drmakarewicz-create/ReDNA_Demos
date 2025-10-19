@@ -1,0 +1,75 @@
+{
+  "req_id": "fixture-63a71dcd",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "chat",
+          "ts": "2025-10-13T00:00:00Z"
+        }
+      ],
+      "ts": 1760411901.049821
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 1
+      },
+      "ts": 1760411901.049823
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "source": "chat",
+          "ts": "2025-10-13T00:00:00Z"
+        }
+      },
+      "ts": 1760411901.049825
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "PaDNA.EyeDNA.IrisColor",
+          "value": {
+            "enum": "blue"
+          },
+          "ucn_prior": 0.25,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760411901.0498261
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760411901.053768
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "PaDNA.EyeDNA.IrisColor": 0.25
+      },
+      "ts": 1760411901.0537941
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 1,
+        "rr_ok": false
+      },
+      "ts": 1760411901.0548182
+    }
+  ],
+  "ts": 1760411901.04982
+}

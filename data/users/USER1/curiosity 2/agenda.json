@@ -1,0 +1,32 @@
+{
+  "user_id": "USER1",
+  "generated_at": "2025-10-10T23:27:46.610918+00:00",
+  "items": [
+    {
+      "target": "BehDNA",
+      "priority": 0.8,
+      "reason": "High data gap; not recently explored",
+      "suggested_coach": "personality_test_coach",
+      "suggested_prompt": "Tell me more about this area.",
+      "evidence_refs": []
+    },
+    {
+      "target": "BehDNA.AdaptiveRoutineIterationDNA",
+      "priority": 0.8,
+      "reason": "High data gap; not recently explored",
+      "suggested_coach": "personality_test_coach",
+      "suggested_prompt": "Tell me more about this area.",
+      "evidence_refs": []
+    },
+    {
+      "target": "BehDNA.AddictivePatternDNA",
+      "priority": 0.8,
+      "reason": "High data gap; not recently explored",
+      "suggested_coach": "personality_test_coach",
+      "suggested_prompt": "Tell me more about this area.",
+      "evidence_refs": []
+    }
+  ],
+  "total_candidates": 2000,
+  "above_threshold": 2000
+}

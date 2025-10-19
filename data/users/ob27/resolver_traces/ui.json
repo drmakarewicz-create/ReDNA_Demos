@@ -1,0 +1,79 @@
+{
+  "req_id": "ui",
+  "steps": [
+    {
+      "name": "evidence_in",
+      "payload": [
+        {
+          "trait_id": "FreeText",
+          "value": {
+            "text": "I have blue eyes"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T18:42:09+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      ],
+      "ts": 1760553729.7571468
+    },
+    {
+      "name": "grouped",
+      "payload": {
+        "FreeText": 1
+      },
+      "ts": 1760553729.75715
+    },
+    {
+      "name": "chosen",
+      "payload": {
+        "FreeText": {
+          "trait_id": "FreeText",
+          "value": {
+            "text": "I have blue eyes"
+          },
+          "source": "chat",
+          "ts": "2025-10-15T18:42:09+00:00",
+          "ucn_prior": 0.2,
+          "provenance": "direct"
+        }
+      },
+      "ts": 1760553729.75716
+    },
+    {
+      "name": "rr_input",
+      "payload": [
+        {
+          "trait_id": "FreeText",
+          "value": {
+            "text": "I have blue eyes"
+          },
+          "ucn_prior": 0.2,
+          "source": "chat"
+        }
+      ],
+      "ts": 1760553729.757163
+    },
+    {
+      "name": "rr_error",
+      "payload": "RequestException('RR service error: 404 Client Error: Not Found for url: http://127.0.0.1:8011/ucn/score')",
+      "ts": 1760553729.76405
+    },
+    {
+      "name": "ucn_scores",
+      "payload": {
+        "FreeText": 0.2
+      },
+      "ts": 1760553729.764113
+    },
+    {
+      "name": "resolved_out",
+      "payload": {
+        "trait_count": 9,
+        "rr_ok": false
+      },
+      "ts": 1760553729.767724
+    }
+  ],
+  "ts": 1760553729.757122
+}

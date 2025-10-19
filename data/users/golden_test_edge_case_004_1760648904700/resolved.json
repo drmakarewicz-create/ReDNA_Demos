@@ -1,0 +1,34 @@
+{
+  "PaDNA.SleepSchedule.StartTime": {
+    "id": "PaDNA.SleepSchedule.StartTime",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648904714",
+        "ts": "2025-10-16T21:08:24+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:26.204464Z",
+    "history": []
+  },
+  "PaDNA.SleepSchedule.EndTime": {
+    "id": "PaDNA.SleepSchedule.EndTime",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760648904714",
+        "ts": "2025-10-16T21:08:24+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T21:08:26.204470Z",
+    "history": []
+  }
+}

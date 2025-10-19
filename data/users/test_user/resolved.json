@@ -1,0 +1,36 @@
+{
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.75,
+    "sources": [
+      "test",
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-15T04:09:01+00:00"
+  },
+  "BasicDNA.Age": {
+    "value": {
+      "number": 47
+    },
+    "ucn": 0.3,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T03:45:15+00:00"
+  },
+  "PaDNA.HairDNA.Color": {
+    "value": {
+      "enum": "brown"
+    },
+    "ucn": 0.25,
+    "sources": [
+      "chat"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-14T03:45:15+00:00"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "PaDNA.Sex": {
+    "id": "PaDNA.Sex",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642721657",
+        "ts": "2025-10-16T19:25:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:22.815776Z",
+    "history": []
+  },
+  "PaDNA.Gender": {
+    "id": "PaDNA.Gender",
+    "rr": 830.0,
+    "curiosity": 0.1445,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760642721657",
+        "ts": "2025-10-16T19:25:21+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-16T19:25:22.815783Z",
+    "history": []
+  }
+}

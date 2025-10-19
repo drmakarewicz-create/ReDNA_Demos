@@ -1,0 +1,62 @@
+{
+  "PaDNA.EyeDNA.IrisColor": {
+    "value": {
+      "enum": "blue"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "smoke"
+    ],
+    "status": "resolved",
+    "last_updated": "2025-10-16T16:18:25+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "cold",
+      "ttl_days": 60,
+      "reason": "high_signal,redundant",
+      "reliability": 0.4,
+      "logged_at": "2025-10-16T16:18:25+00:00"
+    }
+  },
+  "PaDNA.SkinDNA.Freckles": {
+    "value": {
+      "enum": "higher_likelihood"
+    },
+    "ucn": 0.2,
+    "sources": [
+      "ui:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-16T16:18:25+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "cold",
+      "ttl_days": 60,
+      "reason": "high_signal,redundant",
+      "reliability": 0.4,
+      "logged_at": "2025-10-16T16:18:25+00:00"
+    }
+  },
+  "PaDNA.HairDNA.DarknessPrior": {
+    "value": {
+      "enum": "slightly_lower"
+    },
+    "ucn": 0.15,
+    "sources": [
+      "ui:inference"
+    ],
+    "status": "inferred",
+    "last_updated": "2025-10-16T16:18:25+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "cold",
+      "ttl_days": 60,
+      "reason": "high_signal,redundant",
+      "reliability": 0.4,
+      "logged_at": "2025-10-16T16:18:25+00:00"
+    }
+  }
+}
