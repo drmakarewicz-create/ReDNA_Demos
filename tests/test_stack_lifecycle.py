@@ -99,7 +99,7 @@ def _prepare_stub_environment(tmp_path: Path) -> Tuple[Path, Dict[str, str], Pat
           if [[ -f "$config_path" ]]; then
             cat "$config_path"
           else
-            echo '{"core_base":"http://127.0.0.1:8001","ucnrr_base":"http://127.0.0.1:8011","devx_base":"http://127.0.0.1:8100","core_port":8001,"ucnrr_port":8011,"devx_port":8100,"warnings":[],"source":{"core_base":"DEFAULT","ucnrr_base":"DEFAULT","devx_base":"DEFAULT","core_port":"DEFAULT","ucnrr_port":"DEFAULT","devx_port":"DEFAULT"}}'
+            echo '{"core_base":"http://127.0.0.1:8004","ucnrr_base":"http://127.0.0.1:8017","devx_base":"http://127.0.0.1:8100","core_port":8004,"ucnrr_port":8017,"devx_port":8100,"warnings":[],"source":{"core_base":"DEFAULT","ucnrr_base":"DEFAULT","devx_base":"DEFAULT","core_port":"DEFAULT","ucnrr_port":"DEFAULT","devx_port":"DEFAULT"}}'
           fi
           exit 0
         fi
@@ -232,11 +232,11 @@ def _prepare_stub_environment(tmp_path: Path) -> Tuple[Path, Dict[str, str], Pat
     (state_dir / "ready_counter").write_text("0", encoding="utf-8")
 
     default_config = {
-        "core_base": "http://127.0.0.1:8001",
-        "ucnrr_base": "http://127.0.0.1:8011",
+        "core_base": "http://127.0.0.1:8004",
+        "ucnrr_base": "http://127.0.0.1:8017",
         "devx_base": "http://127.0.0.1:8100",
-        "core_port": 8001,
-        "ucnrr_port": 8011,
+        "core_port": 8004,
+        "ucnrr_port": 8017,
         "devx_port": 8100,
         "warnings": [],
         "source": {
@@ -390,14 +390,14 @@ def test_readiness_reports_core_port_conflict(monkeypatch: pytest.MonkeyPatch) -
     monkeypatch.setattr(stack_api, "stack_log", lambda *a, **k: None)
 
     def fake_resolver(overrides=None):
-        core_base = os.getenv("CORE_BASE", "http://127.0.0.1:8001")
-        core_port = int(os.getenv("CORE_PORT", "8001"))
+        core_base = os.getenv("CORE_BASE", "http://127.0.0.1:8004")
+        core_port = int(os.getenv("CORE_PORT", "8004"))
         return {
             "core_base": core_base,
-            "ucnrr_base": "http://127.0.0.1:8011",
+            "ucnrr_base": "http://127.0.0.1:8017",
             "devx_base": "http://127.0.0.1:8100",
             "core_port": core_port,
-            "ucnrr_port": 8011,
+            "ucnrr_port": 8017,
             "devx_port": 8100,
             "warnings": [],
             "source": {
@@ -427,8 +427,8 @@ def test_readiness_reports_core_port_conflict(monkeypatch: pytest.MonkeyPatch) -
         }
 
     monkeypatch.setattr(stack_api, "_enumerate_service_processes", fake_processes)
-    monkeypatch.setenv("CORE_BASE", "http://127.0.0.1:8001")
-    monkeypatch.setenv("CORE_PORT", "8001")
+    monkeypatch.setenv("CORE_BASE", "http://127.0.0.1:8004")
+    monkeypatch.setenv("CORE_PORT", "8004")
     config_resolver.clear_env_cache()
 
     client = TestClient(api.app)
@@ -463,7 +463,7 @@ def test_supervisor_restarts_core_when_rr_unavailable(monkeypatch: pytest.Monkey
     monkeypatch.setattr(supervisor, "_load_state", lambda: state)
     monkeypatch.setattr(supervisor, "_save_state", lambda _state: None)
     monkeypatch.setattr(supervisor, "_pid_alive", lambda pid: pid == 1111)
-    monkeypatch.setenv("UCNRR_BASE", "http://127.0.0.1:8011")
+    monkeypatch.setenv("UCNRR_BASE", "http://127.0.0.1:8017")
     monkeypatch.setattr(supervisor, "_core_requires_env_refresh", lambda _config: True)
 
     restart_calls: list[Tuple[str, Dict[str, Any]]] = []

@@ -18,7 +18,7 @@ import time
 import json
 import requests
 
-UCNRR_URL = "http://127.0.0.1:8011"
+UCNRR_URL = "http://127.0.0.1:8017"
 CORE_URL  = "http://127.0.0.1:8015"
 
 # Use a user id that you actually use (or keep harness_user)

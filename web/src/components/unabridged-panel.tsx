@@ -17,6 +17,7 @@ import { RRBadge, CuriosityBadge } from './rr-curiosity-badges';
 import { ProvenanceModal } from './provenance-modal';
 import { overrideTrait } from '../lib/api';
 import TraitProvenanceDrawer from './provenance/trait-provenance-drawer';
+import { WhyCardModal } from './why/WhyCardModal';
 
 interface TraitChange {
   trait: string;
@@ -50,6 +51,7 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [provenanceTraitId, setProvenanceTraitId] = useState<string | null>(null);
   const [provenanceDrawerOpen, setProvenanceDrawerOpen] = useState(false);
+  const [whyCardModal, setWhyCardModal] = useState<{ traitId: string; traitLabel: string; value: string } | null>(null);
 
   const containers = useMemo(() => {
     if (!snapshot?.traits?.length) {
@@ -229,9 +231,11 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
             );
           }
 
+          const valueText = renderValue(row.original.value);
+
           return (
             <div className="flex items-center gap-2">
-              <span className="text-slate-200">{renderValue(row.original.value)}</span>
+              <span className="text-slate-200">{valueText}</span>
               {hasConflict ? (
                 <span
                   className="text-amber-400 cursor-help"
@@ -241,6 +245,23 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
                 </span>
               ) : null}
               <button
+                type="button"
+                onClick={() => {
+                  if (!snapshot?.user_id) return;
+                  setWhyCardModal({
+                    traitId: row.original.trait_id,
+                    traitLabel: traitDisplayName(row.original.trait_id),
+                    value: valueText,
+                  });
+                }}
+                disabled={!snapshot?.user_id}
+                className="text-xs px-2 py-1 rounded border border-emerald-600 text-emerald-300 hover:bg-emerald-600/10 transition-colors disabled:cursor-not-allowed disabled:opacity-40"
+                title={snapshot?.user_id ? 'View explanation for this trait' : 'User context unavailable'}
+              >
+                Why?
+              </button>
+              <button
+                type="button"
                 onClick={() => {
                   setProvenanceTraitId(row.original.trait_id);
                   setProvenanceDrawerOpen(true);
@@ -248,7 +269,7 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
                 className="text-xs px-2 py-1 rounded border border-slate-600 text-slate-300 hover:bg-slate-700 transition-colors"
                 title="View trait provenance and evidence"
               >
-                Why?
+                Evidence
               </button>
               <button
                 onClick={() => handleEditStart(row.original.trait_id, row.original.value)}
@@ -561,6 +582,17 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
           devMode={typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')}
         />
       )}
+
+      <WhyCardModal
+        open={Boolean(whyCardModal)}
+        userId={snapshot?.user_id || ''}
+        traitId={whyCardModal?.traitId ?? ''}
+        traitLabel={whyCardModal?.traitLabel}
+        value={whyCardModal?.value}
+        onClose={() => {
+          setWhyCardModal(null);
+        }}
+      />
     </section>
   );
 }
@@ -576,6 +608,12 @@ function renderValue(value: unknown): string {
     return '—';
   }
   return String(value);
+}
+
+function traitDisplayName(traitId: string): string {
+  const parts = traitId.split('.');
+  const last = parts[parts.length - 1] || traitId;
+  return last.replace(/_/g, ' ');
 }
 
 function containerFromTrait(traitId: string): string {

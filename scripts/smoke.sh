@@ -107,8 +107,8 @@ wait_for_http() {  # wait_for_http URL LABEL [tries] [sleep]
 
 # Base URLs (allow overrides)
 DEVX_BASE_DEFAULT="http://127.0.0.1:${DEVX_BACKEND_PORT:-8100}"
-CORE_BASE_ENV="${CORE_BASE:-http://127.0.0.1:8001}"
-UCNRR_BASE_ENV="${UCNRR_BASE:-http://127.0.0.1:8011}"
+CORE_BASE_ENV="${CORE_BASE:-http://127.0.0.1:8004}"
+UCNRR_BASE_ENV="${UCNRR_BASE:-http://127.0.0.1:8017}"
 DEVX_BASE_ENV="${DEVX_BASE:-$DEVX_BASE_DEFAULT}"
 
 CORE_BASE_ENV="${CORE_BASE_ENV%/}"
@@ -309,7 +309,7 @@ fi
 import os
 import httpx
 
-core_base = os.getenv("CORE_BASE", "http://127.0.0.1:8001").rstrip("/")
+core_base = os.getenv("CORE_BASE", "http://127.0.0.1:8004").rstrip("/")
 
 good = {
     "user_id": "smoke_user",
@@ -357,7 +357,7 @@ import httpx
 from ReDNACoreDemo.devx.backend.readiness_client import poll_stack_readiness
 
 devx_base = os.getenv("DEVX_BASE", "http://127.0.0.1:8100").rstrip("/")
-core_base = os.getenv("CORE_BASE", "http://127.0.0.1:8001").rstrip("/")
+core_base = os.getenv("CORE_BASE", "http://127.0.0.1:8004").rstrip("/")
 
 client = httpx.Client(timeout=httpx.Timeout(connect=1.0, read=2.5, write=2.5, pool=2.5))
 

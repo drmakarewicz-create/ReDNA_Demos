@@ -24,8 +24,8 @@ def reload_config(monkeypatch: pytest.MonkeyPatch):
 
 def test_config_defaults(reload_config):
     module = reload_config()
-    assert module.DEVX_CORE_BASE == "http://127.0.0.1:8001"
-    assert module.DEVX_UCNRR_BASE == "http://127.0.0.1:8011"
+    assert module.DEVX_CORE_BASE == "http://127.0.0.1:8004"
+    assert module.DEVX_UCNRR_BASE == "http://127.0.0.1:8017"
 
 
 def test_config_overrides(reload_config):

@@ -18,6 +18,7 @@
  */
 
 import { useEffect, useState } from 'react';
+import { fetchWithRetry } from '../../lib/utils';
 import { HCTasks } from './hc-tasks';
 import { HCPlaybooks } from './hc-playbooks';
 import { HCConversation } from './hc-conversation';
@@ -76,7 +77,7 @@ export function HCPanel({ userId, className = '' }: HCPanelProps) {
     setError(null);
 
     try {
-      const response = await fetch(`/api/hc/state?userId=${encodeURIComponent(userId)}`);
+      const response = await fetchWithRetry(`/api/hc/state?userId=${encodeURIComponent(userId)}`);
 
       if (!response.ok) {
         const errorData = await response.json();

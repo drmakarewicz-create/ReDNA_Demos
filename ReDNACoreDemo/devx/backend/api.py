@@ -7,6 +7,7 @@ FastAPI application for DevX backend services.
 
 import logging
 from contextlib import asynccontextmanager
+from typing import Optional
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -35,6 +36,15 @@ from . import (
     adaptive_analytics_api,
     llm_bench_api,
     stack_ucnrr_api,
+)
+from .ai_ready import (
+    run_ai_readiness_probe,
+    AiReadyResponse,
+    LayerDiagnosticResponse,
+    diagnose_devx_layer,
+    diagnose_ucnrr_layer,
+    diagnose_core_layer,
+    diagnose_core_e2e_layer,
 )
 
 logger = logging.getLogger(__name__)
@@ -99,6 +109,16 @@ async def health_check():
     }
 
 
+@app.get("/devx/api/health")
+async def devx_health_alias():
+    """Alias for DevX readiness probes expecting /devx/api/health."""
+    return {
+        "status": "healthy",
+        "service": "devx-backend",
+        "version": "1.0.0"
+    }
+
+
 # Root endpoint
 @app.get("/")
 async def root():
@@ -129,6 +149,74 @@ app.include_router(adaptive_analytics_api.router, tags=["adaptive-analytics"])
 app.include_router(stack_api.router, prefix="/devx/api", tags=["stack"])
 app.include_router(llm_bench_api.router, prefix="/devx/api", tags=["llm-bench"])
 app.include_router(stack_ucnrr_api.router, prefix="/devx/api/stack", tags=["stack", "ucnrr"])
+
+
+@app.get("/devx/api/ingestion/ai_ready", tags=["ai-readiness"])
+async def get_ai_readiness(
+    layer: Optional[str] = None,
+    verbose: int = 0,
+    no_write: int = 0
+):
+    """
+    AI Readiness Probe - Traffic Light Status for All Ingestion Layers
+
+    Checks if the three AI ingestion layers are operational:
+    1. HC/DevX Backend (Northstar intake)
+    2. UCNRR Processing (LLM configured & responding)
+    3. Core Processing (resolver online, promotion + Why-Card)
+
+    **Query Parameters:**
+    - `layer`: Optional layer-specific diagnostic ("devx", "ucnrr", "core", "core_e2e")
+    - `verbose`: Enable verbose mode (1=true, 0=false)
+    - `no_write`: Skip E2E writes (1=true, 0=false)
+
+    **Response Schema (Summary Mode):**
+    - `hc_devx`: DevX backend health
+    - `ucnrr`: UCNRR LLM configuration status
+    - `core`: Core resolver status + E2E promotion test
+    - `result`: "ALL-GOOD" if all green, "NEEDS-FIX" otherwise
+
+    **Response Schema (Layer Mode):**
+    - `layer`: Layer name
+    - `status`: "green" | "red"
+    - `details`: Layer-specific details
+    - `reason`: Failure reason (if red)
+    - `suggestions`: Remediation steps
+    - `verbose_data`: Additional diagnostic data (if verbose=1)
+
+    **Configuration:**
+    - `AI_READY_PROBE_USER`: User ID for E2E test (default: "ai_ready_probe")
+    - `AI_READY_PROBE_TEXT`: Test phrase (default: "I am a morning person...")
+    - `AI_READY_TIMEOUT_MS`: HTTP timeout (default: 1500ms)
+    - `AI_READY_ENABLE_E2E`: Enable E2E test (default: true)
+    - `AI_READY_NO_WRITE`: Skip E2E writes (default: false)
+
+    **Examples:**
+    - Summary: `GET /devx/api/ingestion/ai_ready`
+    - Layer diagnostic: `GET /devx/api/ingestion/ai_ready?layer=ucnrr&verbose=1`
+    - No-write E2E: `GET /devx/api/ingestion/ai_ready?no_write=1`
+    """
+    from typing import Optional, Union
+
+    verbose_bool = bool(verbose)
+    no_write_bool = bool(no_write)
+
+    # Layer-specific diagnostic
+    if layer:
+        if layer == "devx":
+            return await diagnose_devx_layer(verbose=verbose_bool)
+        elif layer == "ucnrr":
+            return await diagnose_ucnrr_layer(verbose=verbose_bool)
+        elif layer == "core":
+            return await diagnose_core_layer(verbose=verbose_bool)
+        elif layer == "core_e2e":
+            return await diagnose_core_e2e_layer(verbose=verbose_bool, no_write=no_write_bool)
+        else:
+            from fastapi import HTTPException
+            raise HTTPException(status_code=400, detail=f"Invalid layer: {layer}. Must be one of: devx, ucnrr, core, core_e2e")
+
+    # Summary mode
+    return await run_ai_readiness_probe()
 
 
 @app.get("/devx/api/synthetic/traits")

@@ -1,6 +1,6 @@
 import { writeCache } from './offline-cache';
 
-export const CORE_API_BASE = process.env.NEXT_PUBLIC_CORE_API_BASE ?? 'http://127.0.0.1:8015';
+export const CORE_API_BASE = process.env.NEXT_PUBLIC_CORE_API_BASE ?? 'http://127.0.0.1:8004';
 
 export interface PersonaRosterEntry {
   key: string;

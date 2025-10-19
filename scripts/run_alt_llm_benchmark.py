@@ -55,7 +55,7 @@ AVG_INPUT_TOKENS = 200  # HC prompt + user message
 AVG_OUTPUT_TOKENS = 100  # Extraction response
 
 # Core API endpoint
-CORE_BASE = os.getenv("CORE_BASE", "http://127.0.0.1:8001")
+CORE_BASE = os.getenv("CORE_BASE", "http://127.0.0.1:8004")
 
 
 def estimate_cost(provider: str, model: str, num_cases: int) -> float:

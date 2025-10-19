@@ -87,7 +87,7 @@ def _env_float(key: str, default: float) -> float:
 READINESS_WARMUP_SEC = _env_float("READINESS_WARMUP_SEC", 30.0)
 READINESS_ERROR_RATE_MAX = _env_float("READINESS_ERROR_RATE_MAX", 0.02)
 READINESS_P95_MAX_MS = _env_float("READINESS_P95_MAX_MS", 750.0)
-READINESS_SKIP_CORE_HEALTH = os.getenv("READINESS_SKIP_CORE_HEALTH", "false").lower() in ("true", "1", "yes")
+# Phase 7: Removed READINESS_SKIP_CORE_HEALTH - no deterministic bypasses
 
 WARMUP_FALLBACK_LOGGED = False
 READINESS_HTTP_TIMEOUT = httpx.Timeout(connect=1.0, read=2.5, write=2.5, pool=2.5)
@@ -524,28 +524,18 @@ async def _fetch_stack_inputs() -> Dict[str, Any]:
         health_url = _compose_base_url(stack_config["core_base"], "/health")
         selftest_url = _compose_base_url(stack_config["ucnrr_base"], "/ucnrr/selftest")
 
-        if READINESS_SKIP_CORE_HEALTH:
-            # Fallback: Skip Core health/metrics probes due to async hang issue
-            outputs["metrics_error"] = "core_health_skipped"
-            outputs["health_error"] = "core_health_skipped"
-            stack_log(
-                service="devx",
-                level="INFO",
-                event="readiness_fallback",
-                msg="Skipping Core health/metrics probes (READINESS_SKIP_CORE_HEALTH=true)",
-            )
-        else:
-            metrics_payload, metrics_error = await _fetch_json(client, metrics_url, "core_metrics_timeout")
-            if metrics_payload is not None:
-                outputs["metrics"] = metrics_payload
-            elif metrics_error:
-                outputs["metrics_error"] = metrics_error
+        # Phase 7: Always probe Core health/metrics - no bypasses
+        metrics_payload, metrics_error = await _fetch_json(client, metrics_url, "core_metrics_timeout")
+        if metrics_payload is not None:
+            outputs["metrics"] = metrics_payload
+        elif metrics_error:
+            outputs["metrics_error"] = metrics_error
 
-            health_payload, health_error = await _fetch_json(client, health_url, "core_health_timeout")
-            if health_payload is not None:
-                outputs["health"] = health_payload
-            elif health_error:
-                outputs["health_error"] = health_error
+        health_payload, health_error = await _fetch_json(client, health_url, "core_health_timeout")
+        if health_payload is not None:
+            outputs["health"] = health_payload
+        elif health_error:
+            outputs["health_error"] = health_error
 
         selftest_payload, selftest_error = await _fetch_json(client, selftest_url, "ucnrr_selftest_timeout")
         if selftest_payload is not None:

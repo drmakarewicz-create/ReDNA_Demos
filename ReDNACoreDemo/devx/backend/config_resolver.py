@@ -21,14 +21,14 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 ENV_FILE_PATH = REPO_ROOT / ".env"
 
 DEFAULT_BASES: Dict[str, str] = {
-    "core_base": "http://127.0.0.1:8001",
-    "ucnrr_base": "http://127.0.0.1:8011",
+    "core_base": "http://127.0.0.1:8004",
+    "ucnrr_base": "http://127.0.0.1:8017",
     "devx_base": "http://127.0.0.1:8100",
 }
 
 DEFAULT_PORTS: Dict[str, int] = {
-    "core_port": 8001,
-    "ucnrr_port": 8011,
+    "core_port": 8004,
+    "ucnrr_port": 8017,
     "devx_port": 8100,
 }
 

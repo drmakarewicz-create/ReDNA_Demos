@@ -55,7 +55,7 @@ check_service() {
 }
 
 check_service "Core API" 8000 "http://127.0.0.1:8000/health"
-check_service "UCNRR API" 8011 "http://127.0.0.1:8011/health"
+check_service "UCNRR API" 8017 "http://127.0.0.1:8017/health"
 check_service "Next.js" 3001 "http://127.0.0.1:3001"
 
 echo "================================"

@@ -23,7 +23,7 @@ type UCNRRLogResponse = {
   total_lines: number;
 };
 
-const DEVX_BASE = process.env.NEXT_PUBLIC_DEVX_BASE || 'http://127.0.0.1:8012';
+const DEVX_BASE = process.env.NEXT_PUBLIC_DEVX_API_BASE || 'http://127.0.0.1:8100';
 
 async function fetchUCNRRStatus(): Promise<UCNRRStatus> {
   const response = await fetch(`${DEVX_BASE}/devx/api/stack/ucnrr/status`);

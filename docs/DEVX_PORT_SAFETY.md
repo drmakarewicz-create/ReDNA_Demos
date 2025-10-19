@@ -18,9 +18,9 @@ DevX implements strict port safety protocols to ensure zero interference with ex
 
 | Service | Primary Port | Type | Owner |
 |---------|--------------|------|-------|
-| Core API | 8015 | **PROTECTED** | ReDNA Core |
-| UCNRR | 8011 | **PROTECTED** | UCNRR Service |
-| React Head Coach | 3001 | **PROTECTED** | React HC |
+| Core API | 8004 | **PROTECTED** | ReDNA Core |
+| UCNRR | 8017 | **PROTECTED** | UCNRR Service |
+| React Head Coach | 3000 | **PROTECTED** | React HC |
 | Control Panel++ | 8501 | **PROTECTED** | CP++ |
 | **DevX Backend** | **8100** | **ISOLATED** | DevX |
 | **DevX Frontend** | **3100** | **ISOLATED** | DevX |
@@ -137,7 +137,7 @@ curl http://127.0.0.1:$BACKEND_PORT/health
 
 ### What DevX Will NOT Do
 
-❌ **Terminate processes** on ports 8015, 8011, 3001, 8501
+❌ **Terminate processes** on ports 8004, 8017, 3000, 8501
 ❌ **Modify configs** of Core, UCNRR, React HC, or CP++
 ❌ **Share state** with other services
 ❌ **Interfere with** existing network connections
@@ -292,13 +292,13 @@ set -e
 echo "🔍 Checking service independence..."
 
 # Check Core API
-if ! curl -sf http://127.0.0.1:8015/health > /dev/null; then
+if ! curl -sf http://127.0.0.1:8004/health > /dev/null; then
     echo "❌ Core API affected!"
     exit 1
 fi
 
 # Check UCNRR
-if ! curl -sf http://127.0.0.1:8011/health > /dev/null; then
+if ! curl -sf http://127.0.0.1:8017/health > /dev/null; then
     echo "❌ UCNRR affected!"
     exit 1
 fi
@@ -480,6 +480,17 @@ lsof -ti:8100 | xargs kill -9
 
 ---
 
-**Last Updated**: 2025-10-08
-**Version**: 1.0.0
+**Last Updated**: 2025-10-19
+**Version**: 1.1.0
 **Critical**: Service Independence Guarantee
+
+---
+
+## Recent Updates
+
+**v1.1.0 (2025-10-19)**:
+- Updated port assignments to match current production config
+- Core: 8015 → 8004
+- UCNRR: 8011 → 8017
+- React: 3001 → 3000
+- See [Port_Configuration_Guide.md](./Port_Configuration_Guide.md) for comprehensive port management

@@ -86,17 +86,17 @@ export function GovernanceDashboard({ userId, className }: GovernanceDashboardPr
     setLoading(true);
     try {
       // Fetch governance summary
-      const summaryRes = await fetch(`/api/governance/${userId}/summary`);
+      const summaryRes = await fetchWithRetry(`/api/governance/${userId}/summary`);
       const summaryData = await summaryRes.json();
       setSummary(summaryData);
 
       // Fetch consent timeline
-      const timelineRes = await fetch(`/api/governance/${userId}/consent/timeline?format=json`);
+      const timelineRes = await fetchWithRetry(`/api/governance/${userId}/consent/timeline?format=json`);
       const timelineData = await timelineRes.json();
       setTimeline(timelineData.events || []);
 
       // Fetch privacy indicators
-      const indicatorsRes = await fetch(`/api/governance/${userId}/privacy/indicators`);
+      const indicatorsRes = await fetchWithRetry(`/api/governance/${userId}/privacy/indicators`);
       const indicatorsData = await indicatorsRes.json();
       setPrivacyIndicators(indicatorsData.indicators || {});
     } catch (error) {
@@ -109,7 +109,7 @@ export function GovernanceDashboard({ userId, className }: GovernanceDashboardPr
   const handleExportAuditBundle = async () => {
     setExporting(true);
     try {
-      const res = await fetch(`/api/governance/${userId}/export`, {
+      const res = await fetchWithRetry(`/api/governance/${userId}/export`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

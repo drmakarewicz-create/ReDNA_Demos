@@ -61,11 +61,11 @@ export function PermissionsPanel({ userId, className }: PermissionsPanelProps) {
     setLoading(true);
     try {
       // Fetch governance summary
-      const summaryRes = await fetch(`/api/governance/${userId}/summary`);
+      const summaryRes = await fetchWithRetry(`/api/governance/${userId}/summary`);
       const summaryData = await summaryRes.json();
 
       // Fetch consent timeline (recent events)
-      const timelineRes = await fetch(`/api/governance/${userId}/consent/timeline?limit=20`);
+      const timelineRes = await fetchWithRetry(`/api/governance/${userId}/consent/timeline?limit=20`);
       const timelineData = await timelineRes.json();
 
       // Parse active capabilities from summary

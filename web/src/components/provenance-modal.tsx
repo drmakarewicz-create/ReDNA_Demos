@@ -3,6 +3,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { CORE_API_BASE } from '../lib/api';
+
 export interface ProvenanceModalProps {
   open: boolean;
   traitId: string;
@@ -41,6 +43,7 @@ export function ProvenanceModal({ open, traitId, traitValue, userId, onClose }: 
   const [provenance, setProvenance] = useState<ProvenanceData | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     if (!open) return;
@@ -88,30 +91,41 @@ export function ProvenanceModal({ open, traitId, traitValue, userId, onClose }: 
     if (!open || !traitId || !userId) {
       setProvenance(null);
       setError(null);
+      setNotFound(false);
       return;
     }
 
     setLoading(true);
     setError(null);
+    setNotFound(false);
 
     // Fetch provenance from Core
-    const coreBase = process.env.NEXT_PUBLIC_CORE_API_BASE || 'http://127.0.0.1:8015';
-    fetch(`${coreBase}/ui/trait/provenance`, {
+    fetch(`${CORE_API_BASE}/ui/trait/provenance`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_id: userId, trait_id: traitId }),
     })
       .then(res => {
+        if (res.status === 404) {
+          setNotFound(true);
+          setProvenance(null);
+          setLoading(false);
+          return null;
+        }
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.json();
       })
       .then(data => {
+        if (data === null) {
+          return;
+        }
         setProvenance(data);
         setLoading(false);
       })
       .catch(err => {
         setError(err.message || 'Failed to load provenance');
         setLoading(false);
+        setNotFound(false);
       });
   }, [open, traitId, userId]);
 
@@ -150,7 +164,15 @@ export function ProvenanceModal({ open, traitId, traitValue, userId, onClose }: 
             </div>
           )}
 
-          {error && (
+          {notFound && (
+            <div className="rounded-lg border border-orange-500/40 bg-orange-500/10 p-4">
+              <p className="text-sm text-orange-200">
+                No provenance available yet for this trait. Try generating more observations or rerunning ingestion.
+              </p>
+            </div>
+          )}
+
+          {error && !notFound && (
             <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
               <p className="text-sm text-red-800 dark:text-red-200">
                 {error}

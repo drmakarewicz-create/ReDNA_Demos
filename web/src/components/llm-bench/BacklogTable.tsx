@@ -20,10 +20,12 @@ import {
 } from '../../lib/llmBenchApi';
 
 interface BacklogTableProps {
+  userId?: string;
   onCaseSelect?: (caseId: string) => void;
+  onWhy?: (payload: { traitId: string; traitLabel: string; value?: string | null }) => void;
 }
 
-export function BacklogTable({ onCaseSelect }: BacklogTableProps) {
+export function BacklogTable({ onCaseSelect, onWhy, userId }: BacklogTableProps) {
   const [cases, setCases] = useState<BacklogCase[]>([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -205,12 +207,49 @@ export function BacklogTable({ onCaseSelect }: BacklogTableProps) {
                     )}
                   </TableCell>
                   <TableCell>
-                    <div className="text-xs space-y-1">
-                      {testCase.expected_trait_ids.map((traitId, idx) => (
-                        <div key={idx} className="font-mono text-gray-600" title={traitId}>
-                          {traitId.split('.').pop()}
-                        </div>
-                      ))}
+                    <div className="text-xs space-y-2">
+                      {testCase.expected_trait_ids.map((traitId, idx) => {
+                        const value = testCase.expected_values?.[idx] ?? null;
+                        const traitLabel = traitDisplayName(traitId);
+                        const disabled = !userId;
+                        return (
+                          <div key={idx} className="rounded-md border border-gray-200 bg-gray-50 p-2">
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="font-mono text-gray-700" title={traitId}>
+                                {traitLabel}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={(event) => {
+                                  event.stopPropagation();
+                                  if (disabled) {
+                                    return;
+                                  }
+                                  onWhy?.({
+                                    traitId,
+                                    traitLabel,
+                                    value,
+                                  });
+                                }}
+                                disabled={disabled}
+                                className="rounded border border-emerald-500 px-2 py-1 text-[11px] font-medium text-emerald-600 transition-colors hover:bg-emerald-50 disabled:cursor-not-allowed disabled:border-gray-300 disabled:text-gray-400"
+                                title={
+                                  disabled
+                                    ? 'Set a user id above to view the Why-Card'
+                                    : 'View Why-Card'
+                                }
+                              >
+                                Why?
+                              </button>
+                            </div>
+                            {value ? (
+                              <div className="mt-1 text-[11px] text-gray-500">
+                                Expected value: <span className="font-medium text-gray-700">{value}</span>
+                              </div>
+                            ) : null}
+                          </div>
+                        );
+                      })}
                     </div>
                   </TableCell>
                   <TableCell>
@@ -257,4 +296,10 @@ export function BacklogTable({ onCaseSelect }: BacklogTableProps) {
       )}
     </div>
   );
+}
+
+function traitDisplayName(traitId: string): string {
+  const parts = traitId.split('.');
+  const last = parts[parts.length - 1] || traitId;
+  return last.replace(/_/g, ' ');
 }

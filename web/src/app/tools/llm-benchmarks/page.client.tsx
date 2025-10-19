@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { BacklogTable } from '../../../components/llm-bench/BacklogTable';
 import { ReportsPanel } from '../../../components/llm-bench/ReportsPanel';
 import { ModelStatusCard } from '../../../components/llm-bench/ModelStatusCard';
@@ -9,6 +10,8 @@ import { RunPaidPanel } from '../../../components/llm-bench/RunPaidPanel';
 import { UCNRRConnectivityCard } from '../../../components/llm-bench/UCNRRConnectivityCard';
 import { RoundtripChart } from '../../../components/metrics/RoundtripChart';
 import { GlobalMetricsContext } from '../../../components/metrics/GlobalMetricsContext';
+import { AiReadinessPanel } from '../../../components/llm-bench/AiReadinessPanel';
+import { WhyCardModal } from '../../../components/why/WhyCardModal';
 import {
   fetchMonthlyCosts,
   formatCost,
@@ -24,7 +27,7 @@ type UcnrrStatusLite = {
   last_check?: string | null;
 };
 
-const DEVX_BASE = process.env.NEXT_PUBLIC_DEVX_BASE ?? 'http://127.0.0.1:8012';
+const DEVX_BASE = process.env.NEXT_PUBLIC_DEVX_API_BASE ?? 'http://127.0.0.1:8100';
 
 async function fetchUcnrrStatusLite(): Promise<UcnrrStatusLite | null> {
   try {
@@ -57,11 +60,62 @@ export function PulseOverlay({ totalP95 }: { totalP95?: number | null }) {
   );
 }
 
+type TabType = 'benchmarks' | 'ai-readiness';
+
 export default function LLMBenchmarksPageClient() {
+  const [activeTab, setActiveTab] = useState<TabType>('benchmarks');
   const [costs, setCosts] = useState<MonthlyCosts | null>(null);
   const [roundtripMetrics, setRoundtripMetrics] = useState<RoundtripMetrics | null>(null);
   const [ucnrrStatus, setUcnrrStatus] = useState<UcnrrStatusLite | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
+  const [whyCardPayload, setWhyCardPayload] = useState<{ traitId: string; traitLabel?: string; value?: string | null } | null>(null);
+  const [whyUserId, setWhyUserId] = useState('');
+  const [debouncedWhyUserId, setDebouncedWhyUserId] = useState('');
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const tabParam = searchParams.get('tab');
+
+  useEffect(() => {
+    if (tabParam === 'ai-readiness' || tabParam === 'benchmarks') {
+      setActiveTab(tabParam as TabType);
+    }
+  }, [tabParam]);
+
+  useEffect(() => {
+    const initial = (searchParams.get('why_user') ?? '').trim();
+    setWhyUserId(initial);
+    setDebouncedWhyUserId(initial);
+  }, [searchParams]);
+
+  useEffect(() => {
+    const handler = window.setTimeout(() => {
+      const trimmed = whyUserId.trim();
+      setDebouncedWhyUserId(trimmed);
+      const currentParam = searchParams.get('why_user') ?? '';
+      if (trimmed === currentParam) {
+        return;
+      }
+      const params = new URLSearchParams(searchParams.toString());
+      if (trimmed) {
+        params.set('why_user', trimmed);
+      } else {
+        params.delete('why_user');
+      }
+      const query = params.toString();
+      router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+    }, 300);
+    return () => window.clearTimeout(handler);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [whyUserId]);
+
+  const handleTabChange = (tab: TabType) => {
+    setActiveTab(tab);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('tab', tab);
+    const query = params.toString();
+    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+  };
 
   useEffect(() => {
     async function loadCosts() {
@@ -139,10 +193,10 @@ export default function LLMBenchmarksPageClient() {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">LLM Benchmark Suite</h1>
-              <p className="mt-1 text-sm text-gray-500">
-                Track and compare LLM extraction quality across models
-              </p>
-            </div>
+                <p className="mt-1 text-sm text-gray-500">
+                  Track and compare LLM extraction quality across models
+                </p>
+              </div>
             <div className="flex items-center gap-2">
               {costs && (
                 <div className="flex items-center gap-1 rounded-md bg-gray-100 px-3 py-1.5">
@@ -162,94 +216,163 @@ export default function LLMBenchmarksPageClient() {
               </span>
             </div>
           </div>
+
+          {/* Tab Navigation */}
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="border-b border-gray-200">
+              <nav className="-mb-px flex gap-8">
+                <button
+                  onClick={() => handleTabChange('benchmarks')}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                    activeTab === 'benchmarks'
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  Benchmarks
+                </button>
+                <button
+                  onClick={() => handleTabChange('ai-readiness')}
+                  className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                    activeTab === 'ai-readiness'
+                      ? 'border-blue-500 text-blue-600'
+                      : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
+                >
+                  AI Readiness
+                </button>
+              </nav>
+            </div>
+          </div>
           </div>
         </div>
 
-        <div className="mx-auto max-w-7xl px-6 py-8">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-          <div className="space-y-6 lg:col-span-2">
-            <div>
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">Test Case Backlog</h2>
-              <BacklogTable />
-            </div>
-          </div>
+        {/* Tab Content */}
+        {activeTab === 'benchmarks' && (
+          <>
+            <div className="mx-auto max-w-7xl px-6 py-8">
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+               <div className="space-y-6 lg:col-span-2">
+                 <div>
+                    <h2 className="mb-4 text-lg font-semibold text-gray-900">Test Case Backlog</h2>
+                    <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                      <label className="flex flex-col text-sm text-gray-700">
+                        <span className="font-medium">User ID for Why-Cards</span>
+                        <input
+                          value={whyUserId}
+                          onChange={(event) => setWhyUserId(event.target.value)}
+                          placeholder="e.g. ai_ready_probe"
+                          className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        />
+                      </label>
+                      <div className="text-xs text-gray-500 sm:pt-4">
+                        Required to view Why-Cards for expected traits.
+                      </div>
+                    </div>
+                    <BacklogTable
+                      userId={debouncedWhyUserId}
+                      onWhy={({ traitId, traitLabel, value }) => {
+                        if (!debouncedWhyUserId) {
+                          return;
+                        }
+                        setWhyCardPayload({ traitId, traitLabel, value });
+                      }}
+                    />
+                  </div>
+                </div>
 
-          <div className="space-y-6">
-            <div>
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">Model Status</h2>
-              <ModelStatusCard />
-            </div>
+                <div className="space-y-6">
+                  <div>
+                    <h2 className="mb-4 text-lg font-semibold text-gray-900">Model Status</h2>
+                    <ModelStatusCard />
+                  </div>
 
-            <div>
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">UCNRR Connectivity</h2>
-              <UCNRRConnectivityCard />
-            </div>
+                  <div>
+                    <h2 className="mb-4 text-lg font-semibold text-gray-900">UCNRR Connectivity</h2>
+                    <UCNRRConnectivityCard />
+                  </div>
 
-            <div>
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">Pipeline Performance</h2>
-              <RoundtripChart />
-            </div>
+                  <div>
+                    <h2 className="mb-4 text-lg font-semibold text-gray-900">Pipeline Performance</h2>
+                    <RoundtripChart />
+                  </div>
 
-            <div>
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">Execute Benchmark</h2>
-              <RunPaidPanel onRunComplete={handleRunComplete} />
-            </div>
+                  <div>
+                    <h2 className="mb-4 text-lg font-semibold text-gray-900">Execute Benchmark</h2>
+                    <RunPaidPanel onRunComplete={handleRunComplete} />
+                  </div>
 
-            <div>
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">Cost Tracking</h2>
-              <CostsPanel key={refreshKey} />
-            </div>
+                  <div>
+                    <h2 className="mb-4 text-lg font-semibold text-gray-900">Cost Tracking</h2>
+                    <CostsPanel key={refreshKey} />
+                  </div>
 
-            <div>
-              <h2 className="mb-4 text-lg font-semibold text-gray-900">Benchmark Reports</h2>
-              <ReportsPanel refreshToken={refreshKey} />
-            </div>
-          </div>
-        </div>
-        </div>
-
-        <div className="mx-auto max-w-7xl px-6 py-8">
-        <div className="mt-8 rounded-lg border border-orange-200 bg-orange-50 p-4">
-          <div className="flex">
-            <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor">
-                <path
-                  fillRule="evenodd"
-                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </div>
-            <div className="ml-3 flex-1">
-              <h3 className="text-sm font-medium text-orange-800">
-                Phase 3: Guarded Paid Execution (OpenAI/Anthropic)
-              </h3>
-              <div className="mt-2 text-sm text-orange-700">
-                <p>
-                  You can now run benchmarks with paid models (OpenAI/Anthropic) with strict safety guardrails.
-                  Local Ollama runs remain free.
-                </p>
-                <ul className="mt-2 list-inside list-disc space-y-1">
-                  <li>Free local runs: Ollama (phi3:mini, llama3.1:8b, mistral:7b, gemma2:9b)</li>
-                  <li>Paid runs: OpenAI (gpt-4o-mini, gpt-4o), Anthropic (Claude Sonnet, Haiku)</li>
-                  <li>Double confirmation required for paid runs + budget cap enforcement</li>
-                  <li>Monthly cap check prevents overspend (set ALTLLM_MONTHLY_CAP_USD)</li>
-                  <li>Auto-revert to local model after every paid run (success or error)</li>
-                  <li>Full audit trail in ~/.redna/audit_llm_bench.jsonl</li>
-                </ul>
-                <p className="mt-3">
-                  <a
-                    href="/docs/LLM_Benchmarking.md"
-                    className="font-medium underline hover:text-orange-900"
-                  >
-                    View documentation →
-                  </a>
-                </p>
+                  <div>
+                    <h2 className="mb-4 text-lg font-semibold text-gray-900">Benchmark Reports</h2>
+                    <ReportsPanel refreshToken={refreshKey} />
+                  </div>
+                </div>
               </div>
             </div>
+
+            <div className="mx-auto max-w-7xl px-6 py-8">
+              <div className="mt-8 rounded-lg border border-orange-200 bg-orange-50 p-4">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <svg className="h-5 w-5 text-orange-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path
+                        fillRule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </div>
+                  <div className="ml-3 flex-1">
+                    <h3 className="text-sm font-medium text-orange-800">
+                      Phase 3: Guarded Paid Execution (OpenAI/Anthropic)
+                    </h3>
+                    <div className="mt-2 text-sm text-orange-700">
+                      <p>
+                        You can now run benchmarks with paid models (OpenAI/Anthropic) with strict safety guardrails.
+                        Local Ollama runs remain free.
+                      </p>
+                      <ul className="mt-2 list-inside list-disc space-y-1">
+                        <li>Free local runs: Ollama (phi3:mini, llama3.1:8b, mistral:7b, gemma2:9b)</li>
+                        <li>Paid runs: OpenAI (gpt-4o-mini, gpt-4o), Anthropic (Claude Sonnet, Haiku)</li>
+                        <li>Double confirmation required for paid runs + budget cap enforcement</li>
+                        <li>Monthly cap check prevents overspend (set ALTLLM_MONTHLY_CAP_USD)</li>
+                        <li>Auto-revert to local model after every paid run (success or error)</li>
+                        <li>Full audit trail in ~/.redna/audit_llm_bench.jsonl</li>
+                      </ul>
+                      <p className="mt-3">
+                        <a
+                          href="/docs/LLM_Benchmarking.md"
+                          className="font-medium underline hover:text-orange-900"
+                        >
+                          View documentation →
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+
+       {activeTab === 'ai-readiness' && (
+          <div className="mx-auto max-w-7xl px-6 py-8">
+            <AiReadinessPanel />
           </div>
-        </div>
-        </div>
+        )}
+        <WhyCardModal
+          open={Boolean(whyCardPayload)}
+          onClose={() => setWhyCardPayload(null)}
+          userId={debouncedWhyUserId}
+          traitId={whyCardPayload?.traitId ?? ''}
+          traitLabel={whyCardPayload?.traitLabel}
+          value={whyCardPayload?.value}
+        />
       </div>
       {/* Northstar Phase 5.1: wire this PulseOverlay and metrics context into Northstar UI to show ReDNA Pulse. */}
       <PulseOverlay totalP95={roundtripMetrics?.hop_ms.total?.p95 ?? null} />

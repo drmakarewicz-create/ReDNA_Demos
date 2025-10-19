@@ -19,11 +19,17 @@ import webbrowser
 import signal
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Literal, NamedTuple, Optional, Tuple
+from typing import Any, Callable, Dict, List, Literal, NamedTuple, Optional, Sequence, Tuple
 
 import requests
 
 import streamlit as st
+import streamlit.components.v1 as components
+
+try:  # pragma: no cover - optional autorefresh utility
+    from streamlit_autorefresh import st_autorefresh  # type: ignore
+except Exception:  # pragma: no cover
+    st_autorefresh = None  # type: ignore
 
 from cpplusplus import envstore, services, ports
 
@@ -45,6 +51,8 @@ except ImportError:
 
 
 def safe_rerun() -> None:
+    if st.session_state.get(SESSION_SUPPRESS_RERUN_KEY):
+        return
     try:
         st.rerun()
     except AttributeError:
@@ -72,7 +80,12 @@ SESSION_ACTIVE_USER_INPUT_KEY = "_cpplusplus_active_user_input"
 SESSION_DETECTED_PORTS_KEY = "_cpplusplus_detected_ports"
 SESSION_HEALTH_PENDING_KILL_KEY = "_cpplusplus_pending_kill"
 SESSION_HEALTH_NOTICE_KEY = "_cpplusplus_health_notice"
-SESSION_FORCE_ROOT_VENV_KEY = "_cpplusplus_force_root_venv"
+SESSION_ACTIVE_VENV_KEY = "_cpplusplus_active_venv"
+SESSION_SUPPRESS_RERUN_KEY = "_cpplusplus_suppress_rerun"
+SESSION_UCNRR_LAST_ACTION_KEY = "_cpplusplus_ucnrr_last_action"
+SESSION_UCNRR_LAST_MESSAGE_KEY = "_cpplusplus_ucnrr_last_message"
+SESSION_LLM_BOOTSTRAP_KEY = "_cpplusplus_llm_bootstrapped"
+SESSION_LLM_BOOTSTRAP_LOG_KEY = "_cpplusplus_llm_bootstrap_log"
 DEFAULT_ACTIVE_USER = "TEST"
 
 SERVICE_CORE = "core"
@@ -84,12 +97,19 @@ SERVICE_TEST_PLAYWRIGHT = "test_playwright"
 SERVICE_TEST_CI = "test_ci"
 # SERVICE_DEV_EXPLORER = "dev_explorer"  # RETIRED: Use DevX (port 3100) instead
 
-CORE_PORT_RANGE = (8015, 8020)
+CORE_DEFAULT_PORT = 8004
+CORE_PORT_RANGE = (8004, 8012)
+UCNRR_DEFAULT_PORT = 8017
+UCNRR_PORT_RANGE = (8017, 8030)
 REACT_PORT_RANGE = (3000, 3005)
-REACT_DEFAULT_PORT = 3001
+REACT_DEFAULT_PORT = 3000
 STREAMLIT_PORT_RANGE = (8501, 8515)
 STREAMLIT_DEFAULT_PORT = 8510
 STREAMLIT_FALLBACK_PORTS = [port for port in range(8503, 8516) if port != 8502]
+DEVX_BACKEND_DEFAULT_PORT = 8100
+CORE_BASE_DEFAULT = os.getenv("CORE_BASE", f"http://127.0.0.1:{CORE_DEFAULT_PORT}")
+HEAD_COACH_URL_SUFFIX = "/?user=TEST&persona=head_coach&center=coach"
+LLM_BENCHMARKS_URL_SUFFIX = "/tools/llm-benchmarks?tab=ai-readiness"
 
 SERVICE_PORT_KEYS = {
     SERVICE_CORE: "core_port",
@@ -112,27 +132,93 @@ def _repo_root() -> str:
     return str(ROOT)
 
 
-def _discover_venvs(root: str) -> List[str]:
-    candidates: List[str] = []
+def _discover_venvs(root: str) -> List[Path]:
+    candidates: List[Path] = []
     for path in glob.glob(os.path.join(root, ".venv")):
         if os.path.isdir(path):
-            candidates.append(os.path.abspath(path))
+            candidates.append(Path(path).resolve())
     for path in glob.glob(os.path.join(root, "*", ".venv")):
         if os.path.isdir(path):
-            candidates.append(os.path.abspath(path))
-    return sorted(set(candidates))
+            candidates.append(Path(path).resolve())
+    unique: List[Path] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        resolved = candidate.resolve()
+        key = str(resolved)
+        if key in seen:
+            continue
+        seen.add(key)
+        unique.append(resolved)
+    return sorted(unique)
 
 
-_ROOT_VENV_PATH = os.path.join(_repo_root(), ".venv")
-_PY_EXE = os.path.join(_ROOT_VENV_PATH, "bin", "python")
-ROOT_VENV_BIN = Path(_PY_EXE)
+_ROOT_VENV_PATH = Path(_repo_root()) / ".venv"
+
+
+def _python_executable_for_venv(venv_path: Path) -> Path:
+    if sys.platform == "win32":
+        return (venv_path / "Scripts" / "python.exe").resolve()
+    return (venv_path / "bin" / "python").resolve()
+
+
+def _python_candidates() -> List[Path]:
+    candidates: List[Path] = []
+    root_py = _python_executable_for_venv(_ROOT_VENV_PATH)
+    candidates.append(root_py)
+    for venv_path in _discover_venvs(_repo_root()):
+        candidates.append(_python_executable_for_venv(venv_path))
+    candidates.append(Path(sys.executable).resolve())
+    unique: List[Path] = []
+    seen: set[str] = set()
+    for candidate in candidates:
+        try:
+            resolved = candidate.resolve()
+        except FileNotFoundError:
+            continue
+        key = str(resolved)
+        if key in seen or not resolved.exists():
+            continue
+        seen.add(key)
+        unique.append(resolved)
+    return unique
+
+
+def _active_python_path() -> Path:
+    root_python = _python_executable_for_venv(_ROOT_VENV_PATH)
+    if root_python.exists():
+        resolved = root_python.resolve()
+        st.session_state[SESSION_ACTIVE_VENV_KEY] = str(resolved)
+        return resolved
+    fallback = Path(sys.executable).resolve()
+    st.session_state[SESSION_ACTIVE_VENV_KEY] = str(fallback)
+    return fallback
+
+
+def _python_choice_label(path: Path) -> str:
+    try:
+        if path.exists() and path.samefile(ROOT_VENV_BIN):
+            return f"{path} (repo .venv)"
+    except Exception:
+        pass
+    parent = path.parent
+    if parent.name in {"bin", "Scripts"}:
+        venv_dir = parent.parent
+        return f"{path} ({venv_dir.name})"
+    return str(path)
+
+
+def _python_choices() -> List[Tuple[str, Path]]:
+    return [( _python_choice_label(candidate), candidate) for candidate in _python_candidates()]
+
+
+ROOT_VENV_BIN = _python_executable_for_venv(_ROOT_VENV_PATH)
 _ALL_VENVS = _discover_venvs(_repo_root())
 
 if len(_ALL_VENVS) > 1:
     st.warning("Multiple Python venvs found. Defaulting to the **root** `.venv`.", icon="⚠️")
 
-if not os.path.exists(_PY_EXE):
-    st.error(f"Root venv python not found at: {_PY_EXE}. Run `scripts/consolidate_venv.sh`.", icon="🛑")
+if not ROOT_VENV_BIN.exists():
+    st.error(f"Root venv python not found at: {ROOT_VENV_BIN}. Run `scripts/consolidate_venv.sh`.", icon="🛑")
 
 
 # ---------------------------------------------------------------------------
@@ -378,13 +464,14 @@ def _compose_core_command(port: int, tokens: Optional[List[str]] = None) -> List
     else:
         args = ["uvicorn", "ReDNACoreDemo.core.api:build_app", "--factory"]
 
+    python_path = _active_python_path()
     interpreter_aliases = {
         sys.executable,
         os.path.basename(sys.executable),
         "python",
         "python3",
-        _PY_EXE,
-        os.path.basename(_PY_EXE),
+        str(python_path),
+        os.path.basename(str(python_path)),
     }
 
     while args and args[0] in interpreter_aliases:
@@ -414,8 +501,6 @@ def _compose_core_command(port: int, tokens: Optional[List[str]] = None) -> List
     if bool(_env().get("CORE_RELOAD")) and "--reload" not in cleaned:
         cleaned.append("--reload")
 
-    force_root = bool(st.session_state.get(SESSION_FORCE_ROOT_VENV_KEY, False))
-    python_path = ROOT_VENV_BIN if force_root and ROOT_VENV_BIN.exists() else Path(sys.executable)
     return [str(python_path), *cleaned]
 
 
@@ -434,7 +519,13 @@ def _resolve_react_npm(config: Dict[str, Any]) -> Optional[str]:
     raw = str(config.get("react_npm_path") or "").strip()
     if raw:
         return raw
-    return shutil.which("npm")
+    local_npm = (ROOT / "web" / "node_modules" / ".bin" / "npm").resolve(strict=False)
+    if local_npm.exists():
+        return str(local_npm)
+    detected = shutil.which("npm")
+    if detected:
+        return detected
+    return None
 
 
 def _update_service_actual_port(name: str, port: Optional[int]) -> None:
@@ -846,7 +937,7 @@ def check_services(env: Optional[Dict[str, Any]] = None) -> Dict[str, ServiceHea
     _evaluate(SERVICE_REACT, "react_port", REACT_PORT_RANGE, ["/api/health", "/"])
     _evaluate(SERVICE_CORE, "core_port", CORE_PORT_RANGE, [], ["/health"])
     _evaluate(SERVICE_STREAMLIT, "streamlit_port", STREAMLIT_PORT_RANGE, ["/_stcore/health", "/"])
-    _evaluate(SERVICE_UCNRR, "ucnrr_port", (8011, 8025), [], ["/api/health", "/health"])
+    _evaluate(SERVICE_UCNRR, "ucnrr_port", UCNRR_PORT_RANGE, [], ["/api/health", "/health"])
 
     if changed:
         _save_state(state)
@@ -1113,8 +1204,14 @@ def _init_session_state() -> None:
         st.session_state[SESSION_HEALTH_PENDING_KILL_KEY] = None
     if SESSION_HEALTH_NOTICE_KEY not in st.session_state:
         st.session_state[SESSION_HEALTH_NOTICE_KEY] = None
-    if SESSION_FORCE_ROOT_VENV_KEY not in st.session_state:
-        st.session_state[SESSION_FORCE_ROOT_VENV_KEY] = False
+    if SESSION_ACTIVE_VENV_KEY not in st.session_state:
+        st.session_state[SESSION_ACTIVE_VENV_KEY] = str(_active_python_path())
+    if SESSION_SUPPRESS_RERUN_KEY not in st.session_state:
+        st.session_state[SESSION_SUPPRESS_RERUN_KEY] = False
+    if SESSION_UCNRR_LAST_ACTION_KEY not in st.session_state:
+        st.session_state[SESSION_UCNRR_LAST_ACTION_KEY] = None
+    if SESSION_UCNRR_LAST_MESSAGE_KEY not in st.session_state:
+        st.session_state[SESSION_UCNRR_LAST_MESSAGE_KEY] = None
 
 
 def _env() -> Dict[str, Any]:
@@ -1241,6 +1338,284 @@ def _bool_env(value: Any) -> str:
     return "1" if bool(value) else "0"
 
 
+def _set_ucnrr_action(action: Optional[str], message: Optional[str]) -> None:
+    st.session_state[SESSION_UCNRR_LAST_ACTION_KEY] = action
+    st.session_state[SESSION_UCNRR_LAST_MESSAGE_KEY] = message
+
+
+def _devx_backend_port(config: Dict[str, Any]) -> int:
+    try:
+        return int(config.get("DEVX_BACKEND_PORT", DEVX_BACKEND_DEFAULT_PORT))
+    except Exception:
+        return DEVX_BACKEND_DEFAULT_PORT
+
+
+def _apply_devx_env(config: Dict[str, Any]) -> None:
+    port = _devx_backend_port(config)
+    base_raw = str(config.get("DEVX_BASE") or f"http://127.0.0.1:{port}").strip()
+    base = base_raw.rstrip("/") if base_raw else f"http://127.0.0.1:{port}"
+    os.environ["DEVX_BACKEND_PORT"] = str(port)
+    os.environ["DEVX_BASE"] = base
+    os.environ["AI_READY_DEVX_HEALTH_URL"] = f"{base}/health"
+    os.environ["NEXT_PUBLIC_DEVX_API_BASE"] = base
+
+
+def _core_base_url() -> str:
+    env = _env()
+    candidates = [
+        env.get("CORE_BASE_URL"),
+        env.get("NEXT_PUBLIC_CORE_API_BASE"),
+    ]
+    for raw in candidates:
+        if not raw:
+            continue
+        candidate = str(raw).strip()
+        if candidate:
+            return candidate.rstrip("/")
+
+    port_raw = env.get("core_port")
+    try:
+        port_val = int(port_raw)
+        if port_val > 0:
+            return f"http://127.0.0.1:{port_val}"
+    except (TypeError, ValueError):
+        pass
+
+    return CORE_BASE_DEFAULT.rstrip("/")
+
+
+def _core_build_url(path: str) -> str:
+    base = _core_base_url()
+    if not path.startswith("/"):
+        path = f"/{path}"
+    return f"{base}{path}"
+
+
+def _format_request_error(exc: Exception) -> str:
+    if isinstance(exc, requests.HTTPError):
+        response = exc.response
+        if response is not None:
+            status = response.status_code
+            reason = response.reason or ""
+            try:
+                payload = response.json()
+                if isinstance(payload, dict):
+                    detail = payload.get("message") or payload.get("detail") or payload.get("error")
+                    if detail:
+                        return f"{status} {reason}: {detail}"
+            except Exception:
+                body = response.text
+                if body:
+                    return f"{status} {reason}: {body}"
+            return f"{status} {reason}"
+    if isinstance(exc, requests.ConnectionError):
+        return "Connection failed"
+    if isinstance(exc, requests.Timeout):
+        return "Request timed out"
+    return str(exc)
+
+
+def _core_get_policies() -> Dict[str, Any]:
+    response = requests.get(_core_build_url("/core/api/policies"), timeout=3)
+    response.raise_for_status()
+    return response.json()
+
+
+def _core_get_learned_policies() -> Dict[str, Any]:
+    response = requests.get(_core_build_url("/core/api/policies/learned"), timeout=3)
+    response.raise_for_status()
+    return response.json()
+
+
+def _core_set_learned_rr(trait_id: str, learned_rr: Optional[float]) -> Dict[str, Any]:
+    payload: Dict[str, Any] = {"trait_id": trait_id, "learned_rr": learned_rr}
+    response = requests.post(_core_build_url("/core/api/policies/learned"), json=payload, timeout=4)
+    response.raise_for_status()
+    return response.json()
+
+
+def _core_clear_learned_rr(trait_id: Optional[str] = None) -> Dict[str, Any]:
+    url = _core_build_url("/core/api/policies/learned")
+    if trait_id:
+        url = f"{url}?trait_id={trait_id}"
+    response = requests.delete(url, timeout=4)
+    response.raise_for_status()
+    return response.json()
+
+
+def _resolve_llm_provider(config: Dict[str, Any]) -> str:
+    provider = str(
+        config.get("LLM_PROVIDER")
+        or config.get("HC_CHAT_PROVIDER")
+        or config.get("llm_provider")
+        or ""
+    ).strip()
+    return provider.lower()
+
+
+def _is_local_ollama(provider: str) -> bool:
+    normalized = provider.replace("-", "").replace("_", "")
+    return normalized in {"ollama", "llama", "llama3"} or normalized.startswith("ollama")
+
+
+def _resolve_ollama_base(config: Dict[str, Any]) -> str:
+    base = str(
+        config.get("OLLAMA_BASE_URL")
+        or config.get("OLLAMA_BASE")
+        or config.get("LLM_BASE_URL")
+        or "http://127.0.0.1:11434"
+    ).strip()
+    if not base:
+        base = "http://127.0.0.1:11434"
+    return base.rstrip("/")
+
+
+def _ollama_ready(base: str, timeout: float = 2.0) -> bool:
+    url = f"{base}/api/version"
+    try:
+        response = requests.get(url, timeout=timeout)
+        return response.status_code == 200
+    except requests.RequestException:
+        return False
+
+
+def _llm_command_tokens(config: Dict[str, Any]) -> Optional[List[str]]:
+    raw = str(config.get("llm_start_command") or config.get("LLM_START_COMMAND") or "").strip()
+    if not raw:
+        script = ROOT / "start_llm.sh"
+        if script.exists():
+            raw = f"bash {script.resolve()}"
+    if not raw:
+        return None
+    try:
+        return shlex.split(raw)
+    except ValueError:
+        return raw.split()
+
+
+def _tail_lines(text: str, limit: int = 40) -> str:
+    if not text:
+        return ""
+    lines = [line.rstrip("\n") for line in text.splitlines()]
+    if len(lines) <= limit:
+        return "\n".join(lines)
+    return "\n".join(lines[-limit:])
+
+
+def _ensure_llm_runtime(config: Dict[str, Any]) -> tuple[bool, Optional[str], Optional[str]]:
+    provider = _resolve_llm_provider(config)
+    if not provider:
+        provider = "ollama"
+    if not _is_local_ollama(provider):
+        st.session_state[SESSION_LLM_BOOTSTRAP_KEY] = True
+        return True, None, None
+
+    base = _resolve_ollama_base(config)
+    if _ollama_ready(base):
+        st.session_state[SESSION_LLM_BOOTSTRAP_KEY] = True
+        st.session_state[SESSION_LLM_BOOTSTRAP_LOG_KEY] = None
+        return True, None, None
+
+    command = _llm_command_tokens(config)
+    if not command:
+        message = (
+            f"Ollama not reachable at {base}. Configure 'LLM start command' under Environment & Ports or"
+            " start the runtime manually."
+        )
+        st.session_state[SESSION_LLM_BOOTSTRAP_KEY] = False
+        return False, message, None
+
+    env_copy = os.environ.copy()
+    try:
+        result = subprocess.run(
+            command,
+            cwd=str(ROOT),
+            env=env_copy,
+            capture_output=True,
+            text=True,
+            timeout=600,
+        )
+    except FileNotFoundError as exc:
+        message = f"LLM start command failed: {exc}"
+        st.session_state[SESSION_LLM_BOOTSTRAP_KEY] = False
+        st.session_state[SESSION_LLM_BOOTSTRAP_LOG_KEY] = None
+        return False, message, None
+    except subprocess.TimeoutExpired:
+        message = "LLM start command timed out after 10 minutes."
+        st.session_state[SESSION_LLM_BOOTSTRAP_KEY] = False
+        st.session_state[SESSION_LLM_BOOTSTRAP_LOG_KEY] = None
+        return False, message, None
+
+    combined = ""
+    if isinstance(result.stdout, str) and result.stdout.strip():
+        combined += result.stdout.strip()
+    if isinstance(result.stderr, str) and result.stderr.strip():
+        combined = f"{combined}\n{result.stderr.strip()}" if combined else result.stderr.strip()
+    snippet = _tail_lines(combined, limit=40) if combined else None
+
+    if result.returncode != 0:
+        message = f"LLM start command exited with code {result.returncode}."
+        st.session_state[SESSION_LLM_BOOTSTRAP_KEY] = False
+        st.session_state[SESSION_LLM_BOOTSTRAP_LOG_KEY] = snippet
+        return False, message, snippet
+
+    for _ in range(12):
+        if _ollama_ready(base):
+            message = f"Ollama ready at {base}"
+            st.session_state[SESSION_LLM_BOOTSTRAP_KEY] = True
+            st.session_state[SESSION_LLM_BOOTSTRAP_LOG_KEY] = snippet
+            return True, message, snippet
+        time.sleep(1.0)
+
+    message = f"Ollama still unavailable at {base} after running bootstrap command."
+    st.session_state[SESSION_LLM_BOOTSTRAP_KEY] = False
+    st.session_state[SESSION_LLM_BOOTSTRAP_LOG_KEY] = snippet
+    return False, message, snippet
+
+
+def _core_set_learner(enabled: bool, window: Optional[int] = None) -> Dict[str, Any]:
+    payload: Dict[str, Any] = {"enabled": bool(enabled)}
+    if window is not None:
+        payload["window"] = int(window)
+    response = requests.post(_core_build_url("/core/api/policies/learner"), json=payload, timeout=3)
+    response.raise_for_status()
+    return response.json()
+
+
+def _core_get_promotion_state() -> Dict[str, Any]:
+    response = requests.get(_core_build_url("/core/api/debug/promotion_state"), timeout=3)
+    response.raise_for_status()
+    return response.json()
+
+
+def _ai_env(config: Dict[str, Any]) -> Dict[str, str]:
+    provider = str(config.get("LLM_PROVIDER") or config.get("HC_CHAT_PROVIDER") or "ollama").strip() or "ollama"
+    model = (
+        str(
+            config.get("LLM_MODEL")
+            or config.get("UCNRR_LLM_MODEL")
+            or config.get("OLLAMA_MODEL")
+            or "phi3:mini"
+        ).strip()
+        or "phi3:mini"
+    )
+    base_url_raw = str(config.get("OLLAMA_BASE_URL") or config.get("OLLAMA_BASE") or "http://127.0.0.1:11434").strip()
+    base_url = base_url_raw.rstrip("/") if base_url_raw else "http://127.0.0.1:11434"
+
+    env_vars: Dict[str, str] = {
+        "LLM_PROVIDER": provider,
+        "LLM_MODEL": model,
+        "LLM_BASE_URL": base_url,
+        "OLLAMA_BASE_URL": base_url,
+        "OLLAMA_BASE": base_url,
+        "UCNRR_LLM_MODEL": str(config.get("UCNRR_LLM_MODEL") or model),
+    }
+    env_vars["OLLAMA_MODEL"] = str(config.get("OLLAMA_MODEL") or model)
+    if config.get("LLM_TIMEOUT"):
+        env_vars["LLM_TIMEOUT"] = str(config.get("LLM_TIMEOUT"))
+    return env_vars
+
+
 def _core_env(config: Dict[str, Any]) -> Dict[str, str]:
     env_vars: Dict[str, str] = {
         "HC_CHAT_ENABLED": _bool_env(config.get("HC_CHAT_ENABLED", True)),
@@ -1252,15 +1627,23 @@ def _core_env(config: Dict[str, Any]) -> Dict[str, str]:
     optional = {
         "OPENAI_API_KEY": config.get("OPENAI_API_KEY"),
         "OPENAI_MODEL": config.get("OPENAI_MODEL"),
-        "OLLAMA_BASE": config.get("OLLAMA_BASE"),
-        "OLLAMA_MODEL": config.get("OLLAMA_MODEL"),
         "ANTHROPIC_API_KEY": config.get("ANTHROPIC_API_KEY"),
         "ANTHROPIC_MODEL": config.get("ANTHROPIC_MODEL"),
-        "UCNRR_BASE_URL": config.get("UCNRR_BASE_URL"),
     }
     for key, value in optional.items():
         if value:
             env_vars[key] = str(value)
+
+    env_vars.update(_ai_env(config))
+    ucnrr_base = str(
+        config.get("UCNRR_BASE_URL")
+        or config.get("UCNRR_BASE")
+        or f"http://127.0.0.1:{int(config.get('ucnrr_port', UCNRR_DEFAULT_PORT))}"
+    ).strip()
+    if ucnrr_base:
+        env_vars["UCNRR_BASE_URL"] = ucnrr_base
+        env_vars["UCNRR_BASE"] = ucnrr_base
+    env_vars["UCNRR_SCORE_PATH"] = str(config.get("UCNRR_SCORE_PATH") or "/api/rescore")
 
     workspace_root_raw = str(config.get("WORKSPACE_ROOT") or "").strip()
     core_data_dir_raw = str(config.get("CORE_DATA_DIR") or "").strip()
@@ -1282,6 +1665,7 @@ def _core_env(config: Dict[str, Any]) -> Dict[str, str]:
     workspace_label = str(config.get("WORKSPACE_LABEL") or "").strip()
     if workspace_label:
         env_vars["WORKSPACE_LABEL"] = workspace_label
+    env_vars["CORS_ALLOWED_ORIGINS"] = str(config.get("CORS_ALLOWED_ORIGINS") or "http://127.0.0.1:3000")
     return env_vars
 
 
@@ -1302,6 +1686,19 @@ def _react_env(config: Dict[str, Any]) -> Dict[str, str]:
         env_vars["NEXT_PUBLIC_WORKSPACE_ROOT"] = workspace_root
     streamlit_port = int(config.get("streamlit_port", STREAMLIT_DEFAULT_PORT))
     env_vars["NEXT_PUBLIC_CP_PROFILES_URL"] = f"http://127.0.0.1:{streamlit_port}?tab=profiles"
+    env_vars["NEXT_PUBLIC_DEVX_API_BASE"] = str(config.get("NEXT_PUBLIC_DEVX_API_BASE") or "http://127.0.0.1:8100")
+    ucnrr_base = str(
+        config.get("NEXT_PUBLIC_UCNRR_API_BASE")
+        or config.get("UCNRR_BASE_URL")
+        or config.get("UCNRR_BASE")
+        or f"http://127.0.0.1:{int(config.get('ucnrr_port', UCNRR_DEFAULT_PORT))}"
+    ).strip()
+    env_vars["NEXT_PUBLIC_UCNRR_API_BASE"] = ucnrr_base
+    local_bin = (ROOT / "web" / "node_modules" / ".bin").resolve(strict=False)
+    if local_bin.exists():
+        current_path = os.environ.get("PATH", "")
+        prefix = str(local_bin)
+        env_vars["PATH"] = f"{prefix}{os.pathsep}{current_path}" if current_path else prefix
     return env_vars
 
 
@@ -1310,21 +1707,44 @@ def _ucnrr_command(config: Dict[str, Any], port: int) -> List[str]:
     cmd_template = str(config.get("ucnrr_start_command") or envstore.DEFAULT_ENV.get("ucnrr_start_command", ""))
     if not cmd_template:
         # Fallback if no command configured
-        venv_python = ROOT / ".venv" / "bin" / "python"
-        return [str(venv_python), "-m", "uvicorn", "ucnrr_app:app", "--host", "0.0.0.0", "--port", str(port), "--reload"]
+        python_path = _active_python_path()
+        return [str(python_path), "-m", "uvicorn", "ucnrr_app:app", "--host", "0.0.0.0", "--port", str(port), "--reload"]
     cmd_str = cmd_template.format(port=port)
     try:
-        return shlex.split(cmd_str)
+        tokens = shlex.split(cmd_str)
     except ValueError:
-        return cmd_str.split()
+        tokens = cmd_str.split()
+
+    if tokens:
+        python_path = _active_python_path()
+        alias_candidates = {
+            "python",
+            "python3",
+            os.path.basename(sys.executable),
+            os.path.basename(str(python_path)),
+            str(python_path),
+        }
+        first_token = tokens[0]
+        first_name = os.path.basename(first_token)
+        if first_token in alias_candidates or first_name in alias_candidates:
+            tokens[0] = str(python_path)
+
+    return tokens
 
 
 def _ucnrr_env(config: Dict[str, Any]) -> Dict[str, str]:
     """Build environment variables for UCNRR service."""
-    env_vars: Dict[str, str] = {}
-    ucnrr_base = str(config.get("UCNRR_BASE_URL") or "")
+    env_vars: Dict[str, str] = _ai_env(config)
+    ucnrr_base = str(
+        config.get("UCNRR_BASE_URL")
+        or config.get("UCNRR_BASE")
+        or f"http://127.0.0.1:{int(config.get('ucnrr_port', UCNRR_DEFAULT_PORT))}"
+    ).strip()
     if ucnrr_base:
         env_vars["UCNRR_BASE_URL"] = ucnrr_base
+        env_vars["UCNRR_BASE"] = ucnrr_base
+    env_vars["UCNRR_SCORE_PATH"] = str(config.get("UCNRR_SCORE_PATH") or "/api/rescore")
+    env_vars["CORS_ALLOWED_ORIGINS"] = str(config.get("CORS_ALLOWED_ORIGINS") or "http://127.0.0.1:3000")
     return env_vars
 
 
@@ -1472,12 +1892,47 @@ def _merge_summary(total: Dict[str, Any], summary: Optional[Dict[str, Any]]) -> 
     return total
 
 
-def _stop_all_services() -> None:
+def _force_kill_ports(port_values: Sequence[int]) -> Dict[int, Dict[str, Any]]:
+    killed: Dict[int, Dict[str, Any]] = {}
+    for port in port_values:
+        if not port:
+            continue
+        listeners = ports.who_listens(int(port))
+        pids = [row.get("pid") for row in listeners if row.get("pid")]
+        if not pids:
+            continue
+        summary = ports.kill_pids(pids)
+        killed[int(port)] = summary
+    return killed
+
+
+def _kill_existing_next_servers(preferred_port: int) -> None:
+    candidate_ports = {
+        int(preferred_port),
+        int(REACT_DEFAULT_PORT),
+        int(REACT_DEFAULT_PORT + 1),
+    }
+    candidate_ports.update(range(REACT_PORT_RANGE[0], REACT_PORT_RANGE[1] + 1))
+    pids: List[int] = []
+    for port in candidate_ports:
+        for row in ports.who_listens(int(port)):
+            pid = row.get("pid")
+            cmd = (row.get("cmd") or "").lower()
+            if not pid:
+                continue
+            if any(token in cmd for token in ("next", "node", "react-scripts")):
+                pids.append(int(pid))
+    if pids:
+        ports.kill_pids(pids)
+
+
+def _stop_all_services(request_rerun: bool = True, hard_kill: bool = True) -> Dict[str, Any]:
     svc_map = _services()
     names = list(svc_map.keys())
     if not names:
-        st.info("No services running.")
-        return
+        if request_rerun:
+            st.info("No services running.")
+        return {}
     aggregate: Dict[str, Any] = {}
     for name in names:
         service = svc_map.pop(name, None)
@@ -1485,14 +1940,101 @@ def _stop_all_services() -> None:
             continue
         summary = services.stop_service(service)
         _merge_summary(aggregate, summary)
+
+    env = _env()
+    if hard_kill:
+        forced = _force_kill_ports(
+            [
+                int(env.get("ucnrr_port", UCNRR_DEFAULT_PORT)),
+                int(env.get("core_port", CORE_DEFAULT_PORT)),
+                int(env.get("react_port", REACT_DEFAULT_PORT)),
+            ]
+        )
+        if forced:
+            aggregate["forced_ports"] = {port: summary for port, summary in forced.items()}
+
     if "terminated" in aggregate:
         aggregate["terminated"] = sorted(aggregate["terminated"])
     if "already_dead" in aggregate:
         aggregate["already_dead"] = sorted(aggregate["already_dead"])
-    _set_action_result(aggregate)
+
+    if request_rerun:
+        _set_action_result(aggregate)
     _refresh_port_scans()
-    st.info("Stopped all services.")
-    safe_rerun()
+    if request_rerun:
+        st.info("Stopped all services.")
+        safe_rerun()
+    return aggregate
+
+
+def _wait_for_ucnrr_health(
+    port: int,
+    *,
+    restart_callback: Optional[Callable[[], bool]] = None,
+    status_callback: Optional[Callable[[Optional[str]], None]] = None,
+    attempts: int = 10,
+    interval: float = 3.0,
+) -> tuple[bool, Optional[str], Optional[Dict[str, Any]]]:
+    url = f"http://127.0.0.1:{port}/health"
+    last_detail: Optional[str] = None
+    last_payload: Optional[Dict[str, Any]] = None
+    llm_flag: Optional[bool] = None
+
+    def _notify(message: Optional[str]) -> None:
+        if message:
+            composed = f"UCN/RR — {message}"
+            _set_health_notice(composed)
+        else:
+            _set_health_notice(None)
+        if status_callback:
+            status_callback(message)
+
+    for attempt in range(1, attempts + 1):
+        service = _services().get(SERVICE_UCNRR)
+        if service and not service.is_running():
+            exit_code = services.poll_service(service)
+            if exit_code is not None:
+                detail = f"UCN/RR exited with code {exit_code} before llm_configured=true."
+                _notify(detail)
+                return False, detail, last_payload
+            break
+
+        ok, payload, error = _probe_health(url, timeout=2.5)
+        if ok and isinstance(payload, dict):
+            last_payload = payload
+            llm_flag = bool(payload.get("llm_configured")) if "llm_configured" in payload else None
+            if llm_flag:
+                _notify(None)
+                return True, None, payload
+            last_detail = "llm_configured=false"
+            _notify("waiting for LLM model (llm_configured=false)…")
+        else:
+            last_detail = error
+            if error:
+                _notify(f"waiting for LLM model ({error})…")
+            else:
+                _notify("waiting for LLM model (health unavailable)…")
+
+        if attempt < attempts:
+            time.sleep(interval)
+
+    if llm_flag is False and restart_callback:
+        _notify("failed to load model, retrying with clean env…")
+        restarted = restart_callback()
+        if restarted:
+            time.sleep(1.0)
+            return _wait_for_ucnrr_health(
+                port,
+                restart_callback=None,
+                status_callback=status_callback,
+                attempts=attempts,
+                interval=interval,
+            )
+        detail = "UCN/RR restart failed with clean env."
+        _notify(detail)
+        return False, detail, last_payload
+
+    return False, last_detail, last_payload
 
 
 def _wait_for_core_health(port: int, timeout: float = 25.0) -> tuple[bool, Optional[str]]:
@@ -1529,31 +2071,73 @@ def _wait_for_core_health(port: int, timeout: float = 25.0) -> tuple[bool, Optio
     return False, last_detail
 
 
-def _wait_for_react_health(port: int, timeout: float = 35.0) -> tuple[bool, Optional[str]]:
+def _wait_for_react_health(port: int, timeout: float = 45.0) -> tuple[bool, Optional[str], Optional[str]]:
     deadline = time.time() + timeout
     last_note: Optional[str] = None
+    current_port = port
+
+    def _chunk_url(for_port: int) -> str:
+        return f"http://127.0.0.1:{for_port}/_next/static/chunks/webpack.js"
+
+    def _head_coach_url(for_port: int) -> str:
+        return f"http://127.0.0.1:{for_port}{HEAD_COACH_URL_SUFFIX}"
+
+    def _benchmarks_url(for_port: int) -> str:
+        return f"http://127.0.0.1:{for_port}{LLM_BENCHMARKS_URL_SUFFIX}"
+
+    chunk_url = _chunk_url(current_port)
+    head_coach_url = _head_coach_url(current_port)
+    benchmarks_url = _benchmarks_url(current_port)
 
     while time.time() < deadline:
         service = _services().get(SERVICE_REACT)
         if service and not service.is_running():
             exit_code = services.poll_service(service)
             if exit_code is not None:
-                last_note = f"React exited with code {exit_code} before health succeeded."
+                last_note = f"React exited with code {exit_code} before readiness checks completed."
             break
         if service is None:
             time.sleep(0.5)
             continue
 
-        results = check_services(_env())
-        health = results.get(SERVICE_REACT)
-        if health:
-            if health.status == "RUNNING (managed)":
-                return True, None
-            if health.note:
-                last_note = health.note
-        time.sleep(0.5)
+        state_info = _load_state().get(SERVICE_REACT)
+        if state_info:
+            candidate = state_info.actual_port or state_info.port
+            if candidate and int(candidate) != current_port:
+                current_port = int(candidate)
+                chunk_url = _chunk_url(current_port)
+                head_coach_url = _head_coach_url(current_port)
+                benchmarks_url = _benchmarks_url(current_port)
 
-    return False, last_note
+        target_url = head_coach_url
+
+        chunk_ok = False
+        try:
+            chunk_response = requests.get(chunk_url, timeout=1.8, allow_redirects=True)
+            chunk_ok = chunk_response.status_code == 200
+            if chunk_ok:
+                try:
+                    home_response = requests.get(head_coach_url, timeout=2.0, allow_redirects=True)
+                    if home_response.status_code == 200:
+                        return True, None, target_url
+                    last_note = f"{head_coach_url} → HTTP {home_response.status_code}"
+                except Exception as exc:
+                    last_note = f"{head_coach_url} → {exc}"
+                if head_coach_url != benchmarks_url:
+                    try:
+                        bench_response = requests.get(benchmarks_url, timeout=2.0, allow_redirects=True)
+                        if bench_response.status_code == 200:
+                            return True, None, target_url
+                        last_note = f"{benchmarks_url} → HTTP {bench_response.status_code}"
+                    except Exception as exc:
+                        last_note = f"{benchmarks_url} → {exc}"
+            last_note = f"{chunk_url} → HTTP {chunk_response.status_code}"
+        except Exception as exc:
+            last_note = f"{chunk_url} → {exc}"
+
+        time.sleep(0.75)
+
+    return False, last_note, None
 
 
 def _handle_core_start(
@@ -1610,7 +2194,9 @@ def _handle_core_start(
                 st.warning(
                     f"Port {configured_port} is occupied by: {cmd or 'unknown process'}"
                 )
-                suggested = _next_free_port(configured_port + 1, forbidden={configured_port})
+                range_start = configured_port + 1
+                range_end = port_range[1] if port_range else configured_port + 100
+                suggested = ports.find_free_port(range_start, range_end)
                 col_use, col_kill = st.columns(2)
                 with col_use:
                     if st.button(
@@ -1649,14 +2235,12 @@ def _handle_core_start(
         st.error(f"Core working dir '{workdir}' does not exist.")
         return
 
-    force_root = bool(st.session_state.get(SESSION_FORCE_ROOT_VENV_KEY, False))
-    if force_root and not ROOT_VENV_BIN.exists():
-        st.error(f"Root venv python not found at {ROOT_VENV_BIN}. Run `scripts/consolidate_venv.sh` to restore.")
-        return
-
     command = _compose_core_command(configured_port, start_cmd)
 
     env_vars = dict(env_extra)
+    last_launch_env: Dict[str, str] = dict(env_vars)
+    last_launch_env = dict(env_vars)
+
     prev_cwd = os.getcwd()
     _set_start_lock(name, True)
     success = False
@@ -1699,19 +2283,52 @@ def _handle_ucnrr_start(
         return
 
     env_config = _env()
+    _set_ucnrr_action(None, None)
     port_key = SERVICE_PORT_KEYS.get(name)
-    configured_port = int(port or env_config.get(port_key, 8011))
+    configured_port = int(port or env_config.get(port_key, UCNRR_DEFAULT_PORT))
     health_url = f"http://127.0.0.1:{configured_port}/health"
+
+    with st.spinner("Ensuring LLM runtime is ready…"):
+        llm_ready, llm_message, llm_log = _ensure_llm_runtime(env_config)
+    if not llm_ready:
+        failure_message = llm_message or "Unable to reach local LLM runtime."
+        st.error(failure_message)
+        _set_ucnrr_action("llm_failed", failure_message)
+        if llm_log:
+            st.code(llm_log, language="text")
+        return
+    if llm_message:
+        st.info(llm_message)
+        if llm_log:
+            with st.expander("LLM bootstrap output (tail)", expanded=False):
+                st.code(llm_log, language="text")
 
     port_in_use = _is_port_in_use(configured_port)
     if port_in_use:
         pid = _pid_on_port(configured_port)
         cmd = _describe_process(pid) if pid else ""
-        health_ok, _ = check_health(health_url, timeout=1.5)
         cmd_lower = cmd.lower()
+        health_payload: Optional[Dict[str, Any]] = None
+        llm_configured: Optional[bool] = None
 
-        if pid and health_ok and "uvicorn" in cmd_lower and "ucnrr_app" in cmd_lower:
-            st.info(f"Reusing existing UCN/RR on port {configured_port} (PID {pid})")
+        try:
+            response = requests.get(health_url, timeout=1.5, allow_redirects=True)
+            if response.status_code == 200:
+                health_payload = response.json()
+                if isinstance(health_payload, dict):
+                    llm_configured = bool(health_payload.get("llm_configured"))
+        except Exception:
+            health_payload = None
+            llm_configured = None
+
+        expected_process = bool(
+            pid and "uvicorn" in cmd_lower and "ucnrr_app" in cmd_lower
+        )
+
+        if expected_process and llm_configured is True:
+            message = f"Reusing UCN/RR on port {configured_port} (PID {pid})"
+            st.info(message)
+            _set_ucnrr_action("reused", message)
             state = _load_state()
             state[name] = ProcInfo(
                 name=name,
@@ -1725,36 +2342,61 @@ def _handle_ucnrr_start(
             _post_launch_health(name)
             return
 
-        with st.container(border=True):
-            st.warning(
-                f"Port {configured_port} is occupied by: {cmd or 'unknown process'}"
-            )
-            suggested = _next_free_port(configured_port + 1, forbidden={configured_port})
-            col_use, col_kill = st.columns(2)
-            with col_use:
-                if st.button(
-                    f"Use different port ({suggested})",
-                    key=f"ucnrr-change-port-{configured_port}",
-                ):
-                    if port_key:
-                        env_config[port_key] = int(suggested)
-                        _save_env()
-                        st.success(f"Updated {port_key} to {suggested}. Restart action to launch UCN/RR.")
-                    safe_rerun()
-                    return
-            with col_kill:
-                if st.button(
-                    f"Kill port {configured_port}",
-                    key=f"ucnrr-kill-port-{configured_port}",
-                ):
-                    kill_port(configured_port)
-                    port_in_use = _is_port_in_use(configured_port)
-                    if port_in_use:
-                        st.error(f"Unable to free port {configured_port}.")
+        if expected_process and llm_configured is False:
+            message = f"Restarting UCN/RR with LLM env (llm_configured=false on port {configured_port})."
+            st.warning(message)
+            _set_ucnrr_action("restarting", message)
+            if _services().get(name):
+                _stop_service(name, rerun=False)
+            else:
+                ports.kill_pids([pid])
+            time.sleep(0.5)
+            port_in_use = _is_port_in_use(configured_port)
+
+        elif expected_process:
+            message = f"Restarting UCN/RR with LLM env on port {configured_port}."
+            st.info(message)
+            _set_ucnrr_action("restarting", message)
+            if _services().get(name):
+                _stop_service(name, rerun=False)
+            else:
+                ports.kill_pids([pid])
+            time.sleep(0.5)
+            port_in_use = _is_port_in_use(configured_port)
+
+        if port_in_use:
+            with st.container(border=True):
+                st.warning(
+                    f"Port {configured_port} is occupied by: {cmd or 'unknown process'}"
+                )
+                range_start = configured_port + 1
+                range_end = port_range[1] if port_range else configured_port + 100
+                suggested = ports.find_free_port(range_start, range_end)
+                col_use, col_kill = st.columns(2)
+                with col_use:
+                    if st.button(
+                        f"Use different port ({suggested})",
+                        key=f"ucnrr-change-port-{configured_port}",
+                    ):
+                        if port_key:
+                            env_config[port_key] = int(suggested)
+                            _save_env()
+                            st.success(f"Updated {port_key} to {suggested}. Restart action to launch UCN/RR.")
+                        safe_rerun()
                         return
-                    st.success(f"Cleared port {configured_port}. Launching UCN/RR…")
-                else:
-                    return
+                with col_kill:
+                    if st.button(
+                        f"Kill port {configured_port}",
+                        key=f"ucnrr-kill-port-{configured_port}",
+                    ):
+                        kill_port(configured_port)
+                        port_in_use = _is_port_in_use(configured_port)
+                        if port_in_use:
+                            st.error(f"Unable to free port {configured_port}.")
+                            return
+                        st.success(f"Cleared port {configured_port}. Launching UCN/RR…")
+                    else:
+                        return
 
     if _is_start_locked(name):
         st.info(f"{label} launch already in progress.")
@@ -1766,6 +2408,7 @@ def _handle_ucnrr_start(
         return
 
     env_vars = dict(env_extra)
+    last_launch_env: Dict[str, str] = dict(env_vars)
     prev_cwd = os.getcwd()
     _set_start_lock(name, True)
     success = False
@@ -1784,6 +2427,77 @@ def _handle_ucnrr_start(
         _set_start_lock(name, False)
 
     if success:
+        def _resolve_model(source_env: Dict[str, str]) -> str:
+            for key in ("LLM_MODEL", "HC_CHAT_MODEL"):
+                candidate = source_env.get(key) or env_config.get(key)
+                if candidate:
+                    return str(candidate)
+            return "phi3:mini"
+
+        def _restart_ucnrr_clean_env() -> bool:
+            message = f"Retrying UCN/RR with clean LLM env on port {configured_port}."
+            st.warning(message)
+            _set_ucnrr_action("retrying", message)
+            if _services().get(name):
+                _stop_service(name, rerun=False)
+            else:
+                pid = _pid_on_port(configured_port)
+                if pid:
+                    ports.kill_pids([pid])
+            time.sleep(0.5)
+            clean_env = dict(env_vars)
+            clean_env["LLM_PROVIDER"] = "ollama"
+            clean_env["LLM_MODEL"] = _resolve_model(clean_env)
+            clean_env.setdefault("OLLAMA_BASE_URL", "http://127.0.0.1:11434")
+            prev_retry_cwd = os.getcwd()
+            _set_start_lock(name, True)
+            try:
+                os.chdir(str(workdir))
+                restarted = _start_service(
+                    name,
+                    start_cmd,
+                    workdir,
+                    clean_env,
+                    configured_port,
+                    configured_port,
+                )
+            finally:
+                os.chdir(prev_retry_cwd)
+                _set_start_lock(name, False)
+            if restarted:
+                last_launch_env.clear()
+                last_launch_env.update(clean_env)
+            return restarted
+
+        healthy, detail, payload = _wait_for_ucnrr_health(
+            configured_port,
+            restart_callback=_restart_ucnrr_clean_env,
+        )
+
+        provider = ""
+        model = ""
+        if isinstance(payload, dict):
+            provider = str(payload.get("llm_provider") or "")
+            model = str(payload.get("llm_model") or "")
+        if not provider:
+            provider = str(last_launch_env.get("LLM_PROVIDER") or "")
+        if not model:
+            model = str(last_launch_env.get("LLM_MODEL") or _resolve_model(last_launch_env))
+
+        if healthy:
+            summary = f"UCN/RR ready on port {configured_port}"
+            if provider:
+                summary = f"{summary} · {provider}"
+            if model:
+                summary = f"{summary} · {model}"
+            summary = f"{summary} · llm_configured ✅"
+            _set_ucnrr_action("ready", summary)
+            _set_health_notice(None)
+        else:
+            failure_msg = detail or "Timed out waiting for llm_configured=true"
+            _set_health_notice(f"UCN/RR health check failed: {failure_msg}")
+            st.warning(f"UCN/RR health check failed: {failure_msg}")
+            _set_ucnrr_action("failed", failure_msg)
         _post_launch_health(name)
     else:
         pending = dict(_pending_auto_open())
@@ -1804,7 +2518,8 @@ def _handle_react_start(
         st.warning("Save Environment changes before launching services.")
         return
 
-    configured_port = int(port or _env().get("react_port", REACT_DEFAULT_PORT))
+    env_config = _env()
+    configured_port = int(port or env_config.get("react_port", REACT_DEFAULT_PORT))
     listeners = ports.who_listens(configured_port) if configured_port else []
     if listeners:
         st.info(
@@ -1815,14 +2530,14 @@ def _handle_react_start(
             cmd = row.get("cmd") or "(unknown command)"
             st.code(f"{pid}: {cmd}", language="text")
 
-    workdir = Path(cwd) if cwd else _resolve_react_workdir(_env())
+    workdir = Path(cwd) if cwd else _resolve_react_workdir(env_config)
     if not workdir.exists():
         st.error(f"React working dir '{workdir}' does not exist.")
         return
 
-    npm_cmd = _resolve_react_npm(_env())
+    npm_cmd = _resolve_react_npm(env_config)
     if not npm_cmd:
-        message = "Unable to locate npm. Set the React npm path in Environment & Ports."
+        message = "Unable to locate npm. Run `npm install` in the web/ directory or set the npm path in Environment & Ports."
         st.error(message)
         _set_health_notice(message)
         pending = dict(_pending_auto_open())
@@ -1837,6 +2552,8 @@ def _handle_react_start(
         st.info(f"{label} launch already in progress.")
         return
 
+    _kill_existing_next_servers(configured_port)
+
     prev_cwd = os.getcwd()
     _set_start_lock(name, True)
     success = False
@@ -1844,7 +2561,7 @@ def _handle_react_start(
         os.chdir(str(workdir))
         success = _start_service(
             name,
-            [npm_cmd, "run", "dev"],
+            _react_command(npm_cmd),
             workdir,
             env_vars,
             configured_port,
@@ -1865,9 +2582,20 @@ def _handle_react_start(
     if service:
         _ensure_react_port_watcher(service, configured_port)
 
-    healthy, detail = _wait_for_react_health(configured_port)
+    healthy, detail, ready_url = _wait_for_react_health(configured_port)
     if not healthy and detail:
         _set_health_notice(detail)
+    elif ready_url:
+        pending = dict(_pending_auto_open())
+        if pending.pop(name, None) is not None:
+            _set_pending_auto_open(pending)
+        st.info("Opening Head Coach (Northstar)…")
+        _open_ui(ready_url, "Head Coach", notify=False)
+        if bool(env_config.get("AUTO_OPEN_BENCHMARKS_AFTER_LAUNCH", False)):
+            base_for_bench = ready_url.split('?')[0].rstrip('/')
+            bench_url = f"{base_for_bench}{LLM_BENCHMARKS_URL_SUFFIX}"
+            st.info("Opening LLM Benchmarks (AI Readiness)…")
+            _open_ui(bench_url, "LLM Benchmarks", notify=False)
 
     _post_launch_health(name)
 
@@ -2120,7 +2848,7 @@ def _service_log_lines(name: str, limit: int = 100) -> List[str]:
 
 def _update_next_public_base() -> None:
     env = _env()
-    core_port = int(env.get("core_port", 8015))
+    core_port = int(env.get("core_port", CORE_DEFAULT_PORT))
     env.setdefault("NEXT_PUBLIC_CORE_API_BASE", f"http://127.0.0.1:{core_port}")
 
 
@@ -2255,19 +2983,146 @@ def _open_ui(url: Optional[str], label: str, notify: bool = True) -> None:
             st.info(f"Opened {label}; received HTTP {status}.")
 
 
-def _setup_auto_open_targets() -> None:
+def _schedule_ai_autorefresh(interval_ms: int = 10_000) -> None:
+    if st_autorefresh:
+        st_autorefresh(interval=interval_ms, key="ai-readiness-autorefresh")  # type: ignore[misc]
+    else:  # pragma: no cover - fallback best effort
+        components.html(
+            f"""
+            <script>
+            const frame = window.frameElement;
+            if (frame && window.parent) {{
+                setTimeout(() => {{
+                    window.parent.postMessage({{type: "streamlit:rerun"}}, "*");
+                }}, {interval_ms});
+            }}
+            </script>
+            """,
+            height=0,
+            width=0,
+        )
+
+
+def _fetch_ai_readiness() -> Dict[str, Any]:
+    env_config = _env()
+    _apply_devx_env(env_config)
+    backend_port = _devx_backend_port(env_config)
+    devx_base = str(env_config.get("DEVX_BASE") or f"http://127.0.0.1:{backend_port}")
+    url = f"{devx_base.rstrip('/')}/devx/api/ingestion/ai_ready"
+
+    try:
+        response = requests.get(url, timeout=3)
+    except requests.exceptions.ConnectionError:
+        return {"status": "error", "message": "DevX backend unreachable"}
+    except Exception as exc:
+        return {"status": "error", "message": str(exc)}
+
+    if response.status_code == 404:
+        return {"status": "error", "message": "DevX: 404", "code": 404}
+    if not response.ok:
+        snippet = response.text[:120].strip()
+        return {"status": "error", "message": f"HTTP {response.status_code} {snippet}"}
+    try:
+        data = response.json()
+    except ValueError:
+        return {"status": "error", "message": "Invalid JSON from DevX probe"}
+    return {"status": "ok", "data": data}
+
+
+def _format_layer_tooltip(name: str, light: Optional[Dict[str, Any]], success: Callable[[Dict[str, Any]], str]) -> str:
+    if not isinstance(light, dict):
+        return f"🔴 {name}: unavailable"
+    status = light.get("status")
+    icon = "🟢" if status == "green" else "🔴"
+    if status == "green":
+        try:
+            message = success(light)
+        except Exception:
+            message = "ready"
+    else:
+        message = str(light.get("reason") or "needs attention")
+    if not message:
+        message = "ready" if status == "green" else "needs attention"
+    return f"{icon} {name}: {message}"
+
+
+def _render_ai_readiness_sidebar() -> None:
     env = _env()
-    debug = bool(env.get("APPEND_UI_DEBUG_PARAM", False))
-    pending: Dict[str, str] = {}
-    if env.get("AUTO_OPEN_REACT_AFTER_LAUNCH"):
-        url = _build_service_url(SERVICE_REACT, debug)
-        if url:
-            pending[SERVICE_REACT] = url
-    if env.get("AUTO_OPEN_STREAMLIT_AFTER_LAUNCH"):
-        url = _build_service_url(SERVICE_STREAMLIT, debug)
-        if url:
-            pending[SERVICE_STREAMLIT] = url
-    _set_pending_auto_open(pending)
+    _schedule_ai_autorefresh()
+    readiness = _fetch_ai_readiness()
+
+    react_port = int(env.get("react_port", REACT_DEFAULT_PORT))
+    target_port = react_port
+    health_map = st.session_state.get(SESSION_HEALTH_KEY, {})
+    health_entry = health_map.get(SERVICE_REACT)
+    if isinstance(health_entry, ServiceHealth):
+        for candidate in (health_entry.actual_port, health_entry.port, health_entry.configured_port):
+            if candidate:
+                try:
+                    target_port = int(candidate)
+                    break
+                except Exception:
+                    continue
+    target_url = f"http://127.0.0.1:{target_port}/tools/llm-benchmarks?tab=ai-readiness"
+
+    tooltip = "Unable to fetch readiness status."
+    caption_hint: Optional[str] = None
+    label = "AI Readiness: ❌ NEEDS-FIX"
+
+    if readiness.get("status") == "ok":
+        data = readiness.get("data", {})
+        hc_light = data.get("hc_devx", {})
+        ucnrr_light = data.get("ucnrr", {})
+        core_light = data.get("core", {})
+        e2e_light = {}
+        if isinstance(core_light, dict):
+            details = core_light.get("details") or {}
+            if isinstance(details, dict):
+                e2e_light = details.get("e2e", {}) or {}
+
+        tooltip_lines = [
+            _format_layer_tooltip("HC/DevX", hc_light, lambda _: "online"),
+            _format_layer_tooltip(
+                "UCNRR",
+                ucnrr_light,
+                lambda light: " · ".join(
+                    filter(
+                        None,
+                        [
+                            str(light.get("details", {}).get("llm_provider", "")),
+                            str(light.get("details", {}).get("llm_model", "")),
+                        ],
+                    )
+                )
+                or "configured",
+            ),
+            _format_layer_tooltip(
+                "Core",
+                core_light,
+                lambda light: f"rr_mode {light.get('details', {}).get('rr_mode', 'unknown')} · "
+                f"ucnrr {'on' if light.get('details', {}).get('ucnrr_enabled') else 'off'}",
+            ),
+            _format_layer_tooltip(
+                "E2E",
+                e2e_light if isinstance(e2e_light, dict) else {},
+                lambda light: str(light.get("reason") or "Why-Card ready"),
+            ),
+        ]
+        tooltip = "\n".join(tooltip_lines)
+        overall = str(data.get("result") or "").upper()
+        label = "AI Readiness: ✅ ALL-GOOD" if overall == "ALL-GOOD" else "AI Readiness: ❌ NEEDS-FIX"
+    else:
+        message = readiness.get("message", "unknown error")
+        tooltip = f"DevX probe failed: {message}"
+        if readiness.get("code") == 404:
+            caption_hint = "Hint: start DevX backend (Quick Launch → Developer Explorer)."
+
+    if st.sidebar.button(label, key="ai-readiness-pill", help=tooltip):
+        _open_ui(target_url, "LLM Benchmarks", notify=False)
+    if st.sidebar.button("Refresh", key="ai-readiness-refresh"):
+        safe_rerun()
+    if caption_hint:
+        st.sidebar.caption(caption_hint)
 
 
 def _maybe_auto_open(name: str, result: ServiceHealth) -> None:
@@ -2434,12 +3289,159 @@ def _render_service_row(
         _render_conflict_panel(name, conflict)
 
 
+def _launch_stack(
+    env: Dict[str, Any],
+    core_port: int,
+    react_port: int,
+    ucnrr_port: int,
+    core_workdir_path: Path,
+    react_workdir_path: Path,
+    ucnrr_workdir_path: Path,
+    core_command_list: Optional[List[str]],
+    react_npm_cmd: Optional[str],
+    open_ui: bool = True,
+    sidebar_logger: Optional[Callable[[str], None]] = None,
+) -> None:
+    status_placeholder = st.empty()
+    status_lines: List[str] = []
+
+    def _update_status(service: str, icon: str, message: str) -> None:
+        entry = f"- {icon} **{service}** — {message}"
+        status_lines.append(entry)
+        status_placeholder.markdown("\n".join(status_lines))
+        if sidebar_logger:
+            sidebar_logger(f"{icon} {service}: {message}")
+
+    runtime_npm_cmd = react_npm_cmd or _resolve_react_npm(env)
+    if runtime_npm_cmd is None:
+        message = "Unable to locate npm. Run `npm install` in web/ or configure the npm path under Environment & Ports."
+        _update_status("React", "❌", message)
+        st.error(message)
+        return
+
+    st.session_state[SESSION_SUPPRESS_RERUN_KEY] = True
+    try:
+        # UCN/RR
+        _update_status("UCN/RR", "⏳", "Starting…")
+        with st.spinner("Starting UCN/RR…"):
+            _handle_start_request(
+                SERVICE_UCNRR,
+                "UCN/RR",
+                _ucnrr_command(env, ucnrr_port),
+                ucnrr_workdir_path,
+                _ucnrr_env(env),
+                ucnrr_port,
+                UCNRR_PORT_RANGE,
+            )
+        _update_status("UCN/RR", "⏳", "Waiting for LLM model (llm_configured=false)…")
+        healthy_ucnrr, detail_ucnrr, payload_ucnrr = _wait_for_ucnrr_health(ucnrr_port)
+        if not healthy_ucnrr:
+            failure_msg = detail_ucnrr or "Timed out waiting for llm_configured=true"
+            _update_status("UCN/RR", "❌", failure_msg)
+            _set_health_notice(f"UCN/RR launch failed: {failure_msg}")
+            return
+        action = st.session_state.get(SESSION_UCNRR_LAST_ACTION_KEY)
+        action_message = st.session_state.get(SESSION_UCNRR_LAST_MESSAGE_KEY)
+        if action_message:
+            _update_status("UCN/RR", "ℹ️", action_message)
+        provider = ""
+        model = ""
+        if isinstance(payload_ucnrr, dict):
+            provider = str(payload_ucnrr.get("llm_provider") or "")
+            model = str(payload_ucnrr.get("llm_model") or "")
+        action_phrase = "Restarted UCN/RR"
+        if action == "reused":
+            action_phrase = "Reusing UCN/RR"
+        summary_parts = [action_phrase]
+        if provider:
+            summary_parts.append(provider)
+        if model:
+            summary_parts.append(model)
+        summary_parts.append("llm_configured ✅")
+        summary_ucnrr = " · ".join(part for part in summary_parts if part)
+        _set_ucnrr_action(None, None)
+        _update_status("UCN/RR", "✅", summary_ucnrr)
+
+        # Core
+        _update_status("Core", "⏳", "Starting…")
+        with st.spinner("Starting Core…"):
+            _handle_start_request(
+                SERVICE_CORE,
+                "Core (uvicorn)",
+                list(core_command_list or []),
+                core_workdir_path,
+                _core_env(env),
+                core_port,
+                CORE_PORT_RANGE,
+                expected_core=True,
+            )
+        _update_status("Core", "⏳", "Waiting for rr_mode=online…")
+        healthy_core, detail_core = _wait_for_core_health(core_port)
+        if not healthy_core:
+            failure_msg = detail_core or "Timed out waiting for rr_mode=online"
+            _update_status("Core", "❌", failure_msg)
+            _set_health_notice(f"Core launch failed: {failure_msg}")
+            return
+        _update_status("Core", "✅", "rr_mode online")
+
+        # React
+        _update_status("React", "⏳", "Starting…")
+        with st.spinner("Starting React…"):
+            _handle_start_request(
+                SERVICE_REACT,
+                "React (Next.js)",
+                _react_command(runtime_npm_cmd),
+                react_workdir_path,
+                _react_env(env),
+                react_port,
+                REACT_PORT_RANGE,
+            )
+        _update_status("React", "⏳", "Waiting for Next.js readiness…")
+        healthy_react, detail_react, ready_url = _wait_for_react_health(react_port)
+        if not healthy_react:
+            failure_msg = detail_react or "Timed out waiting for Next.js"
+            _update_status("React", "❌", failure_msg)
+            _set_health_notice(f"React launch failed: {failure_msg}")
+            return
+        _refresh_health()
+        base_url = _build_service_url(SERVICE_REACT)
+        if base_url:
+            try:
+                actual_port = int(base_url.split(":")[2].split("/")[0])
+            except Exception:
+                actual_port = react_port
+        else:
+            actual_port = react_port
+        _update_status("React", "✅", f"port {actual_port}")
+
+        _set_health_notice(None)
+
+        if open_ui:
+            target_url = ready_url
+            if not target_url and base_url:
+                target_url = base_url.rstrip('/') + HEAD_COACH_URL_SUFFIX
+            if target_url:
+                pending = dict(_pending_auto_open())
+                if pending.pop(SERVICE_REACT, None) is not None:
+                    _set_pending_auto_open(pending)
+                st.info("Opening Head Coach (Northstar)…")
+                _open_ui(target_url, "Head Coach", notify=False)
+                if bool(env.get("AUTO_OPEN_BENCHMARKS_AFTER_LAUNCH", False)):
+                    base_for_bench = target_url.split('?')[0].rstrip('/')
+                    bench_url = f"{base_for_bench}{LLM_BENCHMARKS_URL_SUFFIX}"
+                    st.info("Opening LLM Benchmarks (AI Readiness)…")
+                    _open_ui(bench_url, "LLM Benchmarks", notify=False)
+    finally:
+        st.session_state[SESSION_SUPPRESS_RERUN_KEY] = False
+        _refresh_health()
+
+
 def _render_launch_tab() -> None:
     env = _env()
-    core_port = int(env.get("core_port", 8015))
+    core_port = int(env.get("core_port", CORE_DEFAULT_PORT))
     react_port = int(env.get("react_port", REACT_DEFAULT_PORT))
     streamlit_port = int(env.get("streamlit_port", STREAMLIT_DEFAULT_PORT))
-    ucnrr_port = int(env.get("ucnrr_port", 8011))
+    ucnrr_port = int(env.get("ucnrr_port", UCNRR_DEFAULT_PORT))
     core_workdir_path = _resolve_core_workdir(env)
     react_workdir_path = _resolve_react_workdir(env)
     ucnrr_workdir_path = Path(str(env.get("ucnrr_workdir") or ROOT)).expanduser().resolve(strict=False)
@@ -2611,49 +3613,29 @@ def _render_launch_tab() -> None:
                     holistic_feedback.error(f"Holistic review failed: {error_msg}")
 
     st.markdown("---")
-    col_launch, col_open, col_stop, col_reset = st.columns(4)
+    col_launch, col_open, col_stop, col_restart = st.columns(4)
     launch_disabled = _is_env_dirty() or bool(_start_locks())
+    if react_npm_cmd is None:
+        launch_disabled = True
     with col_launch:
         if st.button(
-            "Launch All",
-            help="Start UCN/RR, Core, and React using current environment",
+            "Launch All (open UI)",
+            help="Start UCN/RR → Core → React with AI env and open the AI Readiness tab",
             disabled=launch_disabled,
         ):
             _update_next_public_base()
-            _setup_auto_open_targets()
-            # Start UCNRR first (Core depends on it)
-            _handle_start_request(
-                SERVICE_UCNRR,
-                "UCN/RR",
-                _ucnrr_command(env, ucnrr_port),
-                ucnrr_workdir_path,
-                _ucnrr_env(env),
-                ucnrr_port,
-                (8011, 8025),
-            )
-            _handle_start_request(
-                SERVICE_CORE,
-                "Core (uvicorn)",
-                list(core_command_list or []),
-                core_workdir_path,
-                _core_env(env),
+            _launch_stack(
+                env,
                 core_port,
-                CORE_PORT_RANGE,
-                expected_core=True,
-            )
-            _handle_start_request(
-                SERVICE_REACT,
-                "React (Next.js)",
-                _react_command(react_npm_cmd),
-                react_workdir_path,
-                _react_env(env),
                 react_port,
-                REACT_PORT_RANGE,
+                ucnrr_port,
+                core_workdir_path,
+                react_workdir_path,
+                ucnrr_workdir_path,
+                core_command_list,
+                react_npm_cmd,
+                open_ui=True,
             )
-            if env.get("AUTO_OPEN_DEVEXPLORER_AFTER_LAUNCH"):
-                # Open DevX (new React frontend) instead of old Dev Explorer
-                devx_url = "http://localhost:3100"
-                _open_ui(devx_url, "DevX", notify=False)
     with col_open:
         st.caption("Open UIs")
         _render_open_button(SERVICE_REACT, "Open React")
@@ -2670,65 +3652,43 @@ def _render_launch_tab() -> None:
             _open_ui(ucnrr_url, "UCN/RR base")
     with col_stop:
         if st.button("Stop All"):
-            _stop_all_services()
-    with col_reset:
-        if st.button(
-            "🔄 RESET ALL",
-            help="Stop all services, wait, then restart in correct order: Core → UCN/RR → React",
-            type="primary",
-        ):
-            # Perform the exact sequence: Stop Core, Stop UCN/RR, Stop React, then restart in order
-            st.info("Stopping Core...")
-            _stop_service(SERVICE_CORE, rerun=False)
-            time.sleep(1)
-
-            st.info("Stopping UCN/RR...")
-            _stop_service(SERVICE_UCNRR, rerun=False)
-            time.sleep(1)
-
-            st.info("Stopping React...")
-            _stop_service(SERVICE_REACT, rerun=False)
-            time.sleep(2)
-
-            st.info("Starting Core (waiting for it to load)...")
-            _handle_start_request(
-                SERVICE_CORE,
-                "Core (uvicorn)",
-                list(core_command_list or []),
-                core_workdir_path,
-                _core_env(env),
-                core_port,
-                CORE_PORT_RANGE,
-                expected_core=True,
-            )
-            time.sleep(3)  # Give Core time to start
-
-            st.info("Starting UCN/RR...")
-            _handle_start_request(
-                SERVICE_UCNRR,
-                "UCN/RR",
-                _ucnrr_command(env, ucnrr_port),
-                ucnrr_workdir_path,
-                _ucnrr_env(env),
-                ucnrr_port,
-                (8011, 8025),
-            )
-            time.sleep(2)
-
-            st.info("Starting React...")
-            _handle_start_request(
-                SERVICE_REACT,
-                "React (Next.js)",
-                _react_command(react_npm_cmd),
-                react_workdir_path,
-                _react_env(env),
-                react_port,
-                REACT_PORT_RANGE,
-            )
-
-            st.success("✅ All services reset and restarted!")
-            time.sleep(1)
+            with st.spinner("Stopping all managed services…"):
+                summary = _stop_all_services(request_rerun=False)
+            if summary:
+                _set_action_result(summary)
+            st.success("All services stopped and ports cleared.")
+            _refresh_health()
             safe_rerun()
+    with col_restart:
+        if st.button(
+            "Restart All",
+            help="Stop everything, then relaunch the stack with AI env and open the AI Readiness tab",
+            disabled=launch_disabled,
+        ):
+            sidebar_status = st.sidebar.empty()
+            sidebar_lines: List[str] = []
+
+            def _sidebar_log(message: str) -> None:
+                sidebar_lines.append(f"- {message}")
+                sidebar_status.markdown("\n".join(sidebar_lines))
+
+            with st.spinner("Restarting stack…"):
+                _sidebar_log("⏹️ Stopping existing services…")
+                _stop_all_services(request_rerun=False)
+                _sidebar_log("✅ Previous services stopped.")
+                _launch_stack(
+                    env,
+                    core_port,
+                    react_port,
+                    ucnrr_port,
+                    core_workdir_path,
+                    react_workdir_path,
+                    ucnrr_workdir_path,
+                    core_command_list,
+                    react_npm_cmd,
+                    open_ui=True,
+                    sidebar_logger=_sidebar_log,
+                )
 
     st.markdown("---")
     st.subheader("Service Controls")
@@ -2741,7 +3701,7 @@ def _render_launch_tab() -> None:
         ucnrr_workdir_path,
         _ucnrr_env(env),
         ucnrr_port,
-        (8011, 8025),
+        UCNRR_PORT_RANGE,
     )
     _render_service_row(
         SERVICE_CORE,
@@ -2801,10 +3761,16 @@ def _validate_provider() -> Dict[str, Any]:
             return {"status": "FAIL", "message": str(exc)}
 
     if provider == "ollama":
-        base = (env.get("OLLAMA_BASE") or "http://127.0.0.1:11434").strip().rstrip("/")
-        model = (env.get("OLLAMA_MODEL") or "llama3.1:8b").strip()
+        base = (
+            env.get("OLLAMA_BASE_URL")
+            or env.get("OLLAMA_BASE")
+            or env.get("LLM_BASE_URL")
+            or "http://127.0.0.1:11434"
+        )
+        base = str(base).strip().rstrip("/")
+        model = (env.get("OLLAMA_MODEL") or env.get("LLM_MODEL") or "phi3:mini").strip()
         if not base:
-            return {"status": "FAIL", "message": "OLLAMA_BASE is missing."}
+            return {"status": "FAIL", "message": "OLLAMA_BASE_URL is missing."}
 
         # Check if Ollama is reachable
         try:
@@ -2872,321 +3838,644 @@ def _run_provider_check_cli() -> int:
     return 0 if status == "PASS" else 1
 
 
-def _render_env_tab() -> None:
-    env = _env()
-    detected_ports = st.session_state.get(SESSION_DETECTED_PORTS_KEY, {})
-    react_detected = detected_ports.get(SERVICE_REACT)
-    core_detected = detected_ports.get(SERVICE_CORE)
-    ucnrr_detected = detected_ports.get(SERVICE_UCNRR)
-    raw_frontend_flags = str(env.get("NEXT_PUBLIC_FLAGS", "") or "")
-    frontend_flag_values, frontend_passthrough = _parse_frontend_flag_string(raw_frontend_flags)
-    st.subheader("Environment & Flags")
-    if _is_env_dirty():
-        st.warning("Environment changes pending Save.")
-    with st.form("env-form"):
-        st.markdown("### Core (uvicorn)")
-        core_workdir_input = st.text_input(
-            "Core working dir",
-            value=str(env.get("core_workdir") or ROOT),
-            help="Directory where the Core process should start.",
-        )
-        core_start_command_input = st.text_input(
-            "Core start command",
-            value=str(
-                env.get("core_start_command")
-                or envstore.DEFAULT_ENV.get("core_start_command", "uvicorn ReDNACoreDemo.core.api:build_app --factory --port 8015")
-            ),
-            help="Full command executed for Core (uvicorn).",
-        )
-        st.caption("Ensure the command's --port matches the Core port configured below.")
-        saved_core_port = int(env.get("core_port", 8015))
-        core_port = st.number_input("Core port", value=saved_core_port, min_value=1000, max_value=65000)
-        if isinstance(core_detected, int) and core_detected != saved_core_port:
-            st.caption(f"Detected Core listener on port {core_detected} during health scan.")
+def _render_policy_tab() -> None:
+    st.subheader("Policy Learner & Thresholds")
+    core_base = _core_base_url()
+    try:
+        policies_payload = _core_get_policies()
+    except requests.ConnectionError:
+        st.info(f"Core not reachable at {core_base}. Start Core to manage policies.")
+        return
+    except requests.Timeout:
+        st.warning(f"Core request timed out at {core_base}.")
+        return
+    except Exception as exc:
+        st.error(f"Unable to load policies: {_format_request_error(exc)}")
+        return
 
-        st.markdown("### React (Next.js)")
-        saved_react_port = int(env.get("react_port", REACT_DEFAULT_PORT))
-        react_port = st.number_input("React (Next.js) port", value=saved_react_port, min_value=1000, max_value=65000)
-        if isinstance(react_detected, int) and react_detected != saved_react_port:
-            st.caption(
-                f"Detected React on port {react_detected}; your saved config is {saved_react_port}."
-            )
-        streamlit_port = st.number_input(
-            "Streamlit port",
-            value=int(env.get("streamlit_port", STREAMLIT_DEFAULT_PORT)),
-            min_value=1000,
-            max_value=65000,
-        )
-        streamlit_photo_port = st.number_input(
-            "Streamlit (Photo coach) port",
-            value=int(env.get("streamlit_photo_port", STREAMLIT_DEFAULT_PORT)),
-            min_value=1000,
-            max_value=65000,
-        )
-        streamlit_padna_port = st.number_input(
-            "Streamlit (PaDNA coach) port",
-            value=int(env.get("streamlit_padna_port", STREAMLIT_DEFAULT_PORT + 1)),
-            min_value=1000,
-            max_value=65000,
-        )
-        st.markdown("### UCN/RR")
-        ucnrr_workdir_input = st.text_input(
-            "UCN/RR working dir",
-            value=str(env.get("ucnrr_workdir") or ROOT),
-            help="Directory where the UCN/RR process should start (usually repo root).",
-        )
-        ucnrr_start_command_input = st.text_input(
-            "UCN/RR start command",
-            value=str(
-                env.get("ucnrr_start_command")
-                or envstore.DEFAULT_ENV.get("ucnrr_start_command", f"{ROOT / '.venv' / 'bin' / 'python'} -m uvicorn ucnrr_app:app --host 0.0.0.0 --port {{port}} --reload")
-            ),
-            help="Full command executed for UCN/RR (use {port} placeholder).",
-        )
-        st.caption("Ensure the command's --port uses {port} placeholder to match configured port.")
-        ucnrr_port = st.number_input(
-            "UCN/RR port",
-            value=int(env.get("ucnrr_port", 8011)),
-            min_value=1000,
-            max_value=65000,
-        )
-        ucnrr_port_value = int(ucnrr_port)
-        if isinstance(ucnrr_detected, int) and ucnrr_detected != ucnrr_port_value:
-            st.caption(
-                f"Detected UCN/RR listener on port {ucnrr_detected}; your saved config is {ucnrr_port_value}."
-            )
+    try:
+        learned_payload = _core_get_learned_policies()
+    except Exception as exc:
+        learned_payload = {}
+        st.warning(f"Unable to load learned thresholds: {_format_request_error(exc)}")
 
-        st.markdown("### React (Next.js)")
-        react_workdir_input = st.text_input(
-            "React working dir",
-            value=str(env.get("react_workdir") or (ROOT / "web")),
-            help="Directory for Next.js dev server (usually repo/web).",
-        )
-        react_npm_path_input = st.text_input(
-            "React npm path (optional)",
-            value=str(env.get("react_npm_path") or ""),
-            help="Provide an absolute npm path if not on PATH.",
-        )
+    try:
+        promotion_state = _core_get_promotion_state()
+    except Exception as exc:
+        promotion_state = {}
+        st.warning(f"Unable to load enabled policy map: {_format_request_error(exc)}")
 
-        default_workspace_root = str(env.get("WORKSPACE_ROOT") or envstore.DEFAULT_ENV.get("WORKSPACE_ROOT") or ROOT)
-        workspace_root_input = st.text_input("WORKSPACE_ROOT", value=default_workspace_root)
-        workspace_label_input = st.text_input(
-            "Workspace label",
-            value=str(env.get("WORKSPACE_LABEL") or envstore.DEFAULT_ENV.get("WORKSPACE_LABEL") or "Workspace"),
+    policies_map: Dict[str, Dict[str, Any]] = {}
+    if isinstance(policies_payload, dict):
+        policies_map = policies_payload.get("policies") or {}
+        if not isinstance(policies_map, dict):
+            policies_map = {}
+
+    learned_map: Dict[str, Any] = {}
+    if isinstance(learned_payload, dict):
+        learned_map = learned_payload.get("learned_thresholds") or {}
+        if not isinstance(learned_map, dict):
+            learned_map = {}
+
+    learner_enabled = bool(policies_payload.get("learner_enabled")) if isinstance(policies_payload, dict) else False
+    learner_window_raw = policies_payload.get("window") if isinstance(policies_payload, dict) else None
+    try:
+        learner_window_default = int(learner_window_raw) if learner_window_raw is not None else 25
+    except (TypeError, ValueError):
+        learner_window_default = 25
+
+    learner_cols = st.columns([1.2, 1.2, 0.8])
+    with learner_cols[0]:
+        learner_enabled_state = st.checkbox(
+            "Learner enabled",
+            value=learner_enabled,
+            key="policy_learner_enabled_toggle",
         )
-
-        hc_chat = st.toggle("HC_CHAT_ENABLED", value=bool(env.get("HC_CHAT_ENABLED", True)))
-        hc_stream = st.toggle("HC_CHAT_STREAM_ENABLED", value=bool(env.get("HC_CHAT_STREAM_ENABLED", True)))
-        ask_actions = st.toggle("HC_ASK_ACTIONS_ENABLED", value=bool(env.get("HC_ASK_ACTIONS_ENABLED", True)))
-        curiosity_enabled = st.toggle("Enable Curiosity System", value=bool(env.get("CORE_CURIOSITY_ENABLED", True)))
-
-        next_public = st.text_input(
-            "NEXT_PUBLIC_CORE_API_BASE",
-            value=str(env.get("NEXT_PUBLIC_CORE_API_BASE", f"http://127.0.0.1:{core_port}")),
+    with learner_cols[1]:
+        learner_window_state = st.number_input(
+            "Window",
+            value=int(max(1, learner_window_default)),
+            min_value=1,
+            max_value=1000,
+            step=1,
+            key="policy_learner_window_input",
         )
-        if isinstance(core_detected, int):
-            detected_base = f"http://127.0.0.1:{core_detected}"
-            if next_public.strip() != detected_base:
-                st.caption(
-                    f"Core health detected at {detected_base}; update this value if you want React to target it."
-                )
-            else:
-                st.caption("NEXT_PUBLIC_CORE_API_BASE matches the detected Core listener.")
+    with learner_cols[2]:
+        if st.button("Save", key="policy_learner_save"):
+            try:
+                _core_set_learner(bool(learner_enabled_state), int(learner_window_state))
+                st.success("Updated learner configuration.")
+                safe_rerun()
+            except Exception as exc:
+                st.error(f"Failed to update learner: {_format_request_error(exc)}")
 
-        provider_options = ["ollama", "openai", "anthropic", "stub"]
-        current_provider = str(env.get("HC_CHAT_PROVIDER", "ollama") or "ollama")
-        provider_index = provider_options.index(current_provider) if current_provider in provider_options else 0
-        chat_provider = st.selectbox("HC_CHAT_PROVIDER", options=provider_options, index=provider_index)
+    st.markdown("### Learned Thresholds")
+    filter_value = st.text_input(
+        "Filter traits",
+        value="",
+        key="policy_filter_input",
+        placeholder="Type to filter trait id…",
+    ).strip().lower()
 
-        st.markdown("#### Ollama (local LLM)")
-        ollama_base_input = st.text_input(
-            "OLLAMA_BASE",
-            value=str(env.get("OLLAMA_BASE") or "http://127.0.0.1:11434"),
-        )
-        ollama_model_input = st.text_input(
-            "OLLAMA_MODEL",
-            value=str(env.get("OLLAMA_MODEL") or "llama3.1:8b"),
+    def _as_float(value: Any) -> Optional[float]:
+        try:
+            if value is None:
+                return None
+            return float(value)
+        except (TypeError, ValueError):
+            return None
+
+    def _format_rr(value: Optional[float]) -> str:
+        if value is None:
+            return "—"
+        if abs(value) >= 100:
+            return f"{value:.0f}"
+        return f"{value:.1f}"
+
+    def _format_int(value: Any) -> str:
+        if value in (None, "", 0):
+            return "—"
+        try:
+            return f"{int(value)}"
+        except (TypeError, ValueError):
+            return "—"
+
+    def _render_numeric(column: "st.delta_generator.DeltaGenerator", label: str) -> None:
+        column.markdown(
+            f"<div style='text-align:right; font-family:var(--font-mono, monospace);'>{label}</div>",
+            unsafe_allow_html=True,
         )
 
-        st.markdown("#### OpenAI (paid)")
-        openai_key_input = st.text_input(
-            "OPENAI_API_KEY",
-            value=str(env.get("OPENAI_API_KEY") or ""),
-            type="password",
-        )
-        openai_model_input = st.text_input(
-            "OPENAI_MODEL",
-            value=str(env.get("OPENAI_MODEL") or "gpt-4o-mini"),
-        )
-
-        st.markdown("#### Anthropic (paid, stub only)")
-        anthropic_key_input = st.text_input(
-            "ANTHROPIC_API_KEY",
-            value=str(env.get("ANTHROPIC_API_KEY") or ""),
-            type="password",
-        )
-        anthropic_model_input = st.text_input(
-            "ANTHROPIC_MODEL",
-            value=str(env.get("ANTHROPIC_MODEL") or "claude-3-5-sonnet-latest"),
-        )
-
-        current_ucnrr = env.get("UCNRR_BASE_URL")
-        default_ucnrr = current_ucnrr if isinstance(current_ucnrr, str) and current_ucnrr else "http://127.0.0.1:8011"
-        ucnrr_base_input = st.text_input("UCNRR_BASE_URL", value=default_ucnrr)
-
-        auto_open_react = st.toggle(
-            "Auto-open React after Launch All",
-            value=bool(env.get("AUTO_OPEN_REACT_AFTER_LAUNCH", False)),
-        )
-        auto_open_streamlit = st.toggle(
-            "Auto-open Streamlit after Launch All",
-            value=bool(env.get("AUTO_OPEN_STREAMLIT_AFTER_LAUNCH", False)),
-        )
-        # Removed: Auto-open Dev Explorer (retired - use DevX instead)
-        append_debug = st.toggle(
-            "Append ?ui_debug=1 when opening UIs",
-            value=bool(env.get("APPEND_UI_DEBUG_PARAM", False)),
-        )
-        # Removed: Dev Explorer port input (retired - DevX uses port 3100)
-
-        st.markdown("#### Frontend feature flags")
-        st.caption("Controls experimental UI behavior in the React app.")
-        avatar_flag_checkbox = st.checkbox(
-            "Animated coach avatar",
-            value=frontend_flag_values.get("avatar", False),
-            key="env-flag-avatar",
-        )
-        avatar_debug_checkbox = st.checkbox(
-            "Avatar debug labels",
-            value=frontend_flag_values.get("avatarDebug", False),
-            key="env-flag-avatar-debug",
-        )
-
-        submitted = st.form_submit_button("Save")
-        if submitted:
-            dev_port_value = None
-            dev_port_raw = dev_port_input.strip()
-            if dev_port_raw:
-                try:
-                    dev_port_value = int(dev_port_raw)
-                except ValueError:
-                    st.error("Dev Explorer port must be an integer.")
-                    return
-            openai_key_value = openai_key_input.strip() or None
-            openai_model_value = openai_model_input.strip() or None
-            ollama_base_value = ollama_base_input.strip() or None
-            ollama_model_value = ollama_model_input.strip() or None
-            anthropic_key_value = anthropic_key_input.strip() or None
-            anthropic_model_value = anthropic_model_input.strip() or None
-            ucnrr_base_value = ucnrr_base_input.strip() or None
-            core_workdir_value = core_workdir_input.strip() or str(ROOT)
-            core_start_command_value = core_start_command_input.strip()
-            ucnrr_workdir_value = ucnrr_workdir_input.strip() or str(ROOT)
-            ucnrr_start_command_value = ucnrr_start_command_input.strip()
-            react_workdir_value = react_workdir_input.strip() or str(ROOT / "web")
-            react_npm_value = react_npm_path_input.strip()
-            env.update(
-                {
-                    "core_port": int(core_port),
-                    "react_port": int(react_port),
-                    "streamlit_port": int(streamlit_port),
-                    "streamlit_photo_port": int(streamlit_photo_port),
-                    "streamlit_padna_port": int(streamlit_padna_port),
-                    "ucnrr_port": ucnrr_port_value,
-                    "core_workdir": core_workdir_value,
-                    "core_start_command": core_start_command_value,
-                    "ucnrr_workdir": ucnrr_workdir_value,
-                    "ucnrr_start_command": ucnrr_start_command_value,
-                    "react_workdir": react_workdir_value,
-                    "react_npm_path": react_npm_value,
-                    "HC_CHAT_ENABLED": bool(hc_chat),
-                    "HC_CHAT_STREAM_ENABLED": bool(hc_stream),
-                    "HC_ASK_ACTIONS_ENABLED": bool(ask_actions),
-                    "CORE_CURIOSITY_ENABLED": bool(curiosity_enabled),
-                    "NEXT_PUBLIC_CORE_API_BASE": next_public.strip() or f"http://127.0.0.1:{int(core_port)}",
-                    "HC_CHAT_PROVIDER": chat_provider,
-                    "OPENAI_API_KEY": openai_key_value,
-                    "OPENAI_MODEL": openai_model_value,
-                    "OLLAMA_BASE": ollama_base_value,
-                    "OLLAMA_MODEL": ollama_model_value,
-                    "ANTHROPIC_API_KEY": anthropic_key_value,
-                    "ANTHROPIC_MODEL": anthropic_model_value,
-                    "UCNRR_BASE_URL": ucnrr_base_value,
-                    "AUTO_OPEN_REACT_AFTER_LAUNCH": bool(auto_open_react),
-                    "AUTO_OPEN_STREAMLIT_AFTER_LAUNCH": bool(auto_open_streamlit),
-                    # Removed: AUTO_OPEN_DEVEXPLORER (retired)
-                    "APPEND_UI_DEBUG_PARAM": bool(append_debug),
-                    # Removed: dev_explorer_port (retired - DevX uses 3100)
-                    "WORKSPACE_ROOT": workspace_root_input.strip() or default_workspace_root,
-                    "WORKSPACE_LABEL": workspace_label_input.strip() or envstore.DEFAULT_ENV.get("WORKSPACE_LABEL", "Workspace"),
-                    "NEXT_PUBLIC_FLAGS": _serialize_frontend_flags(
-                        {
-                            **frontend_flag_values,
-                            "avatar": bool(avatar_flag_checkbox),
-                            "avatarDebug": bool(avatar_debug_checkbox),
-                        },
-                        frontend_passthrough,
-                    ),
-                }
-            )
-            _save_env()
-            st.success("Environment saved.")
-
-    validation_cols = st.columns([1, 3])
-    with validation_cols[0]:
-        if st.button("Validate provider", key="validate-provider"):
-            with st.spinner("Checking provider configuration…"):
-                result = _validate_provider()
-            _set_provider_validation(result)
-    with validation_cols[1]:
-        validation = _get_provider_validation()
-        if validation:
-            status = validation.get("status")
-            message = validation.get("message", "")
-            detail = validation.get("detail")
-            if status == "PASS":
-                st.success(message)
-            elif status == "MODEL_MISSING":
-                st.warning(message)
-                model = validation.get("model")
-                if model and st.button(f"Pull Model: {model}", key="pull-ollama-model"):
-                    with st.spinner(f"Pulling {model}... This may take several minutes."):
-                        try:
-                            result = subprocess.run(
-                                ["ollama", "pull", model],
-                                capture_output=True,
-                                text=True,
-                                timeout=600,
-                            )
-                            if result.returncode == 0:
-                                st.success(f"Successfully pulled {model}")
-                                # Re-validate
-                                new_result = _validate_provider()
-                                _set_provider_validation(new_result)
-                                safe_rerun()
-                            else:
-                                st.error(f"Failed to pull model: {result.stderr}")
-                        except subprocess.TimeoutExpired:
-                            st.error("Model pull timed out after 10 minutes.")
-                        except FileNotFoundError:
-                            st.error("'ollama' command not found. Install: brew install ollama")
-                        except Exception as exc:
-                            st.error(f"Error: {exc}")
-                if detail:
-                    st.caption(detail)
-            elif status == "WARN":
-                st.warning(message)
-                if detail:
-                    st.caption(detail)
-            else:
-                st.error(message)
-                if detail:
-                    st.caption(detail)
+    learned_rows: List[Dict[str, Any]] = []
+    for trait_id, entry in policies_map.items():
+        if not isinstance(entry, dict):
+            continue
+        base_rr = _as_float(entry.get("base_rr"))
+        learned_rr = _as_float(entry.get("learned_rr"))
+        fallback = learned_map.get(trait_id) if isinstance(learned_map, dict) else {}
+        if not isinstance(fallback, dict):
+            fallback = {}
+        samples = entry.get("sample_size") if entry.get("sample_size") not in (None, "") else fallback.get("sample_size")
+        last_update = entry.get("last_update") or fallback.get("last_update")
+        if learned_rr is not None and base_rr is not None:
+            effective_rr = max(base_rr, learned_rr)
+        elif learned_rr is not None:
+            effective_rr = learned_rr
         else:
-            st.caption("Validate provider credentials to ensure streaming works before demos.")
+            effective_rr = base_rr
+        learned_rows.append(
+            {
+                "trait": trait_id,
+                "base": base_rr,
+                "learned": learned_rr,
+                "effective": effective_rr,
+                "samples": samples,
+                "last_update": last_update,
+            }
+        )
 
-    st.caption("Settings are stored in .cpplusplus_env.json at the repository root.")
+    if filter_value:
+        learned_rows = [row for row in learned_rows if filter_value in row["trait"].lower()]
 
+    learned_rows.sort(
+        key=lambda row: (
+            row["effective"] is not None,
+            row["effective"] if row["effective"] is not None else -1,
+        ),
+        reverse=True,
+    )
+
+    header_cols = st.columns([3.2, 1.2, 1.2, 1.2, 0.9, 1.6, 2.5])
+    header_cols[0].markdown("**Trait**")
+    header_cols[1].markdown("**Base RR**")
+    header_cols[2].markdown("**Learned RR**")
+    header_cols[3].markdown("**Effective RR**")
+    header_cols[4].markdown("**Samples**")
+    header_cols[5].markdown("**Last Update**")
+    header_cols[6].markdown("**Actions**")
+
+    for row in learned_rows:
+        trait_id = row["trait"]
+        base_rr = row["base"]
+        learned_rr = row["learned"]
+        effective_rr = row["effective"]
+        samples = row["samples"]
+        last_update = row["last_update"] or "—"
+        badge = "🟠" if learned_rr is not None else "🟢"
+        key_safe = trait_id.replace(".", "_").replace("/", "_").replace(" ", "_")
+
+        body_cols = st.columns([3.2, 1.2, 1.2, 1.2, 0.9, 1.6, 2.5])
+        body_cols[0].markdown(f"{badge} `{trait_id}`")
+        _render_numeric(body_cols[1], _format_rr(base_rr))
+        _render_numeric(body_cols[2], _format_rr(learned_rr))
+        _render_numeric(body_cols[3], _format_rr(effective_rr))
+        _render_numeric(body_cols[4], _format_int(samples))
+        body_cols[5].markdown(f"<div style='font-family:var(--font-mono, monospace); font-size:0.85rem;'>{last_update}</div>", unsafe_allow_html=True)
+
+        action_input_col, action_save_col, action_clear_col = body_cols[6].columns([1.4, 0.8, 0.8])
+        default_value = learned_rr if learned_rr is not None else (base_rr if base_rr is not None else 0.0)
+        new_value = action_input_col.number_input(
+            "Learned RR",
+            value=float(default_value if default_value is not None else 0.0),
+            min_value=0.0,
+            max_value=1000.0,
+            step=1.0,
+            key=f"policy_input_{key_safe}",
+            label_visibility="collapsed",
+        )
+        if action_save_col.button("Save", key=f"policy_save_{key_safe}"):
+            try:
+                _core_set_learned_rr(trait_id, float(new_value))
+                st.success(f"Updated learned RR for {trait_id} → {new_value:.1f}")
+                safe_rerun()
+            except Exception as exc:
+                st.error(f"Failed to update {trait_id}: {_format_request_error(exc)}")
+        if action_clear_col.button("Clear", key=f"policy_clear_{key_safe}"):
+            try:
+                _core_clear_learned_rr(trait_id)
+                st.success(f"Cleared learned RR for {trait_id}")
+                safe_rerun()
+            except Exception as exc:
+                st.error(f"Failed to clear {trait_id}: {_format_request_error(exc)}")
+
+    st.markdown("### Diagnostics")
+    diag_cols = st.columns(2)
+    enabled_payload = promotion_state if isinstance(promotion_state, dict) else {}
+    policy_payload_json = json.dumps(policies_payload, indent=2, sort_keys=True) if isinstance(policies_payload, dict) else "{}"
+    enabled_payload_json = json.dumps(enabled_payload, indent=2, sort_keys=True)
+
+    with diag_cols[0]:
+        st.markdown("#### Enabled Policies")
+        st.code(enabled_payload_json, language="json")
+        st.download_button(
+            "Copy JSON",
+            data=enabled_payload_json,
+            file_name="enabled_policies.json",
+            mime="application/json",
+            key="download_enabled_policies",
+        )
+
+    with diag_cols[1]:
+        st.markdown("#### Policy Map")
+        st.code(policy_payload_json, language="json")
+        st.download_button(
+            "Copy JSON",
+            data=policy_payload_json,
+            file_name="policy_map.json",
+            mime="application/json",
+            key="download_policy_map",
+        )
+
+
+def _render_env_tab() -> None:
+    config_tab, policy_tab = st.tabs(["Configuration", "Policy"])
+    with config_tab:
+        env = _env()
+        detected_ports = st.session_state.get(SESSION_DETECTED_PORTS_KEY, {})
+        react_detected = detected_ports.get(SERVICE_REACT)
+        core_detected = detected_ports.get(SERVICE_CORE)
+        ucnrr_detected = detected_ports.get(SERVICE_UCNRR)
+        raw_frontend_flags = str(env.get("NEXT_PUBLIC_FLAGS", "") or "")
+        frontend_flag_values, frontend_passthrough = _parse_frontend_flag_string(raw_frontend_flags)
+        st.subheader("Environment & Flags")
+        if _is_env_dirty():
+            st.warning("Environment changes pending Save.")
+        submitted = False
+        with st.form("env-form"):
+            st.markdown("### Core (uvicorn)")
+            core_workdir_input = st.text_input(
+                "Core working dir",
+                value=str(env.get("core_workdir") or ROOT),
+                help="Directory where the Core process should start.",
+            )
+            core_start_command_input = st.text_input(
+                "Core start command",
+                value=str(
+                    env.get("core_start_command")
+                    or envstore.DEFAULT_ENV.get("core_start_command", "uvicorn ReDNACoreDemo.core.api:build_app --factory --port 8015")
+                ),
+                help="Full command executed for Core (uvicorn).",
+            )
+            st.caption("Ensure the command's --port matches the Core port configured below.")
+            saved_core_port = int(env.get("core_port", 8015))
+            core_port = st.number_input("Core port", value=saved_core_port, min_value=1000, max_value=65000)
+            if isinstance(core_detected, int) and core_detected != saved_core_port:
+                st.caption(f"Detected Core listener on port {core_detected} during health scan.")
+
+            st.markdown("### React (Next.js)")
+            saved_react_port = int(env.get("react_port", REACT_DEFAULT_PORT))
+            react_port = st.number_input("React (Next.js) port", value=saved_react_port, min_value=1000, max_value=65000)
+            if isinstance(react_detected, int) and react_detected != saved_react_port:
+                st.caption(f"Detected React on port {react_detected}; your saved config is {saved_react_port}.")
+            devx_backend_port_input = st.number_input(
+                "DevX backend port",
+                value=int(env.get("DEVX_BACKEND_PORT", DEVX_BACKEND_DEFAULT_PORT)),
+                min_value=1000,
+                max_value=65000,
+            )
+            streamlit_port = st.number_input(
+                "Streamlit port",
+                value=int(env.get("streamlit_port", STREAMLIT_DEFAULT_PORT)),
+                min_value=1000,
+                max_value=65000,
+            )
+            streamlit_photo_port = st.number_input(
+                "Streamlit (Photo coach) port",
+                value=int(env.get("streamlit_photo_port", STREAMLIT_DEFAULT_PORT)),
+                min_value=1000,
+                max_value=65000,
+            )
+            streamlit_padna_port = st.number_input(
+                "Streamlit (PaDNA coach) port",
+                value=int(env.get("streamlit_padna_port", STREAMLIT_DEFAULT_PORT + 1)),
+                min_value=1000,
+                max_value=65000,
+            )
+
+            st.markdown("### UCN/RR")
+            ucnrr_workdir_input = st.text_input(
+                "UCN/RR working dir",
+                value=str(env.get("ucnrr_workdir") or ROOT),
+                help="Directory where the UCN/RR process should start (usually repo root).",
+            )
+            ucnrr_start_command_input = st.text_input(
+                "UCN/RR start command",
+                value=str(
+                    env.get("ucnrr_start_command")
+                    or envstore.DEFAULT_ENV.get(
+                        "ucnrr_start_command",
+                        f"{ROOT / '.venv' / 'bin' / 'python'} -m uvicorn ucnrr_app:app --host 0.0.0.0 --port {{port}} --reload",
+                    )
+                ),
+                help="Full command executed for UCN/RR (use {port} placeholder).",
+            )
+            st.caption("Ensure the command's --port uses {port} placeholder to match configured port.")
+            ucnrr_port = st.number_input(
+                "UCN/RR port",
+                value=int(env.get("ucnrr_port", UCNRR_DEFAULT_PORT)),
+                min_value=1000,
+                max_value=65000,
+            )
+            ucnrr_port_value = int(ucnrr_port)
+            if isinstance(ucnrr_detected, int) and ucnrr_detected != ucnrr_port_value:
+                st.caption(f"Detected UCN/RR listener on port {ucnrr_detected}; your saved config is {ucnrr_port_value}.")
+
+            st.markdown("### React (Next.js)")
+            react_workdir_input = st.text_input(
+                "React working dir",
+                value=str(env.get("react_workdir") or (ROOT / "web")),
+                help="Directory for Next.js dev server (usually repo/web).",
+            )
+            react_npm_path_input = st.text_input(
+                "React npm path (optional)",
+                value=str(env.get("react_npm_path") or ""),
+                help="Provide an absolute npm path if not on PATH.",
+            )
+
+            default_workspace_root = str(env.get("WORKSPACE_ROOT") or envstore.DEFAULT_ENV.get("WORKSPACE_ROOT") or ROOT)
+            workspace_root_input = st.text_input("WORKSPACE_ROOT", value=default_workspace_root)
+            workspace_label_input = st.text_input(
+                "Workspace label",
+                value=str(env.get("WORKSPACE_LABEL") or envstore.DEFAULT_ENV.get("WORKSPACE_LABEL") or "Workspace"),
+            )
+
+            hc_chat = st.toggle("HC_CHAT_ENABLED", value=bool(env.get("HC_CHAT_ENABLED", True)))
+            hc_stream = st.toggle("HC_CHAT_STREAM_ENABLED", value=bool(env.get("HC_CHAT_STREAM_ENABLED", True)))
+            ask_actions = st.toggle("HC_ASK_ACTIONS_ENABLED", value=bool(env.get("HC_ASK_ACTIONS_ENABLED", True)))
+            curiosity_enabled = st.toggle("Enable Curiosity System", value=bool(env.get("CORE_CURIOSITY_ENABLED", True)))
+
+            next_public = st.text_input(
+                "NEXT_PUBLIC_CORE_API_BASE",
+                value=str(env.get("NEXT_PUBLIC_CORE_API_BASE", f"http://127.0.0.1:{core_port}")),
+            )
+            if isinstance(core_detected, int):
+                detected_base = f"http://127.0.0.1:{core_detected}"
+                if next_public.strip() != detected_base:
+                    st.caption(f"Core health detected at {detected_base}; update this value if you want React to target it.")
+                else:
+                    st.caption("NEXT_PUBLIC_CORE_API_BASE matches the detected Core listener.")
+
+            provider_options = ["ollama", "openai", "anthropic", "stub"]
+            current_provider = str(env.get("HC_CHAT_PROVIDER", "ollama") or "ollama")
+            provider_index = provider_options.index(current_provider) if current_provider in provider_options else 0
+            chat_provider = st.selectbox("HC_CHAT_PROVIDER", options=provider_options, index=provider_index)
+
+            st.markdown("### AI Environment")
+            default_llm_start = str(
+                env.get("llm_start_command")
+                or (
+                    f"bash {(ROOT / 'start_llm.sh').resolve()}"
+                    if (ROOT / "start_llm.sh").exists()
+                    else ""
+                )
+            )
+            llm_start_command_input = st.text_input(
+                "llm_start_command",
+                value=default_llm_start,
+                help="Optional command executed before launching UCN/RR to ensure the local LLM runtime is running (e.g., bash start_llm.sh).",
+            )
+            llm_provider_input = st.text_input(
+                "LLM_PROVIDER",
+                value=str(env.get("LLM_PROVIDER") or "ollama"),
+                help="Primary LLM provider for Core and UCNRR services.",
+            )
+            llm_model_input = st.text_input(
+                "LLM_MODEL",
+                value=str(env.get("LLM_MODEL") or env.get("OLLAMA_MODEL") or "phi3:mini"),
+                help="Model identifier applied to Core, UCNRR, and DevX probes.",
+            )
+            ollama_base_input = st.text_input(
+                "OLLAMA_BASE_URL",
+                value=str(env.get("OLLAMA_BASE_URL") or env.get("OLLAMA_BASE") or "http://127.0.0.1:11434"),
+                help="Base URL for the local Ollama runtime.",
+            )
+            ollama_model_input = st.text_input(
+                "OLLAMA_MODEL",
+                value=str(env.get("OLLAMA_MODEL") or env.get("LLM_MODEL") or "phi3:mini"),
+                help="Optional override for Ollama-specific model selection.",
+            )
+
+            st.markdown("### OpenAI (paid)")
+            openai_key_input = st.text_input(
+                "OPENAI_API_KEY",
+                value=str(env.get("OPENAI_API_KEY") or ""),
+                type="password",
+            )
+            openai_model_input = st.text_input(
+                "OPENAI_MODEL",
+                value=str(env.get("OPENAI_MODEL") or "gpt-4o-mini"),
+            )
+
+            st.markdown("#### Anthropic (paid, stub only)")
+            anthropic_key_input = st.text_input(
+                "ANTHROPIC_API_KEY",
+                value=str(env.get("ANTHROPIC_API_KEY") or ""),
+                type="password",
+            )
+            anthropic_model_input = st.text_input(
+                "ANTHROPIC_MODEL",
+                value=str(env.get("ANTHROPIC_MODEL") or "claude-3-5-sonnet-latest"),
+            )
+
+            current_ucnrr = env.get("UCNRR_BASE_URL") or env.get("UCNRR_BASE")
+            default_ucnrr = current_ucnrr if isinstance(current_ucnrr, str) and current_ucnrr else f"http://127.0.0.1:{UCNRR_DEFAULT_PORT}"
+            ucnrr_base_input = st.text_input("UCNRR_BASE_URL", value=default_ucnrr)
+            ucnrr_score_path_input = st.text_input(
+                "UCNRR_SCORE_PATH",
+                value=str(env.get("UCNRR_SCORE_PATH") or "/api/rescore"),
+            )
+
+            auto_open_react = st.toggle(
+                "Auto-open React after Launch All",
+                value=bool(env.get("AUTO_OPEN_REACT_AFTER_LAUNCH", False)),
+            )
+            auto_open_benchmarks = st.toggle(
+                "Open Benchmarks tab after start",
+                value=bool(env.get("AUTO_OPEN_BENCHMARKS_AFTER_LAUNCH", False)),
+            )
+            auto_open_streamlit = st.toggle(
+                "Auto-open Streamlit after Launch All",
+                value=bool(env.get("AUTO_OPEN_STREAMLIT_AFTER_LAUNCH", False)),
+            )
+            append_debug = st.toggle(
+                "Append ?ui_debug=1 when opening UIs",
+                value=bool(env.get("APPEND_UI_DEBUG_PARAM", False)),
+            )
+
+            st.markdown("#### Frontend feature flags")
+            st.caption("Controls experimental UI behavior in the React app.")
+            avatar_flag_checkbox = st.checkbox(
+                "Animated coach avatar",
+                value=frontend_flag_values.get("avatar", False),
+                key="env-flag-avatar",
+            )
+            avatar_debug_checkbox = st.checkbox(
+                "Avatar debug labels",
+                value=frontend_flag_values.get("avatarDebug", False),
+                key="env-flag-avatar-debug",
+            )
+
+            submitted = st.form_submit_button("Save")
+    if submitted:
+        openai_key_value = openai_key_input.strip() or None
+        openai_model_value = openai_model_input.strip() or None
+        llm_provider_value = (llm_provider_input or "ollama").strip() or "ollama"
+        llm_model_value = (llm_model_input or "phi3:mini").strip() or "phi3:mini"
+        ollama_base_value = (ollama_base_input or "http://127.0.0.1:11434").strip().rstrip("/") or "http://127.0.0.1:11434"
+        ollama_model_value = (ollama_model_input or llm_model_value).strip() or llm_model_value
+        llm_start_command_value = llm_start_command_input.strip()
+        anthropic_key_value = anthropic_key_input.strip() or None
+        anthropic_model_value = anthropic_model_input.strip() or None
+        ucnrr_base_value = (ucnrr_base_input or f"http://127.0.0.1:{UCNRR_DEFAULT_PORT}").strip()
+        ucnrr_score_path_value = (ucnrr_score_path_input or "/api/rescore").strip() or "/api/rescore"
+        devx_base_value = f"http://127.0.0.1:{int(devx_backend_port_input)}"
+        cors_origins_value = str(env.get("CORS_ALLOWED_ORIGINS") or "http://127.0.0.1:3000").strip() or "http://127.0.0.1:3000"
+        core_workdir_value = core_workdir_input.strip() or str(ROOT)
+        core_start_command_value = core_start_command_input.strip()
+        ucnrr_workdir_value = ucnrr_workdir_input.strip() or str(ROOT)
+        ucnrr_start_command_value = ucnrr_start_command_input.strip()
+        react_workdir_value = react_workdir_input.strip() or str(ROOT / "web")
+        react_npm_value = react_npm_path_input.strip()
+        env.update(
+            {
+                "core_port": int(core_port),
+                "react_port": int(react_port),
+                "DEVX_BACKEND_PORT": int(devx_backend_port_input),
+                "streamlit_port": int(streamlit_port),
+                "streamlit_photo_port": int(streamlit_photo_port),
+                "streamlit_padna_port": int(streamlit_padna_port),
+                "ucnrr_port": ucnrr_port_value,
+                "core_workdir": core_workdir_value,
+                "core_start_command": core_start_command_value,
+                "ucnrr_workdir": ucnrr_workdir_value,
+                "ucnrr_start_command": ucnrr_start_command_value,
+                "react_workdir": react_workdir_value,
+                "react_npm_path": react_npm_value,
+                "HC_CHAT_ENABLED": bool(hc_chat),
+                "HC_CHAT_STREAM_ENABLED": bool(hc_stream),
+                "HC_ASK_ACTIONS_ENABLED": bool(ask_actions),
+                "CORE_CURIOSITY_ENABLED": bool(curiosity_enabled),
+                "NEXT_PUBLIC_CORE_API_BASE": next_public.strip() or f"http://127.0.0.1:{int(core_port)}",
+                "HC_CHAT_PROVIDER": chat_provider,
+                "LLM_PROVIDER": llm_provider_value,
+                "LLM_MODEL": llm_model_value,
+                "LLM_BASE_URL": ollama_base_value,
+                "llm_start_command": llm_start_command_value,
+                "OPENAI_API_KEY": openai_key_value,
+                "OPENAI_MODEL": openai_model_value,
+                "OLLAMA_BASE": ollama_base_value,
+                "OLLAMA_BASE_URL": ollama_base_value,
+                "OLLAMA_MODEL": ollama_model_value,
+                "ANTHROPIC_API_KEY": anthropic_key_value,
+                "ANTHROPIC_MODEL": anthropic_model_value,
+                "UCNRR_BASE_URL": ucnrr_base_value,
+                "UCNRR_BASE": ucnrr_base_value,
+                "UCNRR_SCORE_PATH": ucnrr_score_path_value,
+                "DEVX_BASE": devx_base_value,
+                "NEXT_PUBLIC_DEVX_API_BASE": devx_base_value or "http://127.0.0.1:8100",
+                "NEXT_PUBLIC_UCNRR_API_BASE": ucnrr_base_value,
+                "CORS_ALLOWED_ORIGINS": cors_origins_value,
+                "AUTO_OPEN_REACT_AFTER_LAUNCH": bool(auto_open_react),
+                "AUTO_OPEN_BENCHMARKS_AFTER_LAUNCH": bool(auto_open_benchmarks),
+                "AUTO_OPEN_STREAMLIT_AFTER_LAUNCH": bool(auto_open_streamlit),
+                # Removed: AUTO_OPEN_DEVEXPLORER (retired)
+                "APPEND_UI_DEBUG_PARAM": bool(append_debug),
+                # Removed: dev_explorer_port (retired - DevX uses 3100)
+                "WORKSPACE_ROOT": workspace_root_input.strip() or default_workspace_root,
+                "WORKSPACE_LABEL": workspace_label_input.strip() or envstore.DEFAULT_ENV.get("WORKSPACE_LABEL", "Workspace"),
+                "NEXT_PUBLIC_FLAGS": _serialize_frontend_flags(
+                    {
+                        **frontend_flag_values,
+                        "avatar": bool(avatar_flag_checkbox),
+                        "avatarDebug": bool(avatar_debug_checkbox),
+                    },
+                    frontend_passthrough,
+                ),
+            }
+        )
+        _save_env()
+        _apply_devx_env(env)
+        st.success("Environment saved.")
+    
+        validation_cols = st.columns([1, 3])
+        with validation_cols[0]:
+            if st.button("Validate provider", key="validate-provider"):
+                with st.spinner("Checking provider configuration…"):
+                    result = _validate_provider()
+                _set_provider_validation(result)
+        with validation_cols[1]:
+            validation = _get_provider_validation()
+            if validation:
+                status = validation.get("status")
+                message = validation.get("message", "")
+                detail = validation.get("detail")
+                if status == "PASS":
+                    st.success(message)
+                elif status == "MODEL_MISSING":
+                    st.warning(message)
+                    model = validation.get("model")
+                    if model and st.button(f"Pull Model: {model}", key="pull-ollama-model"):
+                        with st.spinner(f"Pulling {model}... This may take several minutes."):
+                            try:
+                                result = subprocess.run(
+                                    ["ollama", "pull", model],
+                                    capture_output=True,
+                                    text=True,
+                                    timeout=600,
+                                )
+                                if result.returncode == 0:
+                                    st.success(f"Successfully pulled {model}")
+                                    # Re-validate
+                                    new_result = _validate_provider()
+                                    _set_provider_validation(new_result)
+                                    safe_rerun()
+                                else:
+                                    st.error(f"Failed to pull model: {result.stderr}")
+                            except subprocess.TimeoutExpired:
+                                st.error("Model pull timed out after 10 minutes.")
+                            except FileNotFoundError:
+                                st.error("'ollama' command not found. Install: brew install ollama")
+                            except Exception as exc:
+                                st.error(f"Error: {exc}")
+                    if detail:
+                        st.caption(detail)
+                elif status == "WARN":
+                    st.warning(message)
+                    if detail:
+                        st.caption(detail)
+                else:
+                    st.error(message)
+                    if detail:
+                        st.caption(detail)
+            else:
+                st.caption("Validate provider credentials to ensure streaming works before demos.")
+    
+        st.caption("Settings are stored in .cpplusplus_env.json at the repository root.")
+    
+        st.markdown("### AI Config (read-only)")
+        ai_config = {
+            "LLM_PROVIDER": str(env.get("LLM_PROVIDER") or "ollama"),
+            "LLM_MODEL": str(env.get("LLM_MODEL") or env.get("OLLAMA_MODEL") or "phi3:mini"),
+            "OLLAMA_BASE_URL": str(env.get("OLLAMA_BASE_URL") or env.get("OLLAMA_BASE") or "http://127.0.0.1:11434"),
+            "UCNRR_BASE": str(env.get("UCNRR_BASE") or env.get("UCNRR_BASE_URL") or f"http://127.0.0.1:{ucnrr_port}"),
+            "UCNRR_SCORE_PATH": str(env.get("UCNRR_SCORE_PATH") or "/api/rescore"),
+        }
+        ai_cols = st.columns(2)
+        with ai_cols[0]:
+            st.text_input("LLM_PROVIDER", value=ai_config["LLM_PROVIDER"], disabled=True)
+            st.text_input("LLM_MODEL", value=ai_config["LLM_MODEL"], disabled=True)
+            st.text_input("OLLAMA_BASE_URL", value=ai_config["OLLAMA_BASE_URL"], disabled=True)
+        with ai_cols[1]:
+            st.text_input("UCNRR_BASE", value=ai_config["UCNRR_BASE"], disabled=True)
+            st.text_input("UCNRR_SCORE_PATH", value=ai_config["UCNRR_SCORE_PATH"], disabled=True)
+    
+        apply_cols = st.columns([1, 3])
+        with apply_cols[0]:
+            if st.button("Apply & Restart", key="ai-config-apply"):
+                if _is_env_dirty():
+                    st.warning("Save environment changes before applying the AI config.")
+                elif react_npm_cmd is None:
+                    st.warning("Configure npm path before restarting the stack.")
+                else:
+                    with st.spinner("Restarting services with current AI configuration…"):
+                        _stop_all_services(request_rerun=False)
+                        _update_next_public_base()
+                        _launch_stack(
+                            env,
+                            core_port,
+                            react_port,
+                            ucnrr_port,
+                            core_workdir_path,
+                            react_workdir_path,
+                            ucnrr_workdir_path,
+                            core_command_list,
+                            react_npm_cmd,
+                            open_ui=True,
+                        )
+        with apply_cols[1]:
+            st.caption("Restarts UCNRR → Core → React using the values above to keep AI readiness in sync.")
+    with policy_tab:
+        _render_policy_tab()
 
 def _render_profiles_tab() -> None:
     profiles_state = dict(_profiles())
@@ -3659,36 +4948,588 @@ def _render_router_tab() -> None:
     st.code("\n".join(logs) if logs else "No router logs yet.")
 
 
+def _nuclear_reset_all_services() -> Dict[str, Any]:
+    """
+    Nuclear option: Kill ALL services on all known ports except CP++.
+    Returns a dictionary with kill results for each service.
+    """
+    import subprocess
+    from datetime import datetime
+
+    results = {
+        "killed_pids": [],
+        "errors": [],
+        "ports_cleared": [],
+        "ports_scanned": [],
+        "ports_empty": [],
+        "diagnostic_log": [],
+        "cp_port": None,
+        "timestamp": datetime.now().isoformat(),
+    }
+
+    def log(msg: str):
+        results["diagnostic_log"].append(msg)
+
+    log("=== NUCLEAR RESET DIAGNOSTICS ===")
+
+    # Get CP++ port to avoid killing ourselves
+    cp_port = None
+    for key in ("STREAMLIT_SERVER_PORT", "PORT"):
+        val = os.environ.get(key)
+        log(f"Checking env var {key}: {val}")
+        if val and val.isdigit():
+            cp_port = int(val)
+            break
+
+    results["cp_port"] = cp_port
+    log(f"CP++ port identified as: {cp_port}")
+
+    # All known service ports
+    # Expand ranges to catch all possible ports services might be running on
+    all_ports = {
+        "Core": list(range(8000, 8020)),  # Expanded to catch 8015 and others
+        "UCNRR": list(range(UCNRR_PORT_RANGE[0], UCNRR_PORT_RANGE[1] + 1)),
+        "React/Next.js": list(range(3000, 3010)),  # Expanded to catch 3001, 3002, etc.
+        "DevX Backend": [8100, 8101, 8102],
+        "DevX UI": [3100, 3101, 3102],
+        "Streamlit (others)": [p for p in STREAMLIT_FALLBACK_PORTS if p != cp_port],
+    }
+
+    log(f"Port ranges to scan: {sum(len(ports) for ports in all_ports.values())} total ports")
+
+    for service_name, ports in all_ports.items():
+        log(f"\n--- Scanning {service_name} ---")
+        for port in ports:
+            results["ports_scanned"].append(port)
+
+            if port == cp_port:
+                log(f"Port {port}: SKIPPED (CP++ itself)")
+                continue
+
+            try:
+                # Use lsof to find process on port
+                log(f"Port {port}: Running lsof...")
+                result = subprocess.run(
+                    ["lsof", "-i", f":{port}", "-t"],
+                    capture_output=True,
+                    text=True,
+                    timeout=2
+                )
+
+                if result.returncode == 0 and result.stdout.strip():
+                    pid_str = result.stdout.strip().split()[0]
+                    pid = int(pid_str)
+
+                    # Get process details before killing
+                    try:
+                        ps_result = subprocess.run(
+                            ["ps", "-p", str(pid), "-o", "comm="],
+                            capture_output=True,
+                            text=True,
+                            timeout=1
+                        )
+                        process_name = ps_result.stdout.strip() if ps_result.returncode == 0 else "unknown"
+                    except Exception:
+                        process_name = "unknown"
+
+                    log(f"Port {port}: Found PID {pid} ({process_name})")
+
+                    # Kill the process
+                    try:
+                        os.kill(pid, signal.SIGTERM)
+                        log(f"Port {port}: Sent SIGTERM to PID {pid}")
+                        time.sleep(0.1)
+
+                        # Check if still alive
+                        try:
+                            os.kill(pid, 0)  # Test if process exists
+                            log(f"Port {port}: PID {pid} still alive, sending SIGKILL")
+                            os.kill(pid, signal.SIGKILL)
+                        except ProcessLookupError:
+                            log(f"Port {port}: PID {pid} terminated successfully")
+                    except ProcessLookupError:
+                        log(f"Port {port}: PID {pid} already dead")
+                    except Exception as kill_err:
+                        log(f"Port {port}: Failed to kill PID {pid}: {kill_err}")
+
+                    results["killed_pids"].append({
+                        "service": service_name,
+                        "port": port,
+                        "pid": pid,
+                        "process_name": process_name
+                    })
+                    results["ports_cleared"].append(port)
+                else:
+                    log(f"Port {port}: Empty (returncode={result.returncode})")
+                    results["ports_empty"].append(port)
+
+            except subprocess.TimeoutExpired:
+                error_msg = f"{service_name} port {port}: lsof timed out"
+                log(f"Port {port}: ERROR - {error_msg}")
+                results["errors"].append(error_msg)
+            except Exception as e:
+                error_msg = f"{service_name} port {port}: {str(e)}"
+                log(f"Port {port}: ERROR - {error_msg}")
+                results["errors"].append(error_msg)
+
+    # Also clean up PID files
+    log("\n--- Cleaning up PID files ---")
+    pid_files = [
+        Path.home() / ".redna" / "core.pid",
+        Path.home() / ".redna" / "ucnrr.pid",
+        Path.home() / ".redna" / "devx_backend.pid",
+        Path.home() / ".redna" / "devx_ui.pid",
+    ]
+    for pid_file in pid_files:
+        if pid_file.exists():
+            log(f"Removing PID file: {pid_file}")
+            pid_file.unlink(missing_ok=True)
+        else:
+            log(f"PID file not found: {pid_file}")
+
+    log(f"\n=== SUMMARY ===")
+    log(f"Ports scanned: {len(results['ports_scanned'])}")
+    log(f"Ports killed: {len(results['ports_cleared'])}")
+    log(f"Ports empty: {len(results['ports_empty'])}")
+    log(f"Errors: {len(results['errors'])}")
+
+    return results
+
+
+def _rebuild_stack_properly() -> Dict[str, Any]:
+    """
+    Rebuild the entire stack in the proper order with health checks.
+    Order: Core → UCNRR → DevX Backend → React → DevX UI
+    """
+    import subprocess
+    from datetime import datetime
+
+    results = {
+        "core": {"started": False, "port": None, "error": None, "log": []},
+        "ucnrr": {"started": False, "port": None, "error": None, "log": []},
+        "devx_backend": {"started": False, "port": None, "error": None, "log": []},
+        "react": {"started": False, "port": None, "error": None, "log": []},
+        "devx_ui": {"started": False, "port": None, "error": None, "log": []},
+        "diagnostic_log": [],
+        "timestamp": datetime.now().isoformat(),
+    }
+
+    def log(msg: str):
+        results["diagnostic_log"].append(msg)
+
+    log("=== STACK REBUILD DIAGNOSTICS ===")
+
+    env = _env()
+    # Convert all env values to strings (subprocess.Popen requires string values)
+    env_str = {k: str(v) for k, v in env.items()}
+    venv_python = str(_active_python_path())  # Convert Path to string
+    log(f"Python venv: {venv_python}")
+    log(f"Working directory: {ROOT}")
+    log(f"Environment variables: {len(env_str)} custom vars")
+
+    # 1. Start Core
+    log("\n--- Starting Core API ---")
+    try:
+        results["core"]["log"].append("Starting Core API initialization")
+        log("Core: Building command")
+
+        core_port = CORE_DEFAULT_PORT
+        results["core"]["log"].append(f"Core port: {core_port}")
+
+        core_cmd = [
+            venv_python, "-m", "uvicorn",
+            "ReDNACoreDemo.core.api:build_app",
+            "--factory",
+            "--host", "127.0.0.1",
+            "--port", str(core_port),
+        ]
+        results["core"]["log"].append("Command list built")
+
+        results["core"]["log"].append(f"Command: {' '.join(core_cmd)}")
+        log(f"Core command: {' '.join(core_cmd)}")
+
+        results["core"]["log"].append(f"Working directory: {ROOT} (type: {type(ROOT).__name__})")
+        results["core"]["log"].append(f"Command list items: {[f'{item} ({type(item).__name__})' for item in core_cmd]}")
+
+        try:
+            proc = subprocess.Popen(
+                core_cmd,
+                cwd=str(ROOT),
+                env={**os.environ, **env_str},
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+            results["core"]["log"].append(f"Popen succeeded")
+        except Exception as popen_err:
+            results["core"]["log"].append(f"Popen failed: {type(popen_err).__name__}: {popen_err}")
+            import traceback
+            results["core"]["log"].append(f"Traceback: {traceback.format_exc()}")
+            raise
+
+        results["core"]["log"].append(f"Process started with PID {proc.pid}")
+        log(f"Core process started with PID {proc.pid}")
+
+        # Wait for Core to be healthy
+        for attempt in range(30):  # 15 seconds max
+            time.sleep(0.5)
+            try:
+                import requests
+                resp = requests.get(f"http://127.0.0.1:{core_port}/health", timeout=1)
+                results["core"]["log"].append(f"Health check attempt {attempt+1}: status={resp.status_code}")
+                if resp.ok:
+                    results["core"]["started"] = True
+                    results["core"]["port"] = core_port
+                    log(f"Core is healthy on port {core_port} after {attempt+1} attempts")
+                    break
+            except Exception as health_err:
+                if attempt % 5 == 0:  # Log every 5th attempt
+                    results["core"]["log"].append(f"Attempt {attempt+1}: {str(health_err)}")
+                continue
+
+        if not results["core"]["started"]:
+            error_msg = "Core failed to become healthy within 15 seconds"
+            results["core"]["error"] = error_msg
+            results["core"]["log"].append(error_msg)
+            log(f"Core ERROR: {error_msg}")
+
+    except Exception as e:
+        error_msg = str(e)
+        results["core"]["error"] = error_msg
+        results["core"]["log"].append(f"Exception: {error_msg}")
+        log(f"Core EXCEPTION: {error_msg}")
+
+    # 2. Start UCNRR
+    if results["core"]["started"]:
+        log("\n--- Starting UCNRR ---")
+        try:
+            ucnrr_port = UCNRR_DEFAULT_PORT
+            ucnrr_cmd = [
+                venv_python, "-m", "uvicorn",
+                "UCN_RR_Demo.ucnrr_app:app",
+                "--host", "127.0.0.1",
+                "--port", str(ucnrr_port),
+            ]
+
+            results["ucnrr"]["log"].append(f"Command: {' '.join(ucnrr_cmd)}")
+            log(f"UCNRR command: {' '.join(ucnrr_cmd)}")
+
+            proc = subprocess.Popen(
+                ucnrr_cmd,
+                cwd=str(ROOT),
+                env={**os.environ, **env_str},
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+
+            results["ucnrr"]["log"].append(f"Process started with PID {proc.pid}")
+            log(f"UCNRR process started with PID {proc.pid}")
+
+            # Wait for UCNRR
+            for attempt in range(20):
+                time.sleep(0.5)
+                try:
+                    import requests
+                    resp = requests.get(f"http://127.0.0.1:{ucnrr_port}/health", timeout=1)
+                    results["ucnrr"]["log"].append(f"Health check attempt {attempt+1}: status={resp.status_code}")
+                    if resp.ok:
+                        results["ucnrr"]["started"] = True
+                        results["ucnrr"]["port"] = ucnrr_port
+                        log(f"UCNRR is healthy on port {ucnrr_port} after {attempt+1} attempts")
+                        break
+                except Exception as health_err:
+                    if attempt % 5 == 0:
+                        results["ucnrr"]["log"].append(f"Attempt {attempt+1}: {str(health_err)}")
+                    continue
+
+            if not results["ucnrr"]["started"]:
+                error_msg = "UCNRR failed to become healthy within 10 seconds"
+                results["ucnrr"]["error"] = error_msg
+                results["ucnrr"]["log"].append(error_msg)
+                log(f"UCNRR WARNING: {error_msg}")
+
+        except Exception as e:
+            error_msg = str(e)
+            results["ucnrr"]["error"] = error_msg
+            results["ucnrr"]["log"].append(f"Exception: {error_msg}")
+            log(f"UCNRR EXCEPTION: {error_msg}")
+    else:
+        log("\n--- Skipping UCNRR (Core not started) ---")
+
+    # 3. Start DevX Backend (if available)
+    if DEVX_BOOTSTRAP_AVAILABLE and results["core"]["started"]:
+        log("\n--- Starting DevX Backend ---")
+        try:
+            _apply_devx_env(env_str)
+            results["devx_backend"]["log"].append("Calling start_devx_backend()")
+            ok, msg, port = start_devx_backend()
+            results["devx_backend"]["started"] = ok
+            results["devx_backend"]["port"] = port
+            results["devx_backend"]["log"].append(f"Result: ok={ok}, msg={msg}, port={port}")
+            log(f"DevX Backend: {msg}")
+            if not ok:
+                results["devx_backend"]["error"] = msg
+        except Exception as e:
+            error_msg = str(e)
+            results["devx_backend"]["error"] = error_msg
+            results["devx_backend"]["log"].append(f"Exception: {error_msg}")
+            log(f"DevX Backend EXCEPTION: {error_msg}")
+    else:
+        if not DEVX_BOOTSTRAP_AVAILABLE:
+            log("\n--- Skipping DevX Backend (bootstrap not available) ---")
+        else:
+            log("\n--- Skipping DevX Backend (Core not started) ---")
+
+    # 4. Start React/Next.js
+    if results["core"]["started"]:
+        log("\n--- Starting React/Next.js ---")
+        try:
+            react_port = REACT_DEFAULT_PORT
+            react_env = {
+                **os.environ,
+                **env_str,
+                "NEXT_PUBLIC_CORE_API_BASE": f"http://127.0.0.1:{results['core']['port']}",
+                "CORE_API_URL": f"http://127.0.0.1:{results['core']['port']}",
+                "NEXT_PUBLIC_DEVX_API_BASE": f"http://127.0.0.1:{DEVX_BACKEND_DEFAULT_PORT}",
+            }
+
+            results["react"]["log"].append(f"Core API URL: http://127.0.0.1:{results['core']['port']}")
+
+            # Create .env.local for Next.js
+            env_local_path = ROOT / "web" / ".env.local"
+            env_content = f"NEXT_PUBLIC_CORE_API_BASE=http://127.0.0.1:{results['core']['port']}\n"
+            env_content += f"CORE_API_URL=http://127.0.0.1:{results['core']['port']}\n"
+            env_content += f"NEXT_PUBLIC_DEVX_API_BASE=http://127.0.0.1:{DEVX_BACKEND_DEFAULT_PORT}\n"
+
+            with open(env_local_path, "w") as f:
+                f.write(env_content)
+
+            results["react"]["log"].append(f"Created {env_local_path}")
+            log(f"Created Next.js .env.local with Core API at port {results['core']['port']}")
+
+            react_cmd = ["npm", "run", "dev", "--", "--port", str(react_port)]
+            results["react"]["log"].append(f"Command: {' '.join(react_cmd)}")
+            log(f"React command: {' '.join(react_cmd)}")
+
+            proc = subprocess.Popen(
+                react_cmd,
+                cwd=str(ROOT / "web"),
+                env=react_env,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+
+            results["react"]["log"].append(f"Process started with PID {proc.pid}")
+            log(f"React process started with PID {proc.pid}")
+
+            # Wait for React
+            for attempt in range(40):  # 20 seconds max
+                time.sleep(0.5)
+                try:
+                    import requests
+                    resp = requests.get(f"http://127.0.0.1:{react_port}/", timeout=1)
+                    if attempt % 10 == 0:
+                        results["react"]["log"].append(f"Health check attempt {attempt+1}: status={resp.status_code}")
+                    if resp.ok:
+                        results["react"]["started"] = True
+                        results["react"]["port"] = react_port
+                        log(f"React is healthy on port {react_port} after {attempt+1} attempts")
+                        break
+                except Exception as health_err:
+                    if attempt % 10 == 0:
+                        results["react"]["log"].append(f"Attempt {attempt+1}: {str(health_err)}")
+                    continue
+
+            if not results["react"]["started"]:
+                error_msg = "React failed to become healthy within 20 seconds"
+                results["react"]["error"] = error_msg
+                results["react"]["log"].append(error_msg)
+                log(f"React ERROR: {error_msg}")
+
+        except Exception as e:
+            error_msg = str(e)
+            results["react"]["error"] = error_msg
+            results["react"]["log"].append(f"Exception: {error_msg}")
+            log(f"React EXCEPTION: {error_msg}")
+    else:
+        log("\n--- Skipping React (Core not started) ---")
+
+    # 5. Start DevX UI (if available)
+    if DEVX_BOOTSTRAP_AVAILABLE and results["devx_backend"]["started"]:
+        log("\n--- Starting DevX UI ---")
+        try:
+            results["devx_ui"]["log"].append("Calling start_devx_ui()")
+            ok, msg, port = start_devx_ui()
+            results["devx_ui"]["started"] = ok
+            results["devx_ui"]["port"] = port
+            results["devx_ui"]["log"].append(f"Result: ok={ok}, msg={msg}, port={port}")
+            log(f"DevX UI: {msg}")
+            if not ok:
+                results["devx_ui"]["error"] = msg
+        except Exception as e:
+            error_msg = str(e)
+            results["devx_ui"]["error"] = error_msg
+            results["devx_ui"]["log"].append(f"Exception: {error_msg}")
+            log(f"DevX UI EXCEPTION: {error_msg}")
+    else:
+        if not DEVX_BOOTSTRAP_AVAILABLE:
+            log("\n--- Skipping DevX UI (bootstrap not available) ---")
+        else:
+            log("\n--- Skipping DevX UI (DevX Backend not started) ---")
+
+    log("\n=== REBUILD COMPLETE ===")
+    return results
+
+
 def main() -> None:
     st.set_page_config(page_title="Control Panel Plus Plus", layout="wide")
     _init_session_state()
+    _apply_devx_env(_env())
+
+    # NUCLEAR RESET BUTTON - Giant button at the top
+    st.markdown("---")
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        if st.button(
+            "🔥 NUCLEAR RESET & REBUILD ENTIRE STACK 🔥",
+            key="nuclear_reset",
+            help="Kill ALL services on all ports (except CP++) and rebuild the entire stack properly",
+            use_container_width=True,
+            type="primary"
+        ):
+            with st.spinner("💥 KILLING ALL SERVICES..."):
+                kill_results = _nuclear_reset_all_services()
+
+                st.markdown("### 💀 Cleanup Results")
+
+                # Summary
+                col1, col2, col3 = st.columns(3)
+                with col1:
+                    st.metric("Ports Scanned", len(kill_results.get("ports_scanned", [])))
+                with col2:
+                    st.metric("Processes Killed", len(kill_results.get("killed_pids", [])))
+                with col3:
+                    st.metric("Errors", len(kill_results.get("errors", [])))
+
+                if kill_results["killed_pids"]:
+                    with st.expander("✅ Killed Processes", expanded=True):
+                        for item in kill_results["killed_pids"]:
+                            st.write(f"• **{item['service']}** - Port {item['port']} - PID {item['pid']} ({item.get('process_name', 'unknown')})")
+
+                if kill_results["errors"]:
+                    with st.expander("⚠️ Errors During Cleanup", expanded=True):
+                        for err in kill_results["errors"]:
+                            st.write(f"• {err}")
+
+                # Full diagnostic log
+                with st.expander("🔍 Full Cleanup Diagnostic Log"):
+                    st.code("\n".join(kill_results.get("diagnostic_log", [])), language="text")
+
+                # Save to file
+                log_file = Path.home() / ".redna" / "nuclear_reset.log"
+                log_file.parent.mkdir(parents=True, exist_ok=True)
+                with open(log_file, "w") as f:
+                    f.write(f"=== NUCLEAR RESET - {kill_results.get('timestamp', 'unknown')} ===\n\n")
+                    f.write("\n".join(kill_results.get("diagnostic_log", [])))
+                st.caption(f"📝 Full log saved to: {log_file}")
+
+                time.sleep(2)  # Give ports time to free up
+
+            with st.spinner("🏗️ REBUILDING STACK (Core → UCNRR → DevX Backend → React → DevX UI)..."):
+                rebuild_results = _rebuild_stack_properly()
+
+                st.markdown("### 🚀 Stack Rebuild Results")
+
+                # Summary metrics
+                services = ["core", "ucnrr", "devx_backend", "react", "devx_ui"]
+                started_count = sum(1 for s in services if rebuild_results.get(s, {}).get("started"))
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.metric("Services Started", f"{started_count}/{len(services)}")
+                with col2:
+                    if started_count == len(services):
+                        st.success("🎉 All services running!")
+                    elif started_count >= 3:
+                        st.warning("⚠️ Some services failed")
+                    else:
+                        st.error("❌ Critical failures")
+
+                # Core
+                if rebuild_results["core"]["started"]:
+                    st.success(f"✅ **Core API** running on port {rebuild_results['core']['port']}")
+                else:
+                    st.error(f"❌ **Core API** failed: {rebuild_results['core']['error']}")
+
+                with st.expander("Core Diagnostic Log"):
+                    st.code("\n".join(rebuild_results["core"].get("log", [])), language="text")
+
+                # UCNRR
+                if rebuild_results["ucnrr"]["started"]:
+                    st.success(f"✅ **UCNRR** running on port {rebuild_results['ucnrr']['port']}")
+                else:
+                    st.warning(f"⚠️ **UCNRR** failed: {rebuild_results['ucnrr']['error']}")
+
+                with st.expander("UCNRR Diagnostic Log"):
+                    st.code("\n".join(rebuild_results["ucnrr"].get("log", [])), language="text")
+
+                # DevX Backend
+                if rebuild_results["devx_backend"]["started"]:
+                    st.success(f"✅ **DevX Backend** running on port {rebuild_results['devx_backend']['port']}")
+                elif rebuild_results["devx_backend"]["error"]:
+                    st.warning(f"⚠️ **DevX Backend**: {rebuild_results['devx_backend']['error']}")
+
+                with st.expander("DevX Backend Diagnostic Log"):
+                    st.code("\n".join(rebuild_results["devx_backend"].get("log", [])), language="text")
+
+                # React
+                if rebuild_results["react"]["started"]:
+                    st.success(f"✅ **React/Next.js** running on port {rebuild_results['react']['port']}")
+                    st.info(f"🌐 Open: http://127.0.0.1:{rebuild_results['react']['port']}{HEAD_COACH_URL_SUFFIX}")
+                else:
+                    st.error(f"❌ **React/Next.js** failed: {rebuild_results['react']['error']}")
+
+                with st.expander("React Diagnostic Log"):
+                    st.code("\n".join(rebuild_results["react"].get("log", [])), language="text")
+
+                # DevX UI
+                if rebuild_results["devx_ui"]["started"]:
+                    st.success(f"✅ **DevX UI** running on port {rebuild_results['devx_ui']['port']}")
+                elif rebuild_results["devx_ui"]["error"]:
+                    st.warning(f"⚠️ **DevX UI**: {rebuild_results['devx_ui']['error']}")
+
+                with st.expander("DevX UI Diagnostic Log"):
+                    st.code("\n".join(rebuild_results["devx_ui"].get("log", [])), language="text")
+
+                # Full rebuild diagnostic log
+                with st.expander("🔍 Full Rebuild Diagnostic Log"):
+                    st.code("\n".join(rebuild_results.get("diagnostic_log", [])), language="text")
+
+                # Save rebuild log to file with all service details
+                rebuild_log_file = Path.home() / ".redna" / "stack_rebuild.log"
+                with open(rebuild_log_file, "w") as f:
+                    f.write(f"=== STACK REBUILD - {rebuild_results.get('timestamp', 'unknown')} ===\n\n")
+                    f.write("\n".join(rebuild_results.get("diagnostic_log", [])))
+                    f.write("\n\n=== PER-SERVICE LOGS ===\n")
+                    for svc in ["core", "ucnrr", "devx_backend", "react", "devx_ui"]:
+                        if svc in rebuild_results and rebuild_results[svc].get("log"):
+                            f.write(f"\n--- {svc.upper()} ---\n")
+                            f.write("\n".join(rebuild_results[svc]["log"]))
+                            f.write("\n")
+                st.caption(f"📝 Full rebuild log saved to: {rebuild_log_file}")
+
+                time.sleep(2)
+                safe_rerun()
+
+    st.markdown("---")
     st.sidebar.title("Control Panel Plus Plus")
     st.sidebar.caption("Service orchestrator for Core, UCN/RR, and React.")
 
-    # LLM Status Tile
+    active_python = _active_python_path()
+    label = _python_choice_label(active_python)
+    st.sidebar.caption(f"Using venv: {label}")
+
     st.sidebar.markdown("---")
-    st.sidebar.markdown("### 🤖 LLM Status")
-
-    try:
-        from ReDNACoreDemo.core.llm.provider import get_client
-        provider = os.environ.get("LLM_PROVIDER", "ollama")
-        model = os.environ.get("OLLAMA_MODEL", "llama3:8b")
-
-        try:
-            llm = get_client()
-            llm_ok = llm.health()
-        except Exception:
-            llm_ok = False
-
-        st.sidebar.write(f"Provider: **{provider}**")
-        st.sidebar.write(f"Model: **{model}**")
-        st.sidebar.write(f"Health: {'🟢' if llm_ok else '🔴'}")
-
-        if not llm_ok:
-            st.sidebar.info("Ensure Ollama is running locally and the model is pulled.")
-            st.sidebar.code("ollama pull llama3:8b\nollama run llama3:8b 'hello'", language="bash")
-    except ImportError:
-        st.sidebar.warning("LLM adapter not available")
+    st.sidebar.markdown("### 🤖 AI Readiness")
+    _render_ai_readiness_sidebar()
 
     # Quick launch Developer Tools
     st.sidebar.markdown("---")
@@ -3697,7 +5538,9 @@ def main() -> None:
 
     if DEVX_BOOTSTRAP_AVAILABLE:
         # Use new DevX bootstrap system
-        backend_port = int(os.environ.get("DEVX_BACKEND_PORT", "8100") or "8100")
+        devx_env = _env()
+        _apply_devx_env(devx_env)
+        backend_port = _devx_backend_port(devx_env)
         ui_port = int(os.environ.get("DEVX_UI_PORT", "3100") or "3100")
 
         # Try to load persisted UI port
@@ -3744,6 +5587,8 @@ def main() -> None:
                     st.sidebar.info("💡 Ensure dependencies are installed:")
                     for cmd in cmds:
                         st.sidebar.code(cmd, language="bash")
+
+                _apply_devx_env(_env())
 
                 # Start backend
                 ok_backend, msg_backend, actual_backend_port = start_devx_backend()
@@ -3838,13 +5683,6 @@ def main() -> None:
             st.sidebar.caption(f"⚠️ Not detected (port {dev_explorer_port})")
 
     st.sidebar.markdown("---")
-
-    st.sidebar.checkbox(
-        "Force root .venv Python",
-        value=bool(st.session_state.get(SESSION_FORCE_ROOT_VENV_KEY, False)),
-        key=SESSION_FORCE_ROOT_VENV_KEY,
-        help="Launch Core using the repository's .venv interpreter when starting via CP++.",
-    )
 
     tabs = st.tabs([
         "Launch",

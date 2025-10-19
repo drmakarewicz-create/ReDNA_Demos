@@ -185,6 +185,31 @@ def _kill_pidfile(path: Path) -> Optional[int]:
     return None
 
 
+def _find_pid_on_port(port: int) -> Optional[int]:
+    """Find PID of process listening on given port using lsof."""
+    try:
+        result = subprocess.run(
+            ["lsof", "-i", f":{port}", "-t"],
+            capture_output=True,
+            text=True,
+            timeout=2
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            return int(result.stdout.strip().split()[0])
+    except Exception:
+        pass
+    return None
+
+
+def _kill_port(port: int) -> Optional[int]:
+    """Kill process listening on given port. Returns PID if killed."""
+    pid = _find_pid_on_port(port)
+    if pid:
+        _terminate_pid(pid)
+        return pid
+    return None
+
+
 def devx_backend_health(port: int) -> bool:
     """Check if DevX backend is healthy via /health endpoint."""
     if requests is None:
@@ -337,8 +362,26 @@ def start_devx_ui() -> Tuple[bool, str, int]:
 def stop_devx() -> Tuple[Optional[int], Optional[int]]:
     """
     Stop both DevX backend and UI by killing their PIDs.
+    Falls back to port-based killing if PID file doesn't exist.
     Returns: (backend_pid, ui_pid) if processes were terminated.
     """
+    # Try PID file first
     backend_pid = _kill_pidfile(DEVX_BACKEND_PID)
     ui_pid = _kill_pidfile(DEVX_UI_PID)
+
+    # Fallback: kill by port if PID file didn't work
+    if not backend_pid:
+        backend_port = int(env_get("DEVX_BACKEND_PORT", "8100") or "8100")
+        backend_pid = _kill_port(backend_port)
+
+    if not ui_pid:
+        ui_port = int(env_get("DEVX_UI_PORT", "3100") or "3100")
+        # Also check persisted port from state file
+        persisted_port = load_last_ui_port()
+        if persisted_port and persisted_port != ui_port:
+            # Try persisted port first
+            ui_pid = _kill_port(persisted_port)
+        if not ui_pid:
+            ui_pid = _kill_port(ui_port)
+
     return backend_pid, ui_pid

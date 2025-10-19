@@ -5,7 +5,7 @@
  * Provides access to backlog and reports data from DevX backend.
  */
 
-const DEVX_API_BASE = process.env.NEXT_PUBLIC_DEVX_API_BASE ?? 'http://127.0.0.1:8012';
+const DEVX_BASE = process.env.NEXT_PUBLIC_DEVX_API_BASE ?? 'http://127.0.0.1:8100';
 
 // ============================================================================
 // Types
@@ -123,7 +123,7 @@ export async function fetchBacklog(params?: {
   if (params?.limit !== undefined) query.set('limit', String(params.limit));
   if (params?.offset !== undefined) query.set('offset', String(params.offset));
 
-  const url = `${DEVX_API_BASE}/devx/api/llm-bench/backlog?${query.toString()}`;
+  const url = `${DEVX_BASE}/devx/api/llm-bench/backlog?${query.toString()}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -187,7 +187,7 @@ export async function fetchReports(params?: { limit?: number }): Promise<ReportM
   if (params?.limit !== undefined) query.set('limit', String(params.limit));
 
   const search = query.toString();
-  const url = `${DEVX_API_BASE}/devx/api/llm-bench/reports${search ? `?${search}` : ''}`;
+  const url = `${DEVX_BASE}/devx/api/llm-bench/reports${search ? `?${search}` : ''}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -225,7 +225,7 @@ export async function fetchReports(params?: { limit?: number }): Promise<ReportM
  * Fetch full markdown content of a specific report.
  */
 export async function fetchReportContent(filename: string): Promise<string> {
-  const url = `${DEVX_API_BASE}/devx/api/llm-bench/report/${encodeURIComponent(filename)}`;
+  const url = `${DEVX_BASE}/devx/api/llm-bench/report/${encodeURIComponent(filename)}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -241,7 +241,7 @@ export async function fetchReportContent(filename: string): Promise<string> {
  */
 export async function fetchModelStatus(): Promise<ModelStatus> {
   try {
-    const url = `${DEVX_API_BASE}/devx/api/llm-bench/status`;
+    const url = `${DEVX_BASE}/devx/api/llm-bench/status`;
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -331,7 +331,7 @@ export function formatDate(utcString?: string): string {
  */
 export async function fetchMonthlyCosts(month?: string): Promise<MonthlyCosts> {
   const query = month ? `?month=${encodeURIComponent(month)}` : '';
-  const url = `${DEVX_API_BASE}/devx/api/llm-bench/costs${query}`;
+  const url = `${DEVX_BASE}/devx/api/llm-bench/costs${query}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -400,7 +400,7 @@ export async function runLocalBenchmark(params: RunLocalRequest): Promise<RunLoc
   query.set('limit', String(params.limit));
   query.set('dry_run', String(params.dry_run));
 
-  const url = `${DEVX_API_BASE}/devx/api/llm-bench/run-local?${query.toString()}`;
+  const url = `${DEVX_BASE}/devx/api/llm-bench/run-local?${query.toString()}`;
   const response = await fetch(url, { method: 'POST' });
 
   if (!response.ok) {
@@ -415,7 +415,7 @@ export async function runLocalBenchmark(params: RunLocalRequest): Promise<RunLoc
  * Get benchmark run progress (latest log tail).
  */
 export async function fetchBenchmarkProgress(): Promise<ProgressResponse> {
-  const url = `${DEVX_API_BASE}/devx/api/llm-bench/progress`;
+  const url = `${DEVX_BASE}/devx/api/llm-bench/progress`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -472,7 +472,7 @@ export async function costPrecheck(
   query.set('model', model);
   query.set('limit', String(limit));
 
-  const url = `${DEVX_API_BASE}/devx/api/llm-bench/cost-precheck?${query.toString()}`;
+  const url = `${DEVX_BASE}/devx/api/llm-bench/cost-precheck?${query.toString()}`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -498,7 +498,7 @@ export async function runPaidBenchmark(params: RunPaidRequest): Promise<RunPaidR
   if (params.batch_name) query.set('batch_name', params.batch_name);
   if (params.reason) query.set('reason', params.reason);
 
-  const url = `${DEVX_API_BASE}/devx/api/llm-bench/run?${query.toString()}`;
+  const url = `${DEVX_BASE}/devx/api/llm-bench/run?${query.toString()}`;
   const response = await fetch(url, { method: 'POST' });
 
   if (!response.ok) {
@@ -513,7 +513,7 @@ export async function runPaidBenchmark(params: RunPaidRequest): Promise<RunPaidR
  * Fetch roundtrip metrics (hop timing breakdown).
  */
 export async function fetchRoundtripMetrics(): Promise<RoundtripMetrics> {
-  const url = `${DEVX_API_BASE}/devx/api/metrics/roundtrip`;
+  const url = `${DEVX_BASE}/devx/api/metrics/roundtrip`;
   const response = await fetch(url);
 
   if (!response.ok) {
@@ -521,4 +521,127 @@ export async function fetchRoundtripMetrics(): Promise<RoundtripMetrics> {
   }
 
   return response.json();
+}
+
+// ============================================================================
+// Phase 4: AI Readiness Probe
+// ============================================================================
+
+export type AiReadyLight = {
+  status: "green" | "red";
+  details?: Record<string, unknown>;
+  ts: string;
+  reason?: string;
+};
+
+export type AiReadyResponse = {
+  hc_devx: AiReadyLight;
+  ucnrr: AiReadyLight;
+  core: AiReadyLight;
+  result: "ALL-GOOD" | "NEEDS-FIX";
+  probe_duration_ms: number;
+  ts: string;
+};
+
+export type LayerDiagnosticResponse = {
+  layer: "devx" | "ucnrr" | "core" | "core_e2e";
+  status: "green" | "red";
+  ts: string;
+  details: Record<string, unknown>;
+  reason?: string;
+  suggestions: string[];
+  verbose_data?: Record<string, unknown>;
+};
+
+/**
+ * Fetch AI readiness probe status for all ingestion layers.
+ *
+ * Checks:
+ * - HC/DevX Backend health
+ * - UCNRR LLM configuration
+ * - Core resolver status + E2E promotion test
+ *
+ * Returns traffic-light indicators (green/red) for each layer.
+ */
+export async function fetchAiReady(): Promise<AiReadyResponse> {
+  const url = `${DEVX_BASE}/devx/api/ingestion/ai_ready`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch AI readiness: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+/**
+ * Fetch detailed diagnostics for a specific AI ingestion layer.
+ *
+ * @param layer - Layer to diagnose ("devx", "ucnrr", "core", "core_e2e")
+ * @param verbose - Include verbose diagnostic data (default: true)
+ * @param noWrite - Skip E2E writes for core_e2e layer (default: false)
+ *
+ * Returns detailed diagnostic information including:
+ * - Status (green/red)
+ * - Layer-specific details
+ * - Failure reason (if red)
+ * - Remediation suggestions
+ * - Verbose diagnostic data (if verbose=true)
+ */
+export async function fetchAiReadyLayer(
+  layer: "devx" | "ucnrr" | "core" | "core_e2e",
+  verbose: boolean = true,
+  noWrite: boolean = false
+): Promise<LayerDiagnosticResponse> {
+  const query = new URLSearchParams();
+  query.set('layer', layer);
+  query.set('verbose', verbose ? '1' : '0');
+  if (noWrite && layer === 'core_e2e') {
+    query.set('no_write', '1');
+  }
+
+  const url = `${DEVX_BASE}/devx/api/ingestion/ai_ready?${query.toString()}`;
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch layer diagnostic: ${response.status} ${response.statusText}`);
+  }
+
+  return response.json();
+}
+
+/**
+ * Get display color class for traffic light status.
+ */
+export function getTrafficLightColor(status: "green" | "red"): string {
+  return status === "green"
+    ? "bg-green-100 text-green-800 border-green-200"
+    : "bg-red-100 text-red-800 border-red-200";
+}
+
+/**
+ * Get top-level failure reason from AI readiness response.
+ */
+export function getTopFailureReason(response: AiReadyResponse): string | null {
+  if (response.hc_devx.status === "red") {
+    return `HC/DevX: ${response.hc_devx.reason || "Unknown error"}`;
+  }
+
+  if (response.ucnrr.status === "red") {
+    return `UCNRR: ${response.ucnrr.reason || "Unknown error"}`;
+  }
+
+  if (response.core.status === "red") {
+    return `Core: ${response.core.reason || "Unknown error"}`;
+  }
+
+  // Check E2E status (nested in core.details)
+  if (response.core.details?.e2e) {
+    const e2e = response.core.details.e2e as AiReadyLight;
+    if (e2e.status === "red") {
+      return `E2E: ${e2e.reason || "Unknown error"}`;
+    }
+  }
+
+  return null;
 }
