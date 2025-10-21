@@ -23,7 +23,11 @@ import {
   formatTimestamp,
   extractTraitLabel,
   type Provenance,
+  fetchWhyCards,
+  type WhyCard,
+  resolveCanonicalTraitId,
 } from '@/lib/provenanceClient';
+import { WhyCardPanel } from './why-card-panel';
 
 interface TraitProvenanceDrawerProps {
   userId: string;
@@ -48,6 +52,12 @@ export default function TraitProvenanceDrawer({
   const [error, setError] = useState<string | null>(null);
   const [showRaw, setShowRaw] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
+  const [whyCard, setWhyCard] = useState<WhyCard | null>(null);
+  const [whyTraitId, setWhyTraitId] = useState<string | undefined>(undefined);
+  const [whyLoading, setWhyLoading] = useState(false);
+  const [whyError, setWhyError] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // Load provenance data when drawer opens
   useEffect(() => {
@@ -55,13 +65,81 @@ export default function TraitProvenanceDrawer({
 
     setProv(null);
     setError(null);
+    setNotFound(false);
     setLoading(true);
 
     fetchProvenance(userId, traitId)
-      .then(setProv)
+      .then((result) => {
+        if (result === null) {
+          setProv(null);
+          setNotFound(true);
+        } else {
+          setProv(result);
+        }
+      })
       .catch((e) => setError(String(e)))
       .finally(() => setLoading(false));
   }, [open, userId, traitId]);
+
+  // Load Why-Card when drawer opens
+  useEffect(() => {
+    if (!open) return;
+
+    let cancelled = false;
+    setWhyCard(null);
+    setWhyTraitId(undefined);
+    setWhyError(null);
+    setWhyLoading(true);
+
+    (async () => {
+      try {
+        const canonical = await resolveCanonicalTraitId(traitId).catch(() => traitId);
+        if (cancelled) return;
+
+        if (process.env.NODE_ENV !== 'production') {
+          console.debug('[why-card] fetching', {
+            userId,
+            traitId,
+            canonical,
+          });
+        }
+
+        const result = await fetchWhyCards(userId, canonical || traitId);
+        if (cancelled) return;
+
+        setWhyCard(result.card);
+        setWhyTraitId(result.traitIdUsed || canonical || traitId);
+      } catch (err) {
+        if (cancelled) return;
+        const message = err instanceof Error ? err.message : String(err);
+        setWhyError(message);
+        setToastMessage(message);
+      } finally {
+        if (!cancelled) {
+          setWhyLoading(false);
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [open, userId, traitId]);
+
+  // Auto-dismiss toast after 5 seconds
+  useEffect(() => {
+    if (!toastMessage) return;
+    const timer = setTimeout(() => setToastMessage(null), 5000);
+    return () => clearTimeout(timer);
+  }, [toastMessage]);
+
+  // Clear toast when drawer closes
+  useEffect(() => {
+    if (!open) {
+      setToastMessage(null);
+      setNotFound(false);
+    }
+  }, [open]);
 
   const displayLabel = traitLabel || extractTraitLabel(traitId);
 
@@ -108,6 +186,19 @@ export default function TraitProvenanceDrawer({
       >
         {/* Header */}
         <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-white">
+          {toastMessage && (
+            <div className="absolute top-4 right-4 max-w-[260px] rounded-md bg-red-50 border border-red-200 shadow-md px-3 py-2 text-sm text-red-700 flex items-start gap-2">
+              <span className="flex-1">Why-Card failed to load: {toastMessage}</span>
+              <button
+                type="button"
+                onClick={() => setToastMessage(null)}
+                className="text-red-600 hover:text-red-800 leading-none text-lg"
+                aria-label="Dismiss error"
+              >
+                ×
+              </button>
+            </div>
+          )}
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm text-gray-500">Why this trait?</div>
@@ -140,6 +231,20 @@ export default function TraitProvenanceDrawer({
               <div className="text-xs text-red-600 mt-1">{error}</div>
             </div>
           )}
+
+          {notFound && !loading && !error && (
+            <div className="p-3 rounded-md border border-dashed border-gray-300 bg-gray-50 text-sm text-gray-600">
+              No provenance available yet for this trait. Promote it or provide additional evidence to unlock an explanation.
+            </div>
+          )}
+
+          <WhyCardPanel
+            loading={whyLoading}
+            card={whyCard}
+            error={whyError}
+            traitId={whyTraitId}
+            value={prov?.resolved?.value}
+          />
 
           {/* Provenance Data */}
           {prov && (

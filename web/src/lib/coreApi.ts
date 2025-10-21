@@ -28,13 +28,65 @@ export interface WhyCardNotFound {
 }
 
 export async function fetchWhyCard(userId: string, traitId: string): Promise<WhyCardResponse | WhyCardNotFound> {
-  const url = `${CORE_BASE}/core/api/traits/${encodeURIComponent(traitId)}/why?user_id=${encodeURIComponent(userId)}`;
-  const res = await fetch(url, { cache: 'no-store' });
-  if (res.status === 404) {
-    return { notFound: true };
+  // Try to resolve aliases - attempt both PaDNA and BehaviorDNA namespaces
+  const aliasCandidates = await resolveAliases(traitId);
+
+  let lastError: Error | null = null;
+
+  for (const candidate of aliasCandidates) {
+    try {
+      const url = `${CORE_BASE}/core/api/traits/${encodeURIComponent(candidate)}/why?user_id=${encodeURIComponent(userId)}`;
+      const res = await fetch(url, { cache: 'no-store' });
+
+      if (res.status === 404) {
+        // Try next candidate
+        continue;
+      }
+
+      if (!res.ok) {
+        lastError = new Error(`WhyCard fetch failed: ${res.status}`);
+        continue;
+      }
+
+      // Success! Return the card
+      return res.json();
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+    }
   }
-  if (!res.ok) {
-    throw new Error(`WhyCard fetch failed: ${res.status}`);
+
+  // If we get here, none of the aliases had a Why-Card
+  return { notFound: true };
+}
+
+// Helper to resolve trait ID aliases (copied from provenanceClient pattern)
+async function resolveAliases(traitId: string): Promise<string[]> {
+  const candidates = [traitId];
+
+  // Add BehaviorDNA variant if this is a PaDNA trait
+  if (traitId.startsWith('PaDNA.')) {
+    const suffix = traitId.substring('PaDNA.'.length);
+    // Map common PaDNA traits to their BehaviorDNA equivalents
+    const mapping: Record<string, string> = {
+      'Chronotype': 'BehaviorDNA.Sleep.Chronotype',
+      'EyeDNA.IrisColor': 'BehaviorDNA.Appearance.EyeColor',
+      'HairDNA.NaturalColor': 'BehaviorDNA.Appearance.HairColor',
+    };
+
+    const behaviorDNA = mapping[suffix] || `BehaviorDNA.${suffix}`;
+    candidates.push(behaviorDNA);
+  } else if (traitId.startsWith('BehaviorDNA.')) {
+    // Add PaDNA variant if this is a BehaviorDNA trait
+    const suffix = traitId.substring('BehaviorDNA.'.length);
+    const mapping: Record<string, string> = {
+      'Sleep.Chronotype': 'PaDNA.Chronotype',
+      'Appearance.EyeColor': 'PaDNA.EyeDNA.IrisColor',
+      'Appearance.HairColor': 'PaDNA.HairDNA.NaturalColor',
+    };
+
+    const padna = mapping[suffix] || `PaDNA.${suffix}`;
+    candidates.push(padna);
   }
-  return res.json();
+
+  return candidates;
 }

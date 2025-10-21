@@ -415,6 +415,7 @@ def _resolved_payload(user_id: str) -> Dict[str, Any]:
 
 def unabridged_snapshot(user_id: str) -> Dict[str, Any]:
     """Return per-trait resolved data with governance badges for ``user_id``."""
+    from .graph.normalize_egress import normalize_trait_dict
 
     resolved = _resolved_payload(user_id)
     traits: List[Dict[str, Any]] = []
@@ -426,19 +427,24 @@ def unabridged_snapshot(user_id: str) -> Dict[str, Any]:
         # Support both 'value' (new canonical format) and 'resolved_value' (legacy)
         trait_value = payload.get("value") or payload.get("resolved_value")
 
-        traits.append(
-            {
-                "trait_id": trait_id,
-                "value": trait_value,
-                "ucn": payload.get("ucn"),
-                "rr": payload.get("rr"),
-                "curiosity": payload.get("curiosity"),
-                "reasons": list(payload.get("reasons", [])) if isinstance(payload.get("reasons"), (list, tuple)) else [],
-                "last_observed": payload.get("last_observed"),
-                "metadata": metadata,
-                "badges": _trait_badges(payload),
-            }
-        )
+        # Build trait dict
+        trait = {
+            "trait_id": trait_id,
+            "value": trait_value,
+            "ucn": payload.get("ucn"),
+            "rr_score": payload.get("rr_score"),  # Legacy 0-1000
+            "rr": payload.get("rr"),  # May be None if not normalized yet
+            "curiosity": payload.get("curiosity"),
+            "reasons": list(payload.get("reasons", [])) if isinstance(payload.get("reasons"), (list, tuple)) else [],
+            "last_observed": payload.get("last_observed"),
+            "metadata": metadata,
+            "badges": _trait_badges(payload),
+        }
+
+        # Phase 9: Normalize RR/Curiosity at egress
+        trait = normalize_trait_dict(trait, user_id)
+
+        traits.append(trait)
 
     return {
         "user_id": user_id,

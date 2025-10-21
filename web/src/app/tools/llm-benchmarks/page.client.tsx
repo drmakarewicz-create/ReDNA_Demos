@@ -68,7 +68,7 @@ export default function LLMBenchmarksPageClient() {
   const [roundtripMetrics, setRoundtripMetrics] = useState<RoundtripMetrics | null>(null);
   const [ucnrrStatus, setUcnrrStatus] = useState<UcnrrStatusLite | null>(null);
   const [refreshKey, setRefreshKey] = useState(0);
-  const [whyCardPayload, setWhyCardPayload] = useState<{ traitId: string; traitLabel?: string; value?: string | null } | null>(null);
+  const [whyCardPayload, setWhyCardPayload] = useState<{ traitId: string; traitLabel?: string; value?: unknown } | null>(null);
   const [whyUserId, setWhyUserId] = useState('');
   const [debouncedWhyUserId, setDebouncedWhyUserId] = useState('');
   const router = useRouter();

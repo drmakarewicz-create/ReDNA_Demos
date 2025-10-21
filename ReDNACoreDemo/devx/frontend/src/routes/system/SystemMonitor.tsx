@@ -11,6 +11,7 @@ const serviceLabels: Record<ServiceKey, string> = {
 
 const statusStyles: Record<string, string> = {
   green: 'bg-emerald-100 text-emerald-700',
+  yellow: 'bg-amber-100 text-amber-700',
   amber: 'bg-amber-100 text-amber-700',
   red: 'bg-red-100 text-red-700',
 }
@@ -89,11 +90,17 @@ export default function SystemMonitor() {
           {(Object.keys(serviceLabels) as ServiceKey[]).map((service) => {
             const entry = status[service]
             const badgeClass = statusStyles[entry.status] || 'bg-gray-200 text-gray-700'
+            const tooltipParts = [
+              `${serviceLabels[service]} — ${entry.detail || entry.status}`,
+              entry.warning ? `Warning: ${entry.warning}` : null,
+              entry.checked_at ? `Checked: ${entry.checked_at}` : null,
+            ].filter(Boolean)
+            const tooltip = tooltipParts.join(' • ')
             return (
               <span
                 key={service}
                 className={`flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium ${badgeClass}`}
-                title={`${serviceLabels[service]} — ${entry.detail || entry.status} (${entry.checked_at})`}
+                title={tooltip}
               >
                 <span className="inline-block h-2 w-2 rounded-full bg-current/70" />
                 {serviceLabels[service]} ({entry.ms !== null ? `${entry.ms} ms` : 'n/a'})

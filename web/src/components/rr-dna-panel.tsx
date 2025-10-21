@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import { useI18n } from '../i18n/context';
 import type { UnabridgedSnapshot, UnabridgedTrait } from '../lib/api';
+import { formatPercent } from '@/lib/provenanceClient';
 
 interface RRDnaPanelProps {
   snapshot: UnabridgedSnapshot | null;
@@ -111,6 +112,7 @@ export function RRDnaPanel({ snapshot, loading, error, onRetry }: RRDnaPanelProp
     if (rrScores.length === 0) return null;
     return Math.round((rrScores.reduce((a, b) => a + b, 0) / rrScores.length) * 100) / 100;
   }, [snapshot]);
+  const overallBand = overallRR !== null ? getRRBand(overallRR) : null;
 
   if (error) {
     return (
@@ -158,9 +160,11 @@ export function RRDnaPanel({ snapshot, loading, error, onRetry }: RRDnaPanelProp
         {overallRR !== null && (
           <div className="text-sm">
             <span className="text-slate-500">Overall: </span>
-            <span className={`font-semibold ${getRRBand(overallRR).color}`}>
-              {overallRR.toFixed(1)} {getRRBand(overallRR).label}
-            </span>
+            {overallBand && (
+              <span className={`font-semibold ${overallBand.color}`}>
+                {formatPercent(overallRR)} ({overallBand.label})
+              </span>
+            )}
           </div>
         )}
       </div>

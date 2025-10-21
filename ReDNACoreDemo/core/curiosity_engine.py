@@ -207,11 +207,11 @@ def update_curiosity(
     """
     Update curiosity and timestamps in-place for the resolved map.
 
-    CORE PRINCIPLE: Curiosity = 1000 - RR (or 1.0 - RR in 0-1 scale)
+    CORE PRINCIPLE: Curiosity = 100 - RR (RR is 0-100 percentile)
 
     This simple formula drives exploration:
-    - High RR (rare/certain) → Low curiosity → No need to explore
-    - Low RR (common/uncertain) → High curiosity → System requests more data
+    - High RR (refined/certain) → Low curiosity → No need to explore
+    - Low RR (unrefined/uncertain) → High curiosity → System requests more data
 
     The NUANCE is in what the system DOES with different curiosity values,
     not in the calculation itself. This function also handles:

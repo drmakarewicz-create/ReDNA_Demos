@@ -13,7 +13,7 @@ Core responsibilities:
 Design principles:
 - Coach-agnostic: works with any coach
 - Layered: HC orchestrates, Core validates/stores, UCNRR provides stats
-- Curiosity-driven: curiosity = 1000 - RR
+- Curiosity-driven: curiosity = 100 - RR (RR is 0-100 percentile)
 - Provenance everywhere
 - User trust: loyal, transparent, helpful, boundaries-aware
 """
@@ -138,8 +138,8 @@ class HeadCoachService:
             json.dump(decision, f, indent=2, ensure_ascii=False)
 
     def _compute_curiosity(self, rr: float) -> float:
-        """Compute curiosity score from RR."""
-        return 1000.0 - rr
+        """Compute curiosity score from RR (0-100 percentile)."""
+        return 100.0 - rr
 
     def _get_curiosity_hotspots(self, user_id: str, threshold: float = 800.0) -> List[Dict[str, Any]]:
         """
@@ -159,14 +159,14 @@ class HeadCoachService:
             if not isinstance(trait_data, dict):
                 continue
 
-            rr = trait_data.get('rr', 1000.0)
+            rr = trait_data.get('rr', 50.0)  # Default to median RR (0-100 scale)
             ucn = trait_data.get('ucn', 0.0)
             curiosity = self._compute_curiosity(rr)
 
             if curiosity >= threshold:
                 # Determine reason
                 reason = "newly observed" if ucn < 200 else "low confidence"
-                if ucn > 800 and curiosity > 900:
+                if ucn > 800 and curiosity > 90:
                     reason = "high uncertainty despite high confidence"
 
                 hotspots.append({
@@ -438,7 +438,7 @@ class HeadCoachService:
         if topic in resolved_dict:
             trait_data = resolved_dict[topic]
             ucn = trait_data.get('ucn', 0.0)
-            rr = trait_data.get('rr', 1000.0)
+            rr = trait_data.get('rr', 50.0)  # Default to median RR (0-100 scale)
             curiosity = self._compute_curiosity(rr)
             value = trait_data.get('resolved_value')
             evidence_count = trait_data.get('evidence_count', 0)
@@ -447,17 +447,17 @@ class HeadCoachService:
                 f"**{topic}**\n\n"
                 f"Current value: {value}\n"
                 f"Confidence (UCN): {ucn:.1f}/1000\n"
-                f"Rarity (RR): {rr:.1f}/1000\n"
-                f"Curiosity: {curiosity:.1f}/1000\n\n"
+                f"Refinement Rating (RR): {rr:.1f}/100\n"
+                f"Curiosity: {curiosity:.1f}/100\n\n"
                 f"**Why I'm suggesting this:**\n"
             )
 
-            if curiosity > 900:
+            if curiosity > 90:
                 explanation += (
                     f"This trait has very high curiosity ({curiosity:.0f}), meaning it's rare "
                     f"or uncertain. "
                 )
-            elif curiosity > 800:
+            elif curiosity > 80:
                 explanation += f"This trait has high curiosity ({curiosity:.0f}). "
 
             if ucn < 200:

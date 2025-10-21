@@ -1,0 +1,491 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-10-20",
+  "description": "Runtime flags and environment variables with current values and defaults",
+  "categories": [
+    {
+      "category": "Core Pipeline Features",
+      "flags": [
+        {
+          "name": "PHOTO_IMPORT_STRICT",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "If true, reject photo imports that don't meet quality thresholds"
+        },
+        {
+          "name": "ENABLE_SOFT_IMPORT_ASSIST",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable soft import assistance for low-quality evidence"
+        },
+        {
+          "name": "SOFT_IMPORT_ASSIST_TIMEOUT_MS",
+          "current": "1500",
+          "default": "1500",
+          "type": "number",
+          "description": "Timeout for soft import assistance in milliseconds"
+        },
+        {
+          "name": "CORE_HOLISTIC_ON_INGEST",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Run holistic synthesis immediately after ingestion"
+        },
+        {
+          "name": "CORE_HOLISTIC_MAX_MS",
+          "current": "5000",
+          "default": "5000",
+          "type": "number",
+          "description": "Max time for holistic synthesis in milliseconds"
+        },
+        {
+          "name": "CORE_HOLISTIC_USE_LLM",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable LLM-driven holistic synthesis"
+        },
+        {
+          "name": "CORE_HOLISTIC_LLM_BUDGET_MS",
+          "current": "15000",
+          "default": "15000",
+          "type": "number",
+          "description": "LLM budget for holistic synthesis in milliseconds"
+        },
+        {
+          "name": "CORE_HOLISTIC_SCHEDULE_ENABLED",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable scheduled holistic synthesis runs"
+        },
+        {
+          "name": "CORE_HOLISTIC_SCHEDULE_DAYS",
+          "current": "7",
+          "default": "7",
+          "type": "number",
+          "description": "Days between scheduled holistic runs"
+        }
+      ]
+    },
+    {
+      "category": "Feature Toggles",
+      "flags": [
+        {
+          "name": "PERSONA_DEV_TABS",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable developer tabs in persona UI"
+        },
+        {
+          "name": "DEV_EXPLORER_ENABLED",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable developer explorer tools"
+        },
+        {
+          "name": "WRITE_PROTECT",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable write protection (read-only mode)"
+        },
+        {
+          "name": "DEMO_BASELINES_ENABLED",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Use demo synthetic baselines for UCN/RR"
+        },
+        {
+          "name": "CORE_CURIOSITY_ENABLED",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable curiosity loop question generation"
+        },
+        {
+          "name": "AUDIT_VIEWER_ENABLED",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable audit log viewer"
+        },
+        {
+          "name": "HC_OPS_ENABLED",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable Head Coach operations UI"
+        },
+        {
+          "name": "NUDGE_INBOX_ENABLED",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable nudge inbox feature"
+        },
+        {
+          "name": "FEEDBACK_ENABLED",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable user feedback collection"
+        },
+        {
+          "name": "HC_SEND_ENABLED",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable Head Coach message sending"
+        },
+        {
+          "name": "HC_CHAT_ENABLED",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable Head Coach chat interface"
+        }
+      ]
+    },
+    {
+      "category": "LLM Configuration",
+      "flags": [
+        {
+          "name": "HC_CHAT_PROVIDER",
+          "current": "ollama",
+          "default": "ollama",
+          "type": "string",
+          "description": "LLM provider for Head Coach chat",
+          "options": ["ollama", "openai", "anthropic"]
+        },
+        {
+          "name": "OLLAMA_BASE",
+          "current": "http://127.0.0.1:11434",
+          "default": "http://127.0.0.1:11434",
+          "type": "string",
+          "description": "Ollama base URL"
+        },
+        {
+          "name": "OLLAMA_MODEL",
+          "current": "llama3.1:8b",
+          "default": "llama3.1:8b",
+          "type": "string",
+          "description": "Ollama model name"
+        },
+        {
+          "name": "UCNRR_LLM_PROVIDER",
+          "current": "ollama",
+          "default": "ollama",
+          "type": "string",
+          "description": "LLM provider for UCN/RR service"
+        },
+        {
+          "name": "UCNRR_LLM_MODEL",
+          "current": "llama3.1:8b",
+          "default": "llama3.1:8b",
+          "type": "string",
+          "description": "LLM model for UCN/RR service"
+        },
+        {
+          "name": "OPENAI_MODEL",
+          "current": "gpt-4o-mini",
+          "default": "gpt-4o-mini",
+          "type": "string",
+          "description": "OpenAI model (when provider=openai)"
+        },
+        {
+          "name": "ANTHROPIC_MODEL",
+          "current": "claude-3-5-sonnet-latest",
+          "default": "claude-3-5-sonnet-latest",
+          "type": "string",
+          "description": "Anthropic model (when provider=anthropic)"
+        }
+      ]
+    },
+    {
+      "category": "Service Ports",
+      "flags": [
+        {
+          "name": "CORE_PORT",
+          "current": "8004",
+          "default": "8004",
+          "type": "number",
+          "description": "Core API port"
+        },
+        {
+          "name": "UCNRR_PORT",
+          "current": "8017",
+          "default": "8017",
+          "type": "number",
+          "description": "UCN/RR service port (Head Coach)"
+        },
+        {
+          "name": "REACT_PORT",
+          "current": "3000",
+          "default": "3000",
+          "type": "number",
+          "description": "Web UI (Next.js) port"
+        },
+        {
+          "name": "STREAMLIT_PHOTO_PORT",
+          "current": "8510",
+          "default": "8510",
+          "type": "number",
+          "description": "Control Panel++ port"
+        },
+        {
+          "name": "STREAMLIT_PADNA_PORT",
+          "current": "8511",
+          "default": "8511",
+          "type": "number",
+          "description": "Resolver service port"
+        },
+        {
+          "name": "DEVX_BACKEND_PORT",
+          "current": "8100",
+          "default": "8100",
+          "type": "number",
+          "description": "Curiosity Engine port"
+        },
+        {
+          "name": "DEVX_PORT",
+          "current": "8018",
+          "default": "8018",
+          "type": "number",
+          "description": "UCN/RR validation service port"
+        }
+      ]
+    },
+    {
+      "category": "RR Promotion Thresholds (Phase 4-5)",
+      "description": "Thresholds for promoting traits from pending to snapshot.traits (0-1000 scale)",
+      "flags": [
+        {
+          "name": "RR_PROMOTE_MIN",
+          "current": "500.0",
+          "default": "500.0",
+          "type": "number",
+          "description": "Default minimum RR for promotion"
+        },
+        {
+          "name": "RR_PROMOTE_TOP_K",
+          "current": "1",
+          "default": "1",
+          "type": "number",
+          "description": "Number of top candidates to promote per trait"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_EYE",
+          "current": "500.0",
+          "default": "500.0",
+          "type": "number",
+          "description": "Eye color promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_HAIR",
+          "current": "500",
+          "default": "500",
+          "type": "number",
+          "description": "Hair traits promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_AGE",
+          "current": "500",
+          "default": "500",
+          "type": "number",
+          "description": "Age traits promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_HEIGHT",
+          "current": "650",
+          "default": "650",
+          "type": "number",
+          "description": "Height traits promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_LOCATION",
+          "current": "700.0",
+          "default": "700.0",
+          "type": "number",
+          "description": "Location traits promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_CHRONOTYPE",
+          "current": "700.0",
+          "default": "700.0",
+          "type": "number",
+          "description": "Chronotype promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_LEISURE",
+          "current": "720.0",
+          "default": "720.0",
+          "type": "number",
+          "description": "Leisure activity promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_CAFFEINE",
+          "current": "750.0",
+          "default": "750.0",
+          "type": "number",
+          "description": "Caffeine habits promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_BEHAV_OUTDOOR",
+          "current": "760.0",
+          "default": "760.0",
+          "type": "number",
+          "description": "Outdoor behavior promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_FITNESS",
+          "current": "800.0",
+          "default": "800.0",
+          "type": "number",
+          "description": "Fitness traits promotion threshold"
+        },
+        {
+          "name": "RR_PROMOTE_MIN_SOCIAL",
+          "current": "820.0",
+          "default": "820.0",
+          "type": "number",
+          "description": "Social style promotion threshold"
+        }
+      ]
+    },
+    {
+      "category": "Tier-1 Promotion Toggles (Phase 4.0b)",
+      "flags": [
+        {
+          "name": "PROMOTE_ENABLE_HAIR",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable promotion of hair traits"
+        },
+        {
+          "name": "PROMOTE_ENABLE_AGE",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable promotion of age traits"
+        },
+        {
+          "name": "PROMOTE_ENABLE_REL",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable promotion of relationship traits"
+        },
+        {
+          "name": "PROMOTE_ENABLE_HEIGHT",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable promotion of height traits"
+        }
+      ]
+    },
+    {
+      "category": "Tier-2 Promotion Toggles (Phase 5)",
+      "description": "More complex traits - default OFF for conservative rollout",
+      "flags": [
+        {
+          "name": "PROMOTE_ENABLE_DIET",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable promotion of diet traits"
+        },
+        {
+          "name": "PROMOTE_ENABLE_WORKLOC",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable promotion of work location traits"
+        },
+        {
+          "name": "PROMOTE_ENABLE_GROUPSIZE",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable promotion of group size preference traits"
+        },
+        {
+          "name": "PROMOTE_ENABLE_EXERCISE_TYPE",
+          "current": "false",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable promotion of exercise type traits"
+        },
+        {
+          "name": "PROMOTE_ENABLE_CHRONO",
+          "current": "true",
+          "default": "true",
+          "type": "boolean",
+          "description": "Enable promotion of chronotype traits"
+        }
+      ]
+    },
+    {
+      "category": "Development & Testing",
+      "flags": [
+        {
+          "name": "DEV_LOOPTEST_USER_ID",
+          "current": "devexp_test",
+          "default": "devexp_test",
+          "type": "string",
+          "description": "User ID for loop testing"
+        },
+        {
+          "name": "DEV_HTTP_TIMEOUT_SECONDS",
+          "current": "36.0",
+          "default": "36.0",
+          "type": "number",
+          "description": "HTTP timeout for dev testing in seconds"
+        }
+      ]
+    },
+    {
+      "category": "Planned Features (Disabled)",
+      "description": "Features under development - do not enable",
+      "flags": [
+        {
+          "name": "CREDNA_ENABLED",
+          "current": "false (commented out)",
+          "default": "false",
+          "type": "boolean",
+          "description": "Enable CReDNA (Contradictory evidence tracking) - not ready"
+        },
+        {
+          "name": "CREDNA_REVIEW_INTERVAL_DAYS",
+          "current": "7 (commented out)",
+          "default": "7",
+          "type": "number",
+          "description": "Days between CReDNA reviews"
+        },
+        {
+          "name": "CREDNA_AUTO_PROPAGATE",
+          "current": "false (commented out)",
+          "default": "false",
+          "type": "boolean",
+          "description": "Auto-propagate CReDNA updates"
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Phase 9: RR scale changed from 0-1000 (internal) to 0-100 (user-facing percentile)",
+    "All RR_PROMOTE_MIN_* thresholds still use 0-1000 scale (legacy) - Phase 9 normalization happens at egress",
+    "Phase 10: Ontology hierarchy now uses ReDNA root with 5 tier-1 subsystems",
+    "Most Tier-2 promotion toggles are OFF by default for conservative rollout",
+    "WRITE_PROTECT=false means system is in read-write mode (normal operation)",
+    "LLM provider can be changed at runtime via environment variable override"
+  ]
+}

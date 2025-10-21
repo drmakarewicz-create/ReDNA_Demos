@@ -393,9 +393,10 @@ class RefinementResolver:
             conflicting_count: Number of conflicting proposals
 
         Returns:
-            RR score (0..1)
+            RR score (0..1) - Phase 9: This is legacy code, should use rr_to_percentile()
         """
-        # Base RR from UCN
+        # LEGACY: Direct UCN→RR assignment (Phase 9 TODO: Use rr_to_percentile adapter)
+        # For now, keep as-is since this returns 0-1 normalized score for internal use
         rr = ucn
 
         # Reduce for conflicts

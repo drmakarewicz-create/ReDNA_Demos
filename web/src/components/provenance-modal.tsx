@@ -1,9 +1,10 @@
 // web/src/components/provenance-modal.tsx
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useMemo } from 'react';
 
 import { CORE_API_BASE } from '../lib/api';
+import { formatTraitValue } from '../lib/provenanceClient';
 
 export interface ProvenanceModalProps {
   open: boolean;
@@ -44,6 +45,14 @@ export function ProvenanceModal({ open, traitId, traitValue, userId, onClose }: 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [notFound, setNotFound] = useState(false);
+
+  // Safe formatting of trait value - prevents React child error
+  const displayValue = useMemo(() => {
+    if (traitValue === null || traitValue === undefined) {
+      return '—';
+    }
+    return formatTraitValue(traitValue);
+  }, [traitValue]);
 
   useEffect(() => {
     if (!open) return;
@@ -143,7 +152,7 @@ export function ProvenanceModal({ open, traitId, traitValue, userId, onClose }: 
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
           <h2 id="provenance-title" className="text-lg font-semibold text-slate-900 dark:text-slate-100">
-            Why is this trait &ldquo;{traitValue}&rdquo;?
+            Why is this trait &ldquo;{displayValue}&rdquo;?
           </h2>
           <button
             onClick={onClose}

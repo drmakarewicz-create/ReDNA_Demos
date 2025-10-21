@@ -7,6 +7,7 @@
  */
 
 import { useState, useCallback, useEffect } from 'react';
+import { fetchWithRetry } from '../../lib/utils';
 
 type PromptStyle = 'photorealistic' | 'portrait' | 'cinematic' | 'artistic';
 

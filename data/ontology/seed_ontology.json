@@ -1,0 +1,279 @@
+{
+  "version": "2.0",
+  "description": "Phase 10: ReDNA = Replicated Digital Neural Approximation (root), RelDNA = Relational DNA (tier-1)",
+  "created_at": "2025-10-20T10:30:00.000000",
+  "nodes": [
+    {
+      "node_id": "ont_redna_root",
+      "node_type": "dna_category",
+      "trait_id": "ReDNA",
+      "value": null,
+      "category": null,
+      "label": "ReDNA",
+      "description": "Replicated Digital Neural Approximation - The complete digital organism",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "tier": 0,
+        "full_name": "Replicated Digital Neural Approximation",
+        "is_root": true
+      }
+    },
+    {
+      "node_id": "ont_reldna",
+      "node_type": "dna_category",
+      "trait_id": "RelDNA",
+      "value": null,
+      "category": null,
+      "label": "RelDNA",
+      "description": "Relational DNA - Social connections and relationship patterns",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "tier": 1,
+        "parent": "ReDNA",
+        "full_name": "Relational DNA",
+        "aliases": ["RelationalDNA", "Relational DNA"]
+      }
+    },
+    {
+      "node_id": "ont_padna",
+      "node_type": "dna_category",
+      "trait_id": "PaDNA",
+      "value": null,
+      "category": null,
+      "label": "PaDNA",
+      "description": "Physical Attributes DNA - Observable physical characteristics and biological traits",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "tier": 1,
+        "parent": "ReDNA",
+        "full_name": "Physical Attributes DNA"
+      }
+    },
+    {
+      "node_id": "ont_behdna",
+      "node_type": "dna_category",
+      "trait_id": "BehDNA",
+      "value": null,
+      "category": null,
+      "label": "BehDNA",
+      "description": "Behavioral DNA - Behavior patterns, habits, and actions",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "tier": 1,
+        "parent": "ReDNA",
+        "full_name": "Behavioral DNA",
+        "aliases": ["BehaviorDNA"]
+      }
+    },
+    {
+      "node_id": "ont_cogdna",
+      "node_type": "dna_category",
+      "trait_id": "CogDNA",
+      "value": null,
+      "category": null,
+      "label": "CogDNA",
+      "description": "Cognitive DNA - Thinking patterns, mental processes, and reasoning styles",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "tier": 1,
+        "parent": "ReDNA",
+        "full_name": "Cognitive DNA"
+      }
+    },
+    {
+      "node_id": "ont_emodna",
+      "node_type": "dna_category",
+      "trait_id": "EmoDNA",
+      "value": null,
+      "category": null,
+      "label": "EmoDNA",
+      "description": "Emotional DNA - Emotional patterns, regulation, and affective responses",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "tier": 1,
+        "parent": "ReDNA",
+        "full_name": "Emotional DNA"
+      }
+    },
+    {
+      "node_id": "ont_chronotype",
+      "node_type": "trait",
+      "trait_id": "PaDNA.Chronotype",
+      "value": null,
+      "category": "Physical",
+      "label": "Chronotype",
+      "description": "Morning person vs. night owl preference",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "parent": "PaDNA"
+      }
+    },
+    {
+      "node_id": "ont_outdoor_freq",
+      "node_type": "trait",
+      "trait_id": "PaDNA.OutdoorActivity.Frequency",
+      "value": null,
+      "category": "Physical",
+      "label": "Outdoor Activity Frequency",
+      "description": null,
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "parent": "PaDNA"
+      }
+    },
+    {
+      "node_id": "ont_exercise_time",
+      "node_type": "trait",
+      "trait_id": "PaDNA.Exercise.PreferredTime",
+      "value": null,
+      "category": "Physical",
+      "label": "Preferred Exercise Time",
+      "description": null,
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "parent": "PaDNA"
+      }
+    },
+    {
+      "node_id": "ont_social_style",
+      "node_type": "trait",
+      "trait_id": "PaDNA.SocialStyle",
+      "value": null,
+      "category": "Social",
+      "label": "Social Style",
+      "description": null,
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "parent": "PaDNA"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "edge_redna_reldna",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_redna_root",
+      "to_node": "ont_reldna",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "ReDNA contains RelDNA as a tier-1 subsystem",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    },
+    {
+      "edge_id": "edge_redna_padna",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_redna_root",
+      "to_node": "ont_padna",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "ReDNA contains PaDNA as a tier-1 subsystem",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    },
+    {
+      "edge_id": "edge_redna_behdna",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_redna_root",
+      "to_node": "ont_behdna",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "ReDNA contains BehDNA as a tier-1 subsystem",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    },
+    {
+      "edge_id": "edge_redna_cogdna",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_redna_root",
+      "to_node": "ont_cogdna",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "ReDNA contains CogDNA as a tier-1 subsystem",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    },
+    {
+      "edge_id": "edge_redna_emodna",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_redna_root",
+      "to_node": "ont_emodna",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "ReDNA contains EmoDNA as a tier-1 subsystem",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    },
+    {
+      "edge_id": "edge_padna_chronotype",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_padna",
+      "to_node": "ont_chronotype",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "PaDNA contains Chronotype trait",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    },
+    {
+      "edge_id": "edge_padna_outdoor",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_padna",
+      "to_node": "ont_outdoor_freq",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "PaDNA contains OutdoorActivity.Frequency trait",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    },
+    {
+      "edge_id": "edge_padna_exercise",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_padna",
+      "to_node": "ont_exercise_time",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "PaDNA contains Exercise.PreferredTime trait",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    },
+    {
+      "edge_id": "edge_padna_social",
+      "edge_type": "is_parent_of",
+      "from_node": "ont_padna",
+      "to_node": "ont_social_style",
+      "weight": 1.0,
+      "confidence": 1.0,
+      "source": "seed",
+      "rationale": "PaDNA contains SocialStyle trait",
+      "created_at": "2025-10-20T10:30:00.000000",
+      "metadata": {
+        "relationship": "hierarchy"
+      }
+    }
+  ]
+}

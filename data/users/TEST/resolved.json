@@ -7,69 +7,131 @@
     ],
     "reasons": [
       "imported:Blue@0.60"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111974Z",
+    "history": []
   },
   "BioDNA.Race": {
     "resolved_value": "Black",
     "ucn": 120,
     "reasons": [
       "explicit statement"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111982Z",
+    "history": []
   },
   "PaDNA.LooksDNA.HairDNA.Color": {
     "resolved_value": "brown",
     "ucn": 100,
     "reasons": [
       "explicit color statement"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111984Z",
+    "history": []
   },
   "PaDNA.LooksDNA.FaceDNA.FacialHair": {
     "resolved_value": true,
     "ucn": 100,
     "reasons": [
       "explicit statement"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111985Z",
+    "history": []
   },
   "BioDNA.Height.Years": {
     "resolved_value": 72,
     "ucn": 100,
     "reasons": [
       "explicit height statement"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111987Z",
+    "history": []
   },
   "PaDNA.HairDNA.Color": {
     "resolved_value": "Blonde",
     "ucn": 80.0,
     "reasons": [
       "photo_import:manual-test"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111988Z",
+    "history": []
   },
   "PaDNA.HairDNA.Length": {
     "resolved_value": "Long",
     "ucn": 80.0,
     "reasons": [
       "photo_import:manual-test"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111989Z",
+    "history": []
   },
   "PaDNA.EyeDNA.Color": {
     "resolved_value": "Blue",
     "ucn": 80.0,
     "reasons": [
       "photo_import:manual-test"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111990Z",
+    "history": []
   },
   "PaDNA.SkinDNA.Tone": {
     "resolved_value": "Fair",
     "ucn": 80.0,
     "reasons": [
       "photo_import:manual-test"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111991Z",
+    "history": []
   },
   "PaDNA.BodyDNA.HeightCM": {
     "resolved_value": 178.0,
     "ucn": 80.0,
     "reasons": [
       "photo_import:manual-test"
-    ]
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:20:40.111992Z",
+    "history": []
+  },
+  "PaDNA.HairDNA.Color.Natural": {
+    "id": "PaDNA.HairDNA.Color.Natural",
+    "rr": 830.0,
+    "curiosity": 0.1228,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1761052831403",
+        "ts": "2025-10-21T13:20:31+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:22:47.198101Z",
+    "history": []
+  },
+  "BehaviorDNA.Exercise.Frequency": {
+    "id": "BehaviorDNA.Exercise.Frequency",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1761052831403",
+        "ts": "2025-10-21T13:20:31+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-21T13:22:47.198104Z",
+    "history": []
   }
 }

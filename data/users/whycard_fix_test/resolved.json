@@ -1,0 +1,82 @@
+{
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760885066381",
+        "ts": "2025-10-19T14:44:26+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T14:44:32.660053Z",
+    "history": []
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760885066381",
+        "ts": "2025-10-19T14:44:26+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T14:44:32.660067Z",
+    "history": []
+  },
+  "BehaviorDNA.Exercise.Frequency": {
+    "id": "BehaviorDNA.Exercise.Frequency",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760885066381",
+        "ts": "2025-10-19T14:44:26+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T14:44:32.660072Z",
+    "history": []
+  },
+  "BehaviorDNA.Routine.Morning": {
+    "id": "BehaviorDNA.Routine.Morning",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760885066381",
+        "ts": "2025-10-19T14:44:26+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T14:44:32.660075Z",
+    "history": []
+  },
+  "PreferenceDNA.Social.GroupSize": {
+    "id": "PreferenceDNA.Social.GroupSize",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760885066381",
+        "ts": "2025-10-19T14:44:26+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T14:44:32.660078Z",
+    "history": []
+  }
+}

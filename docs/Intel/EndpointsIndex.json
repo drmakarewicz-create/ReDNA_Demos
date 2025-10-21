@@ -1,0 +1,390 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-10-20",
+  "description": "Comprehensive index of all ReDNA API endpoints across services",
+  "services": [
+    {
+      "service": "Core API",
+      "base_url": "http://127.0.0.1:8004",
+      "categories": [
+        {
+          "category": "Graph Operations",
+          "endpoints": [
+            {
+              "path": "/core/graph/ontology",
+              "method": "GET",
+              "returns": "OntologyGraph (nodes, edges, version)",
+              "auth_required": false,
+              "description": "Retrieve current ontology graph"
+            },
+            {
+              "path": "/core/graph/ontology/load",
+              "method": "POST",
+              "params": "?force=true (optional)",
+              "returns": "Load status and statistics",
+              "auth_required": false,
+              "description": "Load seed ontology, with force=true to replace existing"
+            },
+            {
+              "path": "/core/graph/belief",
+              "method": "GET",
+              "params": "?user_id=<user>",
+              "returns": "BeliefGraph for user",
+              "auth_required": false,
+              "description": "Retrieve user's belief graph"
+            },
+            {
+              "path": "/core/graph/belief/nodes",
+              "method": "POST",
+              "body": "BeliefNode data",
+              "returns": "Created node",
+              "auth_required": false,
+              "description": "Add belief node to user's graph"
+            }
+          ]
+        },
+        {
+          "category": "Trait Operations",
+          "endpoints": [
+            {
+              "path": "/core/traits/{user_id}",
+              "method": "GET",
+              "returns": "Complete user profile with all traits",
+              "auth_required": false,
+              "description": "Get all traits for a user"
+            },
+            {
+              "path": "/core/traits/{user_id}/{trait_path}",
+              "method": "GET",
+              "returns": "Single trait with provenance",
+              "auth_required": false,
+              "description": "Get specific trait by path"
+            },
+            {
+              "path": "/core/traits/{user_id}",
+              "method": "POST",
+              "body": "Trait updates (bulk)",
+              "returns": "Update confirmation",
+              "auth_required": false,
+              "description": "Bulk update traits"
+            }
+          ]
+        },
+        {
+          "category": "Provenance & Why-Cards",
+          "endpoints": [
+            {
+              "path": "/core/provenance/{user_id}/{trait_path}",
+              "method": "GET",
+              "returns": "Full provenance chain",
+              "auth_required": false,
+              "description": "Get complete provenance for a trait"
+            },
+            {
+              "path": "/core/why-cards/{user_id}",
+              "method": "GET",
+              "returns": "All Why-Cards for user",
+              "auth_required": false,
+              "description": "Retrieve user's Why-Cards"
+            },
+            {
+              "path": "/core/why-cards/{user_id}/{trait_path}",
+              "method": "GET",
+              "returns": "Why-Cards for specific trait",
+              "auth_required": false,
+              "description": "Get Why-Cards explaining a trait"
+            }
+          ]
+        },
+        {
+          "category": "Ingestion",
+          "endpoints": [
+            {
+              "path": "/core/ingest",
+              "method": "POST",
+              "body": "Evidence bundle (observations, statements, etc.)",
+              "returns": "Ingestion result with new traits",
+              "auth_required": false,
+              "description": "Main ingestion endpoint - processes evidence through full pipeline"
+            },
+            {
+              "path": "/core/ingest/photo",
+              "method": "POST",
+              "body": "Photo upload (multipart/form-data)",
+              "returns": "Photo analysis results",
+              "auth_required": false,
+              "description": "Photo-specific ingestion"
+            }
+          ]
+        },
+        {
+          "category": "Curiosity Loop",
+          "endpoints": [
+            {
+              "path": "/core/curiosity/{user_id}/questions",
+              "method": "GET",
+              "returns": "Ranked question candidates",
+              "auth_required": false,
+              "description": "Get next questions to ask user"
+            },
+            {
+              "path": "/core/curiosity/{user_id}/answer",
+              "method": "POST",
+              "body": "Answer to curiosity question",
+              "returns": "Processing result",
+              "auth_required": false,
+              "description": "Submit answer to curiosity question"
+            }
+          ]
+        },
+        {
+          "category": "System Health",
+          "endpoints": [
+            {
+              "path": "/health",
+              "method": "GET",
+              "returns": "Service health status",
+              "auth_required": false,
+              "description": "Health check endpoint"
+            },
+            {
+              "path": "/version",
+              "method": "GET",
+              "returns": "API version info",
+              "auth_required": false,
+              "description": "Get version information"
+            }
+          ]
+        },
+        {
+          "category": "Debug & Diagnostics",
+          "endpoints": [
+            {
+              "path": "/core/debug/ucnrr/{user_id}",
+              "method": "GET",
+              "returns": "UCN/RR diagnostic data",
+              "auth_required": false,
+              "description": "Debug UCN/RR calculations"
+            },
+            {
+              "path": "/core/debug/resolver/{user_id}",
+              "method": "GET",
+              "returns": "Resolver traces",
+              "auth_required": false,
+              "description": "Debug resolution process"
+            },
+            {
+              "path": "/core/debug/ontology/stats",
+              "method": "GET",
+              "returns": "Ontology statistics",
+              "auth_required": false,
+              "description": "Get ontology graph statistics"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "Head Coach",
+      "base_url": "http://127.0.0.1:8017",
+      "categories": [
+        {
+          "category": "Inference",
+          "endpoints": [
+            {
+              "path": "/infer",
+              "method": "POST",
+              "body": "Observations bundle",
+              "returns": "Proposed inferences",
+              "auth_required": false,
+              "description": "Generate trait inferences from observations"
+            }
+          ]
+        },
+        {
+          "category": "Health",
+          "endpoints": [
+            {
+              "path": "/health",
+              "method": "GET",
+              "returns": "Service health",
+              "auth_required": false,
+              "description": "Health check"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "UCN/RR Service",
+      "base_url": "http://127.0.0.1:8018",
+      "categories": [
+        {
+          "category": "Statistical Validation",
+          "endpoints": [
+            {
+              "path": "/assess",
+              "method": "POST",
+              "body": "Observations and inferences",
+              "returns": "UCN/RR assessments",
+              "auth_required": false,
+              "description": "Assess confidence (UCN) and rarity (RR) for traits"
+            }
+          ]
+        },
+        {
+          "category": "Health",
+          "endpoints": [
+            {
+              "path": "/health",
+              "method": "GET",
+              "returns": "Service health",
+              "auth_required": false,
+              "description": "Health check"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "Web UI (Next.js)",
+      "base_url": "http://localhost:3000",
+      "categories": [
+        {
+          "category": "Pages",
+          "endpoints": [
+            {
+              "path": "/",
+              "method": "GET",
+              "returns": "Main dashboard page",
+              "auth_required": false,
+              "description": "User dashboard with DNA panel and provenance"
+            },
+            {
+              "path": "/tools/llm-benchmarks",
+              "method": "GET",
+              "returns": "LLM benchmarks page",
+              "auth_required": false,
+              "description": "Benchmark interface for LLM testing"
+            }
+          ]
+        },
+        {
+          "category": "API Routes",
+          "endpoints": [
+            {
+              "path": "/api/traits",
+              "method": "GET",
+              "params": "?user_id=<user>",
+              "returns": "User traits (proxied from Core)",
+              "auth_required": false,
+              "description": "Frontend API proxy to Core"
+            },
+            {
+              "path": "/api/provenance",
+              "method": "GET",
+              "params": "?user_id=<user>&trait_path=<path>",
+              "returns": "Trait provenance (proxied)",
+              "auth_required": false,
+              "description": "Frontend provenance proxy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "Control Panel++ (CPPP)",
+      "base_url": "http://127.0.0.1:8510",
+      "categories": [
+        {
+          "category": "Orchestration",
+          "endpoints": [
+            {
+              "path": "/orchestrate",
+              "method": "POST",
+              "body": "Orchestration command",
+              "returns": "Execution result",
+              "auth_required": false,
+              "description": "Run orchestrated workflows"
+            },
+            {
+              "path": "/status",
+              "method": "GET",
+              "returns": "CPPP status and service health",
+              "auth_required": false,
+              "description": "Get orchestration status"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "Curiosity Engine",
+      "base_url": "http://127.0.0.1:8100",
+      "categories": [
+        {
+          "category": "Question Generation",
+          "endpoints": [
+            {
+              "path": "/generate",
+              "method": "POST",
+              "body": "User profile and context",
+              "returns": "Ranked question candidates",
+              "auth_required": false,
+              "description": "Generate curiosity-driven questions"
+            }
+          ]
+        },
+        {
+          "category": "Health",
+          "endpoints": [
+            {
+              "path": "/health",
+              "method": "GET",
+              "returns": "Service health",
+              "auth_required": false,
+              "description": "Health check"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "service": "Resolver (Refinement)",
+      "base_url": "http://127.0.0.1:8511",
+      "categories": [
+        {
+          "category": "Conflict Resolution",
+          "endpoints": [
+            {
+              "path": "/resolve",
+              "method": "POST",
+              "body": "Conflict detection result",
+              "returns": "Resolution decision",
+              "auth_required": false,
+              "description": "Resolve trait conflicts via AI reasoning"
+            }
+          ]
+        },
+        {
+          "category": "Health",
+          "endpoints": [
+            {
+              "path": "/health",
+              "method": "GET",
+              "returns": "Service health",
+              "auth_required": false,
+              "description": "Health check"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "All Core API endpoints default to auth_required=false in demo mode",
+    "Phase 9: UCN is 0-1000 (internal), RR is 0-100 (user-facing percentile)",
+    "Phase 10: Ontology hierarchy uses ReDNA root with 5 tier-1 subsystems",
+    "Debug endpoints should be disabled in production via ENABLE_DEBUG_ENDPOINTS flag"
+  ]
+}

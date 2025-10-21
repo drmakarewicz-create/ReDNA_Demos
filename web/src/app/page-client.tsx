@@ -59,6 +59,7 @@ import {
   type UnabridgedSnapshot,
   type UserSummary
 } from '../lib/api';
+import { fetchNextQuestions, type NextQuestionCandidate } from '../lib/curiosityClient';
 import { readCache, writeCache } from '../lib/offline-cache';
 import { subscribePerfMetrics, type PerfMetricsSnapshot } from '../lib/perf-hud';
 import { usePreferences } from '../hooks/use-preferences';
@@ -76,6 +77,7 @@ import { useFeatureFlags } from '../lib/feature-flags';
 import { CoachToolsPane } from '../components/coach-tools-pane';
 import { LifeOSChatPanel } from '../components/life-os-chat-panel';
 import { CoachCatalogModal } from '../components/coach-catalog-modal';
+import { OpenQuestionsPanel } from '../components/open-questions-panel';
 
 const LOCAL_STORAGE_KEY = '_active_user_id';
 
@@ -176,6 +178,9 @@ export default function HeadCoachPage() {
   const [nudgeLoading, setNudgeLoading] = useState(false);
   const [aggregatesLoading, setAggregatesLoading] = useState(false);
   const [unabridgedLoading, setUnabridgedLoading] = useState(false);
+  const [openQuestions, setOpenQuestions] = useState<NextQuestionCandidate[]>([]);
+  const [openQuestionsError, setOpenQuestionsError] = useState<string | null>(null);
+  const [openQuestionsLoading, setOpenQuestionsLoading] = useState(false);
   const [askActionPending, setAskActionPending] = useState<Record<string, boolean>>({});
   const [askActionErrors, setAskActionErrors] = useState<Record<string, string | null>>({});
   const [nudgeActionPending, setNudgeActionPending] = useState<Record<string, boolean>>({});
@@ -1143,6 +1148,41 @@ export default function HeadCoachPage() {
     []
   );
 
+  const loadOpenQuestions = useCallback(
+    async (userId: string, options?: { reset?: boolean }) => {
+      const target = userId.trim();
+      if (!target) {
+        setOpenQuestions([]);
+        setOpenQuestionsError(null);
+        setOpenQuestionsLoading(false);
+        return;
+      }
+      if (options?.reset) {
+        setOpenQuestions([]);
+      }
+      setOpenQuestionsLoading(true);
+      setOpenQuestionsError(null);
+      try {
+        const questions = await fetchNextQuestions(target, 'auto', 5);
+        if (activeUserRef.current === target) {
+          setOpenQuestions(questions);
+          setOpenQuestionsError(null);
+        }
+      } catch (err) {
+        console.warn('failed to load open questions', err);
+        if (activeUserRef.current === target) {
+          setOpenQuestions([]);
+          setOpenQuestionsError(describeError(err));
+        }
+      } finally {
+        if (activeUserRef.current === target) {
+          setOpenQuestionsLoading(false);
+        }
+      }
+    },
+    []
+  );
+
   // Auto-refresh unabridged panel every 5 seconds to pick up chat ingestion updates
   useEffect(() => {
     if (!activeUser.trim()) {
@@ -1307,14 +1347,17 @@ export default function HeadCoachPage() {
       setNudges([]);
       setAggregates(null);
       setUnabridged(null);
+      setOpenQuestions([]);
       setAsksError(null);
       setNudgeError(null);
       setAggregatesError(null);
       setUnabridgedError(null);
+      setOpenQuestionsError(null);
       setAsksLoading(false);
       setNudgeLoading(false);
       setAggregatesLoading(false);
       setUnabridgedLoading(false);
+      setOpenQuestionsLoading(false);
       setAskActionPending({});
       setAskActionErrors({});
       setNudgeActionErrors({});
@@ -1329,7 +1372,8 @@ export default function HeadCoachPage() {
     void loadNudges(trimmed, { reset: true });
     void loadAggregates(trimmed, { reset: true });
     void loadUnabridged(trimmed, { reset: true });
-  }, [activeUser, loadAsks, loadAggregates, loadNudges, loadUnabridged]);
+    void loadOpenQuestions(trimmed, { reset: true });
+  }, [activeUser, loadAsks, loadAggregates, loadNudges, loadUnabridged, loadOpenQuestions]);
 
   
 
@@ -1382,10 +1426,18 @@ export default function HeadCoachPage() {
     }
   }, [activeUser, loadUnabridged]);
 
+  const retryOpenQuestions = useCallback(() => {
+    const trimmed = activeUser.trim();
+    if (trimmed) {
+      void loadOpenQuestions(trimmed);
+    }
+  }, [activeUser, loadOpenQuestions]);
+
   const refreshAllPanels = useCallback(() => {
     retryAggregates();
     retryUnabridged();
-  }, [retryAggregates, retryUnabridged]);
+    retryOpenQuestions();
+  }, [retryAggregates, retryUnabridged, retryOpenQuestions]);
 
   const retryNudges = useCallback(() => {
     const trimmed = activeUser.trim();
@@ -1567,6 +1619,23 @@ export default function HeadCoachPage() {
     [loadNudges]
   );
 
+  const handleAskOpenQuestion = useCallback(
+    (question: NextQuestionCandidate) => {
+      const text = question?.question_text?.trim();
+      if (!text) {
+        return;
+      }
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(
+          new CustomEvent('northstar-compose', {
+            detail: text,
+          })
+        );
+      }
+    },
+    []
+  );
+
   const personaContext = useMemo<PersonaCenterContext>(
     () => ({
       activeUser,
@@ -1587,6 +1656,11 @@ export default function HeadCoachPage() {
       handleAskAction,
       askActionPending,
       askActionErrors,
+      openQuestions,
+      openQuestionsLoading,
+      openQuestionsError,
+      retryOpenQuestions,
+      handleAskOpenQuestion,
       nudges,
       nudgeLoading,
       nudgeError,
@@ -1636,6 +1710,11 @@ export default function HeadCoachPage() {
       handleAskAction,
       askActionPending,
       askActionErrors,
+      openQuestions,
+      openQuestionsLoading,
+      openQuestionsError,
+      retryOpenQuestions,
+      handleAskOpenQuestion,
       nudges,
       nudgeLoading,
       nudgeError,
@@ -2027,98 +2106,115 @@ export default function HeadCoachPage() {
   // Extract layout sections for LayoutSwitcher
   const headerSection = (
     <header className="sticky top-0 z-40 border-b border-slate-800 bg-hc-background/95 backdrop-blur">
-          <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3 sm:px-6 sm:py-4">
-            <div className="flex flex-col gap-1">
-              <div className="text-xl font-semibold text-slate-100">{translate('app.title')}</div>
-              <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
-                <span className="uppercase tracking-wide text-slate-500">{translate('workspace.label')}</span>
-                {workspaceLink ? (
-                  <a
-                    href={workspaceLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1 rounded-full border border-cyan-500/40 px-2 py-0.5 font-semibold text-cyan-200 hover:bg-cyan-500/10"
-                    title={workspaceRootHint ? `${workspaceLabel} — ${workspaceRootHint}` : translate('workspace.open')}
-                    aria-label={workspaceRootHint ? translate('workspace.openFor', { label: workspaceLabel }) : translate('workspace.open')}
-                  >
-                    {workspaceLabel}
-                    <span aria-hidden="true">↗</span>
-                  </a>
-                ) : (
-                  <span
-                    className="inline-flex items-center rounded-full border border-slate-700 px-2 py-0.5 font-semibold text-slate-200"
-                    title={workspaceRootHint || undefined}
-                  >
-                    {workspaceLabel}
-                  </span>
-                )}
-              </div>
+      <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-3 sm:px-6 sm:py-4">
+        <div className="flex items-start gap-4">
+          <div className="flex items-center gap-3">
+            <svg className="h-10 w-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <g className="opacity-90">
+                <path d="M10 5 Q 15 12, 10 20 Q 5 28, 10 35" stroke="url(#brand-gradient-left)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                <path d="M30 5 Q 25 12, 30 20 Q 35 28, 30 35" stroke="url(#brand-gradient-right)" strokeWidth="2.5" fill="none" strokeLinecap="round" />
+                <line x1="10" y1="8" x2="30" y2="8" stroke="cyan" strokeWidth="1.5" opacity="0.6" />
+                <line x1="12" y1="14" x2="28" y2="14" stroke="violet" strokeWidth="1.5" opacity="0.6" />
+                <line x1="10" y1="20" x2="30" y2="20" stroke="cyan" strokeWidth="1.5" opacity="0.6" />
+                <line x1="12" y1="26" x2="28" y2="26" stroke="violet" strokeWidth="1.5" opacity="0.6" />
+                <line x1="10" y1="32" x2="30" y2="32" stroke="cyan" strokeWidth="1.5" opacity="0.6" />
+              </g>
+              <defs>
+                <linearGradient id="brand-gradient-left" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#06b6d4" />
+                  <stop offset="100%" stopColor="#8b5cf6" />
+                </linearGradient>
+                <linearGradient id="brand-gradient-right" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#8b5cf6" />
+                  <stop offset="100%" stopColor="#06b6d4" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div className="flex flex-col">
+              <span className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
+                ReDNA
+              </span>
+              <span className="text-xs uppercase tracking-wide text-slate-400">Replicated DNA</span>
             </div>
-            <nav
-              id="tour-center-tabs"
-              className="flex flex-wrap items-center gap-2 text-sm font-medium text-slate-300"
-              aria-label={translate('nav.quickLinks')}
-            >
-              <button
-                type="button"
-                onClick={() => handlePersonaChange('head_coach')}
-                className="hover:text-slate-50 cursor-pointer"
-              >
-                {translate('nav.home')}
-              </button>
-              <button
-                type="button"
-                onClick={() => handleJump('unabridged')}
-                className="rounded-full px-3 py-1 text-slate-300 transition hover:text-slate-50"
-                data-testid="nav-unabridged"
-              >
-                {translate('nav.unabridged')}
-              </button>
-              <button
-                type="button"
-                onClick={() => setCenterView('coach')}
-                className={`rounded-full px-3 py-1 transition ${
-                  centerView === 'coach' ? 'bg-cyan-500/10 text-cyan-200' : 'text-slate-300 hover:text-slate-50'
-                }`}
-              >
-                {translate('nav.coachChat')}
-              </button>
-              <button
-                type="button"
-                onClick={() => setCenterView('draft')}
-                className={`rounded-full px-3 py-1 transition ${
-                  centerView === 'draft' ? 'bg-cyan-500/10 text-cyan-200' : 'text-slate-300 hover:text-slate-50'
-                }`}
-              >
-                {translate('nav.draftChat')}
-              </button>
-              <button
-                type="button"
-                onClick={() => setCenterView('snapshots')}
-                className={`rounded-full px-3 py-1 transition ${
-                  centerView === 'snapshots' ? 'bg-cyan-500/10 text-cyan-200' : 'text-slate-300 hover:text-slate-50'
-                }`}
-              >
-                {translate('nav.snapshots')}
-              </button>
-              <button
-                type="button"
-                onClick={openTourFromHelp}
-                className="rounded-full px-3 py-1 transition text-slate-300 hover:text-slate-50"
-                aria-label={translate('nav.helpTourAria')}
-              >
-                {translate('nav.helpTour')}
-              </button>
-              <button
-                type="button"
-                onClick={() => window.open('/tools/llm-benchmarks', '_blank')}
-                className="rounded-full border border-green-500/40 px-3 py-1 transition text-green-200 hover:bg-green-500/10 hover:text-green-100"
-                aria-label="Open LLM Benchmarks"
-                title="Open LLM Benchmark Suite in new window"
-              >
-                LLM Bench ↗
-              </button>
-            </nav>
+          </div>
+
+        </div>
+
+        <nav
+          id="tour-center-tabs"
+          className="flex flex-wrap items-center gap-2 text-sm font-medium text-slate-300"
+          aria-label={translate('nav.quickLinks')}
+        >
+          <button
+            type="button"
+            onClick={() => handlePersonaChange('head_coach')}
+            className="hover:text-slate-50 cursor-pointer"
+          >
+            {translate('nav.home')}
+          </button>
+          <button
+            type="button"
+            onClick={() => handleJump('unabridged')}
+            className="rounded-full px-3 py-1 text-slate-300 transition hover:text-slate-50"
+            data-testid="nav-unabridged"
+          >
+            {translate('nav.unabridged')}
+          </button>
+          <button
+            type="button"
+            onClick={() => setCenterView('coach')}
+            className={`rounded-full px-3 py-1 transition ${
+              centerView === 'coach' ? 'bg-cyan-500/10 text-cyan-200' : 'text-slate-300 hover:text-slate-50'
+            }`}
+          >
+            {translate('nav.coachChat')}
+          </button>
+          <button
+            type="button"
+            onClick={() => setCenterView('draft')}
+            className={`rounded-full px-3 py-1 transition ${
+              centerView === 'draft' ? 'bg-cyan-500/10 text-cyan-200' : 'text-slate-300 hover:text-slate-50'
+            }`}
+          >
+            {translate('nav.draftChat')}
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              setCenterView('snapshots');
+              handleJump('snapshots');
+            }}
+            className={`rounded-full px-3 py-1 transition ${
+              centerView === 'snapshots' ? 'bg-cyan-500/10 text-cyan-200' : 'text-slate-300 hover:text-slate-50'
+            }`}
+          >
+            {translate('nav.snapshots')}
+          </button>
+          <button
+            type="button"
+            onClick={() => setCoachCatalogOpen(true)}
+            className="inline-flex items-center gap-1 rounded-full border border-slate-700 px-3 py-1 text-slate-200 hover:border-cyan-500 hover:text-cyan-200"
+          >
+            {translate('nav.coachCatalog')}
+          </button>
+          <button
+            type="button"
+            onClick={openTourFromHelp}
+            className="rounded-full px-3 py-1 transition text-slate-300 hover:text-slate-50"
+            aria-label={translate('nav.helpTourAria')}
+          >
+            {translate('nav.helpTour')}
+          </button>
+          <button
+            type="button"
+            onClick={() => window.open('/tools/llm-benchmarks', '_blank')}
+            className="rounded-full border border-emerald-500/40 px-3 py-1 text-emerald-200 transition hover:bg-emerald-500/10 hover:text-emerald-100"
+            aria-label="Open LLM Benchmarks"
+            title="Open LLM Benchmark Suite in new window"
+          >
+            LLM Bench ↗
+          </button>
+        </nav>
             <div className="flex w-full flex-wrap items-center justify-end gap-3 text-sm text-slate-300 sm:w-auto">
               <ClientOnly fallback={<div className="w-48 h-9 rounded-full border border-slate-700 bg-slate-900/60 animate-pulse" />}>
                 <UserSwitcher
@@ -2301,6 +2397,16 @@ export default function HeadCoachPage() {
             onRetry={retryUnabridged}
             id="unabridged"
             onRefresh={refreshAllPanels}
+          />
+        </PanelBoundary>
+        <PanelBoundary resetKeys={[activeUser]} onRetry={retryOpenQuestions}>
+          <OpenQuestionsPanel
+            userId={activeUser}
+            questions={openQuestions}
+            loading={openQuestionsLoading}
+            error={openQuestionsError}
+            onRetry={retryOpenQuestions}
+            onAsk={handleAskOpenQuestion}
           />
         </PanelBoundary>
       </aside>
@@ -2600,6 +2706,11 @@ interface PersonaCenterContext {
   handleAskAction: (ask: PlannerAsk, action: AskAction, options?: { minutes?: number }) => void | Promise<void>;
   askActionPending: Record<string, boolean>;
   askActionErrors: Record<string, string | null>;
+  openQuestions: NextQuestionCandidate[];
+  openQuestionsLoading: boolean;
+  openQuestionsError: string | null;
+  retryOpenQuestions: () => void;
+  handleAskOpenQuestion: (question: NextQuestionCandidate) => void;
   nudges: NudgeItem[];
   nudgeLoading: boolean;
   nudgeError: string | null;
@@ -2863,6 +2974,16 @@ function renderSharedSupportPanels(context: PersonaCenterContext): ReactNode {
           actionPending={context.askActionPending}
           actionErrors={context.askActionErrors}
           cached={context.asksCached}
+        />
+      </PanelBoundary>
+      <PanelBoundary resetKeys={[context.activeUser]} onRetry={context.retryOpenQuestions}>
+        <OpenQuestionsPanel
+          userId={context.activeUser}
+          questions={context.openQuestions}
+          loading={context.openQuestionsLoading}
+          error={context.openQuestionsError}
+          onRetry={context.retryOpenQuestions}
+          onAsk={context.handleAskOpenQuestion}
         />
       </PanelBoundary>
       <PanelBoundary resetKeys={[context.activeUser]} onRetry={context.retryNudges}>

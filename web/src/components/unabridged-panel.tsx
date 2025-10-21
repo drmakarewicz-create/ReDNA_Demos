@@ -5,12 +5,15 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   flexRender,
   getCoreRowModel,
+  getSortedRowModel,
   type ColumnDef,
+  type SortingState,
   useReactTable,
 } from '@tanstack/react-table';
 import { useVirtualizer } from '@tanstack/react-virtual';
 
 import type { UnabridgedSnapshot, UnabridgedTrait } from '../lib/api';
+import { adaptCuriosity, adaptRR, formatPercent, formatTraitValue, type RRMeta } from '@/lib/provenanceClient';
 import { PanelError } from './panel-error';
 import { updateVirtualizerMetrics, removeVirtualizerMetrics } from '../lib/perf-hud';
 import { RRBadge, CuriosityBadge } from './rr-curiosity-badges';
@@ -51,7 +54,8 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [provenanceTraitId, setProvenanceTraitId] = useState<string | null>(null);
   const [provenanceDrawerOpen, setProvenanceDrawerOpen] = useState(false);
-  const [whyCardModal, setWhyCardModal] = useState<{ traitId: string; traitLabel: string; value: string } | null>(null);
+  const [whyCardModal, setWhyCardModal] = useState<{ traitId: string; traitLabel: string; value: unknown } | null>(null);
+  const [sorting, setSorting] = useState<SortingState>([{ id: 'curiosity', desc: true }]);
 
   const containers = useMemo(() => {
     if (!snapshot?.traits?.length) {
@@ -76,8 +80,8 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
           return false;
         }
         if (showHighCuriosity) {
-          const curiosity = trait.curiosity ?? 0;
-          if (curiosity < 0.6) {
+          const curiosity = getTraitCuriosityPct(trait);
+          if ((curiosity ?? 0) < 60) {
             return false;
           }
         }
@@ -153,7 +157,8 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
         id: 'trait',
         header: () => 'Trait',
         accessorKey: 'trait_id',
-        enableSorting: false,
+        enableSorting: true,
+        sortingFn: 'alphanumeric',
         size: 280,
         cell: ({ row }) => {
           const trait = row.original;
@@ -231,7 +236,7 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
             );
           }
 
-          const valueText = renderValue(row.original.value);
+          const valueText = formatTraitValue(row.original.value);
 
           return (
             <div className="flex items-center gap-2">
@@ -286,21 +291,85 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
         id: 'ucn',
         header: () => 'UCN',
         accessorFn: (row) => row.ucn,
-        enableSorting: false,
-        size: 90,
-        cell: ({ row }) => <span className="text-slate-300">{row.original.ucn ?? '—'}</span>,
+        enableSorting: true,
+        sortingFn: (rowA, rowB, columnId) => numericCompareValues(rowA.getValue(columnId), rowB.getValue(columnId)),
+        size: 160,
+        cell: ({ row }) => {
+          const trait = row.original;
+          const traitKey = sanitizeForTestId(trait.trait_id);
+          const hasValue = typeof trait.ucn === 'number' && Number.isFinite(trait.ucn);
+          const percentage = hasValue ? Math.max(0, Math.min(100, trait.ucn * 100)) : 0;
+          const lastUpdated = extractLastUpdated(trait);
+          const tooltip = formatMetricTooltip('UCN', hasValue ? trait.ucn : null, lastUpdated);
+
+          return (
+            <div className="flex items-center gap-2" title={tooltip}>
+              <div
+                className="relative h-2 w-24 rounded-full bg-slate-800"
+                role="img"
+                aria-label={tooltip}
+              >
+                <div
+                  className="absolute inset-y-0 left-0 rounded-full bg-sky-500 transition-all"
+                  style={{ width: `${percentage}%` }}
+                  data-testid={`ucn-bar-${traitKey}`}
+                />
+              </div>
+              <span className="text-xs text-slate-400">
+                {hasValue ? trait.ucn!.toFixed(2) : '—'}
+              </span>
+            </div>
+          );
+        },
       },
       {
         id: 'rr',
         header: () => 'RR',
-        accessorFn: (row) => row.rr,
+        accessorFn: (trait) => getTraitRRPct(trait as UnabridgedTrait) ?? NULL_SORT_VALUE,
         enableSorting: false,
         size: 160,
         cell: ({ row }) => {
+          const trait = row.original;
+          const traitKey = sanitizeForTestId(trait.trait_id);
+          const rrPct = getTraitRRPct(trait);
+          const hasRR = typeof rrPct === 'number' && Number.isFinite(rrPct);
+          const rrTooltip = buildPercentTooltip('RR', rrPct, extractLastUpdated(trait));
+          const rrMetaTooltip = formatRrMetaTooltip(trait.rr_meta);
+          const legacyMethod = (trait.rr_meta as any)?.method;
+          const isLegacy = typeof legacyMethod === 'string' && legacyMethod === 'legacy_score';
           const change = changedTraits?.find(c => c.trait === row.original.trait_id);
           return (
             <div className="flex items-center gap-2">
-              <RRBadge rr={row.original.rr} />
+              <div className="flex items-center gap-2" title={rrTooltip}>
+                <div
+                  className="relative h-2 w-24 rounded-full bg-slate-800"
+                  role="img"
+                  aria-label={rrTooltip}
+                >
+                  <div
+                    className={`absolute inset-y-0 left-0 rounded-full transition-all ${hasRR ? 'bg-emerald-500' : 'bg-slate-700'}`}
+                    style={{ width: percentToWidth(rrPct) }}
+                    data-testid={`rr-bar-${traitKey}`}
+                  />
+                </div>
+                <span className="text-xs text-slate-400">
+                  {hasRR ? formatPercent(rrPct) : '—'}
+                </span>
+              </div>
+              <RRBadge rr={rrPct} />
+              {isLegacy && (
+                <span
+                  className="inline-flex items-center rounded-full border border-amber-400/70 bg-amber-500/20 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-200"
+                  title="Using legacy rr_score; run Recompute RR to migrate to the reference population."
+                >
+                  Legacy
+                </span>
+              )}
+              {rrMetaTooltip ? (
+                <span className="text-xs text-slate-500 cursor-help" title={rrMetaTooltip} aria-label="RR metadata">
+                  ℹ︎
+                </span>
+              ) : null}
               {change && (
                 <span
                   className={`text-xs font-semibold ${change.delta > 0 ? 'text-emerald-400' : 'text-rose-400'}`}
@@ -316,10 +385,40 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
       {
         id: 'curiosity',
         header: () => 'Curiosity',
-        accessorFn: (row) => row.curiosity,
-        enableSorting: false,
-        size: 110,
-        cell: ({ row }) => <CuriosityBadge curiosity={row.original.curiosity} />,
+        accessorFn: (trait) => getTraitCuriosityPct(trait as UnabridgedTrait) ?? NULL_SORT_VALUE,
+        enableSorting: true,
+        sortingFn: (rowA, rowB, columnId) => numericCompareValues(rowA.getValue(columnId), rowB.getValue(columnId)),
+        size: 180,
+        cell: ({ row }) => {
+          const trait = row.original;
+          const traitKey = sanitizeForTestId(trait.trait_id);
+          const rrPct = getTraitRRPct(trait);
+          const curiosityPct = getTraitCuriosityPct(trait, rrPct);
+          const hasValue = typeof curiosityPct === 'number' && Number.isFinite(curiosityPct);
+          const percentage = hasValue ? Math.max(0, Math.min(100, curiosityPct ?? 0)) : 0;
+          const lastUpdated = extractLastUpdated(trait);
+          const tooltip = buildPercentTooltip('Curiosity', curiosityPct, lastUpdated);
+
+          return (
+            <div className="flex items-center gap-2" title={tooltip}>
+              <div
+                className="relative h-2 w-24 rounded-full bg-slate-800"
+                role="img"
+                aria-label={tooltip}
+              >
+                <div
+                  className="absolute inset-y-0 left-0 rounded-full bg-fuchsia-500 transition-all"
+                  style={{ width: `${percentage}%` }}
+                  data-testid={`curiosity-bar-${traitKey}`}
+                />
+              </div>
+              <span className="text-xs text-slate-400">
+                {hasValue ? formatPercent(curiosityPct) : '—'}
+              </span>
+              <CuriosityBadge curiosity={curiosityPct} />
+            </div>
+          );
+        },
       },
       {
         id: 'governance',
@@ -356,23 +455,28 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
         header: () => 'Why?',
         enableSorting: false,
         size: 80,
-        cell: ({ row }) => (
-          <button
-            type="button"
-            className="rounded-full border border-slate-700 px-2 py-1 text-xs text-violet-200 hover:border-violet-400 hover:text-violet-100 disabled:opacity-40"
-            onClick={() => {
-              setSelectedTrait({
-                id: row.original.trait_id,
-                value: row.original.value,
-                userId: snapshot?.user_id || '',
-              });
-              setProvenanceOpen(true);
-            }}
-            aria-label={`View provenance for ${row.original.trait_id}`}
-          >
-            Why?
-          </button>
-        ),
+        cell: ({ row }) => {
+          // Format value to prevent React child error when ProvenanceModal renders it
+          const formattedValue = formatTraitValue(row.original.value);
+
+          return (
+            <button
+              type="button"
+              className="rounded-full border border-slate-700 px-2 py-1 text-xs text-violet-200 hover:border-violet-400 hover:text-violet-100 disabled:opacity-40"
+              onClick={() => {
+                setSelectedTrait({
+                  id: row.original.trait_id,
+                  value: formattedValue, // Pass formatted string instead of raw object
+                  userId: snapshot?.user_id || '',
+                });
+                setProvenanceOpen(true);
+              }}
+              aria-label={`View provenance for ${row.original.trait_id}`}
+            >
+              Why?
+            </button>
+          );
+        },
       },
       {
         id: 'timeline',
@@ -398,7 +502,10 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
   const table = useReactTable({
     data: filteredTraits,
     columns,
+    state: { sorting },
+    onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
   });
 
   const parentRef = useRef<HTMLDivElement | null>(null);
@@ -410,9 +517,16 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
     overscan: 12,
   });
   const virtualRows = rowVirtualizer.getVirtualItems();
-  const totalSize = rowVirtualizer.getTotalSize();
+  const fallbackRows = rowModel.rows.map((_, index) => ({
+    key: `row-${index}`,
+    index,
+    start: index * 68,
+    size: 68,
+  }));
+  const effectiveRows = virtualRows.length ? virtualRows : fallbackRows;
+  const totalSize = virtualRows.length ? rowVirtualizer.getTotalSize() : fallbackRows.length * 68;
   const totalRowCount = rowModel.rows.length;
-  const visibleRowCount = virtualRows.length;
+  const visibleRowCount = effectiveRows.length;
 
   useEffect(() => {
     updateVirtualizerMetrics('unabridged', {
@@ -489,12 +603,36 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
                       <th
                         key={header.id}
                         scope="col"
-                        className={`px-3 py-3 ${headerClassFor(header.column.id)}`}
+                        className={`px-3 py-3 ${headerClassFor(header.column.id)} ${header.column.getCanSort() ? 'cursor-pointer select-none' : ''}`}
                         style={{ width: header.getSize() }}
+                        aria-sort={
+                          header.column.getCanSort()
+                            ? header.column.getIsSorted() === 'asc'
+                              ? 'ascending'
+                              : header.column.getIsSorted() === 'desc'
+                                ? 'descending'
+                                : 'none'
+                            : undefined
+                        }
                       >
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(header.column.columnDef.header, header.getContext())}
+                        {header.isPlaceholder ? null : header.column.getCanSort() ? (
+                          <button
+                            type="button"
+                            onClick={header.column.getToggleSortingHandler()}
+                            className="flex w-full items-center gap-1 text-left text-slate-300 focus:outline-none"
+                          >
+                            {flexRender(header.column.columnDef.header, header.getContext())}
+                            <span className="text-[10px] text-slate-500" aria-hidden>
+                              {header.column.getIsSorted() === 'asc'
+                                ? '▲'
+                                : header.column.getIsSorted() === 'desc'
+                                  ? '▼'
+                                  : '⇅'}
+                            </span>
+                          </button>
+                        ) : (
+                          flexRender(header.column.columnDef.header, header.getContext())
+                        )}
                       </th>
                     ))}
                   </tr>
@@ -504,7 +642,7 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
                 className="divide-y divide-slate-800"
                 style={{ position: 'relative', height: `${totalSize}px` }}
               >
-                {virtualRows.map((virtualRow) => {
+                {effectiveRows.map((virtualRow) => {
                   if (!rowModel.rows.length) {
                     return null;
                   }
@@ -598,16 +736,7 @@ export function UnabridgedPanel({ snapshot, loading, id, error, onRetry, onTimel
 }
 
 function renderValue(value: unknown): string {
-  if (Array.isArray(value)) {
-    return value.map((item) => renderValue(item)).join(', ');
-  }
-  if (value && typeof value === 'object') {
-    return JSON.stringify(value);
-  }
-  if (value === null || value === undefined || value === '') {
-    return '—';
-  }
-  return String(value);
+  return formatTraitValue(value);
 }
 
 function traitDisplayName(traitId: string): string {
@@ -629,6 +758,7 @@ function headerClassFor(columnId: string): string {
     case 'governance':
       return 'text-left';
     case 'ucn':
+    case 'curiosity':
     case 'timeline':
       return 'text-left';
     default:
@@ -645,7 +775,9 @@ function cellClassFor(columnId: string): string {
     case 'value':
       return 'px-3 py-3 text-slate-200';
     case 'ucn':
-      return 'px-3 py-3 text-slate-300';
+      return 'px-3 py-3';
+    case 'curiosity':
+      return 'px-3 py-3';
     case 'governance':
       return 'px-3 py-3 text-slate-200';
     case 'timeline':
@@ -663,4 +795,132 @@ function governanceBadges(badges: string[]) {
   return badges
     .map((badge) => meta[badge as keyof typeof meta])
     .filter(Boolean) as Array<{ icon: string; label: string; kind: 'sensitive' | 'observational' }>;
+}
+
+function sanitizeForTestId(value: string): string {
+  return value.replace(/[^a-z0-9_-]/gi, '-');
+}
+
+function formatTimestampForTooltip(ts?: string | null): string {
+  if (!ts) return 'Unknown';
+  const date = new Date(ts);
+  if (Number.isNaN(date.getTime())) {
+    return 'Unknown';
+  }
+  return date.toLocaleString();
+}
+
+function extractLastUpdated(trait: UnabridgedTrait): string | null {
+  const metadataLastUpdated =
+    trait.metadata && typeof trait.metadata === 'object' && 'last_updated' in trait.metadata
+      ? (trait.metadata as { last_updated?: string | null }).last_updated ?? null
+      : null;
+  return metadataLastUpdated ?? trait.last_observed ?? null;
+}
+
+function percentToWidth(percent?: number): string {
+  if (typeof percent !== 'number' || !Number.isFinite(percent)) {
+    return '0%';
+  }
+  const clamped = Math.max(0, Math.min(100, percent));
+  return `${clamped}%`;
+}
+
+function buildPercentTooltip(label: string, value: number | undefined, lastUpdated?: string | null): string {
+  const hasValue = typeof value === 'number' && Number.isFinite(value);
+  const valueText = hasValue ? formatPercent(value) : '—';
+  const dateText = lastUpdated ? formatTimestampForTooltip(lastUpdated) : null;
+  return dateText ? `${label}: ${valueText}. Last updated: ${dateText}` : `${label}: ${valueText}`;
+}
+
+function formatRrMetaTooltip(rrMeta?: RRMeta | null): string | null {
+  if (!rrMeta) {
+    return null;
+  }
+
+  const lines: string[] = [];
+  const reference = rrMeta.reference ?? null;
+
+  const referenceSource = reference?.source || rrMeta.source;
+  if (referenceSource) {
+    lines.push(`source: ${String(referenceSource).toUpperCase()}`);
+  }
+
+  if (rrMeta.method) {
+    lines.push(`method: ${rrMeta.method}`);
+  }
+
+  if (reference) {
+    const cohortKeys = Array.isArray(reference.cohort_keys)
+      ? reference.cohort_keys.map((key) => String(key).trim()).filter(Boolean)
+      : [];
+    const universe = reference.universe;
+    if ((referenceSource || '').toUpperCase() === 'ACTUAL') {
+      lines.push(`cohorts: ${cohortKeys.length ? `[${cohortKeys.join(', ')}]` : 'default'}`);
+    } else if (universe) {
+      lines.push(`universe: ${universe}`);
+    } else if (cohortKeys.length) {
+      lines.push(`cohorts: [${cohortKeys.join(', ')}]`);
+    }
+
+    const nSamples =
+      typeof reference.n_samples === 'number' && Number.isFinite(reference.n_samples)
+        ? reference.n_samples
+        : null;
+    lines.push(`n_samples: ${nSamples !== null ? nSamples : '—'}`);
+
+    const generatedAt = reference.generated_at ? formatTimestampForTooltip(reference.generated_at) : null;
+    lines.push(`generated_at: ${generatedAt ?? '—'}`);
+  } else {
+    lines.push('n_samples: —');
+    lines.push('generated_at: —');
+  }
+
+  if (rrMeta.fallback_reason) {
+    lines.push(`fallback_reason: ${rrMeta.fallback_reason}`);
+  }
+
+  const raw = typeof rrMeta.rr_raw === 'number' && Number.isFinite(rrMeta.rr_raw) ? rrMeta.rr_raw : null;
+  const scale = rrMeta.scale ? String(rrMeta.scale) : null;
+  if (raw !== null) {
+    const precision = Math.abs(raw) >= 100 ? 1 : 2;
+    lines.push(`rr_raw: ${raw.toFixed(precision)}`);
+    if (scale) {
+      lines.push(`scale: ${scale}`);
+    }
+  } else if (scale) {
+    lines.push(`scale: ${scale}`);
+  }
+
+  return lines.length ? lines.join('\n') : null;
+}
+
+function getTraitRRPct(trait: UnabridgedTrait): number | undefined {
+  const rrValue = typeof trait.rr === 'number' && Number.isFinite(trait.rr) ? trait.rr : undefined;
+  return adaptRR(rrValue, trait.rr_meta);
+}
+
+function getTraitCuriosityPct(trait: UnabridgedTrait, rrPct?: number): number | undefined {
+  const rrValue = typeof rrPct === 'number' && Number.isFinite(rrPct) ? rrPct : undefined;
+  const curiosityValue =
+    typeof trait.curiosity === 'number' && Number.isFinite(trait.curiosity) ? trait.curiosity : undefined;
+  return adaptCuriosity(curiosityValue, rrValue);
+}
+
+function formatMetricTooltip(label: string, value: number | null, lastUpdated?: string | null): string {
+  const hasValue = typeof value === 'number' && Number.isFinite(value);
+  const numericValue = hasValue ? (value as number) : 0;
+  const raw = hasValue ? numericValue.toFixed(2) : 'Unavailable';
+  const percent = hasValue ? `${Math.round(Math.max(0, Math.min(1, numericValue)) * 100)}%` : '—';
+  const dateText = formatTimestampForTooltip(lastUpdated);
+  return `${label}: ${raw} (${percent}). Last updated: ${dateText}`;
+}
+
+const NULL_SORT_VALUE = -Infinity;
+
+function numericCompareValues(a: unknown, b: unknown): number {
+  const numA = typeof a === 'number' && Number.isFinite(a) ? a : NULL_SORT_VALUE;
+  const numB = typeof b === 'number' && Number.isFinite(b) ? b : NULL_SORT_VALUE;
+  if (numA === numB) return 0;
+  return numA > numB ? 1 : -1;
 }

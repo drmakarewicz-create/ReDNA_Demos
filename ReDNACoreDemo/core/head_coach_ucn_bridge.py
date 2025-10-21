@@ -226,7 +226,7 @@ class HeadCoachUCNBridge:
 
             # Get UCN and RR for this trait
             ucn = user_traits.get(trait_path, 0)
-            rr = 1000 - curiosity  # RR = 1000 - curiosity (inverse relationship)
+            rr = 100 - curiosity  # RR = 100 - curiosity (RR is 0-100 percentile)
 
             # Determine recommendation type based on curiosity and UCN
             if ucn < 300:

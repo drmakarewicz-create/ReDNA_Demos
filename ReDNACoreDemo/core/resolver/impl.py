@@ -235,6 +235,51 @@ def resolve_roundtrip(
         "rr_ok": rr_ok
     })
 
+    # Phase 8 Stage 3: Update belief graph for each promoted trait
+    try:
+        from ..graph.belief import on_trait_promotion
+
+        for tid, ev in chosen.items():
+            # Get the resolved entry (with UCN scores)
+            resolved_entry = resolved.get(tid, {})
+            ucn_score = resolved_entry.get("ucn", 0.5)
+
+            # Convert UCN float to dict format (u=ucn, c and n estimated)
+            ucn_dict = {
+                "u": ucn_score,
+                "c": ucn_score * 0.8,  # Estimate curiosity from uncertainty
+                "n": 0.5  # Default necessity
+            }
+
+            # Calculate rr_score (0-1000 legacy scale) from UCN
+            # Phase 9: This is stored as rr_score and normalized at egress to rr (0-100)
+            rr_score = (1.0 - ucn_score) * 1000.0
+
+            # Get observation text from evidence
+            observation_text = ev.get("text", "") or str(ev.get("value", ""))
+            observation_source = ev.get("source", source)
+
+            # Call graph update hook
+            on_trait_promotion(
+                user_id=user_id,
+                trait_id=tid,
+                value=ev.get("value"),
+                rr_score=rr_score,
+                ucn=ucn_dict,
+                observation_text=observation_text,
+                observation_source=observation_source,
+                observation_ts=None,  # Will default to now
+                why_card_text=None,  # Stage 4: generate Why-Cards
+                metadata={"resolution_source": source}
+            )
+    except ImportError as e:
+        logger.warning(f"Graph module not available, skipping belief graph update: {e}")
+    except Exception as e:
+        logger.error(f"Failed to update belief graph for {user_id}: {e}", exc_info=True)
+        # Re-raise in development to catch issues early
+        if os.getenv("GRAPH_DEBUG", "").lower() in ("1", "true", "yes"):
+            raise
+
     return {
         "resolved": resolved,
         "rr_ok": rr_ok

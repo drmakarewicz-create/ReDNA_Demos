@@ -1,0 +1,53 @@
+# Synthetic Reference Population Configuration
+# Phase 10.2.3: Recalibrated to place demo users in mid-range RR (30-80%)
+
+# Global settings
+output_dir: "data/reference_pop"
+random_seed: 42
+
+# Universe definitions
+# Each universe represents a different "refinement baseline" for the simulated population
+# Higher mean_refinement = more refined population = lower RR for same UCN
+universes:
+  low:
+    description: "Less refined baseline - typical early-stage users"
+    size: 20000
+    mean_refinement: 0.55
+    spread: 0.15
+    min_ucn: 0.05
+    max_ucn: 0.95
+
+  medium:
+    description: "Moderately refined baseline - established users"
+    size: 20000
+    mean_refinement: 0.68
+    spread: 0.14
+    min_ucn: 0.10
+    max_ucn: 0.98
+
+  high:
+    description: "Highly refined baseline - power users"
+    size: 20000
+    mean_refinement: 0.78
+    spread: 0.12
+    min_ucn: 0.15
+    max_ucn: 0.99
+
+# Combined universe (fallback/generic)
+combined:
+  description: "Mixed population from all universes"
+  composition:
+    low: 0.35      # 35% from low universe
+    medium: 0.45   # 45% from medium universe
+    high: 0.20     # 20% from high universe
+  total_size: 20000
+
+# Metadata
+generation:
+  version: "1.0.0"
+  phase: "10.2.3"
+  calibration_date: "2025-10-21"
+  calibration_target:
+    ucn_0p70_rr: "50-60%"
+    ucn_0p80_rr: "75-85%"
+    ucn_0p90_rr: "90-95%"

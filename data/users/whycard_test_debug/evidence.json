@@ -1,0 +1,22 @@
+{
+  "items": [
+    {
+      "trait_id": "PaDNA.Chronotype",
+      "value": {
+        "enum": "Morning Lark"
+      },
+      "ucn_prior": 0.7,
+      "source": "chat",
+      "text": "I wake up at 6am",
+      "ts": "2025-10-19T14:25:02+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "high_signal",
+        "reliability": 0.5,
+        "logged_at": "2025-10-19T14:25:02+00:00"
+      },
+      "_reliability": 0.5
+    }
+  ]
+}

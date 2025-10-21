@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import glob
 import html
+import io
 import json
 import os
 import re
@@ -13,13 +14,17 @@ import shutil
 import socket
 import subprocess
 import sys
+import tarfile
 import threading
 import time
 import webbrowser
 import signal
 from dataclasses import asdict, dataclass
+from datetime import datetime
 from pathlib import Path
+from uuid import uuid4
 from typing import Any, Callable, Dict, List, Literal, NamedTuple, Optional, Sequence, Tuple
+from urllib.parse import urlparse
 
 import requests
 
@@ -32,6 +37,7 @@ except Exception:  # pragma: no cover
     st_autorefresh = None  # type: ignore
 
 from cpplusplus import envstore, services, ports
+from ReDNACoreDemo.devx import manifest_parser
 
 # Import DevX bootstrap helpers
 try:
@@ -86,7 +92,30 @@ SESSION_UCNRR_LAST_ACTION_KEY = "_cpplusplus_ucnrr_last_action"
 SESSION_UCNRR_LAST_MESSAGE_KEY = "_cpplusplus_ucnrr_last_message"
 SESSION_LLM_BOOTSTRAP_KEY = "_cpplusplus_llm_bootstrapped"
 SESSION_LLM_BOOTSTRAP_LOG_KEY = "_cpplusplus_llm_bootstrap_log"
+SESSION_MANIFEST_OPEN_STATE_KEY = "_cpplusplus_manifest_open"
+SESSION_SYSTEM_HEALTH_KEY = "_cpplusplus_system_health"
+SESSION_CONSENT_HEALTH_DETAIL_KEY = "_cpplusplus_consent_health_detail"
+SESSION_RR_REFERENCE_DETAIL_KEY = "_cpplusplus_rr_reference_detail"
 DEFAULT_ACTIVE_USER = "TEST"
+
+ENV_FILE_PATH = ROOT / ".env"
+WEB_ENV_LOCAL_PATH = ROOT / "web" / ".env.local"
+NUCLEAR_LOG_PATH = Path.home() / ".redna" / "nuclear_reset.log"
+PORT_SERVICE_LABELS = {
+    "core": "Core API",
+    "ucnrr": "UCN/RR",
+    "react": "React Dev Server",
+    "streamlit": "Streamlit UI",
+    "devx_backend": "DevX Backend",
+}
+NUCLEAR_BUNDLE_DIR = Path.home() / ".redna" / "nuclear" / "bundles"
+NUCLEAR_MAX_BUNDLES = 5
+NUCLEAR_LOG_FILES = [
+    Path.home() / ".redna" / "devx_backend.log",
+    Path.home() / ".redna" / "devx_ui.log",
+    Path.home() / ".redna" / "logs" / "stack.log",
+]
+NUCLEAR_SANITY_USER_ID = "NUCLEAR_SANITY"
 
 SERVICE_CORE = "core"
 SERVICE_REACT = "react"
@@ -128,8 +157,43 @@ _REACT_WATCHERS: Dict[int, threading.Thread] = {}
 _REACT_WATCHERS_LOCK = threading.Lock()
 
 
+def _load_repo_dotenv() -> None:
+    """Load repository .env values into os.environ without overriding existing entries."""
+    try:
+        from dotenv import load_dotenv  # type: ignore
+
+        env_path = (ENV_FILE_PATH if ENV_FILE_PATH.is_absolute() else Path(".env")).resolve()
+        if env_path.exists():
+            load_dotenv(dotenv_path=env_path, override=False)
+            print(f"[CP++] Loaded .env from {env_path}")
+    except ImportError:
+        print("[CP++] .env load skipped: python-dotenv not available")
+    except Exception as exc:  # noqa: BLE001
+        print(f"[CP++] .env load skipped: {exc}")
+
+
+_load_repo_dotenv()
+
+
 def _repo_root() -> str:
     return str(ROOT)
+
+
+def _merge_env(overrides: Optional[Dict[str, Any]] = None) -> Dict[str, str]:
+    """Return a merged environment dict with overrides applied (string coercion)."""
+    merged: Dict[str, str] = {str(k): str(v) for k, v in os.environ.items()}
+    if overrides:
+        for key, value in overrides.items():
+            if value is None:
+                continue
+            merged[str(key)] = str(value)
+    return merged
+
+
+def _format_core_launch_log(env_map: Dict[str, str]) -> str:
+    secret_status = "present" if env_map.get("CONSENT_JWT_SECRET") else "missing"
+    ttl_value = env_map.get("CONSENT_JWT_TTL_MINUTES") or "none"
+    return f"[CP++] Launch Core with CONSENT_JWT_SECRET={secret_status}, TTL={ttl_value}"
 
 
 def _discover_venvs(root: str) -> List[Path]:
@@ -219,6 +283,24 @@ if len(_ALL_VENVS) > 1:
 
 if not ROOT_VENV_BIN.exists():
     st.error(f"Root venv python not found at: {ROOT_VENV_BIN}. Run `scripts/consolidate_venv.sh`.", icon="🛑")
+
+
+def _render_copy_path(path_str: str, element_id: Optional[str] = None) -> None:
+    """Display a copy-to-clipboard widget for a filesystem path."""
+    escaped = html.escape(path_str)
+    input_id = element_id or f"copy-path-{uuid4().hex}"
+    components.html(
+        f"""
+        <div style="display:flex; gap:0.5rem; align-items:center; width:100%;">
+            <input id="{input_id}" style="flex:1; padding:0.45rem; border-radius:0.5rem; border:1px solid #3c3f44; background-color:#0f1116; color:#f0f2f6;" value="{escaped}" readonly />
+            <button style="padding:0.45rem 0.9rem; border-radius:0.5rem; background-color:#1f6feb; color:white; border:none; cursor:pointer;"
+                onclick="navigator.clipboard.writeText(document.getElementById('{input_id}').value); this.innerText='Copied!'; setTimeout(() => this.innerText='Copy Path', 1500);">
+                Copy Path
+            </button>
+        </div>
+        """,
+        height=70,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -1331,6 +1413,675 @@ def _set_active_user(value: str) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Port drift detection and repair
+# ---------------------------------------------------------------------------
+
+def _safe_int(value: Any) -> Optional[int]:
+    try:
+        if value is None:
+            return None
+        if isinstance(value, int):
+            return value
+        text = str(value).strip()
+        if not text:
+            return None
+        return int(text)
+    except (TypeError, ValueError):
+        return None
+
+
+def _load_env_file_map(path: Path) -> Dict[str, str]:
+    if not path.exists():
+        return {}
+    try:
+        text = path.read_text(encoding="utf-8")
+    except Exception:
+        return {}
+    data: Dict[str, str] = {}
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+        key, value = stripped.split("=", 1)
+        data[key.strip()] = value.strip()
+    return data
+
+
+def _extract_port(value: Any) -> Optional[int]:
+    if value is None:
+        return None
+    if isinstance(value, int):
+        return value
+    text = str(value).strip()
+    if not text:
+        return None
+    if text.isdigit():
+        return int(text)
+    candidate = text
+    if "://" not in candidate:
+        candidate = f"http://{candidate.lstrip('/')}"
+    parsed = urlparse(candidate)
+    port_val = parsed.port
+    if port_val:
+        return port_val
+    match = re.search(r":(\d+)", text)
+    if match:
+        try:
+            return int(match.group(1))
+        except ValueError:
+            return None
+    return None
+
+
+def _first_non_none(values: Sequence[Optional[int]], default: int) -> int:
+    for value in values:
+        if value is not None:
+            return int(value)
+    return int(default)
+
+
+def _build_port_analysis(health: Dict[str, ServiceHealth]) -> Dict[str, Any]:
+    root_env = _load_env_file_map(ENV_FILE_PATH)
+    web_env = _load_env_file_map(WEB_ENV_LOCAL_PATH)
+    cp_env = dict(_env())
+    actual_map: Dict[str, Optional[int]] = {}
+    for service_name in (SERVICE_CORE, SERVICE_REACT, SERVICE_STREAMLIT, SERVICE_UCNRR):
+        service_health = health.get(service_name)
+        port_value = None
+        if service_health:
+            port_value = _safe_int(service_health.actual_port)
+            if port_value is None:
+                port_value = _safe_int(service_health.port)
+        actual_map[service_name] = port_value
+
+    context = {
+        "root": root_env,
+        "web": web_env,
+        "cp": cp_env,
+        "actual": actual_map,
+    }
+
+    specs: Dict[str, List[Tuple[str, Callable[[Dict[str, Any]], Optional[int]]]]] = {
+        "core": [
+            ("env:CORE_PORT", lambda ctx: _safe_int(ctx["root"].get("CORE_PORT"))),
+            ("cp:core_port", lambda ctx: _safe_int(ctx["cp"].get("core_port"))),
+            ("cp:NEXT_PUBLIC_CORE_API_BASE", lambda ctx: _extract_port(ctx["cp"].get("NEXT_PUBLIC_CORE_API_BASE"))),
+            ("cp:CORE_BASE", lambda ctx: _extract_port(ctx["cp"].get("CORE_BASE"))),
+            ("web:NEXT_PUBLIC_CORE_API_BASE", lambda ctx: _extract_port(ctx["web"].get("NEXT_PUBLIC_CORE_API_BASE"))),
+            ("web:CORE_API_URL", lambda ctx: _extract_port(ctx["web"].get("CORE_API_URL"))),
+            ("actual", lambda ctx: ctx["actual"].get(SERVICE_CORE)),
+        ],
+        "react": [
+            ("env:REACT_PORT", lambda ctx: _safe_int(ctx["root"].get("REACT_PORT"))),
+            ("cp:react_port", lambda ctx: _safe_int(ctx["cp"].get("react_port"))),
+            ("actual", lambda ctx: ctx["actual"].get(SERVICE_REACT)),
+        ],
+        "ucnrr": [
+            ("env:UCNRR_PORT", lambda ctx: _safe_int(ctx["root"].get("UCNRR_PORT"))),
+            ("cp:ucnrr_port", lambda ctx: _safe_int(ctx["cp"].get("ucnrr_port"))),
+            ("cp:UCNRR_BASE", lambda ctx: _extract_port(ctx["cp"].get("UCNRR_BASE"))),
+            ("cp:UCNRR_BASE_URL", lambda ctx: _extract_port(ctx["cp"].get("UCNRR_BASE_URL"))),
+            ("actual", lambda ctx: ctx["actual"].get(SERVICE_UCNRR)),
+        ],
+        "streamlit": [
+            ("env:STREAMLIT_PHOTO_PORT", lambda ctx: _safe_int(ctx["root"].get("STREAMLIT_PHOTO_PORT"))),
+            ("cp:streamlit_port", lambda ctx: _safe_int(ctx["cp"].get("streamlit_port"))),
+            ("actual", lambda ctx: ctx["actual"].get(SERVICE_STREAMLIT)),
+        ],
+        "devx_backend": [
+            ("env:DEVX_BACKEND_PORT", lambda ctx: _safe_int(ctx["root"].get("DEVX_BACKEND_PORT"))),
+            ("cp:DEVX_BACKEND_PORT", lambda ctx: _safe_int(ctx["cp"].get("DEVX_BACKEND_PORT"))),
+            ("cp:NEXT_PUBLIC_DEVX_API_BASE", lambda ctx: _extract_port(ctx["cp"].get("NEXT_PUBLIC_DEVX_API_BASE"))),
+            ("web:NEXT_PUBLIC_DEVX_API_BASE", lambda ctx: _extract_port(ctx["web"].get("NEXT_PUBLIC_DEVX_API_BASE"))),
+        ],
+    }
+
+    analysis: Dict[str, Dict[str, Any]] = {}
+    for service, entries in specs.items():
+        sources: Dict[str, Optional[int]] = {}
+        for label, getter in entries:
+            try:
+                sources[label] = getter(context)
+            except Exception:
+                sources[label] = None
+        unique = sorted({value for value in sources.values() if value is not None})
+        analysis[service] = {"sources": sources, "unique": unique, "has_drift": len(unique) > 1}
+
+    canonical_ports = {
+        "core": _first_non_none(
+            [
+                _safe_int(root_env.get("CORE_PORT")),
+                _safe_int(cp_env.get("core_port")),
+                _extract_port(cp_env.get("NEXT_PUBLIC_CORE_API_BASE")),
+                actual_map.get(SERVICE_CORE),
+            ],
+            CORE_DEFAULT_PORT,
+        ),
+        "react": _first_non_none(
+            [
+                _safe_int(root_env.get("REACT_PORT")),
+                _safe_int(cp_env.get("react_port")),
+                actual_map.get(SERVICE_REACT),
+            ],
+            REACT_DEFAULT_PORT,
+        ),
+        "ucnrr": _first_non_none(
+            [
+                _safe_int(root_env.get("UCNRR_PORT")),
+                _safe_int(cp_env.get("ucnrr_port")),
+                _extract_port(cp_env.get("UCNRR_BASE")),
+                actual_map.get(SERVICE_UCNRR),
+            ],
+            UCNRR_DEFAULT_PORT,
+        ),
+        "streamlit": _first_non_none(
+            [
+                _safe_int(root_env.get("STREAMLIT_PHOTO_PORT")),
+                _safe_int(cp_env.get("streamlit_port")),
+                actual_map.get(SERVICE_STREAMLIT),
+            ],
+            STREAMLIT_DEFAULT_PORT,
+        ),
+        "devx_backend": _first_non_none(
+            [
+                _safe_int(root_env.get("DEVX_BACKEND_PORT")),
+                _safe_int(cp_env.get("DEVX_BACKEND_PORT")),
+                _extract_port(cp_env.get("NEXT_PUBLIC_DEVX_API_BASE")),
+            ],
+            DEVX_BACKEND_DEFAULT_PORT,
+        ),
+    }
+
+    return {
+        "analysis": analysis,
+        "canonical": canonical_ports,
+        "root_env": root_env,
+        "web_env": web_env,
+    }
+
+
+def _regenerate_env_config(canonical_ports: Dict[str, int]) -> Dict[str, Any]:
+    config = envstore.DEFAULT_ENV.copy()
+    config.update(dict(_env()))
+
+    core_port = int(canonical_ports.get("core", CORE_DEFAULT_PORT))
+    react_port = int(canonical_ports.get("react", REACT_DEFAULT_PORT))
+    streamlit_port = int(canonical_ports.get("streamlit", STREAMLIT_DEFAULT_PORT))
+    ucnrr_port = int(canonical_ports.get("ucnrr", UCNRR_DEFAULT_PORT))
+    devx_port = int(canonical_ports.get("devx_backend", DEVX_BACKEND_DEFAULT_PORT))
+
+    config["core_port"] = core_port
+    config["react_port"] = react_port
+    config["streamlit_port"] = streamlit_port
+    config["ucnrr_port"] = ucnrr_port
+    config["DEVX_BACKEND_PORT"] = devx_port
+
+    core_base = f"http://127.0.0.1:{core_port}"
+    config["NEXT_PUBLIC_CORE_API_BASE"] = core_base
+    config["CORE_BASE"] = core_base
+    config["CORE_API_URL"] = core_base
+    config["core_start_command"] = f"uvicorn ReDNACoreDemo.core.api:build_app --factory --port {core_port}"
+
+    react_origin = f"http://127.0.0.1:{react_port}"
+    config["CORS_ALLOWED_ORIGINS"] = react_origin
+
+    ucnrr_base = f"http://127.0.0.1:{ucnrr_port}"
+    config["UCNRR_BASE"] = ucnrr_base
+    config["UCNRR_BASE_URL"] = ucnrr_base
+    config["NEXT_PUBLIC_UCNRR_API_BASE"] = ucnrr_base
+
+    devx_base = f"http://127.0.0.1:{devx_port}"
+    config["NEXT_PUBLIC_DEVX_API_BASE"] = devx_base
+    config["DEVX_BASE"] = devx_base
+
+    return config
+
+
+def _rewrite_env_file(path: Path, updates: Dict[str, str], append_missing: bool = True) -> bool:
+    if not updates:
+        return False
+
+    try:
+        text = path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        if not append_missing:
+            return False
+        path.parent.mkdir(parents=True, exist_ok=True)
+        payload = "\n".join(f"{key}={value}" for key, value in updates.items()) + "\n"
+        path.write_text(payload, encoding="utf-8")
+        return True
+    except Exception:
+        return False
+
+    lines = text.splitlines()
+    seen: set[str] = set()
+    changed = False
+    new_lines: List[str] = []
+
+    for line in lines:
+        replacement = line
+        stripped = line.strip()
+        if stripped and not stripped.startswith("#") and "=" in line:
+            key, value = line.split("=", 1)
+            key_clean = key.strip()
+            seen.add(key_clean)
+            if key_clean in updates:
+                new_value = updates[key_clean]
+                if value.strip() != new_value:
+                    changed = True
+                replacement = f"{key_clean}={new_value}"
+        new_lines.append(replacement)
+
+    if append_missing:
+        for key, value in updates.items():
+            if key not in seen:
+                new_lines.append(f"{key}={value}")
+                changed = True
+
+    if not changed:
+        return False
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    joined = "\n".join(new_lines) + "\n"
+    path.write_text(joined, encoding="utf-8")
+    return True
+
+
+def _append_nuclear_log(event: str, payload: Dict[str, Any]) -> None:
+    try:
+        NUCLEAR_LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+        entry = {"timestamp": datetime.utcnow().isoformat() + "Z", "event": event}
+        entry.update(payload)
+        with NUCLEAR_LOG_PATH.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps(entry, sort_keys=True))
+            handle.write("\n")
+    except Exception:
+        pass
+
+
+def _restart_stack_after_port_fix(config: Dict[str, Any]) -> None:
+    summary = _stop_all_services(request_rerun=False)
+    if summary:
+        _set_action_result(summary)
+
+    core_port = int(config.get("core_port", CORE_DEFAULT_PORT))
+    react_port = int(config.get("react_port", REACT_DEFAULT_PORT))
+    ucnrr_port = int(config.get("ucnrr_port", UCNRR_DEFAULT_PORT))
+
+    core_workdir = _resolve_core_workdir(config)
+    react_workdir = _resolve_react_workdir(config)
+    try:
+        raw_ucnrr_workdir = config.get("ucnrr_workdir")
+        ucnrr_workdir = Path(str(raw_ucnrr_workdir) if raw_ucnrr_workdir else str(ROOT)).expanduser().resolve(strict=False)
+    except Exception:
+        ucnrr_workdir = ROOT
+
+    core_command = _core_start_command_list(config)
+    react_npm = _resolve_react_npm(config)
+
+    _launch_stack(
+        config,
+        core_port,
+        react_port,
+        ucnrr_port,
+        core_workdir,
+        react_workdir,
+        ucnrr_workdir,
+        core_command,
+        react_npm,
+        open_ui=False,
+    )
+
+    if DEVX_BOOTSTRAP_AVAILABLE:
+        _apply_devx_env(config)
+        ok_backend, msg_backend, backend_port = start_devx_backend()
+        if ok_backend:
+            st.info(f"DevX backend running on port {backend_port}. {msg_backend}")
+        else:
+            st.warning(f"DevX backend restart failed: {msg_backend}")
+        ok_ui, msg_ui, ui_port = start_devx_ui()
+        if ok_ui:
+            st.info(f"DevX UI running on port {ui_port}. {msg_ui}")
+        else:
+            st.warning(f"DevX UI restart failed: {msg_ui}")
+
+
+def _execute_port_repair(canonical_ports: Dict[str, int], rewrite_files: bool, port_state: Dict[str, Any]) -> None:
+    with st.spinner("Realigning ports and restarting services…"):
+        new_env = _regenerate_env_config(canonical_ports)
+        envstore.save_env_config(new_env)
+        st.session_state[SESSION_ENV_KEY] = dict(new_env)
+        _set_env_dirty(False)
+
+        updated_files: List[str] = []
+        if rewrite_files:
+            root_updates = {
+                "CORE_PORT": str(new_env["core_port"]),
+                "UCNRR_PORT": str(new_env["ucnrr_port"]),
+                "REACT_PORT": str(new_env["react_port"]),
+                "STREAMLIT_PHOTO_PORT": str(new_env["streamlit_port"]),
+                "DEVX_BACKEND_PORT": str(new_env["DEVX_BACKEND_PORT"]),
+                "CORE_BASE": f"http://127.0.0.1:{new_env['core_port']}",
+                "UCNRR_BASE": f"http://127.0.0.1:{new_env['ucnrr_port']}",
+                "UCNRR_BASE_URL": f"http://127.0.0.1:{new_env['ucnrr_port']}",
+            }
+            if _rewrite_env_file(ENV_FILE_PATH, root_updates, append_missing=True):
+                try:
+                    updated_files.append(str(ENV_FILE_PATH.relative_to(ROOT)))
+                except ValueError:
+                    updated_files.append(str(ENV_FILE_PATH))
+
+            web_updates = {
+                "NEXT_PUBLIC_CORE_API_BASE": f"http://127.0.0.1:{new_env['core_port']}",
+                "CORE_API_URL": f"http://127.0.0.1:{new_env['core_port']}",
+                "NEXT_PUBLIC_DEVX_API_BASE": f"http://127.0.0.1:{new_env['DEVX_BACKEND_PORT']}",
+            }
+            if _rewrite_env_file(WEB_ENV_LOCAL_PATH, web_updates, append_missing=False):
+                try:
+                    updated_files.append(str(WEB_ENV_LOCAL_PATH.relative_to(ROOT)))
+                except ValueError:
+                    updated_files.append(str(WEB_ENV_LOCAL_PATH))
+
+        drift_snapshot = {
+            service: {label: value for label, value in info["sources"].items() if value is not None}
+            for service, info in port_state["analysis"].items()
+            if info["has_drift"]
+        }
+
+        log_payload: Dict[str, Any] = {
+            "canonical_ports": {name: int(value) for name, value in canonical_ports.items()},
+            "rewrite_env_files": rewrite_files,
+        }
+        if drift_snapshot:
+            log_payload["drift_snapshot"] = drift_snapshot
+        if updated_files:
+            log_payload["updated_files"] = updated_files
+
+        _append_nuclear_log("port_repair", log_payload)
+        _restart_stack_after_port_fix(new_env)
+
+    st.success("Ports aligned and services restarted.")
+    _refresh_health()
+    safe_rerun()
+
+
+def _render_port_drift_banner(port_state: Dict[str, Any]) -> None:
+    analysis = port_state["analysis"]
+    canonical_ports = port_state["canonical"]
+    drift_entries = [(service, data) for service, data in analysis.items() if data["has_drift"]]
+    if not drift_entries:
+        return
+
+    with st.container(border=True):
+        st.warning("⚠️ Port drift detected between running services and environment files.")
+        for service, data in drift_entries:
+            label = PORT_SERVICE_LABELS.get(service, service.title())
+            canonical = canonical_ports.get(service)
+            parts: List[str] = []
+            for source_label, value in data["sources"].items():
+                if value is None:
+                    continue
+                label_fragment = source_label.split(":", 1)[-1]
+                parts.append(f"{label_fragment}={value}")
+            summary = ", ".join(parts) if parts else "n/a"
+            if canonical is not None:
+                st.markdown(f"- **{label}** · target {canonical} → {summary}")
+            else:
+                st.markdown(f"- **{label}** → {summary}")
+
+        with st.form("port_repair_form"):
+            rewrite_files = st.checkbox("Rewrite .env and web/.env.local to canonical ports", value=False)
+            submitted = st.form_submit_button("Fix Ports", use_container_width=True)
+            if submitted:
+                _execute_port_repair(canonical_ports, rewrite_files, port_state)
+
+
+# ---------------------------------------------------------------------------
+# Nuclear diagnostics helpers
+# ---------------------------------------------------------------------------
+
+SENSITIVE_PATTERNS = [
+    (re.compile(r"(?i)(authorization:\s*Bearer\s+)([A-Za-z0-9\-\._~+/=]+)"), r"\1[REDACTED]"),
+    (re.compile(r"(?i)(api[_-]?key[:=]\s*)([^\s\"']+)"), r"\1[REDACTED]"),
+    (re.compile(r"(?i)(secret[:=]\s*)([^\s\"']+)"), r"\1[REDACTED]"),
+    (re.compile(r"sk-[A-Za-z0-9]{16,}"), "sk-[REDACTED]"),
+    (re.compile(r"eyJ[0-9A-Za-z_\-]+?\.[0-9A-Za-z_\-]+?\.[0-9A-Za-z_\-]+"), "[JWT-REDACTED]"),
+]
+
+
+def _redact_sensitive_tokens(text: str) -> str:
+    sanitized = text
+    for pattern, replacement in SENSITIVE_PATTERNS:
+        sanitized = pattern.sub(replacement, sanitized)
+    return sanitized
+
+
+def _sanitize_log_file(path: Path) -> Optional[str]:
+    if not path.exists():
+        return None
+    try:
+        content = path.read_text(encoding="utf-8", errors="replace")
+    except Exception:
+        return None
+    return _redact_sensitive_tokens(content)
+
+
+def _snapshot_nuclear_logs(prefix: str) -> Dict[str, str]:
+    snapshots: Dict[str, str] = {}
+    for path in NUCLEAR_LOG_FILES:
+        sanitized = _sanitize_log_file(path)
+        if sanitized:
+            snapshots[f"{prefix}/{path.name}"] = sanitized
+    return snapshots
+
+
+def _truncate_nuclear_logs() -> None:
+    for path in NUCLEAR_LOG_FILES:
+        try:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text("", encoding="utf-8")
+        except Exception:
+            continue
+
+
+def _enforce_nuclear_bundle_retention(max_bundles: int = NUCLEAR_MAX_BUNDLES) -> None:
+    if max_bundles <= 0 or not NUCLEAR_BUNDLE_DIR.exists():
+        return
+    bundles = sorted(
+        NUCLEAR_BUNDLE_DIR.glob("*.tgz"),
+        key=lambda item: item.stat().st_mtime,
+        reverse=True,
+    )
+    for old in bundles[max_bundles:]:
+        try:
+            old.unlink()
+        except Exception:
+            continue
+
+
+def _write_nuclear_bundle(name: str, log_contents: Dict[str, str], metadata: Dict[str, Any]) -> Optional[Path]:
+    try:
+        NUCLEAR_BUNDLE_DIR.mkdir(parents=True, exist_ok=True)
+        bundle_path = NUCLEAR_BUNDLE_DIR / f"{name}.tgz"
+        with tarfile.open(bundle_path, "w:gz") as tar:
+            for relative_name, content in log_contents.items():
+                data = content.encode("utf-8")
+                info = tarfile.TarInfo(name=relative_name)
+                info.size = len(data)
+                tar.addfile(info, io.BytesIO(data))
+            meta_bytes = json.dumps(metadata, indent=2, sort_keys=True).encode("utf-8")
+            info = tarfile.TarInfo(name="metadata.json")
+            info.size = len(meta_bytes)
+            tar.addfile(info, io.BytesIO(meta_bytes))
+        return bundle_path
+    except Exception:
+        return None
+
+
+def _summarize_kill_results(results: Dict[str, Any]) -> Dict[str, Any]:
+    killed = results.get("killed_pids") or []
+    errors = results.get("errors") or []
+    return {
+        "timestamp": results.get("timestamp"),
+        "killed_count": len(killed),
+        "errors": errors[:5],
+        "ports_cleared": sorted(results.get("ports_cleared", []))[:10],
+    }
+
+
+def _summarize_rebuild_results(results: Dict[str, Any]) -> Dict[str, Any]:
+    summary: Dict[str, Any] = {"timestamp": results.get("timestamp"), "services": {}}
+    for service, payload in results.items():
+        if service in {"diagnostic_log", "timestamp"}:
+            continue
+        if not isinstance(payload, dict):
+            continue
+        summary["services"][service] = {
+            "started": bool(payload.get("started")),
+            "port": payload.get("port"),
+            "error": payload.get("error"),
+        }
+    return summary
+
+
+def _build_nuclear_bundle(
+    kill_results: Dict[str, Any],
+    rebuild_results: Dict[str, Any],
+    sanity_report: Dict[str, Any],
+    pre_logs: Dict[str, str],
+    post_logs: Dict[str, str],
+) -> Optional[Path]:
+    timestamp = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    bundle_name = f"nuclear_{timestamp}"
+    log_contents = {}
+    log_contents.update(pre_logs)
+    log_contents.update(post_logs)
+    metadata = {
+        "kill": _summarize_kill_results(kill_results),
+        "rebuild": _summarize_rebuild_results(rebuild_results),
+        "sanity": sanity_report,
+    }
+    bundle_path = _write_nuclear_bundle(bundle_name, log_contents, metadata)
+    if bundle_path:
+        _enforce_nuclear_bundle_retention()
+    return bundle_path
+
+
+def _run_nuclear_sanity_checks(user_id: str = NUCLEAR_SANITY_USER_ID) -> Dict[str, Any]:
+    report: Dict[str, Any] = {"timestamp": datetime.utcnow().isoformat() + "Z"}
+
+    core_base = _build_service_url(SERVICE_CORE)
+    devx_base = str(
+        _env().get("NEXT_PUBLIC_DEVX_API_BASE")
+        or f"http://127.0.0.1:{_devx_backend_port(_env())}"
+    ).rstrip("/")
+
+    # Chronotype ingest probe
+    chronotype_payload = {
+        "user_id": user_id,
+        "text": "I hop out of bed at 5:30 AM every day and feel my best early in the morning.",
+        "source": "nuclear_sanity",
+    }
+    if core_base:
+        try:
+            ingest_url = core_base.rstrip("/") + "/core/api/ingest_text"
+            response = requests.post(ingest_url, json=chronotype_payload, timeout=10)
+            body: Any
+            try:
+                body = response.json()
+            except Exception:
+                body = response.text[:200]
+            report["chronotype_ingest"] = {
+                "status": response.status_code,
+                "ok": response.ok,
+                "body": body,
+            }
+        except Exception as exc:
+            report["chronotype_ingest"] = {"error": str(exc)}
+    else:
+        report["chronotype_ingest"] = {"error": "Core URL unavailable"}
+
+    # Why-Card fetch
+    if core_base:
+        try:
+            why_url = core_base.rstrip("/") + "/core/api/traits/BehaviorDNA.Sleep.Chronotype/why"
+            response = requests.get(
+                why_url,
+                params={"user_id": user_id, "limit": 1},
+                timeout=5,
+            )
+            if response.ok:
+                report["why_card"] = {"status": response.status_code, "body": response.json()}
+            else:
+                report["why_card"] = {
+                    "status": response.status_code,
+                    "body": response.text[:200],
+                }
+        except Exception as exc:
+            report["why_card"] = {"error": str(exc)}
+    else:
+        report["why_card"] = {"error": "Core URL unavailable"}
+
+    # AI readiness probe
+    try:
+        readiness_url = f"{devx_base}/devx/api/ingestion/ai_ready"
+        response = requests.get(readiness_url, timeout=5)
+        body = response.json() if response.ok else response.text[:200]
+        report["ai_readiness"] = {
+            "status": response.status_code,
+            "ok": response.ok,
+            "body": body,
+        }
+    except Exception as exc:
+        report["ai_readiness"] = {"error": str(exc)}
+
+    if core_base:
+        try:
+            ontology_url = core_base.rstrip("/") + "/core/graph/ontology"
+            ontology_resp = requests.get(ontology_url, timeout=5)
+            if ontology_resp.ok:
+                ontology_payload = ontology_resp.json()
+                report["graph_ontology"] = {
+                    "status": "ok",
+                    "nodes": len(ontology_payload.get("nodes", [])),
+                    "edges": len(ontology_payload.get("edges", [])),
+                    "version": ontology_payload.get("version"),
+                }
+            else:
+                report["graph_ontology"] = {
+                    "status": f"HTTP {ontology_resp.status_code}",
+                    "body": ontology_resp.text[:200],
+                }
+        except Exception as exc:
+            report["graph_ontology"] = {"error": str(exc)}
+
+        try:
+            graph_stats_url = core_base.rstrip("/") + f"/core/graph/user/{user_id}/stats"
+            stats_resp = requests.get(graph_stats_url, timeout=5)
+            if stats_resp.ok:
+                stats_payload = stats_resp.json()
+                report["graph_user"] = {
+                    "status": "ok",
+                    "total_nodes": stats_payload.get("total_nodes"),
+                    "total_edges": stats_payload.get("total_edges"),
+                    "trait_nodes": stats_payload.get("trait_nodes"),
+                    "observation_nodes": stats_payload.get("observation_nodes"),
+                }
+            else:
+                report["graph_user"] = {
+                    "status": f"HTTP {stats_resp.status_code}",
+                    "body": stats_resp.text[:200],
+                }
+        except Exception as exc:
+            report["graph_user"] = {"error": str(exc)}
+    else:
+        report["graph_ontology"] = {"error": "Core URL unavailable"}
+        report["graph_user"] = {"error": "Core URL unavailable"}
+
+    return report
+
+
+# ---------------------------------------------------------------------------
 # Command builders
 # ---------------------------------------------------------------------------
 
@@ -1348,6 +2099,26 @@ def _devx_backend_port(config: Dict[str, Any]) -> int:
         return int(config.get("DEVX_BACKEND_PORT", DEVX_BACKEND_DEFAULT_PORT))
     except Exception:
         return DEVX_BACKEND_DEFAULT_PORT
+
+
+def _devx_ui_url(path: str = "") -> Optional[str]:
+    port_value: Optional[str] = os.environ.get("DEVX_UI_PORT")
+    if not port_value and DEVX_BOOTSTRAP_AVAILABLE:
+        persisted = load_last_ui_port()
+        if persisted:
+            port_value = str(persisted)
+    if not port_value:
+        port_value = "3100"
+    try:
+        port_int = int(port_value)
+    except Exception:
+        port_int = 3100
+    base = f"http://localhost:{port_int}"
+    if path:
+        if not path.startswith("/"):
+            path = f"/{path}"
+        return f"{base}{path}"
+    return base
 
 
 def _apply_devx_env(config: Dict[str, Any]) -> None:
@@ -1391,6 +2162,29 @@ def _core_build_url(path: str) -> str:
     return f"{base}{path}"
 
 
+def _run_make_command(target: str) -> Dict[str, Any]:
+    """Execute `make <target>` inside the repo root and capture output."""
+    try:
+        completed = subprocess.run(
+            ["make", target],
+            cwd=str(ROOT),
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+    except FileNotFoundError:
+        return {"ok": False, "error": "`make` command not found"}
+    except Exception as exc:  # noqa: BLE001
+        return {"ok": False, "error": str(exc)}
+
+    return {
+        "ok": completed.returncode == 0,
+        "stdout": completed.stdout,
+        "stderr": completed.stderr,
+        "returncode": completed.returncode,
+    }
+
+
 def _format_request_error(exc: Exception) -> str:
     if isinstance(exc, requests.HTTPError):
         response = exc.response
@@ -1415,6 +2209,505 @@ def _format_request_error(exc: Exception) -> str:
     return str(exc)
 
 
+def _health_user() -> str:
+    return manifest_parser.preferred_health_user()
+
+
+def _fetch_json_get(url: str, timeout: float = 2.0) -> Dict[str, Any]:
+    try:
+        response = requests.get(url, timeout=timeout)
+        response.raise_for_status()
+    except requests.RequestException as exc:
+        return {"error": _format_request_error(exc)}
+    try:
+        return response.json()
+    except ValueError:
+        return {"error": "Invalid JSON response"}
+
+
+def _post_json(url: str, timeout: float = 5.0, payload: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    try:
+        response = requests.post(url, json=payload, timeout=timeout)
+        response.raise_for_status()
+    except requests.RequestException as exc:
+        return {"error": _format_request_error(exc)}
+    try:
+        return response.json()
+    except ValueError:
+        return {"ok": True}
+
+
+def _fetch_rr_audit_data(base_url: Optional[str] = None) -> Dict[str, Any]:
+    base = (base_url or _core_base_url()).rstrip("/")
+    url = f"{base}/core/debug/rr_audit/{_health_user()}"
+    return _fetch_json_get(url, timeout=2)
+
+
+def _fetch_propagation_audit_data(base_url: Optional[str] = None) -> Dict[str, Any]:
+    base = (base_url or _core_base_url()).rstrip("/")
+    url = f"{base}/core/debug/ucn_propagation/{_health_user()}"
+    return _fetch_json_get(url, timeout=2)
+
+
+def _fetch_rr_reference_status(base_url: Optional[str] = None) -> Dict[str, Any]:
+    base = (base_url or _core_base_url()).rstrip("/")
+    cache_buster = int(time.time())
+    url = f"{base}/core/rr/reference/status?ts={cache_buster}"
+    return _fetch_json_get(url, timeout=2)
+
+
+def _fetch_ontology_data(base_url: Optional[str] = None) -> Dict[str, Any]:
+    base = (base_url or _core_base_url()).rstrip("/")
+    url = f"{base}/core/graph/ontology"
+    return _fetch_json_get(url, timeout=2)
+
+
+def _fetch_consent_health(base_url: Optional[str] = None) -> Dict[str, Any]:
+    base = (base_url or _core_base_url()).rstrip("/")
+    url = f"{base}/core/consent/health"
+    return _fetch_json_get(url, timeout=2.5)
+
+
+def _force_reload_ontology() -> Dict[str, Any]:
+    url = _core_build_url("/core/graph/ontology/load?force=true")
+    return _post_json(url, timeout=6)
+
+
+def _count_items(value: Any) -> Optional[int]:
+    if isinstance(value, dict):
+        return len(value)
+    if isinstance(value, (list, tuple, set)):
+        return len(value)
+    if isinstance(value, (int, float)):
+        return int(value)
+    return None
+
+
+def _format_health_value(value: Any) -> str:
+    if value is None:
+        return "—"
+    if isinstance(value, float):
+        return (f"{value:.2f}").rstrip("0").rstrip(".")
+    return str(value)
+
+
+def _issues_badge(value: Any) -> str:
+    try:
+        issues = int(value)
+    except (TypeError, ValueError):
+        return "⚪"
+    return "✅" if issues == 0 else "🟡"
+
+
+def _refresh_system_health_state() -> Dict[str, Any]:
+    base = _core_base_url()
+    state = {
+        "rr": _fetch_rr_audit_data(base),
+        "propagation": _fetch_propagation_audit_data(base),
+        "ontology": _fetch_ontology_data(base),
+        "consent": _fetch_consent_health(base),
+        "reference": _fetch_rr_reference_status(base),
+        "updated_at": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    st.session_state[SESSION_SYSTEM_HEALTH_KEY] = state
+    return state
+
+
+def _render_system_health_panel(env: Dict[str, Any]) -> None:
+    health_state = st.session_state.get(SESSION_SYSTEM_HEALTH_KEY)
+    if health_state is None:
+        health_state = _refresh_system_health_state()
+
+    button_cols = st.columns(2)
+    if button_cols[0].button("Refresh Health", key="system-health-refresh"):
+        with st.spinner("Refreshing system health…"):
+            health_state = _refresh_system_health_state()
+
+    if button_cols[1].button("Reload Phase 10 Ontology (force)", key="system-health-reload"):
+        with st.spinner("Reloading ontology…"):
+            reload_result = _force_reload_ontology()
+        if reload_result.get("error"):
+            st.error(f"Reload failed: {reload_result['error']}")
+        else:
+            message = reload_result.get("message") or "Ontology reload complete."
+            seed = reload_result.get("seed_version") or reload_result.get("seed") or reload_result.get("version")
+            node_count = _count_items(reload_result.get("nodes"))
+            edge_count = _count_items(reload_result.get("edges"))
+            details: List[str] = []
+            if seed:
+                details.append(f"seed={seed}")
+            if node_count is not None:
+                details.append(f"nodes={node_count}")
+            if edge_count is not None:
+                details.append(f"edges={edge_count}")
+            if details:
+                message = f"{message} ({', '.join(details)})"
+            st.success(message)
+            health_state = _refresh_system_health_state()
+
+    st.caption(f"Canary user: `{_health_user()}`")
+    timestamp = health_state.get("updated_at")
+    if timestamp:
+        st.caption(f"Last updated: {timestamp} UTC")
+
+    consent_data = health_state.get("consent", {}) or {}
+    st.markdown("##### Consent (JWT)")
+    consent_summary_text: Optional[str] = None
+    consent_status_line: Optional[str] = None
+    if consent_data.get("error"):
+        st.error(consent_data["error"])
+    else:
+        status = str(consent_data.get("status") or "unknown").lower()
+        status_icon = {
+            "healthy": "🟢",
+            "degraded": "🟡",
+            "error": "🔴",
+        }.get(status, "⚪")
+        tooltip_parts: List[str] = []
+        warning = consent_data.get("warning")
+        if warning:
+            tooltip_parts.append(str(warning))
+        error_reason = consent_data.get("error_reason")
+        if error_reason:
+            tooltip_parts.append(str(error_reason))
+        tooltip_attr = ""
+        if tooltip_parts:
+            tooltip_attr = f' title="{html.escape(" | ".join(tooltip_parts))}"'
+        consent_header_html = (
+            f"<strong>{status_icon} Consent</strong>"
+            + (f'<span style="margin-left:0.35rem;"{tooltip_attr}>ℹ️</span>' if tooltip_attr else "")
+        )
+        st.markdown(consent_header_html, unsafe_allow_html=True)
+
+        config = consent_data.get("config") or {}
+        ttl_display = consent_data.get("ttl_minutes")
+        ttl_str = "—" if ttl_display is None else str(ttl_display)
+        summary_line = " | ".join(
+            [
+                f"ALG={config.get('algorithm', 'unknown')}",
+                f"ENC={config.get('secret_encoding', 'unknown')}",
+                f"TTL={ttl_str}",
+                f"LEEWAY={config.get('leeway_seconds', '—')}",
+            ]
+        )
+        status_line = " ".join(
+            [
+                "Roundtrip:",
+                "✅" if consent_data.get("roundtrip_ok") else "❌",
+                "| Secret:",
+                "✅" if consent_data.get("has_secret") else "⚠️",
+            ]
+        )
+        consent_summary_text = summary_line
+        consent_status_line = status_line
+
+    if consent_summary_text:
+        st.caption(consent_summary_text)
+    if consent_status_line:
+        st.caption(consent_status_line)
+
+    action_cols = st.columns(3)
+    env_path_str = str((ENV_FILE_PATH if ENV_FILE_PATH.is_absolute() else Path(".env")).resolve())
+    with action_cols[0]:
+        st.caption(".env path")
+        _render_copy_path(env_path_str, element_id="consent-env-path")
+    with action_cols[1]:
+        if st.button("Rotate Secret (Make)", key="consent-rotate-secret"):
+            with st.spinner("Running `make consent-secret`…"):
+                result = _run_make_command("consent-secret")
+            if result.get("ok"):
+                st.success("Secret rotation command completed. Restart Core via Nuclear to apply.")
+            else:
+                st.error(result.get("error") or f"make consent-secret failed (exit {result.get('returncode')})")
+            if result.get("stdout"):
+                st.code(result["stdout"], language="bash")
+            if result.get("stderr"):
+                st.caption("stderr:")
+                st.code(result["stderr"], language="bash")
+    with action_cols[2]:
+        if st.button("Consent Health JSON", key="consent-health-json"):
+            detail_payload = _fetch_consent_health()
+            st.session_state[SESSION_CONSENT_HEALTH_DETAIL_KEY] = detail_payload
+            if detail_payload.get("error"):
+                st.error(detail_payload["error"])
+            else:
+                st.success("Fetched latest consent health.")
+
+    consent_detail = st.session_state.get(SESSION_CONSENT_HEALTH_DETAIL_KEY)
+    if consent_detail and not consent_detail.get("error"):
+        with st.expander("Consent Health Detail", expanded=False):
+            st.code(json.dumps(consent_detail, indent=2), language="json")
+    elif consent_detail and consent_detail.get("error"):
+        with st.expander("Consent Health Detail", expanded=False):
+            st.error(consent_detail["error"])
+
+    reference_data = health_state.get("reference") or {}
+    st.markdown("##### RR Reference")
+    if reference_data.get("error"):
+        st.error(reference_data["error"])
+    else:
+        config_raw = reference_data.get("config") if isinstance(reference_data.get("config"), dict) else {}
+        config: Dict[str, Any] = dict(config_raw) if isinstance(config_raw, dict) else {}
+        source_raw = config.get("source") or reference_data.get("source")
+        source = (str(source_raw).upper() if source_raw else "UNKNOWN") or "UNKNOWN"
+        universe = config.get("universe") or reference_data.get("universe")
+        cohort_keys = config.get("cohort_keys") or reference_data.get("cohort_keys") or []
+        if isinstance(cohort_keys, str):
+            cohort_keys = [cohort_keys]
+        if not isinstance(cohort_keys, (list, tuple, set)):
+            cohort_list: List[str] = []
+        else:
+            cohort_list = [str(item).strip() for item in cohort_keys if str(item).strip()]
+        fallback_reason = (
+            reference_data.get("fallback_reason")
+            or config.get("fallback_reason")
+            or (reference_data.get("core") or {}).get("fallback_reason")
+        )
+
+        if source == "ACTUAL":
+            if cohort_list:
+                detail_display = ", ".join(cohort_list[:3])
+                if len(cohort_list) > 3:
+                    detail_display += f" +{len(cohort_list) - 3}"
+            else:
+                detail_display = "default cohort"
+        else:
+            detail_display = str(universe or "default")
+
+        badge_state = "green"
+        if reference_data.get("error"):
+            badge_state = "red"
+        elif fallback_reason:
+            badge_state = "yellow"
+
+        badge_palette = {
+            "green": ("#0f5132", "#d1fae5", "#0f5132"),
+            "yellow": ("#8a6d1a", "#fef3c7", "#8a6d1a"),
+            "red": ("#842029", "#f8d7da", "#842029"),
+        }
+        fg_color, bg_color, border_color = badge_palette.get(badge_state, badge_palette["yellow"])
+        badge_icon = "🟢" if badge_state == "green" else "🟡" if badge_state == "yellow" else "🔴"
+        badge_html = f"""
+        <div style="
+            display:flex;
+            align-items:center;
+            gap:0.75rem;
+            padding:0.75rem 1rem;
+            border-radius:0.75rem;
+            border:1px solid {border_color};
+            background:{bg_color};
+            color:{fg_color};
+            font-weight:600;
+        ">
+            <span style="font-size:1.25rem;">{badge_icon}</span>
+            <div>
+                <div>RR Reference: <code>{html.escape(source)}</code></div>
+                <div style="font-size:0.85rem; font-weight:500;">{html.escape(detail_display)}</div>
+            </div>
+        </div>
+        """
+        st.markdown(badge_html, unsafe_allow_html=True)
+
+        if fallback_reason:
+            st.caption(f"Fallback: {fallback_reason}")
+
+        button_cols = st.columns([1, 1, 2])
+        with button_cols[0]:
+            if st.button("View Details", key="rr-reference-view-details"):
+                st.session_state[SESSION_RR_REFERENCE_DETAIL_KEY] = reference_data
+        with button_cols[1]:
+            devx_rr_url = _devx_ui_url("/rr-reference")
+            if st.button(
+                "Open DevX RR Reference Panel",
+                key="rr-reference-open-devx",
+                disabled=devx_rr_url is None,
+            ):
+                _open_ui(devx_rr_url, "DevX RR Reference", notify=False)
+        with button_cols[2]:
+            st.caption("Adjust settings in DevX and restart Core via Nuclear to apply.")
+
+    rr_reference_detail = st.session_state.get(SESSION_RR_REFERENCE_DETAIL_KEY)
+    if rr_reference_detail:
+        try:
+            detail_json = json.dumps(rr_reference_detail, indent=2)
+        except TypeError:
+            detail_json = json.dumps(rr_reference_detail, indent=2, default=str)
+        with st.modal("RR Reference Status", key="rr-reference-modal"):
+            st.code(detail_json, language="json")
+            if st.button("Close", key="rr-reference-modal-close"):
+                st.session_state.pop(SESSION_RR_REFERENCE_DETAIL_KEY, None)
+
+    rr_data = health_state.get("rr", {})
+    st.markdown("##### RR Audit")
+    if rr_data.get("error"):
+        st.error(rr_data["error"])
+    else:
+        rr_summary = rr_data.get("summary") or {}
+        issues_value = rr_summary.get("issues")
+        st.markdown(f"{_issues_badge(issues_value)} Issues: **{_format_health_value(issues_value)}**")
+        rr_lines: List[str] = []
+        for key, label in (("normalized", "Normalized"), ("corrected", "Corrected")):
+            value = rr_summary.get(key)
+            if value is not None:
+                rr_lines.append(f"- **{label}**: {_format_health_value(value)}")
+        if rr_lines:
+            st.markdown("\n".join(rr_lines))
+        else:
+            st.caption("No RR normalization data available.")
+
+    propagation_data = health_state.get("propagation", {})
+    st.markdown("##### UCN Propagation")
+    if propagation_data.get("error"):
+        st.error(propagation_data["error"])
+    else:
+        propagation_summary = propagation_data.get("summary") or {}
+        issues_value = propagation_summary.get("issues")
+        st.markdown(f"{_issues_badge(issues_value)} Issues: **{_format_health_value(issues_value)}**")
+        propagation_lines: List[str] = []
+        for key, label in (("corrected", "Corrected"), ("processed", "Processed")):
+            value = propagation_summary.get(key)
+            if value is not None:
+                propagation_lines.append(f"- **{label}**: {_format_health_value(value)}")
+        if propagation_lines:
+            st.markdown("\n".join(propagation_lines))
+        else:
+            st.caption("No propagation metrics available.")
+
+    ontology_data = health_state.get("ontology", {})
+    st.markdown("##### Ontology")
+    if ontology_data.get("error"):
+        st.error(ontology_data["error"])
+    else:
+        summary = ontology_data.get("summary") if isinstance(ontology_data.get("summary"), dict) else None
+        nodes_count = _count_items(summary.get("nodes")) if summary else None
+        edges_count = _count_items(summary.get("edges")) if summary else None
+        if nodes_count is None:
+            nodes_count = _count_items(ontology_data.get("nodes"))
+        if edges_count is None:
+            edges_count = _count_items(ontology_data.get("edges"))
+        seed_version = (
+            (summary or {}).get("seed_version")
+            or ontology_data.get("seed_version")
+            or (ontology_data.get("loader") or {}).get("seed_version")
+        )
+        st.markdown(
+            "\n".join(
+                [
+                    f"- **Nodes**: {_format_health_value(nodes_count)}",
+                    f"- **Edges**: {_format_health_value(edges_count)}",
+                    f"- **Seed Version**: {_format_health_value(seed_version)}",
+                ]
+            )
+        )
+
+    st.markdown("##### Runtime Flags")
+    flags = [
+        {"Flag": "RR_ADAPTER_ENABLED", "Value": _format_health_value(env.get("RR_ADAPTER_ENABLED"))},
+        {"Flag": "REFERENCE_POP_ENABLED", "Value": _format_health_value(env.get("REFERENCE_POP_ENABLED"))},
+        {"Flag": "REFERENCE_POP_SOURCE", "Value": _format_health_value(env.get("REFERENCE_POP_SOURCE"))},
+    ]
+    st.table(flags)
+    st.caption("Values read from the current Control Panel++ environment.")
+
+
+INTEL_FILES = [
+    ("Services & Ports JSON", "docs/Intel/ServicesAndPorts.json"),
+    ("Endpoints Index", "docs/Intel/EndpointsIndex.json"),
+    ("Flags & Defaults", "docs/Intel/FlagsAndDefaults.json"),
+    ("Ontology Status", "docs/Intel/OntologyStatus.md"),
+    ("Propagation Policy", "docs/Intel/PropagationPolicy.md"),
+    ("Debug Surface", "docs/Intel/DebugSurface.md"),
+]
+
+DEV_KEYWORDS = ("dev", "test", "demo", "sample", "placeholder", "secret")
+
+
+def _is_dev_default(value: Any) -> bool:
+    if not isinstance(value, str):
+        return False
+    lowered = value.lower()
+    return any(keyword in lowered for keyword in DEV_KEYWORDS)
+
+
+def _load_intel_flags(path: Path) -> Dict[str, Any]:
+    try:
+        text = path.read_text(encoding="utf-8")
+    except FileNotFoundError:
+        return {"error": f"Flags file not found at {path}"}
+    except OSError as exc:
+        return {"error": str(exc)}
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:
+        return {"error": f"Failed to parse JSON: {exc}"}
+
+
+def _render_flags_table(flags_payload: Dict[str, Any]) -> None:
+    categories = flags_payload.get("categories")
+    if not isinstance(categories, list):
+        st.caption("No flag categories available.")
+        return
+
+    note_shown = False
+    for entry in categories:
+        category_name = entry.get("category") or "Uncategorized"
+        category_desc = entry.get("description")
+        flags = entry.get("flags") or []
+        if not flags:
+            continue
+        st.markdown(f"**{html.escape(category_name)}**")
+        if category_desc:
+            st.caption(category_desc)
+
+        header_html = "<tr><th align='left'>Flag</th><th align='left'>Current</th><th align='left'>Default</th><th align='left'>Description</th></tr>"
+        rows_html: List[str] = []
+        for flag in flags:
+            name = html.escape(str(flag.get("name", "")))
+            current = html.escape(_format_health_value(flag.get("current")))
+            default = html.escape(_format_health_value(flag.get("default")))
+            description = html.escape(str(flag.get("description") or ""))
+            highlight = False
+            if flag.get("current") == flag.get("default") and _is_dev_default(str(flag.get("default", ""))):
+                highlight = True
+                note_shown = True
+            style = "background-color: rgba(250, 204, 21, 0.25);" if highlight else ""
+            rows_html.append(
+                f"<tr style='{style}'><td>{name}</td><td>{current}</td><td>{default}</td><td>{description}</td></tr>"
+            )
+
+        table_html = f"<table style='width:100%; border-collapse:collapse;'>" \
+            f"{header_html}{''.join(rows_html)}</table>"
+        st.markdown(table_html, unsafe_allow_html=True)
+        st.markdown("<hr style='border:none; border-top:1px solid rgba(148,163,184,0.2);' />", unsafe_allow_html=True)
+
+    if note_shown:
+        st.caption("Rows highlighted in yellow indicate dev-aligned defaults currently in effect.")
+
+
+def _render_intel_drawer() -> None:
+    st.markdown("#### Intel Files")
+    for label, relative_path in INTEL_FILES:
+        path = (ROOT / relative_path).resolve()
+        cols = st.columns([3, 2])
+        with cols[0]:
+            if path.exists():
+                try:
+                    uri = path.as_uri()
+                    st.markdown(f"- [{html.escape(label)}]({uri})")
+                except ValueError:
+                    st.markdown(f"- `{html.escape(relative_path)}`")
+            else:
+                st.markdown(f"- ~~{html.escape(relative_path)}~~ (missing)")
+        with cols[1]:
+            _render_copy_path(str(path), element_id=f"intel-{uuid4().hex}")
+
+    flags_path = (ROOT / "docs/Intel/FlagsAndDefaults.json").resolve()
+    st.markdown("#### Flags & Defaults")
+    flags_payload = _load_intel_flags(flags_path)
+    if flags_payload.get("error"):
+        st.error(flags_payload["error"])
+    else:
+        _render_flags_table(flags_payload)
 def _core_get_policies() -> Dict[str, Any]:
     response = requests.get(_core_build_url("/core/api/policies"), timeout=3)
     response.raise_for_status()
@@ -1798,16 +3091,21 @@ def _start_service(
     name: str,
     command: List[str],
     cwd: Optional[Path],
-    env: Dict[str, str],
+    env: Dict[str, Any],
     port: Optional[int] = None,
     actual_port: Optional[int] = None,
 ) -> bool:
+    env_strings: Dict[str, str] = {str(k): str(v) for k, v in env.items() if v is not None}
     svc_map = _services()
     if name in svc_map and svc_map[name].is_running():
         st.warning(f"{name} already running (pid={svc_map[name].pid()}).")
         return False
     try:
-        service = services.start_service(name=name, command=command, cwd=cwd, env=env)
+        if name == SERVICE_CORE:
+            launch_env = _merge_env(env_strings)
+            log_line = _format_core_launch_log(launch_env)
+            print(log_line)
+        service = services.start_service(name=name, command=command, cwd=cwd, env=env_strings)
         svc_map[name] = service
         pid = service.pid()
         if pid:
@@ -4077,6 +5375,74 @@ def _render_env_tab() -> None:
         ucnrr_detected = detected_ports.get(SERVICE_UCNRR)
         raw_frontend_flags = str(env.get("NEXT_PUBLIC_FLAGS", "") or "")
         frontend_flag_values, frontend_passthrough = _parse_frontend_flag_string(raw_frontend_flags)
+        manifest_path = Path("docs/ReDNA_Workspace_Manifest.md")
+
+        st.markdown("### Workspace Manifest")
+        manifest_cols = st.columns([1, 3])
+        with manifest_cols[0]:
+            if st.button("Open Workspace Manifest", key="manifest-open-button"):
+                resolved = manifest_path.resolve()
+                success = False
+                error: Optional[str] = None
+                if manifest_path.exists():
+                    try:
+                        success = bool(webbrowser.open(f"file://{resolved}"))
+                    except Exception as exc:
+                        error = str(exc)
+                        success = False
+                else:
+                    error = f"Manifest not found at {resolved}"
+                print(f"[Manifest] Open requested → {resolved}")
+                st.session_state[SESSION_MANIFEST_OPEN_STATE_KEY] = {
+                    "path": str(resolved),
+                    "success": success,
+                    "error": error,
+                }
+        with manifest_cols[1]:
+            manifest_state = st.session_state.get(SESSION_MANIFEST_OPEN_STATE_KEY, {})
+            manifest_path_str = str(manifest_state.get("path") or manifest_path.resolve())
+            if manifest_state.get("success"):
+                st.success(f"Opened manifest at {manifest_path_str}")
+            else:
+                if manifest_state:
+                    st.info("Manifest available locally. Use the path below if the viewer did not open.")
+                    _render_copy_path(manifest_path_str, element_id="manifest-path-input")
+                    if manifest_state.get("error"):
+                        st.caption(f"Open attempt reported: {manifest_state['error']}")
+                elif not manifest_path.exists():
+                    st.error(f"Manifest not found at {manifest_path.resolve()}")
+
+        st.markdown("#### Services & Ports")
+        manifest_result = manifest_parser.read_manifest(manifest_path)
+        if "error" in manifest_result:
+            st.warning(
+                f"{manifest_result['error']}. Use the Open Workspace Manifest button to review the latest document."
+            )
+            if manifest_path.exists():
+                _render_copy_path(str(manifest_path.resolve()))
+        else:
+            parsed_table = manifest_parser.extract_services_table(str(manifest_result["text"]))
+            if "error" in parsed_table:
+                st.warning(f"{parsed_table['error']}. Open the manifest to verify the Services & Ports section.")
+            else:
+                headers = parsed_table.get("headers", [])
+                rows = parsed_table.get("rows", [])
+                ordered_rows = [
+                    {header: row.get(header, "") for header in headers}
+                    for row in rows
+                ]
+                if ordered_rows:
+                    st.dataframe(ordered_rows, use_container_width=True, hide_index=True)
+                else:
+                    st.info("Services & Ports table is currently empty in the manifest.")
+                st.caption("Source: docs/ReDNA_Workspace_Manifest.md → ## 2. Services & Ports")
+
+        with st.expander("System Health", expanded=False):
+            _render_system_health_panel(env)
+
+        with st.expander("Intel", expanded=False):
+            _render_intel_drawer()
+
         st.subheader("Environment & Flags")
         if _is_env_dirty():
             st.warning("Environment changes pending Save.")
@@ -5119,9 +6485,12 @@ def _rebuild_stack_properly() -> Dict[str, Any]:
 
     log("=== STACK REBUILD DIAGNOSTICS ===")
 
+    _load_repo_dotenv()
+
     env = _env()
     # Convert all env values to strings (subprocess.Popen requires string values)
     env_str = {k: str(v) for k, v in env.items()}
+    base_env = _merge_env(env_str)
     venv_python = str(_active_python_path())  # Convert Path to string
     log(f"Python venv: {venv_python}")
     log(f"Working directory: {ROOT}")
@@ -5151,11 +6520,16 @@ def _rebuild_stack_properly() -> Dict[str, Any]:
         results["core"]["log"].append(f"Working directory: {ROOT} (type: {type(ROOT).__name__})")
         results["core"]["log"].append(f"Command list items: {[f'{item} ({type(item).__name__})' for item in core_cmd]}")
 
+        core_env = base_env.copy()
+        core_launch_line = _format_core_launch_log(core_env)
+        results["core"]["log"].append(core_launch_line)
+        print(core_launch_line)
+
         try:
             proc = subprocess.Popen(
                 core_cmd,
                 cwd=str(ROOT),
-                env={**os.environ, **env_str},
+                env=core_env,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
@@ -5213,10 +6587,11 @@ def _rebuild_stack_properly() -> Dict[str, Any]:
             results["ucnrr"]["log"].append(f"Command: {' '.join(ucnrr_cmd)}")
             log(f"UCNRR command: {' '.join(ucnrr_cmd)}")
 
+            ucnrr_env = base_env.copy()
             proc = subprocess.Popen(
                 ucnrr_cmd,
                 cwd=str(ROOT),
-                env={**os.environ, **env_str},
+                env=ucnrr_env,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
@@ -5310,6 +6685,13 @@ def _rebuild_stack_properly() -> Dict[str, Any]:
             results["react"]["log"].append(f"Command: {' '.join(react_cmd)}")
             log(f"React command: {' '.join(react_cmd)}")
 
+            react_env = base_env.copy()
+            react_env.update({
+                "NEXT_PUBLIC_CORE_API_BASE": f"http://127.0.0.1:{results['core']['port']}",
+                "CORE_API_URL": f"http://127.0.0.1:{results['core']['port']}",
+                "NEXT_PUBLIC_DEVX_API_BASE": f"http://127.0.0.1:{DEVX_BACKEND_DEFAULT_PORT}",
+            })
+
             proc = subprocess.Popen(
                 react_cmd,
                 cwd=str(ROOT / "web"),
@@ -5384,6 +6766,9 @@ def main() -> None:
     st.set_page_config(page_title="Control Panel Plus Plus", layout="wide")
     _init_session_state()
     _apply_devx_env(_env())
+    health_snapshot = _refresh_health()
+    port_state = _build_port_analysis(health_snapshot)
+    _render_port_drift_banner(port_state)
 
     # NUCLEAR RESET BUTTON - Giant button at the top
     st.markdown("---")
@@ -5396,8 +6781,15 @@ def main() -> None:
             use_container_width=True,
             type="primary"
         ):
+            pre_logs: Dict[str, str] = {}
+            post_logs: Dict[str, str] = {}
+            sanity_report: Dict[str, Any] = {}
+            bundle_path: Optional[Path] = None
             with st.spinner("💥 KILLING ALL SERVICES..."):
                 kill_results = _nuclear_reset_all_services()
+                pre_logs = _snapshot_nuclear_logs("pre")
+                _append_nuclear_log("nuclear_reset", _summarize_kill_results(kill_results))
+                _truncate_nuclear_logs()
 
                 st.markdown("### 💀 Cleanup Results")
 
@@ -5425,9 +6817,9 @@ def main() -> None:
                     st.code("\n".join(kill_results.get("diagnostic_log", [])), language="text")
 
                 # Save to file
-                log_file = Path.home() / ".redna" / "nuclear_reset.log"
+                log_file = NUCLEAR_LOG_PATH
                 log_file.parent.mkdir(parents=True, exist_ok=True)
-                with open(log_file, "w") as f:
+                with open(log_file, "w", encoding="utf-8") as f:
                     f.write(f"=== NUCLEAR RESET - {kill_results.get('timestamp', 'unknown')} ===\n\n")
                     f.write("\n".join(kill_results.get("diagnostic_log", [])))
                 st.caption(f"📝 Full log saved to: {log_file}")
@@ -5436,6 +6828,7 @@ def main() -> None:
 
             with st.spinner("🏗️ REBUILDING STACK (Core → UCNRR → DevX Backend → React → DevX UI)..."):
                 rebuild_results = _rebuild_stack_properly()
+                _append_nuclear_log("nuclear_rebuild", _summarize_rebuild_results(rebuild_results))
 
                 st.markdown("### 🚀 Stack Rebuild Results")
 
@@ -5515,6 +6908,26 @@ def main() -> None:
                             f.write("\n".join(rebuild_results[svc]["log"]))
                             f.write("\n")
                 st.caption(f"📝 Full rebuild log saved to: {rebuild_log_file}")
+
+                sanity_report = _run_nuclear_sanity_checks()
+                _append_nuclear_log("nuclear_sanity", sanity_report)
+                post_logs = _snapshot_nuclear_logs("post")
+                bundle_path = _build_nuclear_bundle(
+                    kill_results,
+                    rebuild_results,
+                    sanity_report,
+                    pre_logs,
+                    post_logs,
+                )
+                if bundle_path:
+                    st.caption(f"📦 Nuclear bundle saved to: {bundle_path}")
+                    _append_nuclear_log("nuclear_bundle", {"path": str(bundle_path)})
+                else:
+                    st.caption("⚠️ Failed to create nuclear diagnostic bundle.")
+                    _append_nuclear_log("nuclear_bundle", {"error": "bundle_creation_failed"})
+                with st.expander("🔬 Post-Nuclear Sanity Checks", expanded=False):
+                    st.json(sanity_report)
+                _truncate_nuclear_logs()
 
                 time.sleep(2)
                 safe_rerun()

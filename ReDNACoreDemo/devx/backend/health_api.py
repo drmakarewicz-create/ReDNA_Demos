@@ -13,16 +13,21 @@ import os
 from collections import deque
 from datetime import datetime, timezone
 from time import perf_counter
-from typing import Any, Deque, Dict, List
+from typing import Any, Deque, Dict, List, Optional
 
 import httpx
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Response
 
-from .privacy_dashboard_api import get_consent_service_url, DATA_ROOT
+from .config import DEVX_CORE_BASE
+from .privacy_dashboard_api import DATA_ROOT
 
 router = APIRouter()
 
-CORE_HEALTH_URL = os.getenv("REDNA_CORE_HEALTH", "http://127.0.0.1:8015/health")
+# Health check URLs - defaults updated to match current port allocation (Phase 10)
+CORE_HEALTH_URL = os.getenv("REDNA_CORE_HEALTH", f"{DEVX_CORE_BASE.rstrip('/')}/health")
+CONSENT_HEALTH_URL = os.getenv(
+    "REDNA_CONSENT_HEALTH", f"{DEVX_CORE_BASE.rstrip('/')}/core/consent/health"
+)
 DEVX_HEALTH_URL = os.getenv("REDNA_DEVX_HEALTH", "http://127.0.0.1:8100/health")
 
 HISTORY_ROOT = DATA_ROOT / "system_logs" / "health"
@@ -30,6 +35,14 @@ HISTORY_FILE = HISTORY_ROOT / "health_history.jsonl"
 HISTORY_ROOT.mkdir(parents=True, exist_ok=True)
 
 HISTORY_BUFFER: Deque[Dict[str, Any]] = deque(maxlen=100)
+PROBE_TIMEOUT = httpx.Timeout(read=2.0, write=2.0, connect=2.0, pool=2.0)
+
+
+def _bool_query(value: Optional[str]) -> bool:
+    if value is None:
+        return False
+    lowered = value.strip().lower()
+    return lowered in {"1", "true", "yes", "force"}
 
 
 def _load_history_from_disk() -> None:
@@ -55,43 +68,120 @@ def _append_history(entry: Dict[str, Any]) -> None:
         pass
 
 
-async def _probe(url: str) -> Dict[str, Any]:
+async def _probe(url: str, *, force: bool = False) -> Dict[str, Any]:
     start = perf_counter()
+    params = {"force": "1"} if force else None
+    headers = {"Cache-Control": "no-cache"}
     try:
-        async with httpx.AsyncClient(timeout=3.0) as client:
-            response = await client.get(url)
+        async with httpx.AsyncClient(timeout=PROBE_TIMEOUT) as client:
+            response = await client.get(url, params=params, headers=headers)
         latency_ms = (perf_counter() - start) * 1000
-        detail = response.text[:200]
-        ok = response.status_code == 200
-        status = "green" if ok else "red"
-        if ok:
-            try:
-                payload = response.json()
-                reported = str(payload.get("status", "")).lower()
-            except ValueError:
-                reported = ""
-            if reported and reported not in {"healthy", "ok", "green"}:
-                status = "amber"
-        return {
+        try:
+            payload = response.json()
+            raw_body: Any = payload
+        except ValueError:
+            raw_body = response.text[:200]
+            payload = None
+
+        reported = ""
+        warning_text = None
+        detail_text = None
+        if isinstance(payload, dict):
+            reported = str(payload.get("status", "")).lower()
+            warning_text = payload.get("warning")
+            detail_text = warning_text or payload.get("detail")
+            if detail_text is None:
+                detail_text = payload.get("summary")
+        elif isinstance(raw_body, str):
+            detail_text = raw_body
+
+        success = response.status_code == 200
+        status = "green" if success else "red"
+        ok = False
+
+        result_error = None
+
+        if success:
+            if reported == "healthy":
+                status = "green"
+                ok = True
+                detail_text = detail_text or "Healthy"
+            elif reported == "degraded":
+                status = "yellow"
+                ok = False
+                detail_text = detail_text or "Degraded"
+            elif reported == "error":
+                status = "red"
+                ok = False
+                detail_text = detail_text or "Error reported"
+                result_error = detail_text
+            elif reported in {"green", "yellow", "amber"}:
+                status = "yellow" if reported != "green" else "green"
+                ok = status == "green"
+            elif reported:
+                status = "yellow"
+                detail_text = detail_text or f"Status: {reported}"
+            else:
+                status = "yellow"
+                detail_text = detail_text or "Unknown status payload"
+        else:
+            detail_text = detail_text or f"HTTP {response.status_code}"
+
+        if status == "yellow" and warning_text:
+            detail_text = warning_text
+
+        if status == "red" and not ok:
+            result_error = result_error or detail_text
+
+        result: Dict[str, Any] = {
             "status": status,
-            "ok": status == "green",
+            "ok": ok,
             "ms": round(latency_ms, 2),
-            "detail": detail,
+            "detail": detail_text or raw_body,
+            "reported_status": reported or None,
         }
+        if warning_text:
+            result["warning"] = warning_text
+        if force:
+            result["force"] = True
+        if response.status_code != 200:
+            result["error"] = f"HTTP {response.status_code}"
+        elif result_error:
+            result["error"] = result_error
+        if payload is not None:
+            result["payload"] = payload
+        return result
     except Exception as exc:  # noqa: BLE001
-        return {"status": "red", "ok": False, "ms": None, "detail": str(exc)}
+        # Include URL in error detail for debugging
+        error_detail = f"{url}: {type(exc).__name__}: {exc}"
+        result = {"status": "red", "ok": False, "ms": None, "detail": error_detail, "error": "exception"}
+        if force:
+            result["force"] = True
+        return result
 
 
 @router.get("/health/status")
-async def health_status() -> Dict[str, Dict[str, Any]]:
+async def health_status(
+    response: Response,
+    force: Optional[str] = Query(None, description="Bypass caches for downstream health probes"),
+) -> Dict[str, Dict[str, Any]]:
     """Return live status and append to history."""
 
-    consent_url = f"{get_consent_service_url().rstrip('/')}/health"
+    response.headers["Cache-Control"] = "no-cache"
+    force_flag = _bool_query(force)
+    consent_url = CONSENT_HEALTH_URL
     timestamp = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
 
-    devx_info = await _probe(DEVX_HEALTH_URL)
-    consent_info = await _probe(consent_url)
-    core_info = await _probe(CORE_HEALTH_URL)
+    # Debug: print URLs being checked
+    print(f"[Health Check] DevX: {DEVX_HEALTH_URL}")
+    print(f"[Health Check] Consent: {consent_url}")
+    print(f"[Health Check] Core: {CORE_HEALTH_URL}")
+
+    devx_info = await _probe(DEVX_HEALTH_URL, force=force_flag)
+    consent_info = await _probe(consent_url, force=force_flag)
+    core_info = await _probe(CORE_HEALTH_URL, force=force_flag)
+
+    print(f"[Health Check] Core result: {core_info}")
 
     entry = {
         "ts": timestamp,

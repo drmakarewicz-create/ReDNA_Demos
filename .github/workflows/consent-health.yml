@@ -1,0 +1,233 @@
+name: Consent Health Gate
+
+on:
+  push:
+    branches: [ main, feat/*, fix/* ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  consent-contract:
+    name: Consent Health Contract Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    strategy:
+      matrix:
+        config:
+          - name: "Hex Secret (HS256)"
+            secret: "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+            algorithm: "HS256"
+            ttl: "15"
+            expect_status: "healthy"
+            expect_roundtrip: true
+          - name: "Missing Secret (Dev Default)"
+            secret: ""
+            algorithm: "HS256"
+            ttl: ""
+            expect_status: "degraded"
+            expect_roundtrip: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest httpx
+
+      - name: Test Consent Health - ${{ matrix.config.name }}
+        env:
+          CONSENT_JWT_SECRET: ${{ matrix.config.secret }}
+          CONSENT_JWT_ALG: ${{ matrix.config.algorithm }}
+          CONSENT_JWT_TTL_MINUTES: ${{ matrix.config.ttl }}
+          CONSENT_JWT_LEEWAY_SECONDS: "30"
+        run: |
+          python -c "
+          import sys
+          sys.path.insert(0, '.')
+          from fastapi.testclient import TestClient
+          from ReDNACoreDemo.core.api import build_app
+          import json
+
+          app = build_app()
+          client = TestClient(app)
+
+          response = client.get('/core/consent/health')
+          assert response.status_code == 200, f'Expected 200, got {response.status_code}'
+
+          data = response.json()
+          print('Response:', json.dumps(data, indent=2))
+
+          # Contract assertions
+          assert 'status' in data, 'Missing status field'
+          assert 'has_secret' in data, 'Missing has_secret field'
+          assert 'roundtrip_ok' in data, 'Missing roundtrip_ok field'
+          assert 'error_reason' in data, 'Missing error_reason field'
+          assert 'config' in data, 'Missing config field'
+
+          # Verify config structure
+          config = data['config']
+          assert 'algorithm' in config, 'Missing config.algorithm'
+          assert 'secret_encoding' in config, 'Missing config.secret_encoding'
+          assert 'leeway_seconds' in config, 'Missing config.leeway_seconds'
+          assert 'has_audience' in config, 'Missing config.has_audience'
+          assert 'has_issuer' in config, 'Missing config.has_issuer'
+
+          # Verify expected status
+          expected_status = '${{ matrix.config.expect_status }}'
+          assert data['status'] == expected_status, f\"Expected status={expected_status}, got {data['status']}\"
+
+          # Verify expected roundtrip
+          expected_roundtrip = ${{ matrix.config.expect_roundtrip }}
+          assert data['roundtrip_ok'] == expected_roundtrip, f\"Expected roundtrip_ok={expected_roundtrip}, got {data['roundtrip_ok']}\"
+
+          # If roundtrip failed, error_reason must be present
+          if not data['roundtrip_ok']:
+              assert data['error_reason'] is not None, 'error_reason must be set when roundtrip_ok=false'
+              assert len(data['error_reason']) > 0, 'error_reason must not be empty'
+              print(f\"Error reason: {data['error_reason']}\")
+
+          print('✅ Contract test passed: ${{ matrix.config.name }}')
+          "
+
+  egress-contract:
+    name: RR/Curiosity Egress Contract
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install pytest httpx
+
+      - name: Ensure test user exists
+        run: |
+          python -c "
+          import sys
+          sys.path.insert(0, '.')
+          from ReDNACoreDemo.core.storage import ensure_dirs_for_user
+          ensure_dirs_for_user('ci_test_user')
+          print('✅ Test user directory created')
+          "
+
+      - name: Test Graph User Endpoint Contract
+        env:
+          CONSENT_JWT_SECRET: "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+        run: |
+          python -c "
+          import sys
+          sys.path.insert(0, '.')
+          from fastapi.testclient import TestClient
+          from ReDNACoreDemo.core.api import build_app
+          import json
+
+          app = build_app()
+          client = TestClient(app)
+
+          user_id = 'ci_test_user'
+          response = client.get(f'/core/graph/user/{user_id}')
+
+          # Allow 404 if user has no graph yet
+          if response.status_code == 404:
+              print(f'⚠️  User {user_id} has no graph yet (404) - skipping graph contract')
+              sys.exit(0)
+
+          assert response.status_code == 200, f'Expected 200, got {response.status_code}'
+          data = response.json()
+
+          # Check RR normalization if present
+          if 'nodes' in data and data['nodes']:
+              for node in data['nodes']:
+                  if 'rr' in node:
+                      rr = node['rr']
+                      assert 0 <= rr <= 100, f\"RR out of range [0,100]: {rr} in node {node.get('id')}\"
+                  if 'curiosity' in node:
+                      curiosity = node['curiosity']
+                      assert 0 <= curiosity <= 100, f\"Curiosity out of range [0,100]: {curiosity} in node {node.get('id')}\"
+
+          print('✅ Graph egress contract passed')
+          "
+
+      - name: Test Snapshot Endpoint Contract
+        env:
+          CONSENT_JWT_SECRET: "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef"
+        run: |
+          python -c "
+          import sys
+          sys.path.insert(0, '.')
+          from fastapi.testclient import TestClient
+          from ReDNACoreDemo.core.api import build_app
+          import json
+
+          app = build_app()
+          client = TestClient(app)
+
+          user_id = 'ci_test_user'
+          response = client.get(f'/core/api/snapshot?user_id={user_id}')
+
+          # Allow 404/empty if user has no data
+          if response.status_code == 404:
+              print(f'⚠️  User {user_id} has no snapshot yet (404) - skipping snapshot contract')
+              sys.exit(0)
+
+          assert response.status_code == 200, f'Expected 200, got {response.status_code}'
+          data = response.json()
+
+          # Check DNA traits if present
+          if 'dna' in data and data['dna']:
+              for trait in data['dna']:
+                  if 'rr' in trait:
+                      rr = trait['rr']
+                      assert 0 <= rr <= 100, f\"RR out of range [0,100]: {rr} in trait {trait.get('trait')}\"
+                  if 'rr_meta' in trait:
+                      meta = trait['rr_meta']
+                      assert isinstance(meta, dict), f\"rr_meta must be dict, got {type(meta)}\"
+
+          print('✅ Snapshot egress contract passed')
+          "
+
+  audit-gate:
+    name: RR/UCN Audit Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run RR/UCN Audit
+        run: |
+          python tools/audit_rr_ucn.py --fail-on-critical --max-critical 0
+          echo "✅ Audit gate passed (no critical issues)"

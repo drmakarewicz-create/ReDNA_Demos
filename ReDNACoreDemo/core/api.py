@@ -113,6 +113,15 @@ except ImportError:
 # Trait inference engine
 from .trait_inference import infer_traits_from_import, InferredTrait
 from . import head_coach, ucn_rr_service
+from .graph.api_graph import router as graph_router
+from .graph.debug_api import router as graph_debug_router
+from .consent_health_api import router as consent_health_router
+from .metrics.rr_reference_api import router as rr_reference_router
+from .admin_api import router as admin_router
+from .rr_debug_api import router as rr_debug_router
+from .graph.belief import on_trait_promotion
+from .graph.storage import get_graph_storage
+from .graph.schemas import BeliefNode, BeliefEdge
 
 from .redna_core import build_observations, resolve_traits
 from .events import capture
@@ -1838,8 +1847,68 @@ async def debug_thresholds():
     }
 
 def build_app() -> FastAPI:
-    app = FastAPI(title="ReDNA Core Demo", version="2.0")
+    app = FastAPI(
+        title="ReDNA Core (Replicated Digital Neural Approximation)",
+        version="2.0",
+        description="Phase 10: ReDNA = root organism, RelDNA = tier-1 subsystem"
+    )
     app.include_router(debug_router)
+    app.include_router(graph_router, prefix="/core")
+    app.include_router(graph_debug_router, prefix="/core")  # Phase 9: RR/UCN audit endpoints
+    app.include_router(consent_health_router)  # Phase 10: Consent health monitoring
+    app.include_router(rr_reference_router)  # Phase 10.1: RR reference source monitoring
+    app.include_router(admin_router)  # Phase 10.2: Admin endpoints (RR recomputation)
+    app.include_router(rr_debug_router)  # Phase 10.2.2: RR percentile debug endpoint
+
+    # Load ontology on startup
+    @app.on_event("startup")
+    async def load_ontology_on_startup():
+        """Load seed ontology into graph storage on startup."""
+        # Phase 10: Log hierarchy redefinition
+        logger.info("[Hierarchy] ReDNA=root (Replicated Digital Neural Approximation), RelDNA demoted to tier-1")
+
+        # Phase 9: Log RR adapter flags
+        from .metrics.rr_adapter import RR_ADAPTER_ENABLED, REFERENCE_POP_ENABLED
+        from .reference_pop.reference_pop import REFERENCE_POP_SOURCE
+
+        logger.info(
+            f"[RR-Adapter] enabled={RR_ADAPTER_ENABLED}, "
+            f"reference_enabled={REFERENCE_POP_ENABLED}, "
+            f"source={REFERENCE_POP_SOURCE}"
+        )
+
+        # Phase 9: Log debug routes configuration
+        from .graph.debug_api import DEBUG_ROUTES_ENABLED, DEBUG_TOKEN
+        guard_mode = "token" if DEBUG_TOKEN else "disabled"
+        logger.info(
+            f"[DebugRoutes] enabled={DEBUG_ROUTES_ENABLED}, guard={guard_mode}"
+        )
+
+        # Phase 10: Log Consent JWT configuration
+        from .consent_health_api import log_consent_startup_config
+        log_consent_startup_config()
+
+        # Phase 10.1: Log RR reference population configuration
+        from .metrics.rr_reference_api import log_rr_reference_startup
+        log_rr_reference_startup()
+
+        try:
+            from .graph.storage import get_graph_storage
+            from .graph.ontology import load_seed_ontology
+
+            storage = get_graph_storage()
+            graph = storage.load_ontology()
+
+            # If empty, load from seed
+            if not graph.nodes:
+                logger.info("Ontology empty on startup, loading from seed")
+                graph = load_seed_ontology()
+                storage.save_ontology(graph)
+                logger.info(f"Loaded seed ontology: {len(graph.nodes)} nodes, {len(graph.edges)} edges")
+            else:
+                logger.info(f"Ontology already loaded: {len(graph.nodes)} nodes, {len(graph.edges)} edges")
+        except Exception as e:
+            logger.error(f"Failed to load ontology on startup: {e}", exc_info=True)
 
     # --- legacy ingestion alias for backward compatibility ---
     @app.post("/ingest_text")
@@ -3175,11 +3244,13 @@ def build_app() -> FastAPI:
         best = 0.0
         for entry in observations:
             trait_id = str(entry.get("trait") or entry.get("trait_id") or "").strip()
+            # Get RR from entry (should be 0-100 percentile, not UCN)
             try:
-                ucn_value = float(entry.get("ucn", 0.0))
+                rr_value = float(entry.get("rr", 50.0))  # Default to median
             except (TypeError, ValueError):
-                ucn_value = 0.0
-            rr = ucn_value / 100.0 if ucn_value > 1.0 else ucn_value
+                rr_value = 50.0
+            # Normalize to 0-1 for priority scoring
+            rr = rr_value / 100.0 if rr_value > 1.0 else rr_value
             rr = 0.0 if rr < 0.0 else 1.0 if rr > 1.0 else rr
             importance = trait_importance_for(trait_id)
             score = priority_score(rr, importance, False)
@@ -7021,17 +7092,28 @@ def build_app() -> FastAPI:
         """
         if not isinstance(payload, dict):
             return JSONResponse(
-                status_code=400,
-                content={"error": "BAD_REQUEST", "message": "Request payload must be a JSON object."},
+                status_code=422,
+                content={"ok": False, "user_id": "", "ingested": 0, "inferred": 0, "errors": ["Request payload must be a JSON object"]},
             )
 
         user_id_raw = str(payload.get("user_id") or "").strip()
         text = str(payload.get("text") or "").strip()
-        if not user_id_raw or not text:
+        if not user_id_raw:
             return JSONResponse(
-                status_code=400,
-                content={"error": "BAD_REQUEST", "message": "user_id and text are required."},
+                status_code=422,
+                content={"ok": False, "user_id": user_id_raw, "ingested": 0, "inferred": 0, "errors": ["user_id is required"]},
             )
+        if not text:
+            # No text is a benign no-op (AC2)
+            return {
+                "ok": True,
+                "user_id": user_id_raw,
+                "event_id": None,
+                "ingested": 0,
+                "inferred": 0,
+                "snapshot": {},
+                "errors": []
+            }
 
         _load_promotions_from_env_and_snapshot()
 
@@ -7090,8 +7172,91 @@ def build_app() -> FastAPI:
         # Update resolved.json with new curiosity/RR values if rescore succeeded
         if rescore_result.get("ok"):
             resolved, evidence, obs = read_user_state(user_id_raw)
-            rr_by_trait = rescore_result.get("rr_by_trait", {})
+            rr_by_trait = rescore_result.get("rr_by_trait", {}) or {}
             curiosity_by_trait = rescore_result.get("curiosity_by_trait", {})
+            ucn_by_trait = (
+                rescore_result.get("ucn_by_trait")
+                or rescore_result.get("ucn_scores")
+                or {}
+            )
+
+            graph_storage = None
+            graph_ontology = None
+            user_graph_snapshot = None
+
+            def _init_graph_context() -> bool:
+                nonlocal graph_storage, graph_ontology, user_graph_snapshot
+                if graph_storage is not None:
+                    return True
+                try:
+                    graph_storage = get_graph_storage()
+                    graph_ontology = graph_storage.load_ontology()
+                    user_graph_snapshot = graph_storage.load_user_graph(user_id_raw)
+                    return True
+                except Exception as exc:
+                    logger.warning(
+                        "Belief graph storage unavailable for %s: %s",
+                        user_id_raw,
+                        exc,
+                    )
+                    graph_storage = None
+                    return False
+
+            def _extract_ucn_payload(trait_key: str, score_value: float) -> Optional[Dict[str, float]]:
+                raw = None
+                if isinstance(ucn_by_trait, dict):
+                    raw = ucn_by_trait.get(trait_key)
+                if raw is None:
+                    return {"u": float(score_value), "c": 0.0, "n": 0.0}
+                if isinstance(raw, dict):
+                    return {
+                        "u": float(raw.get("u", 0.0)),
+                        "c": float(raw.get("c", 0.0)),
+                        "n": float(raw.get("n", 0.0)),
+                    }
+                try:
+                    return {"u": float(raw), "c": 0.0, "n": 0.0}
+                except Exception:
+                    return {"u": float(score_value), "c": 0.0, "n": 0.0}
+
+            def _append_graph_promotion(
+                trait_key: str,
+                trait_value: Optional[Any],
+                score_value: float,
+                source_text_value: str,
+            ) -> None:
+                nonlocal user_graph_snapshot
+                if not _init_graph_context():
+                    return
+                try:
+                    # Stage 4: on_trait_promotion now handles graph update internally
+                    result = on_trait_promotion(
+                        user_id=user_id_raw,
+                        trait_id=trait_key,
+                        value=trait_value,
+                        rr_score=score_value,
+                        ucn=_extract_ucn_payload(trait_key, score_value),
+                        observation_text=source_text_value or "",
+                        observation_source="ucnrr_rescore",
+                        # Stage 4: ontology/existing_graph params removed (fetched internally)
+                    )
+
+                    # Result now includes why_card_id
+                    logger.debug(
+                        f"Graph promotion OK for {user_id_raw}/{trait_key}: "
+                        f"why_card={result.get('why_card_id', 'N/A')}"
+                    )
+
+                    # Reload snapshot after promotion
+                    user_graph_snapshot = graph_storage.load_user_graph(user_id_raw)
+                except Exception as exc:
+                    logger.warning(
+                        "Belief graph update failed for %s trait %s: %s",
+                        user_id_raw,
+                        trait_key,
+                        exc,
+                        exc_info=True,
+                    )
 
             # Northstar Phase 2: CREATE traits if they don't exist
             for trait_id, rr_value in rr_by_trait.items():
@@ -7395,6 +7560,13 @@ def build_app() -> FastAPI:
                     event_id=event_id,
                 )
 
+                _append_graph_promotion(
+                    trait_id,
+                    value,
+                    float(score_float),
+                    source_text,
+                )
+
                 for co_trait in PAIR_GROUPS.get(trait_id, []):
                     co_curiosity_raw = curiosity_by_trait.get(co_trait)
                     try:
@@ -7635,17 +7807,29 @@ def build_app() -> FastAPI:
                         event_id=event_id,
                     )
 
+                    _append_graph_promotion(
+                        co_trait,
+                        co_value,
+                        float(co_score),
+                        co_source_text,
+                    )
+
                 if promoted >= TOP_K_PROMOTE:
                     break
 
-        # Return success even if UCNRR failed (provenance was logged)
+        # Return normalized response (Prompt 2: stable envelope)
         return {
             "ok": True if provenance_status == "accepted" else False,
             "user_id": user_id_raw,
+            "event_id": event_id,
+            "ingested": promoted if provenance_status == "accepted" else 0,  # Number of evidence items extracted
+            "inferred": len(snapshot_traits) if snapshot_traits else 0,  # Number of inferred traits
+            "snapshot": {"traits": snapshot_traits} if snapshot_traits else {},
+            "errors": [] if provenance_status == "accepted" else [rescore_result.get("error", "unknown_error")],
+            # Backward compatibility
             "event_written": str(event_path.name),
             "status": provenance_status,
             "rescore": rescore_result,
-            "snapshot": {"traits": snapshot_traits} if snapshot_traits else {}
         }
 
     @app.post("/core/api/ingest_text")
@@ -7656,37 +7840,11 @@ def build_app() -> FastAPI:
 
         POST /core/api/ingest_text
         Body: { user_id: str, text: str, source: str, metadata?: dict }
-        Returns: { success: bool, error?: str, event_id?: str }
+        Returns: { ok: bool, user_id: str, event_id: str, ingested: int, inferred: int, errors: list }
         """
-        # Call the existing ingest_text_endpoint
-        result = ingest_text_endpoint(payload)
-
-        # Transform to Northstar expected format
-        if isinstance(result, dict):
-            # Success case
-            if result.get("ok"):
-                return {
-                    "success": True,
-                    "event_id": result.get("event_written"),
-                    "user_id": result.get("user_id"),
-                    "rescore": result.get("rescore", {}),
-                    "snapshot": result.get("snapshot", {})  # Phase 4.0a: include snapshot.traits
-                }
-            else:
-                return {
-                    "success": False,
-                    "error": result.get("status", "unknown_error")
-                }
-
-        # Handle JSONResponse objects from error cases
-        if hasattr(result, 'status_code'):
-            return {
-                "success": False,
-                "error": getattr(result, 'body', b'').decode('utf-8') if hasattr(result, 'body') else "request_failed"
-            }
-
-        # Fallback
-        return {"success": False, "error": "unexpected_response"}
+        # Call the existing ingest_text_endpoint and return as-is
+        # (Prompt 2: ingest_text_endpoint now returns normalized envelope)
+        return ingest_text_endpoint(payload)
 
     log = logging.getLogger("ingest_evidence")
 
@@ -7731,6 +7889,42 @@ def build_app() -> FastAPI:
                     status_code=400,
                     detail={"error": "BAD_REQUEST", "message": "user_id and evidence[] required"}
                 )
+
+            # Phase 9: Shape Harmonizer - normalize incoming evidence before validation
+            from ReDNACoreDemo.core.graph.shape_harmonizer import (
+                is_harmonizer_enabled,
+                should_mutate,
+                normalize_evidence_batch,
+            )
+
+            harmonizer_audits = []
+            if is_harmonizer_enabled():
+                mutate = should_mutate()
+                items, harmonizer_audits = normalize_evidence_batch(items, mutate=mutate, audit=True)
+
+                # Write audit trail to normalize_audit.jsonl
+                if harmonizer_audits:
+                    from ReDNACoreDemo.core.graph.storage import get_graph_storage
+                    try:
+                        storage = get_graph_storage()
+                        audit_path = storage.users_dir / user_id / "normalize_audit.jsonl"
+                        audit_path.parent.mkdir(parents=True, exist_ok=True)
+
+                        import json
+                        with open(audit_path, "a") as f:
+                            for idx, audit in enumerate(harmonizer_audits):
+                                if audit["changed_keys"] or audit["namespace"] or audit["defaults_added"]:
+                                    audit_entry = {
+                                        "timestamp": datetime.now(timezone.utc).isoformat(),
+                                        "user_id": user_id,
+                                        "req_id": req_id,
+                                        "item_index": idx,
+                                        "mutated": mutate,
+                                        "audit": audit
+                                    }
+                                    f.write(json.dumps(audit_entry) + "\n")
+                    except Exception as e:
+                        log.warning(f"Failed to write harmonizer audit for {user_id}: {e}")
 
             bad: list[dict[str, Any]] = []
             for idx, ev in enumerate(items):
@@ -8536,6 +8730,23 @@ def build_app() -> FastAPI:
         Return provenance information for a specific trait.
         Shows why a trait has its current value, including evidence, sources, and data gaps.
         """
+        def _to_float(value: Any) -> Optional[float]:
+            try:
+                if value is None:
+                    return None
+                return float(value)
+            except (TypeError, ValueError):
+                return None
+
+        def _clamp_pct(value: Optional[float]) -> Optional[float]:
+            if value is None:
+                return None
+            if value > 100:
+                return 100.0
+            if value < 0:
+                return 0.0
+            return value
+
         if not isinstance(payload, dict):
             return JSONResponse(
                 status_code=400,
@@ -8562,13 +8773,31 @@ def build_app() -> FastAPI:
 
         trait_data = resolved[trait_id]
 
+        raw_rr = _to_float(trait_data.get("rr"))
+        raw_curiosity = _to_float(trait_data.get("curiosity"))
+
+        # Normalize RR/Curiosity to 0-100 range (legacy data guard)
+        rr_value = raw_rr
+        curiosity_value = raw_curiosity
+
+        if rr_value is not None and rr_value > 100:
+            rr_value = rr_value / 10.0
+            curiosity_value = 100.0 - rr_value
+        elif rr_value is None and curiosity_value is not None:
+            rr_value = 100.0 - curiosity_value
+        elif rr_value is not None and curiosity_value is None:
+            curiosity_value = 100.0 - rr_value
+
+        rr_value = _clamp_pct(rr_value)
+        curiosity_value = _clamp_pct(curiosity_value if curiosity_value is not None else (100.0 - rr_value) if rr_value is not None else None)
+
         # Build provenance response
         response = {
             "trait_id": trait_id,
             "trait_value": trait_data.get("resolved_value"),
             "ucn": trait_data.get("ucn"),
-            "rr": trait_data.get("rr"),
-            "curiosity": trait_data.get("curiosity"),
+            "rr": rr_value,
+            "curiosity": curiosity_value,
             "reasons": trait_data.get("reasons", []),
             "provenance": trait_data.get("provenance", {}),
             "notes": trait_data.get("notes", {}),

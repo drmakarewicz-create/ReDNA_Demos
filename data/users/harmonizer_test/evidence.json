@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "trait_id": "PaDNA.Chronotype",
+      "value": {
+        "enum": "Morning Lark"
+      },
+      "timestamp": "2025-10-19T16:12:36.924362+00:00",
+      "provenance": {
+        "source": "unknown"
+      },
+      "source": "chat",
+      "ts": "2025-10-19T16:12:36+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "high_signal",
+        "reliability": 0.5,
+        "logged_at": "2025-10-19T16:12:36+00:00"
+      },
+      "_reliability": 0.5
+    },
+    {
+      "value": {
+        "enum": "morning"
+      },
+      "trait_id": "PaDNA.Chronotype",
+      "timestamp": "2025-10-19T16:12:36.958735+00:00",
+      "provenance": {
+        "source": "unknown"
+      },
+      "source": "chat",
+      "ts": "2025-10-19T16:12:36+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "high_signal",
+        "reliability": 0.5,
+        "logged_at": "2025-10-19T16:12:36+00:00"
+      },
+      "_reliability": 0.5
+    },
+    {
+      "trait_id": "PaDNA.Chronotype",
+      "value": {
+        "enum": "Morning Lark"
+      },
+      "provenance": {
+        "source": "chat"
+      },
+      "timestamp": "2025-10-19T16:12:36.967042+00:00",
+      "source": "chat",
+      "ts": "2025-10-19T16:12:36+00:00",
+      "policy": {
+        "tier": "hot",
+        "ttl_days": 365,
+        "reason": "high_signal",
+        "reliability": 0.5,
+        "logged_at": "2025-10-19T16:12:36+00:00"
+      },
+      "_reliability": 0.5
+    }
+  ]
+}

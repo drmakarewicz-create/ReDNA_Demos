@@ -1,4 +1,5 @@
 import { writeCache } from './offline-cache';
+import { adaptCuriosity, adaptRR, type RRMeta } from './provenanceClient';
 
 export const CORE_API_BASE = process.env.NEXT_PUBLIC_CORE_API_BASE ?? 'http://127.0.0.1:8004';
 
@@ -330,6 +331,7 @@ export interface UnabridgedTrait {
   value: unknown;
   ucn: number | null;
   rr?: number | null;
+  rr_meta?: RRMeta | null;
   curiosity?: number | null;
   reasons: string[];
   last_observed?: string | null;
@@ -1948,6 +1950,22 @@ function roundTo(value: number, decimals = 2): number {
   return Math.round(value * factor) / factor;
 }
 
+function normalizePercent(value: number | null, decimals = 2): number | null {
+  if (value === null || !Number.isFinite(value)) {
+    return null;
+  }
+  let percent = value;
+  if (percent > 1000) {
+    percent = 1000;
+  }
+  if (percent > 100) {
+    percent = percent / 10;
+  } else if (percent <= 1) {
+    percent = percent * 100;
+  }
+  return roundTo(clamp(percent, 0, 100), decimals);
+}
+
 function normalizeScore(value: unknown, decimals = 2): number | null {
   const numberValue = toNumber(value);
   if (numberValue === null) return null;
@@ -2001,19 +2019,73 @@ export async function fetchUnabridged(userId: string): Promise<UnabridgedSnapsho
       const traitValue = trait.value ?? trait.resolved_value ?? null;
       const rawUcn = toNumber(trait.ucn ?? trait.ucn_score ?? trait.ucnScore);
       const normalizedUcn = normalizeUcn(rawUcn);
-      const rrValue =
-        normalizeScore(trait.rr ?? trait.rr_score ?? trait.rrScore) ??
-        estimateRr(rawUcn);
-      const curiosityValue =
-        normalizeScore(trait.curiosity ?? trait.curiosity_score ?? trait.curiosityScore) ??
-        (rrValue === null ? null : roundTo(clamp(100 - rrValue, 0, 100), 2));
+      const rrMetaCandidate =
+        trait.rr_meta ??
+        trait.rrMeta ??
+        trait.rr_metadata ??
+        trait.rrMetadata ??
+        trait.metrics?.rr_meta ??
+        trait.metadata?.rr_meta;
+      const rrMeta =
+        rrMetaCandidate && typeof rrMetaCandidate === 'object'
+          ? (rrMetaCandidate as RRMeta)
+          : null;
+
+      const rrCandidate = toNumber(trait.rr);
+      const canonicalRr = rrCandidate !== null && rrCandidate <= 100 ? rrCandidate : null;
+      let rrPercent = adaptRR(canonicalRr ?? undefined, rrMeta ?? undefined);
+
+      if (rrPercent === undefined) {
+        const legacyRr = toNumber(
+          trait.rr ??
+          trait.rr_score ??
+          trait.rrScore ??
+          trait.rr_pct ??
+          trait.rrPercent ??
+          trait.rr_raw ??
+          trait.rrRaw
+        );
+        const normalizedLegacy = normalizePercent(legacyRr, 2);
+        if (normalizedLegacy !== null) {
+          rrPercent = normalizedLegacy;
+        } else if (rrMeta && typeof rrMeta.rr_raw === 'number') {
+          const normalizedFromMeta = normalizePercent(rrMeta.rr_raw ?? null, 2);
+          if (normalizedFromMeta !== null) {
+            rrPercent = normalizedFromMeta;
+          }
+        } else {
+          const estimated = estimateRr(rawUcn);
+          if (estimated !== null) {
+            rrPercent = estimated;
+          }
+        }
+      }
+
+      const curiosityRaw = (() => {
+        const direct = toNumber(trait.curiosity);
+        if (direct !== null) return direct;
+        return toNumber(
+          trait.curiosity_score ??
+          trait.curiosityScore ??
+          trait.curiosity_pct ??
+          trait.curiosityPercent ??
+          trait.metadata?.curiosity
+        );
+      })();
+
+      const curiosityCanonical = normalizePercent(curiosityRaw, 2);
+      const curiosityPercent = adaptCuriosity(
+        curiosityCanonical ?? undefined,
+        rrPercent === undefined ? undefined : rrPercent
+      );
 
       return {
         trait_id: traitId,
         value: traitValue,
         ucn: normalizedUcn,
-        rr: rrValue,
-        curiosity: curiosityValue,
+        rr: rrPercent ?? null,
+        rr_meta: rrMeta,
+        curiosity: curiosityPercent ?? null,
         reasons: Array.isArray(trait.reasons) ? trait.reasons.map(String) : [],
         last_observed: trait.last_observed ?? null,
         metadata: trait.metadata ?? {},

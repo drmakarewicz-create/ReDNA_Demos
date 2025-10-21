@@ -215,7 +215,7 @@ class DNAGenerator:
             "LeadershipDNA": ["LeadershipStyleDNA", "DecisionMakingDNA", "InfluenceMethodsDNA"],
         }
 
-        # Relational DNA expansions
+        # RelDNA (Relational DNA) expansions - Phase 10: Tier-1 under ReDNA
         redna_expansions = {
             "RelationshipDNA": ["AttachmentStyleDNA", "IntimacyPatternsDNA", "BoundaryStyleDNA", "ConflictResolutionDNA"],
             "AttachmentStyleDNA": ["SecureAttachmentDNA", "AnxiousAttachmentDNA", "AvoidantAttachmentDNA"],

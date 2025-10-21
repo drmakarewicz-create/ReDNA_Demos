@@ -1,18 +1,124 @@
 {
   "BehaviorDNA.Sleep.Chronotype": {
-    "id": "BehaviorDNA.Sleep.Chronotype",
+    "value": {
+      "enum": "morning"
+    },
+    "ucn": 0.17,
+    "sources": [
+      "chat"
+    ],
+    "status": "warming",
+    "last_updated": "2025-10-19T16:06:53+00:00",
+    "last_confirmed_at": "2025-10-18T18:27:37.168241Z",
+    "history": [],
+    "policy": {
+      "tier": "hot",
+      "ttl_days": 365,
+      "reason": "high_signal",
+      "reliability": 0.5,
+      "logged_at": "2025-10-19T16:06:53+00:00"
+    },
     "rr": 800.0,
     "curiosity": 0.1125,
+    "rr_meta": {
+      "rr_raw": 0.17,
+      "scale": "reference_percentile",
+      "reference": {
+        "source": "SYNTHETIC",
+        "universe": "combined",
+        "cohort_keys": [],
+        "cohort_values": {},
+        "n_samples": 1000,
+        "generated_at": "2025-10-21T02:34:20.072573+00:00"
+      },
+      "legacy_rr_score": null,
+      "method": "reference"
+    }
+  },
+  "PaDNA.Chronotype": {
+    "value": {
+      "enum": "Morning Lark"
+    },
+    "ucn": 0.74,
+    "sources": [
+      "chat"
+    ],
+    "status": "warming",
+    "last_updated": "2025-10-19T14:18:00+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "cold",
+      "ttl_days": 60,
+      "reason": "high_signal,redundant",
+      "reliability": 0.5,
+      "logged_at": "2025-10-19T14:18:00+00:00"
+    },
+    "rr_meta": {
+      "rr_raw": 0.74,
+      "scale": "reference_percentile",
+      "reference": {
+        "source": "SYNTHETIC",
+        "universe": "combined",
+        "cohort_keys": [],
+        "cohort_values": {},
+        "n_samples": 1000,
+        "generated_at": "2025-10-21T02:34:20.072921+00:00"
+      },
+      "legacy_rr_score": null,
+      "method": "reference"
+    },
+    "rr": 0.0,
+    "curiosity": 100.0
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 80.0,
+    "curiosity": 20.0,
     "value": null,
     "provenance": [
       {
         "source": "text_ingest",
-        "event_id": "text_1760812057163",
-        "ts": "2025-10-18T18:27:37+00:00"
+        "event_id": "text_1760885665340",
+        "ts": "2025-10-19T14:54:25+00:00"
       }
     ],
     "status": "stable",
-    "last_confirmed_at": "2025-10-18T18:27:37.168241Z",
-    "history": []
+    "last_confirmed_at": "2025-10-19T14:54:30.971998Z",
+    "history": [],
+    "rr_meta": {
+      "rr_raw": null,
+      "scale": "0_100",
+      "source": "adapter",
+      "trait_id": "BasicDNA.Age",
+      "user_id": "ai_ready_probe",
+      "legacy_rr_score": null,
+      "method": "legacy_score"
+    }
+  },
+  "BasicDNA.RelationshipStatus": {
+    "id": "BasicDNA.RelationshipStatus",
+    "rr": 80.0,
+    "curiosity": 20.0,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760888752781",
+        "ts": "2025-10-19T15:45:52+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T15:45:55.786530Z",
+    "history": [],
+    "rr_meta": {
+      "rr_raw": null,
+      "scale": "0_100",
+      "source": "adapter",
+      "trait_id": "BasicDNA.RelationshipStatus",
+      "user_id": "ai_ready_probe",
+      "legacy_rr_score": null,
+      "method": "legacy_score"
+    }
   }
 }

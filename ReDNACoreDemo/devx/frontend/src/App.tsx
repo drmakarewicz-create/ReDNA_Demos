@@ -19,9 +19,12 @@ import NarratorTimelinePanel from './routes/narrator-timeline/NarratorTimelinePa
 import AgentControlPanel from './routes/agent-control/AgentControlPanel'
 import LifeDashboard from './routes/life-dashboard/LifeDashboard'
 import AdaptiveAnalyticsDashboard from './routes/adaptive-analytics/AdaptiveAnalyticsDashboard'
+import RRReferencePanel from './routes/rr-reference/RRReferencePanel'
 
 function App() {
-  const [healthStatus, setHealthStatus] = useState<Record<string, { status: string; detail?: string; checked_at?: string }>>({
+  const [healthStatus, setHealthStatus] = useState<
+    Record<string, { status: string; detail?: string; warning?: string; checked_at?: string }>
+  >({
     devx: { status: 'unknown' },
     consent: { status: 'unknown' },
     core: { status: 'unknown' },
@@ -61,6 +64,7 @@ function App() {
 
   const statusStyles: Record<string, string> = {
     green: 'bg-emerald-100 text-emerald-700',
+    yellow: 'bg-amber-100 text-amber-700',
     amber: 'bg-amber-100 text-amber-700',
     red: 'bg-red-100 text-red-700',
     unknown: 'bg-gray-200 text-gray-700',
@@ -87,7 +91,13 @@ function App() {
                 {(['devx', 'consent', 'core'] as const).map((key) => {
                   const statusEntry = healthStatus[key] ?? { status: 'unknown' }
                   const badgeClass = statusStyles[statusEntry.status] ?? statusStyles.unknown
-                  const tooltip = `${serviceLabels[key]} — ${statusEntry.detail || statusEntry.status} (${statusEntry.checked_at || 'not checked'})`
+                  const tooltipParts = [
+                    serviceLabels[key],
+                    statusEntry.detail || statusEntry.status,
+                    statusEntry.warning ? `Warning: ${statusEntry.warning}` : null,
+                    statusEntry.checked_at ? `Checked: ${statusEntry.checked_at}` : null,
+                  ].filter(Boolean)
+                  const tooltip = tooltipParts.join(' — ')
                   return (
                     <span
                       key={key}
@@ -157,6 +167,17 @@ function App() {
                 }
               >
                 📊 Holistic
+              </NavLink>
+              <NavLink
+                to="/rr-reference"
+                className={({ isActive }) =>
+                  [
+                    'px-3 py-2 rounded-md transition-colors',
+                    isActive ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-blue-50 hover:text-blue-700',
+                  ].join(' ')
+                }
+              >
+                🧪 RR Reference
               </NavLink>
               <NavLink
                 to="/system"
@@ -289,6 +310,7 @@ function App() {
             <Route path="/user-ops" element={<UserOps />} />
             <Route path="/user-ops/:userId/*" element={<UserDetail />} />
             <Route path="/holistic" element={<HolisticSummary />} />
+            <Route path="/rr-reference" element={<RRReferencePanel />} />
             <Route path="/system" element={<SystemMonitor />} />
             <Route path="/stack" element={<StackStatusPage />} />
             <Route path="/coaches" element={<CoachWorkshop />} />

@@ -178,8 +178,10 @@ def resolve_traits(
             resolved_entry["last_observed"] = recent_log[-1].get("ts")
         prior_entry = prior_resolved.get(trait) if isinstance(prior_resolved.get(trait), dict) else {}
         resolved[trait] = resolved_entry
-        # curiosity/system-need heuristic: lower UCN ⇒ higher priority
-        rr = ucn / 100.0 if ucn > 1.0 else ucn
+        # Get RR from resolved entry (should be 0-100 percentile from normalization)
+        # For priority scoring, normalize to 0-1
+        rr_percentile = resolved_entry.get("rr", 50.0)  # Default to median
+        rr = rr_percentile / 100.0  # Normalize to 0-1 for scoring
         rr = max(0.0, min(1.0, rr))
         contradiction = "conflict_detected" in reasons
         importance = trait_importance_for(trait)

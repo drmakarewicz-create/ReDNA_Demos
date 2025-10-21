@@ -1,0 +1,76 @@
+{
+  "BehaviorDNA.Sleep.Chronotype": {
+    "value": {
+      "enum": "morning"
+    },
+    "ucn": 0.17,
+    "sources": [
+      "chat"
+    ],
+    "status": "warming",
+    "last_updated": "2025-10-19T16:06:53+00:00",
+    "last_confirmed_at": "2025-10-18T18:27:37.168241Z",
+    "history": [],
+    "policy": {
+      "tier": "hot",
+      "ttl_days": 365,
+      "reason": "high_signal",
+      "reliability": 0.5,
+      "logged_at": "2025-10-19T16:06:53+00:00"
+    },
+    "rr": 800.0,
+    "curiosity": 0.1125
+  },
+  "PaDNA.Chronotype": {
+    "value": {
+      "enum": "Morning Lark"
+    },
+    "ucn": 0.74,
+    "sources": [
+      "chat"
+    ],
+    "status": "warming",
+    "last_updated": "2025-10-19T14:18:00+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "cold",
+      "ttl_days": 60,
+      "reason": "high_signal,redundant",
+      "reliability": 0.5,
+      "logged_at": "2025-10-19T14:18:00+00:00"
+    }
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760885665340",
+        "ts": "2025-10-19T14:54:25+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T14:54:30.971998Z",
+    "history": []
+  },
+  "BasicDNA.RelationshipStatus": {
+    "id": "BasicDNA.RelationshipStatus",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760888752781",
+        "ts": "2025-10-19T15:45:52+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T15:45:55.786530Z",
+    "history": []
+  }
+}

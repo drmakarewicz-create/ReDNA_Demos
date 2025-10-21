@@ -1,0 +1,34 @@
+{
+  "BehaviorDNA.Sleep.Chronotype": {
+    "id": "BehaviorDNA.Sleep.Chronotype",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760888559419",
+        "ts": "2025-10-19T15:42:39+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T15:42:41.979132Z",
+    "history": []
+  },
+  "BasicDNA.Age": {
+    "id": "BasicDNA.Age",
+    "rr": 800.0,
+    "curiosity": 0.1125,
+    "value": null,
+    "provenance": [
+      {
+        "source": "text_ingest",
+        "event_id": "text_1760888559419",
+        "ts": "2025-10-19T15:42:39+00:00"
+      }
+    ],
+    "status": "stable",
+    "last_confirmed_at": "2025-10-19T15:42:41.979139Z",
+    "history": []
+  }
+}

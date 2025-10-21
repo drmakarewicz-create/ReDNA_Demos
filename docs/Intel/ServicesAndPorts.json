@@ -1,0 +1,78 @@
+{
+  "generated_at": "2025-10-20T15:30:00Z",
+  "notes": "Port 8502 is reserved for Control Panel++ (orchestrator)",
+  "services": [
+    {
+      "name": "Control Panel++ (CP++)",
+      "purpose": "Service orchestrator and diagnostics dashboard (Streamlit)",
+      "ports": [8502],
+      "entrypoint": "control_panel_plus_plus.py",
+      "health_path": "/_stcore/health",
+      "base_url": "http://127.0.0.1:8502",
+      "notes": "Orchestrates all 5 ReDNA services, port 8502 to avoid conflicts with other Streamlit services (8503-8515)"
+    },
+    {
+      "name": "Core API",
+      "purpose": "Main FastAPI backend for ingestion, traits, graph operations, and resolution",
+      "ports": [8004],
+      "entrypoint": "ReDNACoreDemo/core/api.py",
+      "health_path": "/health",
+      "base_url": "http://127.0.0.1:8004",
+      "notes": "80+ REST endpoints, primary data pipeline"
+    },
+    {
+      "name": "UCN/RR Service",
+      "purpose": "Statistical validation, confidence scoring (UCN 0-1000), rarity scoring (RR 0-100)",
+      "ports": [8017],
+      "entrypoint": "ucnrr_app.py",
+      "health_path": "/health",
+      "base_url": "http://127.0.0.1:8017",
+      "notes": "AI-driven statistical analysis layer, Phase 9: RR 0-100 percentile"
+    },
+    {
+      "name": "DevX Backend",
+      "purpose": "Developer experience API for diagnostics, AI readiness checks, synthetic data generation",
+      "ports": [8100],
+      "entrypoint": "ReDNACoreDemo/devx/backend/api.py",
+      "health_path": "/health",
+      "base_url": "http://127.0.0.1:8100",
+      "notes": "Includes /devx/api/ingestion/ai_ready endpoint"
+    },
+    {
+      "name": "DevX Frontend",
+      "purpose": "React UI for developer tools and diagnostics",
+      "ports": [8100],
+      "entrypoint": "ReDNACoreDemo/devx/frontend/",
+      "health_path": null,
+      "base_url": "http://127.0.0.1:8100",
+      "notes": "TypeScript/React application, shares port 8100 with DevX Backend (served by backend)"
+    },
+    {
+      "name": "React Web UI",
+      "purpose": "Main user-facing application (Next.js)",
+      "ports": [3000],
+      "entrypoint": "web/",
+      "health_path": null,
+      "base_url": "http://localhost:3000",
+      "notes": "Next.js 14, primary UI for trait viewing and interaction"
+    },
+    {
+      "name": "Photo Coach (Streamlit)",
+      "purpose": "Photo analysis, rendering, and physical trait extraction",
+      "ports": [8510],
+      "entrypoint": "PhotoRefinementCoach/",
+      "health_path": null,
+      "base_url": "http://127.0.0.1:8510",
+      "notes": "Streamlit application"
+    },
+    {
+      "name": "PaDNA Coach (Streamlit)",
+      "purpose": "Physical DNA trait export and outbound data delivery",
+      "ports": [8511],
+      "entrypoint": "PaDNAOutboundDemo/",
+      "health_path": null,
+      "base_url": "http://127.0.0.1:8511",
+      "notes": "Streamlit application"
+    }
+  ]
+}

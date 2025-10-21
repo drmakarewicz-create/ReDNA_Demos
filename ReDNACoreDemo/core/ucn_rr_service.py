@@ -12,6 +12,58 @@ The UCN/RR layer is the statistical analysis engine that:
 8. NOT the final authority - provides statistical truth and insights
 
 This layer validates "how confident should we be?" not "what should we infer?"
+
+---
+Phase 10: ReDNA Hierarchy (Replicated Digital Neural Approximation)
+---
+
+ReDNA (root) = The complete digital organism
+├── RelDNA (tier-1) = Relational DNA - Social patterns
+├── PaDNA (tier-1) = Physical Attributes DNA - Physical traits
+├── BehDNA (tier-1) = Behavioral DNA - Behavior patterns
+├── CogDNA (tier-1) = Cognitive DNA - Thinking patterns
+└── EmoDNA (tier-1) = Emotional DNA - Emotional patterns
+
+IMPORTANT: ReDNA is the organism-level entity. RelDNA is ONE of several top-tier subsystems.
+
+---
+Phase 9: AI-First Hierarchical UCN Propagation Guidance
+---
+
+When assigning or updating a parent DNA's UCN, the AI reasoning layer should:
+
+1. READ child trait UCNs as strong priors:
+   - If all child traits have high UCN (e.g., >750), consider the parent DNA highly confident.
+   - If child traits have mixed UCN, consider what that means for the parent category.
+   - If no child traits exist yet, start with a low parent UCN until evidence emerges.
+
+2. WEIGH parent-level evidence separately:
+   - Direct observations about the parent category should be considered.
+   - Recency of child evidence matters (older child data = lower parent confidence).
+   - Contradictions between children should lower parent UCN.
+
+3. USE DISCRETION over formulas:
+   - Do NOT compute parent UCN as mean(child UCNs).
+   - Instead, reason about what the child UCNs imply about the parent.
+   - Example: If PaDNA.HairDNA.Color has UCN=850 and PaDNA.HairDNA.Texture has UCN=800,
+     then PaDNA.HairDNA might have UCN=820-850 (high confidence in hair traits overall).
+
+4. EXPLAIN divergences via Why-Cards:
+   - If parent UCN diverges significantly from child consensus, create a Why-Card explaining:
+     * What child UCNs were considered?
+     * What parent-level signals were weighed?
+     * Why does the parent UCN differ from simple averaging?
+     * What new data would increase/decrease confidence?
+
+5. NEVER expose UCN as RR:
+   - UCN is 0-1000, internal only.
+   - RR is 0-100, user-facing percentile.
+   - Always use rr_to_percentile() adapter at egress.
+
+Soft scaffolding (not hard constraints):
+- Parent UCN should generally be within ±200 points of child avg (0-1000 scale).
+- Large divergence (>200 points) triggers Why-Card generation.
+- No parent UCN assigned if no child data and no direct parent evidence.
 """
 
 from __future__ import annotations
@@ -44,8 +96,8 @@ class UCNRRAssessment:
     trait_path: str
     value: Any
     ucn: float  # 0-1000 Universal Confidence Number
-    rr: float   # 0-1000 Rarity score
-    curiosity: float  # 1000 - rr (simple formula)
+    rr: float   # 0-1000 Rarity score (LEGACY - Phase 9: Should be 0-100 percentile)
+    curiosity: float  # 100 - rr for 0-100 scale (LEGACY: was 1000 - rr)
     correlations: List[Dict[str, Any]] = field(default_factory=list)
     confidence_reasoning: str = ""
     rarity_reasoning: str = ""
@@ -168,10 +220,11 @@ def _assess_observation(obs: Any, baselines: Dict[str, Any]) -> UCNRRAssessment:
     source = obs.source
     ucn = _calculate_ucn_from_source(source, confidence)
 
-    # Calculate RR from population baselines
+    # Calculate RR from population baselines (returns 0-1000 legacy scale)
     rr = rr_engine.compute_rr(trait_path, value, ucn, baselines)
 
-    # Simple curiosity formula: 1000 - RR
+    # LEGACY curiosity formula: 1000 - RR (Phase 9 TODO: Migrate to 100 - RR percentile)
+    # This service stores rr_score (0-1000) which gets normalized at egress to rr (0-100)
     curiosity = 1000.0 - rr
 
     assessment = UCNRRAssessment(
@@ -228,10 +281,11 @@ def _assess_inference(
     correlation_boost = _check_correlations(trait_path, value, observations, baselines)
     ucn = min(1000.0, ucn + correlation_boost)
 
-    # Calculate RR
+    # Calculate RR (returns 0-1000 legacy scale)
     rr = rr_engine.compute_rr(trait_path, value, ucn, baselines)
 
-    # Simple curiosity: 1000 - RR
+    # LEGACY curiosity: 1000 - RR (Phase 9 TODO: Migrate to 100 - RR percentile)
+    # This service stores rr_score (0-1000) which gets normalized at egress to rr (0-100)
     curiosity = 1000.0 - rr
 
     assessment = UCNRRAssessment(

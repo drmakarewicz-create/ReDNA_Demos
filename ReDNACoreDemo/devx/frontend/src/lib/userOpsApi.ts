@@ -133,6 +133,14 @@ export interface ExportBatchResponse {
   results: ExportResultEntry[]
 }
 
+export interface RecomputeRRResponse {
+  ok: boolean
+  traits_updated?: number | null
+  legacy_scores_archived?: number | null
+  detail?: string | null
+  raw?: Record<string, unknown>
+}
+
 export interface HolisticHistoryEntry extends CoreHolisticHistoryEntry {
   path: string
   size_bytes?: number | null
@@ -544,6 +552,25 @@ export const userOpsApi = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user_ids: userIds, reason }),
+    })
+    return handleResponse(response)
+  },
+
+  async recomputeRR(userId: string): Promise<RecomputeRRResponse> {
+    const response = await fetch(
+      `${DEVX_API_BASE}/rr/recompute?user_id=${encodeURIComponent(userId)}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
+    return handleResponse(response)
+  },
+
+  async recomputeRRAll(): Promise<RecomputeRRResponse> {
+    const response = await fetch(`${DEVX_API_BASE}/rr/recompute?scope=all`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
     })
     return handleResponse(response)
   },

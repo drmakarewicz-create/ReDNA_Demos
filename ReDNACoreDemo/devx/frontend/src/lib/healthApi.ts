@@ -15,6 +15,8 @@ export interface HealthStatusEntry {
   ok: boolean
   ms: number | null
   detail?: string
+  warning?: string
+  reported_status?: string | null
   checked_at: string
 }
 

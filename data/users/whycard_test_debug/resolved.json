@@ -1,0 +1,22 @@
+{
+  "PaDNA.Chronotype": {
+    "value": {
+      "enum": "Morning Lark"
+    },
+    "ucn": 0.595,
+    "sources": [
+      "chat"
+    ],
+    "status": "warming",
+    "last_updated": "2025-10-19T14:25:02+00:00",
+    "last_confirmed_at": null,
+    "history": [],
+    "policy": {
+      "tier": "hot",
+      "ttl_days": 365,
+      "reason": "high_signal",
+      "reliability": 0.5,
+      "logged_at": "2025-10-19T14:25:02+00:00"
+    }
+  }
+}

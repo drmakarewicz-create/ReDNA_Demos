@@ -1,3 +1,5 @@
+import { formatPercent } from '@/lib/provenanceClient';
+
 interface RRBadgeProps {
   rr: number | null | undefined;
 }
@@ -6,9 +8,29 @@ interface CuriosityBadgeProps {
   curiosity: number | null | undefined;
 }
 
+function clampPercent(value: number): number {
+  if (!Number.isFinite(value)) {
+    return 0;
+  }
+  return Math.min(100, Math.max(0, value));
+}
+
+function normalizePercentValue(value: number | null | undefined): number | null {
+  if (value === null || value === undefined || !Number.isFinite(value)) {
+    return null;
+  }
+  if (value > 100) {
+    return clampPercent(value / 10);
+  }
+  if (value <= 1) {
+    return clampPercent(value * 100);
+  }
+  return clampPercent(value);
+}
+
 function getRRBand(rr: number): 'low' | 'medium' | 'high' {
-  if (rr < 333) return 'low';
-  if (rr <= 667) return 'medium';
+  if (rr < 33.4) return 'low';
+  if (rr <= 66.7) return 'medium';
   return 'high';
 }
 
@@ -24,42 +46,44 @@ function getRRBandColor(band: 'low' | 'medium' | 'high'): string {
 }
 
 function getCuriosityColor(curiosity: number): string {
-  if (curiosity < 0.2) return 'bg-slate-500/20 text-slate-300 border-slate-500/40';
-  if (curiosity < 0.5) return 'bg-blue-500/20 text-blue-200 border-blue-500/40';
-  if (curiosity < 0.8) return 'bg-violet-500/20 text-violet-200 border-violet-500/40';
+  if (curiosity < 20) return 'bg-slate-500/20 text-slate-300 border-slate-500/40';
+  if (curiosity < 50) return 'bg-blue-500/20 text-blue-200 border-blue-500/40';
+  if (curiosity < 80) return 'bg-violet-500/20 text-violet-200 border-violet-500/40';
   return 'bg-fuchsia-500/20 text-fuchsia-200 border-fuchsia-500/40';
 }
 
 export function RRBadge({ rr }: RRBadgeProps) {
-  if (rr == null) {
+  const rrPercent = normalizePercentValue(rr);
+  if (rrPercent === null) {
     return <span className="text-xs text-slate-500">—</span>;
   }
 
-  const band = getRRBand(rr);
+  const band = getRRBand(rrPercent);
   const colorClass = getRRBandColor(band);
 
   return (
     <span
       className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${colorClass}`}
-      title={`Refinement Rating: ${Math.round(rr)} (${band})`}
+      title={`Refinement Rating: ${formatPercent(rrPercent)} (${band})`}
     >
-      RR {Math.round(rr)}
+      RR {Math.round(rrPercent)}%
     </span>
   );
 }
 
 export function CuriosityBadge({ curiosity }: CuriosityBadgeProps) {
-  if (curiosity == null) {
+  const curiosityPercent = normalizePercentValue(curiosity);
+  if (curiosityPercent === null) {
     return <span className="text-xs text-slate-500">—</span>;
   }
 
-  const percentage = Math.round(curiosity * 100);
-  const colorClass = getCuriosityColor(curiosity);
+  const percentage = Math.round(curiosityPercent);
+  const colorClass = getCuriosityColor(curiosityPercent);
 
   return (
     <span
       className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium ${colorClass}`}
-      title={`Curiosity: ${percentage}%`}
+      title={`Curiosity: ${formatPercent(curiosityPercent)}`}
     >
       Cur {percentage}%
     </span>
